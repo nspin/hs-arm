@@ -1,0 +1,23 @@
+Name:                arm-mra
+Version:             0.1
+license:             MIT
+license-file:        LICENSE
+author:              Nick Spinale
+maintainer:          spinalen@gmail.com
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:    src
+  exposed-modules:   ARM.MRA
+  build-depends:     base
+                   , bytestring
+                   , directory
+                   , exceptions
+                   , filepath
+                   , haskell-src-exts
+                   , monad-logger
+                   , mtl
+                   , transformers
+                   , xml
