@@ -1,13 +1,8 @@
-{ mkDerivation, base, bytestring, directory, exceptions, filepath
-, haskell-src-exts, monad-logger, mtl, stdenv, transformers, xml
-}:
+{ mkDerivation, base, stdenv }:
 mkDerivation {
   pname = "arm-mra";
-  version = "0.1";
+  version = "0.1.0.0";
   src = ./.;
-  libraryHaskellDepends = [
-    base bytestring directory exceptions filepath haskell-src-exts
-    monad-logger mtl transformers xml
-  ];
+  libraryHaskellDepends = [ base ];
   license = stdenv.lib.licenses.mit;
 }

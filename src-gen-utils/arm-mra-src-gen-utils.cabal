@@ -1,0 +1,26 @@
+Name:                arm-mra-src-gen-utils
+Version:             0.1
+license:             MIT
+author:              Nick Spinale
+maintainer:          spinalen@gmail.com
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+executable gen-arm-mra-src
+  main-is:           Main.hs
+  build-depends:     base
+                   , arm-mra-dtd-sysreg
+                   , arm-mra-dtd-a64
+                   , arm-mra-dtd-aarch32
+                   , bytestring
+                   , Cabal
+                   , directory
+                   , exceptions
+                   , filepath
+                   , haskell-src-exts
+                   , HaXml
+                   , monad-logger
+                   , mtl
+                   , pretty
+                   , transformers

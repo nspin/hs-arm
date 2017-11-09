@@ -1,23 +1,20 @@
-Name:                arm-mra
-Version:             0.1
-license:             MIT
-license-file:        LICENSE
-author:              Nick Spinale
-maintainer:          spinalen@gmail.com
-build-type:          Simple
-extra-source-files:  README.md
-cabal-version:       >=1.10
+name:                 arm-mra
+version:              0.1.0.0
+license:              MIT
+license-file:         LICENSE
+author:               Nick Spinale
+maintainer:           spinalen@gmail.com
+build-type:           Simple
+extra-source-files:   README.md
+cabal-version:        >=1.10
 
 library
-  hs-source-dirs:    src
-  exposed-modules:   ARM.MRA
-  build-depends:     base
-                   , bytestring
-                   , directory
-                   , exceptions
-                   , filepath
-                   , haskell-src-exts
-                   , monad-logger
-                   , mtl
-                   , transformers
-                   , xml
+  hs-source-dirs:     src, gen
+  default-language:   Haskell2010
+
+  exposed-modules:    ARM.MRA
+                    , ARM.MRA.Code
+
+  other-modules:      ARM.MRA.Gen.Code
+
+  build-depends:      base >=4.8 && <5
