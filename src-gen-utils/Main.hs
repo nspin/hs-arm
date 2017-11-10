@@ -27,6 +27,15 @@ main = do
         _ -> die $ "Usage: gen-arm-mra-src <outDir> <a64Dir>"
 
 
+allTemplates :: IO ()
+allTemplates = allInstrFiles root >>= mapM_ (fReadXml >=> mapM_ putStrLn . f)
+  where
+    f (Instructionsection attrs doc head desc _ (Classes _ (NonEmpty classes)) aliasmnem _ _ _ _) = do
+        (Iclass iattrs _ _ _ (Regdiagram rattrs boxes) (NonEmpty encs) _ _) <- classes
+        (Encoding eattrs _ _ bxs (NonEmpty asms) _) <- encs
+        extract <$> asms
+
+
 root :: FilePath
 root = "../results/xml/patched-a64/ISA_v83A_A64_xml_00bet5"
 
