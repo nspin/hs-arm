@@ -26,59 +26,20 @@ done
 
 for f in $(find $root -name 'allinstrs.dtd'); do
   cat >> $f << EOF
-<!-- 
-  <exceptions>: a list of exceptions that this instruction can cause.
+    <!ELEMENT exceptions (exception_group*)>
 
-  Exceptions are grouped together in <exception_group> elements.
-  <exception_group> elements contain <exception> elements.
+    <!ELEMENT exception_group (exception+)>
+    <!ATTLIST exception_group group_name CDATA #IMPLIED>
 
-  Attributes:
-    group_name: this group of exceptions only applies in certain
-      circumstances.
--->        
-<!ELEMENT exceptions (exception_group*)>
+    <!ELEMENT exception EMPTY>
+    <!ATTLIST exception register CDATA #IMPLIED
+                        field CDATA #IMPLIED
+                        value CDATA #IMPLIED
+                        name CDATA #IMPLIED>
 
-<!ELEMENT exception_group (exception+)>
-<!ATTLIST exception_group group_name CDATA #IMPLIED>
+    <!ELEMENT txt (%inline;)*>
+    <!ATTLIST txt class CDATA #IMPLIED>
 
-<!--
-  <exception>: data about a particular exception this instruction
-      can cause.
-
-  Attributes:
-    register: the system register in which a bit or bits are set
-      when this particular exception is caused.
-    field: the field in @register which is set to a value when
-      this particular exception is caused. (If not present,
-      assume that any of the register fields in the register
-      being set indicates this exception has been caused.)
-    value: the value that @field in @register is set to when
-      this particular exception is caused. (If not present,
-      assume that the field is set to 1.)
-    name: if @register is not present, the exception will instead
-      be described using the name it has in the source pseudocode.
-      This is a fallback and so will only be present in few cases.
--->
-
-<!ELEMENT exception EMPTY>
-<!ATTLIST exception register CDATA #IMPLIED
-                    field CDATA #IMPLIED
-                    value CDATA #IMPLIED
-                    name CDATA #IMPLIED>
-
-<!--
-  <txt>: used to wrap text in sections and avoid mixed
-    mode. Probably a mistake and no longer required.
-   
-  Attributes:
-    class: can be used to mark substrings for markup purposes.
--->      
-<!ELEMENT txt (%inline;)*>
-<!ATTLIST txt class CDATA #IMPLIED>
-
-<!-- 
-  <text>: wrap PCDATA to avoid mixed mode.  Historical... deprecated 
--->
-<!ELEMENT text (#PCDATA)>
+    <!ELEMENT text (#PCDATA)>
 EOF
 done
