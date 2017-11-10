@@ -33,7 +33,7 @@ root = "../results/xml/patched-a64/ISA_v83A_A64_xml_00bet5"
 test :: IO ()
 test = do
     files <- allInstrFiles root
-    forM files $ \file -> do
+    forM (take 10 files) $ \file -> do
         putStrLn ""
         putStrLn file
         putStrLn ""
@@ -48,8 +48,31 @@ allInstrFiles root = do
 
 
 process :: Instructionsection -> IO ()
-process (Instructionsection attrs doc head desc _ classes aliasmnem _ _ _ _) = do
-    print desc
+process (Instructionsection attrs doc head desc _ (Classes _ (NonEmpty classes)) aliasmnem _ _ _ _) = do
+    forM_ classes f
+  where
+    f (Iclass iattrs _ _ _ (Regdiagram rattrs boxes) (NonEmpty encs) _ _) = do
+        print boxes
+        forM_ encs g
+    g (Encoding eattrs _ _ bxs (NonEmpty asms) _) = do
+        print bxs
+        forM asms $ \asm -> do
+            print (extract asm)
+
+extract :: Asmtemplate -> String
+extract (Asmtemplate _ children) = unescape $ concatMap f children
+  where
+    f (Asmtemplate_Str x) = x
+    f (Asmtemplate_A (A _ xs)) = concat xs
+    f (Asmtemplate_Anchor (Anchor _ x)) = x
+    f (Asmtemplate_Txt txt) = undefined
+    f (Asmtemplate_Text (Text x)) = x
+
+unescape :: String -> String
+unescape ('&':'l':'t':';':cs) = '<' : unescape cs 
+unescape ('&':'g':'t':';':cs) = '>' : unescape cs
+unescape (c:cs) = c : unescape cs
+unescape [] = []
 
 
 -- HASKELL CODE GENERATION --
