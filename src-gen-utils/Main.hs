@@ -73,7 +73,6 @@ test = do
         putStrLn ""
         putStrLn file
         putStrLn ""
-        -- fReadXml file >>= process
         fReadXml file >>= (print :: Instructionsection -> IO ())
     return ()
 
