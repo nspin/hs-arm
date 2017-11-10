@@ -1,5 +1,9 @@
 module ARM.MRA
-    ( Code(..)
+    ( Instruction(..)
+    , encode
+    , decode
     ) where
 
-import ARM.MRA.Code (Code(..))
+import ARM.MRA.Argument
+import ARM.MRA.Decode
+import ARM.MRA.Gen

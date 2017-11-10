@@ -1,8 +1,8 @@
-{ mkDerivation, base, stdenv }:
+{ mkDerivation, base, stdenv, tagged }:
 mkDerivation {
   pname = "arm-mra";
   version = "0.1.0.0";
   src = ./.;
-  libraryHaskellDepends = [ base ];
+  libraryHaskellDepends = [ base tagged ];
   license = stdenv.lib.licenses.mit;
 }

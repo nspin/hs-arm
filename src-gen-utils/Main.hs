@@ -11,8 +11,8 @@ import System.Directory
 import Language.Haskell.Exts
 
 
-moduleRoot :: [String]
-moduleRoot = ["ARM", "MRA", "Gen"]
+modulePath :: [String]
+modulePath = ["ARM", "MRA", "Gen"]
 
 
 main :: IO ()
@@ -25,18 +25,18 @@ main = do
 
 generate :: FilePath -> IO ()
 generate outDir = do
-    createDirectoryIfMissing True baseDir
-    writeFile (baseDir </> "Code.hs") $ prettyPrint code
+    createDirectoryIfMissing True (takeDirectory file)
+    writeFile file $ prettyPrint code
   where
-    baseDir = outDir </> joinPath moduleRoot
+    file = outDir </> joinPath modulePath <.> "hs"
 
 
 code :: Module ()
 code = Module () (Just head) [] [] [decl]
   where
     head = ModuleHead () name Nothing Nothing
-    name = ModuleName () . intercalate "." $ moduleRoot ++ ["Code"]
+    name = ModuleName () $ intercalate "." modulePath
     decl = DataDecl () (DataType ()) Nothing
-        (DHead () (Ident () "Code"))
-        [QualConDecl () Nothing Nothing (ConDecl () (Ident () "Code") [])]
+        (DHead () (Ident () "Instruction"))
+        [QualConDecl () Nothing Nothing (ConDecl () (Ident () "Instruction") [])]
         Nothing
