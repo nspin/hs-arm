@@ -1,15 +1,20 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module Main (main) where
 
 
 import Control.Monad
-import Data.List
+import Data.Maybe
+import Data.List (intercalate)
 import System.Environment
 import System.Exit
 
+import Data.Attoparsec.Text hiding (take)
+import qualified Data.Text as T
 import Language.Haskell.Exts
 import System.FilePath
 import System.Directory
-import Text.XML.HaXml.XmlContent
+import Text.XML.HaXml.XmlContent hiding (Parser, many1)
 
 import ARM.MRA.DTD.A64.Alphaindex
 import ARM.MRA.DTD.A64.Iformp
@@ -27,13 +32,35 @@ main = do
         _ -> die $ "Usage: gen-arm-mra-src <outDir> <a64Dir>"
 
 
+attoparse :: Parser a -> String -> a
+attoparse parser str = case parseOnly parser (T.pack str) of
+    Right a -> a
+    Left err -> error ("|" ++ str ++ " !!! " ++ err ++ "|")
+
+data Template = Template String [Block] deriving Show
+
+data Block = Raw String | Arg String String deriving Show
+
+parseTemplate :: Asmtemplate -> Template
+parseTemplate (Asmtemplate _ (Asmtemplate_Text (Text nm) : rest)) = Template nm (map f rest)
+  where
+    f (Asmtemplate_Text (Text raw)) = Raw raw
+    f (Asmtemplate_A (A attrs [content])) = Arg ref sym
+      where
+        sym = attoparse (string "&lt;" *> manyTill anyChar (string "&gt;")) content
+        ref = attoparse parseRef . fromJust $ aHover attrs
+        parseRef = manyTill anyChar (string "(field ")
+                *> (string "&quot;" <|> string "\"")
+                *> manyTill anyChar (string "&quot;" <|> string "\"")
+                <* string ")"
+
 allTemplates :: IO ()
 allTemplates = allInstrFiles root >>= mapM_ (fReadXml >=> mapM_ putStrLn . f)
   where
     f (Instructionsection attrs doc head desc _ (Classes _ (NonEmpty classes)) aliasmnem _ _ _ _) = do
         (Iclass iattrs _ _ _ (Regdiagram rattrs boxes) (NonEmpty encs) _ _) <- classes
         (Encoding eattrs _ _ bxs (NonEmpty asms) _) <- encs
-        extract <$> asms
+        (show . parseTemplate) <$> asms
 
 
 root :: FilePath

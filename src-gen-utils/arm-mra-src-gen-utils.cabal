@@ -13,6 +13,7 @@ executable gen-arm-mra-src
                    , arm-mra-dtd-sysreg
                    , arm-mra-dtd-a64
                    , arm-mra-dtd-aarch32
+                   , attoparsec
                    , bytestring
                    , Cabal
                    , directory
@@ -23,4 +24,5 @@ executable gen-arm-mra-src
                    , monad-logger
                    , mtl
                    , pretty
+                   , text
                    , transformers
