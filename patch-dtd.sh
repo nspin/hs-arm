@@ -20,8 +20,8 @@ done
 for f in $(find $root -name '*.xml'); do
   sed -i 's/<note>//g' "$f"
   sed -i 's|</note>||g' "$f"
-  sed -i 's|<explanations.*></explanations>||g' "$f"
-  sed -i '/.*<explanations.*>/,/.*<\/explanations>/d' "$f"
+  # sed -i 's|<explanations.*></explanations>||g' "$f"
+  # sed -i '/.*<explanations.*>/,/.*<\/explanations>/d' "$f"
 done
 
 for f in $(find $root -name 'allinstrs.dtd'); do
