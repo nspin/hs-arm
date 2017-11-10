@@ -1,3 +1,31 @@
+#!/bin/sh
+
+set -e
+
+root=$1
+
+for f in $(find $root -name 'sharedps.dtd'); do
+  sed -i 's/<!ENTITY % inline "#PCDATA | a | anchor | txt">/<!ENTITY % inline "#PCDATA | a | anchor">/' $f
+done
+
+for f in $(find $root -name 'constraint_text_mappings.dtd'); do
+  echo '<!ELEMENT constraint_id (#PCDATA)>' >> $f
+  echo '<!ELEMENT constraint_text (#PCDATA)>' >> $f
+done
+
+for f in $(find $root -name 'iform-p.dtd'); do
+  sed -i 's/<!ATTLIST xref armarmref CDATA #REQUIRED>/<!ATTLIST xref armarmref CDATA #IMPLIED>/' $f
+done
+
+for f in $(find $root -name '*.xml'); do
+  sed -i 's/<note>//g' "$f"
+  sed -i 's|</note>||g' "$f"
+  sed -i 's|<explanations.*></explanations>||g' "$f"
+  sed -i '/.*<explanations.*>/,/.*<\/explanations>/d' "$f"
+done
+
+for f in $(find $root -name 'allinstrs.dtd'); do
+  cat >> $f << EOF
 <!-- 
   <exceptions>: a list of exceptions that this instruction can cause.
 
@@ -52,3 +80,5 @@
   <text>: wrap PCDATA to avoid mixed mode.  Historical... deprecated 
 -->
 <!ELEMENT text (#PCDATA)>
+EOF
+done

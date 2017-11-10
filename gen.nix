@@ -77,44 +77,26 @@ in rec {
   patched-a64 = stdenv.mkDerivation {
     name = xml.a64.name + "-patched";
     inherit (xml) a64;
-    missing = ./missing.dtd;
+    patch = ./patch-dtd.sh;
     builder = builtins.toFile "builder.sh" ''
       source $stdenv/setup
       mkdir $out
       cp -r $a64/* $out
       chmod -R 744 $out/*
-
-      sharedps=$(find $out -name 'sharedps.dtd')
-      sed -i 's/<!ENTITY % inline "#PCDATA | a | anchor | txt">/<!ENTITY % inline "#PCDATA | a | anchor">/' $sharedps
-
-      constraint_text_mappings=$(find $out -name 'constraint_text_mappings.dtd' | grep -v OPT)
-      echo '<!ELEMENT constraint_id (#PCDATA)>' >> $constraint_text_mappings
-      echo '<!ELEMENT constraint_text (#PCDATA)>' >> $constraint_text_mappings
-
-      allinstrs=$(find $out -name 'allinstrs.dtd' | grep -v OPT)
-      cat $missing >> $allinstrs
+      bash $patch $out
     '';
   };
 
   patched-aarch32 = stdenv.mkDerivation {
     name = xml.aarch32.name + "-patched";
     inherit (xml) aarch32;
-    missing = ./missing.dtd;
+    patch = ./patch-dtd.sh;
     builder = builtins.toFile "builder.sh" ''
       source $stdenv/setup
       mkdir $out
       cp -r $aarch32/* $out
       chmod -R 744 $out/*
-
-      sharedps=$(find $out -name 'sharedps.dtd')
-      sed -i 's/<!ENTITY % inline "#PCDATA | a | anchor | txt">/<!ENTITY % inline "#PCDATA | a | anchor">/' $sharedps
-
-      constraint_text_mappings=$(find $out -name 'constraint_text_mappings.dtd')
-      echo '<!ELEMENT constraint_id (#PCDATA)>' >> $constraint_text_mappings
-      echo '<!ELEMENT constraint_text (#PCDATA)>' >> $constraint_text_mappings
-
-      allinstrs=$(find $out -name 'allinstrs.dtd')
-      cat $missing >> $allinstrs
+      bash $patch $out
     '';
   };
 
