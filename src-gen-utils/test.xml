@@ -1,0 +1,8 @@
+
+    <authored>
+      <para><instruction>CRC32</instruction> checksum performs a cyclic redundancy check (CRC) calculation on a value held in a general-purpose register. It takes an input CRC value in the first source operand, performs a CRC on the input value in the second source operand, and returns the output CRC value. The second source operand can be 8, 16, 32, or 64 bits. To align with common usage, the bit order of the values is reversed as part of the operation, and the polynomial <hexnumber>0x04C11DB7</hexnumber> is used for the CRC calculation.</para>
+      <para>In ARMv8-A, this is an <arm-defined-word>optional</arm-defined-word> instruction, and in ARMv8.1 it is mandatory for all implementations to implement it.</para>
+      <note>
+        <para><xref linkend="AArch64.id_aa64isar0_el1">ID_AA64ISAR0_EL1</xref>.CRC32 indicates whether this instruction is supported.</para>
+      </note>
+    </authored>

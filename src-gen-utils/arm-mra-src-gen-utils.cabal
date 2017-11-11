@@ -9,6 +9,12 @@ cabal-version:       >=1.10
 
 executable gen-arm-mra-src
   main-is:           Main.hs
+
+  other-modules:     Test
+                   , IO
+                   , Distill
+                   , Gen
+
   build-depends:     base
                    , arm-mra-dtd-sysreg
                    , arm-mra-dtd-a64
