@@ -4,22 +4,22 @@ set -e
 
 root=$1
 
+for f in $(find $root -name 'iform-p.dtd'); do
+  sed -i 's/<!ATTLIST xref armarmref CDATA #REQUIRED>/<!ATTLIST xref linkend CDATA #REQUIRED>/' $f
+  sed -i 's/<!ENTITY % formatted_text/<!ENTITY % formatted_text "(#PCDATA|para|list|note|%formatted_words;)*"><!ENTITY % NOTHINGTOSEEHERE/' $f
+  echo '<!ELEMENT note (#PCDATA|para|list|table)*>' >> $f
+  # probably a HaXml bug
+  sed -i 's/<!ELEMENT listitem ((term\*|param\*), content)>/<!ELEMENT listitem ((param*|term*), content)>/' $f
+done
+
 for f in $(find $root -name 'sharedps.dtd'); do
-  sed -i 's/<!ENTITY % inline "#PCDATA | a | anchor | txt">/<!ENTITY % inline "#PCDATA | a | anchor">/' $f
+  echo '<!ELEMENT txt (%inline;)*>' >> $f
+  echo '<!ATTLIST txt class CDATA #IMPLIED>' >> $f
 done
 
 for f in $(find $root -name 'constraint_text_mappings.dtd'); do
   echo '<!ELEMENT constraint_id (#PCDATA)>' >> $f
   echo '<!ELEMENT constraint_text (#PCDATA)>' >> $f
-done
-
-for f in $(find $root -name 'iform-p.dtd'); do
-  sed -i 's/<!ATTLIST xref armarmref CDATA #REQUIRED>/<!ATTLIST xref armarmref CDATA #IMPLIED>/' $f
-done
-
-for f in $(find $root -name '*.xml'); do
-  sed -i 's/<note>//g' "$f"
-  sed -i 's|</note>||g' "$f"
 done
 
 for f in $(find $root -name 'allinstrs.dtd'); do
