@@ -2,13 +2,14 @@
 
 module Distill where
 
+import Control.Exception
 import Data.Maybe
 
 import Text.XML.HaXml.OneOfN (OneOf2(..))
 import Text.XML.HaXml.XmlContent (List1(..))
 
 import qualified ARM.MRA.DTD.A64.Iformp as D
-import ARM.MRA.DTD.A64.Iformp hiding (Box, Encoding, Explanation, Ps)
+import ARM.MRA.DTD.A64.Iformp hiding (Box, Encoding, Explanation, Ps, C, Account, Definition)
 
 
 data Instr = Instr (Maybe AliasInfo) [Class] [Explanation] [Ps]
@@ -27,8 +28,17 @@ data Diagram = Diagram PsName [Box]
 
 type PsName = String
 
-data Box = Fixed (Maybe String) [Bit] | Bound String (Maybe String) Int
-    deriving Show
+data Box = Box
+    { box_hi :: Int
+    , box_width :: Int
+    , box_name :: Maybe String
+    , box_spec :: [C]
+    } deriving Show
+
+data C = C
+    { c_width :: Int
+    , c_val :: String
+    } deriving Show
 
 data Bit = I | O | X
     deriving Show
@@ -36,15 +46,21 @@ data Bit = I | O | X
 data Encoding = Encoding
     deriving Show
 
-data Explanation = Explanation
+data Explanation = Explanation [EncodingId] D.Symbol Mapping
     deriving Show
+
+data Mapping = Account String | Definition String [(String, String)]
+    deriving Show
+
+type EncodingId = String
+-- type Symbol = String
 
 data Ps = Ps
     deriving Show
 
 
 distillInstr :: Instructionsection -> Instr
-distillInstr (Instructionsection attrs doc head desc xalias (Classes _ (NonEmpty xclasses)) aliasmnem _ _ _ _)
+distillInstr (Instructionsection attrs doc head desc xalias (Classes _ (NonEmpty xclasses)) aliasmnem xmexpls _ _ _)
     = Instr alias classes expls pss
   where
     alias = xalias <&> \case
@@ -56,23 +72,25 @@ distillInstr (Instructionsection attrs doc head desc xalias (Classes _ (NonEmpty
       where
         diag = Diagram (fromJust (regdiagramPsname atrs)) boxes
         boxes = map fbox xboxes
-        fbox (D.Box ats cs) = case boxSettings ats of
-            Nothing -> Bound (fromJust (boxName ats)) (boxConstraint ats) (maybe 1 read (boxWidth ats))
-            Just _ -> case boxConstraint ats of
-                Nothing -> Fixed (boxName ats) [ readBit s | C _ s <- cs ]
-                Just c -> Bound (fromJust (boxName ats)) (Just c) (maybe 1 read (boxWidth ats))
+        fbox (D.Box ats xcs) = assert ok box
+          where
+            box = Box (read (boxHibit ats)) (maybe 1 read (boxWidth ats)) (boxName ats) (map fc xcs)
+            fc (D.C as s) = C (maybe 1 read (cColspan as)) s
+            ok = case boxConstraint ats of
+                Nothing -> True
+                Just con -> case box of
+                    Box _ _ _ [C _ v] -> v == con
+                    _ -> False
         encs = []
         mps = Nothing
-    expls = []
+    expls = maybe [] (\(Explanations _ es) -> map fexpl es) xmexpls
+    fexpl (D.Explanation atrs xsym ad _) = Explanation [explanationEnclist atrs] xsym mapping
+      where
+        mapping = case ad of
+            OneOf2 (D.Account as _ _) -> Account (fromJust (accountEncodedin as))
+            TwoOf2 (D.Definition as _ tbl _) -> Definition (definitionEncodedin as) [("foo", "bar")]
     pss = []
 
-
-readBit :: String -> Bit
-readBit "1" = I
-readBit "(1)" = I
-readBit "0" = O
-readBit "x" = X
-readBit x = error $ x ++ " is not a valid bit"
 
 infixl 4 <&>
 (<&>) :: Functor f => f a -> (a -> b) -> f b
