@@ -1,0 +1,37 @@
+Name:                arm-mras-gen-utils
+Version:             0.1
+license:             MIT
+author:              Nick Spinale
+maintainer:          spinalen@gmail.com
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+executable gen-arm-mras
+  hs-source-dirs:    src
+  main-is:           Main.hs
+
+  other-modules:     IO
+                   , Distill
+                   , Gen
+
+  build-depends:     base
+
+                   , arm-mras-types
+                   , arm-mras-dtd-sysreg
+                   , arm-mras-dtd-a64
+                   , arm-mras-dtd-aarch32
+
+                   , attoparsec
+                   , bytestring
+                   , Cabal
+                   , directory
+                   , exceptions
+                   , filepath
+                   , haskell-src-exts
+                   , HaXml
+                   , monad-logger
+                   , mtl
+                   , pretty
+                   , text
+                   , transformers
