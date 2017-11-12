@@ -13,8 +13,10 @@ import qualified ARM.MRAS.DTD.A64.Iformp as D
 import ARM.MRAS.DTD.A64.Iformp hiding (Box, Encoding, Explanation, Ps, C, Account, Definition, Table, Symbol)
 
 
-data Instr = Instr (Maybe AliasInfo) [Class] [Explanation] [Ps]
+data Instr = Instr InstrId AliasInfo [Class] [Explanation] [Ps]
     deriving Show
+
+type InstrId = String
 
 data AliasInfo = AliasList [PageId] | AliasTo PageId
     deriving Show
@@ -92,9 +94,9 @@ infixl 4 <&>
 
 distillInstr :: Instructionsection -> Instr
 distillInstr (Instructionsection attrs doc head desc xalias (Classes _ (NonEmpty xclasses)) aliasmnem xmexpls _ opss excs)
-    = Instr alias (map distillClass xclasses) expls pss
+    = Instr (instructionsectionId attrs) alias (map distillClass xclasses) expls pss
   where
-    alias = xalias <&> \case
+    alias = fromJust $ xalias <&> \case
         OneOf2 (Alias_list _ _ refs _) -> AliasList [ aliasrefAliaspageid attrs | Aliasref attrs _ _ <- refs ]
         TwoOf2 (Aliasto attrs _) -> AliasTo (aliastoIformid attrs)
     expls = maybe [] (\(Explanations _ es) -> map distillExplanation es) xmexpls
