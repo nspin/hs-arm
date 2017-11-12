@@ -26,11 +26,27 @@ generate outDir = do
     file = outDir </> "gen" </> "Harm" </> "Gen.hs"
 
 hs :: Module ()
-hs = Module () (Just head) [] [] [decl]
+hs = Module () (Just head) [] [word] [instrs, decsType, decsVal]
   where
     head = ModuleHead () name Nothing Nothing
     name = ModuleName () "Harm.Gen"
-    decl = DataDecl () (DataType ()) Nothing
+    word = ImportDecl
+        { importAnn = ()
+        , importModule = ModuleName () "Data.Word"
+        , importQualified = False
+        , importSrc = False
+        , importSafe = False
+        , importPkg = Nothing
+        , importAs = Nothing
+        , importSpecs = Nothing
+        }
+    instrs = DataDecl () (DataType ()) Nothing
         (DHead () (Ident () "Instruction"))
         [QualConDecl () Nothing Nothing (ConDecl () (Ident () "Instruction") [])]
         Nothing
+    decsType = TypeSig () [Ident () "decoders"] . TyList () $ TyTuple () Boxed
+        [ TyCon () (UnQual () (Ident () "Word32"))
+        , TyCon () (UnQual () (Ident () "Word32"))
+        , TyFun () (TyCon () (UnQual () (Ident () "Word32"))) (TyCon () (UnQual () (Ident () "Instruction")))
+        ]
+    decsVal = FunBind () [Match () (Ident () "decoders") [] (UnGuardedRhs () (List () [])) Nothing]

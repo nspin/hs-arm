@@ -14,3 +14,4 @@ library
   exposed-modules:    Harm
 
   build-depends:      base >=4.8 && <5
+                    , tagged

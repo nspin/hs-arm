@@ -34,7 +34,7 @@ in rec {
     version = "0.1";
     src = harm-src;
     executableHaskellDepends = with haskellPackages; [
-      base directory filepath arm-mras-types
+      base tagged arm-mras-types
     ];
     license = stdenv.lib.licenses.mit;
   };

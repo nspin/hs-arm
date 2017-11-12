@@ -1,1 +1,1 @@
-((import <nixpkgs> {}).haskellPackages.callPackage ./. {}).env
+((import <nixpkgs> {}).callPackage ../. {}).harm.env
