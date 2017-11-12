@@ -28,7 +28,8 @@ test = do
     forM files $ \p -> do
         isec <- readInstr p
         isec `seq` putStrLn p
-        print $ distillInstr isec
+        let ins = distillInstr isec
+        print ins
     return ()
 
 
@@ -37,12 +38,12 @@ attoparse parser str = case parseOnly parser (T.pack str) of
     Right a -> a
     Left err -> error ("|" ++ str ++ " !!! " ++ err ++ "|")
 
-data Template = Template String [Block] deriving Show
+data AsmTemplate = AsmTemplate String [Block] deriving Show
 
 data Block = Raw String | Arg String String deriving Show
 
-parseTemplate :: Asmtemplate -> Template
-parseTemplate (Asmtemplate _ (Asmtemplate_Text (Text nm) : rest)) = Template nm (map f rest)
+parseTemplate :: Asmtemplate -> AsmTemplate
+parseTemplate (Asmtemplate _ (Asmtemplate_Text (Text nm) : rest)) = AsmTemplate nm (map f rest)
   where
     f (Asmtemplate_Text (Text raw)) = Raw raw
     f (Asmtemplate_A (A attrs [content])) = Arg ref sym
@@ -78,9 +79,3 @@ extract (Asmtemplate _ children) = unescape $ concatMap f children
     f (Asmtemplate_Anchor (Anchor _ x)) = x
     f (Asmtemplate_Txt txt) = undefined
     f (Asmtemplate_Text (Text x)) = x
-
-unescape :: String -> String
-unescape ('&':'l':'t':';':cs) = '<' : unescape cs 
-unescape ('&':'g':'t':';':cs) = '>' : unescape cs
-unescape (c:cs) = c : unescape cs
-unescape [] = []
