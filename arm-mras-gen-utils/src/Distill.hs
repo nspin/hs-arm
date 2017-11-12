@@ -23,11 +23,12 @@ data AliasInfo = AliasList [PageId] | AliasTo PageId
 
 type PageId = String
 
-data Class = Class (Maybe [ArchVar]) Diagram [Encoding] [Ps]
+data Class = Class ClassId (Maybe ArchVar) Diagram [Encoding] [Ps]
     deriving Show
 
-data ArchVar = ArchVar (Maybe String) (Maybe String) -- name, feature
-    deriving Show
+type ClassId = String
+
+type ArchVar = String
 
 data Diagram = Diagram PsName [Box]
     deriving Show
@@ -106,7 +107,7 @@ distillInstr (Instructionsection attrs doc head desc xalias (Classes _ (NonEmpty
 
 distillClass :: Iclass -> Class
 distillClass (Iclass attrs _ _ xavars (Regdiagram atrs xboxes) (NonEmpty xencs) xmps _)
-    = Class avars diag encs pss
+    = Class (iclassId attrs) avars diag encs pss
   where
     avars = distillArchVars <$> xavars
     diag = (regdiagramForm atrs == Regdiagram_form_32)  `assert` Diagram (fromJust (regdiagramPsname atrs)) boxes
@@ -114,10 +115,8 @@ distillClass (Iclass attrs _ _ xavars (Regdiagram atrs xboxes) (NonEmpty xencs) 
     encs = map distillEncoding xencs
     pss = maybe [] distillPss xmps
 
-distillArchVars :: Arch_variants -> [ArchVar]
-distillArchVars (Arch_variants x) = map f x
-  where
-    f (Arch_variant a b) = ArchVar a b
+distillArchVars :: Arch_variants -> ArchVar
+distillArchVars (Arch_variants [Arch_variant (Just x) Nothing]) = x
 
 distillBox :: D.Box -> Box
 distillBox (D.Box ats xcs) = assert ok box
@@ -159,7 +158,7 @@ distillTable (D.Table _ (NonEmpty [D.Tgroup _ (Thead (NonEmpty [Row (NonEmpty he
     f (Entry attrs e) = TEntry (entryClass attrs) $ case filter h e of
         [] -> Left ""
         [Entry_Str s] -> Left s
-        [Entry_Arch_variants (Arch_variants [Arch_variant name feature])] -> Right (ArchVar name feature)
+        [Entry_Arch_variants (Arch_variants [Arch_variant (Just name) Nothing])] -> Right name
     g (Row (NonEmpty ents)) = map f ents
 
 distillPss :: Ps_section -> [Ps]

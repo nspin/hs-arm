@@ -26,10 +26,19 @@ test :: IO ()
 test = do
     files <- listInstrs root
     forM files $ \p -> do
+        putStr "\n# "
         isec <- readInstr p
         isec `seq` putStrLn p
         let ins = distillInstr isec
-        print ins
+            Instr id alias classes expls _ = ins
+        putStrLn id
+        print alias
+        forM classes $ \(Class id archvar (Diagram psn boxes) encs _) -> do
+            putStr ">> "
+            print id
+            print psn
+            print archvar
+            print boxes
     return ()
 
 
