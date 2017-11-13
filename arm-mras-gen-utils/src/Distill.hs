@@ -1,10 +1,15 @@
+{-# LANGUAGE DeriveAnyClass #-}
+{-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE StandaloneDeriving #-}
 
 module Distill where
 
+import Control.DeepSeq
 import Control.Exception
 import Data.Char
 import Data.Maybe
+import GHC.Generics (Generic)
 
 import Text.XML.HaXml.OneOfN (OneOf2(..))
 import Text.XML.HaXml.XmlContent (List1(..))
@@ -14,24 +19,25 @@ import ARM.MRAS.DTD.A64.Iformp hiding (Box, Encoding, Explanation, Ps, C, Accoun
 
 
 data Instr = Instr InstrId AliasInfo [Class] [Explanation] [Ps]
-    deriving Show
+    deriving (Show, Generic, NFData)
 
 type InstrId = String
 
 data AliasInfo = AliasList [PageId] | AliasTo PageId
-    deriving Show
+    deriving (Show, Generic, NFData)
 
 type PageId = String
 
 data Class = Class ClassId (Maybe ArchVar) Diagram [Encoding] [Ps]
-    deriving Show
+    deriving (Show, Generic, NFData)
 
 type ClassId = String
 
-type ArchVar = String
+data ArchVar = ArchName String | ArchFeature String
+    deriving (Show, Generic, NFData)
 
 data Diagram = Diagram PsName [Box]
-    deriving Show
+    deriving (Show, Generic, NFData)
 
 type PsName = String
 
@@ -40,43 +46,45 @@ data Box = Box
     , box_width :: Int
     , box_name :: Maybe String
     , box_spec :: [C]
-    } deriving Show
+    } deriving (Show, Generic, NFData)
 
 data C = C
     { c_width :: Int
     , c_val :: String
-    } deriving Show
+    } deriving (Show, Generic, NFData)
 
 data Encoding = Encoding EncodingId [Box] [Template] (Maybe EquivTo)
-    deriving Show
+    deriving (Show, Generic, NFData)
 
-data Template = Template String
-    deriving Show
+type Template = String
 
 data EquivTo = EquivTo -- TODO(nspin)
-    deriving Show
+    deriving (Show, Generic, NFData)
 
 data Explanation = Explanation [EncodingId] Symbol Mapping
-    deriving Show
+    deriving (Show, Generic, NFData)
 
 data Mapping = Account String | Definition String Table
-    deriving Show
+    deriving (Show, Generic, NFData)
 
 data Table = Table [TEntry] [[TEntry]]
-    deriving Show
+    deriving (Show, Generic, NFData)
+
+deriving instance Generic Entry_class
+deriving instance NFData Entry_class
 
 data TEntry = TEntry Entry_class (Either String ArchVar)
-    deriving Show
+    deriving (Show, Generic, NFData)
 
 type EncodingId = String
 
 type Symbol = String
 
 data Ps = Ps PsName (Maybe PsSection) String
-    deriving Show
+    deriving (Show, Generic, NFData)
 
 data PsSection = PsDecode | PsPostDecode | PsExecute
-    deriving Show
+    deriving (Show, Generic, NFData)
 
 
 unescape :: String -> String
@@ -89,6 +97,10 @@ unescape [] = []
 infixl 4 <&>
 (<&>) :: Functor f => f a -> (a -> b) -> f b
 (<&>) = flip fmap
+
+infixl 1 <!>
+(<!>) :: Bool -> b -> b
+(<!>) = assert
 
 
 -- Yuck. There is no good way to do this.
@@ -107,19 +119,16 @@ distillInstr (Instructionsection attrs doc head desc xalias (Classes _ (NonEmpty
 
 distillClass :: Iclass -> Class
 distillClass (Iclass attrs _ _ xavars (Regdiagram atrs xboxes) (NonEmpty xencs) xmps _)
-    = Class (iclassId attrs) avars diag encs pss
+    = iclassIsa attrs == "A64" <!> Class (iclassId attrs) avars diag encs pss
   where
     avars = distillArchVars <$> xavars
-    diag = (regdiagramForm atrs == Regdiagram_form_32)  `assert` Diagram (fromJust (regdiagramPsname atrs)) boxes
+    diag = regdiagramForm atrs == Regdiagram_form_32 <!> Diagram (fromJust (regdiagramPsname atrs)) boxes
     boxes = map distillBox xboxes
     encs = map distillEncoding xencs
     pss = maybe [] distillPss xmps
 
-distillArchVars :: Arch_variants -> ArchVar
-distillArchVars (Arch_variants [Arch_variant (Just x) Nothing]) = x
-
 distillBox :: D.Box -> Box
-distillBox (D.Box ats xcs) = assert ok box
+distillBox (D.Box ats xcs) = ok <!> box
   where
     box = Box (read (boxHibit ats)) (maybe 1 read (boxWidth ats)) (boxName ats) (map fc xcs)
     fc (D.C as s) = C (maybe 1 read (cColspan as)) s
@@ -134,7 +143,7 @@ distillEncoding (D.Encoding attrs _ _ xboxes (NonEmpty xtemps) mequiv)
     = Encoding (encodingName attrs) (map distillBox xboxes) (map distillTemplate xtemps) (EquivTo <$ mequiv)
 
 distillTemplate :: Asmtemplate -> Template
-distillTemplate (Asmtemplate _ xtemps) = Template (unescape (concatMap f xtemps))
+distillTemplate (Asmtemplate _ xtemps) = unescape (concatMap f xtemps)
   where
     f (Asmtemplate_Text (Text t)) = t
     f (Asmtemplate_A (A _ as)) = concat as
@@ -157,9 +166,15 @@ distillTable (D.Table _ (NonEmpty [D.Tgroup _ (Thead (NonEmpty [Row (NonEmpty he
     h _ = True
     f (Entry attrs e) = TEntry (entryClass attrs) $ case filter h e of
         [] -> Left ""
-        [Entry_Str s] -> Left s
-        [Entry_Arch_variants (Arch_variants [Arch_variant (Just name) Nothing])] -> Right name
+        [Entry_Str s] -> Left (unescape s)
+        [Entry_Arch_variants avs] -> Right (distillArchVars avs)
+        _ -> error $ "FOOO::: " ++ show e
     g (Row (NonEmpty ents)) = map f ents
+
+distillArchVars :: Arch_variants -> ArchVar
+distillArchVars (Arch_variants [x]) = case x of
+    Arch_variant (Just name) Nothing -> ArchName name
+    Arch_variant Nothing (Just feature) -> ArchFeature feature
 
 distillPss :: Ps_section -> [Ps]
 distillPss (Ps_section _ (NonEmpty xpss)) = map f xpss

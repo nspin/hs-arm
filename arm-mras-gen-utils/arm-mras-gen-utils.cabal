@@ -13,6 +13,7 @@ executable gen-arm-mras
 
   other-modules:     IO
                    , Distill
+                   , Structure
                    , Gen
 
   build-depends:     base
@@ -25,6 +26,7 @@ executable gen-arm-mras
                    , attoparsec
                    , bytestring
                    , Cabal
+                   , deepseq
                    , directory
                    , exceptions
                    , filepath

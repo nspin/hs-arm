@@ -10,9 +10,9 @@ import System.Directory
 import System.FilePath
 import Text.XML.HaXml.XmlContent
 
-listInstrs :: FilePath -> IO [FilePath]
-listInstrs root = do
-    Alphaindex _ (Iforms _ (NonEmpty iforms)) <- fReadXml $ root </> "index.xml"
+listInstrs :: FilePath -> FilePath -> IO [FilePath]
+listInstrs root index = do
+    Alphaindex _ (Iforms _ (NonEmpty iforms)) <- fReadXml $ root </> index
     return [ root </> iformIformfile attrs | Iform attrs _ <- iforms ]
 
 readInstr :: FilePath -> IO Instructionsection
