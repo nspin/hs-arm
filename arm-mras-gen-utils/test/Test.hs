@@ -56,9 +56,23 @@ test = do
                         forM syms $ \(S.Symbol sym bits t) ->
                             case t of
                                 Nothing -> return ()
-                                Just (S.Table (THead sy bfs) bdy) -> do
-                                    when (sy /= sym) $ do
-                                        print p
+                                Just (S.Table bfs bdy) -> do
+                                    putStrLn p
+                                    putStrLn sym
+                                    putStrLn bits
+                                    print bfs
+                                    forM bdy $ \(TRow v bv av) ->
+                                        putStrLn $ fromMaybe "RESERVED" v ++ ": " ++ intercalate " " (map (map showBit) bv) ++ maybe "" (\a -> " (" ++ show a ++ ")") av
+                                    putStrLn ""
+
+                                    -- hPutStrLn h p
+                                    -- hPutStrLn h sym
+                                    -- hPutStrLn h bits
+                                    -- hPutStrLn h (show bfs)
+                                    -- forM bdy $ \(TRow v bv av) ->
+                                    --     hPutStrLn h $ fromMaybe "RESERVED" v ++ ": " ++ intercalate " " (map (map showBit) bv) ++ maybe "" (\a -> " (" ++ show a ++ ")") av
+                                    -- hPutStrLn h ""
+
         -- print inst
         -- forM classes $ \(L.Class id archvar (L.Diagram psn boxes) encs _) -> do
         --     let diag = parseDiagram boxes
@@ -69,6 +83,10 @@ test = do
     return ()
 
 
+showBit :: S.Bit -> Char
+showBit I = '1'
+showBit O = 'O'
+showBit X = 'x'
 
 fancyBoxes :: [L.Box] -> String
 fancyBoxes bs = intercalate " " (map fancyBox bs)

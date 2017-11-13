@@ -38,10 +38,8 @@ data Encoding = Encoding EncodingId [(String, BlockSpec)] Template [Symbol]
 data Symbol = Symbol String String (Maybe Table)
     deriving (Show, Generic, NFData)
 
-data Table = Table THead [TRow]
-    deriving (Show, Generic, NFData)
-
-data THead = THead String [String]
+-- Table bitfields [TRow (symbol or RESERVED) (bitfield assignments) archvar]
+data Table = Table [String] [TRow]
     deriving (Show, Generic, NFData)
 
 data TRow = TRow (Maybe String) [[Bit]] (Maybe ArchVar)
@@ -85,14 +83,14 @@ parseInstruction (Instr id (AliasList _) xclasses expls pss) =
             values (Definition _ tbl) = Just (parseTable tbl)
 
 parseTable :: L.Table -> Table
-parseTable (L.Table hd bdy) = assert check $ Table thd tbdy
+parseTable (L.Table hd bdy) = assert check $ Table bfs tbdy
   where
     tbdy = map r bdy
-    (hasarch, thd@(THead sym bfs)) = case reverse hd of
+    (hasarch, bfs) = case reverse hd of
         TEntry D.Entry_class_symbol (Left "Architectural Feature") : rest -> (True, f rest)
         rest -> (False, f rest)
       where
-        f (TEntry D.Entry_class_symbol (Left sym) : rest) = THead sym (map g rest)
+        f (TEntry D.Entry_class_symbol (Left sym) : rest) = map g rest
         g (TEntry D.Entry_class_bitfield (Left bf)) = bf
     r row = TRow (if sval == "RESERVED" then Nothing else Just sval) bval archvar
       where
