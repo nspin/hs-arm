@@ -36,6 +36,7 @@ root = "../gen-test-out/patched-a64/ISA_v83A_A64_xml_00bet5"
 
 test :: IO ()
 test = do
+-- test = withFile "../../funky-tables.txt" WriteMode $ \h -> do
     base <- listInstrs root "index.xml"
     fpsimd <- listInstrs root "fpsimdindex.xml"
     forM (base ++ fpsimd) $ \p -> do
@@ -51,20 +52,29 @@ test = do
         case inst of
             Nothing -> return ()
             Just (S.Instruction id classes pss []) -> void $
-                forM classes $ \(S.Class cid _ _ encs _) ->
+                forM classes $ \(S.Class cid _ diags encs _) -> do
+                    let fields = fieldsOf diags
                     forM encs $ \(S.Encoding _ _ _ syms) ->
                         forM syms $ \(S.Symbol sym bits t) ->
                             case t of
                                 Nothing -> return ()
                                 Just (S.Table bfs bdy) -> do
-                                    putStrLn p
-                                    putStrLn sym
-                                    putStrLn bits
-                                    print bfs
-                                    forM bdy $ \(TRow v bv av) ->
-                                        putStrLn $ fromMaybe "RESERVED" v ++ ": " ++ intercalate " " (map (map showBit) bv) ++ maybe "" (\a -> " (" ++ show a ++ ")") av
-                                    putStrLn ""
-
+                                    let vars = splitWith (== ':') bits
+                                    -- when (vars /= reverse bfs || '<' `elem` bits) $ do
+                                    when True $ do
+                                        putStrLn p
+                                        putStrLn sym
+                                        putStrLn bits
+                                        print bfs
+                                        forM bdy $ \(TRow v bv av) -> do
+                                            putStrLn $ show v ++  ": " ++ intercalate " " (map (map showBit) bv) ++ maybe "" (\a -> " (" ++ show a ++ ")") av
+                                            -- case v of
+                                                -- Just vv -> print (atto (parseExpr fields) vv)
+                                                -- Nothing -> print "~RESERVED"
+                                            -- putStrLn $ fromMaybe "RESERVED" v ++ ": " ++ intercalate " " (map (map showBit) bv) ++ maybe "" (\a -> " (" ++ show a ++ ")") av
+                                        -- let [bf] = bfs
+                                        -- assert (bf `elem` ["size", "immh"] || '<' `elem` bf) $ putStrLn ""
+                                        putStrLn ""
                                     -- hPutStrLn h p
                                     -- hPutStrLn h sym
                                     -- hPutStrLn h bits
@@ -82,6 +92,14 @@ test = do
         --         print subdiag
     return ()
 
+splitWith :: (a -> Bool) -> [a] -> [[a]]
+splitWith p = go
+  where
+    go [] = []
+    go cs = case break p cs of
+        (good, bad) -> case bad of
+            [] -> [good]
+            b:ad -> good : go ad
 
 showBit :: S.Bit -> Char
 showBit I = '1'

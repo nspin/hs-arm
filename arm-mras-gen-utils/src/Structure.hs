@@ -2,6 +2,7 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE StandaloneDeriving #-}
+{-# LANGUAGE OverloadedStrings #-}
 
 module Structure where
 
@@ -11,8 +12,12 @@ import Distill hiding (Class, Diagram, Encoding, Box, Explanation, Symbol, Table
 import Control.Applicative
 import Control.DeepSeq
 import Control.Exception
+import Data.Attoparsec.Text hiding (I)
+import qualified Data.Text as T
 import Data.Char
 import Data.Foldable
+import Data.Function
+import Data.List
 import Data.Maybe
 import Debug.Trace
 import GHC.Generics (Generic)
@@ -38,16 +43,27 @@ data Encoding = Encoding EncodingId [(String, BlockSpec)] Template [Symbol]
 data Symbol = Symbol String String (Maybe Table)
     deriving (Show, Generic, NFData)
 
--- Table bitfields [TRow (symbol or RESERVED) (bitfield assignments) archvar]
-data Table = Table [String] [TRow]
+-- Table bitfields [TRow (Symbol or RESERVED) (bitfield assignments) archvar]
+data Table = Table [BitExpr] [TRow]
     deriving (Show, Generic, NFData)
 
-data TRow = TRow (Maybe String) [[Bit]] (Maybe ArchVar)
+data TRow = TRow Expr [[Bit]] (Maybe ArchVar)
+    deriving (Show, Generic, NFData)
+
+data Expr = ExprSym SymExpr | ExprBits BitExpr | ExprNum NumExpr | ExprPresence Bool | ExprReserved | ExprSEE_Advanced_SIMD_modified_immediate
+    deriving (Show, Generic, NFData)
+
+data SymExpr = SymExprSym String | SymExprOr SymExpr SymExpr
+    deriving (Show, Generic, NFData)
+
+data BitExpr = BitExprLit [Bool] | BitExprField String | BitExprSection BitExpr Int Int | BitExprConcat BitExpr BitExpr
+    deriving (Show, Generic, NFData)
+
+data NumExpr = NumExprInt Int | NumExprCast BitExpr | NumExprSub NumExpr NumExpr
     deriving (Show, Generic, NFData)
 
 data Alias = Alias
     deriving (Show, Generic, NFData)
-
 
 data Box = Box Int Int Block deriving (Show, Generic, NFData)
 
@@ -80,10 +96,10 @@ parseInstruction (Instr id (AliasList _) xclasses expls pss) =
             bits (Account x) = x
             bits (Definition x _) = x
             values (Account _) = Nothing
-            values (Definition _ tbl) = Just (parseTable tbl)
+            values (Definition _ tbl) = Just (parseTable (fieldsOf diag) tbl)
 
-parseTable :: L.Table -> Table
-parseTable (L.Table hd bdy) = assert check $ Table bfs tbdy
+parseTable :: [String] -> L.Table -> Table
+parseTable fields (L.Table hd bdy) = assert check $ Table (map (atto (parseBitExpr fields)) bfs) tbdy
   where
     tbdy = map r bdy
     (hasarch, bfs) = case reverse hd of
@@ -92,7 +108,7 @@ parseTable (L.Table hd bdy) = assert check $ Table bfs tbdy
       where
         f (TEntry D.Entry_class_symbol (Left sym) : rest) = map g rest
         g (TEntry D.Entry_class_bitfield (Left bf)) = bf
-    r row = TRow (if sval == "RESERVED" then Nothing else Just sval) bval archvar
+    r row = TRow (atto (parseExpr fields) sval) bval archvar
       where
         (archvar, (TEntry D.Entry_class_symbol (Left sval) : rest)) = case (hasarch, reverse row) of
             (False, res) -> (Nothing, res)
@@ -105,6 +121,48 @@ parseTable (L.Table hd bdy) = assert check $ Table bfs tbdy
         h 'x' = X
     check = all (== length bfs) [ length bb | TRow ss bb _ <- tbdy ]
         && homog [ map length bb | TRow ss bb _ <- tbdy ]
+
+atto :: Parser a -> String -> a
+atto parser str = case parseOnly (parser <* endOfInput) (T.pack str) of
+    Right a -> a
+    Left err -> error ("{ " ++ str ++ " !!! " ++ err ++ " }")
+
+-- These attoparsec parsers are very ugly. Their only purpose is exploring the MRAS.
+
+parseBitExpr :: [String] -> Parser BitExpr
+parseBitExpr fields =
+        (field <* endOfInput)
+    <|> conc
+    <|> BitExprConcat (BitExprLit [False]) <$> ("0:" *> field)
+    <|> BitExprSection <$> field <* "<" <*> decimal <* ":" <*> decimal <* ">"
+    <|> f <$> (field <* "<") <*> (decimal <* ">")
+  where
+    field = BitExprField <$> T.unpack <$> asum (map (string . T.pack) (reverse (sortBy (compare `on` length) fields)))
+    conc = BitExprConcat <$> field <* ":" <*> (conc <|> field)
+    f bf i = BitExprSection bf i i
+
+parseNumExpr :: [String] -> Parser NumExpr
+parseNumExpr fields = "(" *> sub <* ")"
+  where
+    sub = NumExprSub <$> (int <* "-") <*> cast <|> NumExprSub <$> cast <*> ("-" *> int)
+    int = NumExprInt <$> decimal
+    cast = NumExprCast <$> (("UInt(" <|> "Uint(") *> parseBitExpr fields <* ")")
+
+parseSymExpr :: Parser SymExpr
+parseSymExpr = SymExprOr <$> (SymExprSym <$> manyTill ok "|") <*> sym <|> sym
+  where
+    sym = SymExprSym <$> many1 ok
+    ok = satisfy (or <$> sequence [isAlpha, isDigit, (==) '#'])
+
+parseExpr :: [String] -> Parser Expr
+parseExpr fields =
+        ExprReserved <$ "RESERVED"
+    <|> ExprSEE_Advanced_SIMD_modified_immediate <$ "SEE Advanced SIMD modified immediate"
+    <|> ExprBits <$> parseBitExpr fields
+    <|> ExprNum <$> parseNumExpr fields
+    <|> ExprSym <$> parseSymExpr
+    <|> ExprPresence True <$ "[present]"
+    <|> ExprPresence False <$ "[absent]"
 
 homog :: Eq a => [a] -> Bool
 homog [] = True
@@ -184,3 +242,8 @@ parseBox box@(L.Box hi width name cs) = Box hi width (Block name (assert check s
     h _ = Nothing
 
     check = width == specLength spec
+
+fieldsOf :: Diagram -> [String]
+fieldsOf (Diagram _ blocks) = catMaybes (map f blocks)
+  where
+    f (Block n _) = n

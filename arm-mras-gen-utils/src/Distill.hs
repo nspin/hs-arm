@@ -168,7 +168,6 @@ distillTable (D.Table _ (NonEmpty [D.Tgroup _ (Thead (NonEmpty [Row (NonEmpty he
         [] -> Left ""
         [Entry_Str s] -> Left (unescape s)
         [Entry_Arch_variants avs] -> Right (distillArchVars avs)
-        _ -> error $ "FOOO::: " ++ show e
     g (Row (NonEmpty ents)) = map f ents
 
 distillArchVars :: Arch_variants -> ArchVar
