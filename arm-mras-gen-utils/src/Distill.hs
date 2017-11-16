@@ -8,6 +8,7 @@ module Distill where
 import Control.DeepSeq
 import Control.Exception
 import Data.Char
+import Data.List
 import Data.Maybe
 import GHC.Generics (Generic)
 
@@ -64,7 +65,7 @@ data EquivTo = EquivTo -- TODO(nspin)
 data Explanation = Explanation [EncodingId] Symbol Mapping
     deriving (Show, Generic, NFData)
 
-data Mapping = Account String | Definition String Table
+data Mapping = Account String String | Definition String Table
     deriving (Show, Generic, NFData)
 
 data Table = Table [TEntry] [[TEntry]]
@@ -98,10 +99,6 @@ infixl 4 <&>
 (<&>) :: Functor f => f a -> (a -> b) -> f b
 (<&>) = flip fmap
 
-infixl 1 <!>
-(<!>) :: Bool -> b -> b
-(<!>) = assert
-
 
 -- Yuck. There is no good way to do this.
 
@@ -119,20 +116,21 @@ distillInstr (Instructionsection attrs doc head desc xalias (Classes _ (NonEmpty
 
 distillClass :: Iclass -> Class
 distillClass (Iclass attrs _ _ xavars (Regdiagram atrs xboxes) (NonEmpty xencs) xmps _)
-    = iclassIsa attrs == "A64" <!> Class (iclassId attrs) avars diag encs pss
+    = check `assert` Class (iclassId attrs) avars diag encs pss
   where
     avars = distillArchVars <$> xavars
-    diag = regdiagramForm atrs == Regdiagram_form_32 <!> Diagram (fromJust (regdiagramPsname atrs)) boxes
+    diag = Diagram (fromJust (regdiagramPsname atrs)) boxes
     boxes = map distillBox xboxes
     encs = map distillEncoding xencs
     pss = maybe [] distillPss xmps
+    check = iclassIsa attrs == "A64" && regdiagramForm atrs == Regdiagram_form_32
 
 distillBox :: D.Box -> Box
-distillBox (D.Box ats xcs) = ok <!> box
+distillBox (D.Box ats xcs) = check `assert` box
   where
-    box = Box (read (boxHibit ats)) (maybe 1 read (boxWidth ats)) (boxName ats) (map fc xcs)
-    fc (D.C as s) = C (maybe 1 read (cColspan as)) s
-    ok = case boxConstraint ats of
+    box = Box (read (boxHibit ats)) (maybe 1 read (boxWidth ats)) (boxName ats) (map f xcs)
+    f (D.C as s) = C (maybe 1 read (cColspan as)) s
+    check = case boxConstraint ats of
         Nothing -> True
         Just con -> case box of
             Box _ _ _ [C _ v] -> v == con
@@ -155,8 +153,20 @@ distillExplanation (D.Explanation atrs (D.Symbol _ xsyms) ad _)
     sym = unescape (concatMap f xsyms)
     f (Symbol_Str s) = s
     mapping = case ad of
-        OneOf2 (D.Account as _ _) -> Account (fromJust (accountEncodedin as))
+        OneOf2 (D.Account as _ intro) -> Account (fromJust (accountEncodedin as)) (distillIntro intro)
         TwoOf2 (D.Definition as _ tbl _) -> Definition (definitionEncodedin as) (distillTable tbl)
+
+distillIntro :: Intro -> String
+distillIntro (Intro intros) = case filter h intros of
+    [Intro_Para (Para [Para_Str s])] -> s
+    _ | any (isPrefixOf "Intro_List") (tails (show intros)) -> "Intro_List"
+    _ | any (isPrefixOf "Para_Binarynumber") (tails (show intros)) -> "Para_Binarynumber"
+    _ | any (isPrefixOf "Para_Xref") (tails (show intros)) -> "Para_Xref"
+    _ | any (isPrefixOf "Para_Syntax") (tails (show intros)) -> "Para_Syntax"
+    _ -> error (show intros)
+  where
+    h (Intro_Str s) = not (all isSpace s)
+    h _ = True
 
 distillTable :: D.Table -> Table
 distillTable (D.Table _ (NonEmpty [D.Tgroup _ (Thead (NonEmpty [Row (NonEmpty hents)])) (Tbody (NonEmpty rows))]))

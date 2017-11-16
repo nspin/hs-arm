@@ -93,9 +93,9 @@ parseInstruction (Instr id (AliasList _) xclasses expls pss) =
                 | L.Explanation eids ss mm <- expls
                 , eid `elem` eids
                 ]
-            bits (Account x) = x
+            bits (Account x _) = x
             bits (Definition x _) = x
-            values (Account _) = Nothing
+            values (Account _ _) = Nothing
             values (Definition _ tbl) = Just (parseTable (fieldsOf diag) tbl)
 
 parseTable :: [String] -> L.Table -> Table
@@ -169,11 +169,11 @@ homog [] = True
 homog (a:as) = all (== a) as
 
 parseDiagram :: [L.Box] -> [Block]
-parseDiagram boxes = check <!> blocks
+parseDiagram boxes = check `assert` blocks
   where
     blocks = go 32 (map parseBox boxes)
     go 0 [] = []
-    go n (Box hi width bl@(Block name spec) : bxs) = n == hi + 1 && specLength spec == width <!> bl : go (n - width) bxs
+    go n (Box hi width bl@(Block name spec) : bxs) = (n == hi + 1 && specLength spec == width) `assert` (bl : go (n - width) bxs)
     check = allUnique (catMaybes [ n | Block n _ <- blocks ])
 
 allUnique :: Eq a => [a] -> Bool
@@ -238,7 +238,7 @@ parseBox box@(L.Box hi width name cs) = Box hi width (Block name (assert check s
     g "" = Just X
     g _ = Nothing
 
-    h [C w ('!':'=':' ':xs)] = w == length xs <!> traverse (f . (:[])) xs
+    h [C w ('!':'=':' ':xs)] = (w == length xs) `assert` traverse (f . (:[])) xs
     h _ = Nothing
 
     check = width == specLength spec

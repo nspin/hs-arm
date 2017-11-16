@@ -4,7 +4,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE StandaloneDeriving #-}
 
-module Test
+module StructureTest
     ( test
     ) where
 
@@ -36,19 +36,13 @@ root = "../gen-test-out/patched-a64/ISA_v83A_A64_xml_00bet5"
 
 test :: IO ()
 test = do
--- test = withFile "../../funky-tables.txt" WriteMode $ \h -> do
     base <- listInstrs root "index.xml"
     fpsimd <- listInstrs root "fpsimdindex.xml"
     forM (base ++ fpsimd) $ \p -> do
         isec <- readInstr p
         let ins = distillInstr isec
             Instr id alias classes expls _ = ins
-        -- print ins
-        -- putStrLn id
-        -- print alias
         let inst = parseInstruction ins <&> \f -> f []
-        -- ins `deepseq` inst `deepseq` putStrLn p
-        -- putStrLn p
         case inst of
             Nothing -> return ()
             Just (S.Instruction id classes pss []) -> void $
@@ -60,36 +54,13 @@ test = do
                                 Nothing -> return ()
                                 Just (S.Table bfs bdy) -> do
                                     let vars = splitWith (== ':') bits
-                                    -- when (vars /= reverse bfs || '<' `elem` bits) $ do
-                                    when True $ do
-                                        putStrLn p
-                                        putStrLn sym
-                                        putStrLn bits
-                                        print bfs
-                                        forM bdy $ \(TRow v bv av) -> do
-                                            putStrLn $ show v ++  ": " ++ intercalate " " (map (map showBit) bv) ++ maybe "" (\a -> " (" ++ show a ++ ")") av
-                                            -- case v of
-                                                -- Just vv -> print (atto (parseExpr fields) vv)
-                                                -- Nothing -> print "~RESERVED"
-                                            -- putStrLn $ fromMaybe "RESERVED" v ++ ": " ++ intercalate " " (map (map showBit) bv) ++ maybe "" (\a -> " (" ++ show a ++ ")") av
-                                        -- let [bf] = bfs
-                                        -- assert (bf `elem` ["size", "immh"] || '<' `elem` bf) $ putStrLn ""
-                                        putStrLn ""
-                                    -- hPutStrLn h p
-                                    -- hPutStrLn h sym
-                                    -- hPutStrLn h bits
-                                    -- hPutStrLn h (show bfs)
-                                    -- forM bdy $ \(TRow v bv av) ->
-                                    --     hPutStrLn h $ fromMaybe "RESERVED" v ++ ": " ++ intercalate " " (map (map showBit) bv) ++ maybe "" (\a -> " (" ++ show a ++ ")") av
-                                    -- hPutStrLn h ""
-
-        -- print inst
-        -- forM classes $ \(L.Class id archvar (L.Diagram psn boxes) encs _) -> do
-        --     let diag = parseDiagram boxes
-        --     print diag
-        --     forM encs $ \(L.Encoding eid bs t _) -> do
-        --         let subdiag = parseSubDiagram diag (map parseBox bs)
-        --         print subdiag
+                                    putStrLn p
+                                    putStrLn sym
+                                    putStrLn bits
+                                    print bfs
+                                    forM bdy $ \(TRow v bv av) -> do
+                                        putStrLn $ show v ++  ": " ++ intercalate " " (map (map showBit) bv) ++ maybe "" (\a -> " (" ++ show a ++ ")") av
+                                    putStrLn ""
     return ()
 
 splitWith :: (a -> Bool) -> [a] -> [[a]]
@@ -127,13 +98,9 @@ writeBoxes p = do
             let ins = distillInstr isec
                 Instr id alias classes expls _ = ins
             ins `deepseq` hPutStrLn h p
-            -- print ins
-            -- putStrLn id
-            -- print alias
             forM classes $ \(L.Class id archvar (L.Diagram psn boxes) encs _) -> do
                 hPutStrLn h (fancyBoxes boxes)
                 forM encs $ \(L.Encoding eid bs t _) -> do
-                    -- mapM putStrLn t
                     hPutStrLn h (fancyBoxes bs)
         return ()
 
