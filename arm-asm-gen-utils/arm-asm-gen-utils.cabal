@@ -1,0 +1,30 @@
+Name:                arm-asm-gen-utils
+Version:             0.1
+license:             MIT
+author:              Nick Spinale
+maintainer:          spinalen@gmail.com
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+executable gen-arm-asm
+  hs-source-dirs:    src
+  main-is:           Main.hs
+
+  other-modules:     C
+
+  build-depends:     base
+                   , attoparsec
+                   , bytestring
+                   , Cabal
+                   , deepseq
+                   , directory
+                   , exceptions
+                   , filepath
+                   , haskell-src-exts
+                   , language-c
+                   , monad-logger
+                   , mtl
+                   , pretty
+                   , text
+                   , transformers

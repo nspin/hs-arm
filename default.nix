@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchurl, haskellPackages }:
+{ stdenv, lib, fetchurl, haskellPackages, binutils }:
 
 let
 
@@ -28,6 +28,8 @@ let
   };
 
 in rec {
+
+  arm-asm-gen-utils = haskellPackages.callPackage ./arm-asm-gen-utils {};
 
   harm = haskellPackages.mkDerivation {
     pname = "harm";
@@ -176,5 +178,51 @@ in rec {
       a64 = buildDtd "a64" dtd-src.a64;
       aarch32 = buildDtd "aarch32" dtd-src.aarch32;
     };
+
+  binutils-made = stdenv.mkDerivation rec {
+    name = "${basename}-src";
+    version = "2.28.1";
+    basename = "binutils-${version}";
+    src = fetchurl {
+      url = "mirror://gnu/binutils/binutils-2.28.1.tar.bz2";
+      sha256 = "1sj234nd05cdgga1r36zalvvdkvpfbr12g5mir2n8i1dwsdrj939";
+    };
+    builder = builtins.toFile "builder.sh" ''
+      source $stdenv/setup
+      tar xjf $src
+      cd binutils-*
+      ./configure
+      make
+      cd ..
+      mv binutils-* $out
+    '';
+  };
+
+  aarch64-tbl-with-comments = stdenv.mkDerivation rec {
+    name = "aarch64-tbl-with-comments.h";
+    src = binutils-made;
+    builder = builtins.toFile "builder.sh" ''
+      source $stdenv/setup
+      echo '#define VERIFIER(x) NULL' > verifier.h
+      cpp -C -include verifier.h -include $src/opcodes/config.h \
+        -I $src/bfd -I $src/include -I $src/opcodes \
+        $src/opcodes/aarch64-tbl.h -o $out
+    '';
+  };
+
+  aarch64-tbl = stdenv.mkDerivation rec {
+    name = "aarch64-tbl.h";
+    src = binutils-made;
+    builder = builtins.toFile "builder.sh" ''
+      source $stdenv/setup
+      echo '#define VERIFIER(x) NULL' > verifier.h
+      cpp -include verifier.h -include $src/opcodes/config.h \
+        -I $src/bfd -I $src/include -I $src/opcodes \
+        $src/opcodes/aarch64-tbl.h \
+        | sed 's/(^)/(*)/g' > $out
+    '';
+  };
+
+  inherit binutils;
 
 }

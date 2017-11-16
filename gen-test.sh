@@ -8,7 +8,13 @@ expr='(import <nixpkgs> {}).callPackage ./. {}'
 
 go_r() {
     attr="$1"
-    dst="$root/$attr"
+    if [ -n "$2" ]; then
+        dst="$2"
+    else
+        dst="$attr"
+    fi
+    dst="$root/$dst"
+    rm -f "$dst"
     nix-build -E "$expr" -A "$attr" -o "$dst"
 }
 
@@ -25,6 +31,10 @@ go_rw() {
 
 mkdir -p "$root"
 
+go_r aarch64-tbl-with-comments aarch64-tbl-with-comments.h
+go_r aarch64-tbl aarch64-tbl.h
+go_r binutils-made
+go_r binutils
 go_r xml.sysreg
 go_r xml.a64
 go_r xml.aarch32
@@ -35,3 +45,5 @@ go_r dtd-src.a64
 go_r dtd-src.aarch32
 go_r arm-mras-src
 go_r harm-src
+
+mv "$root/aarch64-tbl" "$root/aarch64-tbl.h"
