@@ -37,6 +37,9 @@ go_rw() {
 mkdir -p "$root"
 
 go_r binutils-aarch64-opcode-table.c aarch64-tbl.h
+go_r binutils-aarch64-opcode-table.types-src
+go_r binutils-aarch64-opcode-table.values-src
+
 go_r xml.sysreg
 go_r xml.a64
 go_r xml.aarch32
