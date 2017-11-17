@@ -20,7 +20,12 @@ go_r() {
 
 go_rw() {
     attr="$1"
-    dst="$root/$attr"
+    if [ -n "$2" ]; then
+        dst="$2"
+    else
+        dst="$attr"
+    fi
+    dst="$root/$dst"
     store_path="$(nix-build -E "$expr" --no-out-link -A "$attr")"
     echo "$store_path -> $dst"
     rm -rf "$dst"
@@ -31,10 +36,7 @@ go_rw() {
 
 mkdir -p "$root"
 
-go_r aarch64-tbl-with-comments aarch64-tbl-with-comments.h
-go_r aarch64-tbl aarch64-tbl.h
-go_r binutils-made
-go_r binutils
+go_r binutils-aarch64-opcode-table.c aarch64-tbl.h
 go_r xml.sysreg
 go_r xml.a64
 go_r xml.aarch32
@@ -45,5 +47,3 @@ go_r dtd-src.a64
 go_r dtd-src.aarch32
 go_r arm-mras-src
 go_r harm-src
-
-mv "$root/aarch64-tbl" "$root/aarch64-tbl.h"

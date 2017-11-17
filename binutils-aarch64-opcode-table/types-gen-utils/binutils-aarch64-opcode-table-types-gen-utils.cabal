@@ -1,0 +1,16 @@
+Name:                binutils-aarch64-opcode-table-types-gen-utils
+Version:             0.1
+license:             MIT
+author:              Nick Spinale
+maintainer:          spinalen@gmail.com
+build-type:          Simple
+cabal-version:       >=1.10
+
+executable gen
+  main-is:           Main.hs
+  build-depends:     base
+                   , directory
+                   , filepath
+                   , haskell-src-exts
+                   , language-c
+                   , pretty

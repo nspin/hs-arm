@@ -1,33 +1,16 @@
-{ stdenv, lib, fetchurl, haskellPackages, binutils }:
+{ callPackage, stdenv, lib, fetchurl, haskellPackages, binutils }:
 
 let
 
-  merge = drvs: stdenv.mkDerivation {
-    name = "merge";
-    inherit drvs;
-    builder = builtins.toFile "builder.sh" ''
-      source $stdenv/setup
-      mkdir $out
-      for drv in $drvs; do
-        cp -rT $drv $out
-      done
-    '';
-  };
+  harmLib = callPackage ./lib.nix {};
 
-  mergeFrom = parent: children: dst: stdenv.mkDerivation {
-    name = "mergeFrom";
-    inherit parent children dst;
-    builder = builtins.toFile "builder.sh" ''
-      source $stdenv/setup
-      mkdir $out
-      cp -rT $dst $out
-      for c in $children; do
-        cp -r $parent/$c $out
-      done
-    '';
-  };
+in with harmLib; rec {
 
-in rec {
+  inherit harmLib;
+
+  binutils-aarch64-opcode-table = callPackage ./binutils-aarch64-opcode-table {
+    inherit harmLib;
+  };
 
   arm-asm-gen-utils = haskellPackages.callPackage ./arm-asm-gen-utils {};
 
@@ -193,6 +176,9 @@ in rec {
       cd binutils-*
       ./configure
       make
+      # cd opcodes
+      # make aarch64-gen.o
+      # cd ..
       cd ..
       mv binutils-* $out
     '';
@@ -212,6 +198,19 @@ in rec {
 
   aarch64-tbl = stdenv.mkDerivation rec {
     name = "aarch64-tbl.h";
+    src = binutils-made;
+    builder = builtins.toFile "builder.sh" ''
+      source $stdenv/setup
+      echo '#define VERIFIER(x) NULL' > verifier.h
+      cpp -include verifier.h -include $src/opcodes/config.h \
+        -I $src/bfd -I $src/include -I $src/opcodes \
+        $src/opcodes/aarch64-tbl.h \
+        | sed 's/(^)/(*)/g' > $out
+    '';
+  };
+
+  aarch64-opcode-table-dumper = stdenv.mkDerivation rec {
+    name = "aarch64-opcode-table-dumper";
     src = binutils-made;
     builder = builtins.toFile "builder.sh" ''
       source $stdenv/setup
