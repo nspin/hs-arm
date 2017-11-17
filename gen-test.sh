@@ -40,13 +40,14 @@ go_r binutils-aarch64-opcode-table.c aarch64-tbl.h
 go_r binutils-aarch64-opcode-table.types-src
 go_r binutils-aarch64-opcode-table.values-src
 
-go_r xml.sysreg
-go_r xml.a64
-go_r xml.aarch32
-go_r patched-a64
-go_r patched-aarch32
-go_r dtd-src.sysreg
-go_r dtd-src.a64
-go_r dtd-src.aarch32
-go_r arm-mras-src
+go_r arm-mras.xml.sysreg
+go_r arm-mras.xml.a64
+go_r arm-mras.xml.aarch32
+go_r arm-mras.patched-a64
+go_r arm-mras.patched-aarch32
+go_r arm-mras.dtd-src.sysreg
+go_r arm-mras.dtd-src.a64
+go_r arm-mras.dtd-src.aarch32
+go_r arm-mras.values-src
+
 go_r harm-src

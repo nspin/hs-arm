@@ -23,4 +23,3 @@ generate outDir = do
   where
     file = outDir </> "gen" </> "ARM" </> "MRAS" </> "Gen.hs"
 
-
