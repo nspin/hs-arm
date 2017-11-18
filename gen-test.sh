@@ -50,4 +50,6 @@ go_r arm-mras.dtd-src.a64
 go_r arm-mras.dtd-src.aarch32
 go_r arm-mras.values-src
 
+go_r arm-go.json
+
 go_r harm-src
