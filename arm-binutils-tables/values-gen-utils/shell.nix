@@ -1,1 +1,1 @@
-((import <nixpkgs> {}).callPackage ../../. {}).arm-binutils-tables.types.env
+((import <nixpkgs> {}).callPackage ../../. {}).arm-binutils-tables.values-gen-utils.env
