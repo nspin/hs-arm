@@ -6,7 +6,7 @@ rec {
 
   types-gen-utils = haskellPackages.callPackage ./types-gen-utils {};
 
-  types-src = mergeFrom ./types [ "arm-binutils-tables-types.cabal" "src" "exe" ] (stdenv.mkDerivation {
+  types-src = mergeFrom ./types [ "arm-binutils-tables-types.cabal" "src" ] (stdenv.mkDerivation {
     name = "types-src";
     utils = types-gen-utils;
     inherit c;
@@ -19,8 +19,6 @@ rec {
     pname = "arm-binutils-tables-types";
     version = "0.1";
     src = types-src;
-    isLibrary = true;
-    isExecutable = true;
     libraryHaskellDepends = [ base ];
     executableHaskellDepends = [
       base directory filepath haskell-src-exts deepseq language-c
@@ -28,9 +26,13 @@ rec {
     license = stdenv.lib.licenses.mit;
   };
 
+  values-gen-utils = haskellPackages.callPackage ./values-gen-utils {
+    arm-binutils-tables-types = types;
+  };
+
   values-src = mergeFrom ./values [ "arm-binutils-tables.cabal" "src" ] (stdenv.mkDerivation {
     name = "values-src";
-    utils = types;
+    utils = values-gen-utils;
     inherit c;
     builder = builtins.toFile "builder.sh" ''
       $utils/bin/gen-arm-binutils-tables $out < $c
