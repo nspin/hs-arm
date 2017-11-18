@@ -4,7 +4,7 @@ set -e
 
 dst="$(dirname "$0")/gen"
 
-out="$(nix-build -E '((import <nixpkgs> {}).callPackage ../../. {}).binutils-aarch64-opcode-table.types-src' --no-out-link)"
+out="$(nix-build -E '((import <nixpkgs> {}).callPackage ../../. {}).arm-binutils-tables.types-src' --no-out-link)"
 
 rm -rf "$dst"
 cp -r "$out/gen" "$dst"

@@ -2,7 +2,7 @@
 , language-c, pretty, stdenv
 }:
 mkDerivation {
-  pname = "aarch64-opcode-table-types-gen-utils";
+  pname = "arm-binutils-tables-types-gen-utils";
   version = "0.1";
   src = ./.;
   isLibrary = false;

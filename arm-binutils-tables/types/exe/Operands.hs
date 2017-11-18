@@ -2,8 +2,8 @@ module Operands
     ( extractOperands
     ) where
 
-import HarmGen.Binutils.Types
-import HarmGen.Binutils.Types.Gen.Enums
+import ARM.Binutils.Tables.Types
+import ARM.Binutils.Tables.Types.Gen
 
 import Control.Exception (assert)
 import Data.Bits

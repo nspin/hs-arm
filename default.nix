@@ -12,7 +12,7 @@ in with harmLib; rec {
     inherit harmLib;
   };
 
-  binutils-aarch64-opcode-table = callPackage ./binutils-aarch64-opcode-table {
+  arm-binutils-tables = callPackage ./arm-binutils-tables {
     inherit harmLib;
   };
 

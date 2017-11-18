@@ -11,14 +11,12 @@ import Language.Haskell.Exts
 import System.Directory
 import System.FilePath
 
--- stdin: pre-processed aarch64-tbl.h
--- stdout: HarmGen/Binutils/Enums.hs
 main :: IO ()
 main = do
     args <- getArgs
     case args of
         [outDir] -> do
-            let hsOut = outDir </> "gen/HarmGen/Binutils/Types/Gen/Enums.hs"
+            let hsOut = outDir </> "gen/ARM/Binutils/Tables/Types/Gen.hs"
             c <- getContents
             case parseC (inputStreamFromString c) (initPos "[stdin]") of
                 Left err -> die (show err)
@@ -29,7 +27,7 @@ main = do
 
 generate :: CTranslationUnit a -> Module ()
 generate tunit = buildEnumsModule
-    "HarmGen.Binutils.Types.Gen.Enums"
+    "ARM.Binutils.Tables.Types.Gen"
     (extractEnumByName "aarch64_insn_class" tunit)
     (extractFeatureSets tunit)
     (map f enums)

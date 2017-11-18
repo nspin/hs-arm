@@ -1,6 +1,6 @@
 module Hs where
 
-import HarmGen.Binutils.Types
+import ARM.Binutils.Tables.Types
 
 import Language.Haskell.Exts
 
@@ -16,7 +16,7 @@ buildModule modName opcodes operands = Module () (Just head) [] [imp] [opcty, op
     ParseOk opnExpr = parseExp (show operands)
     imp = ImportDecl
         { importAnn = ()
-        , importModule = ModuleName () "HarmGen.Binutils.Types"
+        , importModule = ModuleName () "ARM.Binutils.Tables.Types"
         , importQualified = False
         , importSrc = False
         , importSafe = False

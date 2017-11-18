@@ -4,7 +4,7 @@ import OpcodeTable
 import Operands
 import Hs
 
-import HarmGen.Binutils.Types
+import ARM.Binutils.Tables.Types
 
 import System.Environment
 import System.Exit
@@ -14,13 +14,12 @@ import Language.Haskell.Exts
 import System.Directory
 import System.FilePath
 
-
 main :: IO ()
 main = do
     args <- getArgs
     case args of
         [outDir] -> do
-            let hsOut = outDir </> "gen/HarmGen/Binutils/Gen.hs"
+            let hsOut = outDir </> "gen/ARM/Binutils/Tables/Gen.hs"
             c <- getContents
             case parseC (inputStreamFromString c) (initPos "[stdin]") of
                 Left err -> die (show err)
@@ -28,7 +27,7 @@ main = do
                     createDirectoryIfMissing True (takeDirectory hsOut)
                     writeFile hsOut
                         (prettyPrint
-                            (buildModule "HarmGen.Binutils.Gen"
+                            (buildModule "ARM.Binutils.Tables.Gen"
                                 (extractOpcodeTable tunit)
                                 (extractOperands tunit)))
         _ -> die "usage: _ <outDir>"

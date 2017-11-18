@@ -1,4 +1,4 @@
-Name:                binutils-aarch64-opcode-table-types
+Name:                arm-binutils-tables-types
 Version:             0.1
 license:             MIT
 author:              Nick Spinale
@@ -10,19 +10,19 @@ library
   default-language:  Haskell2010
   hs-source-dirs:    src, gen
 
-  exposed-modules:   HarmGen.Binutils.Types
-                     HarmGen.Binutils.Types.Gen.Enums
+  exposed-modules:   ARM.Binutils.Tables.Types
+                     ARM.Binutils.Tables.Types.Gen
 
   build-depends:     base >=4.8 && <5
                    , deepseq
 
 
-executable gen
+executable gen-arm-binutils-tables
   default-language:  Haskell2010
   hs-source-dirs:    exe
   main-is:           Main.hs
   build-depends:     base
-                   , binutils-aarch64-opcode-table-types
+                   , arm-binutils-tables-types
                    , directory
                    , filepath
                    , language-c

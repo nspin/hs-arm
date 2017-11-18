@@ -1,15 +1,15 @@
 {-# LANGUAGE DeriveAnyClass #-}
 {-# LANGUAGE DeriveGeneric #-}
 
-module HarmGen.Binutils.Types
+module ARM.Binutils.Tables.Types
     ( Opcode(..)
     , OpcodeFlag(..)
     , Operand(..)
     , OperandFlag(..)
-    , module HarmGen.Binutils.Types.Gen.Enums
+    , module ARM.Binutils.Tables.Types.Gen
     ) where
 
-import HarmGen.Binutils.Types.Gen.Enums
+import ARM.Binutils.Tables.Types.Gen
 
 import Data.Word
 import GHC.Generics (Generic)

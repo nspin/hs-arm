@@ -1,11 +1,13 @@
-{ callPackage, stdenv, lib, fetchurl, haskellPackages, binutils, harmLib }:
+{ callPackage, stdenv, fetchurl, haskellPackages, harmLib }:
 
 with harmLib;
 
 rec {
 
   types = haskellPackages.callPackage ./types {};
+
   dtd-gen-utils = haskellPackages.callPackage ./dtd-gen-utils {};
+
   values-gen-utils = haskellPackages.callPackage ./values-gen-utils {
     arm-mras-types = types;
     arm-mras-dtd-sysreg = dtd.sysreg;

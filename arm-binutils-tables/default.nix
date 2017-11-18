@@ -6,17 +6,17 @@ rec {
 
   types-gen-utils = haskellPackages.callPackage ./types-gen-utils {};
 
-  types-src = mergeFrom ./types [ "binutils-aarch64-opcode-table-types.cabal" "src" "exe" ] (stdenv.mkDerivation {
+  types-src = mergeFrom ./types [ "arm-binutils-tables-types.cabal" "src" "exe" ] (stdenv.mkDerivation {
     name = "types-src";
     utils = types-gen-utils;
     inherit c;
     builder = builtins.toFile "builder.sh" ''
-      $utils/bin/gen $out < $c
+      $utils/bin/gen-arm-binutils-tables-types $out < $c
     '';
   });
 
   types = with haskellPackages; mkDerivation {
-    pname = "binutils-aarch64-opcode-table-types";
+    pname = "arm-binutils-tables-types";
     version = "0.1";
     src = types-src;
     isLibrary = true;
@@ -28,17 +28,17 @@ rec {
     license = stdenv.lib.licenses.mit;
   };
 
-  values-src = mergeFrom ./values [ "binutils-aarch64-opcode-table.cabal" "src" ] (stdenv.mkDerivation {
+  values-src = mergeFrom ./values [ "arm-binutils-tables.cabal" "src" ] (stdenv.mkDerivation {
     name = "values-src";
     utils = types;
     inherit c;
     builder = builtins.toFile "builder.sh" ''
-      $utils/bin/gen $out < $c
+      $utils/bin/gen-arm-binutils-tables $out < $c
     '';
   });
 
   values = with haskellPackages; mkDerivation {
-    pname = "binutils-aarch64-opcode-table";
+    pname = "arm-binutils-tables";
     version = "0.1";
     src = values-src;
     libraryHaskellDepends = [
@@ -57,11 +57,7 @@ rec {
     everything = ./everything.c;
     builder = builtins.toFile "builder.sh" ''
       source $stdenv/setup
-      # cpp -I $bu/bfd -I $bu/include -I $bu $everything | sed 's/(^)/(*)/g' > $out
-      cpp \
-        -I $bu/bfd -I $bu/include -I $bu/opcodes -I $bu \
-        $everything \
-        | sed 's/(^)/(*)/g' > $out
+      cpp -I $bu -I $bu/include -I $bu/opcodes -I $bu/bfd $everything | sed 's/(^)/(*)/g' > $out
     '';
   };
 
@@ -74,10 +70,10 @@ rec {
     builder = builtins.toFile "builder.sh" ''
       source $stdenv/setup
       tar xjf $src
-      cd binutils-*
+      pushd binutils-*
       ./configure
       make
-      cd ..
+      popd
       cp -r binutils-* $out
     '';
   };

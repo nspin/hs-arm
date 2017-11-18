@@ -4,7 +4,6 @@ license:              MIT
 author:               Nick Spinale
 maintainer:           spinalen@gmail.com
 build-type:           Simple
-extra-source-files:   README.md
 cabal-version:        >=1.10
 
 library
