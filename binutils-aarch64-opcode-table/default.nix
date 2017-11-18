@@ -28,7 +28,7 @@ rec {
     license = stdenv.lib.licenses.mit;
   };
 
-  values-src = mergeFrom ./values [ "binutils-aarch64-opcode-table-values.cabal" "src" ] (stdenv.mkDerivation {
+  values-src = mergeFrom ./values [ "binutils-aarch64-opcode-table.cabal" "src" ] (stdenv.mkDerivation {
     name = "values-src";
     utils = types;
     inherit c;
@@ -38,9 +38,9 @@ rec {
   });
 
   values = with haskellPackages; mkDerivation {
-    pname = "binutils-aarch64-opcode-table-values";
+    pname = "binutils-aarch64-opcode-table";
     version = "0.1";
-    src = ./.;
+    src = values-src;
     libraryHaskellDepends = [
       base types
     ];

@@ -19,13 +19,13 @@ main = do
     args <- getArgs
     case args of
         [outDir] -> do
-            let hsOut = outDir </> "gen/HarmGen/Binutils/Values/Gen.hs"
+            let hsOut = outDir </> "gen/HarmGen/Binutils/Gen.hs"
             c <- getContents
             case parseC (inputStreamFromString c) (initPos "[stdin]") of
                 Left err -> die (show err)
                 Right tunit -> do
                     createDirectoryIfMissing True (takeDirectory hsOut)
-                    writeFile hsOut (prettyPrint (buildModule "HarmGen.Binutils.Values.Gen" (extractTable tunit)))
+                    writeFile hsOut (prettyPrint (buildModule "HarmGen.Binutils.Gen" (extractTable tunit)))
         _ -> die "usage: _ <outDir>"
 
 
