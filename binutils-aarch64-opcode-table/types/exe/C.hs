@@ -25,7 +25,7 @@ parseRow [name, opcode, mask, iclass, op, avariant, operands, qualifiers_list, f
             (parseFeatureSet avariant)
             (parseOpndList operands)
             (parseOpndQualifierList qualifiers_list)
-            (parseBitExpr flags)
+            (parseOpcodeFlags flags)
             (parseIntegral tied_operand)
 
 
@@ -37,14 +37,6 @@ parseString (CInitExpr (CConst (CStrConst cstr _)) _) = getCString cstr
 
 parseIntegral :: Integral b => Parser a b
 parseIntegral (CInitExpr (CConst (CIntConst cint _)) _) = fromInteger (getCInteger cint)
-
-parseBitExpr :: (Integral b, Bits b) => Parser a b
-parseBitExpr (CInitExpr expr _) = fromIntegral (f expr)
-  where
-    f (CConst (CIntConst x _)) = getCInteger x
-    f (CBinary COrOp x y _) = f x .|. f y
-    f (CBinary CAndOp x y _) = f x .&. f y
-    f (CBinary CShlOp x y _) = f x `shiftL` fromInteger (f y)
 
 parseInsnClass :: Parser a InsnClass
 parseInsnClass (CInitExpr (CVar (Ident fs _ _) _) _) = fromJust (insnClassFromString fs)
@@ -69,3 +61,44 @@ parseOpndQualifierList (CInitList is _) = map f is
 
 parseFnRef :: Parser a (Maybe String)
 parseFnRef (CInitExpr (CCast (CDecl [CTypeSpec (CVoidType _)] [(Just (CDeclr Nothing [CPtrDeclr [] _] Nothing [] _),Nothing,Nothing)] _) (CConst (CIntConst cint _)) _) _) = assert (getCInteger cint == 0) Nothing
+
+parseOpcodeFlags :: Parser a [OpcodeFlag]
+parseOpcodeFlags (CInitExpr expr _) = f expr
+  where
+    f (CConst (CIntConst cint _)) = assert (getCInteger cint == 0) []
+    f (CBinary COrOp x y _) = f x ++ f y
+    f (CBinary CShlOp x (CConst (CIntConst cint _)) _) = [g x cint]
+    f _ = []
+    g x cint = case getCInteger cint of
+        0 -> one F_ALIAS
+        1 -> one F_HAS_ALIAS
+        2 -> any [1..3] F_Pn
+        4 -> one F_COND
+        5 -> one F_SF
+        6 -> one F_SIZEQ
+        7 -> one F_FPTYPE
+        8 -> one F_SSIZE
+        9 -> one F_T
+        10 -> one F_GPRSIZE_IN_Q
+        11 -> one F_LDS_SIZE
+        12 -> any [1..5] F_OPDn_OPT
+        15 -> masked 0x1f F_DEFAULT
+        20 -> one F_CONV
+        21 -> one F_PSEUDO
+        22 -> one F_MISC
+        23 -> one F_N
+        24 -> masked 0x7 F_OD
+        27 -> one F_LSE_SZ
+        28 -> one F_STRICT
+      where
+        one a = case x of
+            CConst (CIntConst ci _) ->
+                case getCInteger ci of
+                    1 -> a
+        any is a = case x of
+            CConst (CIntConst ci _) ->
+                let i = fromInteger (getCInteger ci)
+                in assert (i `elem` is) (a i)
+        masked mask a = case x of
+            CBinary CAndOp (CConst (CIntConst cil _)) (CConst (CIntConst cir _)) _ | getCInteger cir == mask ->
+                a (fromInteger (getCInteger cil))

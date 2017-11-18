@@ -22,4 +22,3 @@ generate outDir = do
     writeFile file $ prettyPrint gen
   where
     file = outDir </> "gen" </> "ARM" </> "MRAS" </> "Gen.hs"
-
