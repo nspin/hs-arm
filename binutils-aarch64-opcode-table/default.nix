@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, haskellPackages, binutils, harmLib }:
+{ stdenv, fetchurl, haskellPackages, harmLib }:
 
 with harmLib;
 
@@ -48,7 +48,25 @@ rec {
   };
 
   c = stdenv.mkDerivation rec {
-    name = "aarch64-tbl.h";
+    name = "everything.c";
+    src = fetchurl {
+      url = "mirror://gnu/binutils/binutils-2.28.1.tar.bz2";
+      sha256 = "1sj234nd05cdgga1r36zalvvdkvpfbr12g5mir2n8i1dwsdrj939";
+    };
+    bu = binutils-made;
+    everything = ./everything.c;
+    builder = builtins.toFile "builder.sh" ''
+      source $stdenv/setup
+      # cpp -I $bu/bfd -I $bu/include -I $bu $everything | sed 's/(^)/(*)/g' > $out
+      cpp \
+        -I $bu/bfd -I $bu/include -I $bu/opcodes -I $bu \
+        $everything \
+        | sed 's/(^)/(*)/g' > $out
+    '';
+  };
+
+  binutils-made = stdenv.mkDerivation rec {
+    name = "binutils-made";
     src = fetchurl {
       url = "mirror://gnu/binutils/binutils-2.28.1.tar.bz2";
       sha256 = "1sj234nd05cdgga1r36zalvvdkvpfbr12g5mir2n8i1dwsdrj939";
@@ -59,11 +77,8 @@ rec {
       cd binutils-*
       ./configure
       make
-      echo '#define VERIFIER(x) NULL' > verifier.h
-      cpp -include verifier.h -include opcodes/config.h \
-        -I bfd -I include -I opcodes \
-        opcodes/aarch64-tbl.h \
-        | sed 's/(^)/(*)/g' > $out
+      cd ..
+      cp -r binutils-* $out
     '';
   };
 

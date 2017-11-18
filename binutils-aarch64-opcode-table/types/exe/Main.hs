@@ -1,6 +1,7 @@
 module Main where
 
-import C
+import OpcodeTable
+import Operands
 import Hs
 
 import HarmGen.Binutils.Types
@@ -25,16 +26,9 @@ main = do
                 Left err -> die (show err)
                 Right tunit -> do
                     createDirectoryIfMissing True (takeDirectory hsOut)
-                    writeFile hsOut (prettyPrint (buildModule "HarmGen.Binutils.Gen" (extractTable tunit)))
+                    writeFile hsOut
+                        (prettyPrint
+                            (buildModule "HarmGen.Binutils.Gen"
+                                (extractOpcodeTable tunit)
+                                (extractOperands tunit)))
         _ -> die "usage: _ <outDir>"
-
-
-extractTable :: CTranslationUnit a -> [Row]
-extractTable = map parseRow . init . extractRawTable
-
-extractRawTable :: CTranslationUnit a -> [[CInitializer a]]
-extractRawTable (CTranslUnit extDecls _) = map f initList
-  where
-    CDeclExt (CDecl _ [(_, Just (CInitList initList _), _)] _) = last extDecls
-    f ([], CInitList innerInitList _) = map g innerInitList
-    g ([], initializer) = initializer

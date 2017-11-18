@@ -2,8 +2,10 @@
 {-# LANGUAGE DeriveGeneric #-}
 
 module HarmGen.Binutils.Types
-    ( Row(..)
+    ( Opcode(..)
     , OpcodeFlag(..)
+    , Operand(..)
+    , OperandFlag(..)
     , module HarmGen.Binutils.Types.Gen.Enums
     ) where
 
@@ -14,17 +16,17 @@ import GHC.Generics (Generic)
 
 import Control.DeepSeq
 
-data Row = Row
-    { row_name :: String
-    , row_opcode :: Word32
-    , row_mask :: Word32
-    , row_iclass :: InsnClass
-    , row_op :: Op
-    , row_avariant :: FeatureSet
-    , row_operands :: [Opnd]
-    , row_qualifiers_list :: [[OpndQualifier]]
-    , row_flags :: [OpcodeFlag]
-    , row_tied_operand :: Word8
+data Opcode = Opcode
+    { opcode_name :: String
+    , opcode_opcode :: Word32
+    , opcode_mask :: Word32
+    , opcode_iclass :: InsnClass
+    , opcode_op :: Op
+    , opcode_avariant :: FeatureSet
+    , opcode_operands :: [Opnd]
+    , opcode_qualifiers_list :: [[OpndQualifier]]
+    , opcode_flags :: [OpcodeFlag]
+    , opcode_tied_operand :: Word8
     } deriving (Eq, Show)
 
 data OpcodeFlag
@@ -48,4 +50,23 @@ data OpcodeFlag
     | F_OD Int
     | F_LSE_SZ
     | F_STRICT
+    deriving (Eq, Show)
+
+data Operand = Operand
+    { operand_op_class :: OperandClass
+    , operand_name :: String
+    , operand_flags :: [OperandFlag]
+    , operand_fields :: [FieldKind]
+    , operand_desc :: String
+    } deriving (Eq, Show)
+
+data OperandFlag
+    = OPD_F_HAS_INSERTER
+    | OPD_F_HAS_EXTRACTOR
+    | OPD_F_SEXT
+    | OPD_F_SHIFT_BY_2
+    | OPD_F_MAYBE_SP
+    | OPD_F_OD_MASK
+    | OPD_F_OD_LSB Int
+    | OPD_F_NO_ZR
     deriving (Eq, Show)

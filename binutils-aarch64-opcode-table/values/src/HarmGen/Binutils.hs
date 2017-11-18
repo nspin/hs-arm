@@ -1,5 +1,6 @@
 module HarmGen.Binutils
-    ( table
+    ( opcodeTable
+    , operands
     ) where
 
-import HarmGen.Binutils.Gen (table)
+import HarmGen.Binutils.Gen (opcodeTable, operands)

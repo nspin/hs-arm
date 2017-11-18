@@ -4,13 +4,16 @@ import HarmGen.Binutils.Types
 
 import Language.Haskell.Exts
 
-buildModule :: String -> [Row] -> Module ()
-buildModule modName table = Module () (Just head) [] [imp] [ty, val]
+buildModule :: String -> [Opcode] -> [Operand] -> Module ()
+buildModule modName opcodes operands = Module () (Just head) [] [imp] [opcty, opcval, opnty, opnval]
   where
     head = ModuleHead () (ModuleName () modName) Nothing Nothing
-    ty = TypeSig () [Ident () "table"] (TyList () (TyCon () (UnQual () (Ident () "Row"))))
-    val = FunBind () [Match () (Ident () "table") [] (UnGuardedRhs () (() <$ exp)) Nothing]
-    ParseOk exp = parseExp (show table)
+    opcty = TypeSig () [Ident () "opcodeTable"] (TyList () (TyCon () (UnQual () (Ident () "Opcode" ))))
+    opnty = TypeSig () [Ident () "operands"   ] (TyList () (TyCon () (UnQual () (Ident () "Operand"))))
+    opcval = FunBind () [Match () (Ident () "opcodeTable") [] (UnGuardedRhs () (() <$ opcExpr)) Nothing]
+    opnval = FunBind () [Match () (Ident () "operands"   ) [] (UnGuardedRhs () (() <$ opnExpr)) Nothing]
+    ParseOk opcExpr = parseExp (show opcodes)
+    ParseOk opnExpr = parseExp (show operands)
     imp = ImportDecl
         { importAnn = ()
         , importModule = ModuleName () "HarmGen.Binutils.Types"

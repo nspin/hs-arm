@@ -39,4 +39,5 @@ generate tunit = buildEnumsModule
             , ("aarch64_opnd", "Opnd")
             , ("aarch64_opnd_qualifier", "OpndQualifier")
             , ("aarch64_op", "Op")
+            , ("aarch64_field_kind", "FieldKind")
             ]
