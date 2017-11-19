@@ -20,4 +20,3 @@ go_rw arm-go-tables.values-src
 go_rw arm-mras.dtd-src.sysreg
 go_rw arm-mras.dtd-src.a64
 go_rw arm-mras.dtd-src.aarch32
-go_rw arm-mras.values-src
