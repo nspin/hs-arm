@@ -20,6 +20,7 @@ go_r() {
 }
 
 go_rw() {
+    attr="$1"
     store_path="$(nix-build -E "$expr" --no-out-link -A "$attr")"
     dst="$(setup_dst "$@")"
     echo "$store_path -> $dst"
