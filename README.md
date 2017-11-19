@@ -4,14 +4,13 @@ Arm recently released a [MRAS (machine-readable architecture specification) for 
 
 This repository contains a collection of Haskell libraries and programs whose ultimate output will be `harm`, a Haskell assembler, disassembler, and analyzer for ARMv8-A.
 
-Right now, I'm working on combining the ARM MRAS with opcode and operand tables extracted from the GNU Binutils source to produce a machine-readable description (a large Haskell source file) of both the architecture and the assembly language for ARMv8.
+Right now, I'm working on combining the ARM MRAS with opcode and operand tables extracted from the GNU Binutils source and the Go reference implementation source to produce a machine-readable description (a large Haskell source file) of both the architecture and the assembly language for ARMv8.
 
-This project involves a lot of source code generation. Past what's been mentioned above, the following source code is generated: types corresponding to DTD's for the the MRAS, expressions containing the information in the MRAS, types corresponding to enums found in the opcodes library in GNU Binutils, and expressions containing the information in tables from the opcodes library.
+This project involves a lot of source code generation. Past what's been mentioned above, the following source code is generated: types corresponding to DTD's for the the MRAS, expressions containing the information in the MRAS, types corresponding to enums found in the opcodes library in Binutils and the Go source, and expressions containing the information in tables from the opcodes library in Binutils and the Go source.
 
 ## Structure
 
-This code generation process is complex, but [nix](https://nixos.org/nix/) makes it manageable.
-The entire process is described in `default.nix` and `*/default.nix`.
+This code generation process is complex, but [nix](https://nixos.org/nix/) makes it manageable. The entire process is described in `default.nix` and `*/default.nix`. `./generated-sources` contains some up-to-date nix output for perusal.
 
 - **`harm-gen-utils`**: Program that uses `arm-mras` to output Haskell types describing various aspects of the various ARMv8 ISA's (not much here yet).
 - **`harm`**: Library, assembler, disassembler, and analyzer including the output of `harm-gen-utils` (not much here yet).
@@ -25,3 +24,4 @@ The entire process is described in `default.nix` and `*/default.nix`.
     - **`types-gen-utils`**: Program that generates types in `types` from C enums in Binutils.
     - **`values`**: Library containing the value of the tables in Binutils.
     - **`values-gen-utils`**: Program that extracts values of the types found in `types` from Binutils.
+- **`arm-go-tables`**: Same structure as that of `arm-binutils-tables`
