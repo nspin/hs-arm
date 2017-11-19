@@ -8,6 +8,7 @@ here="$(dirname "$0")"
 
 root="$here/../generated-sources"
 
+rm -r "$root"
 mkdir -p "$root"
 
 go_rw arm-binutils-tables.c
