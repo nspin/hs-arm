@@ -8,7 +8,7 @@ setup_dst () {
         dst="$attr"
     fi
     dst="$root/$dst"
-    rm -f "$dst"
+    rm -rf "$dst"
     echo "$dst"
 }
 
