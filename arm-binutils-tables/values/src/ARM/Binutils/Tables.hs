@@ -4,5 +4,5 @@ module ARM.Binutils.Tables
     , module ARM.Binutils.Tables.Types
     ) where
 
-import ARM.Binutils.Tables (opcodeTable, operands)
+import ARM.Binutils.Tables.Gen (opcodeTable, operands)
 import ARM.Binutils.Tables.Types

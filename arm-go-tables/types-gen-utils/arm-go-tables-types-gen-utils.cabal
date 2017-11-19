@@ -1,0 +1,16 @@
+Name:                arm-go-tables-types-gen-utils
+Version:             0.1
+license:             MIT
+author:              Nick Spinale
+maintainer:          spinalen@gmail.com
+build-type:          Simple
+cabal-version:       >=1.10
+
+executable gen-arm-go-tables-types
+  main-is:           Main.hs
+  build-depends:     base
+                   , attoparsec
+                   , directory
+                   , filepath
+                   , haskell-src-exts
+                   , text

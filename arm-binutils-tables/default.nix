@@ -20,9 +20,6 @@ rec {
     version = "0.1";
     src = types-src;
     libraryHaskellDepends = [ base ];
-    executableHaskellDepends = [
-      base directory filepath haskell-src-exts deepseq language-c
-    ];
     license = stdenv.lib.licenses.mit;
   };
 

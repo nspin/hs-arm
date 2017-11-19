@@ -16,7 +16,9 @@ in with harmLib; rec {
     inherit harmLib;
   };
 
-  arm-go = callPackage ./arm-go {};
+  arm-go-tables = callPackage ./arm-go-tables {
+    inherit harmLib;
+  };
 
   harm = haskellPackages.mkDerivation {
     pname = "harm";

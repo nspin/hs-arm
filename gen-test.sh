@@ -50,6 +50,13 @@ go_r arm-mras.dtd-src.a64
 go_r arm-mras.dtd-src.aarch32
 go_r arm-mras.values-src
 
-go_r arm-go.json
+go_r arm-go-tables.json
+go_r arm-go-tables.arch.src
+go_r arm-go-tables.types-src
+go_r arm-go-tables.values-src
 
 go_r harm-src
+
+go_r arm-binutils-tables.values
+go_r arm-go-tables.values
+go_r harm

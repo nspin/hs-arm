@@ -22,10 +22,7 @@ type Trie (n :: Nat) = Maybe (Node n)
 
 data Node (n :: Nat) where
     Leaf :: (Word32 -> Instruction) -> Node Z
-    Branch :: Trie n -- ^ 1
-           -> Trie n -- ^ 0
-           -> Trie n -- ^ Either
-           -> Node (S n)
+    Branch :: Trie n -> Trie n -> Trie n -> Node (S n) -- 1, 0, either
 
 
 class KnownNat n => Insert (n :: Nat) where
