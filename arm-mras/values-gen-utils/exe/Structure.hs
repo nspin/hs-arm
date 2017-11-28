@@ -6,8 +6,8 @@
 
 module Structure where
 
-import qualified Distill as L
-import Distill hiding (Class, Diagram, Encoding, Box, Explanation, Symbol, Table)
+import qualified Distill as D
+import Distill hiding (Page, PageId, Class, Diagram, Encoding, Box, Explanation, Symbol, Table)
 
 import Control.Applicative
 import Control.DeepSeq
@@ -22,13 +22,16 @@ import Data.Maybe
 import Debug.Trace
 import GHC.Generics (Generic)
 
-import qualified ARM.MRAS.DTD.A64.Iformp as D
+import qualified ARM.MRAS.DTD.A64.Iformp as X
 
 
-data Instruction = Instruction InstructionId [Class] [Ps] [Alias]
+data Page = Page PageId [Class] [Ps] [AliasPage]
     deriving (Show, Generic, NFData)
 
-type InstructionId = String
+data AliasPage = AliasPage PageId Class
+    deriving (Show, Generic, NFData)
+
+type PageId = String
 
 data Class = Class ClassId (Maybe ArchVar) Diagram [Encoding] [Ps]
     deriving (Show, Generic, NFData)
@@ -43,11 +46,11 @@ data Encoding = Encoding EncodingId [(String, BlockSpec)] Template [Symbol]
 data Symbol = Symbol String String (Maybe Table)
     deriving (Show, Generic, NFData)
 
--- Table bitfields [TRow (Symbol or RESERVED) (bitfield assignments) archvar]
-data Table = Table [BitExpr] [TRow]
+-- Table bitfields [TableRow (Symbol or RESERVED) (bitfield assignments) archvar]
+data Table = Table [BitExpr] [TableRow]
     deriving (Show, Generic, NFData)
 
-data TRow = TRow Expr [[Bit]] (Maybe ArchVar)
+data TableRow = TableRow Expr [[Bit]] (Maybe ArchVar)
     deriving (Show, Generic, NFData)
 
 data Expr = ExprSym SymExpr | ExprBits BitExpr | ExprNum NumExpr | ExprPresence Bool | ExprReserved | ExprSEE_Advanced_SIMD_modified_immediate
@@ -62,9 +65,6 @@ data BitExpr = BitExprLit [Bool] | BitExprField String | BitExprSection BitExpr 
 data NumExpr = NumExprInt Int | NumExprCast BitExpr | NumExprSub NumExpr NumExpr
     deriving (Show, Generic, NFData)
 
-data Alias = Alias
-    deriving (Show, Generic, NFData)
-
 data Box = Box Int Int Block deriving (Show, Generic, NFData)
 
 data Block = Block (Maybe String) BlockSpec deriving (Show, Generic, NFData)
@@ -74,23 +74,25 @@ data BlockSpec = BlockEq [Bit] | BlockNeq [Bit] deriving (Show, Generic, NFData)
 data Bit = I | O | X deriving (Eq, Show, Generic, NFData)
 
 
-parseInstruction :: Instr -> Maybe ([Alias] -> Instruction)
-parseInstruction (Instr id (AliasTo _) xclasses expls pss) = Nothing
-parseInstruction (Instr id (AliasList _) xclasses expls pss) =
-    Just (Instruction id classes pss)
+parsePage :: D.Page -> Either (PageId, AliasPage) ([PageId], [AliasPage] -> Page)
+parsePage (D.Page pid ainfo xclasses expls pss) = mk classes pss
   where
+    mk classes pss = case ainfo of
+        AliasTo apid -> case (classes, pss) of
+            ([clazz], []) -> Left (apid, AliasPage pid clazz)
+        AliasList apids -> Right (apids, Page pid classes pss)
     classes = map f xclasses
-    f (L.Class cid archvar (L.Diagram psname boxes) xencs psss)
+    f (D.Class cid archvar (D.Diagram psname boxes) xencs psss)
         = Class cid archvar diag encs psss
       where
         diag = Diagram psname dg
         dg = parseDiagram boxes
         encs = map g xencs
-        g (L.Encoding eid bxs [tmp] Nothing) = Encoding eid (parseSubDiagram dg bxs) tmp syms
+        g (D.Encoding eid bxs [tmp]) = Encoding eid (parseSubDiagram dg bxs) tmp syms
           where
             syms =
                 [ Symbol ss (bits mm) (values mm)
-                | L.Explanation eids ss mm <- expls
+                | D.Explanation eids ss mm <- expls
                 , eid `elem` eids
                 ]
             bits (Account x _) = x
@@ -98,29 +100,29 @@ parseInstruction (Instr id (AliasList _) xclasses expls pss) =
             values (Account _ _) = Nothing
             values (Definition _ tbl) = Just (parseTable (fieldsOf diag) tbl)
 
-parseTable :: [String] -> L.Table -> Table
-parseTable fields (L.Table hd bdy) = assert check $ Table (map (atto (parseBitExpr fields)) bfs) tbdy
+parseTable :: [String] -> D.Table -> Table
+parseTable fields (D.Table hd bdy) = assert check $ Table (map (atto (parseBitExpr fields)) bfs) tbdy
   where
     tbdy = map r bdy
     (hasarch, bfs) = case reverse hd of
-        TEntry D.Entry_class_symbol (Left "Architectural Feature") : rest -> (True, f rest)
+        TableEntry X.Entry_class_symbol (Left "Architectural Feature") : rest -> (True, f rest)
         rest -> (False, f rest)
       where
-        f (TEntry D.Entry_class_symbol (Left sym) : rest) = map g rest
-        g (TEntry D.Entry_class_bitfield (Left bf)) = bf
-    r row = TRow (atto (parseExpr fields) sval) bval archvar
+        f (TableEntry X.Entry_class_symbol (Left sym) : rest) = map g rest
+        g (TableEntry X.Entry_class_bitfield (Left bf)) = bf
+    r row = TableRow (atto (parseExpr fields) sval) bval archvar
       where
-        (archvar, (TEntry D.Entry_class_symbol (Left sval) : rest)) = case (hasarch, reverse row) of
+        (archvar, (TableEntry X.Entry_class_symbol (Left sval) : rest)) = case (hasarch, reverse row) of
             (False, res) -> (Nothing, res)
-            (True, TEntry D.Entry_class_feature (Right archvar) : res) -> (Just archvar, res)
-            (True, TEntry D.Entry_class_feature (Left "") : res) -> (Nothing, res)
+            (True, TableEntry X.Entry_class_feature (Right archvar) : res) -> (Just archvar, res)
+            (True, TableEntry X.Entry_class_feature (Left "") : res) -> (Nothing, res)
         bval = map f rest
-        f (TEntry D.Entry_class_bitfield (Left bs)) = map h bs
+        f (TableEntry X.Entry_class_bitfield (Left bs)) = map h bs
         h '1' = I
         h '0' = O
         h 'x' = X
-    check = all (== length bfs) [ length bb | TRow ss bb _ <- tbdy ]
-        && homog [ map length bb | TRow ss bb _ <- tbdy ]
+    check = all (== length bfs) [ length bb | TableRow ss bb _ <- tbdy ]
+        && homog [ map length bb | TableRow ss bb _ <- tbdy ]
 
 atto :: Parser a -> String -> a
 atto parser str = case parseOnly (parser <* endOfInput) (T.pack str) of
@@ -168,7 +170,7 @@ homog :: Eq a => [a] -> Bool
 homog [] = True
 homog (a:as) = all (== a) as
 
-parseDiagram :: [L.Box] -> [Block]
+parseDiagram :: [D.Box] -> [Block]
 parseDiagram boxes = check `assert` blocks
   where
     blocks = go 32 (map parseBox boxes)
@@ -180,7 +182,7 @@ allUnique :: Eq a => [a] -> Bool
 allUnique [] = True
 allUnique (a:as) = elem a as || allUnique as
 
-parseSubDiagram :: [Block] -> [L.Box] -> [(String, BlockSpec)]
+parseSubDiagram :: [Block] -> [D.Box] -> [(String, BlockSpec)]
 parseSubDiagram super sub = go 31 super (map parseBox sub)
   where
     go _ _ [] = []
@@ -210,8 +212,8 @@ specLength spec = length $ case spec of
     BlockEq y -> y
     BlockNeq y -> y
 
-parseBox :: L.Box -> Box
-parseBox box@(L.Box hi width name cs) = Box hi width (Block name (assert check spec))
+parseBox :: D.Box -> Box
+parseBox box@(D.Box hi width name cs) = Box hi width (Block name (assert check spec))
   where
     spec = case cs of
         [] -> error $ "empty: " ++ show box

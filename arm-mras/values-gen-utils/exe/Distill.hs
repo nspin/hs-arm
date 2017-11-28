@@ -15,19 +15,17 @@ import GHC.Generics (Generic)
 import Text.XML.HaXml.OneOfN (OneOf2(..))
 import Text.XML.HaXml.XmlContent (List1(..))
 
-import qualified ARM.MRAS.DTD.A64.Iformp as D
-import ARM.MRAS.DTD.A64.Iformp hiding (Box, Encoding, Explanation, Ps, C, Account, Definition, Table, Symbol)
+import qualified ARM.MRAS.DTD.A64.Iformp as X
+import ARM.MRAS.DTD.A64.Iformp hiding (Instruction, Encoding, Box, C, Explanation, Account, Definition, Table, Symbol, Ps)
 
 
-data Instr = Instr InstrId AliasInfo [Class] [Explanation] [Ps]
-    deriving (Show, Generic, NFData)
-
-type InstrId = String
-
-data AliasInfo = AliasList [PageId] | AliasTo PageId
+data Page = Page PageId AliasInfo [Class] [Explanation] [Ps]
     deriving (Show, Generic, NFData)
 
 type PageId = String
+
+data AliasInfo = AliasList [PageId] | AliasTo PageId
+    deriving (Show, Generic, NFData)
 
 data Class = Class ClassId (Maybe ArchVar) Diagram [Encoding] [Ps]
     deriving (Show, Generic, NFData)
@@ -54,13 +52,10 @@ data C = C
     , c_val :: String
     } deriving (Show, Generic, NFData)
 
-data Encoding = Encoding EncodingId [Box] [Template] (Maybe EquivTo)
+data Encoding = Encoding EncodingId [Box] [Template] -- (Maybe EquivTo)
     deriving (Show, Generic, NFData)
 
 type Template = String
-
-data EquivTo = EquivTo -- TODO(nspin)
-    deriving (Show, Generic, NFData)
 
 data Explanation = Explanation [EncodingId] Symbol Mapping
     deriving (Show, Generic, NFData)
@@ -68,13 +63,13 @@ data Explanation = Explanation [EncodingId] Symbol Mapping
 data Mapping = Account String String | Definition String Table
     deriving (Show, Generic, NFData)
 
-data Table = Table [TEntry] [[TEntry]]
+data Table = Table [TableEntry] [[TableEntry]]
     deriving (Show, Generic, NFData)
 
 deriving instance Generic Entry_class
 deriving instance NFData Entry_class
 
-data TEntry = TEntry Entry_class (Either String ArchVar)
+data TableEntry = TableEntry Entry_class (Either String ArchVar)
     deriving (Show, Generic, NFData)
 
 type EncodingId = String
@@ -100,11 +95,9 @@ infixl 4 <&>
 (<&>) = flip fmap
 
 
--- Yuck. There is no good way to do this.
-
-distillInstr :: Instructionsection -> Instr
-distillInstr (Instructionsection attrs doc head desc xalias (Classes _ (NonEmpty xclasses)) aliasmnem xmexpls _ opss excs)
-    = Instr (instructionsectionId attrs) alias (map distillClass xclasses) expls pss
+distillPage :: Instructionsection -> Page
+distillPage (Instructionsection attrs doc head desc xalias (Classes _ (NonEmpty xclasses)) aliasmnem xmexpls _ opss excs)
+    = Page (instructionsectionId attrs) alias (map distillClass xclasses) expls pss
   where
     alias = fromJust $ xalias <&> \case
         OneOf2 (Alias_list _ _ refs _) -> AliasList [ aliasrefAliaspageid attrs | Aliasref attrs _ _ <- refs ]
@@ -125,20 +118,20 @@ distillClass (Iclass attrs _ _ xavars (Regdiagram atrs xboxes) (NonEmpty xencs) 
     pss = maybe [] distillPss xmps
     check = iclassIsa attrs == "A64" && regdiagramForm atrs == Regdiagram_form_32
 
-distillBox :: D.Box -> Box
-distillBox (D.Box ats xcs) = check `assert` box
+distillBox :: X.Box -> Box
+distillBox (X.Box ats xcs) = check `assert` box
   where
     box = Box (read (boxHibit ats)) (maybe 1 read (boxWidth ats)) (boxName ats) (map f xcs)
-    f (D.C as s) = C (maybe 1 read (cColspan as)) s
+    f (X.C as s) = C (maybe 1 read (cColspan as)) s
     check = case boxConstraint ats of
         Nothing -> True
         Just con -> case box of
             Box _ _ _ [C _ v] -> v == con
             _ -> False
 
-distillEncoding :: D.Encoding -> Encoding
-distillEncoding (D.Encoding attrs _ _ xboxes (NonEmpty xtemps) mequiv)
-    = Encoding (encodingName attrs) (map distillBox xboxes) (map distillTemplate xtemps) (EquivTo <$ mequiv)
+distillEncoding :: X.Encoding -> Encoding
+distillEncoding (X.Encoding attrs _ _ xboxes (NonEmpty xtemps) mequiv)
+    = Encoding (encodingName attrs) (map distillBox xboxes) (map distillTemplate xtemps)
 
 distillTemplate :: Asmtemplate -> Template
 distillTemplate (Asmtemplate _ xtemps) = unescape (concatMap f xtemps)
@@ -146,15 +139,15 @@ distillTemplate (Asmtemplate _ xtemps) = unescape (concatMap f xtemps)
     f (Asmtemplate_Text (Text t)) = t
     f (Asmtemplate_A (A _ as)) = concat as
 
-distillExplanation :: D.Explanation -> Explanation
-distillExplanation (D.Explanation atrs (D.Symbol _ xsyms) ad _)
+distillExplanation :: X.Explanation -> Explanation
+distillExplanation (X.Explanation atrs (X.Symbol _ xsyms) ad _)
     = Explanation [explanationEnclist atrs] sym mapping
   where
     sym = unescape (concatMap f xsyms)
     f (Symbol_Str s) = s
     mapping = case ad of
-        OneOf2 (D.Account as _ intro) -> Account (fromJust (accountEncodedin as)) (distillIntro intro)
-        TwoOf2 (D.Definition as _ tbl _) -> Definition (definitionEncodedin as) (distillTable tbl)
+        OneOf2 (X.Account as _ intro) -> Account (fromJust (accountEncodedin as)) (distillIntro intro)
+        TwoOf2 (X.Definition as _ tbl _) -> Definition (definitionEncodedin as) (distillTable tbl)
 
 distillIntro :: Intro -> String
 distillIntro (Intro intros) = case filter h intros of
@@ -168,13 +161,13 @@ distillIntro (Intro intros) = case filter h intros of
     h (Intro_Str s) = not (all isSpace s)
     h _ = True
 
-distillTable :: D.Table -> Table
-distillTable (D.Table _ (NonEmpty [D.Tgroup _ (Thead (NonEmpty [Row (NonEmpty hents)])) (Tbody (NonEmpty rows))]))
+distillTable :: X.Table -> Table
+distillTable (X.Table _ (NonEmpty [X.Tgroup _ (Thead (NonEmpty [Row (NonEmpty hents)])) (Tbody (NonEmpty rows))]))
     = Table (map f hents) (map g rows)
   where
     h (Entry_Str s) = not $ all isSpace s
     h _ = True
-    f (Entry attrs e) = TEntry (entryClass attrs) $ case filter h e of
+    f (Entry attrs e) = TableEntry (entryClass attrs) $ case filter h e of
         [] -> Left ""
         [Entry_Str s] -> Left (unescape s)
         [Entry_Arch_variants avs] -> Right (distillArchVars avs)
@@ -188,7 +181,7 @@ distillArchVars (Arch_variants [x]) = case x of
 distillPss :: Ps_section -> [Ps]
 distillPss (Ps_section _ (NonEmpty xpss)) = map f xpss
   where
-    f (D.Ps attrs (Pstext as x)) = Ps (psName attrs) s (unescape (concatMap g x))
+    f (X.Ps attrs (Pstext as x)) = Ps (psName attrs) s (unescape (concatMap g x))
       where
         s = case pstextRep_section as of
             Nothing -> Nothing

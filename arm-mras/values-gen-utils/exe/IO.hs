@@ -1,6 +1,6 @@
 module IO
-    ( listInstrs
-    , readInstr
+    ( listPages
+    , readPage
     ) where
 
 import ARM.MRAS.DTD.A64.Alphaindex
@@ -10,10 +10,10 @@ import System.Directory
 import System.FilePath
 import Text.XML.HaXml.XmlContent
 
-listInstrs :: FilePath -> FilePath -> IO [FilePath]
-listInstrs root index = do
+listPages :: FilePath -> FilePath -> IO [FilePath]
+listPages root index = do
     Alphaindex _ (Iforms _ (NonEmpty iforms)) <- fReadXml $ root </> index
     return [ root </> iformIformfile attrs | Iform attrs _ <- iforms ]
 
-readInstr :: FilePath -> IO Instructionsection
-readInstr = fReadXml
+readPage :: FilePath -> IO Instructionsection
+readPage = fReadXml

@@ -1,4 +1,4 @@
-expr='(import <nixpkgs> {}).callPackage ./. {}'
+expr='(import <nixpkgs> {}).callPackage ../. {}'
 
 setup_dst () {
     attr="$1"

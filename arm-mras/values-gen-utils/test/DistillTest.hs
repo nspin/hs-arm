@@ -9,7 +9,7 @@ module DistillTest
     ) where
 
 import IO
-import Distill as L
+import Distill as D
 
 import Control.Applicative
 import Control.DeepSeq
@@ -26,33 +26,33 @@ import Data.Attoparsec.Text hiding (I)
 import System.FilePath
 import Text.XML.HaXml.XmlContent hiding (Parser)
 
-import qualified ARM.MRAS.DTD.A64.Iformp as D
+import qualified ARM.MRAS.DTD.A64.Iformp as X
 import ARM.MRAS.DTD.A64.Iformp hiding (Encoding, C, Box)
 
 
 root :: FilePath
-root = "../gen-test-out/patched-a64/ISA_v83A_A64_xml_00bet5"
+root = "../../test/nix-results/arm-mras.patched-a64/ISA_v83A_A64_xml_00bet5"
 
 test :: IO ()
 test = do
-    base <- listInstrs root "index.xml"
-    fpsimd <- listInstrs root "fpsimdindex.xml"
+    base <- listPages root "index.xml"
+    fpsimd <- listPages root "fpsimdindex.xml"
     forM (base ++ fpsimd) $ \p -> do
         putStrLn $ ">> " ++ p
-        isec <- readInstr p
-        let ins = distillInstr isec
+        isec <- readPage p
+        let ins = distillPage isec
         deepseq ins $ do
-            let Instr id alias classes expls _ = ins
-            forM expls $ \(L.Explanation eids sym mapping) -> do
+            let D.Page id alias classes expls _ = ins
+            forM expls $ \(D.Explanation eids sym mapping) -> do
                 case mapping of
-                    L.Definition fld (L.Table hd bd) -> do
-                        let f e@(TEntry Entry_class_symbol (Left ('<':cs))) =
+                    D.Definition fld (D.Table hd bd) -> do
+                        let f e@(TableEntry Entry_class_symbol (Left ('<':cs))) =
                                 case reverse cs of
-                                    '>':css -> TEntry Entry_class_symbol (Left "<>")
+                                    '>':css -> TableEntry Entry_class_symbol (Left "<>")
                                     _ -> e
                             f e = e
-                            t = L.Table (map f hd) bd
+                            t = D.Table (map f hd) bd
                         putStrLn (show t)
-                    L.Account fld expl -> do
+                    D.Account fld expl -> do
                         return ()
     return ()

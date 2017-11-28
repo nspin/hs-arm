@@ -4,13 +4,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE StandaloneDeriving #-}
 
-module StructureTest
+module TidyTest
     ( test
     ) where
 
 import IO
 import Distill as D
-import Structure as S
+import Tidy as T
 
 import Control.Applicative
 import Control.DeepSeq
@@ -40,26 +40,27 @@ test = do
     fpsimd <- listPages root "fpsimdindex.xml"
     forM (base ++ fpsimd) $ \p -> do
         isec <- readPage p
-        let d = distillPage isec
-        let page = parsePage d <&> \(pids, f) -> f []
+        let page = tidyPage (distillPage isec)
+        print p
         deepseq page $ case page of
             Left _ -> return ()
-            Right (S.Page id classes pss []) -> void $
-                forM classes $ \(S.Class cid _ diags encs _) -> do
-                    let fields = fieldsOf diags
-                    forM encs $ \(S.Encoding _ _ _ syms) ->
-                        forM syms $ \(S.Symbol sym bits t) ->
-                            case t of
-                                Nothing -> return ()
-                                Just (S.Table bfs bdy) -> do
-                                    let vars = splitWith (== ':') bits
-                                    putStrLn p
-                                    putStrLn sym
-                                    putStrLn bits
-                                    print bfs
-                                    forM bdy $ \(TableRow v bv av) -> do
-                                        putStrLn $ show v ++  ": " ++ intercalate " " (map (map showBit) bv) ++ maybe "" (\a -> " (" ++ show a ++ ")") av
-                                    putStrLn ""
+            Right (T.Page pid apids classes pss) -> void $
+                forM classes $ \(T.Class cid marchvar diags encs _) -> do
+                    forM encs $ \(T.Encoding _ _ tmp syms) ->
+                        forM syms $ \(T.Symbol sym bits tbl) -> do
+                            -- print pid
+                            print bits
+                            -- case tbl of
+                            --     Nothing -> return ()
+                            --     Just (T.Table bfs bdy) -> do
+                            --         let vars = splitWith (== ':') bits
+                            --         putStrLn p
+                            --         putStrLn sym
+                            --         putStrLn bits
+                            --         print bfs
+                            --         forM bdy $ \(TableRow v bv av) -> do
+                            --             putStrLn $ show v ++  ": " ++ intercalate " " (map (map showBit) bv) ++ maybe "" (\a -> " (" ++ show a ++ ")") av
+                            --         putStrLn ""
     return ()
 
 
@@ -72,7 +73,7 @@ splitWith p = go
             [] -> [good]
             b:ad -> good : go ad
 
-showBit :: S.Bit -> Char
+showBit :: T.Bit -> Char
 showBit I = '1'
 showBit O = 'O'
 showBit X = 'x'
