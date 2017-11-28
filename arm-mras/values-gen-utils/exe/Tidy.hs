@@ -53,7 +53,6 @@ data Encoding = Encoding EncodingId [(String, BlockSpec)] Template [Symbol]
 data Symbol = Symbol String String (Maybe Table)
     deriving (Show, Generic, NFData)
 
--- Table bitfields [TableRow (Symbol or RESERVED) (bitfield assignments) archvar]
 data Table = Table [String] [TableRow]
     deriving (Show, Generic, NFData)
 
@@ -79,7 +78,7 @@ tidyPage (D.Page pid ainfo xclasses expls pss) = mk (map f xclasses)
             syms =
                 [ case mm of
                     Account x _ -> Symbol ss x Nothing
-                    Definition x tbl -> Symbol ss x (Just (tidyTable ss (fieldsOf diag) tbl))
+                    Definition x tbl -> Symbol ss x (Just (tidyTable ss tbl))
                 | D.Explanation eids ss mm <- expls
                 , eid `elem` eids
                 ]
@@ -88,8 +87,8 @@ stripAngleBrackets :: String -> String
 stripAngleBrackets ('<':xs) = case reverse xs of
     '>':ys -> reverse ys
 
-tidyTable :: String -> [String] -> D.Table -> Table
-tidyTable osym fields (D.Table hd bdy) = assert check $ Table bfs tbdy
+tidyTable :: String -> D.Table -> Table
+tidyTable osym (D.Table hd bdy) = assert check $ Table bfs tbdy
   where
     tbdy = map r bdy
     (hasarch, bfs) = case reverse hd of
@@ -111,8 +110,6 @@ tidyTable osym fields (D.Table hd bdy) = assert check $ Table bfs tbdy
         h 'x' = X
     check = all (== length bfs) [ length bb | TableRow ss bb _ <- tbdy ]
         && homog [ map length bb | TableRow ss bb _ <- tbdy ]
-
-
 
 homog :: Eq a => [a] -> Bool
 homog [] = True
@@ -192,8 +189,3 @@ tidyBox box@(D.Box hi width name cs) = Box hi width (Block name (assert check sp
     h _ = Nothing
 
     check = width == specLength spec
-
-fieldsOf :: Diagram -> [String]
-fieldsOf (Diagram _ blocks) = catMaybes (map f blocks)
-  where
-    f (Block n _) = n

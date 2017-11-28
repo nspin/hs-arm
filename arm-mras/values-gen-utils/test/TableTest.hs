@@ -10,7 +10,8 @@ module StructureTest
 
 import IO
 import Distill as D
-import Structure as S
+import Tidy as T
+import Table as S
 
 import Control.Applicative
 import Control.DeepSeq
@@ -40,28 +41,34 @@ test = do
     fpsimd <- listPages root "fpsimdindex.xml"
     forM (base ++ fpsimd) $ \p -> do
         isec <- readPage p
-        let d = distillPage isec
-        let page = parsePage d <&> \(pids, f) -> f []
+        let page = tidyPage (distillPage isec)
         deepseq page $ case page of
             Left _ -> return ()
-            Right (S.Page id classes pss []) -> void $
-                forM classes $ \(S.Class cid _ diags encs _) -> do
-                    let fields = fieldsOf diags
-                    forM encs $ \(S.Encoding _ _ _ syms) ->
-                        forM syms $ \(S.Symbol sym bits t) ->
-                            case t of
+            Right (T.Page pid apids classes pss) -> void $
+                forM classes $ \(T.Class cid _ diag encs _) -> do
+                    let fields = fieldsOf diag
+                    forM encs $ \(T.Encoding _ _ _ syms) ->
+                        forM syms $ \(T.Symbol sym bits mtbl) ->
+                            case mtbl of
                                 Nothing -> return ()
-                                Just (S.Table bfs bdy) -> do
+                                Just tbl -> do
+                                    let S.Table bfs bdy = parseTable fields tbl
                                     let vars = splitWith (== ':') bits
                                     putStrLn p
                                     putStrLn sym
                                     putStrLn bits
                                     print bfs
-                                    forM bdy $ \(TableRow v bv av) -> do
+                                    forM bdy $ \(S.TableRow v bv av) -> do
                                         putStrLn $ show v ++  ": " ++ intercalate " " (map (map showBit) bv) ++ maybe "" (\a -> " (" ++ show a ++ ")") av
                                     putStrLn ""
     return ()
 
+
+
+fieldsOf :: T.Diagram -> [String]
+fieldsOf (T.Diagram _ blocks) = catMaybes (map f blocks)
+  where
+    f (Block n _) = n
 
 splitWith :: (a -> Bool) -> [a] -> [[a]]
 splitWith p = go
@@ -72,7 +79,7 @@ splitWith p = go
             [] -> [good]
             b:ad -> good : go ad
 
-showBit :: S.Bit -> Char
+showBit :: Bit -> Char
 showBit I = '1'
 showBit O = 'O'
 showBit X = 'x'
