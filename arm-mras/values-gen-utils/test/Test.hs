@@ -9,8 +9,8 @@ module Test
     ) where
 
 import IO
-import Distill as D
-import Structure as S
+import Tidy
+import qualified Distill as D
 
 import Control.Applicative
 import Control.DeepSeq
@@ -27,64 +27,59 @@ import Data.Attoparsec.Text hiding (I)
 import System.FilePath
 import Text.XML.HaXml.XmlContent hiding (Parser)
 
-import qualified ARM.MRAS.DTD.A64.Iformp as X
-import ARM.MRAS.DTD.A64.Iformp hiding (Encoding, C, Box)
-
 
 root :: FilePath
 root = "../../test/nix-results/arm-mras.patched-a64/ISA_v83A_A64_xml_00bet5"
 
-rawTemplates :: IO [String]
-rawTemplates = concatMap f <$> ((++) <$> listPages root "index.xml" <*> listPages root "fpsimdindex.xml" >>= traverse readPage)
+allPages :: IO [Page]
+allPages = fmap force $ do
+    base <- listPages root "index.xml"
+    fpsimd <- listPages root "fpsimdindex.xml"
+    forM (base ++ fpsimd) $ \p -> do
+        isec <- readPage p
+        return (tidyPage (D.distillPage isec))
+
+allPages' :: IO [(FilePath, Page)]
+allPages' = fmap force $ do
+    base <- listPages root "index.xml"
+    fpsimd <- listPages root "fpsimdindex.xml"
+    forM (base ++ fpsimd) $ \p -> do
+        isec <- readPage p
+        return (p, tidyPage (D.distillPage isec))
+
+findPages :: (Page -> Maybe a) -> IO [(FilePath, a)]
+findPages f = do
+    ps <- allPages'
+    return $ catMaybes (map (traverse f) ps)
+
+withPages :: (Page -> [String]) -> IO [String]
+withPages f = do
+    pages <- allPages
+    return (concatMap f pages)
+
+withPagesTo :: (Page -> [String]) -> FilePath -> IO ()
+withPagesTo f out = withFile out WriteMode $ \h -> do
+    pages <- allPages
+    forM_ (concatMap f pages) (hPutStrLn h)
+
+getTemplates :: Page -> [String]
+getTemplates p = case p of
+    Page _ _ xs _ -> concatMap f xs
+    AliasPage _ _ x -> f x
   where
-    f (Instructionsection attrs doc head desc _ (Classes _ (NonEmpty classes)) aliasmnem _ _ _ _) = do
-        (Iclass iattrs _ _ _ (Regdiagram rattrs boxes) (NonEmpty encs) _ _) <- classes
-        (X.Encoding eattrs _ _ bxs (NonEmpty asms) _) <- encs
-        extract <$> asms
+    f (Class _ _ _ encs _) = map g encs
+    g (Encoding _ _ t _) = t
 
-showTemplates :: IO ()
-showTemplates = rawTemplates >>= mapM_ putStrLn
-
-writeTemplates :: FilePath -> IO ()
-writeTemplates p = do
-    ts <- rawTemplates
-    withFile p WriteMode $ \h -> mapM_ (hPutStrLn h) ts
-
-extract :: Asmtemplate -> String
-extract (Asmtemplate _ children) = unescape $ concatMap f children
+getSymbols :: Page -> [String]
+getSymbols p = case p of
+    Page _ _ xs _ -> concatMap f xs
+    AliasPage _ _ x -> f x
   where
-    f (Asmtemplate_A (A _ xs)) = concat xs
-    f (Asmtemplate_Text (Text x)) = x
+    f (Class _ _ _ encs _) = concatMap g encs
+    g (Encoding _ _ tmplts syms) = map h syms
+    h (Symbol from _ _) = from
 
-attoparse :: Parser a -> String -> a
-attoparse parser str = case parseOnly parser (T.pack str) of
-    Right a -> a
-    Left err -> error ("|" ++ str ++ " !!! " ++ err ++ "|")
-
-
-fancyBoxes :: [D.Box] -> String
-fancyBoxes bs = intercalate " " (map fancyBox bs)
-
-fancyBox :: D.Box -> String
-fancyBox (D.Box hi width name cs) = prefix ++ "[ " ++ spec ++ " ]" ++ show width
-  where
-    prefix = fromMaybe "" name
-    spec = intercalate " | " (map f cs)
-    f (C w v) = v
-
-writeBoxes :: FilePath -> IO ()
-writeBoxes p = do
-    withFile p WriteMode $ \h -> do
-        base <- listPages root "index.xml"
-        fpsimd <- listPages root "fpsimdindex.xml"
-        forM (base ++ fpsimd) $ \p -> do
-            hPutStr h "\n# "
-            isec <- readPage p
-            let ins = distillPage isec
-                D.Page id alias classes expls _ = ins
-            ins `deepseq` hPutStrLn h p
-            forM classes $ \(D.Class id archvar (D.Diagram psn boxes) encs _) -> do
-                hPutStrLn h (fancyBoxes boxes)
-                forM encs $ \(D.Encoding eid bs t _) -> do
-                    hPutStrLn h (fancyBoxes bs)
-        return ()
+f :: Page -> Maybe String
+f p = if any (isSubsequenceOf "(s+1)") (getTemplates p)
+        then Just (show p)
+        else Nothing

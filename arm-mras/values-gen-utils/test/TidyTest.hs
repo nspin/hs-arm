@@ -9,8 +9,8 @@ module TidyTest
     ) where
 
 import IO
-import Distill as D
-import Tidy as T
+import Tidy
+import qualified Distill as D
 
 import Control.Applicative
 import Control.DeepSeq
@@ -43,8 +43,8 @@ test = do
         let page = tidyPage (distillPage isec)
         print p
         deepseq page $ case page of
-            Left _ -> return ()
-            Right (T.Page pid apids classes pss) -> void $
+            AliasPage _ _ _ -> return ()
+            T.Page pid apids classes pss -> void $
                 forM classes $ \(T.Class cid marchvar diags encs _) -> do
                     forM encs $ \(T.Encoding _ _ tmp syms) ->
                         forM syms $ \(T.Symbol sym bits tbl) -> do

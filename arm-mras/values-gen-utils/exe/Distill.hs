@@ -10,6 +10,7 @@ import Control.Exception
 import Data.Char
 import Data.List
 import Data.Maybe
+import Debug.Trace
 import GHC.Generics (Generic)
 
 import Text.XML.HaXml.OneOfN (OneOf2(..))
@@ -141,13 +142,22 @@ distillTemplate (Asmtemplate _ xtemps) = unescape (concatMap f xtemps)
 
 distillExplanation :: X.Explanation -> Explanation
 distillExplanation (X.Explanation atrs (X.Symbol _ xsyms) ad _)
-    = Explanation [explanationEnclist atrs] sym mapping
+    = assert check $ Explanation enclist sym mapping
   where
+    enclist = splitEnclist (explanationEnclist atrs)
     sym = unescape (concatMap f xsyms)
     f (Symbol_Str s) = s
     mapping = case ad of
         OneOf2 (X.Account as _ intro) -> Account (fromJust (accountEncodedin as)) (distillIntro intro)
         TwoOf2 (X.Definition as _ tbl _) -> Definition (definitionEncodedin as) (distillTable tbl)
+    check = all (all (flip elem $ ['a'..'z'] ++ ['A'..'Z'] ++ ['0'..'9'] ++ ['_'])) enclist
+
+splitEnclist :: String -> [String]
+splitEnclist = map reverse . go [] ""
+  where
+    go big little (',':' ':rest) = go (little:big) [] rest
+    go big little "" = little:big
+    go big little (c:rest) = go big (c:little) rest
 
 distillIntro :: Intro -> String
 distillIntro (Intro intros) = case filter h intros of
