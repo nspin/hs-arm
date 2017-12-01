@@ -13,7 +13,7 @@ executable gen-arm-mras
 
   other-modules:     IO
                    , Distill
-                   , Structure
+                   , Tidy
                    , Gen
 
   build-depends:     base

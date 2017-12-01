@@ -24,10 +24,13 @@ import GHC.Generics (Generic)
 import qualified ARM.MRAS.DTD.A64.Iformp as X
 
 
-data Page = Page PageId [PageId] [Class] [Ps] | AliasPage PageId PageId Class
+data Page = Page PageId [PageId] [(Class, [Ps])] [Ps]
     deriving (Show, Generic, NFData)
 
-data Class = Class ClassId (Maybe ArchVar) Diagram [Encoding] [Ps]
+data AliasPage = AliasPage PageId PageId Class
+    deriving (Show, Generic, NFData)
+
+data Class = Class ClassId (Maybe ArchVar) Diagram [Encoding]
     deriving (Show, Generic, NFData)
 
 
@@ -57,15 +60,15 @@ data TableRow = TableRow String [[Bit]] (Maybe ArchVar)
     deriving (Show, Generic, NFData)
 
 
-tidyPage :: D.Page -> Page
+tidyPage :: D.Page -> Either AliasPage Page
 tidyPage (D.Page pid ainfo xclasses expls pss) = mk (map f xclasses)
   where
     mk classes = case ainfo of
         AliasTo apid -> case (classes, pss) of
-            ([clazz], []) -> AliasPage pid apid clazz
-        AliasList apids -> Page pid apids classes pss
-    f (D.Class cid archvar (D.Diagram psname boxes) xencs psss)
-        = Class cid archvar diag encs psss
+            ([(clazz, [])], []) -> Left (AliasPage pid apid clazz)
+        AliasList apids -> Right (Page pid apids classes pss)
+    f (D.Class cid marchvar (D.Diagram psname boxes) xencs psss)
+        = (Class cid marchvar diag encs, psss)
       where
         diag = Diagram psname dg
         dg = tidyDiagram boxes

@@ -9,7 +9,7 @@ module TidyTest
     ) where
 
 import IO
-import Tidy
+import Tidy as T
 import qualified Distill as D
 
 import Control.Applicative
@@ -40,12 +40,12 @@ test = do
     fpsimd <- listPages root "fpsimdindex.xml"
     forM (base ++ fpsimd) $ \p -> do
         isec <- readPage p
-        let page = tidyPage (distillPage isec)
+        let page = tidyPage (D.distillPage isec)
         print p
         deepseq page $ case page of
-            AliasPage _ _ _ -> return ()
-            T.Page pid apids classes pss -> void $
-                forM classes $ \(T.Class cid marchvar diags encs _) -> do
+            Left (AliasPage _ _ _) -> return ()
+            Right (T.Page pid apids classes pss) -> void $
+                forM (map fst classes) $ \(T.Class cid marchvar diags encs) -> do
                     forM encs $ \(T.Encoding _ _ tmp syms) ->
                         forM syms $ \(T.Symbol sym bits tbl) -> do
                             -- print pid
@@ -63,6 +63,22 @@ test = do
                             --         putStrLn ""
     return ()
 
+checkAliases :: IO ()
+checkAliases = do
+    base <- listPages root "index.xml"
+    fpsimd <- listPages root "fpsimdindex.xml"
+    forM (base ++ fpsimd) $ \p -> do
+        isec <- readPage p
+        let page = tidyPage (D.distillPage isec)
+        deepseq page $ case page of
+            Right (T.Page pid apids classes pss) -> return ()
+            Left (AliasPage pid apid (Class cid marchvar (Diagram dpsn blks) encs)) -> do
+                let checks =
+                        [
+                        ]
+                putStrLn p
+                assert (and checks) $ putStr ""
+    return ()
 
 splitWith :: (a -> Bool) -> [a] -> [[a]]
 splitWith p = go
