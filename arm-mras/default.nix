@@ -4,9 +4,13 @@ with harmLib;
 
 rec {
 
-  types = haskellPackages.callPackage ./types {};
-
   dtd-gen-utils = haskellPackages.callPackage ./dtd-gen-utils {};
+
+  types = haskellPackages.callPackage ./types {
+    arm-mras-dtd-sysreg = dtd.sysreg;
+    arm-mras-dtd-a64 = dtd.a64;
+    arm-mras-dtd-aarch32 = dtd.aarch32;
+  };
 
   values-gen-utils = haskellPackages.callPackage ./values-gen-utils {
     arm-mras-types = types;
@@ -14,6 +18,15 @@ rec {
     arm-mras-dtd-a64 = dtd.a64;
     arm-mras-dtd-aarch32 = dtd.aarch32;
   };
+
+  values-src = mergeFrom ./values [ "arm-mras.cabal" "src" ] (stdenv.mkDerivation {
+    name = "arm-mras-src";
+    utils = values-gen-utils;
+    src = patched-a64;
+    builder = builtins.toFile "builder.sh" ''
+      $utils/bin/gen-arm-mras $out $src/ISA_v83A_A64_xml_00bet5
+    '';
+  });
 
   values = haskellPackages.mkDerivation {
     pname = "arm-mras";
@@ -24,14 +37,6 @@ rec {
     ];
     license = stdenv.lib.licenses.mit;
   };
-
-  values-src = mergeFrom ./values [ "arm-mras.cabal" "src" ] (stdenv.mkDerivation {
-    name = "arm-mras-src";
-    utils = values-gen-utils;
-    builder = builtins.toFile "builder.sh" ''
-      $utils/bin/gen-arm-mras $out
-    '';
-  });
 
   xml =
     let

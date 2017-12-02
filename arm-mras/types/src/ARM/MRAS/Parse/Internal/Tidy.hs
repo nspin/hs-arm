@@ -1,64 +1,15 @@
-{-# LANGUAGE DeriveAnyClass #-}
-{-# LANGUAGE DeriveGeneric #-}
-{-# LANGUAGE LambdaCase #-}
-{-# LANGUAGE StandaloneDeriving #-}
-{-# LANGUAGE OverloadedStrings #-}
+module ARM.MRAS.Parse.Internal.Tidy
+    ( tidyPage
+    ) where
 
-module Tidy where
+import ARM.MRAS.Types
+import ARM.MRAS.Parse.Internal.Distill (C(..), AliasInfo(..), Mapping(..), TableEntry(..))
+import qualified ARM.MRAS.Parse.Internal.Distill as D
 
-import qualified Distill as D
-import Distill hiding (Page, Class, Diagram, Encoding, Box, Explanation, Symbol, Table)
-
-import Control.Applicative
-import Control.DeepSeq
-import Control.Exception
-import qualified Data.Text as T
-import Data.Char
 import Data.Foldable
-import Data.Function
-import Data.List
+import Control.Exception
 import Data.Maybe
-import Debug.Trace
-import GHC.Generics (Generic)
-
-import qualified ARM.MRAS.DTD.A64.Iformp as X
-
-
-data Page = Page PageId [PageId] [(Class, [Ps])] [Ps]
-    deriving (Show, Generic, NFData)
-
-data AliasPage = AliasPage PageId PageId Class
-    deriving (Show, Generic, NFData)
-
-data Class = Class ClassId (Maybe ArchVar) Diagram [Encoding]
-    deriving (Show, Generic, NFData)
-
-
-data Diagram = Diagram PsName [Block]
-    deriving (Show, Generic, NFData)
-
-data Box = Box Int Int Block deriving (Show, Generic, NFData)
-
-data Block = Block (Maybe String) BlockSpec deriving (Show, Generic, NFData)
-
-data BlockSpec = BlockEq [Bit] | BlockNeq [Bit] deriving (Show, Generic, NFData)
-
-data Bit = I | O | X deriving (Eq, Show, Generic, NFData)
-
-
-data Encoding = Encoding EncodingId [(String, BlockSpec)] Template [Symbol]
-    deriving (Show, Generic, NFData)
-
--- Symbol sym bits values
-data Symbol = Symbol String String (Maybe Table)
-    deriving (Show, Generic, NFData)
-
-data Table = Table [String] [TableRow]
-    deriving (Show, Generic, NFData)
-
-data TableRow = TableRow String [[Bit]] (Maybe ArchVar)
-    deriving (Show, Generic, NFData)
-
+import Control.Applicative
 
 tidyPage :: D.Page -> Either AliasPage Page
 tidyPage (D.Page pid ainfo xclasses expls pss) = mk (map f xclasses)
@@ -92,19 +43,19 @@ tidyTable osym (D.Table hd bdy) = assert check $ Table bfs tbdy
   where
     tbdy = map r bdy
     (hasarch, bfs) = case reverse hd of
-        TableEntry X.Entry_class_symbol (Left "Architectural Feature") : rest -> (True, f rest)
+        TableEntry D.Entry_class_symbol (Left "Architectural Feature") : rest -> (True, f rest)
         rest -> (False, f rest)
       where
-        f (TableEntry X.Entry_class_symbol (Left sym) : rest) = assert (sym == osym) $ map g rest
-        g (TableEntry X.Entry_class_bitfield (Left bf)) = bf
+        f (TableEntry D.Entry_class_symbol (Left sym) : rest) = assert (sym == osym) $ map g rest
+        g (TableEntry D.Entry_class_bitfield (Left bf)) = bf
     r row = TableRow sval bval archvar
       where
-        (archvar, (TableEntry X.Entry_class_symbol (Left sval) : rest)) = case (hasarch, reverse row) of
+        (archvar, (TableEntry D.Entry_class_symbol (Left sval) : rest)) = case (hasarch, reverse row) of
             (False, res) -> (Nothing, res)
-            (True, TableEntry X.Entry_class_feature (Right archvar) : res) -> (Just archvar, res)
-            (True, TableEntry X.Entry_class_feature (Left "") : res) -> (Nothing, res)
+            (True, TableEntry D.Entry_class_feature (Right archvar) : res) -> (Just archvar, res)
+            (True, TableEntry D.Entry_class_feature (Left "") : res) -> (Nothing, res)
         bval = map f rest
-        f (TableEntry X.Entry_class_bitfield (Left bs)) = map h bs
+        f (TableEntry D.Entry_class_bitfield (Left bs)) = map h bs
         h '1' = I
         h '0' = O
         h 'x' = X

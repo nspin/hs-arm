@@ -1,7 +1,6 @@
-module Diagram where
+module ARM.MRAS.Types.Diagram where
 
-import Tidy
-import qualified Distill as D
+import ARM.MRAS.Types
 
 import Debug.Trace
 

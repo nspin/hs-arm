@@ -3,7 +3,25 @@
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE StandaloneDeriving #-}
 
-module Distill where
+module ARM.MRAS.Parse.Internal.Distill
+    ( Page(..)
+    , AliasInfo(..)
+    , Class(..)
+    , Diagram(..)
+    , Box(..)
+    , C(..)
+    , Encoding(..)
+    , Explanation(..)
+    , Mapping(..)
+    , Table(..)
+    , TableEntry(..)
+
+    , Entry_class(..)
+
+    , distillPage
+    ) where
+
+import ARM.MRAS.Types (PageId, ClassId, ArchVar(..), EncodingId, Template, Ps(..), PsName(..), PsSection(..))
 
 import Control.DeepSeq
 import Control.Exception
@@ -17,13 +35,11 @@ import Text.XML.HaXml.OneOfN (OneOf2(..))
 import Text.XML.HaXml.XmlContent (List1(..))
 
 import qualified ARM.MRAS.DTD.A64.Iformp as X
-import ARM.MRAS.DTD.A64.Iformp hiding (Instruction, Encoding, Box, C, Explanation, Account, Definition, Table, Symbol, Ps)
+import ARM.MRAS.DTD.A64.Iformp hiding (Encoding, Box, C, Explanation, Account, Definition, Table, Symbol, Ps)
 
 
 data Page = Page PageId AliasInfo [Class] [Explanation] [Ps]
     deriving (Show, Generic, NFData)
-
-type PageId = String
 
 data AliasInfo = AliasList [PageId] | AliasTo PageId
     deriving (Show, Generic, NFData)
@@ -31,15 +47,8 @@ data AliasInfo = AliasList [PageId] | AliasTo PageId
 data Class = Class ClassId (Maybe ArchVar) Diagram [Encoding] [Ps]
     deriving (Show, Generic, NFData)
 
-type ClassId = String
-
-data ArchVar = ArchName String | ArchFeature String
-    deriving (Show, Generic, NFData)
-
 data Diagram = Diagram PsName [Box]
     deriving (Show, Generic, NFData)
-
-type PsName = String
 
 data Box = Box
     { box_hi :: Int
@@ -56,10 +65,10 @@ data C = C
 data Encoding = Encoding EncodingId [Box] [Template] -- (Maybe EquivTo)
     deriving (Show, Generic, NFData)
 
-type Template = String
-
 data Explanation = Explanation [EncodingId] Symbol Mapping
     deriving (Show, Generic, NFData)
+
+type Symbol = String
 
 data Mapping = Account String String | Definition String Table
     deriving (Show, Generic, NFData)
@@ -71,16 +80,6 @@ deriving instance Generic Entry_class
 deriving instance NFData Entry_class
 
 data TableEntry = TableEntry Entry_class (Either String ArchVar)
-    deriving (Show, Generic, NFData)
-
-type EncodingId = String
-
-type Symbol = String
-
-data Ps = Ps PsName (Maybe PsSection) String
-    deriving (Show, Generic, NFData)
-
-data PsSection = PsDecode | PsPostDecode | PsExecute
     deriving (Show, Generic, NFData)
 
 

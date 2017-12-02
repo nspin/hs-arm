@@ -4,27 +4,20 @@
 {-# LANGUAGE StandaloneDeriving #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module Table where
+module ARM.MRAS.Types.Table where
 
-import qualified Tidy as T
-import Tidy hiding (Table, TableRow)
-import qualified Distill as D
-import Distill hiding (Page, PageId, Class, Diagram, Encoding, Box, Explanation, Symbol, Table)
+import qualified ARM.MRAS.Types as T
+import ARM.MRAS.Types hiding (Table, TableRow)
 
 import Control.Applicative
 import Control.DeepSeq
-import Control.Exception
-import Data.Attoparsec.Text hiding (I)
-import qualified Data.Text as T
+import Data.Attoparsec.Text
 import Data.Char
 import Data.Foldable
 import Data.Function
 import Data.List
-import Data.Maybe
-import Debug.Trace
+import qualified Data.Text as T
 import GHC.Generics (Generic)
-
-import qualified ARM.MRAS.DTD.A64.Iformp as X
 
 
 -- Table bitfields [TableRow (Symbol or RESERVED) (bitfield assignments) archvar]

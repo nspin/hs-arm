@@ -8,10 +8,9 @@ module TableTest
     ( test
     ) where
 
-import IO
-import Distill as D
-import Tidy as T
-import Table as S
+import Lib
+import ARM.MRAS.Types hiding (Table, TableRow)
+import ARM.MRAS.Types.Table
 
 import Control.Applicative
 import Control.DeepSeq
@@ -26,47 +25,35 @@ import System.IO
 import qualified Data.Text as T
 import Data.Attoparsec.Text hiding (I)
 import System.FilePath
-import Text.XML.HaXml.XmlContent hiding (Parser)
-
-import qualified ARM.MRAS.DTD.A64.Iformp as X
-import ARM.MRAS.DTD.A64.Iformp hiding (Encoding, C, Box)
-
-
-root :: FilePath
-root = "../../test/nix-results/arm-mras.patched-a64/ISA_v83A_A64_xml_00bet5"
 
 test :: IO ()
 test = do
-    base <- listPages root "index.xml"
-    fpsimd <- listPages root "fpsimdindex.xml"
-    forM (base ++ fpsimd) $ \p -> do
-        isec <- readPage p
-        let page = tidyPage (distillPage isec)
-        deepseq page $ case page of
+    parsed <- getAll
+    forM parsed $ \(p, page) -> do
+        case page of
             Left _ -> return ()
-            Right (T.Page pid apids classes pss) -> void $
-                forM classes $ \(T.Class cid _ diag encs _) -> do
+            Right (Page pid apids classes pss) -> void $
+                forM classes $ \(Class cid _ diag encs, _) -> do
                     let fields = fieldsOf diag
-                    forM encs $ \(T.Encoding _ _ _ syms) ->
-                        forM syms $ \(T.Symbol sym bits mtbl) ->
+                    forM encs $ \(Encoding _ _ _ syms) ->
+                        forM syms $ \(Symbol sym bits mtbl) ->
                             case mtbl of
                                 Nothing -> return ()
                                 Just tbl -> do
-                                    let S.Table bfs bdy = parseTable fields tbl
+                                    let Table bfs bdy = parseTable fields tbl
                                     let vars = splitWith (== ':') bits
                                     putStrLn p
                                     putStrLn sym
                                     putStrLn bits
                                     print bfs
-                                    forM bdy $ \(S.TableRow v bv av) -> do
+                                    forM bdy $ \(TableRow v bv av) -> do
                                         putStrLn $ show v ++  ": " ++ intercalate " " (map (map showBit) bv) ++ maybe "" (\a -> " (" ++ show a ++ ")") av
                                     putStrLn ""
     return ()
 
 
-
-fieldsOf :: T.Diagram -> [String]
-fieldsOf (T.Diagram _ blocks) = catMaybes (map f blocks)
+fieldsOf :: Diagram -> [String]
+fieldsOf (Diagram _ blocks) = catMaybes (map f blocks)
   where
     f (Block n _) = n
 
