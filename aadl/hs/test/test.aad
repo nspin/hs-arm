@@ -1,75 +1,64 @@
+macro wd {
+    W wd = #Rd
+}
+
+macro xd {
+    X xd = #Rd
+}
+
 insn ADC_32_addsub_carry { // ADC <Wd>, <Wn>, <Wm>
-    type {
-        wd Wn
-        wn Wn
-        wm Wn
-    }
-    dec {
-        wd = #Rd
-        wn = #Rn
-        wm = #Rm
-    }
+    $wdnm
 }
 
 insn ADC_64_addsub_carry { // ADC <Xd>, <Xn>, <Xm>
-    type {
-        xd Xn
-        xn Xn
-        xm Xn
-    }
-    dec {
-        xd = #Rd
-        xn = #Rn
-        xm = #Rm
-    }
+    $xdnm
 }
 
 insn SSHLL_asimdshf_L { // SSHLL{2} <Vd>.<Ta>, <Vn>.<Tb>, #<shift>
-    type {
-        suh Suh
-        vd Vn
-        ta ArrWhole
-        vn Vn
-        tb ArrWholeHalf
-        shift Nat
-    }    
-    dec {
-        suh = case #Q {
-            0 -> NoSuh
-            1 -> Suh
-        }
-        vd = #Rd
-        ta = case #immh {
-            0001 -> 8H
-            001x -> 4S
-            01xx -> 2D
-        }
-        vn = #Rn
-        tb = case #immh:#Q {
-            0001:0 -> 8B
-            0001:1 -> 16B
-            001x:0 -> 4H
-            001x:1 -> 8H
-            01xx:0 -> 2S
-            01xx:1 -> 4S
-        }
-        shift = case #immh {
-            0001 -> UInt immh:immb - 8
-            001x -> UInt immh:immb - 16
-            01xx -> UInt immh:immb - 32
-        }
+
+    suh Suh
+    vd Vn
+    ta ArrWhole
+    vn Vn
+    tb ArrWholeHalf
+    shift Nat
+
+    vd = #Rd
+    #Rd = vd
+
+    vn = #Rn
+    #Rn = vn
+
+    suh = case #Q {
+        0 -> NoSuh
+        1 -> Suh
     }
-    enc {
-        #Q = case suh {
-            NoSuh -> 0
-            Suh -> 1
-        }
-        #Rd = vd
-        #immh:#immb = case ta {
-            8H -> shift + 8
-            4S -> shift + 16
-            2D -> shift + 32
-        }
-        #Rn = vn
+    #Q = case suh {
+        NoSuh -> 0
+        Suh -> 1
+    }
+
+    ta = case #immh {
+        0001 -> 8H
+        001x -> 4S
+        01xx -> 2D
+    }
+    tb = case #immh:#Q {
+        0001:0 -> 8B
+        0001:1 -> 16B
+        001x:0 -> 4H
+        001x:1 -> 8H
+        01xx:0 -> 2S
+        01xx:1 -> 4S
+    }
+    shift = case #immh {
+        0001 -> UInt immh:immb - 8
+        001x -> UInt immh:immb - 16
+        01xx -> UInt immh:immb - 32
+    }
+    #immh:#immb = case ta {
+        8H -> shift + 8
+        4S -> shift + 16
+        2D -> shift + 32
     }
 }
