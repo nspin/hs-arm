@@ -8,16 +8,11 @@ in with harmLib; rec {
 
   inherit harmLib;
 
-  arm-mras = callPackage ./arm-mras {
-    inherit harmLib;
-  };
+  arm-mras = callPackage ./arm-mras { inherit harmLib; };
 
-  arm-binutils-tables = callPackage ./arm-binutils-tables {
-    inherit harmLib;
-  };
-
-  arm-go-tables = callPackage ./arm-go-tables {
-    inherit harmLib;
+  arm-asm-impl-tables = {
+    binutils = callPackage ./arm-asm-impl-tables/binutils { inherit harmLib; };
+    go = callPackage ./arm-asm-impl-tables/go { inherit harmLib; };
   };
 
   harm = haskellPackages.mkDerivation {
