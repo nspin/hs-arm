@@ -1,0 +1,9 @@
+// udiv
+
+insn UDIV_32_dp_2src { // UDIV  <Wd>, <Wn>, <Wm>
+    
+}
+
+insn UDIV_64_dp_2src { // UDIV  <Xd>, <Xn>, <Xm>
+    
+}

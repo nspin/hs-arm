@@ -1,0 +1,9 @@
+// and_log_imm
+
+insn AND_32_log_imm { // AND  <Wd|WSP>, <Wn>, #<imm>
+    
+}
+
+insn AND_64_log_imm { // AND  <Xd|SP>, <Xn>, #<imm>
+    
+}

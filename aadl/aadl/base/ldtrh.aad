@@ -1,0 +1,5 @@
+// ldtrh
+
+insn LDTRH_32_ldst_unpriv { // LDTRH  <Wt>, [<Xn|SP>{, #<simm>}]
+    
+}

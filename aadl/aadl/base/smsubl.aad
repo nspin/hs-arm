@@ -1,0 +1,5 @@
+// smsubl
+
+insn SMSUBL_64WA_dp_3src { // SMSUBL  <Xd>, <Wn>, <Wm>, <Xa>
+    
+}

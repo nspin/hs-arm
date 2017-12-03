@@ -1,0 +1,17 @@
+// ldsmaxh
+
+insn LDSMAXAH_32_memop { // LDSMAXAH  <Ws>, <Wt>, [<Xn|SP>]
+    
+}
+
+insn LDSMAXALH_32_memop { // LDSMAXALH  <Ws>, <Wt>, [<Xn|SP>]
+    
+}
+
+insn LDSMAXH_32_memop { // LDSMAXH  <Ws>, <Wt>, [<Xn|SP>]
+    
+}
+
+insn LDSMAXLH_32_memop { // LDSMAXLH  <Ws>, <Wt>, [<Xn|SP>]
+    
+}

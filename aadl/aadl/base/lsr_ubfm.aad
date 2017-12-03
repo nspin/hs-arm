@@ -1,0 +1,9 @@
+// lsr_ubfm
+
+insn LSR_UBFM_32M_bitfield { // LSR  <Wd>, <Wn>, #<shift>
+    
+}
+
+insn LSR_UBFM_64M_bitfield { // LSR  <Xd>, <Xn>, #<shift>
+    
+}

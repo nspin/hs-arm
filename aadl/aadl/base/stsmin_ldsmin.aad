@@ -1,0 +1,17 @@
+// stsmin_ldsmin
+
+insn STSMIN_LDSMIN_32_memop { // STSMIN  <Ws>, [<Xn|SP>]
+    
+}
+
+insn STSMINL_LDSMINL_32_memop { // STSMINL  <Ws>, [<Xn|SP>]
+    
+}
+
+insn STSMIN_LDSMIN_64_memop { // STSMIN  <Xs>, [<Xn|SP>]
+    
+}
+
+insn STSMINL_LDSMINL_64_memop { // STSMINL  <Xs>, [<Xn|SP>]
+    
+}

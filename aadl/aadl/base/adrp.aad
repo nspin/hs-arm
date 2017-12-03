@@ -1,0 +1,7 @@
+// adrp
+
+insn ADRP_only_pcreladdr { // ADRP  <Xd>, <label>
+    $xd
+    label Label // +/-4GB
+    label == #immhi:#immlo
+}

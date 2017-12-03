@@ -1,0 +1,5 @@
+// ldtrsw
+
+insn LDTRSW_64_ldst_unpriv { // LDTRSW  <Xt>, [<Xn|SP>{, #<simm>}]
+    
+}

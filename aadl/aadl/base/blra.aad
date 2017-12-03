@@ -1,0 +1,17 @@
+// blra
+
+insn BLRAAZ_64_branch_reg { // BLRAAZ  <Xn>
+    
+}
+
+insn BLRAA_64P_branch_reg { // BLRAA  <Xn>, <Xm|SP>
+    
+}
+
+insn BLRABZ_64_branch_reg { // BLRABZ  <Xn>
+    
+}
+
+insn BLRAB_64P_branch_reg { // BLRAB  <Xn>, <Xm|SP>
+    
+}

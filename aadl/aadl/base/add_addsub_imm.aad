@@ -1,0 +1,11 @@
+// add_addsub_imm
+
+insn ADD_32_addsub_imm { // ADD  <Wd|WSP>, <Wn|WSP>, #<imm>{, <shift>}
+    $wd_wn_
+    $imsh
+}
+
+insn ADD_64_addsub_imm { // ADD  <Xd|SP>, <Xn|SP>, #<imm>{, <shift>}
+    $xd_xn_
+    $imsh
+}

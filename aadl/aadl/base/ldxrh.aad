@@ -1,0 +1,5 @@
+// ldxrh
+
+insn LDXRH_LR32_ldstexcl { // LDXRH  <Wt>, [<Xn|SP>{,#0}]
+    
+}

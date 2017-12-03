@@ -1,0 +1,5 @@
+// ldlarb
+
+insn LDLARB_LR32_ldstexcl { // LDLARB  <Wt>, [<Xn|SP>{,#0}]
+    
+}

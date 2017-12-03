@@ -1,0 +1,33 @@
+// ldsmax
+
+insn LDSMAX_32_memop { // LDSMAX  <Ws>, <Wt>, [<Xn|SP>]
+    
+}
+
+insn LDSMAXA_32_memop { // LDSMAXA  <Ws>, <Wt>, [<Xn|SP>]
+    
+}
+
+insn LDSMAXAL_32_memop { // LDSMAXAL  <Ws>, <Wt>, [<Xn|SP>]
+    
+}
+
+insn LDSMAXL_32_memop { // LDSMAXL  <Ws>, <Wt>, [<Xn|SP>]
+    
+}
+
+insn LDSMAX_64_memop { // LDSMAX  <Xs>, <Xt>, [<Xn|SP>]
+    
+}
+
+insn LDSMAXA_64_memop { // LDSMAXA  <Xs>, <Xt>, [<Xn|SP>]
+    
+}
+
+insn LDSMAXAL_64_memop { // LDSMAXAL  <Xs>, <Xt>, [<Xn|SP>]
+    
+}
+
+insn LDSMAXL_64_memop { // LDSMAXL  <Xs>, <Xt>, [<Xn|SP>]
+    
+}

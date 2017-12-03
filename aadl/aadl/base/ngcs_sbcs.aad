@@ -1,0 +1,9 @@
+// ngcs_sbcs
+
+insn NGCS_SBCS_32_addsub_carry { // NGCS  <Wd>, <Wm>
+    
+}
+
+insn NGCS_SBCS_64_addsub_carry { // NGCS  <Xd>, <Xm>
+    
+}

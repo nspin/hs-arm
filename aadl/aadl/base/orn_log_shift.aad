@@ -1,0 +1,9 @@
+// orn_log_shift
+
+insn ORN_32_log_shift { // ORN  <Wd>, <Wn>, <Wm>{, <shift> #<amount>}
+    
+}
+
+insn ORN_64_log_shift { // ORN  <Xd>, <Xn>, <Xm>{, <shift> #<amount>}
+    
+}

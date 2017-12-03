@@ -1,0 +1,9 @@
+// msub
+
+insn MSUB_32A_dp_3src { // MSUB  <Wd>, <Wn>, <Wm>, <Wa>
+    
+}
+
+insn MSUB_64A_dp_3src { // MSUB  <Xd>, <Xn>, <Xm>, <Xa>
+    
+}

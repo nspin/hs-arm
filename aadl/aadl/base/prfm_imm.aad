@@ -1,0 +1,5 @@
+// prfm_imm
+
+insn PRFM_P_ldst_pos { // PRFM  (<prfop>|#<imm5>), [<Xn|SP>{, #<pimm>}]
+    
+}

@@ -1,0 +1,9 @@
+// sub_addsub_ext
+
+insn SUB_32_addsub_ext { // SUB  <Wd|WSP>, <Wn|WSP>, <Wm>{, <extend> {#<amount>}}
+    
+}
+
+insn SUB_64_addsub_ext { // SUB  <Xd|SP>, <Xn|SP>, <R><m>{, <extend> {#<amount>}}
+    
+}

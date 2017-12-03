@@ -1,0 +1,9 @@
+// cmn_adds_addsub_imm
+
+insn CMN_ADDS_32S_addsub_imm { // CMN  <Wn|WSP>, #<imm>{, <shift>}
+    
+}
+
+insn CMN_ADDS_64S_addsub_imm { // CMN  <Xn|SP>, #<imm>{, <shift>}
+    
+}

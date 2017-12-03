@@ -1,0 +1,5 @@
+// sttrb
+
+insn STTRB_32_ldst_unpriv { // STTRB  <Wt>, [<Xn|SP>{, #<simm>}]
+    
+}

@@ -1,0 +1,9 @@
+// csneg
+
+insn CSNEG_32_condsel { // CSNEG  <Wd>, <Wn>, <Wm>, <cond>
+    
+}
+
+insn CSNEG_64_condsel { // CSNEG  <Xd>, <Xn>, <Xm>, <cond>
+    
+}

@@ -1,0 +1,9 @@
+// neg_sub_addsub_shift
+
+insn NEG_SUB_32_addsub_shift { // NEG  <Wd>, <Wm>{, <shift> #<amount>}
+    
+}
+
+insn NEG_SUB_64_addsub_shift { // NEG  <Xd>, <Xm>{, <shift> #<amount>}
+    
+}

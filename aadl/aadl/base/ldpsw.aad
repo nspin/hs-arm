@@ -1,0 +1,13 @@
+// ldpsw
+
+insn LDPSW_64_ldstpair_post { // LDPSW  <Xt1>, <Xt2>, [<Xn|SP>], #<imm>
+    
+}
+
+insn LDPSW_64_ldstpair_pre { // LDPSW  <Xt1>, <Xt2>, [<Xn|SP>, #<imm>]!
+    
+}
+
+insn LDPSW_64_ldstpair_off { // LDPSW  <Xt1>, <Xt2>, [<Xn|SP>{, #<imm>}]
+    
+}

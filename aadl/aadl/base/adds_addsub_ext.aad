@@ -1,0 +1,11 @@
+// adds_addsub_ext
+
+insn ADDS_32S_addsub_ext { // ADDS  <Wd>, <Wn|WSP>, <Wm>{, <extend> {#<amount>}}
+    $wspdspnm
+    $exam
+}
+
+insn ADDS_64S_addsub_ext { // ADDS  <Xd>, <Xn|SP>, <R><m>{, <extend> {#<amount>}}
+    $xspdspnm
+    $exam
+}

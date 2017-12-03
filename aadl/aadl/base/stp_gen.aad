@@ -1,0 +1,25 @@
+// stp_gen
+
+insn STP_32_ldstpair_post { // STP  <Wt1>, <Wt2>, [<Xn|SP>], #<imm>
+    
+}
+
+insn STP_64_ldstpair_post { // STP  <Xt1>, <Xt2>, [<Xn|SP>], #<imm>
+    
+}
+
+insn STP_32_ldstpair_pre { // STP  <Wt1>, <Wt2>, [<Xn|SP>, #<imm>]!
+    
+}
+
+insn STP_64_ldstpair_pre { // STP  <Xt1>, <Xt2>, [<Xn|SP>, #<imm>]!
+    
+}
+
+insn STP_32_ldstpair_off { // STP  <Wt1>, <Wt2>, [<Xn|SP>{, #<imm>}]
+    
+}
+
+insn STP_64_ldstpair_off { // STP  <Xt1>, <Xt2>, [<Xn|SP>{, #<imm>}]
+    
+}

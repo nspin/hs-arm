@@ -1,0 +1,9 @@
+// steorh_ldeorh
+
+insn STEORH_LDEORH_32_memop { // STEORH  <Ws>, [<Xn|SP>]
+    
+}
+
+insn STEORLH_LDEORLH_32_memop { // STEORLH  <Ws>, [<Xn|SP>]
+    
+}

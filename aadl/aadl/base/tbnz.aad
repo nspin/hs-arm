@@ -1,0 +1,5 @@
+// tbnz
+
+insn TBNZ_only_testbranch { // TBNZ  <R><t>, #<imm>, <label>
+    
+}

@@ -1,0 +1,33 @@
+// casp
+
+insn CASP_CP32_ldstexcl { // CASP  <Ws>, <W(s+1)>, <Wt>, <W(t+1)>, [<Xn|SP>{,#0}]
+    
+}
+
+insn CASPA_CP32_ldstexcl { // CASPA  <Ws>, <W(s+1)>, <Wt>, <W(t+1)>, [<Xn|SP>{,#0}]
+    
+}
+
+insn CASPAL_CP32_ldstexcl { // CASPAL  <Ws>, <W(s+1)>, <Wt>, <W(t+1)>, [<Xn|SP>{,#0}]
+    
+}
+
+insn CASPL_CP32_ldstexcl { // CASPL  <Ws>, <W(s+1)>, <Wt>, <W(t+1)>, [<Xn|SP>{,#0}]
+    
+}
+
+insn CASP_CP64_ldstexcl { // CASP  <Xs>, <X(s+1)>, <Xt>, <X(t+1)>, [<Xn|SP>{,#0}]
+    
+}
+
+insn CASPA_CP64_ldstexcl { // CASPA  <Xs>, <X(s+1)>, <Xt>, <X(t+1)>, [<Xn|SP>{,#0}]
+    
+}
+
+insn CASPAL_CP64_ldstexcl { // CASPAL  <Xs>, <X(s+1)>, <Xt>, <X(t+1)>, [<Xn|SP>{,#0}]
+    
+}
+
+insn CASPL_CP64_ldstexcl { // CASPL  <Xs>, <X(s+1)>, <Xt>, <X(t+1)>, [<Xn|SP>{,#0}]
+    
+}

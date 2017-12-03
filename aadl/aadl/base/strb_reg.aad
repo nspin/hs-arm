@@ -1,0 +1,9 @@
+// strb_reg
+
+insn STRB_32B_ldst_regoff { // STRB  <Wt>, [<Xn|SP>, (<Wm>|<Xm>), <extend> {<amount>}]
+    
+}
+
+insn STRB_32BL_ldst_regoff { // STRB  <Wt>, [<Xn|SP>, <Xm>{, LSL <amount>}]
+    
+}

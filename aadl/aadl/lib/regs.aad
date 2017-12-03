@@ -1,0 +1,55 @@
+$wd {
+    wd W; wd = #Rd; #Rd = wd
+}
+$wd_ {
+    wd WorSP; wd = #Rd; #Rd = wd
+}
+$wn {
+    wn W; wn = #Rn; #Rn = wn
+}
+$wn_ {
+    wn WorSP; wn = #Rn; #Rn = wn
+}
+$wm {
+    wm W; wm = #Rm; #Rm = wm
+}
+$wm_ {
+    $wd; $wn; $wm
+}
+$wdnm {
+    $wd; $wn; $wm
+}
+$wd_n_ {
+    $wd_; $wn_;
+}
+$wd_n_m {
+    $wd_; $wn_; $wm
+}
+
+$xd {
+    xd X; xd = #Rd; #Rd = xd
+}
+$xd_ {
+    xd XorSP; xd = #Rd; #Rd = xd
+}
+$xn {
+    xn X; xn = #Rn; #Rn = xn
+}
+$xn_ {
+    xn XorSP; xn = #Rn; #Rd = xn
+}
+$xm {
+    xm X; xm = #Rm; #Rm = xm
+}
+$xm_ {
+    xm XorSP; xm = #Rm; #Rm = xm;
+}
+$xdnm {
+    $xd; $xn; $xm
+}
+$xd_n_ {
+    $xd_; $xn_;
+}
+$xd_n_m {
+    $xd_; $xn_; $xm
+}

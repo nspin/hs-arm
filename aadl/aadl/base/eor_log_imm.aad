@@ -1,0 +1,9 @@
+// eor_log_imm
+
+insn EOR_32_log_imm { // EOR  <Wd|WSP>, <Wn>, #<imm>
+    
+}
+
+insn EOR_64_log_imm { // EOR  <Xd|SP>, <Xn>, #<imm>
+    
+}

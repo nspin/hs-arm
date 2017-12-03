@@ -1,0 +1,17 @@
+// steor_ldeor
+
+insn STEOR_LDEOR_32_memop { // STEOR  <Ws>, [<Xn|SP>]
+    
+}
+
+insn STEORL_LDEORL_32_memop { // STEORL  <Ws>, [<Xn|SP>]
+    
+}
+
+insn STEOR_LDEOR_64_memop { // STEOR  <Xs>, [<Xn|SP>]
+    
+}
+
+insn STEORL_LDEORL_64_memop { // STEORL  <Xs>, [<Xn|SP>]
+    
+}

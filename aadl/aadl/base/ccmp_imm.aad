@@ -1,0 +1,9 @@
+// ccmp_imm
+
+insn CCMP_32_condcmp_imm { // CCMP  <Wn>, #<imm>, #<nzcv>, <cond>
+    
+}
+
+insn CCMP_64_condcmp_imm { // CCMP  <Xn>, #<imm>, #<nzcv>, <cond>
+    
+}

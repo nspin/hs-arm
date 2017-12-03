@@ -1,0 +1,9 @@
+// sbcs
+
+insn SBCS_32_addsub_carry { // SBCS  <Wd>, <Wn>, <Wm>
+    
+}
+
+insn SBCS_64_addsub_carry { // SBCS  <Xd>, <Xn>, <Xm>
+    
+}

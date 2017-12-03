@@ -1,0 +1,9 @@
+// autdb
+
+insn AUTDB_64P_dp_1src { // AUTDB  <Xd>, <Xn|SP>
+    
+}
+
+insn AUTDZB_64Z_dp_1src { // AUTDZB  <Xd>
+    
+}

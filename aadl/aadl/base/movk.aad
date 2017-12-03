@@ -1,0 +1,9 @@
+// movk
+
+insn MOVK_32_movewide { // MOVK  <Wd>, #<imm>{, LSL #<shift>}
+    
+}
+
+insn MOVK_64_movewide { // MOVK  <Xd>, #<imm>{, LSL #<shift>}
+    
+}

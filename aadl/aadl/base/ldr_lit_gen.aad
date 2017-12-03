@@ -1,0 +1,9 @@
+// ldr_lit_gen
+
+insn LDR_32_loadlit { // LDR  <Wt>, <label>
+    
+}
+
+insn LDR_64_loadlit { // LDR  <Xt>, <label>
+    
+}

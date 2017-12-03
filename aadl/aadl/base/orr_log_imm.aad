@@ -1,0 +1,9 @@
+// orr_log_imm
+
+insn ORR_32_log_imm { // ORR  <Wd|WSP>, <Wn>, #<imm>
+    
+}
+
+insn ORR_64_log_imm { // ORR  <Xd|SP>, <Xn>, #<imm>
+    
+}

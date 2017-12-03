@@ -1,0 +1,9 @@
+// cmn_adds_addsub_ext
+
+insn CMN_ADDS_32S_addsub_ext { // CMN  <Wn|WSP>, <Wm>{, <extend> {#<amount>}}
+    
+}
+
+insn CMN_ADDS_64S_addsub_ext { // CMN  <Xn|SP>, <R><m>{, <extend> {#<amount>}}
+    
+}

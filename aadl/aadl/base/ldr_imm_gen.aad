@@ -1,0 +1,25 @@
+// ldr_imm_gen
+
+insn LDR_32_ldst_immpost { // LDR  <Wt>, [<Xn|SP>], #<simm>
+    
+}
+
+insn LDR_64_ldst_immpost { // LDR  <Xt>, [<Xn|SP>], #<simm>
+    
+}
+
+insn LDR_32_ldst_immpre { // LDR  <Wt>, [<Xn|SP>, #<simm>]!
+    
+}
+
+insn LDR_64_ldst_immpre { // LDR  <Xt>, [<Xn|SP>, #<simm>]!
+    
+}
+
+insn LDR_32_ldst_pos { // LDR  <Wt>, [<Xn|SP>{, #<pimm>}]
+    
+}
+
+insn LDR_64_ldst_pos { // LDR  <Xt>, [<Xn|SP>{, #<pimm>}]
+    
+}

@@ -1,0 +1,17 @@
+// stsmax_ldsmax
+
+insn STSMAX_LDSMAX_32_memop { // STSMAX  <Ws>, [<Xn|SP>]
+    
+}
+
+insn STSMAXL_LDSMAXL_32_memop { // STSMAXL  <Ws>, [<Xn|SP>]
+    
+}
+
+insn STSMAX_LDSMAX_64_memop { // STSMAX  <Xs>, [<Xn|SP>]
+    
+}
+
+insn STSMAXL_LDSMAXL_64_memop { // STSMAXL  <Xs>, [<Xn|SP>]
+    
+}

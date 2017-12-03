@@ -1,0 +1,17 @@
+// stumin_ldumin
+
+insn STUMIN_LDUMIN_32_memop { // STUMIN  <Ws>, [<Xn|SP>]
+    
+}
+
+insn STUMINL_LDUMINL_32_memop { // STUMINL  <Ws>, [<Xn|SP>]
+    
+}
+
+insn STUMIN_LDUMIN_64_memop { // STUMIN  <Xs>, [<Xn|SP>]
+    
+}
+
+insn STUMINL_LDUMINL_64_memop { // STUMINL  <Xs>, [<Xn|SP>]
+    
+}

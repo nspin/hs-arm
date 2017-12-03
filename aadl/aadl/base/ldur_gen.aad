@@ -1,0 +1,9 @@
+// ldur_gen
+
+insn LDUR_32_ldst_unscaled { // LDUR  <Wt>, [<Xn|SP>{, #<simm>}]
+    
+}
+
+insn LDUR_64_ldst_unscaled { // LDUR  <Xt>, [<Xn|SP>{, #<simm>}]
+    
+}

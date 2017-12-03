@@ -1,0 +1,9 @@
+// rev16_int
+
+insn REV16_32_dp_1src { // REV16  <Wd>, <Wn>
+    
+}
+
+insn REV16_64_dp_1src { // REV16  <Xd>, <Xn>
+    
+}

@@ -1,0 +1,5 @@
+// ldarh
+
+insn LDARH_LR32_ldstexcl { // LDARH  <Wt>, [<Xn|SP>{,#0}]
+    
+}

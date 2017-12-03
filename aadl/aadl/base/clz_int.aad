@@ -1,0 +1,9 @@
+// clz_int
+
+insn CLZ_32_dp_1src { // CLZ  <Wd>, <Wn>
+    
+}
+
+insn CLZ_64_dp_1src { // CLZ  <Xd>, <Xn>
+    
+}

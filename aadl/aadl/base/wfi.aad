@@ -1,0 +1,5 @@
+// wfi
+
+insn WFI_HI_system { // WFI
+    
+}

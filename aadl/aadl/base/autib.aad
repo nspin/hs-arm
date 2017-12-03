@@ -1,0 +1,21 @@
+// autib
+
+insn AUTIB_64P_dp_1src { // AUTIB  <Xd>, <Xn|SP>
+    
+}
+
+insn AUTIZB_64Z_dp_1src { // AUTIZB  <Xd>
+    
+}
+
+insn AUTIB1716_HI_system { // AUTIB1716
+    
+}
+
+insn AUTIBSP_HI_system { // AUTIBSP
+    
+}
+
+insn AUTIBZ_HI_system { // AUTIBZ
+    
+}

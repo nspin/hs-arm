@@ -1,0 +1,9 @@
+// ldxr
+
+insn LDXR_LR32_ldstexcl { // LDXR  <Wt>, [<Xn|SP>{,#0}]
+    
+}
+
+insn LDXR_LR64_ldstexcl { // LDXR  <Xt>, [<Xn|SP>{,#0}]
+    
+}

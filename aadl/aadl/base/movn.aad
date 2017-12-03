@@ -1,0 +1,9 @@
+// movn
+
+insn MOVN_32_movewide { // MOVN  <Wd>, #<imm>{, LSL #<shift>}
+    
+}
+
+insn MOVN_64_movewide { // MOVN  <Xd>, #<imm>{, LSL #<shift>}
+    
+}

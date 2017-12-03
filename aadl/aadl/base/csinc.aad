@@ -1,0 +1,9 @@
+// csinc
+
+insn CSINC_32_condsel { // CSINC  <Wd>, <Wn>, <Wm>, <cond>
+    
+}
+
+insn CSINC_64_condsel { // CSINC  <Xd>, <Xn>, <Xm>, <cond>
+    
+}

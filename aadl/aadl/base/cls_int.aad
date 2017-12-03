@@ -1,0 +1,9 @@
+// cls_int
+
+insn CLS_32_dp_1src { // CLS  <Wd>, <Wn>
+    
+}
+
+insn CLS_64_dp_1src { // CLS  <Xd>, <Xn>
+    
+}

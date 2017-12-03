@@ -1,0 +1,5 @@
+// ldaxrb
+
+insn LDAXRB_LR32_ldstexcl { // LDAXRB  <Wt>, [<Xn|SP>{,#0}]
+    
+}

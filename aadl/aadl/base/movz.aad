@@ -1,0 +1,9 @@
+// movz
+
+insn MOVZ_32_movewide { // MOVZ  <Wd>, #<imm>{, LSL #<shift>}
+    
+}
+
+insn MOVZ_64_movewide { // MOVZ  <Xd>, #<imm>{, LSL #<shift>}
+    
+}

@@ -1,0 +1,17 @@
+// ldclrh
+
+insn LDCLRAH_32_memop { // LDCLRAH  <Ws>, <Wt>, [<Xn|SP>]
+    
+}
+
+insn LDCLRALH_32_memop { // LDCLRALH  <Ws>, <Wt>, [<Xn|SP>]
+    
+}
+
+insn LDCLRH_32_memop { // LDCLRH  <Ws>, <Wt>, [<Xn|SP>]
+    
+}
+
+insn LDCLRLH_32_memop { // LDCLRLH  <Ws>, <Wt>, [<Xn|SP>]
+    
+}

@@ -1,0 +1,9 @@
+// stclrh_ldclrh
+
+insn STCLRH_LDCLRH_32_memop { // STCLRH  <Ws>, [<Xn|SP>]
+    
+}
+
+insn STCLRLH_LDCLRLH_32_memop { // STCLRLH  <Ws>, [<Xn|SP>]
+    
+}

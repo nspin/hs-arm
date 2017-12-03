@@ -1,0 +1,17 @@
+// ldumaxh
+
+insn LDUMAXAH_32_memop { // LDUMAXAH  <Ws>, <Wt>, [<Xn|SP>]
+    
+}
+
+insn LDUMAXALH_32_memop { // LDUMAXALH  <Ws>, <Wt>, [<Xn|SP>]
+    
+}
+
+insn LDUMAXH_32_memop { // LDUMAXH  <Ws>, <Wt>, [<Xn|SP>]
+    
+}
+
+insn LDUMAXLH_32_memop { // LDUMAXLH  <Ws>, <Wt>, [<Xn|SP>]
+    
+}

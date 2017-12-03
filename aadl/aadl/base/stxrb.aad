@@ -1,0 +1,5 @@
+// stxrb
+
+insn STXRB_SR32_ldstexcl { // STXRB  <Ws>, <Wt>, [<Xn|SP>{,#0}]
+    
+}

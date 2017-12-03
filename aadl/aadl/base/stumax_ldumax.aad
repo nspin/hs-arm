@@ -1,0 +1,17 @@
+// stumax_ldumax
+
+insn STUMAX_LDUMAX_32_memop { // STUMAX  <Ws>, [<Xn|SP>]
+    
+}
+
+insn STUMAXL_LDUMAXL_32_memop { // STUMAXL  <Ws>, [<Xn|SP>]
+    
+}
+
+insn STUMAX_LDUMAX_64_memop { // STUMAX  <Xs>, [<Xn|SP>]
+    
+}
+
+insn STUMAXL_LDUMAXL_64_memop { // STUMAXL  <Xs>, [<Xn|SP>]
+    
+}

@@ -1,0 +1,5 @@
+// smnegl_smsubl
+
+insn SMNEGL_SMSUBL_64WA_dp_3src { // SMNEGL  <Xd>, <Wn>, <Wm>
+    
+}

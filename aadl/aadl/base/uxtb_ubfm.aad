@@ -1,0 +1,5 @@
+// uxtb_ubfm
+
+insn UXTB_UBFM_32M_bitfield { // UXTB  <Wd>, <Wn>
+    
+}

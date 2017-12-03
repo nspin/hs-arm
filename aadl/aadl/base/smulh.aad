@@ -1,0 +1,5 @@
+// smulh
+
+insn SMULH_64_dp_3src { // SMULH  <Xd>, <Xn>, <Xm>
+    
+}

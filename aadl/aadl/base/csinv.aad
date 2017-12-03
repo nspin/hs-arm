@@ -1,0 +1,9 @@
+// csinv
+
+insn CSINV_32_condsel { // CSINV  <Wd>, <Wn>, <Wm>, <cond>
+    
+}
+
+insn CSINV_64_condsel { // CSINV  <Xd>, <Xn>, <Xm>, <cond>
+    
+}

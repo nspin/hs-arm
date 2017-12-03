@@ -1,0 +1,9 @@
+// str_reg_gen
+
+insn STR_32_ldst_regoff { // STR  <Wt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]
+    
+}
+
+insn STR_64_ldst_regoff { // STR  <Xt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]
+    
+}

@@ -1,0 +1,9 @@
+// ldursb
+
+insn LDURSB_32_ldst_unscaled { // LDURSB  <Wt>, [<Xn|SP>{, #<simm>}]
+    
+}
+
+insn LDURSB_64_ldst_unscaled { // LDURSB  <Xt>, [<Xn|SP>{, #<simm>}]
+    
+}

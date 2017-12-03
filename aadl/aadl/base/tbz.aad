@@ -1,0 +1,5 @@
+// tbz
+
+insn TBZ_only_testbranch { // TBZ  <R><t>, #<imm>, <label>
+    
+}

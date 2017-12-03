@@ -1,0 +1,9 @@
+// rorv
+
+insn RORV_32_dp_2src { // RORV  <Wd>, <Wn>, <Wm>
+    
+}
+
+insn RORV_64_dp_2src { // RORV  <Xd>, <Xn>, <Xm>
+    
+}

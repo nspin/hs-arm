@@ -1,0 +1,9 @@
+// rbit_int
+
+insn RBIT_32_dp_1src { // RBIT  <Wd>, <Wn>
+    
+}
+
+insn RBIT_64_dp_1src { // RBIT  <Xd>, <Xn>
+    
+}

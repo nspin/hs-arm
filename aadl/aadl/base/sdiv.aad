@@ -1,0 +1,9 @@
+// sdiv
+
+insn SDIV_32_dp_2src { // SDIV  <Wd>, <Wn>, <Wm>
+    
+}
+
+insn SDIV_64_dp_2src { // SDIV  <Xd>, <Xn>, <Xm>
+    
+}

@@ -1,0 +1,9 @@
+// lsrv
+
+insn LSRV_32_dp_2src { // LSRV  <Wd>, <Wn>, <Wm>
+    
+}
+
+insn LSRV_64_dp_2src { // LSRV  <Xd>, <Xn>, <Xm>
+    
+}

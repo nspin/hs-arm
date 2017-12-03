@@ -1,0 +1,5 @@
+// b_cond
+
+insn B_only_condbranch { // B.<cond>  <label>
+    
+}

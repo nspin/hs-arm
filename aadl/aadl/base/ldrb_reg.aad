@@ -1,0 +1,9 @@
+// ldrb_reg
+
+insn LDRB_32B_ldst_regoff { // LDRB  <Wt>, [<Xn|SP>, (<Wm>|<Xm>), <extend> {<amount>}]
+    
+}
+
+insn LDRB_32BL_ldst_regoff { // LDRB  <Wt>, [<Xn|SP>, <Xm>{, LSL <amount>}]
+    
+}

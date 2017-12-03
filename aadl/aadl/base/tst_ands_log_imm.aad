@@ -1,0 +1,9 @@
+// tst_ands_log_imm
+
+insn TST_ANDS_32S_log_imm { // TST  <Wn>, #<imm>
+    
+}
+
+insn TST_ANDS_64S_log_imm { // TST  <Xn>, #<imm>
+    
+}

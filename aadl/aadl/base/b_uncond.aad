@@ -1,0 +1,5 @@
+// b_uncond
+
+insn B_only_branch_imm { // B  <label>
+    
+}

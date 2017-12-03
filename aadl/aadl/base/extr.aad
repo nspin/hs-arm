@@ -1,0 +1,9 @@
+// extr
+
+insn EXTR_32_extract { // EXTR  <Wd>, <Wn>, <Wm>, #<lsb>
+    
+}
+
+insn EXTR_64_extract { // EXTR  <Xd>, <Xn>, <Xm>, #<lsb>
+    
+}

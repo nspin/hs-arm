@@ -1,0 +1,5 @@
+// ldaprb
+
+insn LDAPRB_32L_memop { // LDAPRB  <Wt>, [<Xn|SP> {,#0}]
+    
+}

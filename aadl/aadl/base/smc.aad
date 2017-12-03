@@ -1,0 +1,5 @@
+// smc
+
+insn SMC_EX_exception { // SMC  #<imm>
+    
+}

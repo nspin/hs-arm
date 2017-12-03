@@ -1,0 +1,9 @@
+// eor_log_shift
+
+insn EOR_32_log_shift { // EOR  <Wd>, <Wn>, <Wm>{, <shift> #<amount>}
+    
+}
+
+insn EOR_64_log_shift { // EOR  <Xd>, <Xn>, <Xm>{, <shift> #<amount>}
+    
+}

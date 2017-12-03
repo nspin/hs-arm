@@ -1,0 +1,9 @@
+// bic_log_shift
+
+insn BIC_32_log_shift { // BIC  <Wd>, <Wn>, <Wm>{, <shift> #<amount>}
+    
+}
+
+insn BIC_64_log_shift { // BIC  <Xd>, <Xn>, <Xm>{, <shift> #<amount>}
+    
+}

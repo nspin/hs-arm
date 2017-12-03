@@ -1,0 +1,5 @@
+// hlt
+
+insn HLT_EX_exception { // HLT  #<imm>
+    
+}

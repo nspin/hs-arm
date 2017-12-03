@@ -1,0 +1,25 @@
+// ldrsb_imm
+
+insn LDRSB_32_ldst_immpost { // LDRSB  <Wt>, [<Xn|SP>], #<simm>
+    
+}
+
+insn LDRSB_64_ldst_immpost { // LDRSB  <Xt>, [<Xn|SP>], #<simm>
+    
+}
+
+insn LDRSB_32_ldst_immpre { // LDRSB  <Wt>, [<Xn|SP>, #<simm>]!
+    
+}
+
+insn LDRSB_64_ldst_immpre { // LDRSB  <Xt>, [<Xn|SP>, #<simm>]!
+    
+}
+
+insn LDRSB_32_ldst_pos { // LDRSB  <Wt>, [<Xn|SP>{, #<pimm>}]
+    
+}
+
+insn LDRSB_64_ldst_pos { // LDRSB  <Xt>, [<Xn|SP>{, #<pimm>}]
+    
+}

@@ -1,0 +1,17 @@
+// ldaddh
+
+insn LDADDAH_32_memop { // LDADDAH  <Ws>, <Wt>, [<Xn|SP>]
+    
+}
+
+insn LDADDALH_32_memop { // LDADDALH  <Ws>, <Wt>, [<Xn|SP>]
+    
+}
+
+insn LDADDH_32_memop { // LDADDH  <Ws>, <Wt>, [<Xn|SP>]
+    
+}
+
+insn LDADDLH_32_memop { // LDADDLH  <Ws>, <Wt>, [<Xn|SP>]
+    
+}

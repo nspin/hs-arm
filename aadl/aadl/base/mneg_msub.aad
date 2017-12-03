@@ -1,0 +1,9 @@
+// mneg_msub
+
+insn MNEG_MSUB_32A_dp_3src { // MNEG  <Wd>, <Wn>, <Wm>
+    
+}
+
+insn MNEG_MSUB_64A_dp_3src { // MNEG  <Xd>, <Xn>, <Xm>
+    
+}

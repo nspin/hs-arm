@@ -1,0 +1,9 @@
+// mvn_orn_log_shift
+
+insn MVN_ORN_32_log_shift { // MVN  <Wd>, <Wm>{, <shift> #<amount>}
+    
+}
+
+insn MVN_ORN_64_log_shift { // MVN  <Xd>, <Xm>{, <shift> #<amount>}
+    
+}

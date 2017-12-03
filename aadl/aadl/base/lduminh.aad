@@ -1,0 +1,17 @@
+// lduminh
+
+insn LDUMINAH_32_memop { // LDUMINAH  <Ws>, <Wt>, [<Xn|SP>]
+    
+}
+
+insn LDUMINALH_32_memop { // LDUMINALH  <Ws>, <Wt>, [<Xn|SP>]
+    
+}
+
+insn LDUMINH_32_memop { // LDUMINH  <Ws>, <Wt>, [<Xn|SP>]
+    
+}
+
+insn LDUMINLH_32_memop { // LDUMINLH  <Ws>, <Wt>, [<Xn|SP>]
+    
+}

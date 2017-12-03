@@ -1,0 +1,9 @@
+// ldursh
+
+insn LDURSH_32_ldst_unscaled { // LDURSH  <Wt>, [<Xn|SP>{, #<simm>}]
+    
+}
+
+insn LDURSH_64_ldst_unscaled { // LDURSH  <Xt>, [<Xn|SP>{, #<simm>}]
+    
+}

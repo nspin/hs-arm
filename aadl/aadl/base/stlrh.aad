@@ -1,0 +1,5 @@
+// stlrh
+
+insn STLRH_SL32_ldstexcl { // STLRH  <Wt>, [<Xn|SP>{,#0}]
+    
+}

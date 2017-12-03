@@ -1,0 +1,5 @@
+// msr_imm
+
+insn MSR_SI_system { // MSR  <pstatefield>, #<imm>
+    
+}

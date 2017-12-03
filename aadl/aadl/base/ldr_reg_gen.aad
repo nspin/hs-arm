@@ -1,0 +1,9 @@
+// ldr_reg_gen
+
+insn LDR_32_ldst_regoff { // LDR  <Wt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]
+    
+}
+
+insn LDR_64_ldst_regoff { // LDR  <Xt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]
+    
+}

@@ -1,0 +1,17 @@
+// ldeorb
+
+insn LDEORAB_32_memop { // LDEORAB  <Ws>, <Wt>, [<Xn|SP>]
+    
+}
+
+insn LDEORALB_32_memop { // LDEORALB  <Ws>, <Wt>, [<Xn|SP>]
+    
+}
+
+insn LDEORB_32_memop { // LDEORB  <Ws>, <Wt>, [<Xn|SP>]
+    
+}
+
+insn LDEORLB_32_memop { // LDEORLB  <Ws>, <Wt>, [<Xn|SP>]
+    
+}

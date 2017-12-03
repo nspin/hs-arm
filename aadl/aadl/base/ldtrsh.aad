@@ -1,0 +1,9 @@
+// ldtrsh
+
+insn LDTRSH_32_ldst_unpriv { // LDTRSH  <Wt>, [<Xn|SP>{, #<simm>}]
+    
+}
+
+insn LDTRSH_64_ldst_unpriv { // LDTRSH  <Xt>, [<Xn|SP>{, #<simm>}]
+    
+}

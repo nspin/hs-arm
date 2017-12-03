@@ -1,0 +1,9 @@
+// sttr
+
+insn STTR_32_ldst_unpriv { // STTR  <Wt>, [<Xn|SP>{, #<simm>}]
+    
+}
+
+insn STTR_64_ldst_unpriv { // STTR  <Xt>, [<Xn|SP>{, #<simm>}]
+    
+}

@@ -1,0 +1,9 @@
+// adcs
+
+insn ADCS_32_addsub_carry { // ADCS  <Wd>, <Wn>, <Wm>
+    $wdnm
+}
+
+insn ADCS_64_addsub_carry { // ADCS  <Xd>, <Xn>, <Xm>
+    $xdnm
+}

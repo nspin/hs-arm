@@ -1,0 +1,5 @@
+// prfm_lit
+
+insn PRFM_P_loadlit { // PRFM  (<prfop>|#<imm5>), <label>
+    
+}

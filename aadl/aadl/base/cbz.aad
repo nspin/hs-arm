@@ -1,0 +1,9 @@
+// cbz
+
+insn CBZ_32_compbranch { // CBZ  <Wt>, <label>
+    
+}
+
+insn CBZ_64_compbranch { // CBZ  <Xt>, <label>
+    
+}

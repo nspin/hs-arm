@@ -1,0 +1,9 @@
+// cmn_adds_addsub_shift
+
+insn CMN_ADDS_32_addsub_shift { // CMN  <Wn>, <Wm>{, <shift> #<amount>}
+    
+}
+
+insn CMN_ADDS_64_addsub_shift { // CMN  <Xn>, <Xm>{, <shift> #<amount>}
+    
+}

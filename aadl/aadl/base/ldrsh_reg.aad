@@ -1,0 +1,9 @@
+// ldrsh_reg
+
+insn LDRSH_32_ldst_regoff { // LDRSH  <Wt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]
+    
+}
+
+insn LDRSH_64_ldst_regoff { // LDRSH  <Xt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]
+    
+}

@@ -1,0 +1,9 @@
+// mov_orr_log_shift
+
+insn MOV_ORR_32_log_shift { // MOV  <Wd>, <Wm>
+    
+}
+
+insn MOV_ORR_64_log_shift { // MOV  <Xd>, <Xm>
+    
+}
