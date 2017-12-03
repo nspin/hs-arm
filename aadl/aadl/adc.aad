@@ -1,0 +1,8 @@
+insn ADC_32_addsub_carry {
+    type {
+    }
+    enc {
+    }
+    dec {
+    }
+}
