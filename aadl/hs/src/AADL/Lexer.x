@@ -11,13 +11,18 @@ import AADL.Tokens
 %wrapper "monad"
 
 @whitespace = [\ \t\f\v\r]+
+@comment = "//"[^\n]*\n
+
 @bits = [10x]+
-@ident = [_a-zA-Z][_a-zA-Z0-9]*
 @nat = "0"|[1-9][0-9]*
+@infixop = "-"
+@ident = [_a-zA-Z][_a-zA-Z0-9]*
+@field = "#"@ident?
 
 aadl :-
 
 @whitespace { skip }
+@comment { skip }
 
 "{" { tok TCurlyOpen }
 "}" { tok TCurlyClose }
@@ -35,10 +40,14 @@ aadl :-
 "enc" { tok TKWEnc }
 "dec" { tok TKWDec }
 "case" { tok TKWCase }
+"error" { tok TKWError }
+"RESERVED" { tok TKWReserved }
 
 @bits { tokWith (TBits . map readBit) }
-@ident { tokWith TIdent }
 @nat { tokWith (TNatLit . read) }
+@infixop { tokWith TInfixOp }
+@ident { tokWith TIdent }
+@field { tokWith (TField . readField) }
 
 {
 

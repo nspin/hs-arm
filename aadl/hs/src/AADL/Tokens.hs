@@ -3,6 +3,7 @@ module AADL.Tokens
     , Token(..)
     , Bit(..)
     , readBit
+    , readField
     ) where
 
 import Data.Word
@@ -27,10 +28,14 @@ data Token
     | TKWEnc
     | TKWDec
     | TKWCase
+    | TKWError
+    | TKWReserved
 
-    | TIdent String
     | TBits [Bit]
     | TNatLit Word
+    | TInfixOp String
+    | TIdent String
+    | TField String
 
     deriving (Eq, Show)
 
@@ -46,3 +51,6 @@ readBit :: Char -> Bit
 readBit '1' = I
 readBit '0' = O
 readBit 'x' = X
+
+readField :: String -> String
+readField ('#':s) = s

@@ -7,7 +7,7 @@ rec {
   values = haskellPackages.mkDerivation {
     pname = "harm";
     version = "0.1";
-    src = harm-src;
+    src = values-src;
     executableHaskellDepends = with haskellPackages; [
       base tagged arm-mras.types
     ];

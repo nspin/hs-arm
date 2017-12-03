@@ -18,10 +18,19 @@ data FieldDec = FieldDec FieldId DecExpr
 
 type FieldId = String
 
-type DecExpr = ()
+-- data DecExpr = DecExprIdent Ident
+--              | DecExprAp DecExpr DecExpr
+--              | DecExprInfix InfixOp DecExpr DecExpr
+--              | DecExprCase BitsExpr [([Bit], DecExpr)]
+
+-- data BitsExpr = BitsExprIdent Ident
+--               | BitsExprRange BitsExpr Int Int
+--               | BitsExprConcat BitsExpr BitsExpr
+
+data DecExpr = DecExpr
 
 data BitsEnc = BitsEnc BitsSpec EncExpr
 
-type BitsSpec = ()
+data BitsSpec = BitsSpec
 
-type EncExpr = ()
+data EncExpr = EncExpr

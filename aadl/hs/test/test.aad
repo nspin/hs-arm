@@ -1,10 +1,62 @@
-insn ADC_foo {
+insn ADC_32_addsub_carry { // ADC <Wd>, <Wn>, <Wm>
     type {
+        wd :: Wn
         wn :: Wn
+        wm :: Wn
     }
-    enc {
-        wn = case [3:5] {
-            1001x -> W1
+    dec {
+        wd = #Rd
+        wn = #Rn
+        wm = #Rm
+    }
+}
+
+insn ADC_64_addsub_carry { // ADC <Xd>, <Xn>, <Xm>
+    type {
+        xd :: Xn
+        xn :: Xn
+        xm :: Xn
+    }
+    dec {
+        xd = #Rd
+        xn = #Rn
+        xm = #Rm
+    }
+}
+
+insn SSHLL_asimdshf_L { // SSHLL{2} <Vd>.<Ta>, <Vn>.<Tb>, #<shift>
+    type {
+        suh :: Suh
+        vd :: Vn
+        ta :: ArrWhole
+        vn :: Vn
+        tb :: ArrWholeHalf
+        shift :: Nat
+    }    
+    dec {
+        suh = case #Q {
+            0 -> NoSuh
+            1 -> Suh
+        }
+        vd = #Rd
+        ta = case #immh {
+            0001 -> 8H
+            001x -> 4S
+            01xx -> 2D
+        }
+        vn = #Rn
+        tb = case #immh:#Q {
+            0001:0 -> 8B
+            0001:1 -> 16B
+            001x:0 -> 4H
+            001x:1 -> 8H
+            01xx:0 -> 2S
+            01xx:1 -> 4S
+        }
+        shift = case #immh {
+            0001 -> UInt immh:immb - 8
+            001x -> UInt immh:immb - 16
+            01xx -> UInt immh:immb - 32
         }
     }
 }
