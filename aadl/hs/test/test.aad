@@ -1,0 +1,10 @@
+insn ADC_foo {
+    type {
+        wn :: Wn
+    }
+    enc {
+        wn = case [3:5] {
+            1001x -> W1
+        }
+    }
+}

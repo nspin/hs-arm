@@ -13,6 +13,7 @@ library
   exposed-modules:    AADL
 
   build-depends:      base >=4.8 && <5
+                    , array
                     , bytestring
                     , deepseq
                     , directory
