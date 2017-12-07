@@ -1,16 +1,26 @@
-module AADL.AST
-    (
-    ) where
+module AADL.AST where
 
-type AST = [Insn]
+type AST = [OuterDecl]
+    deriving Show
 
-data Insn = Insn InsnId [InsnInfo]
+data OuterDecl = Macro String [InnerDecl] | Insn String [InnerDecl]
+    deriving Show
+
+data InnerDecl
+    = MacroInterp String
+    | InDecl String String
+    | InAsDecl String String InAs
+    | DecodeDecl String String DecExpr
+    | EncodeDecl BitSpec BitExpr
+    deriving Show
+
+data InAs = InAs
+    deriving Show
+
+data BitSpec = BitSpec
+    deriving Show
 
 type InsnId = String
-
-data InsnInfo = InsnType [(FieldId, TypeId)]
-              | InsnDec [FieldDec]
-              | InsnEnc [BitsEnc]
 
 type TypeId = String
 
@@ -18,14 +28,14 @@ data FieldDec = FieldDec FieldId DecExpr
 
 type FieldId = String
 
--- data DecExpr = DecExprIdent Ident
---              | DecExprAp DecExpr DecExpr
---              | DecExprInfix InfixOp DecExpr DecExpr
---              | DecExprCase BitsExpr [([Bit], DecExpr)]
+data DecExpr = DecExprIdent Ident
+             | DecExprAp DecExpr DecExpr
+             | DecExprInfix InfixOp DecExpr DecExpr
+             | DecExprCase BitsExpr [([Bit], DecExpr)]
 
--- data BitsExpr = BitsExprIdent Ident
---               | BitsExprRange BitsExpr Int Int
---               | BitsExprConcat BitsExpr BitsExpr
+data BitExpr = BitsExprIdent Ident
+             | BitsExprRange BitsExpr Int Int
+             | BitsExprConcat BitsExpr BitsExpr
 
 data DecExpr = DecExpr
 

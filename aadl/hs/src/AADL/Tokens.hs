@@ -1,6 +1,5 @@
 module AADL.Tokens
-    ( TokenWithCtx(..)
-    , Token(..)
+    ( Token(..)
     , Bit(..)
     , readBit
     , readField
@@ -8,11 +7,11 @@ module AADL.Tokens
 
 import Data.Word
 
-data TokenWithCtx a = TokenWithCtx a String Token deriving (Eq, Show)
-
 data Token
 
-    = TCurlyOpen
+    = TEOF
+
+    |TCurlyOpen
     | TCurlyClose
     | TSquareOpen
     | TSquareClose

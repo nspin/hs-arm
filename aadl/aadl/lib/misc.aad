@@ -1,53 +1,27 @@
 $exam {
-    extend Extend
-    amount Amount
-
-    amount = #imm3
-    #imm3 = amount
-
-    extend = case #extend {
-        000 -> UXTB
-        001 -> UXTH
-        010 -> UXTW
-        011 -> UXTX
-        100 -> SXTB
-        101 -> SXTH
-        110 -> SXTW
-        111 -> SXTX
-    }
-
-    #extend = case extend {
-        UXTB -> 000
-        UXTH -> 001
-        UXTW -> 010
-        UXTX -> 011
-        SXTB -> 100
-        SXTH -> 101
-        SXTW -> 110
-        SXTX -> 111
+    amount Amount in #imm3
+    extend Extend in #extend as {
+        000 UXTB
+        001 UXTH
+        010 UXTW
+        011 UXTX
+        100 SXTB
+        101 SXTH
+        110 SXTW
+        111 SXTX
     }
 }
 
 $imsh {
-    imm Imm12
-    shift LeftShift
-
-    imm = #imm12
-    #imm12 = imm
-
-    shift = case #shift {
-        00 -> LSL0
-        01 -> LSL12
-    }
-
-    #shift = case shift {
-        LSL0 -> 00
-        LSL12 -> 01
+    imm Imm12 in #imm12
+    shift LeftShift in #shift as {
+        00 LSL0
+        01 LSL12
     }
 }
 
-$shamsh {
-    shift ShiftType
+$sham32 {
+    shift ShiftType in #shift as
     shift = case #shift {
         00 -> LSL
         01 -> LSR

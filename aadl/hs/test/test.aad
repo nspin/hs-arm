@@ -7,11 +7,9 @@ macro xd {
 }
 
 insn ADC_32_addsub_carry { // ADC <Wd>, <Wn>, <Wm>
-    $wdnm
 }
 
 insn ADC_64_addsub_carry { // ADC <Xd>, <Xn>, <Xm>
-    $xdnm
 }
 
 insn SSHLL_asimdshf_L { // SSHLL{2} <Vd>.<Ta>, <Vn>.<Tb>, #<shift>
@@ -56,9 +54,5 @@ insn SSHLL_asimdshf_L { // SSHLL{2} <Vd>.<Ta>, <Vn>.<Tb>, #<shift>
         001x -> UInt immh:immb - 16
         01xx -> UInt immh:immb - 32
     }
-    #immh:#immb = case ta {
-        8H -> shift + 8
-        4S -> shift + 16
-        2D -> shift + 32
-    }
+
 }

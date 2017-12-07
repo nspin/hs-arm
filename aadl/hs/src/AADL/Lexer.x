@@ -1,14 +1,18 @@
 {
 
 module AADL.Lexer
-    ( scan
+    ( lexer
+    , tokenP
     ) where
 
+import AADL.ParserMonad
 import AADL.Tokens
 
-}
+import Control.Monad.State
+import Control.Monad.Except
+import Data.Word
 
-%wrapper "monad"
+}
 
 @whitespace = [\ \t\f\v\r]+
 @comment = "//"[^\n]*\n
@@ -21,55 +25,54 @@ import AADL.Tokens
 
 aadl :-
 
-@whitespace { skip }
-@comment { skip }
+@whitespace ;
+@comment ;
 
-"{" { tok TCurlyOpen }
-"}" { tok TCurlyClose }
-"[" { tok TSquareOpen }
-"]" { tok TSquareClose }
-\n { tok TEOL }
+"{" { const TCurlyOpen }
+"}" { const TCurlyClose }
+"[" { const TSquareOpen }
+"]" { const TSquareClose }
+\n { const TEOL }
 
-"::" { tok TSymDoubleColon }
-":" { tok TSymColon }
-"=" { tok TSymEquals }
-"->" { tok TSymArrow }
+"::" { const TSymDoubleColon }
+":" { const TSymColon }
+"=" { const TSymEquals }
+"->" { const TSymArrow }
 
-"insn" { tok TKWInsn }
-"type" { tok TKWType }
-"enc" { tok TKWEnc }
-"dec" { tok TKWDec }
-"case" { tok TKWCase }
-"error" { tok TKWError }
-"RESERVED" { tok TKWReserved }
+"insn" { const TKWInsn }
+"type" { const TKWType }
+"enc" { const TKWEnc }
+"dec" { const TKWDec }
+"case" { const TKWCase }
+"error" { const TKWError }
+"RESERVED" { const TKWReserved }
 
-@bits { tokWith (TBits . map readBit) }
-@nat { tokWith (TNatLit . read) }
-@infixop { tokWith TInfixOp }
-@ident { tokWith TIdent }
-@field { tokWith (TField . readField) }
+@bits { TBits . map readBit }
+@nat { TNatLit . read }
+@infixop { TInfixOp }
+@ident { TIdent }
+@field { TField . readField }
 
 {
 
-type T = Maybe (TokenWithCtx AlexPosn)
+type AlexInput = PState
 
-alexEOF :: Alex T
-alexEOF = return Nothing
+alexGetByte :: AlexInput -> Maybe (Word8, AlexInput)
+alexGetByte = nextByte
 
-tok :: Token -> AlexInput -> Int -> Alex T
-tok t (pos, c, bs, str) len = return (Just (TokenWithCtx pos (take len str) t))
+alexInputPrevChar :: AlexInput -> Char
+alexInputPrevChar = _p_prev_char
 
-tokWith :: (String -> Token) -> AlexInput -> Int -> Alex T
-tokWith t (pos, c, bs, str) len = return (Just (TokenWithCtx pos s (t s)))
-  where
-    s = take len str
+lexer :: (Token -> P a) -> P a
+lexer = (>>=) tokenP
 
-scan input = runAlex input go
-  where
-    go = do
-        mt <- alexMonadScan
-        case mt of
-            Nothing -> return []
-            Just t -> (:) t <$> go
+tokenP :: P Token
+tokenP = do
+    p <- get
+    case alexScan p 0 of
+        AlexEOF -> return TEOF
+        AlexError p' -> throwError $ PError (_p_pos p) "lex error"
+        AlexSkip p' _ -> put p' >> tokenP
+        AlexToken p' len action -> action (take len (_p_curr_input p)) <$ put p'
 
 }
