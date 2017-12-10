@@ -1,5 +1,4 @@
-// sturb
-
-insn STURB_32_ldst_unscaled { // STURB  <Wt>, [<Xn|SP>{, #<simm>}]
+// STURB  <Wt>, [<Xn|SP>{, #<simm>}]
+insn STURB_32_ldst_unscaled {
     
 }

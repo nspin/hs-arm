@@ -1,9 +1,0 @@
-// stuminh_lduminh
-
-insn STUMINH_LDUMINH_32_memop { // STUMINH  <Ws>, [<Xn|SP>]
-    
-}
-
-insn STUMINLH_LDUMINLH_32_memop { // STUMINLH  <Ws>, [<Xn|SP>]
-    
-}

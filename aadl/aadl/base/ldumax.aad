@@ -1,33 +1,39 @@
-// ldumax
-
-insn LDUMAX_32_memop { // LDUMAX  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDUMAX  <Ws>, <Wt>, [<Xn|SP>]
+insn LDUMAX_32_memop {
+    $wst; $xN
 }
 
-insn LDUMAXA_32_memop { // LDUMAXA  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDUMAXA  <Ws>, <Wt>, [<Xn|SP>]
+insn LDUMAXA_32_memop {
+    $wst; $xN
 }
 
-insn LDUMAXAL_32_memop { // LDUMAXAL  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDUMAXAL  <Ws>, <Wt>, [<Xn|SP>]
+insn LDUMAXAL_32_memop {
+    $wst; $xN
 }
 
-insn LDUMAXL_32_memop { // LDUMAXL  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDUMAXL  <Ws>, <Wt>, [<Xn|SP>]
+insn LDUMAXL_32_memop {
+    $wst; $xN
 }
 
-insn LDUMAX_64_memop { // LDUMAX  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDUMAX  <Xs>, <Xt>, [<Xn|SP>]
+insn LDUMAX_64_memop {
+    $xst; $xN
 }
 
-insn LDUMAXA_64_memop { // LDUMAXA  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDUMAXA  <Xs>, <Xt>, [<Xn|SP>]
+insn LDUMAXA_64_memop {
+    $xst; $xN
 }
 
-insn LDUMAXAL_64_memop { // LDUMAXAL  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDUMAXAL  <Xs>, <Xt>, [<Xn|SP>]
+insn LDUMAXAL_64_memop {
+    $xst; $xN
 }
 
-insn LDUMAXL_64_memop { // LDUMAXL  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDUMAXL  <Xs>, <Xt>, [<Xn|SP>]
+insn LDUMAXL_64_memop {
+    $xst; $xN
 }

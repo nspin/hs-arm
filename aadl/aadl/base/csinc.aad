@@ -1,9 +1,11 @@
-// csinc
-
-insn CSINC_32_condsel { // CSINC  <Wd>, <Wn>, <Wm>, <cond>
-    
+// CSINC  <Wd>, <Wn>, <Wm>, <cond>
+insn CSINC_32_condsel {
+    $wdnm
+    $cond
 }
 
-insn CSINC_64_condsel { // CSINC  <Xd>, <Xn>, <Xm>, <cond>
-    
+// CSINC  <Xd>, <Xn>, <Xm>, <cond>
+insn CSINC_64_condsel {
+    $xdnm
+    $cond
 }

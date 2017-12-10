@@ -1,0 +1,4 @@
+// SMLSL{2}  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.<Tb>
+insn SMLSL_asimddiff_L {
+    
+}

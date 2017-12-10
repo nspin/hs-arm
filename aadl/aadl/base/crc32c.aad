@@ -1,17 +1,19 @@
-// crc32c
-
-insn CRC32CB_32C_dp_2src { // CRC32CB  <Wd>, <Wn>, <Wm>
-    
+// CRC32CB  <Wd>, <Wn>, <Wm>
+insn CRC32CB_32C_dp_2src {
+    $wdnm
 }
 
-insn CRC32CH_32C_dp_2src { // CRC32CH  <Wd>, <Wn>, <Wm>
-    
+// CRC32CH  <Wd>, <Wn>, <Wm>
+insn CRC32CH_32C_dp_2src {
+    $wdnm
 }
 
-insn CRC32CW_32C_dp_2src { // CRC32CW  <Wd>, <Wn>, <Wm>
-    
+// CRC32CW  <Wd>, <Wn>, <Wm>
+insn CRC32CW_32C_dp_2src {
+    $wdnm
 }
 
-insn CRC32CX_64C_dp_2src { // CRC32CX  <Wd>, <Wn>, <Xm>
-    
+// CRC32CX  <Wd>, <Wn>, <Xm>
+insn CRC32CX_64C_dp_2src {
+    $wdnm
 }

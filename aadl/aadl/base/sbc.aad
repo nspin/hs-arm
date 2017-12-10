@@ -1,9 +1,9 @@
-// sbc
-
-insn SBC_32_addsub_carry { // SBC  <Wd>, <Wn>, <Wm>
-    
+// SBC  <Wd>, <Wn>, <Wm>
+insn SBC_32_addsub_carry {
+    $wdnm
 }
 
-insn SBC_64_addsub_carry { // SBC  <Xd>, <Xn>, <Xm>
-    
+// SBC  <Xd>, <Xn>, <Xm>
+insn SBC_64_addsub_carry {
+    $xdnm
 }

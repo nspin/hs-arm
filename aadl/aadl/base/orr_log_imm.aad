@@ -1,9 +1,11 @@
-// orr_log_imm
-
-insn ORR_32_log_imm { // ORR  <Wd|WSP>, <Wn>, #<imm>
-    
+// ORR  <Wd|WSP>, <Wn>, #<imm>
+insn ORR_32_log_imm {
+    $wDn
+    imm UInt12 in imms:immr
 }
 
-insn ORR_64_log_imm { // ORR  <Xd|SP>, <Xn>, #<imm>
-    
+// ORR  <Xd|SP>, <Xn>, #<imm>
+insn ORR_64_log_imm {
+    $xDn
+    imm UInt13 in N:imms:immr
 }

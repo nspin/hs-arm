@@ -1,5 +1,5 @@
-// msr_imm
-
-insn MSR_SI_system { // MSR  <pstatefield>, #<imm>
-    
+// MSR  <pstatefield>, #<imm>
+insn MSR_SI_system {
+    #TODO
+    imm UInt4 in CRm
 }

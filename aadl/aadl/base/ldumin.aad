@@ -1,33 +1,39 @@
-// ldumin
-
-insn LDUMIN_32_memop { // LDUMIN  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDUMIN  <Ws>, <Wt>, [<Xn|SP>]
+insn LDUMIN_32_memop {
+    $wst; $xN
 }
 
-insn LDUMINA_32_memop { // LDUMINA  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDUMINA  <Ws>, <Wt>, [<Xn|SP>]
+insn LDUMINA_32_memop {
+    $wst; $xN
 }
 
-insn LDUMINAL_32_memop { // LDUMINAL  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDUMINAL  <Ws>, <Wt>, [<Xn|SP>]
+insn LDUMINAL_32_memop {
+    $wst; $xN
 }
 
-insn LDUMINL_32_memop { // LDUMINL  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDUMINL  <Ws>, <Wt>, [<Xn|SP>]
+insn LDUMINL_32_memop {
+    $wst; $xN
 }
 
-insn LDUMIN_64_memop { // LDUMIN  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDUMIN  <Xs>, <Xt>, [<Xn|SP>]
+insn LDUMIN_64_memop {
+    $xst; $xN
 }
 
-insn LDUMINA_64_memop { // LDUMINA  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDUMINA  <Xs>, <Xt>, [<Xn|SP>]
+insn LDUMINA_64_memop {
+    $xst; $xN
 }
 
-insn LDUMINAL_64_memop { // LDUMINAL  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDUMINAL  <Xs>, <Xt>, [<Xn|SP>]
+insn LDUMINAL_64_memop {
+    $xst; $xN
 }
 
-insn LDUMINL_64_memop { // LDUMINL  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDUMINL  <Xs>, <Xt>, [<Xn|SP>]
+insn LDUMINL_64_memop {
+    $xst; $xN
 }

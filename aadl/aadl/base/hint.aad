@@ -1,13 +1,14 @@
-// hint
-
-insn HINT_1 { // HINT  #<imm>
-    
+// HINT  #<imm>
+insn HINT_1 {
+    $hint
 }
 
-insn HINT_2 { // HINT  #<imm>
-    
+// HINT  #<imm>
+insn HINT_2 {
+    $hint
 }
 
-insn HINT_3 { // HINT  #<imm>
-    
+// HINT  #<imm>
+insn HINT_3 {
+    $hint
 }

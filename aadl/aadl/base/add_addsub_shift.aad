@@ -1,17 +1,11 @@
-// add_addsub_shift
-
-insn ADD_32_addsub_shift { // ADD  <Wd>, <Wn>, <Wm>{, <shift> #<amount>}
+// ADD  <Wd>, <Wn>, <Wm>{, <shift> #<amount>}
+insn ADD_32_addsub_shift {
     $wdnm
-    imm Imm5
-    imm = #imm6
-    #imm6 = imm
-    $shamsh
+    $shift_123_w
 }
 
-insn ADD_64_addsub_shift { // ADD  <Xd>, <Xn>, <Xm>{, <shift> #<amount>}
+// ADD  <Xd>, <Xn>, <Xm>{, <shift> #<amount>}
+insn ADD_64_addsub_shift {
     $xdnm
-    imm Imm6
-    imm = #imm6
-    #imm6 = imm
-    $shamsh
+    $shift_123_x
 }

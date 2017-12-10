@@ -1,9 +1,0 @@
-// stclrb_ldclrb
-
-insn STCLRB_LDCLRB_32_memop { // STCLRB  <Ws>, [<Xn|SP>]
-    
-}
-
-insn STCLRLB_LDCLRLB_32_memop { // STCLRLB  <Ws>, [<Xn|SP>]
-    
-}

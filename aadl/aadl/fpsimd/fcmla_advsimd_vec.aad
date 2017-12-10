@@ -1,0 +1,4 @@
+// FCMLA  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>, #<rotate>
+insn FCMLA_asimdsame2_C {
+    
+}

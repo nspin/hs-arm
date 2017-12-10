@@ -1,9 +1,0 @@
-// bfc_bfm
-
-insn BFC_BFM_32M_bitfield { // BFC  <Wd>, #<lsb>, #<width>
-    
-}
-
-insn BFC_BFM_64M_bitfield { // BFC  <Xd>, #<lsb>, #<width>
-    
-}

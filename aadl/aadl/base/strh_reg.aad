@@ -1,5 +1,11 @@
-// strh_reg
-
-insn STRH_32_ldst_regoff { // STRH  <Wt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]
-    
+// STRH  <Wt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]
+insn STRH_32_ldst_regoff {
+    $wt; $xN; $rm
+    extend in option allowing {
+        UXTW
+        UXTX
+        SXTW
+        SXTX
+    }
+    amount #TODO in S
 }

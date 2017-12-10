@@ -1,5 +1,4 @@
-// tbnz
-
-insn TBNZ_only_testbranch { // TBNZ  <R><t>, #<imm>, <label>
+// TBNZ  <R><t>, #<imm>, <label>
+insn TBNZ_only_testbranch {
     
 }

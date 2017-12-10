@@ -1,17 +1,19 @@
-// ldsmaxb
-
-insn LDSMAXAB_32_memop { // LDSMAXAB  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSMAXAB  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSMAXAB_32_memop {
+    $wst; $xN
 }
 
-insn LDSMAXALB_32_memop { // LDSMAXALB  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSMAXALB  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSMAXALB_32_memop {
+    $wst; $xN
 }
 
-insn LDSMAXB_32_memop { // LDSMAXB  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSMAXB  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSMAXB_32_memop {
+    $wst; $xN
 }
 
-insn LDSMAXLB_32_memop { // LDSMAXLB  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSMAXLB  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSMAXLB_32_memop {
+    $wst; $xN
 }

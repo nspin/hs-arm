@@ -1,5 +1,5 @@
-// smaddl
-
-insn SMADDL_64WA_dp_3src { // SMADDL  <Xd>, <Wn>, <Wm>, <Xa>
-    
+// SMADDL  <Xd>, <Wn>, <Wm>, <Xa>
+insn SMADDL_64WA_dp_3src {
+    $xdnm
+    xa Xn in Ra
 }

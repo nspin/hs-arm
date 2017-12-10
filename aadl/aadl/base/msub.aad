@@ -1,9 +1,11 @@
-// msub
-
-insn MSUB_32A_dp_3src { // MSUB  <Wd>, <Wn>, <Wm>, <Wa>
-    
+// MSUB  <Wd>, <Wn>, <Wm>, <Wa>
+insn MSUB_32A_dp_3src {
+    $wdnm
+    wa Wn in Ra
 }
 
-insn MSUB_64A_dp_3src { // MSUB  <Xd>, <Xn>, <Xm>, <Xa>
-    
+// MSUB  <Xd>, <Xn>, <Xm>, <Xa>
+insn MSUB_64A_dp_3src {
+    $xdnm
+    xa Xn in Ra
 }

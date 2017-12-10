@@ -1,5 +1,4 @@
-// dsb
-
-insn DSB_BO_system { // DSB  <option>|#<imm>
-    
+// DSB  <option>|#<imm>
+insn DSB_BO_system {
+    $barrier_limitation
 }

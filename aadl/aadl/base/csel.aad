@@ -1,9 +1,11 @@
-// csel
-
-insn CSEL_32_condsel { // CSEL  <Wd>, <Wn>, <Wm>, <cond>
-    
+// CSEL  <Wd>, <Wn>, <Wm>, <cond>
+insn CSEL_32_condsel {
+    $wdnm
+    $cond
 }
 
-insn CSEL_64_condsel { // CSEL  <Xd>, <Xn>, <Xm>, <cond>
-    
+// CSEL  <Xd>, <Xn>, <Xm>, <cond>
+insn CSEL_64_condsel {
+    $xdnm
+    $cond
 }

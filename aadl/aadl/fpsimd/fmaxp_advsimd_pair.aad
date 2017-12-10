@@ -1,0 +1,9 @@
+// FMAXP  <V><d>, <Vn>.<T>
+insn FMAXP_asisdpair_only_H {
+    
+}
+
+// FMAXP  <V><d>, <Vn>.<T>
+insn FMAXP_asisdpair_only_SD {
+    
+}

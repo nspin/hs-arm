@@ -1,33 +1,39 @@
-// ldsmin
-
-insn LDSMIN_32_memop { // LDSMIN  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSMIN  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSMIN_32_memop {
+    $wst; $xN
 }
 
-insn LDSMINA_32_memop { // LDSMINA  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSMINA  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSMINA_32_memop {
+    $wst; $xN
 }
 
-insn LDSMINAL_32_memop { // LDSMINAL  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSMINAL  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSMINAL_32_memop {
+    $wst; $xN
 }
 
-insn LDSMINL_32_memop { // LDSMINL  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSMINL  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSMINL_32_memop {
+    $wst; $xN
 }
 
-insn LDSMIN_64_memop { // LDSMIN  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDSMIN  <Xs>, <Xt>, [<Xn|SP>]
+insn LDSMIN_64_memop {
+    $xst; $xN
 }
 
-insn LDSMINA_64_memop { // LDSMINA  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDSMINA  <Xs>, <Xt>, [<Xn|SP>]
+insn LDSMINA_64_memop {
+    $xst; $xN
 }
 
-insn LDSMINAL_64_memop { // LDSMINAL  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDSMINAL  <Xs>, <Xt>, [<Xn|SP>]
+insn LDSMINAL_64_memop {
+    $xst; $xN
 }
 
-insn LDSMINL_64_memop { // LDSMINL  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDSMINL  <Xs>, <Xt>, [<Xn|SP>]
+insn LDSMINL_64_memop {
+    $xst; $xN
 }

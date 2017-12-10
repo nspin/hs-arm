@@ -1,33 +1,39 @@
-// ldadd
-
-insn LDADD_32_memop { // LDADD  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDADD  <Ws>, <Wt>, [<Xn|SP>]
+insn LDADD_32_memop {
+    $wst; $xN
 }
 
-insn LDADDA_32_memop { // LDADDA  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDADDA  <Ws>, <Wt>, [<Xn|SP>]
+insn LDADDA_32_memop {
+    $wst; $xN
 }
 
-insn LDADDAL_32_memop { // LDADDAL  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDADDAL  <Ws>, <Wt>, [<Xn|SP>]
+insn LDADDAL_32_memop {
+    $wst; $xN 
 }
 
-insn LDADDL_32_memop { // LDADDL  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDADDL  <Ws>, <Wt>, [<Xn|SP>]
+insn LDADDL_32_memop {
+    $wst; $xN
 }
 
-insn LDADD_64_memop { // LDADD  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDADD  <Xs>, <Xt>, [<Xn|SP>]
+insn LDADD_64_memop {
+    $xst; $xN
 }
 
-insn LDADDA_64_memop { // LDADDA  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDADDA  <Xs>, <Xt>, [<Xn|SP>]
+insn LDADDA_64_memop {
+    $xst; $xN
 }
 
-insn LDADDAL_64_memop { // LDADDAL  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDADDAL  <Xs>, <Xt>, [<Xn|SP>]
+insn LDADDAL_64_memop {
+    $xst; $xN
 }
 
-insn LDADDL_64_memop { // LDADDL  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDADDL  <Xs>, <Xt>, [<Xn|SP>]
+insn LDADDL_64_memop {
+    $xst; $xN
 }

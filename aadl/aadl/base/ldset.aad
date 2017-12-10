@@ -1,33 +1,39 @@
-// ldset
-
-insn LDSET_32_memop { // LDSET  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSET  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSET_32_memop {
+    $wst; $xN
 }
 
-insn LDSETA_32_memop { // LDSETA  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSETA  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSETA_32_memop {
+    $wst; $xN
 }
 
-insn LDSETAL_32_memop { // LDSETAL  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSETAL  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSETAL_32_memop {
+    $wst; $xN
 }
 
-insn LDSETL_32_memop { // LDSETL  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSETL  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSETL_32_memop {
+    $wst; $xN
 }
 
-insn LDSET_64_memop { // LDSET  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDSET  <Xs>, <Xt>, [<Xn|SP>]
+insn LDSET_64_memop {
+    $xst; $xN
 }
 
-insn LDSETA_64_memop { // LDSETA  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDSETA  <Xs>, <Xt>, [<Xn|SP>]
+insn LDSETA_64_memop {
+    $xst; $xN
 }
 
-insn LDSETAL_64_memop { // LDSETAL  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDSETAL  <Xs>, <Xt>, [<Xn|SP>]
+insn LDSETAL_64_memop {
+    $xst; $xN
 }
 
-insn LDSETL_64_memop { // LDSETL  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDSETL  <Xs>, <Xt>, [<Xn|SP>]
+insn LDSETL_64_memop {
+    $xst; $xN
 }

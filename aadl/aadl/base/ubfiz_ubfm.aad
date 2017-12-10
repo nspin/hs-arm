@@ -1,9 +1,0 @@
-// ubfiz_ubfm
-
-insn UBFIZ_UBFM_32M_bitfield { // UBFIZ  <Wd>, <Wn>, #<lsb>, #<width>
-    
-}
-
-insn UBFIZ_UBFM_64M_bitfield { // UBFIZ  <Xd>, <Xn>, #<lsb>, #<width>
-    
-}

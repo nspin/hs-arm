@@ -1,8 +1,5 @@
-// adr
-
-insn ADR_only_pcreladdr { // ADR  <Xd>, <label>
+// ADR  <Xd>, <label>
+insn ADR_only_pcreladdr {
     $xd
-    label Label // +/1 1MB
-    label = #immhi:#immlo
-    #immhi:#immlo = label
+    label Int in immhi:immlo
 }

@@ -1,9 +1,11 @@
-// ands_log_imm
-
-insn ANDS_32S_log_imm { // ANDS  <Wd>, <Wn>, #<imm>
-    
+// ANDS  <Wd>, <Wn>, #<imm>
+insn ANDS_32S_log_imm {
+    $wdn
+    imm Imm11 in imms:immr
 }
 
-insn ANDS_64S_log_imm { // ANDS  <Xd>, <Xn>, #<imm>
-    
+// ANDS  <Xd>, <Xn>, #<imm>
+insn ANDS_64S_log_imm {
+    $xdn
+    imm Imm12 in N:imms:immr
 }

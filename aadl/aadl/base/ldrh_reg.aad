@@ -1,5 +1,10 @@
-// ldrh_reg
-
-insn LDRH_32_ldst_regoff { // LDRH  <Wt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]
-    
+// LDRH  <Wt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]
+insn LDRH_32_ldst_regoff {
+    $wt; $xN; $rm
+    extend Extend in option allowing {
+        UXTW
+        UXTX
+        SXTW
+        SXTX
+    }
 }

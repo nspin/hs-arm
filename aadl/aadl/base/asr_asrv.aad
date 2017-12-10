@@ -1,9 +1,0 @@
-// asr_asrv
-
-insn ASR_ASRV_32_dp_2src { // ASR  <Wd>, <Wn>, <Wm>
-    
-}
-
-insn ASR_ASRV_64_dp_2src { // ASR  <Xd>, <Xn>, <Xm>
-    
-}

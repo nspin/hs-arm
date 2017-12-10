@@ -1,0 +1,4 @@
+// PMUL  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
+insn PMUL_asimdsame_only {
+    
+}

@@ -1,0 +1,9 @@
+// FMAXNM  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
+insn FMAXNM_asimdsamefp16_only {
+    
+}
+
+// FMAXNM  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
+insn FMAXNM_asimdsame_only {
+    
+}

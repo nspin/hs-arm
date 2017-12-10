@@ -1,9 +1,11 @@
-// orr_log_shift
-
-insn ORR_32_log_shift { // ORR  <Wd>, <Wn>, <Wm>{, <shift> #<amount>}
-    
+// ORR  <Wd>, <Wn>, <Wm>{, <shift> #<amount>}
+insn ORR_32_log_shift {
+    $wdnm
+    $shift_1234_w
 }
 
-insn ORR_64_log_shift { // ORR  <Xd>, <Xn>, <Xm>{, <shift> #<amount>}
-    
+// ORR  <Xd>, <Xn>, <Xm>{, <shift> #<amount>}
+insn ORR_64_log_shift {
+    $xdnm
+    $shift_1234_x
 }

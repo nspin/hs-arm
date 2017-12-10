@@ -1,17 +1,19 @@
-// casb
-
-insn CASAB_C32_ldstexcl { // CASAB  <Ws>, <Wt>, [<Xn|SP>{,#0}]
-    
+// CASAB  <Ws>, <Wt>, [<Xn|SP>{,#0}]
+insn CASAB_C32_ldstexcl {
+    $wst; $xN
 }
 
-insn CASALB_C32_ldstexcl { // CASALB  <Ws>, <Wt>, [<Xn|SP>{,#0}]
-    
+// CASALB  <Ws>, <Wt>, [<Xn|SP>{,#0}]
+insn CASALB_C32_ldstexcl {
+    $wst; $xN
 }
 
-insn CASB_C32_ldstexcl { // CASB  <Ws>, <Wt>, [<Xn|SP>{,#0}]
-    
+// CASB  <Ws>, <Wt>, [<Xn|SP>{,#0}]
+insn CASB_C32_ldstexcl {
+    $wst; $xN
 }
 
-insn CASLB_C32_ldstexcl { // CASLB  <Ws>, <Wt>, [<Xn|SP>{,#0}]
-    
+// CASLB  <Ws>, <Wt>, [<Xn|SP>{,#0}]
+insn CASLB_C32_ldstexcl {
+    $wst; $xN
 }

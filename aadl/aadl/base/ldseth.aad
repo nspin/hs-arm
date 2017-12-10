@@ -1,17 +1,19 @@
-// ldseth
-
-insn LDSETAH_32_memop { // LDSETAH  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSETAH  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSETAH_32_memop {
+    $wst; $xN
 }
 
-insn LDSETALH_32_memop { // LDSETALH  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSETALH  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSETALH_32_memop {
+    $wst; $xN
 }
 
-insn LDSETH_32_memop { // LDSETH  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSETH  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSETH_32_memop {
+    $wst; $xN
 }
 
-insn LDSETLH_32_memop { // LDSETLH  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSETLH  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSETLH_32_memop {
+    $wst; $xN
 }

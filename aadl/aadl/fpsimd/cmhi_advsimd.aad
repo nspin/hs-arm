@@ -1,0 +1,9 @@
+// CMHI  <V><d>, <V><n>, <V><m>
+insn CMHI_asisdsame_only {
+    
+}
+
+// CMHI  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
+insn CMHI_asimdsame_only {
+    
+}

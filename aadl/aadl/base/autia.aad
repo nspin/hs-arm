@@ -1,21 +1,21 @@
-// autia
-
-insn AUTIA_64P_dp_1src { // AUTIA  <Xd>, <Xn|SP>
-    
+// AUTIA  <Xd>, <Xn|SP>
+insn AUTIA_64P_dp_1src {
+    $xdN
 }
 
-insn AUTIZA_64Z_dp_1src { // AUTIZA  <Xd>
-    
+// AUTIZA  <Xd>
+insn AUTIZA_64Z_dp_1src {
+    $xd
 }
 
-insn AUTIA1716_HI_system { // AUTIA1716
-    
+// AUTIA1716
+insn AUTIA1716_HI_system {
 }
 
-insn AUTIASP_HI_system { // AUTIASP
-    
+// AUTIASP
+insn AUTIASP_HI_system {
 }
 
-insn AUTIAZ_HI_system { // AUTIAZ
-    
+// AUTIAZ
+insn AUTIAZ_HI_system {
 }

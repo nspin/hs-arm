@@ -1,9 +1,9 @@
-// clz_int
-
-insn CLZ_32_dp_1src { // CLZ  <Wd>, <Wn>
-    
+// CLZ  <Wd>, <Wn>
+insn CLZ_32_dp_1src {
+    $wdn
 }
 
-insn CLZ_64_dp_1src { // CLZ  <Xd>, <Xn>
-    
+// CLZ  <Xd>, <Xn>
+insn CLZ_64_dp_1src {
+    $xdn
 }

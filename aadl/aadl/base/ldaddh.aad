@@ -1,17 +1,19 @@
-// ldaddh
-
-insn LDADDAH_32_memop { // LDADDAH  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDADDAH  <Ws>, <Wt>, [<Xn|SP>]
+insn LDADDAH_32_memop {
+    $wst; $xN
 }
 
-insn LDADDALH_32_memop { // LDADDALH  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDADDALH  <Ws>, <Wt>, [<Xn|SP>]
+insn LDADDALH_32_memop {
+    $wst; $xN
 }
 
-insn LDADDH_32_memop { // LDADDH  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDADDH  <Ws>, <Wt>, [<Xn|SP>]
+insn LDADDH_32_memop {
+    $wst; $xN
 }
 
-insn LDADDLH_32_memop { // LDADDLH  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDADDLH  <Ws>, <Wt>, [<Xn|SP>]
+insn LDADDLH_32_memop {
+    $wst; $xN
 }

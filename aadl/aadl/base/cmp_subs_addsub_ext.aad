@@ -1,9 +1,0 @@
-// cmp_subs_addsub_ext
-
-insn CMP_SUBS_32S_addsub_ext { // CMP  <Wn|WSP>, <Wm>{, <extend> {#<amount>}}
-    
-}
-
-insn CMP_SUBS_64S_addsub_ext { // CMP  <Xn|SP>, <R><m>{, <extend> {#<amount>}}
-    
-}

@@ -1,35 +1,83 @@
-$exam {
-    amount Amount in #imm3
-    extend Extend in #extend as {
-        000 UXTB
-        001 UXTH
-        010 UXTW
-        011 UXTX
-        100 SXTB
-        101 SXTH
-        110 SXTW
-        111 SXTX
+$exam_all {
+    extend Extend in extend as {
+        000  UXTB
+        001  UXTH
+        010  UXTW
+        011  UXTX
+        100  SXTB
+        101  SXTH
+        110  SXTW
+        111  SXTX
+    }
+    amount Amount in imm3
+}
+
+$shift_0_12_w {
+    shift Shift32
+    dec shift.type = LSL
+    shift.amount in shift as {
+        00  1
+        01  12
     }
 }
 
-$imsh {
-    imm Imm12 in #imm12
-    shift LeftShift in #shift as {
-        00 LSL0
-        01 LSL12
+$shift_0_12_x {
+    shift Shift64
+    dec shift.type = LSL
+    shift.amount in shift as {
+        00  1
+        01  12
     }
 }
 
-$sham32 {
-    shift ShiftType in #shift as
-    shift = case #shift {
-        00 -> LSL
-        01 -> LSR
-        10 -> ASR
+$shift_123_w {
+    shift Shift32
+    shift.type in shift as {
+        00 LSL
+        01 LSR
+        10 ASR
     }
-    #shift = case shift {
-        LSL -> 00
-        LSR -> 01
-        ASR -> 10
+    shift.amount in imm6
+}
+
+$shift_123_x {
+    shift Shift32
+    shift.type in shift as {
+        00 LSL
+        01 LSR
+        10 ASR
     }
+    shift.amount in imm6
+}
+
+$shift_1234_w {
+    shift Shift32
+    shift.type in shift as {
+        00 LSL
+        01 LSR
+        10 ASR
+        11 ROR
+    }
+    shift.amount in imm6
+}
+
+$shift_1234_x {
+    shift Shift32
+    shift.type in shift as {
+        00 LSL
+        01 LSR
+        10 ASR
+        11 ROR
+    }
+    shift.amount in imm6
+}
+
+$ext_shift_all_w {
+    extend Extend in Option
+    amount BitIx32 in imm3
+}
+
+$ext_shift_all_x {
+    extend Extend in Option
+    amount BitIx64 in imm3
 }

@@ -1,5 +1,4 @@
-// umulh
-
-insn UMULH_64_dp_3src { // UMULH  <Xd>, <Xn>, <Xm>
+// UMULH  <Xd>, <Xn>, <Xm>
+insn UMULH_64_dp_3src {
     
 }

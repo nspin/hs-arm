@@ -1,0 +1,9 @@
+// SQRDMLSH  <V><d>, <V><n>, <V><m>
+insn SQRDMLSH_asisdsame2_only {
+    
+}
+
+// SQRDMLSH  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
+insn SQRDMLSH_asimdsame2_only {
+    
+}

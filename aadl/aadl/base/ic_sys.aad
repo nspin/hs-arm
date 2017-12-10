@@ -1,5 +1,0 @@
-// ic_sys
-
-insn IC_SYS_CR_system { // IC  <ic_op>{, <Xt>}
-    
-}

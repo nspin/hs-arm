@@ -1,21 +1,21 @@
-// autib
-
-insn AUTIB_64P_dp_1src { // AUTIB  <Xd>, <Xn|SP>
-    
+// AUTIB  <Xd>, <Xn|SP>
+insn AUTIB_64P_dp_1src {
+    $xdN
 }
 
-insn AUTIZB_64Z_dp_1src { // AUTIZB  <Xd>
-    
+// AUTIZB  <Xd>
+insn AUTIZB_64Z_dp_1src {
+    $xd
 }
 
-insn AUTIB1716_HI_system { // AUTIB1716
-    
+// AUTIB1716
+insn AUTIB1716_HI_system {
 }
 
-insn AUTIBSP_HI_system { // AUTIBSP
-    
+// AUTIBSP
+insn AUTIBSP_HI_system {
 }
 
-insn AUTIBZ_HI_system { // AUTIBZ
-    
+// AUTIBZ
+insn AUTIBZ_HI_system {
 }

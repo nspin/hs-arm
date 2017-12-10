@@ -1,13 +1,14 @@
-// xpac
-
-insn XPACD_64Z_dp_1src { // XPACD  <Xd>
+// XPACD  <Xd>
+insn XPACD_64Z_dp_1src {
     
 }
 
-insn XPACI_64Z_dp_1src { // XPACI  <Xd>
+// XPACI  <Xd>
+insn XPACI_64Z_dp_1src {
     
 }
 
-insn XPACLRI_HI_system { // XPACLRI
+// XPACLRI
+insn XPACLRI_HI_system {
     
 }

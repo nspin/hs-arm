@@ -1,0 +1,4 @@
+// SMINP  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
+insn SMINP_asimdsame_only {
+    
+}

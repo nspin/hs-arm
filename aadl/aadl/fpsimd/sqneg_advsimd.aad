@@ -1,0 +1,9 @@
+// SQNEG  <V><d>, <V><n>
+insn SQNEG_asisdmisc_R {
+    
+}
+
+// SQNEG  <Vd>.<T>, <Vn>.<T>
+insn SQNEG_asimdmisc_R {
+    
+}

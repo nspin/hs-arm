@@ -1,9 +1,15 @@
-// ccmp_imm
-
-insn CCMP_32_condcmp_imm { // CCMP  <Wn>, #<imm>, #<nzcv>, <cond>
-    
+// CCMP  <Wn>, #<imm>, #<nzcv>, <cond>
+insn CCMP_32_condcmp_imm {
+    $wn
+    imm UInt5 in imm5
+    $nzcv
+    $cond
 }
 
-insn CCMP_64_condcmp_imm { // CCMP  <Xn>, #<imm>, #<nzcv>, <cond>
-    
+// CCMP  <Xn>, #<imm>, #<nzcv>, <cond>
+insn CCMP_64_condcmp_imm {
+    $xn
+    imm UInt5 in imm5
+    $nzcv
+    $cond
 }

@@ -1,5 +1,4 @@
-// stlxrh
-
-insn STLXRH_SR32_ldstexcl { // STLXRH  <Ws>, <Wt>, [<Xn|SP>{,#0}]
-    
+// STLXRH  <Ws>, <Wt>, [<Xn|SP>{,#0}]
+insn STLXRH_SR32_ldstexcl {
+    $wst; $xN
 }

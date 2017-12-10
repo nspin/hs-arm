@@ -1,17 +1,19 @@
-// ldsetb
-
-insn LDSETAB_32_memop { // LDSETAB  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSETAB  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSETAB_32_memop {
+    $wst; $xN
 }
 
-insn LDSETALB_32_memop { // LDSETALB  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSETALB  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSETALB_32_memop {
+    $wst; $xN
 }
 
-insn LDSETB_32_memop { // LDSETB  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSETB  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSETB_32_memop {
+    $wst; $xN
 }
 
-insn LDSETLB_32_memop { // LDSETLB  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSETLB  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSETLB_32_memop {
+    $wst; $xN
 }

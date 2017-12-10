@@ -1,33 +1,39 @@
-// ldclr
-
-insn LDCLR_32_memop { // LDCLR  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDCLR  <Ws>, <Wt>, [<Xn|SP>]
+insn LDCLR_32_memop {
+    $wst; $xN
 }
 
-insn LDCLRA_32_memop { // LDCLRA  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDCLRA  <Ws>, <Wt>, [<Xn|SP>]
+insn LDCLRA_32_memop {
+    $wst; $xN
 }
 
-insn LDCLRAL_32_memop { // LDCLRAL  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDCLRAL  <Ws>, <Wt>, [<Xn|SP>]
+insn LDCLRAL_32_memop {
+    $wst; $xN
 }
 
-insn LDCLRL_32_memop { // LDCLRL  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDCLRL  <Ws>, <Wt>, [<Xn|SP>]
+insn LDCLRL_32_memop {
+    $wst; $xN
 }
 
-insn LDCLR_64_memop { // LDCLR  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDCLR  <Xs>, <Xt>, [<Xn|SP>]
+insn LDCLR_64_memop {
+    $xst; $xN
 }
 
-insn LDCLRA_64_memop { // LDCLRA  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDCLRA  <Xs>, <Xt>, [<Xn|SP>]
+insn LDCLRA_64_memop {
+    $xst; $xN
 }
 
-insn LDCLRAL_64_memop { // LDCLRAL  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDCLRAL  <Xs>, <Xt>, [<Xn|SP>]
+insn LDCLRAL_64_memop {
+    $xst; $xN
 }
 
-insn LDCLRL_64_memop { // LDCLRL  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDCLRL  <Xs>, <Xt>, [<Xn|SP>]
+insn LDCLRL_64_memop {
+    $xst; $xN
 }

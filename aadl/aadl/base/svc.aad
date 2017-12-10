@@ -1,5 +1,4 @@
-// svc
-
-insn SVC_EX_exception { // SVC  #<imm>
+// SVC  #<imm>
+insn SVC_EX_exception {
     
 }

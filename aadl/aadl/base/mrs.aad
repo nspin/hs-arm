@@ -1,5 +1,5 @@
-// mrs
-
-insn MRS_RS_system { // MRS  <Xt>, (<systemreg>|S<op0>_<op1>_<Cn>_<Cm>_<op2>)
-    
+// MRS  <Xt>, (<systemreg>|S<op0>_<op1>_<Cn>_<Cm>_<op2>)
+insn MRS_RS_system {
+    $xt
+    #TODO
 }

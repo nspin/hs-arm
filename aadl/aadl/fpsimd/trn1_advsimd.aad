@@ -1,0 +1,4 @@
+// TRN1  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
+insn TRN1_asimdperm_only {
+    
+}

@@ -1,5 +1,4 @@
-// brk
-
-insn BRK_EX_exception { // BRK  #<imm>
-    
+// BRK  #<imm>
+insn BRK_EX_exception {
+    imm UInt16 in imm16
 }

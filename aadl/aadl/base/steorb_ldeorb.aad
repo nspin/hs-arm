@@ -1,9 +1,0 @@
-// steorb_ldeorb
-
-insn STEORB_LDEORB_32_memop { // STEORB  <Ws>, [<Xn|SP>]
-    
-}
-
-insn STEORLB_LDEORLB_32_memop { // STEORLB  <Ws>, [<Xn|SP>]
-    
-}

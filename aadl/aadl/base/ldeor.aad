@@ -1,33 +1,39 @@
-// ldeor
-
-insn LDEOR_32_memop { // LDEOR  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDEOR  <Ws>, <Wt>, [<Xn|SP>]
+insn LDEOR_32_memop {
+    $wst; $xN
 }
 
-insn LDEORA_32_memop { // LDEORA  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDEORA  <Ws>, <Wt>, [<Xn|SP>]
+insn LDEORA_32_memop {
+    $wst; $xN
 }
 
-insn LDEORAL_32_memop { // LDEORAL  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDEORAL  <Ws>, <Wt>, [<Xn|SP>]
+insn LDEORAL_32_memop {
+    $wst; $xN
 }
 
-insn LDEORL_32_memop { // LDEORL  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDEORL  <Ws>, <Wt>, [<Xn|SP>]
+insn LDEORL_32_memop {
+    $wst; $xN
 }
 
-insn LDEOR_64_memop { // LDEOR  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDEOR  <Xs>, <Xt>, [<Xn|SP>]
+insn LDEOR_64_memop {
+    $xst; $xN
 }
 
-insn LDEORA_64_memop { // LDEORA  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDEORA  <Xs>, <Xt>, [<Xn|SP>]
+insn LDEORA_64_memop {
+    $xst; $xN
 }
 
-insn LDEORAL_64_memop { // LDEORAL  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDEORAL  <Xs>, <Xt>, [<Xn|SP>]
+insn LDEORAL_64_memop {
+    $xst; $xN
 }
 
-insn LDEORL_64_memop { // LDEORL  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDEORL  <Xs>, <Xt>, [<Xn|SP>]
+insn LDEORL_64_memop {
+    $xst; $xN
 }

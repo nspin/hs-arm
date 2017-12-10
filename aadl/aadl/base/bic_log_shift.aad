@@ -1,9 +1,11 @@
-// bic_log_shift
-
-insn BIC_32_log_shift { // BIC  <Wd>, <Wn>, <Wm>{, <shift> #<amount>}
-    
+// BIC  <Wd>, <Wn>, <Wm>{, <shift> #<amount>}
+insn BIC_32_log_shift {
+    $wdnm
+    $shift_1234_w
 }
 
-insn BIC_64_log_shift { // BIC  <Xd>, <Xn>, <Xm>{, <shift> #<amount>}
-    
+// BIC  <Xd>, <Xn>, <Xm>{, <shift> #<amount>}
+insn BIC_64_log_shift {
+    $wdnm
+    $shift_1234_x
 }

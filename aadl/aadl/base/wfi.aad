@@ -1,5 +1,4 @@
-// wfi
-
-insn WFI_HI_system { // WFI
+// WFI
+insn WFI_HI_system {
     
 }

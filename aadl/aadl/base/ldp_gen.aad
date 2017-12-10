@@ -1,25 +1,47 @@
-// ldp_gen
-
-insn LDP_32_ldstpair_post { // LDP  <Wt1>, <Wt2>, [<Xn|SP>], #<imm>
-    
+// LDP  <Wt1>, <Wt2>, [<Xn|SP>], #<imm>
+insn LDP_32_ldstpair_post {
+    wt1 Wn in Rt
+    wt2 Wn in Rt2
+    $xn
+    imm Int7 in imm7
 }
 
-insn LDP_64_ldstpair_post { // LDP  <Xt1>, <Xt2>, [<Xn|SP>], #<imm>
-    
+// LDP  <Xt1>, <Xt2>, [<Xn|SP>], #<imm>
+insn LDP_64_ldstpair_post {
+    xt1 Xn in Rt
+    xt2 Xn in Rt2
+    $xn
+    imm Int7 in imm7
 }
 
-insn LDP_32_ldstpair_pre { // LDP  <Wt1>, <Wt2>, [<Xn|SP>, #<imm>]!
-    
+// LDP  <Wt1>, <Wt2>, [<Xn|SP>, #<imm>]!
+insn LDP_32_ldstpair_pre {
+    wt1 Wn in Rt
+    wt2 Wn in Rt2
+    $xn
+    imm Int7 in imm7
 }
 
-insn LDP_64_ldstpair_pre { // LDP  <Xt1>, <Xt2>, [<Xn|SP>, #<imm>]!
-    
+// LDP  <Xt1>, <Xt2>, [<Xn|SP>, #<imm>]!
+insn LDP_64_ldstpair_pre {
+    xt1 Xn in Rt
+    xt2 Xn in Rt2
+    $xn
+    imm Int7 in imm7
 }
 
-insn LDP_32_ldstpair_off { // LDP  <Wt1>, <Wt2>, [<Xn|SP>{, #<imm>}]
-    
+// LDP  <Wt1>, <Wt2>, [<Xn|SP>{, #<imm>}]
+insn LDP_32_ldstpair_off {
+    wt1 Wn in Rt
+    wt2 Wn in Rt2
+    $xn
+    imm Int7 in imm7
 }
 
-insn LDP_64_ldstpair_off { // LDP  <Xt1>, <Xt2>, [<Xn|SP>{, #<imm>}]
-    
+// LDP  <Xt1>, <Xt2>, [<Xn|SP>{, #<imm>}]
+insn LDP_64_ldstpair_off {
+    xt1 Xn in Rt
+    xt2 Xn in Rt2
+    $xn
+    imm Int7 in imm7
 }

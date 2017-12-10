@@ -1,9 +1,0 @@
-// cneg_csneg
-
-insn CNEG_CSNEG_32_condsel { // CNEG  <Wd>, <Wn>, <cond>
-    
-}
-
-insn CNEG_CSNEG_64_condsel { // CNEG  <Xd>, <Xn>, <cond>
-    
-}

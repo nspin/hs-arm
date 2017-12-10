@@ -1,9 +1,9 @@
-// cls_int
-
-insn CLS_32_dp_1src { // CLS  <Wd>, <Wn>
-    
+// CLS  <Wd>, <Wn>
+insn CLS_32_dp_1src {
+    $wdn
 }
 
-insn CLS_64_dp_1src { // CLS  <Xd>, <Xn>
-    
+// CLS  <Xd>, <Xn>
+insn CLS_64_dp_1src {
+    $xdn
 }

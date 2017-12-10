@@ -1,17 +1,19 @@
-// ldaddb
-
-insn LDADDAB_32_memop { // LDADDAB  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDADDAB  <Ws>, <Wt>, [<Xn|SP>]
+insn LDADDAB_32_memop {
+    $wst; $xN
 }
 
-insn LDADDALB_32_memop { // LDADDALB  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDADDALB  <Ws>, <Wt>, [<Xn|SP>]
+insn LDADDALB_32_memop {
+    $wst; $xN
 }
 
-insn LDADDB_32_memop { // LDADDB  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDADDB  <Ws>, <Wt>, [<Xn|SP>]
+insn LDADDB_32_memop {
+    $wst; $xN
 }
 
-insn LDADDLB_32_memop { // LDADDLB  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDADDLB  <Ws>, <Wt>, [<Xn|SP>]
+insn LDADDLB_32_memop {
+    $wst; $xN
 }

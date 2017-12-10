@@ -1,17 +1,19 @@
-// swph
-
-insn SWPAH_32_memop { // SWPAH  <Ws>, <Wt>, [<Xn|SP>]
+// SWPAH  <Ws>, <Wt>, [<Xn|SP>]
+insn SWPAH_32_memop {
     
 }
 
-insn SWPALH_32_memop { // SWPALH  <Ws>, <Wt>, [<Xn|SP>]
+// SWPALH  <Ws>, <Wt>, [<Xn|SP>]
+insn SWPALH_32_memop {
     
 }
 
-insn SWPH_32_memop { // SWPH  <Ws>, <Wt>, [<Xn|SP>]
+// SWPH  <Ws>, <Wt>, [<Xn|SP>]
+insn SWPH_32_memop {
     
 }
 
-insn SWPLH_32_memop { // SWPLH  <Ws>, <Wt>, [<Xn|SP>]
+// SWPLH  <Ws>, <Wt>, [<Xn|SP>]
+insn SWPLH_32_memop {
     
 }

@@ -1,9 +1,0 @@
-// stumaxb_ldumaxb
-
-insn STUMAXB_LDUMAXB_32_memop { // STUMAXB  <Ws>, [<Xn|SP>]
-    
-}
-
-insn STUMAXLB_LDUMAXLB_32_memop { // STUMAXLB  <Ws>, [<Xn|SP>]
-    
-}

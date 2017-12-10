@@ -1,9 +1,0 @@
-// csetm_csinv
-
-insn CSETM_CSINV_32_condsel { // CSETM  <Wd>, <cond>
-    
-}
-
-insn CSETM_CSINV_64_condsel { // CSETM  <Xd>, <cond>
-    
-}

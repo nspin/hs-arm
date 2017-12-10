@@ -1,5 +1,0 @@
-// at_sys
-
-insn AT_SYS_CR_system { // AT  <at_op>, <Xt>
-    
-}

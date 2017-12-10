@@ -1,5 +1,3 @@
-// drps
-
-insn DRPS_64E_branch_reg { // DRPS
-    
+// DRPS
+insn DRPS_64E_branch_reg {
 }

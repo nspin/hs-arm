@@ -1,25 +1,29 @@
-// ldrsb_imm
-
-insn LDRSB_32_ldst_immpost { // LDRSB  <Wt>, [<Xn|SP>], #<simm>
-    
+// LDRSB  <Wt>, [<Xn|SP>], #<simm>
+insn LDRSB_32_ldst_immpost {
+    $wt; $xN; $simm
 }
 
-insn LDRSB_64_ldst_immpost { // LDRSB  <Xt>, [<Xn|SP>], #<simm>
-    
+// LDRSB  <Xt>, [<Xn|SP>], #<simm>
+insn LDRSB_64_ldst_immpost {
+    $xt; $xN; $simm
 }
 
-insn LDRSB_32_ldst_immpre { // LDRSB  <Wt>, [<Xn|SP>, #<simm>]!
-    
+// LDRSB  <Wt>, [<Xn|SP>, #<simm>]!
+insn LDRSB_32_ldst_immpre {
+    $wt; $xN; $simm
 }
 
-insn LDRSB_64_ldst_immpre { // LDRSB  <Xt>, [<Xn|SP>, #<simm>]!
-    
+// LDRSB  <Xt>, [<Xn|SP>, #<simm>]!
+insn LDRSB_64_ldst_immpre {
+    $xt; $xN; $simm
 }
 
-insn LDRSB_32_ldst_pos { // LDRSB  <Wt>, [<Xn|SP>{, #<pimm>}]
-    
+// LDRSB  <Wt>, [<Xn|SP>{, #<pimm>}]
+insn LDRSB_32_ldst_pos {
+    $wt; $xN; $pimm
 }
 
-insn LDRSB_64_ldst_pos { // LDRSB  <Xt>, [<Xn|SP>{, #<pimm>}]
-    
+// LDRSB  <Xt>, [<Xn|SP>{, #<pimm>}]
+insn LDRSB_64_ldst_pos {
+    $xt; $xN; $pimm
 }

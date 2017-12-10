@@ -1,0 +1,4 @@
+// SDOT  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.<Tb>
+insn SDOT_asimdsame2_D {
+    
+}

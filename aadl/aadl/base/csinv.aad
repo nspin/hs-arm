@@ -1,9 +1,11 @@
-// csinv
-
-insn CSINV_32_condsel { // CSINV  <Wd>, <Wn>, <Wm>, <cond>
-    
+// CSINV  <Wd>, <Wn>, <Wm>, <cond>
+insn CSINV_32_condsel {
+    $wdnm
+    $cond
 }
 
-insn CSINV_64_condsel { // CSINV  <Xd>, <Xn>, <Xm>, <cond>
-    
+// CSINV  <Xd>, <Xn>, <Xm>, <cond>
+insn CSINV_64_condsel {
+    $xdnm
+    $cond
 }

@@ -1,9 +1,9 @@
-// rev
-
-insn REV_32_dp_1src { // REV  <Wd>, <Wn>
-    
+// REV  <Wd>, <Wn>
+insn REV_32_dp_1src {
+    $wdn
 }
 
-insn REV_64_dp_1src { // REV  <Xd>, <Xn>
-    
+// REV  <Xd>, <Xn>
+insn REV_64_dp_1src {
+    $xdn
 }

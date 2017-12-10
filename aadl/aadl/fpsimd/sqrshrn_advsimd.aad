@@ -1,0 +1,9 @@
+// SQRSHRN  <Vb><d>, <Va><n>, #<shift>
+insn SQRSHRN_asisdshf_N {
+    
+}
+
+// SQRSHRN{2}  <Vd>.<Tb>, <Vn>.<Ta>, #<shift>
+insn SQRSHRN_asimdshf_N {
+    
+}

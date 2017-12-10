@@ -1,17 +1,19 @@
-// bra
-
-insn BRAAZ_64_branch_reg { // BRAAZ  <Xn>
-    
+// BRAAZ  <Xn>
+insn BRAAZ_64_branch_reg {
+    $xn
 }
 
-insn BRAA_64P_branch_reg { // BRAA  <Xn>, <Xm|SP>
-    
+// BRAA  <Xn>, <Xm|SP>
+insn BRAA_64P_branch_reg {
+    $xnM
 }
 
-insn BRABZ_64_branch_reg { // BRABZ  <Xn>
-    
+// BRABZ  <Xn>
+insn BRABZ_64_branch_reg {
+    $xn
 }
 
-insn BRAB_64P_branch_reg { // BRAB  <Xn>, <Xm|SP>
-    
+// BRAB  <Xn>, <Xm|SP>
+insn BRAB_64P_branch_reg {
+    $xnM
 }

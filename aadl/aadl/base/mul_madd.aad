@@ -1,9 +1,0 @@
-// mul_madd
-
-insn MUL_MADD_32A_dp_3src { // MUL  <Wd>, <Wn>, <Wm>
-    
-}
-
-insn MUL_MADD_64A_dp_3src { // MUL  <Xd>, <Xn>, <Xm>
-    
-}

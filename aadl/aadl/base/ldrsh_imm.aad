@@ -1,25 +1,29 @@
-// ldrsh_imm
-
-insn LDRSH_32_ldst_immpost { // LDRSH  <Wt>, [<Xn|SP>], #<simm>
+// LDRSH  <Wt>, [<Xn|SP>], #<simm>
+insn LDRSH_32_ldst_immpost {
     
 }
 
-insn LDRSH_64_ldst_immpost { // LDRSH  <Xt>, [<Xn|SP>], #<simm>
+// LDRSH  <Xt>, [<Xn|SP>], #<simm>
+insn LDRSH_64_ldst_immpost {
     
 }
 
-insn LDRSH_32_ldst_immpre { // LDRSH  <Wt>, [<Xn|SP>, #<simm>]!
+// LDRSH  <Wt>, [<Xn|SP>, #<simm>]!
+insn LDRSH_32_ldst_immpre {
     
 }
 
-insn LDRSH_64_ldst_immpre { // LDRSH  <Xt>, [<Xn|SP>, #<simm>]!
+// LDRSH  <Xt>, [<Xn|SP>, #<simm>]!
+insn LDRSH_64_ldst_immpre {
     
 }
 
-insn LDRSH_32_ldst_pos { // LDRSH  <Wt>, [<Xn|SP>{, #<pimm>}]
+// LDRSH  <Wt>, [<Xn|SP>{, #<pimm>}]
+insn LDRSH_32_ldst_pos {
     
 }
 
-insn LDRSH_64_ldst_pos { // LDRSH  <Xt>, [<Xn|SP>{, #<pimm>}]
+// LDRSH  <Xt>, [<Xn|SP>{, #<pimm>}]
+insn LDRSH_64_ldst_pos {
     
 }

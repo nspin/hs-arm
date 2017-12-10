@@ -1,9 +1,11 @@
-// and_log_shift
-
-insn AND_32_log_shift { // AND  <Wd>, <Wn>, <Wm>{, <shift> #<amount>}
-    
+// AND  <Wd>, <Wn>, <Wm>{, <shift> #<amount>}
+insn AND_32_log_shift {
+    $wdnm
+    $shift_1234_w
 }
 
-insn AND_64_log_shift { // AND  <Xd>, <Xn>, <Xm>{, <shift> #<amount>}
-    
+// AND  <Xd>, <Xn>, <Xm>{, <shift> #<amount>}
+insn AND_64_log_shift {
+    $xdnm
+    $shift_1234_x
 }

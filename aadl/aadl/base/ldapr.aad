@@ -1,9 +1,9 @@
-// ldapr
-
-insn LDAPR_32L_memop { // LDAPR  <Wt>, [<Xn|SP> {,#0}]
-    
+// LDAPR  <Wt>, [<Xn|SP> {,#0}]
+insn LDAPR_32L_memop {
+    $wt; $xN
 }
 
-insn LDAPR_64L_memop { // LDAPR  <Xt>, [<Xn|SP> {,#0}]
-    
+// LDAPR  <Xt>, [<Xn|SP> {,#0}]
+insn LDAPR_64L_memop {
+    $xt; $xN
 }

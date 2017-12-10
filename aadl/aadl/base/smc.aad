@@ -1,5 +1,4 @@
-// smc
-
-insn SMC_EX_exception { // SMC  #<imm>
-    
+// SMC  #<imm>
+insn SMC_EX_exception {
+    imm Int16 in imm16
 }

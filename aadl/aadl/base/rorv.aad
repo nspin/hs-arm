@@ -1,9 +1,9 @@
-// rorv
-
-insn RORV_32_dp_2src { // RORV  <Wd>, <Wn>, <Wm>
-    
+// RORV  <Wd>, <Wn>, <Wm>
+insn RORV_32_dp_2src {
+    $wdnm
 }
 
-insn RORV_64_dp_2src { // RORV  <Xd>, <Xn>, <Xm>
-    
+// RORV  <Xd>, <Xn>, <Xm>
+insn RORV_64_dp_2src {
+    $xdnm
 }

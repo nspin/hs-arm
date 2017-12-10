@@ -1,9 +1,0 @@
-// stsminb_ldsminb
-
-insn STSMINB_LDSMINB_32_memop { // STSMINB  <Ws>, [<Xn|SP>]
-    
-}
-
-insn STSMINLB_LDSMINLB_32_memop { // STSMINLB  <Ws>, [<Xn|SP>]
-    
-}

@@ -1,9 +1,0 @@
-// tst_ands_log_shift
-
-insn TST_ANDS_32_log_shift { // TST  <Wn>, <Wm>{, <shift> #<amount>}
-    
-}
-
-insn TST_ANDS_64_log_shift { // TST  <Xn>, <Xm>{, <shift> #<amount>}
-    
-}

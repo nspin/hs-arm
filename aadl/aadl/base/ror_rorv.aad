@@ -1,9 +1,0 @@
-// ror_rorv
-
-insn ROR_RORV_32_dp_2src { // ROR  <Wd>, <Wn>, <Wm>
-    
-}
-
-insn ROR_RORV_64_dp_2src { // ROR  <Xd>, <Xn>, <Xm>
-    
-}

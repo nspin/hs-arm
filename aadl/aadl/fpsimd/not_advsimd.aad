@@ -1,0 +1,4 @@
+// NOT  <Vd>.<T>, <Vn>.<T>
+insn NOT_asimdmisc_R {
+    
+}

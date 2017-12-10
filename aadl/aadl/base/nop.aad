@@ -1,5 +1,3 @@
-// nop
-
-insn NOP_HI_system { // NOP
-    
+// NOP
+insn NOP_HI_system {
 }

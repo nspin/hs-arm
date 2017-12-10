@@ -1,17 +1,19 @@
-// ldumaxb
-
-insn LDUMAXAB_32_memop { // LDUMAXAB  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDUMAXAB  <Ws>, <Wt>, [<Xn|SP>]
+insn LDUMAXAB_32_memop {
+    $wst; $xN
 }
 
-insn LDUMAXALB_32_memop { // LDUMAXALB  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDUMAXALB  <Ws>, <Wt>, [<Xn|SP>]
+insn LDUMAXALB_32_memop {
+    $wst; $xN
 }
 
-insn LDUMAXB_32_memop { // LDUMAXB  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDUMAXB  <Ws>, <Wt>, [<Xn|SP>]
+insn LDUMAXB_32_memop {
+    $wst; $xN
 }
 
-insn LDUMAXLB_32_memop { // LDUMAXLB  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDUMAXLB  <Ws>, <Wt>, [<Xn|SP>]
+insn LDUMAXLB_32_memop {
+    $wst; $xN
 }

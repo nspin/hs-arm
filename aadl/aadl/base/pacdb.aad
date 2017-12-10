@@ -1,9 +1,9 @@
-// pacdb
-
-insn PACDB_64P_dp_1src { // PACDB  <Xd>, <Xn|SP>
-    
+// PACDB  <Xd>, <Xn|SP>
+insn PACDB_64P_dp_1src {
+    $xdN
 }
 
-insn PACDZB_64Z_dp_1src { // PACDZB  <Xd>
-    
+// PACDZB  <Xd>
+insn PACDZB_64Z_dp_1src {
+    $xd
 }

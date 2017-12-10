@@ -1,9 +1,0 @@
-// staddh_ldaddh
-
-insn STADDH_LDADDH_32_memop { // STADDH  <Ws>, [<Xn|SP>]
-    
-}
-
-insn STADDLH_LDADDLH_32_memop { // STADDLH  <Ws>, [<Xn|SP>]
-    
-}

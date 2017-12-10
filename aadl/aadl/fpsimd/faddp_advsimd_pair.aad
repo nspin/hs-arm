@@ -1,0 +1,9 @@
+// FADDP  <V><d>, <Vn>.<T>
+insn FADDP_asisdpair_only_H {
+    
+}
+
+// FADDP  <V><d>, <Vn>.<T>
+insn FADDP_asisdpair_only_SD {
+    
+}

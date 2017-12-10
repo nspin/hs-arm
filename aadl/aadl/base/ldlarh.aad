@@ -1,5 +1,4 @@
-// ldlarh
-
-insn LDLARH_LR32_ldstexcl { // LDLARH  <Wt>, [<Xn|SP>{,#0}]
-    
+// LDLARH  <Wt>, [<Xn|SP>{,#0}]
+insn LDLARH_LR32_ldstexcl {
+    $wt; $xN
 }

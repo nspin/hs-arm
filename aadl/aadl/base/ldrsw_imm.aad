@@ -1,13 +1,14 @@
-// ldrsw_imm
-
-insn LDRSW_64_ldst_immpost { // LDRSW  <Xt>, [<Xn|SP>], #<simm>
-    
+// LDRSW  <Xt>, [<Xn|SP>], #<simm>
+insn LDRSW_64_ldst_immpost {
+    $xt; $xN; $simm
 }
 
-insn LDRSW_64_ldst_immpre { // LDRSW  <Xt>, [<Xn|SP>, #<simm>]!
-    
+// LDRSW  <Xt>, [<Xn|SP>, #<simm>]!
+insn LDRSW_64_ldst_immpre {
+    $xt; $xN; $simm
 }
 
-insn LDRSW_64_ldst_pos { // LDRSW  <Xt>, [<Xn|SP>{, #<pimm>}]
-    
+// LDRSW  <Xt>, [<Xn|SP>{, #<pimm>}]
+insn LDRSW_64_ldst_pos {
+    $xt; $xN; $pimm
 }

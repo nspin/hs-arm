@@ -1,9 +1,9 @@
-// ldlar
-
-insn LDLAR_LR32_ldstexcl { // LDLAR  <Wt>, [<Xn|SP>{,#0}]
-    
+// LDLAR  <Wt>, [<Xn|SP>{,#0}]
+insn LDLAR_LR32_ldstexcl {
+    $wt; $xN
 }
 
-insn LDLAR_LR64_ldstexcl { // LDLAR  <Xt>, [<Xn|SP>{,#0}]
-    
+// LDLAR  <Xt>, [<Xn|SP>{,#0}]
+insn LDLAR_LR64_ldstexcl {
+    $xt; $xN
 }

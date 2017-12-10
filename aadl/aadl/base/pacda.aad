@@ -1,9 +1,9 @@
-// pacda
-
-insn PACDA_64P_dp_1src { // PACDA  <Xd>, <Xn|SP>
-    
+// PACDA  <Xd>, <Xn|SP>
+insn PACDA_64P_dp_1src {
+    $xdN
 }
 
-insn PACDZA_64Z_dp_1src { // PACDZA  <Xd>
-    
+// PACDZA  <Xd>
+insn PACDZA_64Z_dp_1src {
+    $xd
 }

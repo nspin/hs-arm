@@ -1,5 +1,3 @@
-// psb
-
-insn PSB_HC_system { // PSB CSYNC
-    
+// PSB CSYNC
+insn PSB_HC_system {
 }

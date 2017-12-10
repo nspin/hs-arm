@@ -1,5 +1,4 @@
-// ldxrb
-
-insn LDXRB_LR32_ldstexcl { // LDXRB  <Wt>, [<Xn|SP>{,#0}]
-    
+// LDXRB  <Wt>, [<Xn|SP>{,#0}]
+insn LDXRB_LR32_ldstexcl {
+    $wt; $xN
 }

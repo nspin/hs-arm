@@ -1,9 +1,9 @@
-// ldar
-
-insn LDAR_LR32_ldstexcl { // LDAR  <Wt>, [<Xn|SP>{,#0}]
-    
+// LDAR  <Wt>, [<Xn|SP>{,#0}]
+insn LDAR_LR32_ldstexcl {
+    $wt; $xN
 }
 
-insn LDAR_LR64_ldstexcl { // LDAR  <Xt>, [<Xn|SP>{,#0}]
-    
+// LDAR  <Xt>, [<Xn|SP>{,#0}]
+insn LDAR_LR64_ldstexcl {
+    $xt; $xN
 }

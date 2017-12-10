@@ -1,9 +1,7 @@
-// reta
-
-insn RETAA_64E_branch_reg { // RETAA
-    
+// RETAA
+insn RETAA_64E_branch_reg {
 }
 
-insn RETAB_64E_branch_reg { // RETAB
-    
+// RETAB
+insn RETAB_64E_branch_reg {
 }

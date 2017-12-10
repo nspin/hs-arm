@@ -1,0 +1,9 @@
+// FMAXV  <V><d>, <Vn>.<T>
+insn FMAXV_asimdall_only_H {
+    
+}
+
+// FMAXV  <V><d>, <Vn>.<T>
+insn FMAXV_asimdall_only_SD {
+    
+}

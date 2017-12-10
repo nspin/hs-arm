@@ -1,25 +1,35 @@
-// ldr_imm_gen
-
-insn LDR_32_ldst_immpost { // LDR  <Wt>, [<Xn|SP>], #<simm>
-    
+// LDR  <Wt>, [<Xn|SP>], #<simm>
+insn LDR_32_ldst_immpost {
+    $wt; $xN
+    simm Int9 in imm9
 }
 
-insn LDR_64_ldst_immpost { // LDR  <Xt>, [<Xn|SP>], #<simm>
-    
+// LDR  <Xt>, [<Xn|SP>], #<simm>
+insn LDR_64_ldst_immpost {
+    $xt; $xN
+    simm Int9 in imm9
 }
 
-insn LDR_32_ldst_immpre { // LDR  <Wt>, [<Xn|SP>, #<simm>]!
-    
+// LDR  <Wt>, [<Xn|SP>, #<simm>]!
+insn LDR_32_ldst_immpre {
+    $wt; $xN
+    simm Int9 in imm9
 }
 
-insn LDR_64_ldst_immpre { // LDR  <Xt>, [<Xn|SP>, #<simm>]!
-    
+// LDR  <Xt>, [<Xn|SP>, #<simm>]!
+insn LDR_64_ldst_immpre {
+    $xt; $xN
+    simm Int9 in imm9
 }
 
-insn LDR_32_ldst_pos { // LDR  <Wt>, [<Xn|SP>{, #<pimm>}]
-    
+// LDR  <Wt>, [<Xn|SP>{, #<pimm>}]
+insn LDR_32_ldst_pos {
+    $wt; $xN
+    pimm UInt12 in imm12
 }
 
-insn LDR_64_ldst_pos { // LDR  <Xt>, [<Xn|SP>{, #<pimm>}]
-    
+// LDR  <Xt>, [<Xn|SP>{, #<pimm>}]
+insn LDR_64_ldst_pos {
+    $xt; $xN
+    pimm UInt12 in imm12
 }

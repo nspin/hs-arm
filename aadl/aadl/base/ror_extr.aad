@@ -1,9 +1,0 @@
-// ror_extr
-
-insn ROR_EXTR_32_extract { // ROR  <Wd>, <Ws>, #<shift>
-    
-}
-
-insn ROR_EXTR_64_extract { // ROR  <Xd>, <Xs>, #<shift>
-    
-}

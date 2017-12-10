@@ -1,5 +1,4 @@
-// yield
-
-insn YIELD_HI_system { // YIELD
+// YIELD
+insn YIELD_HI_system {
     
 }

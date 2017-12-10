@@ -1,0 +1,4 @@
+// ORR  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
+insn ORR_asimdsame_only {
+    
+}

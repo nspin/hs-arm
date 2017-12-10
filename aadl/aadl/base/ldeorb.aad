@@ -1,17 +1,19 @@
-// ldeorb
-
-insn LDEORAB_32_memop { // LDEORAB  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDEORAB  <Ws>, <Wt>, [<Xn|SP>]
+insn LDEORAB_32_memop {
+    $wst; $xN
 }
 
-insn LDEORALB_32_memop { // LDEORALB  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDEORALB  <Ws>, <Wt>, [<Xn|SP>]
+insn LDEORALB_32_memop {
+    $wst; $xN
 }
 
-insn LDEORB_32_memop { // LDEORB  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDEORB  <Ws>, <Wt>, [<Xn|SP>]
+insn LDEORB_32_memop {
+    $wst; $xN
 }
 
-insn LDEORLB_32_memop { // LDEORLB  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDEORLB  <Ws>, <Wt>, [<Xn|SP>]
+insn LDEORLB_32_memop {
+    $wst; $xN
 }

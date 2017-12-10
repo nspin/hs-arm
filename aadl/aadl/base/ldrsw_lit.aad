@@ -1,5 +1,5 @@
-// ldrsw_lit
-
-insn LDRSW_64_loadlit { // LDRSW  <Xt>, <label>
-    
+// LDRSW  <Xt>, <label>
+insn LDRSW_64_loadlit {
+    $xt
+    label UInt19 as imm19
 }

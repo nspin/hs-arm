@@ -1,5 +1,0 @@
-// umnegl_umsubl
-
-insn UMNEGL_UMSUBL_64WA_dp_3src { // UMNEGL  <Xd>, <Wn>, <Wm>
-    
-}

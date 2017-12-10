@@ -1,9 +1,0 @@
-// mov_add_addsub_imm
-
-insn MOV_ADD_32_addsub_imm { // MOV  <Wd|WSP>, <Wn|WSP>
-    
-}
-
-insn MOV_ADD_64_addsub_imm { // MOV  <Xd|SP>, <Xn|SP>
-    
-}

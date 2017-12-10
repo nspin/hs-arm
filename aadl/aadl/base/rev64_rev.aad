@@ -1,5 +1,0 @@
-// rev64_rev
-
-insn REV64_REV_64_dp_1src { // REV64  <Xd>, <Xn>
-    
-}

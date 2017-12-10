@@ -1,9 +1,0 @@
-// stsetb_ldsetb
-
-insn STSETB_LDSETB_32_memop { // STSETB  <Ws>, [<Xn|SP>]
-    
-}
-
-insn STSETLB_LDSETLB_32_memop { // STSETLB  <Ws>, [<Xn|SP>]
-    
-}

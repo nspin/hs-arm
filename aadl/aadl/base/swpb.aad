@@ -1,17 +1,19 @@
-// swpb
-
-insn SWPAB_32_memop { // SWPAB  <Ws>, <Wt>, [<Xn|SP>]
+// SWPAB  <Ws>, <Wt>, [<Xn|SP>]
+insn SWPAB_32_memop {
     
 }
 
-insn SWPALB_32_memop { // SWPALB  <Ws>, <Wt>, [<Xn|SP>]
+// SWPALB  <Ws>, <Wt>, [<Xn|SP>]
+insn SWPALB_32_memop {
     
 }
 
-insn SWPB_32_memop { // SWPB  <Ws>, <Wt>, [<Xn|SP>]
+// SWPB  <Ws>, <Wt>, [<Xn|SP>]
+insn SWPB_32_memop {
     
 }
 
-insn SWPLB_32_memop { // SWPLB  <Ws>, <Wt>, [<Xn|SP>]
+// SWPLB  <Ws>, <Wt>, [<Xn|SP>]
+insn SWPLB_32_memop {
     
 }

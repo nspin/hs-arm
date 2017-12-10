@@ -1,0 +1,4 @@
+// AND  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
+insn AND_asimdsame_only {
+    
+}

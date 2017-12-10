@@ -1,9 +1,9 @@
-// ldtr
-
-insn LDTR_32_ldst_unpriv { // LDTR  <Wt>, [<Xn|SP>{, #<simm>}]
-    
+// LDTR  <Wt>, [<Xn|SP>{, #<simm>}]
+insn LDTR_32_ldst_unpriv {
+    $wt; $xN; $simm
 }
 
-insn LDTR_64_ldst_unpriv { // LDTR  <Xt>, [<Xn|SP>{, #<simm>}]
-    
+// LDTR  <Xt>, [<Xn|SP>{, #<simm>}]
+insn LDTR_64_ldst_unpriv {
+    $xt; $xN; $simm
 }

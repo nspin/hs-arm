@@ -1,5 +1,4 @@
-// wfe
-
-insn WFE_HI_system { // WFE
+// WFE
+insn WFE_HI_system {
     
 }

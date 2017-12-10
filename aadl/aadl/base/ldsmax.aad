@@ -1,33 +1,39 @@
-// ldsmax
-
-insn LDSMAX_32_memop { // LDSMAX  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSMAX  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSMAX_32_memop {
+    $wst; $xN
 }
 
-insn LDSMAXA_32_memop { // LDSMAXA  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSMAXA  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSMAXA_32_memop {
+    $wst; $xN
 }
 
-insn LDSMAXAL_32_memop { // LDSMAXAL  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSMAXAL  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSMAXAL_32_memop {
+    $wst; $xN
 }
 
-insn LDSMAXL_32_memop { // LDSMAXL  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDSMAXL  <Ws>, <Wt>, [<Xn|SP>]
+insn LDSMAXL_32_memop {
+    $wst; $xN
 }
 
-insn LDSMAX_64_memop { // LDSMAX  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDSMAX  <Xs>, <Xt>, [<Xn|SP>]
+insn LDSMAX_64_memop {
+    $xst; $xN
 }
 
-insn LDSMAXA_64_memop { // LDSMAXA  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDSMAXA  <Xs>, <Xt>, [<Xn|SP>]
+insn LDSMAXA_64_memop {
+    $xst; $xN
 }
 
-insn LDSMAXAL_64_memop { // LDSMAXAL  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDSMAXAL  <Xs>, <Xt>, [<Xn|SP>]
+insn LDSMAXAL_64_memop {
+    $xst; $xN
 }
 
-insn LDSMAXL_64_memop { // LDSMAXL  <Xs>, <Xt>, [<Xn|SP>]
-    
+// LDSMAXL  <Xs>, <Xt>, [<Xn|SP>]
+insn LDSMAXL_64_memop {
+    $xst; $xN
 }

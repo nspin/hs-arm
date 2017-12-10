@@ -1,5 +1,4 @@
-// br
-
-insn BR_64_branch_reg { // BR  <Xn>
-    
+// BR  <Xn>
+insn BR_64_branch_reg {
+    $xn
 }

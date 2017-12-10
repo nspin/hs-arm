@@ -1,21 +1,21 @@
-// pacib
-
-insn PACIB_64P_dp_1src { // PACIB  <Xd>, <Xn|SP>
-    
+// PACIB  <Xd>, <Xn|SP>
+insn PACIB_64P_dp_1src {
+    $xdN
 }
 
-insn PACIZB_64Z_dp_1src { // PACIZB  <Xd>
-    
+// PACIZB  <Xd>
+insn PACIZB_64Z_dp_1src {
+    $xd
 }
 
-insn PACIB1716_HI_system { // PACIB1716
-    
+// PACIB1716
+insn PACIB1716_HI_system {
 }
 
-insn PACIBSP_HI_system { // PACIBSP
-    
+// PACIBSP
+insn PACIBSP_HI_system {
 }
 
-insn PACIBZ_HI_system { // PACIBZ
-    
+// PACIBZ
+insn PACIBZ_HI_system {
 }

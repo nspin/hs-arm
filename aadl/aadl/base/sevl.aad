@@ -1,5 +1,3 @@
-// sevl
-
-insn SEVL_HI_system { // SEVL
-    
+// SEVL
+insn SEVL_HI_system {
 }

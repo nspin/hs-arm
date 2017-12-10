@@ -1,9 +1,0 @@
-// staddb_ldaddb
-
-insn STADDB_LDADDB_32_memop { // STADDB  <Ws>, [<Xn|SP>]
-    
-}
-
-insn STADDLB_LDADDLB_32_memop { // STADDLB  <Ws>, [<Xn|SP>]
-    
-}

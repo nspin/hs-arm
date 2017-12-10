@@ -1,9 +1,0 @@
-// sxtb_sbfm
-
-insn SXTB_SBFM_32M_bitfield { // SXTB  <Wd>, <Wn>
-    
-}
-
-insn SXTB_SBFM_64M_bitfield { // SXTB  <Xd>, <Wn>
-    
-}

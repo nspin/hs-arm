@@ -1,17 +1,19 @@
-// lduminh
-
-insn LDUMINAH_32_memop { // LDUMINAH  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDUMINAH  <Ws>, <Wt>, [<Xn|SP>]
+insn LDUMINAH_32_memop {
+    $wst; $xN
 }
 
-insn LDUMINALH_32_memop { // LDUMINALH  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDUMINALH  <Ws>, <Wt>, [<Xn|SP>]
+insn LDUMINALH_32_memop {
+    $wst; $xN
 }
 
-insn LDUMINH_32_memop { // LDUMINH  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDUMINH  <Ws>, <Wt>, [<Xn|SP>]
+insn LDUMINH_32_memop {
+    $wst; $xN
 }
 
-insn LDUMINLH_32_memop { // LDUMINLH  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDUMINLH  <Ws>, <Wt>, [<Xn|SP>]
+insn LDUMINLH_32_memop {
+    $wst; $xN
 }

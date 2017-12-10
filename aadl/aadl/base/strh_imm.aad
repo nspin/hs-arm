@@ -1,13 +1,14 @@
-// strh_imm
-
-insn STRH_32_ldst_immpost { // STRH  <Wt>, [<Xn|SP>], #<simm>
-    
+// STRH  <Wt>, [<Xn|SP>], #<simm>
+insn STRH_32_ldst_immpost {
+    $wt; $xN; $simm
 }
 
-insn STRH_32_ldst_immpre { // STRH  <Wt>, [<Xn|SP>, #<simm>]!
-    
+// STRH  <Wt>, [<Xn|SP>, #<simm>]!
+insn STRH_32_ldst_immpre {
+    $wt; $xN; $simm
 }
 
-insn STRH_32_ldst_pos { // STRH  <Wt>, [<Xn|SP>{, #<pimm>}]
-    
+// STRH  <Wt>, [<Xn|SP>{, #<pimm>}]
+insn STRH_32_ldst_pos {
+    $wt; $xN; $pimm
 }

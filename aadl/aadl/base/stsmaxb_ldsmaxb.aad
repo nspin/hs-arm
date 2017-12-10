@@ -1,9 +1,0 @@
-// stsmaxb_ldsmaxb
-
-insn STSMAXB_LDSMAXB_32_memop { // STSMAXB  <Ws>, [<Xn|SP>]
-    
-}
-
-insn STSMAXLB_LDSMAXLB_32_memop { // STSMAXLB  <Ws>, [<Xn|SP>]
-    
-}

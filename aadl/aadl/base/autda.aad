@@ -1,9 +1,9 @@
-// autda
-
-insn AUTDA_64P_dp_1src { // AUTDA  <Xd>, <Xn|SP>
-    
+// AUTDA  <Xd>, <Xn|SP>
+insn AUTDA_64P_dp_1src {
+    $xdN
 }
 
-insn AUTDZA_64Z_dp_1src { // AUTDZA  <Xd>
-    
+// AUTDZA  <Xd>
+insn AUTDZA_64Z_dp_1src {
+    $xd
 }

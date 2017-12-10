@@ -1,5 +1,4 @@
-// rev32_int
-
-insn REV32_64_dp_1src { // REV32  <Xd>, <Xn>
-    
+// REV32  <Xd>, <Xn>
+insn REV32_64_dp_1src {
+    $xdn
 }

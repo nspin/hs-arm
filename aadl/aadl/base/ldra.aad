@@ -1,17 +1,23 @@
-// ldra
-
-insn LDRAA_64_ldst_pac { // LDRAA  <Xt>, [<Xn|SP>{, #<simm>}]
-    
+// LDRAA  <Xt>, [<Xn|SP>{, #<simm>}]
+insn LDRAA_64_ldst_pac {
+    $xt; $xN
+    simm Int10 in S:imm9
 }
 
-insn LDRAA_64W_ldst_pac { // LDRAA  <Xt>, [<Xn|SP>{, #<simm>}]!
-    
+// LDRAA  <Xt>, [<Xn|SP>{, #<simm>}]!
+insn LDRAA_64W_ldst_pac {
+    $xt; $xN
+    simm Int10 in S:imm9
 }
 
-insn LDRAB_64_ldst_pac { // LDRAB  <Xt>, [<Xn|SP>{, #<simm>}]
-    
+// LDRAB  <Xt>, [<Xn|SP>{, #<simm>}]
+insn LDRAB_64_ldst_pac {
+    $xt; $xN
+    simm Int10 in S:imm9
 }
 
-insn LDRAB_64W_ldst_pac { // LDRAB  <Xt>, [<Xn|SP>{, #<simm>}]!
-    
+// LDRAB  <Xt>, [<Xn|SP>{, #<simm>}]!
+insn LDRAB_64W_ldst_pac {
+    $xt; $xN
+    simm Int10 in S:imm9
 }

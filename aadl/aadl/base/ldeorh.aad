@@ -1,17 +1,19 @@
-// ldeorh
-
-insn LDEORAH_32_memop { // LDEORAH  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDEORAH  <Ws>, <Wt>, [<Xn|SP>]
+insn LDEORAH_32_memop {
+    $wst; $xN
 }
 
-insn LDEORALH_32_memop { // LDEORALH  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDEORALH  <Ws>, <Wt>, [<Xn|SP>]
+insn LDEORALH_32_memop {
+    $wst; $xN
 }
 
-insn LDEORH_32_memop { // LDEORH  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDEORH  <Ws>, <Wt>, [<Xn|SP>]
+insn LDEORH_32_memop {
+    $wst; $xN
 }
 
-insn LDEORLH_32_memop { // LDEORLH  <Ws>, <Wt>, [<Xn|SP>]
-    
+// LDEORLH  <Ws>, <Wt>, [<Xn|SP>]
+insn LDEORLH_32_memop {
+    $wst; $xN
 }

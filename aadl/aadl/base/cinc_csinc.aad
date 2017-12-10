@@ -1,9 +1,0 @@
-// cinc_csinc
-
-insn CINC_CSINC_32_condsel { // CINC  <Wd>, <Wn>, <cond>
-    
-}
-
-insn CINC_CSINC_64_condsel { // CINC  <Xd>, <Xn>, <cond>
-    
-}

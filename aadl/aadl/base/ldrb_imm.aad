@@ -1,13 +1,17 @@
-// ldrb_imm
-
-insn LDRB_32_ldst_immpost { // LDRB  <Wt>, [<Xn|SP>], #<simm>
-    
+// LDRB  <Wt>, [<Xn|SP>], #<simm>
+insn LDRB_32_ldst_immpost {
+    $wt; $xN
+    simm Int9 in imm9
 }
 
-insn LDRB_32_ldst_immpre { // LDRB  <Wt>, [<Xn|SP>, #<simm>]!
-    
+// LDRB  <Wt>, [<Xn|SP>, #<simm>]!
+insn LDRB_32_ldst_immpre {
+    $wt; $xN
+    simm Int9 in imm9
 }
 
-insn LDRB_32_ldst_pos { // LDRB  <Wt>, [<Xn|SP>{, #<pimm>}]
-    
+// LDRB  <Wt>, [<Xn|SP>{, #<pimm>}]
+insn LDRB_32_ldst_pos {
+    $wt; $xN
+    pimm UInt12 in imm12
 }

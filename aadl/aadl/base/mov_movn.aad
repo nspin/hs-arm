@@ -1,9 +1,0 @@
-// mov_movn
-
-insn MOV_MOVN_32_movewide { // MOV  <Wd>, #<imm>
-    
-}
-
-insn MOV_MOVN_64_movewide { // MOV  <Xd>, #<imm>
-    
-}

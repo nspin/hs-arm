@@ -1,5 +1,4 @@
-// sttrb
-
-insn STTRB_32_ldst_unpriv { // STTRB  <Wt>, [<Xn|SP>{, #<simm>}]
-    
+// STTRB  <Wt>, [<Xn|SP>{, #<simm>}]
+insn STTRB_32_ldst_unpriv {
+    $wt; $xN; $simm
 }

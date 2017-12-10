@@ -1,25 +1,29 @@
-// str_imm_gen
-
-insn STR_32_ldst_immpost { // STR  <Wt>, [<Xn|SP>], #<simm>
-    
+// STR  <Wt>, [<Xn|SP>], #<simm>
+insn STR_32_ldst_immpost {
+    $wt; $xN; $simm
 }
 
-insn STR_64_ldst_immpost { // STR  <Xt>, [<Xn|SP>], #<simm>
-    
+// STR  <Xt>, [<Xn|SP>], #<simm>
+insn STR_64_ldst_immpost {
+    $xt; $xN; $simm
 }
 
-insn STR_32_ldst_immpre { // STR  <Wt>, [<Xn|SP>, #<simm>]!
-    
+// STR  <Wt>, [<Xn|SP>, #<simm>]!
+insn STR_32_ldst_immpre {
+    $wt; $xN; $simm
 }
 
-insn STR_64_ldst_immpre { // STR  <Xt>, [<Xn|SP>, #<simm>]!
-    
+// STR  <Xt>, [<Xn|SP>, #<simm>]!
+insn STR_64_ldst_immpre {
+    $xt; $xN; $simm
 }
 
-insn STR_32_ldst_pos { // STR  <Wt>, [<Xn|SP>{, #<pimm>}]
-    
+// STR  <Wt>, [<Xn|SP>{, #<pimm>}]
+insn STR_32_ldst_pos {
+    $wt; $xN; $pimm
 }
 
-insn STR_64_ldst_pos { // STR  <Xt>, [<Xn|SP>{, #<pimm>}]
-    
+// STR  <Xt>, [<Xn|SP>{, #<pimm>}]
+insn STR_64_ldst_pos {
+    $xt; $xN; $pimm
 }

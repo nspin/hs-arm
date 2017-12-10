@@ -1,5 +1,4 @@
-// clrex
-
-insn CLREX_BN_system { // CLREX  {#<imm>}
-    
+// CLREX  {#<imm>}
+insn CLREX_BN_system {
+    imm UInt4 CRm
 }

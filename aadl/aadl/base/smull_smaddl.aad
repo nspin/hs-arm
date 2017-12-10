@@ -1,5 +1,0 @@
-// smull_smaddl
-
-insn SMULL_SMADDL_64WA_dp_3src { // SMULL  <Xd>, <Wn>, <Wm>
-    
-}

@@ -1,9 +1,0 @@
-// sbfiz_sbfm
-
-insn SBFIZ_SBFM_32M_bitfield { // SBFIZ  <Wd>, <Wn>, #<lsb>, #<width>
-    
-}
-
-insn SBFIZ_SBFM_64M_bitfield { // SBFIZ  <Xd>, <Xn>, #<lsb>, #<width>
-    
-}

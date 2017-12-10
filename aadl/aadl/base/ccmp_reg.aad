@@ -1,9 +1,13 @@
-// ccmp_reg
-
-insn CCMP_32_condcmp_reg { // CCMP  <Wn>, <Wm>, #<nzcv>, <cond>
-    
+// CCMP  <Wn>, <Wm>, #<nzcv>, <cond>
+insn CCMP_32_condcmp_reg {
+    $wn; $wm
+    $nczv
+    $cond
 }
 
-insn CCMP_64_condcmp_reg { // CCMP  <Xn>, <Xm>, #<nzcv>, <cond>
-    
+// CCMP  <Xn>, <Xm>, #<nzcv>, <cond>
+insn CCMP_64_condcmp_reg {
+    $xn; $xm
+    $nczv
+    $cond
 }

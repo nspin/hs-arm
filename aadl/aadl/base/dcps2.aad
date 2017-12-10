@@ -1,5 +1,4 @@
-// dcps2
-
-insn DCPS2_DC_exception { // DCPS2  {#<imm>}
-    
+// DCPS2  {#<imm>}
+insn DCPS2_DC_exception {
+    imm UInt16 in imm16
 }

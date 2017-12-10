@@ -1,5 +1,14 @@
-// ldrsw_reg
-
-insn LDRSW_64_ldst_regoff { // LDRSW  <Xt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]
-    
+// LDRSW  <Xt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]
+insn LDRSW_64_ldst_regoff {
+    $xt; $xN; $rm
+    extend Extend in option allowing {
+        UXTW
+        UXTX
+        SXTW
+        SXTX
+    }
+    amount BitIx64 in S as {
+        0 0
+        1 2
+    }
 }

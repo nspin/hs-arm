@@ -1,0 +1,14 @@
+// FRINTM  <Hd>, <Hn>
+insn FRINTM_H_floatdp1 {
+    
+}
+
+// FRINTM  <Sd>, <Sn>
+insn FRINTM_S_floatdp1 {
+    
+}
+
+// FRINTM  <Dd>, <Dn>
+insn FRINTM_D_floatdp1 {
+    
+}

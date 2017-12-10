@@ -1,9 +1,0 @@
-// stumaxh_ldumaxh
-
-insn STUMAXH_LDUMAXH_32_memop { // STUMAXH  <Ws>, [<Xn|SP>]
-    
-}
-
-insn STUMAXLH_LDUMAXLH_32_memop { // STUMAXLH  <Ws>, [<Xn|SP>]
-    
-}

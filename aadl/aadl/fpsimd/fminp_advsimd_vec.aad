@@ -1,0 +1,9 @@
+// FMINP  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
+insn FMINP_asimdsamefp16_only {
+    
+}
+
+// FMINP  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
+insn FMINP_asimdsame_only {
+    
+}

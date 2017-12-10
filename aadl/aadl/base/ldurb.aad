@@ -1,5 +1,4 @@
-// ldurb
-
-insn LDURB_32_ldst_unscaled { // LDURB  <Wt>, [<Xn|SP>{, #<simm>}]
-    
+// LDURB  <Wt>, [<Xn|SP>{, #<simm>}]
+insn LDURB_32_ldst_unscaled {
+    $wst; $xN; $simm
 }

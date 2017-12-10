@@ -1,9 +1,0 @@
-// lsl_lslv
-
-insn LSL_LSLV_32_dp_2src { // LSL  <Wd>, <Wn>, <Wm>
-    
-}
-
-insn LSL_LSLV_64_dp_2src { // LSL  <Xd>, <Xn>, <Xm>
-    
-}

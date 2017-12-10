@@ -1,9 +1,0 @@
-// cinv_csinv
-
-insn CINV_CSINV_32_condsel { // CINV  <Wd>, <Wn>, <cond>
-    
-}
-
-insn CINV_CSINV_64_condsel { // CINV  <Xd>, <Xn>, <cond>
-    
-}

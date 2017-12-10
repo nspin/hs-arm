@@ -1,9 +1,9 @@
-// stur_gen
-
-insn STUR_32_ldst_unscaled { // STUR  <Wt>, [<Xn|SP>{, #<simm>}]
-    
+// STUR  <Wt>, [<Xn|SP>{, #<simm>}]
+insn STUR_32_ldst_unscaled {
+    $wt; $xN; $simm
 }
 
-insn STUR_64_ldst_unscaled { // STUR  <Xt>, [<Xn|SP>{, #<simm>}]
-    
+// STUR  <Xt>, [<Xn|SP>{, #<simm>}]
+insn STUR_64_ldst_unscaled {
+    $wt; $xN; $simm
 }

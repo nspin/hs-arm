@@ -1,0 +1,14 @@
+// FCCMP  <Hn>, <Hm>, #<nzcv>, <cond>
+insn FCCMP_H_floatccmp {
+    
+}
+
+// FCCMP  <Sn>, <Sm>, #<nzcv>, <cond>
+insn FCCMP_S_floatccmp {
+    
+}
+
+// FCCMP  <Dn>, <Dm>, #<nzcv>, <cond>
+insn FCCMP_D_floatccmp {
+    
+}

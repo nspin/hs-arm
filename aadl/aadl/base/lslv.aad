@@ -1,9 +1,9 @@
-// lslv
-
-insn LSLV_32_dp_2src { // LSLV  <Wd>, <Wn>, <Wm>
-    
+// LSLV  <Wd>, <Wn>, <Wm>
+insn LSLV_32_dp_2src {
+    $wdnm
 }
 
-insn LSLV_64_dp_2src { // LSLV  <Xd>, <Xn>, <Xm>
-    
+// LSLV  <Xd>, <Xn>, <Xm>
+insn LSLV_64_dp_2src {
+    $xdnm
 }

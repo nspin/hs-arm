@@ -1,5 +1,3 @@
-// eret
-
-insn ERET_64E_branch_reg { // ERET
-    
+// ERET
+insn ERET_64E_branch_reg {
 }

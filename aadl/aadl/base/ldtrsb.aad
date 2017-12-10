@@ -1,9 +1,9 @@
-// ldtrsb
-
-insn LDTRSB_32_ldst_unpriv { // LDTRSB  <Wt>, [<Xn|SP>{, #<simm>}]
-    
+// LDTRSB  <Wt>, [<Xn|SP>{, #<simm>}]
+insn LDTRSB_32_ldst_unpriv {
+    $wt; $xN; $simm
 }
 
-insn LDTRSB_64_ldst_unpriv { // LDTRSB  <Xt>, [<Xn|SP>{, #<simm>}]
-    
+// LDTRSB  <Xt>, [<Xn|SP>{, #<simm>}]
+insn LDTRSB_64_ldst_unpriv {
+    $xt; $xN; $simm
 }

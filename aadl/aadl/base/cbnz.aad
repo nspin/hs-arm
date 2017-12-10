@@ -1,9 +1,10 @@
-// cbnz
-
-insn CBNZ_32_compbranch { // CBNZ  <Wt>, <label>
-    
+// CBNZ  <Wt>, <label>
+insn CBNZ_32_compbranch {
+    $wt
+    label Int19 in imm19
 }
 
-insn CBNZ_64_compbranch { // CBNZ  <Xt>, <label>
-    
+// CBNZ  <Xt>, <label>
+insn CBNZ_64_compbranch {
+    label Int19 in imm19
 }

@@ -1,9 +1,21 @@
-// ldrb_reg
-
-insn LDRB_32B_ldst_regoff { // LDRB  <Wt>, [<Xn|SP>, (<Wm>|<Xm>), <extend> {<amount>}]
-    
+// LDRB  <Wt>, [<Xn|SP>, (<Wm>|<Xm>), <extend> {<amount>}]
+insn LDRB_32B_ldst_regoff {
+    $wt; $xN; $rm
+    extend Extend in option allowing {
+        UXTW
+        SXTW
+        SXTX
+    }
+    dec assert S 0
 }
 
-insn LDRB_32BL_ldst_regoff { // LDRB  <Wt>, [<Xn|SP>, <Xm>{, LSL <amount>}]
-    
+// LDRB  <Wt>, [<Xn|SP>, <Xm>{, LSL <amount>}]
+insn LDRB_32BL_ldst_regoff {
+    $wt; $xN; $xm
+    extend Extend in option allowing {
+        UXTW
+        SXTW
+        SXTX
+    }
+    dec assert S 0
 }

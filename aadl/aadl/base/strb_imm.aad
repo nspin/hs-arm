@@ -1,13 +1,14 @@
-// strb_imm
-
-insn STRB_32_ldst_immpost { // STRB  <Wt>, [<Xn|SP>], #<simm>
-    
+// STRB  <Wt>, [<Xn|SP>], #<simm>
+insn STRB_32_ldst_immpost {
+    $wt; $xN; $simm
 }
 
-insn STRB_32_ldst_immpre { // STRB  <Wt>, [<Xn|SP>, #<simm>]!
-    
+// STRB  <Wt>, [<Xn|SP>, #<simm>]!
+insn STRB_32_ldst_immpre {
+    $wt; $xN; $simm
 }
 
-insn STRB_32_ldst_pos { // STRB  <Wt>, [<Xn|SP>{, #<pimm>}]
-    
+// STRB  <Wt>, [<Xn|SP>{, #<pimm>}]
+insn STRB_32_ldst_pos {
+    $wt; $xN; $pimm
 }

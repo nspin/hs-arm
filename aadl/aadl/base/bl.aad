@@ -1,5 +1,4 @@
-// bl
-
-insn BL_only_branch_imm { // BL  <label>
-    
+// BL  <label>
+insn BL_only_branch_imm {
+    label Int26 in imm26
 }

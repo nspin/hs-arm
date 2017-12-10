@@ -1,0 +1,9 @@
+// FRINTI  <Vd>.<T>, <Vn>.<T>
+insn FRINTI_asimdmiscfp16_R {
+    
+}
+
+// FRINTI  <Vd>.<T>, <Vn>.<T>
+insn FRINTI_asimdmisc_R {
+    
+}

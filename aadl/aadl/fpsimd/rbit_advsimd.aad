@@ -1,0 +1,4 @@
+// RBIT  <Vd>.<T>, <Vn>.<T>
+insn RBIT_asimdmisc_R {
+    
+}

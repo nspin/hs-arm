@@ -1,21 +1,21 @@
-// pacia
-
-insn PACIA_64P_dp_1src { // PACIA  <Xd>, <Xn|SP>
-    
+// PACIA  <Xd>, <Xn|SP>
+insn PACIA_64P_dp_1src {
+    $xdN
 }
 
-insn PACIZA_64Z_dp_1src { // PACIZA  <Xd>
-    
+// PACIZA  <Xd>
+insn PACIZA_64Z_dp_1src {
+    $xd
 }
 
-insn PACIA1716_HI_system { // PACIA1716
-    
+// PACIA1716
+insn PACIA1716_HI_system {
 }
 
-insn PACIASP_HI_system { // PACIASP
-    
+// PACIASP
+insn PACIASP_HI_system {
 }
 
-insn PACIAZ_HI_system { // PACIAZ
-    
+// PACIAZ
+insn PACIAZ_HI_system {
 }

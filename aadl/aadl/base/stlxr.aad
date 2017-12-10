@@ -1,9 +1,9 @@
-// stlxr
-
-insn STLXR_SR32_ldstexcl { // STLXR  <Ws>, <Wt>, [<Xn|SP>{,#0}]
-    
+// STLXR  <Ws>, <Wt>, [<Xn|SP>{,#0}]
+insn STLXR_SR32_ldstexcl {
+    $wst; $xN
 }
 
-insn STLXR_SR64_ldstexcl { // STLXR  <Ws>, <Xt>, [<Xn|SP>{,#0}]
-    
+// STLXR  <Ws>, <Xt>, [<Xn|SP>{,#0}]
+insn STLXR_SR64_ldstexcl {
+    $ws; $xt; $xN
 }
