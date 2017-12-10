@@ -12,9 +12,10 @@ library
   build-tools:        alex, happy
 
   exposed-modules:    AADL
-                    , AADL.Lexer
                     , AADL.Tokens
                     , AADL.ParserMonad
+                    , AADL.Lexer
+                    , AADL.Types
 
   build-depends:      base >=4.8 && <5
                     , array

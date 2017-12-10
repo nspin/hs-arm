@@ -5,11 +5,11 @@ module AADL.Lexer
     , tokenP
     ) where
 
-import AADL.ParserMonad
 import AADL.Tokens
+import AADL.ParserMonad
 
-import Control.Monad.State
 import Control.Monad.Except
+import Control.Monad.State
 import Data.Word
 
 }
@@ -28,30 +28,30 @@ aadl :-
 @whitespace ;
 @comment ;
 
-"{" { const TCurlyOpen }
-"}" { const TCurlyClose }
-"[" { const TSquareOpen }
-"]" { const TSquareClose }
-\n { const TEOL }
+"{"        { const TokCurlyOpen      }
+"}"        { const TokCurlyClose     }
+"["        { const TokSquareOpen     }
+"]"        { const TokSquareClose    }
+\n         { const TokEOL            }
 
-"::" { const TSymDoubleColon }
-":" { const TSymColon }
-"=" { const TSymEquals }
-"->" { const TSymArrow }
+"::"       { const TokSymDoubleColon }
+":"        { const TokSymColon       }
+"="        { const TokSymEquals      }
+"->"       { const TokSymArrow       }
 
-"insn" { const TKWInsn }
-"type" { const TKWType }
-"enc" { const TKWEnc }
-"dec" { const TKWDec }
-"case" { const TKWCase }
-"error" { const TKWError }
-"RESERVED" { const TKWReserved }
+"insn"     { const TokKwInsn         }
+"type"     { const TokKwType         }
+"enc"      { const TokKwEnc          }
+"dec"      { const TokKwDec          }
+"case"     { const TokKwCase         }
+"error"    { const TokKwError        }
+"RESERVED" { const TokKwReserved     }
 
-@bits { TBits . map readBit }
-@nat { TNatLit . read }
-@infixop { TInfixOp }
-@ident { TIdent }
-@field { TField . readField }
+@bits      { TokBits . map readBit   }
+@nat       { TokNatLit . read        }
+@infixop   { TokInfixOp              }
+@ident     { TokIdent                }
+@field     { TokField . readField    }
 
 {
 
@@ -70,7 +70,7 @@ tokenP :: P Token
 tokenP = do
     p <- get
     case alexScan p 0 of
-        AlexEOF -> return TEOF
+        AlexEOF -> return TokEOF
         AlexError p' -> throwError $ PError (_p_pos p) "lex error"
         AlexSkip p' _ -> put p' >> tokenP
         AlexToken p' len action -> action (take len (_p_curr_input p)) <$ put p'

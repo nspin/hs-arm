@@ -42,24 +42,12 @@ data Position = Position
 data PError = PError Position String
     deriving Show
 
-
 makeClassy ''PState
 makeClassy ''Position
 
 
 initP :: String -> PState
 initP = PState (Position 0 1 1) '\n' []
-
-
--- I guess this means the AADL tab size is 4...
-tabSize :: Int
-tabSize = 4
-
-movePos :: Char -> Position -> Position
-movePos '\t' (Position off l c) = Position (off + 1)  l      (((c + tabSize - 1) `div` tabSize)*tabSize + 1)
-movePos '\n' (Position off l _) = Position (off + 1) (l + 1)      1
-movePos  _   (Position off l c) = Position (off + 1)  l      (c + 1)
-
 
 nextByte :: PState -> Maybe (Word8, PState)
 nextByte = (<|>)
@@ -72,7 +60,6 @@ nextByte = (<|>)
                    & p_prev_char .~ c
                    & p_curr_bytes .~ bs
         in (b, p')
-
 
 encodeChar :: Char -> (Word8, [Word8])
 encodeChar = over (beside id traverse) fromIntegral . go . ord
@@ -89,3 +76,12 @@ encodeChar = over (beside id traverse) fromIntegral . go . ord
                             , 0x80 + ((oc `shiftR` 6) .&. 0x3f)
                             , 0x80 + oc .&. 0x3f
                             ]
+
+movePos :: Char -> Position -> Position
+movePos '\t' (Position off l c) = Position (off + 1)  l      (((c + tabSize - 1) `div` tabSize)*tabSize + 1)
+movePos '\n' (Position off l _) = Position (off + 1) (l + 1)      1
+movePos  _   (Position off l c) = Position (off + 1)  l      (c + 1)
+
+-- AADL recommended tab size is 4
+tabSize :: Int
+tabSize = 4

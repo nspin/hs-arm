@@ -9,36 +9,37 @@ import Data.Word
 
 data Token
 
-    = TEOF
+    = TokEOF
 
-    |TCurlyOpen
-    | TCurlyClose
-    | TSquareOpen
-    | TSquareClose
-    | TEOL
+    | TokCurlyOpen
+    | TokCurlyClose
+    | TokSquareOpen
+    | TokSquareClose
+    | TokEOL
 
-    | TSymColon
-    | TSymDoubleColon
-    | TSymEquals
-    | TSymArrow
+    | TokSymColon
+    | TokSymDoubleColon
+    | TokSymEquals
+    | TokSymArrow
 
-    | TKWInsn
-    | TKWType
-    | TKWEnc
-    | TKWDec
-    | TKWCase
-    | TKWError
-    | TKWReserved
+    | TokKwInsn
+    | TokKwType
+    | TokKwEnc
+    | TokKwDec
+    | TokKwCase
+    | TokKwError
+    | TokKwReserved
 
-    | TBits [Bit]
-    | TNatLit Word
-    | TInfixOp String
-    | TIdent String
-    | TField String
+    | TokBits [Bit]
+    | TokNatLit Word
+    | TokInfixOp String
+    | TokIdent String
+    | TokField String
 
     deriving (Eq, Show)
 
-
+data Keyword
+    = Kw
 data Bit = I | O | X deriving (Eq, Show)
 
 showBit :: Bit -> Char
