@@ -2,6 +2,77 @@ module AADL.Types
     (
     ) where
 
+import Data.Function
+import Data.Functor.Identity
+
+newtype Nat = Nat { unNat :: Integer }
+newtype BitWidth = BitWidth { unBitWidth :: Integer }
+
+data Signed = Signed | UnSigned
+
+data Field a
+    = FieldNat (a Nat)
+    | FieldGPRWidth (a GPRWidth)
+    | FieldFPRWidth (a FPRWidth)
+    | FieldGPR (Maybe (GPRWidth, Bool)) (a GPR) -- withSP :: Bool
+    | FieldFPR (Maybe FPRWidth) (a FPR)
+    | FieldArrSpec (a ArrSpec)
+    | FieldBitIx GPRWidth (a Nat)
+    | FieldLoHi (a Bool)
+    | FieldImm BitWidth Signed (a Nat)
+
+type FieldType = Field Empty
+type FieldValue = Field Identity
+
+data Empty a = Empty
+
+data CastWidth = CastWidthVariable | CastWidthFixed BitWidth
+
+castWidth :: Field a -> Maybe CastWidth
+castWidth field = case field of
+    FieldNat _             -> Just CastWidthVariable
+    FieldGPR _ _           -> f 5
+    FieldFPR _ _           -> f 5
+    FieldBitIx GPRWidthW _ -> f 5
+    FieldBitIx GPRWidthX _ -> f 6
+    FieldLoHi _            -> f 1
+    FieldImm bw _ _        -> f bw
+    _                      -> Nothing
+  where
+    f = Just . CastWidthFixed
+
+parseFieldType :: String -> Maybe FieldType
+parseFieldType str = case str of
+    "Nat"       -> t $ FieldNat
+    "GPRWidth"  -> t $ FieldGPRWidth
+    "FPRWidth"  -> t $ FieldFRPWidth
+    "Rn"        -> t $ FieldGPR Nothing
+    "Wn"        -> t $ FieldGPR (Just (GPRWidthW, False))
+    "WnOrSP"    -> t $ FieldGPR (Just (GPRWidthW, True))
+    "Xn"        -> t $ FieldGPR (Just (GPRWidthX, False))
+    "XnOrSP"    -> t $ FieldGPR (Just (GPRWidthX, True))
+    "Vn"        -> t $ FieldFPR Nothing
+    "Bn"        -> t $ FieldFPR (Just FPRWidthB)
+    "Hn"        -> t $ FieldFPR (Just FPRWidthH)
+    "Sn"        -> t $ FieldFPR (Just FPRWidthS)
+    "Dn"        -> t $ FieldFPR (Just FPRWidthD)
+    "ArrSpec"   -> t $ FieldArrSpec
+    "BitIxW"    -> t $ FieldBitIx GPRWidthW
+    "BitIxX"    -> t $ FieldBitIx GPRWidthX
+    "LoHi"      -> t $ FieldLoHi
+    'I':'m':'m':bw -> case readMaybe bw of
+        Just bitWidth | bitWidth > 0 -> t $ FieldImm (BitWidth bitWidth) UnSigned
+        _ -> Nothing
+    'S':'I':'m':'m':bw -> case readMaybe bw of
+        Just bitWidth | bitWidth > 0 -> t $ FieldImm (BitWidth bitWidth) Signed
+        _ -> Nothing
+    _ -> Nothing
+  where
+    t f = Just (t Empty)
+
+data ArrSpec = ArrSpec ArrHalfWhole ArrWidth
+data ArrHalfWhole = Half | Whole
+data ArrWidth = ArrB | ArrH | ArrS | ArrD
 
 data Rn = R0  | R1  | R2  | R3  | R4  | R5  | R6  | R7  | R8  | R9
         | R10 | R11 | R12 | R13 | R14 | R15 | R16 | R17 | R18 | R19
@@ -19,11 +90,11 @@ data WnSP = WnSP Rn | WSP
 data Width = W | X
 
 
-data Shift a = LSL a | LSR a | ASR a | ROR a
+data ShiftType = LSL | LSR | ASR | ROR
 data Amount32 = Amount32
 data Amount64 = Amount64
-data Shift32 = Shift Amount32
-data Shift64 = Shift Amount64
+data Shift32 = Shift32 ShiftType Amount32
+data Shift64 = Shift64 ShiftType Amount64
 
 
 data Extend
@@ -158,6 +229,8 @@ data Cond
     | AL
 
 data NZCV = NZCV Bool Bool Bool Bool
+
+
 
 -- 000 0110 001 IVAC
 -- 000 0110 010 ISW
