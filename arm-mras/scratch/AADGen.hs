@@ -16,28 +16,35 @@ import Data.List
 import System.FilePath
 import System.IO
 
-
 main :: IO ()
 main = void $ do
     base <- listPages root "index.xml"
     fpsimd <- listPages root "fpsimdindex.xml"
     forM base $ \path -> do
         isec <- readPage path
-        let aad = "// " ++ baseName ++ "\n\n" ++ gen (parsePage isec)
-            baseName = dropExtension (takeFileName path)
-            out = "../../aadl/aadl/base" </> baseName <.> "aad"
-        withFile out WriteMode $ \h -> hPutStr h aad
+        case parsePage isec of
+            Left _ -> return ()
+            Right p -> do
+                let baseName = dropExtension (takeFileName path)
+                    out = "../../aadl/aadl/base" </> baseName <.> "aad"
+                withFile out WriteMode $ \h -> hPutStr h (gen p)
+    forM fpsimd $ \path -> do
+        isec <- readPage path
+        case parsePage isec of
+            Left _ -> return ()
+            Right p -> do
+                let baseName = dropExtension (takeFileName path)
+                    out = "../../aadl/aadl/fpsimd" </> baseName <.> "aad"
+                withFile out WriteMode $ \h -> hPutStr h (gen p)
 
-gen :: Either AliasPage Page -> String
-gen ep = init (unlines tops)
+gen :: Page -> String
+gen (Page pid _ clps _) = init (unlines (concatMap (f . fst) clps))
   where
-    tops = case ep of
-        Left (AliasPage pid _ cl) -> f cl
-        Right (Page pid _ clps _) -> concatMap (f . fst) clps
     f (Class _ _ _ encs) = map g encs
     g (Encoding eid _ tmplt _) = block eid tmplt
     block eid tmplt = unlines
-        [ "insn " ++ eid ++ " { // " ++ tmplt
+        [ "// " ++ tmplt
+        , "insn " ++ eid ++ " {"
         , "    "
         , "}"
         ]
