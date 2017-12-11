@@ -1,4 +1,0 @@
-// UMULL{2}  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.<Ts>[<index>]
-insn UMULL_asimdelem_L {
-    
-}

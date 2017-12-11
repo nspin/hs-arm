@@ -1,4 +1,0 @@
-// DCPS2  {#<imm>}
-insn DCPS2_DC_exception {
-    imm UInt16 in imm16
-}

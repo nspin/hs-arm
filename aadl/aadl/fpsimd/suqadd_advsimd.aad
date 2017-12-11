@@ -1,9 +1,0 @@
-// SUQADD  <V><d>, <V><n>
-insn SUQADD_asisdmisc_R {
-    
-}
-
-// SUQADD  <Vd>.<T>, <Vn>.<T>
-insn SUQADD_asimdmisc_R {
-    
-}

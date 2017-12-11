@@ -1,9 +1,0 @@
-// SQDMLAL  <Va><d>, <Vb><n>, <Vm>.<Ts>[<index>]
-insn SQDMLAL_asisdelem_L {
-    
-}
-
-// SQDMLAL{2}  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.<Ts>[<index>]
-insn SQDMLAL_asimdelem_L {
-    
-}

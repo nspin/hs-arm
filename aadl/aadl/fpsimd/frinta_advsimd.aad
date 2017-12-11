@@ -1,9 +1,0 @@
-// FRINTA  <Vd>.<T>, <Vn>.<T>
-insn FRINTA_asimdmiscfp16_R {
-    
-}
-
-// FRINTA  <Vd>.<T>, <Vn>.<T>
-insn FRINTA_asimdmisc_R {
-    
-}

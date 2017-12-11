@@ -1,9 +1,0 @@
-// DUP  <V><d>, <Vn>.<T>[<index>]
-insn DUP_asisdone_only {
-    
-}
-
-// DUP  <Vd>.<T>, <Vn>.<Ts>[<index>]
-insn DUP_asimdins_DV_v {
-    
-}

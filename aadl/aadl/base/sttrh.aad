@@ -1,4 +1,0 @@
-// STTRH  <Wt>, [<Xn|SP>{, #<simm>}]
-insn STTRH_32_ldst_unpriv {
-    $wt; $xN; $simm
-}

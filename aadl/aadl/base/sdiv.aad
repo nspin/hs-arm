@@ -1,9 +1,0 @@
-// SDIV  <Wd>, <Wn>, <Wm>
-insn SDIV_32_dp_2src {
-    $wdnm
-}
-
-// SDIV  <Xd>, <Xn>, <Xm>
-insn SDIV_64_dp_2src {
-    $xdnm
-}

@@ -1,9 +1,0 @@
-// USHR  <V><d>, <V><n>, #<shift>
-insn USHR_asisdshf_R {
-    
-}
-
-// USHR  <Vd>.<T>, <Vn>.<T>, #<shift>
-insn USHR_asimdshf_R {
-    
-}

@@ -1,4 +1,0 @@
-// ZIP2  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn ZIP2_asimdperm_only {
-    
-}

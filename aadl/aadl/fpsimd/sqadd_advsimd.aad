@@ -1,9 +1,0 @@
-// SQADD  <V><d>, <V><n>, <V><m>
-insn SQADD_asisdsame_only {
-    
-}
-
-// SQADD  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn SQADD_asimdsame_only {
-    
-}

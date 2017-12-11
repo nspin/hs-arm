@@ -1,9 +1,0 @@
-// UQSUB  <V><d>, <V><n>, <V><m>
-insn UQSUB_asisdsame_only {
-    
-}
-
-// UQSUB  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn UQSUB_asimdsame_only {
-    
-}

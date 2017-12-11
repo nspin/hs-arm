@@ -1,5 +1,0 @@
-// ADRP  <Xd>, <label>
-insn ADRP_only_pcreladdr {
-    $xd
-    label Int in immhi:immlo
-}

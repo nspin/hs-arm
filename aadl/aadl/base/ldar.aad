@@ -1,9 +1,0 @@
-// LDAR  <Wt>, [<Xn|SP>{,#0}]
-insn LDAR_LR32_ldstexcl {
-    $wt; $xN
-}
-
-// LDAR  <Xt>, [<Xn|SP>{,#0}]
-insn LDAR_LR64_ldstexcl {
-    $xt; $xN
-}

@@ -1,9 +1,0 @@
-// ORR  <Vd>.<T>, #<imm8>{, LSL #<amount>}
-insn ORR_asimdimm_L_hl {
-    
-}
-
-// ORR  <Vd>.<T>, #<imm8>{, LSL #<amount>}
-insn ORR_asimdimm_L_sl {
-    
-}

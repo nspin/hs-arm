@@ -1,4 +1,0 @@
-// STURH  <Wt>, [<Xn|SP>{, #<simm>}]
-insn STURH_32_ldst_unscaled {
-    $wt; $xN; $simm
-}

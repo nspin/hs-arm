@@ -1,9 +1,0 @@
-// CLS  <Wd>, <Wn>
-insn CLS_32_dp_1src {
-    $wdn
-}
-
-// CLS  <Xd>, <Xn>
-insn CLS_64_dp_1src {
-    $xdn
-}

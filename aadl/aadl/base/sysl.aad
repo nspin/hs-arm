@@ -1,4 +1,0 @@
-// SYSL  <Xt>, #<op1>, <Cn>, <Cm>, #<op2>
-insn SYSL_RC_system {
-    
-}

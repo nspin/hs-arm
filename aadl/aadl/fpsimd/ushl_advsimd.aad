@@ -1,9 +1,0 @@
-// USHL  <V><d>, <V><n>, <V><m>
-insn USHL_asisdsame_only {
-    
-}
-
-// USHL  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn USHL_asimdsame_only {
-    
-}

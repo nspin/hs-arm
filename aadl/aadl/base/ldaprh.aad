@@ -1,4 +1,0 @@
-// LDAPRH  <Wt>, [<Xn|SP> {,#0}]
-insn LDAPRH_32L_memop {
-    $wt; $xN
-}

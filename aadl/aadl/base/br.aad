@@ -1,4 +1,0 @@
-// BR  <Xn>
-insn BR_64_branch_reg {
-    $xn
-}

@@ -1,4 +1,0 @@
-// LDARB  <Wt>, [<Xn|SP>{,#0}]
-insn LDARB_LR32_ldstexcl {
-    
-}

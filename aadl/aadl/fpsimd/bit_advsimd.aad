@@ -1,4 +1,0 @@
-// BIT  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn BIT_asimdsame_only {
-    
-}

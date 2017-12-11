@@ -1,9 +1,0 @@
-// LDXR  <Wt>, [<Xn|SP>{,#0}]
-insn LDXR_LR32_ldstexcl {
-    $wt; $xN
-}
-
-// LDXR  <Xt>, [<Xn|SP>{,#0}]
-insn LDXR_LR64_ldstexcl {
-    $xt; $xN
-}

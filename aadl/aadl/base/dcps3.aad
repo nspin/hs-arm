@@ -1,4 +1,0 @@
-// DCPS3  {#<imm>}
-insn DCPS3_DC_exception {
-    imm UInt16 in imm16
-}

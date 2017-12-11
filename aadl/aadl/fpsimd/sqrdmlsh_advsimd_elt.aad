@@ -1,9 +1,0 @@
-// SQRDMLSH  <V><d>, <V><n>, <Vm>.<Ts>[<index>]
-insn SQRDMLSH_asisdelem_R {
-    
-}
-
-// SQRDMLSH  <Vd>.<T>, <Vn>.<T>, <Vm>.<Ts>[<index>]
-insn SQRDMLSH_asimdelem_R {
-    
-}

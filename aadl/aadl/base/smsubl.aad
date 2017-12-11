@@ -1,5 +1,0 @@
-// SMSUBL  <Xd>, <Wn>, <Wm>, <Xa>
-insn SMSUBL_64WA_dp_3src {
-    $xd; $wn; $wm
-    xa Xn in Ra
-}

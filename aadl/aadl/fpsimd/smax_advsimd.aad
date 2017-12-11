@@ -1,4 +1,0 @@
-// SMAX  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn SMAX_asimdsame_only {
-    
-}

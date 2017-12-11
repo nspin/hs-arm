@@ -1,9 +1,0 @@
-// SQSHRUN  <Vb><d>, <Va><n>, #<shift>
-insn SQSHRUN_asisdshf_N {
-    
-}
-
-// SQSHRUN{2}  <Vd>.<Tb>, <Vn>.<Ta>, #<shift>
-insn SQSHRUN_asimdshf_N {
-    
-}

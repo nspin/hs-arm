@@ -1,9 +1,0 @@
-// FMAXNMV  <V><d>, <Vn>.<T>
-insn FMAXNMV_asimdall_only_H {
-    
-}
-
-// FMAXNMV  <V><d>, <Vn>.<T>
-insn FMAXNMV_asimdall_only_SD {
-    
-}

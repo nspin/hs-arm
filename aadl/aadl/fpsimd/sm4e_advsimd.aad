@@ -1,4 +1,0 @@
-// SM4E  <Vd>.4S, <Vn>.4S
-insn SM4E_VV4_cryptosha512_2 {
-    
-}

@@ -1,9 +1,0 @@
-// CBZ  <Wt>, <label>
-insn CBZ_32_compbranch {
-    label Int19 in imm19
-}
-
-// CBZ  <Xt>, <label>
-insn CBZ_64_compbranch {
-    label Int19 in imm19
-}

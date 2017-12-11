@@ -1,4 +1,0 @@
-// STLXRB  <Ws>, <Wt>, [<Xn|SP>{,#0}]
-insn STLXRB_SR32_ldstexcl {
-    $wst; $xN
-}

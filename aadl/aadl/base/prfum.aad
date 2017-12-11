@@ -1,6 +1,0 @@
-// PRFUM (<prfop>|#<imm5>), [<Xn|SP>{, #<simm>}]
-insn PRFUM_P_ldst_unscaled {
-    #TODO
-    $xN
-    $simm
-}

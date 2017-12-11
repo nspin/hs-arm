@@ -1,4 +1,0 @@
-// UDOT  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.4B[<index>]
-insn UDOT_asimdelem_D {
-    
-}

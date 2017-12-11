@@ -1,4 +1,0 @@
-// ADDP  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn ADDP_asimdsame_only {
-    
-}

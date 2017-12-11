@@ -1,4 +1,0 @@
-// UMAXV  <V><d>, <Vn>.<T>
-insn UMAXV_asimdall_only {
-    
-}

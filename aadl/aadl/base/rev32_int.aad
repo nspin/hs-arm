@@ -1,4 +1,0 @@
-// REV32  <Xd>, <Xn>
-insn REV32_64_dp_1src {
-    $xdn
-}

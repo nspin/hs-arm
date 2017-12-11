@@ -1,9 +1,0 @@
-// FMINNMP  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn FMINNMP_asimdsamefp16_only {
-    
-}
-
-// FMINNMP  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn FMINNMP_asimdsame_only {
-    
-}

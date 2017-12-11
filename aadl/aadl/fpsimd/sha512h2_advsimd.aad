@@ -1,4 +1,0 @@
-// SHA512H2  <Qd>, <Qn>, <Vm>.2D
-insn SHA512H2_QQV_cryptosha512_3 {
-    
-}

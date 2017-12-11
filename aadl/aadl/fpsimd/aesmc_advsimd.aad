@@ -1,4 +1,0 @@
-// AESMC  <Vd>.16B, <Vn>.16B
-insn AESMC_B_cryptoaes {
-    
-}

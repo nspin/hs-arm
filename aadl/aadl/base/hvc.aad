@@ -1,4 +1,0 @@
-// HVC  #<imm>
-insn HVC_EX_exception {
-    imm UInt16 in imm16
-}

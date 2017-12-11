@@ -1,4 +1,0 @@
-// BLR  <Xn>
-insn BLR_64_branch_reg {
-    $xn
-}

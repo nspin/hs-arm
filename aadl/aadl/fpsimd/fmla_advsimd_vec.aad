@@ -1,9 +1,0 @@
-// FMLA  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn FMLA_asimdsamefp16_only {
-    
-}
-
-// FMLA  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn FMLA_asimdsame_only {
-    
-}

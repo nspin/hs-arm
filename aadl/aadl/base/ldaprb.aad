@@ -1,4 +1,0 @@
-// LDAPRB  <Wt>, [<Xn|SP> {,#0}]
-insn LDAPRB_32L_memop {
-    $wt; $xN
-}

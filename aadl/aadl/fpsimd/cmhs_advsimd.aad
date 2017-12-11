@@ -1,9 +1,0 @@
-// CMHS  <V><d>, <V><n>, <V><m>
-insn CMHS_asisdsame_only {
-    
-}
-
-// CMHS  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn CMHS_asimdsame_only {
-    
-}

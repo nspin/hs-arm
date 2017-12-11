@@ -1,4 +1,0 @@
-// MUL  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn MUL_asimdsame_only {
-    
-}

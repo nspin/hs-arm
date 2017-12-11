@@ -1,9 +1,0 @@
-// BIC  <Vd>.<T>, #<imm8>{, LSL #<amount>}
-insn BIC_asimdimm_L_hl {
-    
-}
-
-// BIC  <Vd>.<T>, #<imm8>{, LSL #<amount>}
-insn BIC_asimdimm_L_sl {
-    
-}

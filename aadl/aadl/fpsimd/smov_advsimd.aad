@@ -1,9 +1,0 @@
-// SMOV  <Wd>, <Vn>.<Ts>[<index>]
-insn SMOV_asimdins_W_w {
-    
-}
-
-// SMOV  <Xd>, <Vn>.<Ts>[<index>]
-insn SMOV_asimdins_X_x {
-    
-}

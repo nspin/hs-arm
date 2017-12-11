@@ -1,9 +1,0 @@
-// SQSUB  <V><d>, <V><n>, <V><m>
-insn SQSUB_asisdsame_only {
-    
-}
-
-// SQSUB  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn SQSUB_asimdsame_only {
-    
-}

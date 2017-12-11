@@ -1,9 +1,0 @@
-// UQSHL  <V><d>, <V><n>, #<shift>
-insn UQSHL_asisdshf_R {
-    
-}
-
-// UQSHL  <Vd>.<T>, <Vn>.<T>, #<shift>
-insn UQSHL_asimdshf_R {
-    
-}

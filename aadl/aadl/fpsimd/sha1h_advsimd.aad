@@ -1,4 +1,0 @@
-// SHA1H  <Sd>, <Sn>
-insn SHA1H_SS_cryptosha2 {
-    
-}

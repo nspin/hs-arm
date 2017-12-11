@@ -1,9 +1,0 @@
-// RORV  <Wd>, <Wn>, <Wm>
-insn RORV_32_dp_2src {
-    $wdnm
-}
-
-// RORV  <Xd>, <Xn>, <Xm>
-insn RORV_64_dp_2src {
-    $xdnm
-}

@@ -1,9 +1,0 @@
-// ADD  <V><d>, <V><n>, <V><m>
-insn ADD_asisdsame_only {
-    
-}
-
-// ADD  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn ADD_asimdsame_only {
-    
-}

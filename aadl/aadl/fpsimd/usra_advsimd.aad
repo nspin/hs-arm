@@ -1,9 +1,0 @@
-// USRA  <V><d>, <V><n>, #<shift>
-insn USRA_asisdshf_R {
-    
-}
-
-// USRA  <Vd>.<T>, <Vn>.<T>, #<shift>
-insn USRA_asimdshf_R {
-    
-}

@@ -1,9 +1,0 @@
-// SUB  <Wd|WSP>, <Wn|WSP>, #<imm>{, <shift>}
-insn SUB_32_addsub_imm {
-    
-}
-
-// SUB  <Xd|SP>, <Xn|SP>, #<imm>{, <shift>}
-insn SUB_64_addsub_imm {
-    
-}

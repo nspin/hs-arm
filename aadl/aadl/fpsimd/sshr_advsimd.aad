@@ -1,9 +1,0 @@
-// SSHR  <V><d>, <V><n>, #<shift>
-insn SSHR_asisdshf_R {
-    
-}
-
-// SSHR  <Vd>.<T>, <Vn>.<T>, #<shift>
-insn SSHR_asimdshf_R {
-    
-}

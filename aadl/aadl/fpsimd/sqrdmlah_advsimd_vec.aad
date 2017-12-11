@@ -1,9 +1,0 @@
-// SQRDMLAH  <V><d>, <V><n>, <V><m>
-insn SQRDMLAH_asisdsame2_only {
-    
-}
-
-// SQRDMLAH  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn SQRDMLAH_asimdsame2_only {
-    
-}

@@ -1,9 +1,0 @@
-// SSRA  <V><d>, <V><n>, #<shift>
-insn SSRA_asisdshf_R {
-    
-}
-
-// SSRA  <Vd>.<T>, <Vn>.<T>, #<shift>
-insn SSRA_asimdshf_R {
-    
-}

@@ -1,4 +1,0 @@
-// INS  <Vd>.<Ts>[<index>], <R><n>
-insn INS_asimdins_IR_r {
-    
-}

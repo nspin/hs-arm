@@ -1,9 +1,0 @@
-// AUTDA  <Xd>, <Xn|SP>
-insn AUTDA_64P_dp_1src {
-    $xdN
-}
-
-// AUTDZA  <Xd>
-insn AUTDZA_64Z_dp_1src {
-    $xd
-}

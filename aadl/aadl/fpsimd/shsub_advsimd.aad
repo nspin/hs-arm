@@ -1,4 +1,0 @@
-// SHSUB  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn SHSUB_asimdsame_only {
-    
-}

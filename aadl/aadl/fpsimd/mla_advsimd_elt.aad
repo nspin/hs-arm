@@ -1,4 +1,0 @@
-// MLA  <Vd>.<T>, <Vn>.<T>, <Vm>.<Ts>[<index>]
-insn MLA_asimdelem_R {
-    
-}

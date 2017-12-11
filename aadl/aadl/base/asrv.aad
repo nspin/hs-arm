@@ -1,9 +1,0 @@
-// ASRV  <Wd>, <Wn>, <Wm>
-insn ASRV_32_dp_2src {
-    $wdnm
-}
-
-// ASRV  <Xd>, <Xn>, <Xm>
-insn ASRV_64_dp_2src {
-    $xdnm
-}

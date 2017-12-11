@@ -1,4 +1,0 @@
-// SHA256H2  <Qd>, <Qn>, <Vm>.4S
-insn SHA256H2_QQV_cryptosha3 {
-    
-}

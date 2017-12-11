@@ -1,9 +1,0 @@
-// LSRV  <Wd>, <Wn>, <Wm>
-insn LSRV_32_dp_2src {
-    $wdnm
-}
-
-// LSRV  <Xd>, <Xn>, <Xm>
-insn LSRV_64_dp_2src {
-    $xdnm
-}

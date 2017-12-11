@@ -1,9 +1,0 @@
-// FCVTXN  <Vb><d>, <Va><n>
-insn FCVTXN_asisdmisc_N {
-    
-}
-
-// FCVTXN{2}  <Vd>.<Tb>, <Vn>.<Ta>
-insn FCVTXN_asimdmisc_N {
-    
-}

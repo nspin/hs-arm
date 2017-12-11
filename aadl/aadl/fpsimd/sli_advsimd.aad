@@ -1,9 +1,0 @@
-// SLI  <V><d>, <V><n>, #<shift>
-insn SLI_asisdshf_R {
-    
-}
-
-// SLI  <Vd>.<T>, <Vn>.<T>, #<shift>
-insn SLI_asimdshf_R {
-    
-}

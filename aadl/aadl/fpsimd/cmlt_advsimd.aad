@@ -1,9 +1,0 @@
-// CMLT  <V><d>, <V><n>, #0
-insn CMLT_asisdmisc_Z {
-    
-}
-
-// CMLT  <Vd>.<T>, <Vn>.<T>, #0
-insn CMLT_asimdmisc_Z {
-    
-}

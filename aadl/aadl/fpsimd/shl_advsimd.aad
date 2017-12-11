@@ -1,9 +1,0 @@
-// SHL  <V><d>, <V><n>, #<shift>
-insn SHL_asisdshf_R {
-    
-}
-
-// SHL  <Vd>.<T>, <Vn>.<T>, #<shift>
-insn SHL_asimdshf_R {
-    
-}

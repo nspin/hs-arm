@@ -1,4 +1,0 @@
-// UZP2  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn UZP2_asimdperm_only {
-    
-}

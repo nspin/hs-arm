@@ -1,4 +1,0 @@
-// EXT  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>, #<index>
-insn EXT_asimdext_only {
-    
-}

@@ -1,4 +1,0 @@
-// SVC  #<imm>
-insn SVC_EX_exception {
-    
-}

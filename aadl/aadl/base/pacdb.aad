@@ -1,9 +1,0 @@
-// PACDB  <Xd>, <Xn|SP>
-insn PACDB_64P_dp_1src {
-    $xdN
-}
-
-// PACDZB  <Xd>
-insn PACDZB_64Z_dp_1src {
-    $xd
-}

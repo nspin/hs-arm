@@ -1,4 +1,0 @@
-// LDTRSW  <Xt>, [<Xn|SP>{, #<simm>}]
-insn LDTRSW_64_ldst_unpriv {
-    $xt; $xN; $simm
-}

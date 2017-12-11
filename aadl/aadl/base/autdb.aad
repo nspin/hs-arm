@@ -1,9 +1,0 @@
-// AUTDB  <Xd>, <Xn|SP>
-insn AUTDB_64P_dp_1src {
-    $xdN
-}
-
-// AUTDZB  <Xd>
-insn AUTDZB_64Z_dp_1src {
-    $xd
-}

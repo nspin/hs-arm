@@ -1,4 +1,0 @@
-// STTRB  <Wt>, [<Xn|SP>{, #<simm>}]
-insn STTRB_32_ldst_unpriv {
-    $wt; $xN; $simm
-}

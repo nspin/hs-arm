@@ -1,4 +1,0 @@
-// UADDW{2}  <Vd>.<Ta>, <Vn>.<Ta>, <Vm>.<Tb>
-insn UADDW_asimddiff_W {
-    
-}

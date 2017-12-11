@@ -1,4 +1,0 @@
-// SM3TT1B  <Vd>.4S, <Vn>.4S, <Vm>.S[<imm2>]
-insn SM3TT1B_VVV4_crypto3_imm2 {
-    
-}

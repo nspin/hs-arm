@@ -1,4 +1,0 @@
-// TBZ  <R><t>, #<imm>, <label>
-insn TBZ_only_testbranch {
-    
-}

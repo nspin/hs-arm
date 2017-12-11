@@ -1,9 +1,0 @@
-// LDURSH  <Wt>, [<Xn|SP>{, #<simm>}]
-insn LDURSH_32_ldst_unscaled {
-    $wst; $xN; $simm
-}
-
-// LDURSH  <Xt>, [<Xn|SP>{, #<simm>}]
-insn LDURSH_64_ldst_unscaled {
-    $xst; $xN; $simm
-}

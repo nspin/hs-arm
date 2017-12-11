@@ -1,9 +1,0 @@
-// ADCS  <Wd>, <Wn>, <Wm>
-insn ADCS_32_addsub_carry as ADCS_32 {
-    $wdnm
-}
-
-// ADCS  <Xd>, <Xn>, <Xm>
-insn ADCS_64_addsub_carry as ADCS_64 {
-    $xdnm
-}

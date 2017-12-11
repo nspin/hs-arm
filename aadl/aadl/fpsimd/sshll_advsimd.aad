@@ -1,4 +1,0 @@
-// SSHLL{2}  <Vd>.<Ta>, <Vn>.<Tb>, #<shift>
-insn SSHLL_asimdshf_L {
-    
-}

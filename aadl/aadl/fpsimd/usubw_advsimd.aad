@@ -1,4 +1,0 @@
-// USUBW{2}  <Vd>.<Ta>, <Vn>.<Ta>, <Vm>.<Tb>
-insn USUBW_asimddiff_W {
-    
-}

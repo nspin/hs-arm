@@ -1,9 +1,0 @@
-// CMGE  <V><d>, <V><n>, <V><m>
-insn CMGE_asisdsame_only {
-    
-}
-
-// CMGE  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn CMGE_asimdsame_only {
-    
-}

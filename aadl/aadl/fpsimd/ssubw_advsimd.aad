@@ -1,4 +1,0 @@
-// SSUBW{2}  <Vd>.<Ta>, <Vn>.<Ta>, <Vm>.<Tb>
-insn SSUBW_asimddiff_W {
-    
-}

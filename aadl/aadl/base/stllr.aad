@@ -1,9 +1,0 @@
-// STLLR  <Wt>, [<Xn|SP>{,#0}]
-insn STLLR_SL32_ldstexcl {
-    $wt; $xN
-}
-
-// STLLR  <Xt>, [<Xn|SP>{,#0}]
-insn STLLR_SL64_ldstexcl {
-    $xt; $xN
-}

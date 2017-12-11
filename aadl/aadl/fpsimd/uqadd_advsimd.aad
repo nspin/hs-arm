@@ -1,9 +1,0 @@
-// UQADD  <V><d>, <V><n>, <V><m>
-insn UQADD_asisdsame_only {
-    
-}
-
-// UQADD  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn UQADD_asimdsame_only {
-    
-}

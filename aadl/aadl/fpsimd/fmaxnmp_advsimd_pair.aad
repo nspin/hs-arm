@@ -1,9 +1,0 @@
-// FMAXNMP  <V><d>, <Vn>.<T>
-insn FMAXNMP_asisdpair_only_H {
-    
-}
-
-// FMAXNMP  <V><d>, <Vn>.<T>
-insn FMAXNMP_asisdpair_only_SD {
-    
-}

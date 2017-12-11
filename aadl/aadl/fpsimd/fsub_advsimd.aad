@@ -1,9 +1,0 @@
-// FSUB  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn FSUB_asimdsamefp16_only {
-    
-}
-
-// FSUB  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn FSUB_asimdsame_only {
-    
-}

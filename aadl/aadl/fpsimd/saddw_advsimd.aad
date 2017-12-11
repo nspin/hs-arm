@@ -1,4 +1,0 @@
-// SADDW{2}  <Vd>.<Ta>, <Vn>.<Ta>, <Vm>.<Tb>
-insn SADDW_asimddiff_W {
-    
-}

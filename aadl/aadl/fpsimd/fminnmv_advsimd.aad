@@ -1,9 +1,0 @@
-// FMINNMV  <V><d>, <Vn>.<T>
-insn FMINNMV_asimdall_only_H {
-    
-}
-
-// FMINNMV  <V><d>, <Vn>.<T>
-insn FMINNMV_asimdall_only_SD {
-    
-}

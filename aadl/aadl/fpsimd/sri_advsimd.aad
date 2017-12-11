@@ -1,9 +1,0 @@
-// SRI  <V><d>, <V><n>, #<shift>
-insn SRI_asisdshf_R {
-    
-}
-
-// SRI  <Vd>.<T>, <Vn>.<T>, #<shift>
-insn SRI_asimdshf_R {
-    
-}

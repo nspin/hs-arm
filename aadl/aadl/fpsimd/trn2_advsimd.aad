@@ -1,4 +1,0 @@
-// TRN2  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn TRN2_asimdperm_only {
-    
-}

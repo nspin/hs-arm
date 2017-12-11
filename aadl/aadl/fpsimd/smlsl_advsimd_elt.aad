@@ -1,4 +1,0 @@
-// SMLSL{2}  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.<Ts>[<index>]
-insn SMLSL_asimdelem_L {
-    
-}

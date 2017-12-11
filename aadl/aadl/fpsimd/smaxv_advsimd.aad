@@ -1,4 +1,0 @@
-// SMAXV  <V><d>, <Vn>.<T>
-insn SMAXV_asimdall_only {
-    
-}

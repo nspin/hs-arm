@@ -1,9 +1,0 @@
-// SBCS  <Wd>, <Wn>, <Wm>
-insn SBCS_32_addsub_carry {
-    $wdnm
-}
-
-// SBCS  <Xd>, <Xn>, <Xm>
-insn SBCS_64_addsub_carry {
-    $xdnm
-}

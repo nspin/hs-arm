@@ -1,9 +1,0 @@
-// FMAX  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn FMAX_asimdsamefp16_only {
-    
-}
-
-// FMAX  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn FMAX_asimdsame_only {
-    
-}

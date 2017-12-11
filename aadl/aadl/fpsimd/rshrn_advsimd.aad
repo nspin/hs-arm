@@ -1,4 +1,0 @@
-// RSHRN{2}  <Vd>.<Tb>, <Vn>.<Ta>, #<shift>
-insn RSHRN_asimdshf_N {
-    
-}

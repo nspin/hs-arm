@@ -1,4 +1,0 @@
-// SHA1SU1  <Vd>.4S, <Vn>.4S
-insn SHA1SU1_VV_cryptosha2 {
-    
-}

@@ -1,9 +1,0 @@
-// REV16  <Wd>, <Wn>
-insn REV16_32_dp_1src {
-    $wdn
-}
-
-// REV16  <Xd>, <Xn>
-insn REV16_64_dp_1src {
-    $xdn
-}

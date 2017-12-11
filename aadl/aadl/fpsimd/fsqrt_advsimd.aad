@@ -1,9 +1,0 @@
-// FSQRT  <Vd>.<T>, <Vn>.<T>
-insn FSQRT_asimdmiscfp16_R {
-    
-}
-
-// FSQRT  <Vd>.<T>, <Vn>.<T>
-insn FSQRT_asimdmisc_R {
-    
-}

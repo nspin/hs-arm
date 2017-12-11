@@ -1,9 +1,0 @@
-// SUBS  <Wd>, <Wn|WSP>, <Wm>{, <extend> {#<amount>}}
-insn SUBS_32S_addsub_ext {
-    
-}
-
-// SUBS  <Xd>, <Xn|SP>, <R><m>{, <extend> {#<amount>}}
-insn SUBS_64S_addsub_ext {
-    
-}

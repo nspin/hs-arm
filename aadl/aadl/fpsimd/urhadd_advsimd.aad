@@ -1,4 +1,0 @@
-// URHADD  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn URHADD_asimdsame_only {
-    
-}

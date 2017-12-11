@@ -1,5 +1,0 @@
-// PRFM  (<prfop>|#<imm5>), <label>
-insn PRFM_P_loadlit {
-    #TODO
-    label Int19 in imm19
-}

@@ -1,9 +1,0 @@
-// UCVTF  <V><d>, <V><n>, #<fbits>
-insn UCVTF_asisdshf_C {
-    
-}
-
-// UCVTF  <Vd>.<T>, <Vn>.<T>, #<fbits>
-insn UCVTF_asimdshf_C {
-    
-}

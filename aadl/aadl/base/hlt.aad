@@ -1,4 +1,0 @@
-// HLT  #<imm>
-insn HLT_EX_exception {
-    imm UInt16 in imm16
-}

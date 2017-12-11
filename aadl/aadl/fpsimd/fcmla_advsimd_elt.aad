@@ -1,9 +1,0 @@
-// FCMLA  <Vd>.<T>, <Vn>.<T>, <Vm>.<Ts>[<index>], #<rotate>
-insn FCMLA_asimdelem_C_H {
-    
-}
-
-// FCMLA  <Vd>.<T>, <Vn>.<T>, <Vm>.<Ts>[<index>], #<rotate>
-insn FCMLA_asimdelem_C_S {
-    
-}

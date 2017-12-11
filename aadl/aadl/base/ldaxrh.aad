@@ -1,4 +1,0 @@
-// LDAXRH  <Wt>, [<Xn|SP>{,#0}]
-insn LDAXRH_LR32_ldstexcl {
-    $wt; $xN
-}

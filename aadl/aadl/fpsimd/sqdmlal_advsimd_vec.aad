@@ -1,9 +1,0 @@
-// SQDMLAL  <Va><d>, <Vb><n>, <Vb><m>
-insn SQDMLAL_asisddiff_only {
-    
-}
-
-// SQDMLAL{2}  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.<Tb>
-insn SQDMLAL_asimddiff_L {
-    
-}

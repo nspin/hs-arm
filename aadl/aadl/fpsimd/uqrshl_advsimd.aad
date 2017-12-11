@@ -1,9 +1,0 @@
-// UQRSHL  <V><d>, <V><n>, <V><m>
-insn UQRSHL_asisdsame_only {
-    
-}
-
-// UQRSHL  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn UQRSHL_asimdsame_only {
-    
-}

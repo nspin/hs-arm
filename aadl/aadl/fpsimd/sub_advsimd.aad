@@ -1,9 +1,0 @@
-// SUB  <V><d>, <V><n>, <V><m>
-insn SUB_asisdsame_only {
-    
-}
-
-// SUB  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn SUB_asimdsame_only {
-    
-}

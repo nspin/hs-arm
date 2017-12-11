@@ -1,9 +1,0 @@
-// SQXTN  <Vb><d>, <Va><n>
-insn SQXTN_asisdmisc_N {
-    
-}
-
-// SQXTN{2}  <Vd>.<Tb>, <Vn>.<Ta>
-insn SQXTN_asimdmisc_N {
-    
-}

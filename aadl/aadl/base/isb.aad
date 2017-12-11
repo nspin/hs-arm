@@ -1,4 +1,0 @@
-// ISB  {<option>|#<imm>}
-insn ISB_BI_system {
-    #TODO
-}

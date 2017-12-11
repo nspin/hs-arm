@@ -1,4 +1,0 @@
-// SMULH  <Xd>, <Xn>, <Xm>
-insn SMULH_64_dp_3src {
-    $xdnm
-}

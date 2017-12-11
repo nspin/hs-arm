@@ -1,4 +1,0 @@
-// SHA1P  <Qd>, <Sn>, <Vm>.4S
-insn SHA1P_QSV_cryptosha3 {
-    
-}

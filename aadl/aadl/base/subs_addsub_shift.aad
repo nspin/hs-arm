@@ -1,9 +1,0 @@
-// SUBS  <Wd>, <Wn>, <Wm>{, <shift> #<amount>}
-insn SUBS_32_addsub_shift {
-    
-}
-
-// SUBS  <Xd>, <Xn>, <Xm>{, <shift> #<amount>}
-insn SUBS_64_addsub_shift {
-    
-}

@@ -1,4 +1,0 @@
-// FCADD  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>, #<rotate>
-insn FCADD_asimdsame2_C {
-    
-}

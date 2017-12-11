@@ -1,4 +1,0 @@
-// MUL  <Vd>.<T>, <Vn>.<T>, <Vm>.<Ts>[<index>]
-insn MUL_asimdelem_R {
-    
-}

@@ -1,9 +1,0 @@
-// FMINP  <V><d>, <Vn>.<T>
-insn FMINP_asisdpair_only_H {
-    
-}
-
-// FMINP  <V><d>, <Vn>.<T>
-insn FMINP_asisdpair_only_SD {
-    
-}

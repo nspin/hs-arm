@@ -1,9 +1,0 @@
-// ADC  <Wd>, <Wn>, <Wm>
-insn ADC_32_addsub_carry as ADC_32 {
-    $wdnm
-}
-
-// ADC  <Xd>, <Xn>, <Xm>
-insn ADC_64_addsub_carry as ADC_64 {
-    $xdnm
-}

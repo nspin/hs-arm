@@ -1,9 +1,0 @@
-// FMLS  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn FMLS_asimdsamefp16_only {
-    
-}
-
-// FMLS  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn FMLS_asimdsame_only {
-    
-}

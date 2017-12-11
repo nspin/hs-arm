@@ -1,5 +1,0 @@
-// MSR  (<systemreg>|S<op0>_<op1>_<Cn>_<Cm>_<op2>), <Xt>
-insn MSR_SR_system {
-    #TODO
-    $xt
-}

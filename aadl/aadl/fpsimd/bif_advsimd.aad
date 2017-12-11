@@ -1,4 +1,0 @@
-// BIF  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn BIF_asimdsame_only {
-    
-}

@@ -1,4 +1,0 @@
-// REV32  <Vd>.<T>, <Vn>.<T>
-insn REV32_asimdmisc_R {
-    
-}

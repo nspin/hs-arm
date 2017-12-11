@@ -1,4 +1,0 @@
-// SHA512SU0  <Vd>.2D, <Vn>.2D
-insn SHA512SU0_VV2_cryptosha512_2 {
-    
-}

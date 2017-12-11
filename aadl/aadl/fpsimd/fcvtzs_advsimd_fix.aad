@@ -1,9 +1,0 @@
-// FCVTZS  <V><d>, <V><n>, #<fbits>
-insn FCVTZS_asisdshf_C {
-    
-}
-
-// FCVTZS  <Vd>.<T>, <Vn>.<T>, #<fbits>
-insn FCVTZS_asimdshf_C {
-    
-}

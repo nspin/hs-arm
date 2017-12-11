@@ -1,4 +1,0 @@
-// SHLL{2}  <Vd>.<Ta>, <Vn>.<Tb>, #<shift>
-insn SHLL_asimdmisc_S {
-    
-}

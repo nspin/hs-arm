@@ -1,4 +1,0 @@
-// USHLL{2}  <Vd>.<Ta>, <Vn>.<Tb>, #<shift>
-insn USHLL_asimdshf_L {
-    
-}

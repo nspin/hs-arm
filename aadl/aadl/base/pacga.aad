@@ -1,4 +1,0 @@
-// PACGA  <Xd>, <Xn>, <Xm|SP>
-insn PACGA_64P_dp_2src {
-    $xdnM
-}

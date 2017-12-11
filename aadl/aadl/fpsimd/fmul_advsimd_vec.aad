@@ -1,9 +1,0 @@
-// FMUL  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn FMUL_asimdsamefp16_only {
-    
-}
-
-// FMUL  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn FMUL_asimdsame_only {
-    
-}

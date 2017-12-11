@@ -1,9 +1,0 @@
-// SCVTF  <V><d>, <V><n>, #<fbits>
-insn SCVTF_asisdshf_C {
-    
-}
-
-// SCVTF  <Vd>.<T>, <Vn>.<T>, #<fbits>
-insn SCVTF_asimdshf_C {
-    
-}

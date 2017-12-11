@@ -1,9 +1,0 @@
-// FNEG  <Vd>.<T>, <Vn>.<T>
-insn FNEG_asimdmiscfp16_R {
-    
-}
-
-// FNEG  <Vd>.<T>, <Vn>.<T>
-insn FNEG_asimdmisc_R {
-    
-}

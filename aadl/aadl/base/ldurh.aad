@@ -1,4 +1,0 @@
-// LDURH  <Wt>, [<Xn|SP>{, #<simm>}]
-insn LDURH_32_ldst_unscaled {
-    $wt; $xN; $simm
-}

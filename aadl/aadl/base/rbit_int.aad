@@ -1,9 +1,0 @@
-// RBIT  <Wd>, <Wn>
-insn RBIT_32_dp_1src {
-    $wdn
-}
-
-// RBIT  <Xd>, <Xn>
-insn RBIT_64_dp_1src {
-    $xdn
-}

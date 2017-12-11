@@ -1,4 +1,0 @@
-// BCAX  <Vd>.16B, <Vn>.16B, <Vm>.16B, <Va>.16B
-insn BCAX_VVV16_crypto4 {
-    
-}

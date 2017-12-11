@@ -1,9 +1,0 @@
-// CLZ  <Wd>, <Wn>
-insn CLZ_32_dp_1src {
-    $wdn
-}
-
-// CLZ  <Xd>, <Xn>
-insn CLZ_64_dp_1src {
-    $xdn
-}

@@ -1,9 +1,0 @@
-// ABS  <V><d>, <V><n>
-insn ABS_asisdmisc_R {
-    
-}
-
-// ABS  <Vd>.<T>, <Vn>.<T>
-insn ABS_asimdmisc_R {
-    
-}

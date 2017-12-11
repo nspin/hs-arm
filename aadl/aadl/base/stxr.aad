@@ -1,9 +1,0 @@
-// STXR  <Ws>, <Wt>, [<Xn|SP>{,#0}]
-insn STXR_SR32_ldstexcl {
-    $wst; $xN
-}
-
-// STXR  <Ws>, <Xt>, [<Xn|SP>{,#0}]
-insn STXR_SR64_ldstexcl {
-    $wst; $xN
-}

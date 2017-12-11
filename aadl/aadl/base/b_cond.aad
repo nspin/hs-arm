@@ -1,5 +1,0 @@
-// B.<cond>  <label>
-insn B_only_condbranch {
-    cond Cond in cond
-    label Int19 in imm19
-}

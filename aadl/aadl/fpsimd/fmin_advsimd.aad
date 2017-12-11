@@ -1,9 +1,0 @@
-// FMIN  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn FMIN_asimdsamefp16_only {
-    
-}
-
-// FMIN  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn FMIN_asimdsame_only {
-    
-}

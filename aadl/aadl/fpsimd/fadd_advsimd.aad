@@ -1,9 +1,0 @@
-// FADD  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn FADD_asimdsamefp16_only {
-    
-}
-
-// FADD  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn FADD_asimdsame_only {
-    
-}

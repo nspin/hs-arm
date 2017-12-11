@@ -1,9 +1,0 @@
-// FRECPX  <Hd>, <Hn>
-insn FRECPX_asisdmiscfp16_R {
-    
-}
-
-// FRECPX  <V><d>, <V><n>
-insn FRECPX_asisdmisc_R {
-    
-}

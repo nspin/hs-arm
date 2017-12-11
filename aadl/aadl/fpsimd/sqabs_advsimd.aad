@@ -1,9 +1,0 @@
-// SQABS  <V><d>, <V><n>
-insn SQABS_asisdmisc_R {
-    
-}
-
-// SQABS  <Vd>.<T>, <Vn>.<T>
-insn SQABS_asimdmisc_R {
-    
-}

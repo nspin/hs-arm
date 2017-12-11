@@ -1,9 +1,0 @@
-// UQXTN  <Vb><d>, <Va><n>
-insn UQXTN_asisdmisc_N {
-    
-}
-
-// UQXTN{2}  <Vd>.<Tb>, <Vn>.<Ta>
-insn UQXTN_asimdmisc_N {
-    
-}

@@ -1,4 +1,0 @@
-// MLS  <Vd>.<T>, <Vn>.<T>, <Vm>.<Ts>[<index>]
-insn MLS_asimdelem_R {
-    
-}

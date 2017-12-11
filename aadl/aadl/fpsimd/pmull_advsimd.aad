@@ -1,4 +1,0 @@
-// PMULL{2}  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.<Tb>
-insn PMULL_asimddiff_L {
-    
-}

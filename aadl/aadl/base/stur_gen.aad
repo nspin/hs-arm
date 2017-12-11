@@ -1,9 +1,0 @@
-// STUR  <Wt>, [<Xn|SP>{, #<simm>}]
-insn STUR_32_ldst_unscaled {
-    $wt; $xN; $simm
-}
-
-// STUR  <Xt>, [<Xn|SP>{, #<simm>}]
-insn STUR_64_ldst_unscaled {
-    $wt; $xN; $simm
-}

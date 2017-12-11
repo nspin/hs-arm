@@ -1,9 +1,0 @@
-// CMEQ  <V><d>, <V><n>, #0
-insn CMEQ_asisdmisc_Z {
-    
-}
-
-// CMEQ  <Vd>.<T>, <Vn>.<T>, #0
-insn CMEQ_asimdmisc_Z {
-    
-}

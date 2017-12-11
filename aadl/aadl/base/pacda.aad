@@ -1,9 +1,0 @@
-// PACDA  <Xd>, <Xn|SP>
-insn PACDA_64P_dp_1src {
-    $xdN
-}
-
-// PACDZA  <Xd>
-insn PACDZA_64Z_dp_1src {
-    $xd
-}

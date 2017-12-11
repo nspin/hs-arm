@@ -1,9 +1,0 @@
-// UBFM  <Wd>, <Wn>, #<immr>, #<imms>
-insn UBFM_32M_bitfield {
-    
-}
-
-// UBFM  <Xd>, <Xn>, #<immr>, #<imms>
-insn UBFM_64M_bitfield {
-    
-}

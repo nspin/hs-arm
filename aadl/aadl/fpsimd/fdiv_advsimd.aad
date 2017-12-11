@@ -1,9 +1,0 @@
-// FDIV  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn FDIV_asimdsamefp16_only {
-    
-}
-
-// FDIV  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn FDIV_asimdsame_only {
-    
-}

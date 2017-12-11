@@ -1,9 +1,0 @@
-// FADDP  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn FADDP_asimdsamefp16_only {
-    
-}
-
-// FADDP  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn FADDP_asimdsame_only {
-    
-}

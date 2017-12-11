@@ -1,4 +1,0 @@
-// UHADD  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn UHADD_asimdsame_only {
-    
-}

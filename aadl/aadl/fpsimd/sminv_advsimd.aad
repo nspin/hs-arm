@@ -1,4 +1,0 @@
-// SMINV  <V><d>, <Vn>.<T>
-insn SMINV_asimdall_only {
-    
-}

@@ -1,9 +1,0 @@
-// CMEQ  <V><d>, <V><n>, <V><m>
-insn CMEQ_asisdsame_only {
-    
-}
-
-// CMEQ  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn CMEQ_asimdsame_only {
-    
-}

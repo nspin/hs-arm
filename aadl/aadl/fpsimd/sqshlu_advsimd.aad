@@ -1,9 +1,0 @@
-// SQSHLU  <V><d>, <V><n>, #<shift>
-insn SQSHLU_asisdshf_R {
-    
-}
-
-// SQSHLU  <Vd>.<T>, <Vn>.<T>, #<shift>
-insn SQSHLU_asimdshf_R {
-    
-}

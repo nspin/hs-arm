@@ -1,9 +1,0 @@
-// UQRSHRN  <Vb><d>, <Va><n>, #<shift>
-insn UQRSHRN_asisdshf_N {
-    
-}
-
-// UQRSHRN{2}  <Vd>.<Tb>, <Vn>.<Ta>, #<shift>
-insn UQRSHRN_asimdshf_N {
-    
-}

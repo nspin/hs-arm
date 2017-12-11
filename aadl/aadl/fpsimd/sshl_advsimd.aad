@@ -1,9 +1,0 @@
-// SSHL  <V><d>, <V><n>, <V><m>
-insn SSHL_asisdsame_only {
-    
-}
-
-// SSHL  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn SSHL_asimdsame_only {
-    
-}

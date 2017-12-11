@@ -1,7 +1,0 @@
-// ERETAA
-insn ERETAA_64E_branch_reg {
-}
-
-// ERETAB
-insn ERETAB_64E_branch_reg {
-}

@@ -1,9 +1,0 @@
-// SQDMULH  <V><d>, <V><n>, <V><m>
-insn SQDMULH_asisdsame_only {
-    
-}
-
-// SQDMULH  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn SQDMULH_asimdsame_only {
-    
-}

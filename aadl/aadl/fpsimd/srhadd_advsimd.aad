@@ -1,4 +1,0 @@
-// SRHADD  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn SRHADD_asimdsame_only {
-    
-}

@@ -1,4 +1,0 @@
-// CNT  <Vd>.<T>, <Vn>.<T>
-insn CNT_asimdmisc_R {
-    
-}

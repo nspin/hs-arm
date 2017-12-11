@@ -1,9 +1,0 @@
-// CMTST  <V><d>, <V><n>, <V><m>
-insn CMTST_asisdsame_only {
-    
-}
-
-// CMTST  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn CMTST_asimdsame_only {
-    
-}

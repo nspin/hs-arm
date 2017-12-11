@@ -1,9 +1,0 @@
-// SQDMULH  <V><d>, <V><n>, <Vm>.<Ts>[<index>]
-insn SQDMULH_asisdelem_R {
-    
-}
-
-// SQDMULH  <Vd>.<T>, <Vn>.<T>, <Vm>.<Ts>[<index>]
-insn SQDMULH_asimdelem_R {
-    
-}

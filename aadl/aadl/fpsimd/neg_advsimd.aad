@@ -1,9 +1,0 @@
-// NEG  <V><d>, <V><n>
-insn NEG_asisdmisc_R {
-    
-}
-
-// NEG  <Vd>.<T>, <Vn>.<T>
-insn NEG_asimdmisc_R {
-    
-}

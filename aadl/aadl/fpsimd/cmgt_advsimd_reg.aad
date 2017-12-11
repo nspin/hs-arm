@@ -1,9 +1,0 @@
-// CMGT  <V><d>, <V><n>, <V><m>
-insn CMGT_asisdsame_only {
-    
-}
-
-// CMGT  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn CMGT_asimdsame_only {
-    
-}

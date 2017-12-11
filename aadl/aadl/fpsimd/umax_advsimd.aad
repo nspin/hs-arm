@@ -1,4 +1,0 @@
-// UMAX  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn UMAX_asimdsame_only {
-    
-}

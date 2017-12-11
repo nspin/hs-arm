@@ -1,9 +1,0 @@
-// URSHL  <V><d>, <V><n>, <V><m>
-insn URSHL_asisdsame_only {
-    
-}
-
-// URSHL  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn URSHL_asimdsame_only {
-    
-}

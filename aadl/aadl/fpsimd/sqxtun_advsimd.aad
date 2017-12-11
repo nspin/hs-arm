@@ -1,9 +1,0 @@
-// SQXTUN  <Vb><d>, <Va><n>
-insn SQXTUN_asisdmisc_N {
-    
-}
-
-// SQXTUN{2}  <Vd>.<Tb>, <Vn>.<Ta>
-insn SQXTUN_asimdmisc_N {
-    
-}

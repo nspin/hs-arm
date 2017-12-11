@@ -1,4 +1,0 @@
-// UMADDL  <Xd>, <Wn>, <Wm>, <Xa>
-insn UMADDL_64WA_dp_3src {
-    
-}

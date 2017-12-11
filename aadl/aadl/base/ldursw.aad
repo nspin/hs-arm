@@ -1,4 +1,0 @@
-// LDURSW  <Xt>, [<Xn|SP>{, #<simm>}]
-insn LDURSW_64_ldst_unscaled {
-    $xst; $xN; $simm
-}

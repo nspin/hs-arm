@@ -1,4 +1,0 @@
-// B  <label>
-insn B_only_branch_imm {
-    label Int26 in imm26
-}

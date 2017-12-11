@@ -1,4 +1,0 @@
-// SM3PARTW1  <Vd>.4S, <Vn>.4S, <Vm>.4S
-insn SM3PARTW1_VVV4_cryptosha512_3 {
-    
-}

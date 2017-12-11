@@ -1,4 +1,0 @@
-// SDOT  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.4B[<index>]
-insn SDOT_asimdelem_D {
-    
-}

@@ -1,9 +1,0 @@
-// URSHR  <V><d>, <V><n>, #<shift>
-insn URSHR_asisdshf_R {
-    
-}
-
-// URSHR  <Vd>.<T>, <Vn>.<T>, #<shift>
-insn URSHR_asimdshf_R {
-    
-}

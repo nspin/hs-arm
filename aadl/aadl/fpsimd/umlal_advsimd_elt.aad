@@ -1,4 +1,0 @@
-// UMLAL{2}  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.<Ts>[<index>]
-insn UMLAL_asimdelem_L {
-    
-}

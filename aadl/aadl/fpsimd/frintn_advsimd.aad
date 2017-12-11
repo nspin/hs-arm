@@ -1,9 +1,0 @@
-// FRINTN  <Vd>.<T>, <Vn>.<T>
-insn FRINTN_asimdmiscfp16_R {
-    
-}
-
-// FRINTN  <Vd>.<T>, <Vn>.<T>
-insn FRINTN_asimdmisc_R {
-    
-}

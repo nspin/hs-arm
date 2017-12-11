@@ -1,7 +1,0 @@
-// RETAA
-insn RETAA_64E_branch_reg {
-}
-
-// RETAB
-insn RETAB_64E_branch_reg {
-}

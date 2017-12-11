@@ -1,4 +1,0 @@
-// DSB  <option>|#<imm>
-insn DSB_BO_system {
-    $barrier_limitation
-}

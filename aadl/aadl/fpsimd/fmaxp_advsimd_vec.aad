@@ -1,9 +1,0 @@
-// FMAXP  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn FMAXP_asimdsamefp16_only {
-    
-}
-
-// FMAXP  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>
-insn FMAXP_asimdsame_only {
-    
-}

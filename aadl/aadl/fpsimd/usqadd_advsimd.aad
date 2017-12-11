@@ -1,9 +1,0 @@
-// USQADD  <V><d>, <V><n>
-insn USQADD_asisdmisc_R {
-    
-}
-
-// USQADD  <Vd>.<T>, <Vn>.<T>
-insn USQADD_asimdmisc_R {
-    
-}

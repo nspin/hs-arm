@@ -1,9 +1,0 @@
-// CMGT  <V><d>, <V><n>, #0
-insn CMGT_asisdmisc_Z {
-    
-}
-
-// CMGT  <Vd>.<T>, <Vn>.<T>, #0
-insn CMGT_asimdmisc_Z {
-    
-}

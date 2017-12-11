@@ -1,5 +1,0 @@
-// MSR  <pstatefield>, #<imm>
-insn MSR_SI_system {
-    #TODO
-    imm UInt4 in CRm
-}
