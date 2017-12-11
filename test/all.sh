@@ -8,9 +8,17 @@ here="$(dirname "$0")"
 
 root="$here/nix-results"
 
+[ -d "$root" ] && rm -r "$root"
 mkdir -p "$root"
 
-go_r arm-mras.values
-go_r arm-asm-impl-tables.binutils.values
-go_r arm-asm-impl-tables.go.values
-go_r harm.values
+go_r xml.sysreg
+go_r xml.a64
+go_r xml.aarch32
+go_r patched-a64
+go_r patched-aarch32
+go_r dtd-src.sysreg
+go_r dtd-src.a64
+go_r dtd-src.aarch32
+go_r values-src
+
+go_r values

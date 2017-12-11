@@ -6,19 +6,12 @@ here="$(dirname "$0")"
 
 . "$here/lib.sh"
 
-root="$here/../generated-sources"
+root="$here/../nix-results"
 
-rm -r "$root"
+[ -d "$root" ] && rm -r "$root"
 mkdir -p "$root"
 
-go_rw arm-mras.dtd-src.sysreg
-go_rw arm-mras.dtd-src.a64
-go_rw arm-mras.dtd-src.aarch32
-go_rw arm-mras.values-src
-
-go_rw arm-asm-impl-tables.binutils.c
-go_rw arm-asm-impl-tables.binutils.types-src
-go_rw arm-asm-impl-tables.binutils.values-src
-
-go_rw arm-asm-impl-tables.go.types-src
-go_rw arm-asm-impl-tables.go.values-src
+go_rw dtd-src.sysreg
+go_rw dtd-src.a64
+go_rw dtd-src.aarch32
+go_rw values-src
