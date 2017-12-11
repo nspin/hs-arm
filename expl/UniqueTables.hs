@@ -13,15 +13,14 @@ import System.IO
 import Control.Lens
 
 tables :: [(FilePath, Table)]
-tables = concatMap splitAssoc $
-       f baseInsns
-    ++ g baseAliases
-    ++ f fpsimdInsns
-    ++ g fpsimdAliases
+tables = concatMap f (base ++ fpsimd)
   where
-    f :: [(FilePath, Insn)] -> [(FilePath, [Table])]
-    f = map . fmap . toListOf $ insn_classes.traverse._1.class_encodings.traverse.encoding_symbols.traverse.symbol_table._Just
-    g = map . fmap . toListOf $              alias_class.class_encodings.traverse.encoding_symbols.traverse.symbol_table._Just
+    f :: Insn -> [(FilePath, Table)]
+    f insn = splitAssoc (_insn_file insn, g insn) ++ concatMap (splitAssoc . h) (_insn_aliases insn)
+    g :: Insn -> [Table]
+    g = toListOf $ insn_classes.traverse._1.class_encodings.traverse.encoding_symbols.traverse.symbol_table._Just 
+    h :: Alias -> (FilePath, [Table])
+    h alias = (_alias_file alias, alias ^.. alias_class.class_encodings.traverse.encoding_symbols.traverse.symbol_table._Just)
 
 pp :: (FilePath, Table) -> String
 pp (p, t) = unlines $ ("# " ++ p) : show (t^.table_head) : map f (t^.table_body)

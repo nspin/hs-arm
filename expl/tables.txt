@@ -97,11 +97,6 @@ DAIFSet	11O	O11
 DAIFClr	111	O11
 RESERVED	xxx	1xx
 
-# tbnz.xml
-["b5"]
-W	O
-X	1
-
 # at_sys.xml
 ["op2","CRm<0>","op1"]
 S1E1R	OOO	O	OOO
@@ -171,6 +166,11 @@ VALE3IS	1O1	OO11	11O
 ALLE3	OOO	O111	11O
 VAE3	OO1	O111	11O
 VALE3	1O1	O111	11O
+
+# tbnz.xml
+["b5"]
+W	O
+X	1
 
 # abs_advsimd.xml
 ["size"]

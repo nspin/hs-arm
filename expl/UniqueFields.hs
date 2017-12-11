@@ -9,7 +9,7 @@ import Control.Lens
 
 fs :: [Field]
 fs = nub . concatMap fields . concatMap diagrams
-    $ (baseInsns ++ fpsimdInsns) ^.. traverse._2.insn_classes.traverse._1
+    $ (base ++ fpsimd) ^.. traverse.insn_classes.traverse._1
 
 main :: IO ()
 main = mapM_ print fs

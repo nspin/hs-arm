@@ -30,15 +30,17 @@ switch = map f . groupBy ((==) `on` snd) . sortBy (compare `on` snd) . concatMap
     f l@((_, k):_) = (k, nub (map fst l))
     g (k, vs) = map ((,) k) (map stripMnem vs)
 
-assocsOf :: [(String, Insn)] -> [(Template, [String])]
-assocsOf = switch . map (fmap templates)
+assocsOf :: [Insn] -> [(Template, [String])]
+assocsOf = switch . map (fmap templates . f)
+  where
+    f insn = (_insn_file insn, insn)
 
 open name = system $ "'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'  https://meriac.github.io/A64_v83A_ISA/" ++ name
 
 openAt assocs tplt = mapM_ open . fromJust $ lookup tplt (fst assocs)
 
 main = do
-    forM (assocsOf baseInsns) $ \(tplt, names) -> do
+    forM (assocsOf base) $ \(tplt, names) -> do
         unless (null tplt) $ void $ do
             putStrLn tplt
             forM names open
