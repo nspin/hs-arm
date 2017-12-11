@@ -116,11 +116,13 @@ data TableRow = TableRow
 
 data Ps = Ps
     { _ps_name :: PsName
+    , _ps_deps :: [PsSymbol]
     , _ps_section :: Maybe PsSection
     , _ps_code :: String
     } deriving (Eq, Show, Generic, NFData)
 
 type PsName = String
+type PsSymbol = String
 
 data PsSection = PsDecode | PsPostDecode | PsExecute
     deriving (Eq, Show, Generic, NFData)

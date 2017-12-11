@@ -190,13 +190,15 @@ distillArchVars (Arch_variants [x]) = case x of
 distillPss :: Ps_section -> [Ps]
 distillPss (Ps_section _ (NonEmpty xpss)) = map f xpss
   where
-    f (X.Ps attrs (Pstext as x)) = Ps (psName attrs) s (unescape (concatMap g x))
+    f (X.Ps attrs (Pstext as x)) = Ps (psName attrs) (catMaybes deps) sec (unescape (concat code))
       where
-        s = case pstextRep_section as of
+        sec = case pstextRep_section as of
             Nothing -> Nothing
             Just x -> Just $ case x of
                 "decode" -> PsDecode
                 "postdecode" -> PsPostDecode
                 "execute" -> PsExecute
-    g (Pstext_Str s) = s
-    g (Pstext_A (A _ ss)) = concat ss
+        (deps, code) = unzip (map g x)
+    g (Pstext_Str s) = (Nothing, s)
+    g (Pstext_A (A (A_Attrs Nothing (Just _) (Just "encodingindex.xml") _) ss)) = (Nothing, concat ss)
+    g (Pstext_A (A (A_Attrs Nothing (Just link) (Just "shared_pseudocode.xml") _) ss)) = (Just link, concat ss)
