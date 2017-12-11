@@ -1,5 +1,4 @@
-
-# add_addsub_ext
+# add_addsub_ext.xml
 ["option"]
 UXTB	OOO
 UXTH	OO1
@@ -10,7 +9,7 @@ SXTH	1O1
 SXTW	11O
 SXTX	111
 
-# add_addsub_ext
+# add_addsub_ext.xml
 ["option"]
 W	OOx
 W	O1O
@@ -18,7 +17,7 @@ X	x11
 W	1Ox
 W	11O
 
-# add_addsub_ext
+# add_addsub_ext.xml
 ["option"]
 UXTB	OOO
 UXTH	OO1
@@ -29,27 +28,81 @@ SXTH	1O1
 SXTW	11O
 SXTX	111
 
-# add_addsub_imm
+# add_addsub_imm.xml
 ["shift"]
 LSL #0	OO
 LSL #12	O1
 RESERVED	1x
 
-# add_addsub_shift
+# add_addsub_shift.xml
 ["shift"]
 LSL	OO
 LSR	O1
 ASR	1O
 RESERVED	11
 
-# and_log_shift
+# and_log_shift.xml
 ["shift"]
 LSL	OO
 LSR	O1
 ASR	1O
 ROR	11
 
-# at_sys
+# ldr_reg_gen.xml
+["option"]
+UXTW	O1O
+LSL	O11
+SXTW	11O
+SXTX	111
+
+# ldr_reg_gen.xml
+["S"]
+#0	O
+#2	1
+
+# ldr_reg_gen.xml
+["S"]
+#0	O
+#3	1
+
+# ldrb_reg.xml
+["option"]
+UXTW	O1O
+SXTW	11O
+SXTX	111
+
+# ldrh_reg.xml
+["S"]
+#0	O
+#1	1
+
+# mrs.xml
+["o0"]
+2	O
+3	1
+
+# msr_imm.xml
+["op2","op1"]
+RESERVED	OOx	OOO
+RESERVED	O1O	OOO
+UAO	O11	OOO
+PAN	1OO	OOO
+SPSel	1O1	OOO
+RESERVED	11x	OOO
+RESERVED	xxx	OO1
+RESERVED	xxx	O1O
+RESERVED	Oxx	O11
+RESERVED	1Ox	O11
+DAIFSet	11O	O11
+DAIFClr	111	O11
+RESERVED	xxx	1xx
+
+# tbnz.xml
+["b5"]
+W	O
+X	1
+
+# at_sys.xml
 ["op2","CRm<0>","op1"]
 S1E1R	OOO	O	OOO
 S1E1W	OO1	O	OOO
@@ -66,7 +119,7 @@ S12E0W	111	O	1OO
 S1E3R	OOO	O	11O
 S1E3W	OO1	O	11O
 
-# dc_sys
+# dc_sys.xml
 ["op2","CRm","op1"]
 IVAC	OO1	O11O	OOO
 ISW	O1O	O11O	OOO
@@ -78,67 +131,13 @@ CVAU	OO1	1O11	O11
 CVAP	OO1	11OO	O11
 CIVAC	OO1	111O	O11
 
-# ic_sys
+# ic_sys.xml
 ["op2","CRm","op1"]
 IALLUIS	OOO	OOO1	OOO
 IALLU	OOO	O1O1	OOO
 IVAU	OO1	O1O1	O11
 
-# ldr_reg_gen
-["option"]
-UXTW	O1O
-LSL	O11
-SXTW	11O
-SXTX	111
-
-# ldr_reg_gen
-["S"]
-#0	O
-#2	1
-
-# ldr_reg_gen
-["S"]
-#0	O
-#3	1
-
-# ldrb_reg
-["option"]
-UXTW	O1O
-SXTW	11O
-SXTX	111
-
-# ldrh_reg
-["S"]
-#0	O
-#1	1
-
-# mrs
-["o0"]
-2	O
-3	1
-
-# msr_imm
-["op2","op1"]
-RESERVED	OOx	OOO
-RESERVED	O1O	OOO
-UAO	O11	OOO
-PAN	1OO	OOO
-SPSel	1O1	OOO
-RESERVED	11x	OOO
-RESERVED	xxx	OO1
-RESERVED	xxx	O1O
-RESERVED	Oxx	O11
-RESERVED	1Ox	O11
-DAIFSet	11O	O11
-DAIFClr	111	O11
-RESERVED	xxx	1xx
-
-# tbnz
-["b5"]
-W	O
-X	1
-
-# tlbi_sys
+# tlbi_sys.xml
 ["op2","CRm","op1"]
 VMALLE1IS	OOO	OO11	OOO
 VAE1IS	OO1	OO11	OOO
@@ -173,13 +172,13 @@ ALLE3	OOO	O111	11O
 VAE3	OO1	O111	11O
 VALE3	1O1	O111	11O
 
-# abs_advsimd
+# abs_advsimd.xml
 ["size"]
 RESERVED	Ox
 RESERVED	1O
 D	11
 
-# abs_advsimd
+# abs_advsimd.xml
 ["Q","size"]
 8B	O	OO
 16B	1	OO
@@ -190,12 +189,12 @@ D	11
 RESERVED	O	11
 2D	1	11
 
-# addhn_advsimd
+# addhn_advsimd.xml
 ["Q"]
 [absent]	O
 [present]	1
 
-# addhn_advsimd
+# addhn_advsimd.xml
 ["Q","size"]
 8B	O	OO
 16B	1	OO
@@ -205,27 +204,27 @@ RESERVED	O	11
 4S	1	1O
 RESERVED	x	11
 
-# addhn_advsimd
+# addhn_advsimd.xml
 ["size"]
 8H	OO
 4S	O1
 2D	1O
 RESERVED	11
 
-# addp_advsimd_pair
+# addp_advsimd_pair.xml
 ["size"]
 RESERVED	Ox
 RESERVED	1O
 2D	11
 
-# addv_advsimd
+# addv_advsimd.xml
 ["size"]
 B	OO
 H	O1
 S	1O
 RESERVED	11
 
-# addv_advsimd
+# addv_advsimd.xml
 ["Q","size"]
 8B	O	OO
 16B	1	OO
@@ -235,41 +234,41 @@ RESERVED	O	1O
 4S	1	1O
 RESERVED	x	11
 
-# and_advsimd
+# and_advsimd.xml
 ["Q"]
 8B	O
 16B	1
 
-# bic_advsimd_imm
+# bic_advsimd_imm.xml
 ["Q"]
 4H	O
 8H	1
 
-# bic_advsimd_imm
+# bic_advsimd_imm.xml
 ["cmode<1>"]
 0	O
 8	1
 
-# bic_advsimd_imm
+# bic_advsimd_imm.xml
 ["Q"]
 2S	O
 4S	1
 
-# bic_advsimd_imm
+# bic_advsimd_imm.xml
 ["cmode<2:1>"]
 0	OO
 8	O1
 16	1O
 24	11
 
-# cnt_advsimd
+# cnt_advsimd.xml
 ["Q","size"]
 8B	O	OO
 16B	1	OO
 RESERVED	x	O1
 RESERVED	x	1x
 
-# dup_advsimd_elt
+# dup_advsimd_elt.xml
 ["imm5"]
 RESERVED	xOOOO
 B	xxxx1
@@ -277,7 +276,7 @@ H	xxx1O
 S	xx1OO
 D	x1OOO
 
-# dup_advsimd_elt
+# dup_advsimd_elt.xml
 ["imm5"]
 RESERVED	xOOOO
 imm5<4:1>	xxxx1
@@ -285,7 +284,7 @@ imm5<4:2>	xxx1O
 imm5<4:3>	xx1OO
 imm5<4>	x1OOO
 
-# dup_advsimd_elt
+# dup_advsimd_elt.xml
 ["Q","imm5"]
 RESERVED	x	xOOOO
 8B	O	xxxx1
@@ -297,7 +296,7 @@ RESERVED	x	xOOOO
 RESERVED	O	x1OOO
 2D	1	x1OOO
 
-# dup_advsimd_gen
+# dup_advsimd_gen.xml
 ["imm5"]
 RESERVED	xOOOO
 W	xxxx1
@@ -305,40 +304,40 @@ W	xxx1O
 W	xx1OO
 X	x1OOO
 
-# ext_advsimd
+# ext_advsimd.xml
 ["imm4<3>","Q"]
 imm4<2:0>	O	O
 RESERVED	1	O
 imm4	x	1
 
-# fabd_advsimd
+# fabd_advsimd.xml
 ["sz"]
 S	O
 D	1
 
-# fabd_advsimd
+# fabd_advsimd.xml
 ["Q","sz"]
 2S	O	O
 4S	1	O
 RESERVED	O	1
 2D	1	1
 
-# faddp_advsimd_pair
+# faddp_advsimd_pair.xml
 ["sz"]
 H	O
 RESERVED	1
 
-# faddp_advsimd_pair
+# faddp_advsimd_pair.xml
 ["sz"]
 2H	O
 RESERVED	1
 
-# faddp_advsimd_pair
+# faddp_advsimd_pair.xml
 ["sz"]
 2S	O
 2D	1
 
-# fcadd_advsimd_vec
+# fcadd_advsimd_vec.xml
 ["Q","size"]
 RESERVED	x	OO
 4H	O	O1
@@ -348,19 +347,19 @@ RESERVED	x	OO
 RESERVED	O	11
 2D	1	11
 
-# fcadd_advsimd_vec
+# fcadd_advsimd_vec.xml
 ["rot"]
 90	O
 270	1
 
-# fcmla_advsimd_vec
+# fcmla_advsimd_vec.xml
 ["rot"]
 0	OO
 90	O1
 180	1O
 270	11
 
-# fcmla_advsimd_elt
+# fcmla_advsimd_elt.xml
 ["Q","size"]
 RESERVED	x	OO
 4H	O	O1
@@ -369,68 +368,68 @@ RESERVED	O	1O
 4S	1	1O
 RESERVED	x	11
 
-# fcmla_advsimd_elt
+# fcmla_advsimd_elt.xml
 ["size"]
 RESERVED	OO
 H	O1
 S	1O
 RESERVED	11
 
-# fcmla_advsimd_elt
+# fcmla_advsimd_elt.xml
 ["size"]
 RESERVED	OO
 H:L	O1
 H	1O
 RESERVED	11
 
-# fcvtl_advsimd
+# fcvtl_advsimd.xml
 ["sz"]
 4S	O
 2D	1
 
-# fcvtl_advsimd
+# fcvtl_advsimd.xml
 ["Q","sz"]
 4H	O	O
 8H	1	O
 2S	O	1
 4S	1	1
 
-# fcvtxn_advsimd
+# fcvtxn_advsimd.xml
 ["sz"]
 RESERVED	O
 S	1
 
-# fcvtxn_advsimd
+# fcvtxn_advsimd.xml
 ["sz"]
 RESERVED	O
 D	1
 
-# fcvtxn_advsimd
+# fcvtxn_advsimd.xml
 ["Q","sz"]
 RESERVED	x	O
 2S	O	1
 4S	1	1
 
-# fcvtxn_advsimd
+# fcvtxn_advsimd.xml
 ["sz"]
 RESERVED	O
 2D	1
 
-# fcvtzs_advsimd_fix
+# fcvtzs_advsimd_fix.xml
 ["immh"]
 RESERVED	OOOx
 H	OO1x
 S	O1xx
 D	1xxx
 
-# fcvtzs_advsimd_fix
+# fcvtzs_advsimd_fix.xml
 ["immh"]
 RESERVED	OOOx
 (32-Uint(immh:immb))	OO1x
 (64-UInt(immh:immb))	O1xx
 (128-UInt(immh:immb))	1xxx
 
-# fcvtzs_advsimd_fix
+# fcvtzs_advsimd_fix.xml
 ["Q","immh"]
 SEE Advanced SIMD modified immediate	x	OOOO
 RESERVED	x	OOO1
@@ -441,7 +440,7 @@ RESERVED	x	OOO1
 RESERVED	O	1xxx
 2D	1	1xxx
 
-# fcvtzs_advsimd_fix
+# fcvtzs_advsimd_fix.xml
 ["immh"]
 SEE Advanced SIMD modified immediate	OOOO
 RESERVED	OOO1
@@ -449,31 +448,31 @@ RESERVED	OOO1
 (64-UInt(immh:immb))	O1xx
 (128-UInt(immh:immb))	1xxx
 
-# fmaxnmv_advsimd
+# fmaxnmv_advsimd.xml
 ["sz"]
 S	O
 RESERVED	1
 
-# fmaxnmv_advsimd
+# fmaxnmv_advsimd.xml
 ["sz","Q"]
 RESERVED	x	O
 4S	O	1
 RESERVED	1	1
 
-# fmla_advsimd_elt
+# fmla_advsimd_elt.xml
 ["L","sz"]
 H:L	x	O
 H	O	1
 RESERVED	1	1
 
-# fmla_advsimd_elt
+# fmla_advsimd_elt.xml
 ["sz","Q"]
 2S	O	O
 RESERVED	1	O
 4S	O	1
 2D	1	1
 
-# ins_advsimd_elt
+# ins_advsimd_elt.xml
 ["imm5"]
 RESERVED	xOOOO
 imm4<3:0>	xxxx1
@@ -481,7 +480,7 @@ imm4<3:1>	xxx1O
 imm4<3:2>	xx1OO
 imm4<3>	x1OOO
 
-# ld1_advsimd_mult
+# ld1_advsimd_mult.xml
 ["Q","size"]
 8B	O	OO
 16B	1	OO
@@ -492,60 +491,60 @@ imm4<3>	x1OOO
 1D	O	11
 2D	1	11
 
-# ld1_advsimd_mult
+# ld1_advsimd_mult.xml
 ["Q"]
 #8	O
 #16	1
 
-# ld1_advsimd_mult
+# ld1_advsimd_mult.xml
 ["Q"]
 #16	O
 #32	1
 
-# ld1_advsimd_mult
+# ld1_advsimd_mult.xml
 ["Q"]
 #24	O
 #48	1
 
-# ld1_advsimd_mult
+# ld1_advsimd_mult.xml
 ["Q"]
 #32	O
 #64	1
 
-# ld1r_advsimd
+# ld1r_advsimd.xml
 ["size"]
 #1	OO
 #2	O1
 #4	1O
 #8	11
 
-# ld2r_advsimd
+# ld2r_advsimd.xml
 ["size"]
 #2	OO
 #4	O1
 #8	1O
 #16	11
 
-# ld3r_advsimd
+# ld3r_advsimd.xml
 ["size"]
 #3	OO
 #6	O1
 #12	1O
 #24	11
 
-# ld4r_advsimd
+# ld4r_advsimd.xml
 ["size"]
 #4	OO
 #8	O1
 #16	1O
 #32	11
 
-# ldr_reg_fpsimd
+# ldr_reg_fpsimd.xml
 ["S"]
 #0	O
 #4	1
 
-# mla_advsimd_elt
+# mla_advsimd_elt.xml
 ["Q","size"]
 RESERVED	x	OO
 4H	O	O1
@@ -554,33 +553,33 @@ RESERVED	x	OO
 4S	1	1O
 RESERVED	x	11
 
-# mla_advsimd_elt
+# mla_advsimd_elt.xml
 ["size"]
 RESERVED	OO
 0:Rm	O1
 M:Rm	1O
 RESERVED	11
 
-# mla_advsimd_elt
+# mla_advsimd_elt.xml
 ["size"]
 RESERVED	OO
 H:L:M	O1
 H:L	1O
 RESERVED	11
 
-# movi_advsimd
+# movi_advsimd.xml
 ["cmode<0>"]
 8	O
 16	1
 
-# pmull_advsimd
+# pmull_advsimd.xml
 ["size"]
 8H	OO
 RESERVED	O1
 RESERVED	1O
 1Q	11
 
-# pmull_advsimd
+# pmull_advsimd.xml
 ["Q","size"]
 8B	O	OO
 16B	1	OO
@@ -589,7 +588,7 @@ RESERVED	x	1O
 1D	O	11
 2D	1	11
 
-# rev32_advsimd
+# rev32_advsimd.xml
 ["Q","size"]
 8B	O	OO
 16B	1	OO
@@ -597,7 +596,7 @@ RESERVED	x	1O
 8H	1	O1
 RESERVED	x	1x
 
-# rshrn_advsimd
+# rshrn_advsimd.xml
 ["Q","immh"]
 SEE Advanced SIMD modified immediate	x	OOOO
 8B	O	OOO1
@@ -608,7 +607,7 @@ SEE Advanced SIMD modified immediate	x	OOOO
 4S	1	O1xx
 RESERVED	x	1xxx
 
-# rshrn_advsimd
+# rshrn_advsimd.xml
 ["immh"]
 SEE Advanced SIMD modified immediate	OOOO
 8H	OOO1
@@ -616,7 +615,7 @@ SEE Advanced SIMD modified immediate	OOOO
 2D	O1xx
 RESERVED	1xxx
 
-# rshrn_advsimd
+# rshrn_advsimd.xml
 ["immh"]
 SEE Advanced SIMD modified immediate	OOOO
 (16-UInt(immh:immb))	OOO1
@@ -624,7 +623,7 @@ SEE Advanced SIMD modified immediate	OOOO
 (64-UInt(immh:immb))	O1xx
 RESERVED	1xxx
 
-# sadalp_advsimd
+# sadalp_advsimd.xml
 ["Q","size"]
 4H	O	OO
 8H	1	OO
@@ -634,24 +633,24 @@ RESERVED	1xxx
 2D	1	1O
 RESERVED	x	11
 
-# saddlv_advsimd
+# saddlv_advsimd.xml
 ["size"]
 H	OO
 S	O1
 D	1O
 RESERVED	11
 
-# shl_advsimd
+# shl_advsimd.xml
 ["immh"]
 RESERVED	Oxxx
 D	1xxx
 
-# shl_advsimd
+# shl_advsimd.xml
 ["immh"]
 RESERVED	Oxxx
 (UInt(immh:immb)-64)	1xxx
 
-# shl_advsimd
+# shl_advsimd.xml
 ["Q","immh"]
 SEE Advanced SIMD modified immediate	x	OOOO
 8B	O	OOO1
@@ -663,7 +662,7 @@ SEE Advanced SIMD modified immediate	x	OOOO
 RESERVED	O	1xxx
 2D	1	1xxx
 
-# shl_advsimd
+# shl_advsimd.xml
 ["immh"]
 SEE Advanced SIMD modified immediate	OOOO
 (UInt(immh:immb)-8)	OOO1
@@ -671,61 +670,61 @@ SEE Advanced SIMD modified immediate	OOOO
 (UInt(immh:immb)-32)	O1xx
 (UInt(immh:immb)-64)	1xxx
 
-# shll_advsimd
+# shll_advsimd.xml
 ["size"]
 8	OO
 16	O1
 32	1O
 RESERVED	11
 
-# smlal_advsimd_elt
+# smlal_advsimd_elt.xml
 ["size"]
 RESERVED	OO
 4S	O1
 2D	1O
 RESERVED	11
 
-# smov_advsimd
+# smov_advsimd.xml
 ["imm5"]
 RESERVED	xxxOO
 B	xxxx1
 H	xxx1O
 
-# smov_advsimd
+# smov_advsimd.xml
 ["imm5"]
 RESERVED	xxxOO
 imm5<4:1>	xxxx1
 imm5<4:2>	xxx1O
 
-# smov_advsimd
+# smov_advsimd.xml
 ["imm5"]
 RESERVED	xxOOO
 B	xxxx1
 H	xxx1O
 S	xx1OO
 
-# smov_advsimd
+# smov_advsimd.xml
 ["imm5"]
 RESERVED	xxOOO
 imm5<4:1>	xxxx1
 imm5<4:2>	xxx1O
 imm5<4:3>	xx1OO
 
-# sqabs_advsimd
+# sqabs_advsimd.xml
 ["size"]
 B	OO
 H	O1
 S	1O
 D	11
 
-# sqdmlal_advsimd_elt
+# sqdmlal_advsimd_elt.xml
 ["size"]
 RESERVED	OO
 S	O1
 D	1O
 RESERVED	11
 
-# sqrshrn_advsimd
+# sqrshrn_advsimd.xml
 ["immh"]
 RESERVED	OOOO
 B	OOO1
@@ -733,7 +732,7 @@ H	OO1x
 S	O1xx
 RESERVED	1xxx
 
-# sqrshrn_advsimd
+# sqrshrn_advsimd.xml
 ["immh"]
 RESERVED	OOOO
 H	OOO1
@@ -741,7 +740,7 @@ S	OO1x
 D	O1xx
 RESERVED	1xxx
 
-# sqrshrn_advsimd
+# sqrshrn_advsimd.xml
 ["immh"]
 RESERVED	OOOO
 (16-UInt(immh:immb))	OOO1
@@ -749,7 +748,7 @@ RESERVED	OOOO
 (64-UInt(immh:immb))	O1xx
 RESERVED	1xxx
 
-# sqshl_advsimd_imm
+# sqshl_advsimd_imm.xml
 ["immh"]
 RESERVED	OOOO
 B	OOO1
@@ -757,7 +756,7 @@ H	OO1x
 S	O1xx
 D	1xxx
 
-# sqshl_advsimd_imm
+# sqshl_advsimd_imm.xml
 ["immh"]
 RESERVED	OOOO
 (UInt(immh:immb)-8)	OOO1
@@ -765,12 +764,12 @@ RESERVED	OOOO
 (UInt(immh:immb)-32)	O1xx
 (UInt(immh:immb)-64)	1xxx
 
-# sri_advsimd
+# sri_advsimd.xml
 ["immh"]
 RESERVED	Oxxx
 (128-UInt(immh:immb))	1xxx
 
-# sri_advsimd
+# sri_advsimd.xml
 ["immh"]
 SEE Advanced SIMD modified immediate	OOOO
 (16-UInt(immh:immb))	OOO1
@@ -778,7 +777,7 @@ SEE Advanced SIMD modified immediate	OOOO
 (64-UInt(immh:immb))	O1xx
 (128-UInt(immh:immb))	1xxx
 
-# sshll_advsimd
+# sshll_advsimd.xml
 ["immh"]
 SEE Advanced SIMD modified immediate	OOOO
 (UInt(immh:immb)-8)	OOO1
@@ -786,7 +785,7 @@ SEE Advanced SIMD modified immediate	OOOO
 (UInt(immh:immb)-32)	O1xx
 RESERVED	1xxx
 
-# umov_advsimd
+# umov_advsimd.xml
 ["imm5"]
 RESERVED	xOOOO
 RESERVED	xxxx1
@@ -794,8 +793,9 @@ RESERVED	xxx1O
 RESERVED	xx1OO
 D	x1OOO
 
-# urecpe_advsimd
+# urecpe_advsimd.xml
 ["Q","sz"]
 2S	O	O
 4S	1	O
 RESERVED	x	1
+

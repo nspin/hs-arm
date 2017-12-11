@@ -1,7 +1,5 @@
 {-# LANGUAGE LambdaCase #-}
 
-module Test where
-
 import Lib
 
 import ARM.MRAS.Types
