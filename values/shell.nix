@@ -1,1 +1,1 @@
-((import <nixpkgs> {}).callPackage ../../. {}).arm-mras.values.env
+((import <nixpkgs> {}).callPackage ../. {}).values.env

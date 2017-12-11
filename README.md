@@ -14,6 +14,7 @@ This code generation process is complex, but [nix](https://nixos.org/nix/) makes
 
 - **`dtd-gen-utils`**: Program whose input is the MRAS, and whose output is a Haskell library containing types corresponding to the types found in the MRAS DTD's.
 - **`types`**: Library containing types for describing the information contained in the MRAS.
+- **`parse`**: Library for parsing XML files into the MRAS types, using the DTD's.
 - **`values-gen-utils`**: Program whose input is the MRAS, and whose output is part of a Haskell library containing values of the types found in `arm-mras-types`.
 - **`values`**: Library containing expressions of the types found in `types`. Includes the output of `values-gen-utils`.
 

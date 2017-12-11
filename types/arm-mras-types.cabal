@@ -14,29 +14,11 @@ library
                     , ARM.MRAS.Types.Lens
                     , ARM.MRAS.Types.Diagram
                     , ARM.MRAS.Types.Table
-                    , ARM.MRAS.Parse
-                    , ARM.MRAS.Parse.IO
-                    , ARM.MRAS.Parse.Internal.Distill
-                    , ARM.MRAS.Parse.Internal.Tidy
 
   build-depends:      base >=4.8 && <5
 
-                    , arm-mras-dtd-sysreg
-                    , arm-mras-dtd-a64
-                    , arm-mras-dtd-aarch32
-
                     , attoparsec
-                    , bytestring
-                    , Cabal
                     , deepseq
-                    , directory
                     , exceptions
-                    , filepath
-                    , haskell-src-exts
-                    , HaXml
                     , lens
-                    , monad-logger
-                    , mtl
-                    , pretty
                     , text
-                    , transformers

@@ -1,6 +1,5 @@
-{ mkDerivation, arm-mras-dtd-a64, arm-mras-dtd-aarch32
-, arm-mras-dtd-sysreg, arm-mras-types, base, directory, filepath
-, haskell-src-exts, stdenv
+{ mkDerivation, arm-mras-parse, arm-mras-types, base, directory
+, filepath, haskell-src-exts, stdenv
 }:
 mkDerivation {
   pname = "arm-mras-gen-utils";
@@ -9,8 +8,8 @@ mkDerivation {
   isLibrary = false;
   isExecutable = true;
   executableHaskellDepends = [
-    arm-mras-dtd-a64 arm-mras-dtd-aarch32 arm-mras-dtd-sysreg
-    arm-mras-types base directory filepath haskell-src-exts
+    arm-mras-parse arm-mras-types base directory filepath
+    haskell-src-exts
   ];
   license = stdenv.lib.licenses.mit;
 }

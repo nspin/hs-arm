@@ -14,9 +14,7 @@ executable gen-arm-mras
   build-depends:     base
 
                    , arm-mras-types
-                   , arm-mras-dtd-sysreg
-                   , arm-mras-dtd-a64
-                   , arm-mras-dtd-aarch32
+                   , arm-mras-parse
 
                    , directory
                    , filepath

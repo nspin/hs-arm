@@ -1,1 +1,1 @@
-((import <nixpkgs> {}).callPackage ../../. {}).arm-mras.values-gen-utils.env
+((import <nixpkgs> {}).callPackage ../. {}).values-gen-utils.env

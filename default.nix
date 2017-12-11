@@ -19,7 +19,10 @@ in rec {
 
   dtd-gen-utils = haskellPackages.callPackage ./dtd-gen-utils {};
 
-  types = haskellPackages.callPackage ./types {
+  types = haskellPackages.callPackage ./types {};
+
+  parse = haskellPackages.callPackage ./parse {
+    arm-mras-types = types;
     arm-mras-dtd-sysreg = dtd.sysreg;
     arm-mras-dtd-a64 = dtd.a64;
     arm-mras-dtd-aarch32 = dtd.aarch32;
@@ -27,9 +30,7 @@ in rec {
 
   values-gen-utils = haskellPackages.callPackage ./values-gen-utils {
     arm-mras-types = types;
-    arm-mras-dtd-sysreg = dtd.sysreg;
-    arm-mras-dtd-a64 = dtd.a64;
-    arm-mras-dtd-aarch32 = dtd.aarch32;
+    arm-mras-parse = parse;
   };
 
   values-src = mergeFrom ./values [ "arm-mras.cabal" "src" ] (stdenv.mkDerivation {
@@ -41,13 +42,14 @@ in rec {
     '';
   });
 
-  values = haskellPackages.mkDerivation {
+  values = with haskellPackages; mkDerivation {
     pname = "arm-mras";
     version = "0.1";
     src = values-src;
-    executableHaskellDepends = with haskellPackages; [
+    executableHaskellDepends = [
       base directory filepath types
     ];
+    libraryHaskellDepends = [ base types ];
     license = stdenv.lib.licenses.mit;
   };
 
