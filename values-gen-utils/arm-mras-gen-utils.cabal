@@ -8,7 +8,6 @@ extra-source-files:  README.md
 cabal-version:       >=1.10
 
 executable gen-arm-mras
-  hs-source-dirs:    exe
   main-is:           Main.hs
 
   build-depends:     base
