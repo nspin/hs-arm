@@ -19,25 +19,36 @@ main = do
 
 generate :: FilePath -> FilePath -> IO ()
 generate outDir inDir = do
-    parsed <- map snd <$> parseAllFrom inDir
+    base <- parseBaseFrom inDir
+    fpsimd <- parseFpsimdFrom inDir
     createDirectoryIfMissing True (takeDirectory path)
-    writeFile path (prettyPrint (build parsed))
+    writeFile path (prettyPrint (build base fpsimd))
   where
     path = outDir </> "gen" </> "ARM" </> "MRAS" </> "Gen.hs"
 
-build :: [Either AliasPage Page] -> Module ()
-build mras = Module () (Just head) [] [imp] [ty, val]
+build :: ([(FilePath, Insn)], [(FilePath, Alias)]) -> ([(FilePath, Insn)], [(FilePath, Alias)]) -> Module ()
+build (baseInsns, baseAliases) (fpsimdInsns, fpsimdAliases) = Module () (Just head) [] [imp] decls
   where
     head = ModuleHead () (ModuleName () "ARM.MRAS.Gen") Nothing Nothing
-    ty = TypeSig () [Ident () "mras"]
-        (TyList ()
-            (TyApp ()
-                (TyApp ()
-                    (TyCon () (UnQual () (Ident () "Either" )))
-                    (TyCon () (UnQual () (Ident () "AliasPage" ))))
-            (TyCon () (UnQual () (Ident () "Page" )))))
-    ParseOk expr = parseExp (show mras)
-    val = FunBind () [Match () (Ident () "mras") [] (UnGuardedRhs () (() <$ expr)) Nothing]
+    decls = concat
+        [ decl "baseInsns" "Insn" baseInsns
+        , decl "baseAliases" "Alias" baseAliases
+        , decl "fpsimdInsns" "Insn" fpsimdInsns
+        , decl "fpsimdAliases" "Alias" fpsimdAliases
+        ]
+    decl id ty val =
+        [ TypeSig () [Ident () id]
+            (TyList ()
+                (TyTuple () Boxed
+                    [ (TyCon () (UnQual () (Ident () "String")))
+                    , (TyCon () (UnQual () (Ident () ty)))
+                    ]))
+        , FunBind ()
+            [ Match () (Ident () id) []
+                (UnGuardedRhs () (() <$ fromParseResult (parseExp (show val))))
+                Nothing
+            ]
+        ]
     imp = ImportDecl
         { importAnn = ()
         , importModule = ModuleName () "ARM.MRAS.Types"
