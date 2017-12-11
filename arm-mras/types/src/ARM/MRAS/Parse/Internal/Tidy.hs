@@ -11,13 +11,13 @@ import Control.Exception
 import Data.Maybe
 import Control.Applicative
 
-tidyPage :: D.Page -> Either Insn Alias
+tidyPage :: D.Page -> Either (InsnFromWith PageId ()) (PageId, AliasFrom ())
 tidyPage (D.Page pid ainfo xclasses expls pss) = mk (map f xclasses)
   where
     mk classes = case ainfo of
-        AliasList apids -> Left (Insn pid apids classes pss)
+        AliasList apids -> Left (Insn pid () apids classes pss)
         AliasTo apid -> case (classes, pss) of
-            ([(clazz, [])], []) -> Right (Alias pid apid clazz)
+            ([(clazz, [])], []) -> Right (apid, Alias pid () clazz)
     f (D.Class cid marchvar (D.Diagram psname boxes) xencs psss)
         = (Class cid marchvar diag encs, psss)
       where

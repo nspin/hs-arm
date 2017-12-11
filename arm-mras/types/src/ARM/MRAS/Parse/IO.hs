@@ -27,17 +27,17 @@ listPages root index = do
 readPage :: FilePath -> IO Instructionsection
 readPage = fReadXml
 
-parseFromFrom :: FilePath -> FilePath -> IO ([(FilePath, Insn)], [(FilePath, Alias)])
+parseFromFrom :: FilePath -> FilePath -> IO [Insn]
 parseFromFrom index root = do
     base <- listPages root index
-    fmap partitionEithers . forM base $ \fname ->
-        bimap ((,) fname) ((,) fname) . parsePage <$> readPage (root </> fname)
+    fmap combinePages . forM base $ \fname ->
+        (,) fname . parsePage <$> readPage (root </> fname)
 
-parseBaseFrom :: FilePath -> IO ([(FilePath, Insn)], [(FilePath, Alias)])
+parseBaseFrom :: FilePath -> IO [Insn]
 parseBaseFrom = parseFromFrom "index.xml"
 
-parseFpsimdFrom :: FilePath -> IO ([(FilePath, Insn)], [(FilePath, Alias)])
+parseFpsimdFrom :: FilePath -> IO [Insn]
 parseFpsimdFrom = parseFromFrom "fpsimdindex.xml"
 
-parseAllFrom :: FilePath -> IO (([(FilePath, Insn)], [(FilePath, Alias)]), ([(FilePath, Insn)], [(FilePath, Alias)]))
-parseAllFrom root = (,) <$> parseBaseFrom root <*> parseFpsimdFrom root
+parseAllFrom :: FilePath -> IO [Insn]
+parseAllFrom root = (++) <$> parseBaseFrom root <*> parseFpsimdFrom root

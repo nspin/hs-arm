@@ -1,8 +1,10 @@
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE FunctionalDependencies #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE TemplateHaskell #-}
 
 module ARM.MRAS.Types.Lens
-    ( HasInsn(..)
-    , HasAlias(..)
+    ( HasAliasFrom(..)
     , HasDiagram(..)
     , HasBox(..)
     , HasBlock(..)
@@ -11,6 +13,12 @@ module ARM.MRAS.Types.Lens
     , HasTable(..)
     , HasTableRow(..)
     , HasPs(..)
+
+    , insn_id
+    , insn_file
+    , insn_aliases
+    , insn_classes
+    , insn_ps
 
     , class_id
     , class_arch_var
@@ -22,8 +30,7 @@ import ARM.MRAS.Types
 
 import Control.Lens.TH
 
-makeClassy ''Insn
-makeClassy ''Alias
+makeClassy ''AliasFrom
 makeClassy ''Diagram
 makeClassy ''Box
 makeClassy ''Block
@@ -33,4 +40,5 @@ makeClassy ''Table
 makeClassy ''TableRow
 makeClassy ''Ps
 
+makeLenses ''InsnFromWith
 makeLenses ''Class

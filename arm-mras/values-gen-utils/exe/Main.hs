@@ -26,23 +26,15 @@ generate outDir inDir = do
   where
     path = outDir </> "gen" </> "ARM" </> "MRAS" </> "Gen.hs"
 
-build :: ([(FilePath, Insn)], [(FilePath, Alias)]) -> ([(FilePath, Insn)], [(FilePath, Alias)]) -> Module ()
-build (baseInsns, baseAliases) (fpsimdInsns, fpsimdAliases) = Module () (Just head) [] [imp] decls
+build :: [Insn] -> [Insn] -> Module ()
+build base fpsimd = Module () (Just head) [] [imp] decls
   where
     head = ModuleHead () (ModuleName () "ARM.MRAS.Gen") Nothing Nothing
-    decls = concat
-        [ decl "baseInsns" "Insn" baseInsns
-        , decl "baseAliases" "Alias" baseAliases
-        , decl "fpsimdInsns" "Insn" fpsimdInsns
-        , decl "fpsimdAliases" "Alias" fpsimdAliases
-        ]
-    decl id ty val =
+    decls = decl "base" base ++ decl "fpsimd" fpsimd
+    decl id val =
         [ TypeSig () [Ident () id]
             (TyList ()
-                (TyTuple () Boxed
-                    [ (TyCon () (UnQual () (Ident () "String")))
-                    , (TyCon () (UnQual () (Ident () ty)))
-                    ]))
+                (TyCon () (UnQual () (Ident () "Insn"))))
         , FunBind ()
             [ Match () (Ident () id) []
                 (UnGuardedRhs () (() <$ fromParseResult (parseExp (show val))))

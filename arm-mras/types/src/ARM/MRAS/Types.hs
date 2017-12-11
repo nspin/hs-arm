@@ -1,10 +1,13 @@
 {-# LANGUAGE DeriveAnyClass #-}
 {-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE DeriveFunctor #-}
 
 module ARM.MRAS.Types
-    ( Insn(..)
+    ( InsnFromWith(..)
+    , Insn
     , PageId
-    , Alias(..)
+    , AliasFrom(..)
+    , Alias
     , Class(..)
     , ClassId
     , ArchVar(..)
@@ -27,20 +30,25 @@ module ARM.MRAS.Types
 import Control.DeepSeq
 import GHC.Generics (Generic)
 
-data Insn = Insn
+data InsnFromWith alias file = Insn
     { _insn_id :: PageId
-    , _insn_aliases :: [PageId]
+    , _insn_file :: file
+    , _insn_aliases :: [alias]
     , _insn_classes :: [(Class, [Ps])]
     , _insn_ps :: [Ps]
-    } deriving (Eq, Show, Generic, NFData)
+    } deriving (Eq, Show, Generic, NFData, Functor)
+
+type Insn = InsnFromWith Alias String
 
 type PageId = String
 
-data Alias = Alias
+data AliasFrom file = Alias
     { _alias_id :: PageId
-    , _alias_insn :: PageId
+    , _alias_file :: file
     , _alias_class :: Class
-    } deriving (Eq, Show, Generic, NFData)
+    } deriving (Eq, Show, Generic, NFData, Functor)
+
+type Alias = AliasFrom String
 
 data Class = Class
     { _class_id :: ClassId
