@@ -93,26 +93,30 @@ in rec {
   patched-a64 = stdenv.mkDerivation {
     name = xml.a64.name + "-patched";
     inherit (xml) a64;
-    patch = ./patch-dtd.sh;
+    patch_dtd = ./patch-dtd.sh;
+    patch_xml = ./patch-xml.sh;
     builder = builtins.toFile "builder.sh" ''
       source $stdenv/setup
       mkdir $out
       cp -r $a64/* $out
       chmod -R 744 $out/*
-      bash $patch $out
+      bash $patch_dtd $out
+      bash $patch_xml $out
     '';
   };
 
   patched-aarch32 = stdenv.mkDerivation {
     name = xml.aarch32.name + "-patched";
     inherit (xml) aarch32;
-    patch = ./patch-dtd.sh;
+    patch_dtd = ./patch-dtd.sh;
+    patch_xml = ./patch-xml.sh;
     builder = builtins.toFile "builder.sh" ''
       source $stdenv/setup
       mkdir $out
       cp -r $aarch32/* $out
       chmod -R 744 $out/*
-      bash $patch $out
+      bash $patch_dtd $out
+      bash $patch_xml $out
     '';
   };
 

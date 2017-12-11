@@ -1,18 +1,29 @@
 module ARM.MRAS.Parse
     ( parsePage
-    , combinePages
+    , listPages
+    , parseBaseFrom
+    , parseFpSimdFrom
+    , parseSharedPsFrom
     ) where
 
 import ARM.MRAS.Types
 import ARM.MRAS.Types.Lens
 import ARM.MRAS.Parse.Internal.Distill (distillPage)
 import ARM.MRAS.Parse.Internal.Tidy (tidyPage)
+import ARM.MRAS.Parse.Internal.SharedPs (parseSharedPs)
 
 import Control.Exception
+import Control.Monad
+import Data.Bifunctor
 import Data.Either
+import Data.Maybe
 
 import Control.Lens
+import System.Directory
+import System.FilePath
+import Text.XML.HaXml.XmlContent
 
+import ARM.MRAS.DTD.A64.Alphaindex
 import ARM.MRAS.DTD.A64.Iformp (Instructionsection)
 
 
@@ -35,3 +46,23 @@ synth insns aliases = map f insns
             | (pid, al) <- aliases
             , pid == _insn_id insn
             ]
+
+listPages :: FilePath -> FilePath -> IO [FilePath]
+listPages root index = do
+    Alphaindex _ (Iforms _ (NonEmpty iforms)) <- fReadXml $ root </> index
+    return [ iformIformfile attrs | Iform attrs _ <- iforms ]
+
+parseFromFrom :: FilePath -> FilePath -> IO [Insn]
+parseFromFrom index root = do
+    base <- listPages root index
+    fmap combinePages . forM base $ \fname ->
+        (,) fname . parsePage <$> fReadXml (root </> fname)
+
+parseBaseFrom :: FilePath -> IO [Insn]
+parseBaseFrom = parseFromFrom "index.xml"
+
+parseFpSimdFrom :: FilePath -> IO [Insn]
+parseFpSimdFrom = parseFromFrom "fpsimdindex.xml"
+
+parseSharedPsFrom :: FilePath -> IO [SharedPs]
+parseSharedPsFrom root = parseSharedPs <$> fReadXml (root </> "shared_pseudocode.xml")

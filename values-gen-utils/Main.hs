@@ -1,7 +1,7 @@
 module Main (main) where
 
 import ARM.MRAS.Types
-import ARM.MRAS.Parse.IO
+import ARM.MRAS.Parse
 
 import System.Environment
 import System.Exit
@@ -20,17 +20,18 @@ main = do
 generate :: FilePath -> FilePath -> IO ()
 generate outDir inDir = do
     base <- parseBaseFrom inDir
-    fpsimd <- parseFpsimdFrom inDir
+    fpsimd <- parseFpSimdFrom inDir
+    sharedps <- parseSharedPsFrom inDir
     createDirectoryIfMissing True (takeDirectory path)
-    writeFile path (prettyPrint (build base fpsimd))
+    writeFile path (prettyPrint (build base fpsimd sharedps))
   where
     path = outDir </> "gen" </> "ARM" </> "MRAS" </> "Gen.hs"
 
-build :: [Insn] -> [Insn] -> Module ()
-build base fpsimd = Module () (Just head) [] [imp] decls
+build :: [Insn] -> [Insn] -> [SharedPs] -> Module ()
+build base fpsimd sharedps = Module () (Just head) [] [imp] decls
   where
     head = ModuleHead () (ModuleName () "ARM.MRAS.Gen") Nothing Nothing
-    decls = decl "base" base ++ decl "fpsimd" fpsimd
+    decls = decl "base" base ++ decl "fpsimd" fpsimd ++ [sharedpsTy, sharedpsVal]
     decl id val =
         [ TypeSig () [Ident () id]
             (TyList ()
@@ -40,6 +41,14 @@ build base fpsimd = Module () (Just head) [] [imp] decls
                 (UnGuardedRhs () (() <$ fromParseResult (parseExp (show val))))
                 Nothing
             ]
+        ]
+    sharedpsTy = TypeSig () [Ident () "sharedps"]
+        (TyList ()
+            (TyCon () (UnQual () (Ident () "SharedPs"))))
+    sharedpsVal = FunBind ()
+        [ Match () (Ident () "sharedps") []
+            (UnGuardedRhs () (() <$ fromParseResult (parseExp (show sharedps))))
+            Nothing
         ]
     imp = ImportDecl
         { importAnn = ()

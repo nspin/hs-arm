@@ -24,7 +24,10 @@ module ARM.MRAS.Types
     , TableRow(..)
     , Ps(..)
     , PsName
+    , PsSymbol
     , PsSection(..)
+
+    , SharedPs(..)
     ) where
 
 import Control.DeepSeq
@@ -126,3 +129,13 @@ type PsSymbol = String
 
 data PsSection = PsDecode | PsPostDecode | PsExecute
     deriving (Eq, Show, Generic, NFData)
+
+
+data SharedPs = SharedPs
+    { _shared_ps_name :: PsName
+    , _shared_ps_link :: String
+    , _shared_ps_deps :: [PsSymbol]
+    , _shared_ps_symbols :: [PsSymbol]
+    , _shared_ps_doc :: Maybe String
+    , _shared_ps_code :: String
+    } deriving (Eq, Show, Generic, NFData)

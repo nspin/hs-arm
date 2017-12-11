@@ -11,9 +11,9 @@ library
   default-language:   Haskell2010
 
   exposed-modules:    ARM.MRAS.Parse
-                    , ARM.MRAS.Parse.IO
                     , ARM.MRAS.Parse.Internal.Distill
                     , ARM.MRAS.Parse.Internal.Tidy
+                    , ARM.MRAS.Parse.Internal.SharedPs
 
   build-depends:      base >=4.8 && <5
 

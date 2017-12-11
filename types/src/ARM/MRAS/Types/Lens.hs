@@ -24,6 +24,8 @@ module ARM.MRAS.Types.Lens
     , class_arch_var
     , class_diagram
     , class_encodings
+
+    , HasSharedPs(..)
     ) where
 
 import ARM.MRAS.Types
@@ -42,3 +44,5 @@ makeClassy ''Ps
 
 makeLenses ''InsnFromWith
 makeLenses ''Class
+
+makeClassy ''SharedPs
