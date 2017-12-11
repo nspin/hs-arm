@@ -27,8 +27,9 @@ combinePages = uncurry synth . partitionEithers . map (uncurry file)
 synth :: [InsnFromWith PageId a] -> [(PageId, AliasFrom b)] -> [InsnFromWith (AliasFrom b) a]
 synth insns aliases = map f insns
   where
-    f insn = insn & insn_aliases .~ als
+    f insn = check `assert` (insn & insn_aliases .~ als)
       where
+        check = and [ apid `elem` (map _alias_id als) | apid <- _insn_aliases insn ]
         als =
             [ (_alias_id al `elem` _insn_aliases insn) `assert` al
             | (pid, al) <- aliases
