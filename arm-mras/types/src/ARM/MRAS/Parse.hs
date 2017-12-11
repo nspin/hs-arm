@@ -4,9 +4,9 @@ module ARM.MRAS.Parse
 
 import ARM.MRAS.Types
 import ARM.MRAS.Parse.Internal.Distill (distillPage)
-import ARM.MRAS.Parse.Internal.Tidy
+import ARM.MRAS.Parse.Internal.Tidy (tidyPage)
 
-import ARM.MRAS.DTD.A64.Iformp
+import ARM.MRAS.DTD.A64.Iformp (Instructionsection)
 
-parsePage :: Instructionsection -> Either AliasPage Page
+parsePage :: Instructionsection -> Either Insn Alias
 parsePage = tidyPage . distillPage
