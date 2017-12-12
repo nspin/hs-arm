@@ -23,11 +23,11 @@ import Distribution.PackageDescription
 import Distribution.PackageDescription.Parse
 import Distribution.Version
 
-import Text.XML.HaXml.Types (DocTypeDecl(..))
-import Text.XML.HaXml.Parse (dtdParse)
 import Text.XML.HaXml.DtdToHaskell.Convert (dtd2TypeDef)
-import Text.XML.HaXml.DtdToHaskell.TypeDef (ppTypeDef)
 import Text.XML.HaXml.DtdToHaskell.Instance (mkInstance)
+import Text.XML.HaXml.DtdToHaskell.TypeDef (ppTypeDef)
+import Text.XML.HaXml.Parse (dtdParse)
+import Text.XML.HaXml.Types (DocTypeDecl(..))
 
 
 usage :: String

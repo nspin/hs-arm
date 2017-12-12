@@ -7,24 +7,22 @@ module ARM.MRAS.Parse
     ) where
 
 import ARM.MRAS.Types
-import ARM.MRAS.Types.Lens
 import ARM.MRAS.Parse.Internal.Distill (distillPage)
 import ARM.MRAS.Parse.Internal.Tidy (tidyPage)
 import ARM.MRAS.Parse.Internal.SharedPs (parseSharedPs)
 
+import ARM.MRAS.DTD.A64.Alphaindex
+import ARM.MRAS.DTD.A64.Iformp (Instructionsection)
+
 import Control.Exception
+import Control.Lens
 import Control.Monad
 import Data.Bifunctor
 import Data.Either
 import Data.Maybe
-
-import Control.Lens
-import System.Directory
 import System.FilePath
-import Text.XML.HaXml.XmlContent
 
-import ARM.MRAS.DTD.A64.Alphaindex
-import ARM.MRAS.DTD.A64.Iformp (Instructionsection)
+import Text.XML.HaXml.XmlContent
 
 
 parsePage :: Instructionsection -> Either (InsnFromWith PageId ()) (PageId, AliasFrom ())

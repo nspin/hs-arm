@@ -1,6 +1,10 @@
 {-# LANGUAGE DeriveAnyClass #-}
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE DeriveFunctor #-}
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE FunctionalDependencies #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE TemplateHaskell #-}
 
 module ARM.MRAS.Types
     ( InsnFromWith(..)
@@ -28,10 +32,43 @@ module ARM.MRAS.Types
     , PsSection(..)
 
     , SharedPs(..)
+
+
+    , HasAliasFrom(..)
+    , HasDiagram(..)
+    , HasBox(..)
+    , HasBlock(..)
+    , HasEncoding(..)
+    , HasSymbol(..)
+    , HasTable(..)
+    , HasTableRow(..)
+    , HasPs(..)
+
+    , insn_id
+    , insn_file
+    , insn_aliases
+    , insn_classes
+    , insn_ps
+
+    , class_id
+    , class_arch_var
+    , class_diagram
+    , class_encodings
+
+    , HasSharedPs(..)
+
+
+    , bindDiagram
+    , classDiagrams
+    , diagramFields
+    , DiagramField(..)
     ) where
 
 import Control.DeepSeq
+import Control.Lens
+import Control.Lens.TH
 import GHC.Generics (Generic)
+
 
 data InsnFromWith alias file = Insn
     { _insn_id :: PageId
@@ -139,3 +176,43 @@ data SharedPs = SharedPs
     , _shared_ps_doc :: Maybe String
     , _shared_ps_code :: String
     } deriving (Eq, Show, Generic, NFData)
+
+
+makeClassy ''AliasFrom
+makeClassy ''Diagram
+makeClassy ''Box
+makeClassy ''Block
+makeClassy ''Encoding
+makeClassy ''Symbol
+makeClassy ''Table
+makeClassy ''TableRow
+makeClassy ''Ps
+
+makeLenses ''InsnFromWith
+makeLenses ''Class
+
+makeClassy ''SharedPs
+
+
+bindDiagram :: [Block] -> [(String, BlockSpec)] -> [Block]
+bindDiagram bs [] = bs
+bindDiagram (Block (Just name) spec : blocks) bndss@((name', spec'):bnds)
+    | name == name' = Block (Just name) spec' : bindDiagram blocks bnds 
+bindDiagram (block:blocks) bnds = block : bindDiagram blocks bnds
+
+classDiagrams :: Class -> [[Block]]
+classDiagrams cl = map
+    (bindDiagram (cl^.class_diagram.diagram_blocks))
+    (cl^..class_encodings.traverse.encoding_diagram)
+
+diagramFields :: [Block] -> [DiagramField]
+diagramFields = go 32
+  where
+    go hi (Block Nothing spec : blks) = go (hi - len spec) blks
+    go hi (Block (Just n) spec : blks) = Field (hi - 1) (hi - len spec) n : go (hi - len spec) blks
+    go 0 [] = []
+    len (BlockEq bs) = length bs
+    len (BlockNeq bs) = length bs
+
+data DiagramField = Field Int Int String
+    deriving (Show, Eq, Ord)

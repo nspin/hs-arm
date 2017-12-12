@@ -1,13 +1,12 @@
 module Main (main) where
 
-import ARM.MRAS.Types
 import ARM.MRAS.Parse
-
-import System.Environment
-import System.Exit
+import ARM.MRAS.Types
 
 import Language.Haskell.Exts
 import System.Directory
+import System.Environment
+import System.Exit
 import System.FilePath
 
 main :: IO ()

@@ -1,12 +1,8 @@
-{ mkDerivation, attoparsec, base, deepseq, exceptions, lens, stdenv
-, text
-}:
+{ mkDerivation, base, deepseq, lens, stdenv }:
 mkDerivation {
   pname = "arm-mras-types";
   version = "0.1";
   src = ./.;
-  libraryHaskellDepends = [
-    attoparsec base deepseq exceptions lens text
-  ];
+  libraryHaskellDepends = [ base deepseq lens ];
   license = stdenv.lib.licenses.mit;
 }

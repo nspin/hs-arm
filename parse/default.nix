@@ -1,7 +1,6 @@
 { mkDerivation, arm-mras-dtd-a64, arm-mras-dtd-aarch32
-, arm-mras-dtd-sysreg, arm-mras-types, base, deepseq, directory
-, exceptions, filepath, HaXml, lens, monad-logger, mtl, pretty
-, stdenv, text, transformers
+, arm-mras-dtd-sysreg, arm-mras-types, base, deepseq, filepath
+, HaXml, lens, stdenv
 }:
 mkDerivation {
   pname = "arm-mras-parse";
@@ -9,8 +8,7 @@ mkDerivation {
   src = ./.;
   libraryHaskellDepends = [
     arm-mras-dtd-a64 arm-mras-dtd-aarch32 arm-mras-dtd-sysreg
-    arm-mras-types base deepseq directory exceptions filepath HaXml
-    lens monad-logger mtl pretty text transformers
+    arm-mras-types base deepseq filepath HaXml lens
   ];
   license = stdenv.lib.licenses.mit;
 }
