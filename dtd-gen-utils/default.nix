@@ -1,5 +1,5 @@
-{ mkDerivation, base, bytestring, Cabal, directory, filepath, HaXml
-, pretty, stdenv
+{ mkDerivation, base, bytestring, Cabal, directory, filepath
+, haskell-src-exts, HaXml, pretty, stdenv
 }:
 mkDerivation {
   pname = "arm-mras-dtd-gen-utils";
@@ -8,7 +8,8 @@ mkDerivation {
   isLibrary = false;
   isExecutable = true;
   executableHaskellDepends = [
-    base bytestring Cabal directory filepath HaXml pretty
+    base bytestring Cabal directory filepath haskell-src-exts HaXml
+    pretty
   ];
   license = stdenv.lib.licenses.mit;
 }

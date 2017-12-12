@@ -15,5 +15,6 @@ executable gen-arm-mras-dtd
                     , Cabal
                     , directory
                     , filepath
+                    , haskell-src-exts
                     , HaXml
                     , pretty

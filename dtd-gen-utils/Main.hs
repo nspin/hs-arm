@@ -1,26 +1,22 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 module Main (main) where
 
 import Control.Monad
-import Data.ByteString.Builder
 import Data.Char
 import Data.List
-import Data.Monoid
 import System.Directory
 import System.Environment
 import System.Exit
 import System.FilePath
-import Text.Read
-import qualified Data.ByteString.Lazy as L
+import Text.Read (readMaybe)
 
-import Text.PrettyPrint.HughesPJ (render)
+import Language.Haskell.Exts
+import Text.PrettyPrint.HughesPJ (vcat, render)
 
 import Distribution.License
 import Distribution.ModuleName (ModuleName, fromString, components)
 import Distribution.Package
 import Distribution.PackageDescription
-import Distribution.PackageDescription.Parse
+import Distribution.PackageDescription.Parse (writePackageDescription)
 import Distribution.Version
 
 import Text.XML.HaXml.DtdToHaskell.Convert (dtd2TypeDef)
@@ -61,21 +57,24 @@ basePackageName = "arm-mras-dtd"
 baseVersion :: [Int]
 baseVersion = [0, 1]
 
-topLevelModule :: [String]
-topLevelModule = ["ARM", "MRAS", "DTD"]
+topLevelModuleName :: [String]
+topLevelModuleName = ["ARM", "MRAS", "DTD"]
+
+sanitizeModuleName :: String -> String
+sanitizeModuleName (c:cs) = toUpper c : filter isAlphaNum cs
+
 
 generate :: [Int] -> String -> FilePath -> FilePath -> IO ()
 generate specVersion specName inDir outDir = do
-    mods <- generateHaskell (topLevelModule ++ [specName]) moduleDir inDir
-    writePackageDescription cabalOut $ generateCabal specVersion pname mods
+    mods <- generateHaskell (topLevelModuleName ++ [specName]) moduleDir inDir
+    writePackageDescription cabalOut $ buildCabal specVersion pname mods
   where
     pname = basePackageName ++ "-" ++ map toLower specName
     cabalOut = outDir </> pname <.> "cabal"
     moduleDir = outDir </> "gen"
 
-
-generateCabal :: [Int] -> String -> [[String]] -> PackageDescription
-generateCabal specVersion pname mods = emptyPackageDescription
+buildCabal :: [Int] -> String -> [[String]] -> PackageDescription
+buildCabal specVersion pname mods = emptyPackageDescription
     { package = PackageIdentifier (PackageName pname) (Version (baseVersion ++ specVersion) [])
     , license = MIT
     , author = "Nick Spinale"
@@ -94,50 +93,50 @@ generateCabal specVersion pname mods = emptyPackageDescription
         }
     }
 
-
 generateHaskell :: [String] -> FilePath -> FilePath -> IO [[String]]
-generateHaskell baseModule moduleDir inDir = do
-    createDirectoryIfMissing True (moduleDir </> joinPath baseModule)
+generateHaskell baseModuleName moduleDir inDir = do
+    createDirectoryIfMissing True (moduleDir </> joinPath baseModuleName)
     files <- listDirectory inDir >>= filterM (doesFileExist . (</>) inDir)
     sequence [ f name | (name, ext) <- map splitExtension files, ext == ".dtd" ]
   where
     f name = do
-        dtd <- parseDTD $ inDir </> name <.> "dtd"
-        let leafModule = baseModule ++ [sanitizeModuleName name]
-            hs = renderDTD leafModule dtd
-        L.writeFile (moduleDir </> joinPath leafModule <.> "hs") (toLazyByteString hs)
-        return leafModule
+        let inPath = inDir </> name <.> "dtd"
+        content <- readFile inPath
+        case dtdParse inPath content of
+            Nothing -> error $ "failed to parse " ++ inPath
+            Just dtd -> do
+                let leafModuleName = baseModuleName ++ [sanitizeModuleName name]
+                    outPath = moduleDir </> joinPath leafModuleName <.> "hs"
+                    mod = buildModule leafModuleName dtd
+                writeFile outPath (prettyPrint mod)
+                return leafModuleName
 
-
-sanitizeModuleName :: String -> String
-sanitizeModuleName (c:cs) = toUpper c : filter isAlphaNum cs
-
-
-parseDTD :: FilePath -> IO DocTypeDecl
-parseDTD path = do
-    content <- readFile path
-    case dtdParse path content of
-        Nothing -> error $ "failed to parse " ++ path
-        Just dtd -> return dtd
-
-
-renderDTD :: [String] -> DocTypeDecl -> Builder
-renderDTD modName (DTD _ _ markup) = mconcat . map (<> "\n") $
-    [ "module " <> stringUtf8 (intercalate "." modName) <> " where"
-    , ""
-    , "import Prelude hiding (Right, Left)"
-    , "import Text.XML.HaXml.XmlContent hiding (Content, List)"
-    , "import Text.XML.HaXml.Types hiding (Content, Name)"
-    , "import Text.XML.HaXml.OneOfN"
-    , ""
-    , ""
-    , "-- TYPES --"
-    , ""
-    ] ++ map ((<>) "\n" . stringUtf8 . render . ppTypeDef) decls ++
-    [ ""
-    , ""
-    , "-- INSTANCES --"
-    , ""
-    ] ++ map ((<>) "\n" . stringUtf8 . render . mkInstance) decls
+buildModule :: [String] -> DocTypeDecl -> Module ()
+buildModule modName (DTD _ _ markup) = Module () (Just head) [] imps decls
   where
-    decls = nub $ dtd2TypeDef markup
+    head = ModuleHead () (ModuleName () (intercalate "." modName)) Nothing Nothing
+    tydefs = dtd2TypeDef markup
+    Module () Nothing [] [] decls = () <$ fromParseResult (parseModule rawDecls)
+    rawDecls = render (vcat (map ppTypeDef tydefs ++ map mkInstance tydefs))
+    imps = [ basicImport"Text.XML.HaXml.OneOfN"
+           , hidingImport "Prelude" ["Right", "Left"]
+           , hidingImport "Text.XML.HaXml.XmlContent" ["Content", "List"]
+           , hidingImport "Text.XML.HaXml.Types" ["Content", "Name"]
+           ]
+
+basicImport :: String -> ImportDecl ()
+basicImport mod = ImportDecl
+    { importAnn = ()
+    , importModule = ModuleName () mod
+    , importQualified = False
+    , importSrc = False
+    , importSafe = False
+    , importPkg = Nothing
+    , importAs = Nothing
+    , importSpecs = Nothing
+    }
+
+hidingImport :: String -> [String] -> ImportDecl ()
+hidingImport mod hides = (basicImport mod)
+    { importSpecs = Just (ImportSpecList () True (map (IVar () . Ident ()) hides))
+    }
