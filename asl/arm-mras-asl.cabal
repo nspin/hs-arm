@@ -15,10 +15,10 @@ library
                     , ARM.MRAS.ASL.Parser.Lexer
                     , ARM.MRAS.ASL.Parser.ParserMonad
                     , ARM.MRAS.ASL.Parser.Tokens
-                    -- , ARM.MRAS.ASL.Parser.AST
+                    , ARM.MRAS.ASL.Parser.AST
                     -- , ARM.MRAS.ASL.Parser.Parser
 
-  build-depends:      base >=4.8 && <5
+  build-depends:      base >=4.9 && <5
 
                     , arm-mras
 

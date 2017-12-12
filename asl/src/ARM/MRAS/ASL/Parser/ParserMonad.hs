@@ -16,6 +16,8 @@ module ARM.MRAS.ASL.Parser.ParserMonad
     , updateLayout
     , anyDelims
     , updateDelimStack
+    , isTypeIdent
+    , addTypeIdent
     ) where
 
 import ARM.MRAS.ASL.Parser.Tokens
@@ -42,6 +44,7 @@ data PState = PState
     , _p_layout_ctx :: [[LayoutUnit]]
     , _p_delim_stack :: [Token]
     , _p_next_toks :: [Token]
+    , _p_type_idents :: [String]
     }
 
 data Position = Position
@@ -61,7 +64,7 @@ makeClassy ''Position
 
 
 initP :: String -> PState
-initP input = PState (Position 0 0 1) '\n' [] ('\n':input) [] [] []
+initP input = PState (Position 0 0 1) '\n' [] ('\n':input) [] [] [] []
 
 nextByte :: PState -> Maybe (Word8, PState)
 nextByte = (<|>)
@@ -142,3 +145,9 @@ updateDelimStack tok = modify (over p_delim_stack (f tok))
     f TokWhile  s = TokWhile  : s
 
     f _ s = s -- TODO(nspin) negative cases as well
+
+isTypeIdent :: String -> P Bool
+isTypeIdent ident = gets (elem ident . _p_type_idents)
+
+addTypeIdent :: String -> P ()
+addTypeIdent ident = p_type_idents %= (:) ident

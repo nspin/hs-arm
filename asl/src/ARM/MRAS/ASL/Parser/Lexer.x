@@ -11,6 +11,7 @@ import ARM.MRAS.ASL.Parser.ParserMonad
 import Control.Lens
 import Control.Monad.Except
 import Control.Monad.State
+import Data.Bool
 import Data.Char
 import Data.Word
 
@@ -123,9 +124,8 @@ asl :-
 @hex    { str TokHex       }
 @real   { str TokReal      }
 @string { str TokString    }
-@ident  { str TokIdent     }
-@ident  { str TokTident    }
-@ident  { str TokQualifier }
+
+@ident  { ident }
 
 {
 
@@ -150,6 +150,12 @@ tok t _ = Right t <$ updateDelimStack t
 
 str :: (String -> Token) -> Action
 str f s = return (Right (f s))
+
+ident :: Action
+ident s = Right <$>
+    if s `elem` ["AArch32", "AArch64"]
+      then return (TokQualifier s)
+      else bool (TokIdent s) (TokTident s) <$> isTypeIdent s
 
 nestedComment :: Action
 nestedComment _ = go 1
