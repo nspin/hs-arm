@@ -14,6 +14,7 @@ library
                     , ARM.MRAS.Parse.Internal.Distill
                     , ARM.MRAS.Parse.Internal.Tidy
                     , ARM.MRAS.Parse.Internal.SharedPs
+                    , ARM.MRAS.Parse.Internal.Common
 
   build-depends:      base >=4.8 && <5
 

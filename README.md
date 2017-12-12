@@ -17,6 +17,7 @@ This code generation process is complex, but [nix](https://nixos.org/nix/) makes
 - **`parse`**: Library for parsing XML files into the MRAS types, using the DTD's.
 - **`values-gen-utils`**: Program whose input is the MRAS, and whose output is part of a Haskell library containing values of the types found in `arm-mras-types`.
 - **`values`**: Library containing expressions of the types found in `types`. Includes the output of `values-gen-utils`.
+- **`asl`**: Library for parsing and interpreting ARM ASL (Architecture Specification Language).
 
 # Example
 

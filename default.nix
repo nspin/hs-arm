@@ -17,6 +17,11 @@ let
 
 in rec {
 
+  asl = haskellPackages.callPackage ./asl {
+    arm-mras = values;
+    arm-mras-types = types;
+  };
+
   dtd-gen-utils = haskellPackages.callPackage ./dtd-gen-utils {};
 
   types = haskellPackages.callPackage ./types {};

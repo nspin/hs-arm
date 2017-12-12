@@ -22,3 +22,4 @@ go_r dtd-src.aarch32
 go_r values-src
 
 go_r values
+go_r asl

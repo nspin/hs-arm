@@ -3,6 +3,7 @@ module ARM.MRAS
     , module ARM.MRAS.Types.Lens
     , base
     , fpsimd
+    , sharedps
     ) where
 
 import ARM.MRAS.Types

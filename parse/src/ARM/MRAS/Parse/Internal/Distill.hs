@@ -21,6 +21,7 @@ module ARM.MRAS.Parse.Internal.Distill
     , distillPage
     ) where
 
+import ARM.MRAS.Parse.Internal.Common
 import ARM.MRAS.Types (PageId, ClassId, ArchVar(..), EncodingId, Template, Ps(..), PsName(..), PsSection(..))
 
 import Control.DeepSeq
@@ -81,18 +82,6 @@ deriving instance NFData Entry_class
 
 data TableEntry = TableEntry Entry_class (Either String ArchVar)
     deriving (Show, Generic, NFData)
-
-
-unescape :: String -> String
-unescape ('&':'l':'t':';':cs) = '<' : unescape cs 
-unescape ('&':'g':'t':';':cs) = '>' : unescape cs
-unescape ('&':'a':'m':'p':';':cs) = '&' : unescape cs
-unescape (c:cs) = c : unescape cs
-unescape [] = []
-
-infixl 4 <&>
-(<&>) :: Functor f => f a -> (a -> b) -> f b
-(<&>) = flip fmap
 
 
 distillPage :: Instructionsection -> Page

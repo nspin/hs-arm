@@ -2,14 +2,14 @@ module ARM.MRAS.Parse.Internal.SharedPs
     ( parseSharedPs
     ) where
 
+import ARM.MRAS.Parse.Internal.Common
 import ARM.MRAS.Types (SharedPs(..), PsName, PsSymbol)
+import ARM.MRAS.DTD.A64.Sharedps
 
 import Data.Maybe
 import Data.List
 
 import Text.XML.HaXml.XmlContent (List1(..))
-
-import ARM.MRAS.DTD.A64.Sharedps
 
 
 parseSharedPs :: Instructionsection -> [SharedPs]
@@ -22,7 +22,7 @@ parsePs (Ps attrs xdoc (Just (Pstext (Pstext_Attrs "Functions" (Just "1") (Just 
     (catMaybes deps)
     (catMaybes syms)
     doc
-    (concat code)
+    (unescape (concat code))
   where
     Ps_Attrs name Nothing (Just link) (Just "") Nothing "1" (Just "Library") = attrs
     doc = case xdoc of
