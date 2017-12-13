@@ -45,6 +45,9 @@ asl :-
 @whitespace ;
 @comment ;
 
+[\ ]^"> " { tok TokGt }
+[\ ]^"< " { tok TokLt }
+
 "AND"                    { tok TokAnd           }
 "DIV"                    { tok TokDiv           }
 "EOR"                    { tok TokEor           }
@@ -109,10 +112,10 @@ asl :-
 "+"   { tok TokPlus      }
 "<<"  { tok TokLtLt      }
 "<="  { tok TokLtEq      }
-"<"   { tok TokLt        }
+"<"   { tok TokLAngle    }
 ">>"  { tok TokGtGt      }
 ">="  { tok TokGtEq      }
-">"   { tok TokGt        }
+">"   { tok TokRAngle    }
 "["   { tok TokLBrack    }
 "]"   { tok TokRBrack    }
 "{"   { tok TokLBrace    }

@@ -10,6 +10,7 @@ import ARM.MRAS.ASL.Parser.ParserMonad
 import ARM.MRAS.ASL.Parser.Syntax
 import ARM.MRAS.ASL.Parser.Tokens
 
+import Control.DeepSeq
 import Control.Lens
 import Control.Monad
 import Control.Monad.Except
@@ -69,11 +70,11 @@ readPrelude = readFile "test/prelude.asl"
 
 typeIdents :: [String]
 typeIdents = 
-    [ "bits"
-    , "integer"
-    , "real"
+    [ "bit"
     , "bits"
     , "boolean"
+    , "integer"
+    , "real"
     ]
 
 parseDefs :: String -> Either PError [Definition]
@@ -81,19 +82,38 @@ parseDefs input = evalStateT (unP definitionsP) (initP typeIdents input)
 
 testParser :: IO ()
 testParser = do
-    forM_ defChunks $ \chunk -> do
-        case evalStateT (parseDefinitions chunk) typeIdents of
-            Left err -> do
-                putStrLn chunk
-                putStrLn ""
-                die $ show err
-            Right ast -> do
-                putChar '.'
+    eerr <- runExceptT . flip runStateT typeIdents . forM_ defChunks $ \chunk -> do
+        defs <- catchError (parseDefinitions chunk) $ \err -> do
+            liftIO $ putStrLn chunk
+            tys <- get
+            liftIO $ print tys
+            throwError err
+        defs `deepseq` liftIO (putStr "")
+    case eerr of
+        Left err -> print err
+        Right _ -> return ()
     putChar '\n'
+
+iterateChunks :: Monad m => [String] -> StateT [String] (ExceptT PError m) [String]
+iterateChunks = go 0 []
+  where
+    go 0 bad [] = return bad
+    go n bad [] = go 0 [] bad
+    go n bad (c:cs) = do
+        catchError
+            (parseDefinitions c >> go (n + 1) bad cs)
+            (const (go n (c:bad) cs))
+
+parseAll :: IO ()
+parseAll = do
+    Right (leftover, tys) <- runExceptT (runStateT (iterateChunks defChunks) typeIdents)
+    mapM_ putStrLn leftover
+    putStrLn ""
+    mapM_ putStrLn tys
 
 test :: IO ()
 test = do
     input <- readFile "test/test.asl"
-    case evalStateT (parseDefinitions input) typeIdents of
-        Left err -> print err
+    case runExceptT (evalStateT (parseDefinitions input) typeIdents) of
+        Left err -> print (err :: PError)
         Right ast -> print ast

@@ -69,10 +69,12 @@ data Statement =
     deriving (Eq, Show, Generic, NFData)
 
 data LExpr =
-      LExprId QIdent
+      LExprEmpty
+    | LExprId QIdent
     | LExprDot LExpr Ident
     | LExprDotBrack LExpr (NonEmpty Ident)
     | LExprSlice LExpr [Slice]
+    | LExprWat [Slice]
     | LExprBrack (NonEmpty LExpr)
     | LExprParen (NonEmpty LExpr)
     deriving (Eq, Show, Generic, NFData)
@@ -98,7 +100,7 @@ data Expr =
     | ExprStr String
     | ExprId QIdent
     | ExprApp QIdent [Expr]
-    | ExprTuple (NonEmpty Expr)
+    | ExprTuple [Expr]
     | ExprUnOp UnOp Expr
     | ExprUnk TyExpr
     | ExprImpDef TyExpr (Maybe String)
@@ -117,8 +119,8 @@ data Expr =
 
 data Slice =
       Slice Expr
-    | SliceColon Slice Expr
-    | SlicePlusColon Slice Expr
+    | SliceColon Expr Expr
+    | SlicePlusColon Expr Expr
     deriving (Eq, Show, Generic, NFData)
 
 data UnOp =
@@ -151,4 +153,5 @@ data BinOp =
     | BinOpRem
     | BinOpDiv
     | BinOpMod
+    | BinOpColon
     deriving (Eq, Show, Generic, NFData)

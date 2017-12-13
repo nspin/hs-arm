@@ -71,7 +71,6 @@ data Token =
     | TokWhen
     | TokWhile
 
-    -- delimiters
     | TokAmp
     | TokAmpAmp
     | TokBang
@@ -85,6 +84,8 @@ data Token =
     | TokGt
     | TokGtEq
     | TokGtGt
+    | TokLAngle
+    | TokRAngle
     | TokLBrace
     | TokRBrace
     | TokLBrack

@@ -75,6 +75,9 @@ import Data.List.NonEmpty (NonEmpty(..))
     'when'                   { TokWhen          }
     'while'                  { TokWhile         }
 
+    ' < ' { TokLt }
+    ' > ' { TokGt }
+
     '&'  { TokAmp       }
     '&&' { TokAmpAmp    }
     '!'  { TokBang      }
@@ -85,16 +88,16 @@ import Data.List.NonEmpty (NonEmpty(..))
     '..' { TokDotDot    }
     '='  { TokEq        }
     '==' { TokEqEq      }
-    '>'  { TokGt        }
     '>=' { TokGtEq      }
     '>>' { TokGtGt      }
+    '<'  { TokLAngle    }
+    '>'  { TokRAngle    }
     '{'  { TokLBrace    }
     '}'  { TokRBrace    }
     '['  { TokLBrack    }
     ']'  { TokRBrack    }
     '('  { TokLParen    }
     ')'  { TokRParen    }
-    '<'  { TokLt        }
     '<=' { TokLtEq      }
     '<<' { TokLtLt      }
     '-'  { TokMinus     }
@@ -254,13 +257,15 @@ option_s_else ::             { Maybe (NonEmpty Statement) }
     :                        { Nothing                    }
     | 'else' nonempty_block  { Just $2                    }
 
-lexpr ::                                 { LExpr                       }
-    : qualident                          { LExprId $1                  }
-    | lexpr '.' ident                    { LExprDot $1 $3              }
-    | lexpr '.' '[' ident csl_ident ']'  { LExprDotBrack $1 ($4 :| $5) }
-    | lexpr '[' csl_slice ']'            { LExprSlice $1 $3            }
-    | '[' lexpr csl_lexpr ']'            { LExprBrack ($2 :| $3)       }
-    | '(' lexpr csl_lexpr ')'            { LExprParen ($2 :| $3)       }
+lexpr ::                                { LExpr                       }
+    : '-'                               { LExprEmpty                  }
+    | qualident                         { LExprId $1                  }
+    | lexpr '.' ident                   { LExprDot $1 $3              }
+    | lexpr '.' '[' ident csl_ident ']' { LExprDotBrack $1 ($4 :| $5) }
+    | lexpr '<' csl_slice '>'           { LExprSlice $1 $3            }
+    | '<' csl_slice '>'                 { LExprWat $2                 } -- wat
+    | '[' lexpr ',' csl_lexpr ']'       { LExprBrack ($2 :| $4)       }
+    | '(' lexpr ',' csl_lexpr ')'       { LExprParen ($2 :| $4)       }
 
 indented_block ::                            { NonEmpty Statement }
     : INDENT statement list_statement DEDENT { $2 :| $3           }
@@ -290,7 +295,7 @@ aexpr ::                                                { Expr                 }
     | STRING                                            { ExprStr $1           }
     | qualident                                         { ExprId $1            }
     | qualident '(' csl_expr ')'                        { ExprApp $1 $3        }
-    | '(' expr ',' csl_expr ')'                         { ExprTuple ($2 :| $4) }
+    | '(' csl_expr ')'                                  { ExprTuple $2         }
     | unop aexpr                                        { ExprUnOp $1 $2       }
     | type_expr 'UNKNOWN'                               { ExprUnk $1           }
     | type_expr 'IMPLEMENTATION_DEFINED' option_string  { ExprImpDef $1 $3     }
@@ -299,7 +304,8 @@ bexpr ::                                     { Expr                       }
     : aexpr                                  { $1                         }
     | bexpr '.' ident                        { ExprDot $1 $3              }
     | bexpr '.' '[' ident ',' csl_ident ']'  { ExprDotBrack $1 ($4 :| $6) }
-    | bexpr '[' csl_slice ']'                { ExprSlice $1 $3            }
+    | bexpr '[' csl_slice ']'                { ExprSlice $1 $3            } -- This is incorrect
+    | bexpr '<' csl_slice '>'                { ExprSlice $1 $3            }
     | bexpr 'IN' '{' csl_element '}'         { ExprInSet $1 $4            }
     | bexpr 'IN' MASK                        { ExprInMask $1 []           }
 
@@ -307,14 +313,18 @@ element ::            { (Expr, Maybe Expr) }
     : expr            { ($1, Nothing)      }
     | expr '..' expr  { ($1, Just $3)      }
 
+cexpr1 ::                 { Expr               }
+    : bexpr binop1 cexpr1 { ExprBinOp $1 $2 $3 }
+    | bexpr               { $1                 }
+
 cexpr ::                 { Expr               }
-    : bexpr binop cexpr  { ExprBinOp $1 $2 $3 }
+    : bexpr binop2 cexpr { ExprBinOp $1 $2 $3 }
     | bexpr              { $1                 }
 
-slice ::                { Slice                }
-    : cexpr             { Slice $1             }
-    | slice ':' cexpr   { SliceColon $1 $3     }
-    | slice '+:' cexpr  { SlicePlusColon $1 $3 }
+slice ::                 { Slice                }
+    : cexpr1             { Slice $1             }
+    | cexpr1 ':' cexpr   { SliceColon $1 $3     }
+    | cexpr1 '+:' cexpr  { SlicePlusColon $1 $3 }
 
 expr ::                                               { Expr               }
     : 'if' expr 'then' expr list_e_elsif 'else' expr  { ExprIf $2 $4 $5 $7 }
@@ -329,12 +339,14 @@ unop ::      { UnOp      }
     | '!'    { UnOpBang  }
     | 'NOT'  { UnOpNot   }
 
-binop ::      { BinOp         }
+binop2 ::    { BinOp      }
+    : binop1 { $1         }
+    | ':'    { BinOpColon }
+
+binop1 ::     { BinOp         }
     : '=='    { BinOpEqEq     }
     | '!='    { BinOpNeq      }
-    | '>'     { BinOpGt       }
     | '>='    { BinOpGtEq     }
-    | '<'     { BinOpLt       }
     | '<='    { BinOpLtEq     }
     | '<<'    { BinOpLtLt     }
     | '>>'    { BinOpGtGt     }
@@ -353,6 +365,8 @@ binop ::      { BinOp         }
     | 'REM'   { BinOpRem      }
     | 'DIV'   { BinOpDiv      }
     | 'MOD'   { BinOpMod      }
+    | ' > '   { BinOpGt       }
+    | ' < '   { BinOpLt       }
 
 --
 
