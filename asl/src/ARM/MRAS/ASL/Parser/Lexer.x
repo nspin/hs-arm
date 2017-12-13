@@ -15,6 +15,8 @@ import Data.Bool
 import Data.Char
 import Data.Word
 
+import Debug.Trace
+
 }
 
 @layout = [\n][\ \t]*
@@ -215,6 +217,9 @@ tokenP = do
                     
 
 lexer :: (Token -> P a) -> P a
-lexer = (>>=) tokenP
+-- lexer = (>>=) tokenP
+lexer f = do
+    t <- tokenP
+    trace (show t) (f t)
 
 }

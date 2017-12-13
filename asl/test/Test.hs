@@ -3,18 +3,22 @@ module Main
     ) where
 
 import ARM.MRAS
+import ARM.MRAS.ASL.Parser
 import ARM.MRAS.ASL.Parser.Lexer
-import ARM.MRAS.ASL.Parser.Tokens
+import ARM.MRAS.ASL.Parser.Parser
 import ARM.MRAS.ASL.Parser.ParserMonad
+import ARM.MRAS.ASL.Parser.Syntax
+import ARM.MRAS.ASL.Parser.Tokens
 
 import Control.Lens
 import Control.Monad
+import Control.Monad.Except
 import Control.Monad.State
 import Data.Monoid
 import System.Exit
 
 scan :: String -> Either PError [Token]
-scan input = evalStateT (unP go) (initP input)
+scan input = evalStateT (unP go) (initP [] input)
   where
     go = do
         t <- tokenP
@@ -31,13 +35,20 @@ areClosed = go 0
     go 0 [] = True
     go _ [] = False
 
-allChunks :: [String]
-allChunks = map _shared_ps_code sharedps
-    ++ (base ++ fpsimd) ^.. traverse.(insn_classes.traverse._2 <> insn_ps).traverse.ps_code
+defChunks :: [String]
+defChunks = map _shared_ps_code sharedps
+
+stmtChunks :: [String]
+stmtChunks = (base ++ fpsimd) ^.. traverse.(insn_classes.traverse._2 <> insn_ps).traverse.ps_code
 
 main :: IO ()
 main = do
-    forM_ allChunks $ \chunk -> do
+    testLexer
+    testParser
+
+testLexer :: IO ()
+testLexer = do
+    forM_ (defChunks ++ stmtChunks) $ \chunk -> do
         case scan chunk of
             Left err -> do
                 putStrLn chunk
@@ -53,9 +64,36 @@ main = do
                         die "not closed"
     putChar '\n'
 
+readPrelude :: IO String
+readPrelude = readFile "test/prelude.asl"
+
+typeIdents :: [String]
+typeIdents = 
+    [ "bits"
+    , "integer"
+    , "real"
+    , "bits"
+    , "boolean"
+    ]
+
+parseDefs :: String -> Either PError [Definition]
+parseDefs input = evalStateT (unP definitionsP) (initP typeIdents input)
+
+testParser :: IO ()
+testParser = do
+    forM_ defChunks $ \chunk -> do
+        case evalStateT (parseDefinitions chunk) typeIdents of
+            Left err -> do
+                putStrLn chunk
+                putStrLn ""
+                die $ show err
+            Right ast -> do
+                putChar '.'
+    putChar '\n'
+
 test :: IO ()
 test = do
     input <- readFile "test/test.asl"
-    case scan input of
+    case evalStateT (parseDefinitions input) typeIdents of
         Left err -> print err
-        Right toks -> mapM_ print toks
+        Right ast -> print ast

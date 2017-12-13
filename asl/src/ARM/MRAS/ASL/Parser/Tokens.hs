@@ -13,6 +13,7 @@ import GHC.Generics (Generic)
 data Token =
 
       TokEOF
+
     | TokIndent
     | TokDedent
 

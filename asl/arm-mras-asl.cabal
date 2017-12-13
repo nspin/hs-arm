@@ -13,10 +13,10 @@ library
 
   exposed-modules:    ARM.MRAS.ASL.Parser
                     , ARM.MRAS.ASL.Parser.Lexer
+                    , ARM.MRAS.ASL.Parser.Parser
                     , ARM.MRAS.ASL.Parser.ParserMonad
+                    , ARM.MRAS.ASL.Parser.Syntax
                     , ARM.MRAS.ASL.Parser.Tokens
-                    , ARM.MRAS.ASL.Parser.AST
-                    -- , ARM.MRAS.ASL.Parser.Parser
 
   build-depends:      base >=4.9 && <5
 

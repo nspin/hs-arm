@@ -33,6 +33,8 @@ import Control.Lens.TH
 import Control.Monad.Except
 import Control.Monad.State
 
+import Debug.Trace
+
 newtype P a = P { unP :: StateT PState (Either PError) a }
     deriving (Functor, Applicative, Monad, MonadState PState, MonadError PError)
 
@@ -63,8 +65,8 @@ makeClassy ''PState
 makeClassy ''Position
 
 
-initP :: String -> PState
-initP input = PState (Position 0 0 1) '\n' [] ('\n':input) [] [] [] []
+initP :: [String] -> String -> PState
+initP typeIdents input = PState (Position 0 0 1) '\n' [] ('\n':input) [] [] [] typeIdents
 
 nextByte :: PState -> Maybe (Word8, PState)
 nextByte = (<|>)
