@@ -2,8 +2,7 @@
 
 module Test where
 
-import ARM.MRAS.Types
-import ARM.MRAS.Values
+import ARM.MRAS
 import ARM.MRAS.ASL.Parser
 import ARM.MRAS.ASL.Parser.Lexer
 import ARM.MRAS.ASL.Parser.Parser
@@ -18,6 +17,7 @@ import Control.Monad.Except
 import Control.Monad.State
 import Data.List
 import Data.Monoid
+import System.IO
 import System.Exit
 import System.FilePath
 import System.Directory
@@ -105,26 +105,32 @@ testParseStmts input = pushCtx "testParseStmts" $ do
         Right stmts -> return stmts
         Left err -> throwError $ [input, show err]
 
+mkArch :: IO ()
+mkArch = withFile "test/arch.asl" WriteMode $ \h -> do
+    mapM_ (hPutStrLn h . _shared_ps_code) $ topoSort sharedps
+
 root :: FilePath
 root = "../test/nix-results/test-asl"
 
 files :: [FilePath]
-files =
-    [ "foo.asl"
-    , "src/prelude.asl"
-    , "regs.asl"
-    , "types.asl"
-    , "arch.asl"
-    , "support/aes.asl"
-    , "support/barriers.asl"
-    , "support/debug.asl"
-    , "support/feature.asl"
-    , "support/hints.asl"
-    , "support/interrupts.asl"
-    , "support/memory.asl"
-    , "support/stubs.asl"
-    , "support/fetchdecode.asl"
-    ]
+files = f a ++ ["test/arch.asl"] ++ f b
+  where
+    f = map ((</>) root)
+    a = [ "foo.asl"
+        , "src/prelude.asl"
+        , "regs.asl"
+        , "types.asl"
+        ]
+    b = [ "support/aes.asl"
+        , "support/barriers.asl"
+        , "support/debug.asl"
+        , "support/feature.asl"
+        , "support/hints.asl"
+        , "support/interrupts.asl"
+        , "support/memory.asl"
+        , "support/stubs.asl"
+        , "support/fetchdecode.asl"
+        ]
 
 addLineNums :: String -> String
 addLineNums s = unlines
@@ -137,7 +143,7 @@ testParser :: IO ()
 testParser = do
     (defs, stmts) <- runTest $ do
         defs <- forM files $ \path -> do
-            fromFile testParseDefs (root </> path)
+            fromFile testParseDefs path
             liftIO $ putChar '.'
         stmts <- return []
         return (defs, stmts)
