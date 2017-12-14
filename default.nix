@@ -191,7 +191,7 @@ in rec {
       make all
 
       mkdir $out
-      for f in $(find . -name '*.asl'); do
+      for f in $(find . -name '*.asl' -o -name '*.tag'); do
         mkdir -p $(dirname $out/$f)
         cp $f $out/$f
       done

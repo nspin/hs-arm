@@ -72,9 +72,9 @@ data LExpr =
       LExprEmpty
     | LExprId QIdent
     | LExprDot LExpr Ident
-    | LExprDotBrack LExpr (NonEmpty Ident)
+    | LExprDots LExpr (NonEmpty Ident)
     | LExprSlice LExpr [Slice]
-    | LExprWat [Slice]
+    | LExprConcat [Slice] -- there is only one instance of this in all of the public A64 ASL
     | LExprBrack (NonEmpty LExpr)
     | LExprParen (NonEmpty LExpr)
     deriving (Eq, Show, Generic, NFData)
@@ -106,7 +106,7 @@ data Expr =
     | ExprImpDef TyExpr (Maybe String)
 
     | ExprDot Expr Ident
-    | ExprDotBrack Expr (NonEmpty Ident)
+    | ExprDots Expr (NonEmpty Ident)
     | ExprSlice Expr [Slice]
     | ExprInSet Expr [(Expr, Maybe Expr)]
     | ExprInMask Expr [Maybe Bool]

@@ -266,17 +266,17 @@ option_s_else ::             { Maybe (NonEmpty Statement) }
     :                        { Nothing                    }
     | 'else' nonempty_block  { Just $2                    }
 
-lexpr ::                                { LExpr                       }
-    : '-'                               { LExprEmpty                  }
-    | qualident                         { LExprId $1                  }
-    | lexpr '.' ident                   { LExprDot $1 $3              }
-    | lexpr '.' '[' ident cpl_ident ']' { LExprDotBrack $1 ($4 :| $5) }
-    | lexpr '.' '<' ident cpl_ident '>' { LExprDotBrack $1 ($4 :| $5) }
-    | lexpr '[' csl_slice ']'           { LExprSlice $1 $3            }
-    | lexpr '<' csl_slice '>'           { LExprSlice $1 $3            }
-    | '<' csl_slice '>'                 { LExprWat $2                 } -- wat
-    | '[' lexpr cpl_lexpr ']'           { LExprBrack ($2 :| $3)       }
-    | '(' lexpr cpl_lexpr ')'           { LExprParen ($2 :| $3)       }
+lexpr ::                                { LExpr                   }
+    : '-'                               { LExprEmpty              }
+    | qualident                         { LExprId $1              }
+    | lexpr '.' ident                   { LExprDot $1 $3          }
+    | lexpr '.' '[' ident cpl_ident ']' { LExprDots $1 ($4 :| $5) }
+    | lexpr '.' '<' ident cpl_ident '>' { LExprDots $1 ($4 :| $5) }
+    | lexpr '[' csl_slice ']'           { LExprSlice $1 $3        }
+    | lexpr '<' csl_slice '>'           { LExprSlice $1 $3        }
+    | '<' csl_slice '>'                 { LExprConcat $2          }
+    | '[' lexpr cpl_lexpr ']'           { LExprBrack ($2 :| $3)   }
+    | '(' lexpr cpl_lexpr ')'           { LExprParen ($2 :| $3)   }
 
 indented_block ::                            { NonEmpty Statement }
     : INDENT statement list_statement DEDENT { $2 :| $3           }
@@ -311,15 +311,15 @@ aexpr ::                                                { Expr                 }
     | type_expr 'UNKNOWN'                               { ExprUnk $1           }
     | type_expr 'IMPLEMENTATION_DEFINED' option_string  { ExprImpDef $1 $3     }
 
-bexpr ::                                { Expr                       }
-    : aexpr                             { $1                         }
-    | bexpr '.' ident                   { ExprDot $1 $3              }
-    | bexpr '.' '[' ident cpl_ident ']' { ExprDotBrack $1 ($4 :| $5) }
-    | bexpr '.' '<' ident cpl_ident '>' { ExprDotBrack $1 ($4 :| $5) }
-    | bexpr '[' csl_slice ']'           { ExprSlice $1 $3            } -- This is incorrect
-    | bexpr '<' csl_slice '>'           { ExprSlice $1 $3            }
-    | bexpr 'IN' '{' csl_element '}'    { ExprInSet $1 $4            }
-    | bexpr 'IN' MASK                   { ExprInMask $1 []           }
+bexpr ::                                { Expr                   }
+    : aexpr                             { $1                     }
+    | bexpr '.' ident                   { ExprDot $1 $3          }
+    | bexpr '.' '[' ident cpl_ident ']' { ExprDots $1 ($4 :| $5) }
+    | bexpr '.' '<' ident cpl_ident '>' { ExprDots $1 ($4 :| $5) }
+    | bexpr '[' csl_slice ']'           { ExprSlice $1 $3        } -- This is incorrect
+    | bexpr '<' csl_slice '>'           { ExprSlice $1 $3        }
+    | bexpr 'IN' '{' csl_element '}'    { ExprInSet $1 $4        }
+    | bexpr 'IN' MASK                   { ExprInMask $1 []       }
 
 element ::            { (Expr, Maybe Expr) }
     : expr            { ($1, Nothing)      }
