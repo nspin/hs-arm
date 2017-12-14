@@ -14,7 +14,7 @@ main = do
     args <- getArgs
     case args of
         [outDir, inDir] -> generate outDir inDir
-        _ -> die $ "Usage: gen-arm-mras <inDir> <outDir>"
+        _ -> die $ "Usage: gen-arm-mras-values <inDir> <outDir>"
 
 generate :: FilePath -> FilePath -> IO ()
 generate outDir inDir = do
@@ -24,12 +24,12 @@ generate outDir inDir = do
     createDirectoryIfMissing True (takeDirectory path)
     writeFile path (prettyPrint (build base fpsimd sharedps))
   where
-    path = outDir </> "gen" </> "ARM" </> "MRAS" </> "Gen.hs"
+    path = outDir </> "gen" </> "ARM" </> "MRAS" </> "Values" </> "Gen.hs"
 
 build :: [Insn] -> [Insn] -> [SharedPs] -> Module ()
 build base fpsimd sharedps = Module () (Just head) [] [imp] decls
   where
-    head = ModuleHead () (ModuleName () "ARM.MRAS.Gen") Nothing Nothing
+    head = ModuleHead () (ModuleName () "ARM.MRAS.Values.Gen") Nothing Nothing
     decls = decl "base" base ++ decl "fpsimd" fpsimd ++ [sharedpsTy, sharedpsVal]
     decl id val =
         [ TypeSig () [Ident () id]

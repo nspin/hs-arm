@@ -1,4 +1,4 @@
-Name:                 arm-mras-dtd-gen-utils
+Name:                 arm-mras-values-gen
 Version:              0.1
 license:              MIT
 author:               Nick Spinale
@@ -6,15 +6,15 @@ maintainer:           spinalen@gmail.com
 build-type:           Simple
 cabal-version:        >=1.10
 
-executable gen-arm-mras-dtd
+executable gen-arm-mras-values
   main-is:            Main.hs
   default-language:   Haskell2010
 
   build-depends:      base
-                    , bytestring
-                    , Cabal
+
+                    , arm-mras-types
+                    , arm-mras-parse
+
                     , directory
                     , filepath
                     , haskell-src-exts
-                    , HaXml
-                    , pretty

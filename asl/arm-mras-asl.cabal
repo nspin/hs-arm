@@ -29,7 +29,8 @@ library
                     , transformers
 
                     -- remove after testing
-                    , arm-mras
+                    , arm-mras-types
+                    , arm-mras-values
                     , filepath
                     , directory
 

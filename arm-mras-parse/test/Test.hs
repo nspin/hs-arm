@@ -1,7 +1,6 @@
 module Test where
 
 import ARM.MRAS.Types
-import ARM.MRAS.Types.Lens
 import ARM.MRAS.Parse
 import ARM.MRAS.Parse.Internal.SharedPs
 
@@ -33,8 +32,8 @@ testEach = do
 testPs :: IO [SharedPs]
 testPs = parseSharedPsFrom root
 
-absendDeps :: [SharedPs] -> [String]
-absendDeps ps = deps \\ syms
+absentDeps :: [SharedPs] -> [String]
+absentDeps ps = deps \\ syms
   where
     deps = ps ^.. traverse.shared_ps_deps.traverse
     syms = ps ^.. traverse.shared_ps_symbols.traverse

@@ -7,7 +7,8 @@ with haskellPackages;
   version = "0";
   src = ./shell.nix;
   libraryHaskellDepends = [
-    values
+    arm-mras-types
+    arm-mras-values
     array base deepseq lens mtl transformers
   ];
   libraryToolDepends = [ alex happy ];

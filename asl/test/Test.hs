@@ -2,7 +2,8 @@
 
 module Test where
 
-import ARM.MRAS
+import ARM.MRAS.Types
+import ARM.MRAS.Values
 import ARM.MRAS.ASL.Parser
 import ARM.MRAS.ASL.Parser.Lexer
 import ARM.MRAS.ASL.Parser.Parser

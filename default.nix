@@ -36,42 +36,43 @@ let
 in rec {
 
   asl = haskellPackages.callPackage ./asl {
-    arm-mras = values;
+    arm-mras-types = arm-mras-types;
+    arm-mras-values = arm-mras-values;
   };
 
-  dtd-gen-utils = haskellPackages.callPackage ./dtd-gen-utils {};
+  arm-mras-dtd-gen = haskellPackages.callPackage ./arm-mras-dtd-gen {};
 
-  types = haskellPackages.callPackage ./types {};
+  arm-mras-types = haskellPackages.callPackage ./arm-mras-types {};
 
-  parse = haskellPackages.callPackage ./parse {
-    arm-mras-types = types;
+  arm-mras-parse = haskellPackages.callPackage ./arm-mras-parse {
+    arm-mras-types = arm-mras-types;
     arm-mras-dtd-sysreg = dtd.sysreg;
     arm-mras-dtd-a64 = dtd.a64;
     arm-mras-dtd-aarch32 = dtd.aarch32;
   };
 
-  values-gen-utils = haskellPackages.callPackage ./values-gen-utils {
-    arm-mras-types = types;
-    arm-mras-parse = parse;
+  arm-mras-values-gen = haskellPackages.callPackage ./arm-mras-values-gen {
+    arm-mras-types = arm-mras-types;
+    arm-mras-parse = arm-mras-parse;
   };
 
-  values-src = mergeFrom ./values [ "arm-mras.cabal" "src" ] (stdenv.mkDerivation {
-    name = "arm-mras-src";
-    utils = values-gen-utils;
+  arm-mras-values-src = mergeFrom ./arm-mras-values [ "arm-mras-values.cabal" "src" ] (stdenv.mkDerivation {
+    name = "arm-mras-values-src";
     src = patched-a64;
+    gen = arm-mras-values-gen;
     builder = builtins.toFile "builder.sh" ''
-      $utils/bin/gen-arm-mras $out $src/ISA_v83A_A64_xml_00bet5
+      $gen/bin/gen-arm-mras-values $out $src/ISA_v83A_A64_xml_00bet5
     '';
   });
 
-  values = with haskellPackages; mkDerivation {
+  arm-mras-values = with haskellPackages; mkDerivation {
     pname = "arm-mras";
     version = "0.1";
-    src = values-src;
+    src = arm-mras-values-src;
     executableHaskellDepends = [
-      base directory filepath types
+      base directory filepath arm-mras-types
     ];
-    libraryHaskellDepends = [ base types ];
+    libraryHaskellDepends = [ base arm-mras-types ];
     license = stdenv.lib.licenses.mit;
   };
 
@@ -129,13 +130,13 @@ in rec {
     let
       genDtd = specName: specXML: stdenv.mkDerivation {
         name = "arm-mras-dtd-src-${specName}";
-        version = "0.0-${dtd-gen-utils.version}";
+        version = "0.0-${arm-mras-dtd-gen.version}";
         inherit specName specXML;
-        utils = dtd-gen-utils;
+        gen = arm-mras-dtd-gen;
         builder = builtins.toFile "builder.sh" ''
           source $stdenv/setup
           mkdir $out
-          $utils/bin/gen-arm-mras-dtd 0.0 $specName $specXML/*5 $out
+          $gen/bin/gen-arm-mras-dtd 0.0 $specName $specXML/*5 $out
         '';
       };
     in {
