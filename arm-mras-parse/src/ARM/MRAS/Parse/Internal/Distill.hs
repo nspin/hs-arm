@@ -35,8 +35,8 @@ import GHC.Generics (Generic)
 import Text.XML.HaXml.OneOfN (OneOf2(..))
 import Text.XML.HaXml.XmlContent (List1(..))
 
-import qualified ARM.MRAS.DTD.A64.Iformp as X
-import ARM.MRAS.DTD.A64.Iformp hiding (Encoding, Box, C, Explanation, Account, Definition, Table, Symbol, Ps)
+import qualified ARM.MRAS.DTD.AArch64.Iformp as X
+import ARM.MRAS.DTD.AArch64.Iformp hiding (Encoding, Box, C, Explanation, Account, Definition, Table, Symbol, Ps)
 
 
 data Page = Page PageId AliasInfo [Class] [Explanation] [Ps]

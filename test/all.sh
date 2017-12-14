@@ -12,12 +12,12 @@ root="$here/nix-results"
 mkdir -p "$root"
 
 go_r xml.sysreg
-go_r xml.a64
+go_r xml.aarch64
 go_r xml.aarch32
-go_r patched-a64
+go_r patched-aarch64
 go_r patched-aarch32
 go_r dtd-src.sysreg
-go_r dtd-src.a64
+go_r dtd-src.aarch64
 go_r dtd-src.aarch32
 go_r arm-mras-values-src
 

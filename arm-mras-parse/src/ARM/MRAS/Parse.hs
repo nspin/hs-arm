@@ -11,8 +11,8 @@ import ARM.MRAS.Parse.Internal.Distill (distillPage)
 import ARM.MRAS.Parse.Internal.Tidy (tidyPage)
 import ARM.MRAS.Parse.Internal.SharedPs (parseSharedPs)
 
-import ARM.MRAS.DTD.A64.Alphaindex
-import ARM.MRAS.DTD.A64.Iformp (Instructionsection)
+import ARM.MRAS.DTD.AArch64.Alphaindex
+import ARM.MRAS.DTD.AArch64.Iformp (Instructionsection)
 
 import Control.Exception
 import Control.Lens

@@ -4,7 +4,7 @@ module ARM.MRAS.Parse.Internal.SharedPs
 
 import ARM.MRAS.Parse.Internal.Common
 import ARM.MRAS.Types (SharedPs(..), PsName, PsSymbol)
-import ARM.MRAS.DTD.A64.Sharedps
+import ARM.MRAS.DTD.AArch64.Sharedps
 
 import Data.Maybe
 import Data.List

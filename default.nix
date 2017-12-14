@@ -21,7 +21,7 @@ let
       rev = "4905a576-484e-42d9-95c8-d4fc8a2371e6";
       sha256 = "0irpvz3snqxqj394y5wjfr1zxmmdb63sb1airbnpnncanbzabjjk";
     };
-    a64 = {
+    aarch64 = {
       name = "A64_v83A_ISA_xml_00bet5";
       rev = "7a897785-9279-4c4f-ac3d-727b13d365ff";
       sha256 = "0gjgdih57r5w9f5pdn43jmsy316idz4wx4zwbicmd6p8hl5isdmk";
@@ -52,7 +52,7 @@ in rec {
   arm-mras-parse = haskellPackages.callPackage ./arm-mras-parse {
     arm-mras-types = arm-mras-types;
     arm-mras-dtd-sysreg = dtd.sysreg;
-    arm-mras-dtd-a64 = dtd.a64;
+    arm-mras-dtd-aarch64 = dtd.aarch64;
     arm-mras-dtd-aarch32 = dtd.aarch32;
   };
 
@@ -63,7 +63,7 @@ in rec {
 
   arm-mras-values-src = mergeFrom ./arm-mras-values [ "arm-mras-values.cabal" "src" ] (stdenv.mkDerivation {
     name = "arm-mras-values-src";
-    src = patched-a64;
+    src = patched-aarch64;
     gen = arm-mras-values-gen;
     builder = builtins.toFile "builder.sh" ''
       $gen/bin/gen-arm-mras-values $out $src/ISA_v83A_A64_xml_00bet5
@@ -101,15 +101,15 @@ in rec {
     '';
   });
 
-  patched-a64 = stdenv.mkDerivation {
-    name = xml.a64.name + "-patched";
-    inherit (xml) a64;
+  patched-aarch64 = stdenv.mkDerivation {
+    name = xml.aarch64.name + "-patched";
+    inherit (xml) aarch64;
     patch_dtd = ./patch-dtd.sh;
     patch_xml = ./patch-xml.sh;
     builder = builtins.toFile "builder.sh" ''
       source $stdenv/setup
       mkdir $out
-      cp -r $a64/* $out
+      cp -r $aarch64/* $out
       chmod -R 744 $out/*
       bash $patch_dtd $out
       bash $patch_xml $out
@@ -146,7 +146,7 @@ in rec {
       };
     in {
       sysreg = genDtd "SysReg" xml.sysreg;
-      a64 = genDtd "A64" patched-a64;
+      aarch64 = genDtd "AArch64" patched-aarch64;
       aarch32 = genDtd "AArch32" patched-aarch32;
   };
 
@@ -163,7 +163,7 @@ in rec {
       };
     in {
       sysreg = buildDtd "sysreg" dtd-src.sysreg;
-      a64 = buildDtd "a64" dtd-src.a64;
+      aarch64 = buildDtd "aarch64" dtd-src.aarch64;
       aarch32 = buildDtd "aarch32" dtd-src.aarch32;
     };
 
@@ -175,7 +175,7 @@ in rec {
       sha256 = "18dknazzd58yxwd0i4z0k3ghhnilkixil7vw8k6mwm4b4dm6rzq0";
     };
     src_sysreg = raw.sysreg;
-    src_a64 = raw.a64;
+    src_aarch64 = raw.aarch64;
     src_aarch32 = raw.aarch32;
     buildInputs = [ python3 ];
     builder = builtins.toFile "builder.sh" ''
@@ -186,7 +186,7 @@ in rec {
       cd v8.3
 
       tar zxf $src_sysreg
-      tar zxf $src_a64
+      tar zxf $src_aarch64
       tar zxf $src_aarch32
 
       tar zxf ISA_v83A_A64_xml_00bet5.tar.gz

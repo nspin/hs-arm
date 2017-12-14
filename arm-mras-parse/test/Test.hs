@@ -15,7 +15,7 @@ import System.FilePath
 import Text.XML.HaXml.XmlContent
 
 root :: String
-root = "../test/nix-results/patched-a64/ISA_v83A_A64_xml_00bet5"
+root = "../test/nix-results/patched-aarch64/ISA_v83A_A64_xml_00bet5"
 
 testAll :: IO ([Insn], [Insn])
 testAll = (,) <$> parseBaseFrom root <*> parseFpSimdFrom root
