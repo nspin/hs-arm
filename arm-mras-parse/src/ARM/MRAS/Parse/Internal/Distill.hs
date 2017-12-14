@@ -107,6 +107,7 @@ distillClass (Iclass attrs _ _ xavars (Regdiagram atrs xboxes) (NonEmpty xencs) 
     pss = maybe [] distillPss xmps
     check = iclassIsa attrs == "A64" && regdiagramForm atrs == Regdiagram_form_32
 
+-- TODO(nspin) is it ok to ignore psbits attribute?
 distillBox :: X.Box -> Box
 distillBox (X.Box ats xcs) = check `assert` box
   where

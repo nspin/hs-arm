@@ -1,5 +1,6 @@
 module ARM.MRAS.Parse.Internal.Tidy
     ( tidyPage
+    , IsDiagram
     ) where
 
 import ARM.MRAS.Types
@@ -11,7 +12,7 @@ import Control.Exception
 import Data.Maybe
 import Control.Applicative
 
-tidyPage :: D.Page -> Either (InsnFromWith PageId ()) (PageId, AliasFrom ())
+tidyPage :: IsDiagram diag => D.Page -> Either (InsnFromWith diag PageId ()) (PageId, AliasFrom diag ())
 tidyPage (D.Page pid ainfo xclasses expls pss) = mk (map f xclasses)
   where
     mk classes = case ainfo of
@@ -19,12 +20,11 @@ tidyPage (D.Page pid ainfo xclasses expls pss) = mk (map f xclasses)
         AliasTo apid -> case (classes, pss) of
             ([(clazz, [])], []) -> Right (apid, Alias pid () clazz)
     f (D.Class cid marchvar (D.Diagram psname boxes) xencs psss)
-        = (Class cid marchvar diag encs, psss)
+        = (Class cid marchvar psname diag encs, psss)
       where
-        diag = Diagram psname dg
-        dg = tidyDiagram boxes
+        diag = tidyDiagram boxes
         encs = map g xencs
-        g (D.Encoding eid bxs [tmp]) = Encoding eid (tidySubDiagram dg bxs) tmp syms
+        g (D.Encoding eid bxs [tmp]) = Encoding eid (tidySubDiagram diag bxs) tmp syms
           where
             syms =
                 [ case mm of
@@ -66,25 +66,34 @@ homog :: Eq a => [a] -> Bool
 homog [] = True
 homog (a:as) = all (== a) as
 
-tidyDiagram :: [D.Box] -> [Block]
-tidyDiagram boxes = check `assert` blocks
-  where
-    blocks = go 32 (map tidyBox boxes)
-    go 0 [] = []
-    go n (Box hi width bl@(Block name spec) : bxs) = (n == hi + 1 && specLength spec == width) `assert` (bl : go (n - width) bxs)
-    check = allUnique (catMaybes [ n | Block n _ <- blocks ])
-
 allUnique :: Eq a => [a] -> Bool
 allUnique [] = True
 allUnique (a:as) = elem a as || allUnique as
 
-tidySubDiagram :: [Block] -> [D.Box] -> [(String, BlockSpec)]
-tidySubDiagram super sub = go 31 super (map tidyBox sub)
-  where
-    go _ _ [] = []
-    go i aa@((Block name spec):bls) all@((Box hi width (Block n sp)):bxs) = case liftA2 (==) name n of
-        Just True -> assert (hi == i) $ (fromJust n, narrowSpec spec sp) : go (i - width) bls bxs
-        _ -> go (i - specLength spec) bls all
+
+class IsDiagram diag where
+    tidyDiagram :: [D.Box] -> diag
+    tidySubDiagram :: diag -> [D.Box] -> [(String, BlockSpec)]
+
+instance IsDiagram DiagramAArch64 where
+
+    tidyDiagram boxes = check `assert` DiagramA64 blocks
+      where
+        blocks = go 32 (map tidyBox boxes)
+        go 0 [] = []
+        go n (Box hi width bl@(Block name spec) : bxs) = (n == hi + 1 && specLength spec == width) `assert` (bl : go (n - width) bxs)
+        check = allUnique (catMaybes [ n | Block n _ <- blocks ])
+
+    tidySubDiagram (DiagramA64 super) sub = go 31 super (map tidyBox sub)
+      where
+        go _ _ [] = []
+        go i aa@((Block name spec):bls) all@((Box hi width (Block n sp)):bxs) = case liftA2 (==) name n of
+            Just True -> assert (hi == i) $ (fromJust n, narrowSpec spec sp) : go (i - width) bls bxs
+            _ -> go (i - specLength spec) bls all
+
+instance IsDiagram DiagramAArch32 where
+    tidyDiagram boxes = undefined
+    tidySubDiagram = undefined
 
 -- narrowSpec super sub
 narrowSpec :: BlockSpec -> BlockSpec -> BlockSpec

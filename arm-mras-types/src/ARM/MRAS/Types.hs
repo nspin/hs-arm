@@ -1,10 +1,13 @@
+{-# LANGUAGE DataKinds #-}
 {-# LANGUAGE DeriveAnyClass #-}
-{-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE DeriveFunctor #-}
+{-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE FunctionalDependencies #-}
+{-# LANGUAGE KindSignatures #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE TypeFamilies #-}
 
 module ARM.MRAS.Types
     ( InsnFromWith(..)
@@ -15,34 +18,40 @@ module ARM.MRAS.Types
     , Class(..)
     , ClassId
     , ArchVar(..)
-    , Diagram(..)
-    , Box(..)
-    , Block(..)
-    , BlockSpec(..)
-    , Bit(..)
+    , Ps(..)
+    , PsName
+    , PsSymbol
+    , PsSection(..)
+
     , Encoding(..)
     , EncodingId
     , Template
     , Symbol(..)
     , Table(..)
     , TableRow(..)
-    , Ps(..)
-    , PsName
-    , PsSymbol
-    , PsSection(..)
+
+    , DiagramAArch64(..)
+    , DiagramAArch32(..)
+    , Box(..)
+    , Block(..)
+    , BlockSpec(..)
+    , Bit(..)
 
     , SharedPs(..)
 
-
+    -- lenses
     , HasAliasFrom(..)
-    , HasDiagram(..)
-    , HasBox(..)
-    , HasBlock(..)
+    , HasPs(..)
+
     , HasEncoding(..)
     , HasSymbol(..)
     , HasTable(..)
     , HasTableRow(..)
-    , HasPs(..)
+
+    , HasDiagramAArch64(..)
+    , AsDiagramAArch32(..)
+    , HasBox(..)
+    , HasBlock(..)
 
     , insn_id
     , insn_file
@@ -63,30 +72,31 @@ import Control.Lens.TH
 import GHC.Generics (Generic)
 
 
-data InsnFromWith alias file = Insn
+data InsnFromWith diag alias file = Insn
     { _insn_id :: PageId
     , _insn_file :: file
     , _insn_aliases :: [alias]
-    , _insn_classes :: [(Class, [Ps])]
+    , _insn_classes :: [(Class diag, [Ps])]
     , _insn_ps :: [Ps]
     } deriving (Eq, Show, Generic, NFData, Functor)
 
-type Insn = InsnFromWith Alias String
+type Insn diag = InsnFromWith diag (Alias diag) String
 
 type PageId = String
 
-data AliasFrom file = Alias
+data AliasFrom diag file = Alias
     { _alias_id :: PageId
     , _alias_file :: file
-    , _alias_class :: Class
+    , _alias_class :: Class diag
     } deriving (Eq, Show, Generic, NFData, Functor)
 
-type Alias = AliasFrom String
+type Alias diag = AliasFrom diag String
 
-data Class = Class
+data Class diag = Class
     { _class_id :: ClassId
     , _class_arch_var :: Maybe ArchVar
-    , _class_diagram :: Diagram
+    , _class_diagram_ps_name :: PsName
+    , _class_diagram :: diag
     , _class_encodings :: [Encoding]
     } deriving (Eq, Show, Generic, NFData)
 
@@ -95,26 +105,17 @@ type ClassId = String
 data ArchVar = ArchName String | ArchFeature String
     deriving (Eq, Show, Generic, NFData)
 
-data Diagram = Diagram
-    { _diagram_ps_name :: PsName
-    , _diagram_blocks :: [Block]
+data Ps = Ps
+    { _ps_name :: PsName
+    , _ps_deps :: [PsSymbol]
+    , _ps_section :: Maybe PsSection
+    , _ps_code :: String
     } deriving (Eq, Show, Generic, NFData)
 
-data Box = Box
-    { _box_hi :: Int
-    , _box_width :: Int
-    , _box_block :: Block
-    } deriving (Eq, Show, Generic, NFData)
+type PsName = String
+type PsSymbol = String
 
-data Block = Block
-    { _block_name :: Maybe String
-    , _block_spec :: BlockSpec
-    } deriving (Eq, Show, Generic, NFData)
-
-data BlockSpec = BlockEq [Bit] | BlockNeq [Bit]
-    deriving (Eq, Show, Generic, NFData)
-
-data Bit = I | O | X
+data PsSection = PsDecode | PsPostDecode | PsExecute
     deriving (Eq, Show, Generic, NFData)
 
 
@@ -147,17 +148,26 @@ data TableRow = TableRow
     } deriving (Eq, Show, Generic, NFData)
 
 
-data Ps = Ps
-    { _ps_name :: PsName
-    , _ps_deps :: [PsSymbol]
-    , _ps_section :: Maybe PsSection
-    , _ps_code :: String
+newtype DiagramAArch64 = DiagramA64 { _diagram_a64 :: [Block] }
+    deriving (Eq, Show, Generic, NFData)
+data DiagramAArch32 = DiagramA32 [Block] | DiagamT32 [Block] (Maybe [Block])
+    deriving (Eq, Show, Generic, NFData)
+
+data Box = Box
+    { _box_hi :: Int
+    , _box_width :: Int
+    , _box_block :: Block
     } deriving (Eq, Show, Generic, NFData)
 
-type PsName = String
-type PsSymbol = String
+data Block = Block
+    { _block_name :: Maybe String
+    , _block_spec :: BlockSpec
+    } deriving (Eq, Show, Generic, NFData)
 
-data PsSection = PsDecode | PsPostDecode | PsExecute
+data BlockSpec = BlockEq [Bit] | BlockNeq [Bit]
+    deriving (Eq, Show, Generic, NFData)
+
+data Bit = I | O | X
     deriving (Eq, Show, Generic, NFData)
 
 
@@ -172,14 +182,17 @@ data SharedPs = SharedPs
 
 
 makeClassy ''AliasFrom
-makeClassy ''Diagram
-makeClassy ''Box
-makeClassy ''Block
+makeClassy ''Ps
+
 makeClassy ''Encoding
 makeClassy ''Symbol
 makeClassy ''Table
 makeClassy ''TableRow
-makeClassy ''Ps
+
+makeClassy ''DiagramAArch64
+makeClassyPrisms ''DiagramAArch32
+makeClassy ''Box
+makeClassy ''Block
 
 makeLenses ''InsnFromWith
 makeLenses ''Class

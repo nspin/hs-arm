@@ -4,11 +4,12 @@ module ARM.MRAS.Parse
     , parseBaseFrom
     , parseFpSimdFrom
     , parseSharedPsFrom
+    , IsDiagram
     ) where
 
 import ARM.MRAS.Types
 import ARM.MRAS.Parse.Internal.Distill (distillPage)
-import ARM.MRAS.Parse.Internal.Tidy (tidyPage)
+import ARM.MRAS.Parse.Internal.Tidy (IsDiagram, tidyPage)
 import ARM.MRAS.Parse.Internal.SharedPs (parseSharedPs)
 
 import ARM.MRAS.DTD.AArch64.Alphaindex
@@ -25,15 +26,15 @@ import System.FilePath
 import Text.XML.HaXml.XmlContent
 
 
-parsePage :: Instructionsection -> Either (InsnFromWith PageId ()) (PageId, AliasFrom ())
+parsePage :: IsDiagram diag => Instructionsection -> Either (InsnFromWith diag PageId ()) (PageId, AliasFrom diag ())
 parsePage = tidyPage . distillPage
 
-combinePages :: [(String, Either (InsnFromWith PageId ()) (PageId, AliasFrom ()))] -> [Insn]
+combinePages :: [(String, Either (InsnFromWith diag PageId ()) (PageId, AliasFrom diag ()))] -> [Insn diag]
 combinePages = uncurry synth . partitionEithers . map (uncurry file) 
   where
     file fname = bimap ((<$) fname) (fmap ((<$) fname))
 
-synth :: [InsnFromWith PageId a] -> [(PageId, AliasFrom b)] -> [InsnFromWith (AliasFrom b) a]
+synth :: [InsnFromWith diag PageId a] -> [(PageId, AliasFrom diag b)] -> [InsnFromWith diag (AliasFrom diag b) a]
 synth insns aliases = map f insns
   where
     f insn = check `assert` (insn & insn_aliases .~ als)
@@ -50,16 +51,16 @@ listPages root index = do
     Alphaindex _ (Iforms _ (NonEmpty iforms)) <- fReadXml $ root </> index
     return [ iformIformfile attrs | Iform attrs _ <- iforms ]
 
-parseFromFrom :: FilePath -> FilePath -> IO [Insn]
+parseFromFrom :: IsDiagram diag => FilePath -> FilePath -> IO [Insn diag]
 parseFromFrom index root = do
     base <- listPages root index
     fmap combinePages . forM base $ \fname ->
         (,) fname . parsePage <$> fReadXml (root </> fname)
 
-parseBaseFrom :: FilePath -> IO [Insn]
+parseBaseFrom :: IsDiagram diag => FilePath -> IO [Insn diag]
 parseBaseFrom = parseFromFrom "index.xml"
 
-parseFpSimdFrom :: FilePath -> IO [Insn]
+parseFpSimdFrom :: IsDiagram diag => FilePath -> IO [Insn diag]
 parseFpSimdFrom = parseFromFrom "fpsimdindex.xml"
 
 parseSharedPsFrom :: FilePath -> IO [SharedPs]
