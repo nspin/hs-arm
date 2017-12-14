@@ -6,9 +6,9 @@ license: MIT
 maintainer: spinalen@gmail.com
 author: Nick Spinale
 exposed-modules:
-    ARM.MRAS.DTD.SysReg.Architectureinfo
-    ARM.MRAS.DTD.SysReg.Encindex
     ARM.MRAS.DTD.SysReg.Instructions
+    ARM.MRAS.DTD.SysReg.Encindex
+    ARM.MRAS.DTD.SysReg.Architectureinfo
     ARM.MRAS.DTD.SysReg.Regalphaindex
     ARM.MRAS.DTD.SysReg.Registers
 exposed: True
