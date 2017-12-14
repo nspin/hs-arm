@@ -40,6 +40,11 @@ in rec {
     arm-mras-values = arm-mras-values;
   };
 
+  arm-mras = haskellPackages.callPackage ./arm-mras {
+    arm-mras-types = arm-mras-types;
+    arm-mras-values = arm-mras-values;
+  };
+
   arm-mras-dtd-gen = haskellPackages.callPackage ./arm-mras-dtd-gen {};
 
   arm-mras-types = haskellPackages.callPackage ./arm-mras-types {};
