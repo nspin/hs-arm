@@ -26,7 +26,7 @@ import Debug.Trace
 @string = [\"][^\"]*[\"]
 @bin = [\'][0-1\ ]*[\']
 @mask = [\'][0-1\x\ ]*[\']
-@hex = "0x"[0-9A-Fa-f_]
+@hex = "0x"[0-9A-Fa-f_]+
 @real = [0-9]+"."[0-9]+
 @int = [0-9]+
 @ident = [a-zA-Z_][a-zA-Z0-9_]+
@@ -48,13 +48,15 @@ asl :-
 [\ ]^"> " { tok TokGt }
 [\ ]^"< " { tok TokLt }
 
+"/*" { nestedComment }
+
 "AND"                    { tok TokAnd           }
 "DIV"                    { tok TokDiv           }
 "EOR"                    { tok TokEor           }
 "IMPLEMENTATION_DEFINED" { tok TokImpdef        }
 "IN"                     { tok TokIn            }
 "MOD"                    { tok TokMod           }
-"NOT"                    { tok TokNot           }
+-- "NOT"                    { tok TokNot           } -- TODO
 "OR"                     { tok TokOr            }
 "QUOT"                   { tok TokQuot          }
 "REM"                    { tok TokRem           }
@@ -163,21 +165,28 @@ ident s = Right <$>
       else bool (TokIdent s) (TokTident s) <$> isTypeIdent s
 
 nestedComment :: Action
-nestedComment _ = go 1
+nestedComment "/*" = go 1
   where
     go 0 = naiveTok
     go n = do
-        b1 <- byte
-        b2 <- byte
-        case map (chr . fromIntegral) [b1, b2] of
-            "/*" -> go (n + 1)
-            "*/" -> go (n - 1)
-            _    -> go n
-    byte = do
+        c1 <- char
+        case c1 of
+            '/' -> do
+                c2 <- char
+                case c2 of
+                    '*' -> go (n + 1)
+                    _   -> go n
+            '*' -> do
+                c2 <- char
+                case c2 of
+                    '/' -> go (n - 1)
+                    _   -> go n
+            _   -> go n
+    char = do
         s <- get
         case nextByte s of
             Nothing -> throwError $ PError (_p_pos s) "unmatched '/*'"
-            Just (b, s') -> b <$ put s
+            Just (b, s') -> chr (fromIntegral b) <$ put s'
 
 naiveTok :: P (Either [LayoutUnit] Token)
 naiveTok = do
@@ -220,9 +229,9 @@ tokenP = do
                     
 
 lexer :: (Token -> P a) -> P a
--- lexer = (>>=) tokenP
-lexer f = do
-    t <- tokenP
-    trace (show t) (f t)
+lexer = (>>=) tokenP
+-- lexer f = do
+--    t <- tokenP
+--    trace (show t) (f t)
 
 }

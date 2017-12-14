@@ -38,7 +38,7 @@ data TyExpr =
       TyExprId QIdent
     | TyExprApp QIdent Expr
     | TyExprTyOf Expr
-    | TyExprReg Integer [NonEmpty Slice]
+    | TyExprReg Integer [(NonEmpty Slice, Ident)]
     | TyExprArr IxType TyExpr
     deriving (Eq, Show, Generic, NFData)
 

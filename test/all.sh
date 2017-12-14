@@ -23,3 +23,5 @@ go_r values-src
 
 go_r values
 go_r asl
+
+go_r test-asl

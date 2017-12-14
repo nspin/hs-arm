@@ -1,6 +1,6 @@
-module Main
-    ( main
-    ) where
+{-# LANGUAGE ParallelListComp #-}
+
+module Test where
 
 import ARM.MRAS
 import ARM.MRAS.ASL.Parser
@@ -15,8 +15,11 @@ import Control.Lens
 import Control.Monad
 import Control.Monad.Except
 import Control.Monad.State
+import Data.List
 import Data.Monoid
 import System.Exit
+import System.FilePath
+import System.Directory
 
 scan :: String -> Either PError [Token]
 scan input = evalStateT (unP go) (initP [] input)
@@ -27,8 +30,8 @@ scan input = evalStateT (unP go) (initP [] input)
             TokEOF -> return []
             _ -> go
 
-areClosed :: [Token] -> Bool
-areClosed = go 0
+checkIndents :: [Token] -> Bool
+checkIndents = go 0
   where
     go n (TokIndent : s) = go (n + 1) s
     go n (TokDedent : s) = go (n - 1) s
@@ -44,7 +47,9 @@ stmtChunks = (base ++ fpsimd) ^.. traverse.(insn_classes.traverse._2 <> insn_ps)
 
 main :: IO ()
 main = do
+    putStr "testing lexer"
     testLexer
+    putStr "testing parser"
     testParser
 
 testLexer :: IO ()
@@ -56,7 +61,7 @@ testLexer = do
                 putStrLn ""
                 die $ show err
             Right toks ->
-                if areClosed toks
+                if checkIndents toks
                     then putChar '.'
                     else do
                         putStrLn chunk
@@ -65,55 +70,123 @@ testLexer = do
                         die "not closed"
     putChar '\n'
 
-readPrelude :: IO String
-readPrelude = readFile "test/prelude.asl"
 
-typeIdents :: [String]
-typeIdents = 
-    [ "bit"
-    , "bits"
-    , "boolean"
-    , "integer"
-    , "real"
+type Test m a = StateT [String] (ExceptT [String] m) a
+
+runTest :: MonadIO m => Test m a -> m a
+runTest t = do
+    m <- runExceptT (runStateT t [])
+    case m of
+        Right (a, s) -> return a
+        Left err -> liftIO $ do
+            putStrLn "<<<ERROR>>>"
+            putStrLn $ intercalate "\n<<<IN>>>\n" err
+            exitFailure
+
+pushCtx :: Monad m => String -> Test m a -> Test m a
+pushCtx ctx m = catchError m $ \err -> throwError (ctx : err)
+
+fromFile :: MonadIO m => (String -> Test m a) -> FilePath -> Test m a
+fromFile f path = do
+    s <- liftIO $ readFile path
+    pushCtx ("file: " ++ path) $ f s
+
+testParseDefs :: Monad m => String -> Test m [Definition]
+testParseDefs input = pushCtx "testParseDefs" $ do
+    StateT $ \types -> case parseDefs input types of
+        Right r -> return r
+        Left err -> throwError $ [show err]
+
+testParseStmts :: Monad m => String -> Test m [Statement]
+testParseStmts input = pushCtx "testParseStmts" $ do
+    types <- get
+    case parseStmts types input of
+        Right stmts -> return stmts
+        Left err -> throwError $ [input, show err]
+
+root :: FilePath
+root = "../test/nix-results/test-asl"
+
+files :: [FilePath]
+files =
+    [ "foo.asl"
+    , "src/prelude.asl"
+    , "regs.asl"
+    , "types.asl"
+    , "arch.asl"
+    , "support/aes.asl"
+    , "support/barriers.asl"
+    , "support/debug.asl"
+    , "support/feature.asl"
+    , "support/hints.asl"
+    , "support/interrupts.asl"
+    , "support/memory.asl"
+    , "support/stubs.asl"
+    , "support/fetchdecode.asl"
     ]
 
-parseDefs :: String -> Either PError [Definition]
-parseDefs input = evalStateT (unP definitionsP) (initP typeIdents input)
+addLineNums :: String -> String
+addLineNums s = unlines
+    [ show i ++ (if i < 10 then " " else "") ++ " | " ++ line
+    | line <- lines s
+    | i <- [1..]
+    ]
 
 testParser :: IO ()
 testParser = do
-    eerr <- runExceptT . flip runStateT typeIdents . forM_ defChunks $ \chunk -> do
-        defs <- catchError (parseDefinitions chunk) $ \err -> do
-            liftIO $ putStrLn chunk
-            tys <- get
-            liftIO $ print tys
-            throwError err
-        defs `deepseq` liftIO (putStr "")
-    case eerr of
-        Left err -> print err
-        Right _ -> return ()
-    putChar '\n'
+    (defs, stmts) <- runTest $ do
+        defs <- forM files $ \path -> do
+            fromFile testParseDefs (root </> path)
+            liftIO $ putChar '.'
+        stmts <- return []
+        return (defs, stmts)
+    return ()
 
-iterateChunks :: Monad m => [String] -> StateT [String] (ExceptT PError m) [String]
-iterateChunks = go 0 []
-  where
-    go 0 bad [] = return bad
-    go n bad [] = go 0 [] bad
-    go n bad (c:cs) = do
-        catchError
-            (parseDefinitions c >> go (n + 1) bad cs)
-            (const (go n (c:bad) cs))
+-- testParser :: IO ()
+-- testParser = do
+--     supp <- readSupport
+--     merr <- runExceptT . flip runStateT [] $ do
+--         liftIO $ putStr "\nDEFINITIONS"
+--         leftover <- iterateChunks (putChar '.') (supp ++ defChunks)
+--         case leftover of
+--             [] -> return ()
+--             ls -> do
+--                 liftIO $ putStrLn "<START>"
+--                 liftIO $ mapM_ putStrLn ls
+--                 liftIO $ putStrLn "<END>"
+--                 tys <- get
+--                 liftIO $ mapM_ putStrLn tys
+--                 throwError $ PError (Position 0 0 0) "leftover"
+--         liftIO $ putStr "\nSTATEMENTS"
+--         forM_ stmtChunks $ \chunk -> do
+--             types <- get
+--             case parseStmts types chunk of
+--                 Left err -> do
+--                     liftIO $ putStrLn chunk
+--                     liftIO $ putStrLn ""
+--                     liftIO $ mapM_ putStrLn types
+--                     throwError err
+--                 Right _ -> liftIO $ putChar '.'
+--     case merr of
+--         Left err -> print err
+--         Right _ -> return ()
+--     putChar '\n'
 
-parseAll :: IO ()
-parseAll = do
-    Right (leftover, tys) <- runExceptT (runStateT (iterateChunks defChunks) typeIdents)
-    mapM_ putStrLn leftover
-    putStrLn ""
-    mapM_ putStrLn tys
+-- findOrder :: Monad m => m () -> [String] -> StateT [String] (ExceptT PError m) [String]
+-- findOrder m = go 0 []
+--   where
+--     go 0 bad [] = return bad
+--     go n bad [] = go 0 [] bad
+--     go n bad (c:cs) = do
+--         catchError
+--             (parseDefs c >> lift (lift m) >> go (n + 1) bad cs)
+--             (const (go n (c:bad) cs))
 
-test :: IO ()
-test = do
-    input <- readFile "test/test.asl"
-    case runExceptT (evalStateT (parseDefinitions input) typeIdents) of
-        Left err -> print (err :: PError)
-        Right ast -> print ast
+-- testLocal :: IO ()
+-- testLocal = do
+--     tys <- lines <$> readFile "test/types.txt"
+--     chunk <- readFile "test/test.asl"
+--     r <- runExceptT (runStateT (parseDefs chunk) tys)
+--     case r of
+--         Right _ -> return ()
+--         Left err -> print err

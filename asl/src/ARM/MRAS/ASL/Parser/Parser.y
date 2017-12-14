@@ -13,7 +13,7 @@ import ARM.MRAS.ASL.Parser.Tokens
 import Control.Monad.Except
 import Control.Monad.State
 import Data.Foldable
-import Data.List.NonEmpty (NonEmpty(..))
+import Data.List.NonEmpty (NonEmpty(..), (<|))
 
 }
 
@@ -142,15 +142,16 @@ tidentdecl ::             { QIdent                                              
 
 definition :: { Definition }
 
-    : '__builtin' 'type' tidentdecl ';'               { DefTyBuiltin $3  }
-    | 'type' tidentdecl ';'                           { DefTyDecl $2     }
-    | 'type' tidentdecl 'is' '(' csl_field ')'        { DefTyDef $2 $5   }
-    | 'type' tidentdecl '=' type_expr ';'             { DefTyAlias $2 $4 }
-    | 'enumeration' tidentdecl '{' csl_ident '}' ';'  { DefTyEnum $2 $4  }
+    : '__builtin' 'type' tidentdecl ';'                   { DefTyBuiltin $3  }
+    | 'type' tidentdecl ';'                               { DefTyDecl $2     }
+    | 'type' tidentdecl 'is' '(' csl_field ')'            { DefTyDef $2 $5   }
+    | 'type' tidentdecl '=' type_expr ';'                 { DefTyAlias $2 $4 }
+    | 'enumeration' tidentdecl '{' enum_inner '}' ';'     { DefTyEnum $2 $4  }
 
     | type_expr qualident ';'                     { DefVarDecl $1 $2             }
     | 'constant' type_expr IDENT '=' expr ';'     { DefConstDef $2 (Ident $3) $5 }
     | 'array' type_expr IDENT '{' ixtype '}' ';'  { DefArrDecl $2 (Ident $3) $5  }
+    | 'array' type_expr IDENT '[' ixtype ']' ';'  { DefArrDecl $2 (Ident $3) $5  }
 
     | type_expr qualident '(' csl_formal ')' ';'                        { DefFn (Just [$1]) $2 $4 Nothing   }
     | type_expr qualident '(' csl_formal ')' indented_block             { DefFn (Just [$1]) $2 $4 (Just $6) }
@@ -170,6 +171,13 @@ definition :: { Definition }
     | qualident '[' csl_sformal ']' '=' type_expr ident indented_block  { DefSetter $1 (Just $3) $6 $7 (Just $8) }
     | qualident '=' type_expr ident ';'                                 { DefSetter $1 Nothing $3 $4 Nothing     }
     | qualident '=' type_expr ident indented_block                      { DefSetter $1 Nothing $3 $4 (Just $5)   }
+
+-- Differs from mra_tools parser, but there is an enum in the spec with a trailing comma.
+enum_inner ::              { [Ident] }
+enum_inner
+    :                      { []      }
+    | ident                { [$1]    }
+    | ident ',' enum_inner { $1 : $3 }
 
 ixtype ::            { IxType            }
     : tident         { IxTypeTy $1       }
@@ -194,17 +202,18 @@ type_expr ::                                 { TyExpr          }
     | '__register' INT '{' csl_regfield '}'  { TyExprReg 0 $4  }
     | 'array' '[' ixtype ']' 'of' type_expr  { TyExprArr $3 $6 }
 
-regfield ::               { NonEmpty Slice }
-    : slice ',' csl_slice { $1 :| $3       }
+regfield ::              { (NonEmpty Slice, Ident) }
+    : slice ident        { ($1 :| [], $2)          }
+    | slice ',' regfield { ($1 <| fst $3, snd $3)  }
 
 -- Statements
 
 statement :: { Statement }
 
-    : type_expr ident ',' csl_ident ';'        { StAssignSig $1 ($2 :| $4) }
-    | type_expr ident '=' expr ';'             { StAssignVal $1 $2 $4      }
-    | 'constant' type_expr ident '=' expr ';'  { StAssignConst $2 $3 $5    }
-    | lexpr '=' expr ';'                       { StAssignPat $1 $3         }
+    : type_expr ident cpl_ident ';'           { StAssignSig $1 ($2 :| $3) }
+    | type_expr ident '=' expr ';'            { StAssignVal $1 $2 $4      }
+    | 'constant' type_expr ident '=' expr ';' { StAssignConst $2 $3 $5    }
+    | lexpr '=' expr ';'                      { StAssignPat $1 $3         }
 
     | qualident '(' csl_expr ')' ';'       { StProc $1 $3    }
     | 'return' option_expr ';'             { StRet $2        }
@@ -261,11 +270,13 @@ lexpr ::                                { LExpr                       }
     : '-'                               { LExprEmpty                  }
     | qualident                         { LExprId $1                  }
     | lexpr '.' ident                   { LExprDot $1 $3              }
-    | lexpr '.' '[' ident csl_ident ']' { LExprDotBrack $1 ($4 :| $5) }
+    | lexpr '.' '[' ident cpl_ident ']' { LExprDotBrack $1 ($4 :| $5) }
+    | lexpr '.' '<' ident cpl_ident '>' { LExprDotBrack $1 ($4 :| $5) }
+    | lexpr '[' csl_slice ']'           { LExprSlice $1 $3            }
     | lexpr '<' csl_slice '>'           { LExprSlice $1 $3            }
     | '<' csl_slice '>'                 { LExprWat $2                 } -- wat
-    | '[' lexpr ',' csl_lexpr ']'       { LExprBrack ($2 :| $4)       }
-    | '(' lexpr ',' csl_lexpr ')'       { LExprParen ($2 :| $4)       }
+    | '[' lexpr cpl_lexpr ']'           { LExprBrack ($2 :| $3)       }
+    | '(' lexpr cpl_lexpr ')'           { LExprParen ($2 :| $3)       }
 
 indented_block ::                            { NonEmpty Statement }
     : INDENT statement list_statement DEDENT { $2 :| $3           }
@@ -300,14 +311,15 @@ aexpr ::                                                { Expr                 }
     | type_expr 'UNKNOWN'                               { ExprUnk $1           }
     | type_expr 'IMPLEMENTATION_DEFINED' option_string  { ExprImpDef $1 $3     }
 
-bexpr ::                                     { Expr                       }
-    : aexpr                                  { $1                         }
-    | bexpr '.' ident                        { ExprDot $1 $3              }
-    | bexpr '.' '[' ident ',' csl_ident ']'  { ExprDotBrack $1 ($4 :| $6) }
-    | bexpr '[' csl_slice ']'                { ExprSlice $1 $3            } -- This is incorrect
-    | bexpr '<' csl_slice '>'                { ExprSlice $1 $3            }
-    | bexpr 'IN' '{' csl_element '}'         { ExprInSet $1 $4            }
-    | bexpr 'IN' MASK                        { ExprInMask $1 []           }
+bexpr ::                                { Expr                       }
+    : aexpr                             { $1                         }
+    | bexpr '.' ident                   { ExprDot $1 $3              }
+    | bexpr '.' '[' ident cpl_ident ']' { ExprDotBrack $1 ($4 :| $5) }
+    | bexpr '.' '<' ident cpl_ident '>' { ExprDotBrack $1 ($4 :| $5) }
+    | bexpr '[' csl_slice ']'           { ExprSlice $1 $3            } -- This is incorrect
+    | bexpr '<' csl_slice '>'           { ExprSlice $1 $3            }
+    | bexpr 'IN' '{' csl_element '}'    { ExprInSet $1 $4            }
+    | bexpr 'IN' MASK                   { ExprInMask $1 []           }
 
 element ::            { (Expr, Maybe Expr) }
     : expr            { ($1, Nothing)      }
@@ -394,93 +406,93 @@ list_statement ::              { [Statement] }
     :                          { []          }
     | statement list_statement { $1 : $2     }
 
-csl_field ::            { [(TyExpr, Ident)] }
+csl_field ::          { [(TyExpr, Ident)] }
+    :                 { []                }
+    | field cpl_field { $1 : $2           }
+
+csl_formal ::           { [(TyExpr, Ident)] }
     :                   { []                }
-    | field csl__field  { $1 : $2           }
+    | formal cpl_formal { $1 : $2           }
 
-csl_formal ::             { [(TyExpr, Ident)] }
-    :                     { []                }
-    | formal csl__formal  { $1 : $2           }
+csl_sformal ::            { [(TyExpr, Bool, Ident)] }
+    :                     { []                      }
+    | sformal cpl_sformal { $1 : $2                 }
 
-csl_sformal ::              { [(TyExpr, Bool, Ident)] }
-    :                       { []                      }
-    | sformal csl__sformal  { $1 : $2                 }
+csl_type_expr ::              { [TyExpr] }
+    :                         { []       }
+    | type_expr cpl_type_expr { $1 : $2  }
 
-csl_type_expr ::                { [TyExpr] }
-    :                           { []       }
-    | type_expr csl__type_expr  { $1 : $2  }
-
-csl_ident ::            { [Ident] }
-    :                   { []      }
-    | ident csl__ident  { $1 : $2 }
-
-csl_slice ::            { [Slice] }
-    :                   { []      }
-    | slice csl__slice  { $1 : $2 }
-
-csl_expr ::           { [Expr]  }
+csl_ident ::          { [Ident] }
     :                 { []      }
-    | expr csl__expr  { $1 : $2 }
+    | ident cpl_ident { $1 : $2 }
 
-csl_lexpr ::            { [LExpr] }
+csl_slice ::          { [Slice] }
+    :                 { []      }
+    | slice cpl_slice { $1 : $2 }
+
+csl_expr ::         { [Expr]  }
+    :               { []      }
+    | expr cpl_expr { $1 : $2 }
+
+csl_lexpr ::          { [LExpr] }
+    :                 { []      }
+    | lexpr cpl_lexpr { $1 : $2 }
+
+csl_regfield ::             { [(NonEmpty Slice, Ident)] }
+    :                       { []                        }
+    | regfield cpl_regfield { $1 : $2                   }
+
+csl_pattern ::            { [Pattern] }
+    :                     { []        }
+    | pattern cpl_pattern { $1 : $2   }
+
+csl_element ::            { [(Expr, Maybe Expr)] }
+    :                     { []                   }
+    | element cpl_element { $1 : $2              }
+
+cpl_field ::              { [(TyExpr, Ident)] }
+    :                     { []                }
+    | ',' field cpl_field { $2 : $3           }
+
+cpl_formal ::               { [(TyExpr, Ident)] }
+    :                       { []                }
+    | ',' formal cpl_formal { $2 : $3           }
+
+cpl_sformal ::                { [(TyExpr, Bool, Ident)] }
+    :                         { []                      }
+    | ',' sformal cpl_sformal { $2 : $3                 }
+
+cpl_type_expr ::                  { [TyExpr] }
+    :                             { []       }
+    | ',' type_expr cpl_type_expr { $2 : $3  }
+
+cpl_ident ::              { [Ident] }
+    :                     { []      }
+    | ',' ident cpl_ident { $2 : $3 }
+
+cpl_slice ::              { [Slice] }
+    :                     { []      }
+    | ',' slice cpl_slice { $2 : $3 }
+
+cpl_expr ::             { [Expr]  }
     :                   { []      }
-    | lexpr csl__lexpr  { $1 : $2 }
+    | ',' expr cpl_expr { $2 : $3 }
 
-csl_regfield ::               { [NonEmpty Slice] }
-    :                         { []               }
-    | regfield csl__regfield  { $1 : $2          }
+cpl_lexpr ::              { [LExpr] }
+    :                     { []      }
+    | ',' lexpr cpl_lexpr { $2 : $3 }
 
-csl_pattern ::              { [Pattern] }
-    :                       { []        }
-    | pattern csl__pattern  { $1 : $2   }
+cpl_regfield ::                 { [(NonEmpty Slice, Ident)] }
+    :                           { []                        }
+    | ',' regfield cpl_regfield { $2 : $3                   }
 
-csl_element ::              { [(Expr, Maybe Expr)] }
-    :                       { []                   }
-    | element csl__element  { $1 : $2              }
+cpl_pattern ::                { [Pattern] }
+    :                         { []        }
+    | ',' pattern cpl_pattern { $2 : $3   }
 
-csl__field ::              { [(TyExpr, Ident)] }
-    :                      { []                }
-    | ',' field csl__field { $2 : $3           }
-
-csl__formal ::               { [(TyExpr, Ident)] }
-    :                        { []                }
-    | ',' formal csl__formal { $2 : $3           }
-
-csl__sformal ::                { [(TyExpr, Bool, Ident)] }
-    :                          { []                      }
-    | ',' sformal csl__sformal { $2 : $3                 }
-
-csl__type_expr ::                  { [TyExpr] }
-    :                              { []       }
-    | ',' type_expr csl__type_expr { $2 : $3  }
-
-csl__ident ::              { [Ident] }
-    :                      { []      }
-    | ',' ident csl__ident { $2 : $3 }
-
-csl__slice ::              { [Slice] }
-    :                      { []      }
-    | ',' slice csl__slice { $2 : $3 }
-
-csl__expr ::             { [Expr]  }
-    :                    { []      }
-    | ',' expr csl__expr { $2 : $3 }
-
-csl__lexpr ::              { [LExpr] }
-    :                      { []      }
-    | ',' lexpr csl__lexpr { $2 : $3 }
-
-csl__regfield ::                 { [NonEmpty Slice] }
-    :                            { []               }
-    | ',' regfield csl__regfield { $2 : $3          }
-
-csl__pattern ::                { [Pattern] }
-    :                          { []        }
-    | ',' pattern csl__pattern { $2 : $3   }
-
-csl__element ::                { [(Expr, Maybe Expr)] }
-    :                          { []                   }
-    | ',' element csl__element { $2 : $3              }
+cpl_element ::                { [(Expr, Maybe Expr)] }
+    :                         { []                   }
+    | ',' element cpl_element { $2 : $3              }
 
 {
 
