@@ -1,0 +1,20 @@
+Name:                harm-values-gen
+Version:             0.1
+license:             MIT
+author:              Nick Spinale
+maintainer:          spinalen@gmail.com
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+executable gen-harm-values
+  main-is:           Main.hs
+  other-modules:     Extract
+
+  build-depends:     base
+                   , harm-types
+                   , arm-mras
+                   , directory
+                   , filepath
+                   , haskell-src-exts
+                   , lens

@@ -18,9 +18,9 @@ in rec {
     inherit arm-mras;
   };
 
-  # harm = callPackage ./harm {
-  #   inherit myLib;
-  #   arm-mras = arm-mras;
-  # };
+  harm = callPackage ./harm {
+    inherit myLib;
+    inherit (arm-mras) arm-mras;
+  };
 
 }

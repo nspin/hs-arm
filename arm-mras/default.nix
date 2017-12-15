@@ -25,8 +25,7 @@ let
 in rec {
 
   arm-mras = haskellPackages.callPackage ./arm-mras {
-    arm-mras-types = arm-mras-types;
-    arm-mras-values = arm-mras-values;
+    inherit arm-mras-types arm-mras-values;
   };
 
   arm-mras-dtd-gen = haskellPackages.callPackage ./arm-mras-dtd-gen {};
@@ -34,15 +33,14 @@ in rec {
   arm-mras-types = haskellPackages.callPackage ./arm-mras-types {};
 
   arm-mras-parse = haskellPackages.callPackage ./arm-mras-parse {
-    arm-mras-types = arm-mras-types;
+    inherit arm-mras-types;
     arm-mras-dtd-sysreg = dtd.sysreg;
     arm-mras-dtd-aarch64 = dtd.aarch64;
     arm-mras-dtd-aarch32 = dtd.aarch32;
   };
 
   arm-mras-values-gen = haskellPackages.callPackage ./arm-mras-values-gen {
-    arm-mras-types = arm-mras-types;
-    arm-mras-parse = arm-mras-parse;
+    inherit arm-mras-types arm-mras-parse;
   };
 
   arm-mras-values-src = mergeFrom ./arm-mras-values [ "arm-mras-values.cabal" "src" ] (stdenv.mkDerivation {

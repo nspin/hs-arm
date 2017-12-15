@@ -21,7 +21,10 @@ go_r arm-mras.dtd-src.aarch64
 go_r arm-mras.dtd-src.aarch32
 go_r arm-mras.arm-mras-values-src
 
-go_r arm-mras.arm-mras
-go_r asl
+go_r harm.harm-values-src
 
 go_r test-asl
+
+go_r arm-mras.arm-mras
+go_r asl
+go_r harm.harm
