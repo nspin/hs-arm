@@ -60,7 +60,7 @@ data List_role = List_role_standard
                | List_role_wide
                deriving (Eq, Show)
 
-data Listitem = Listitem (OneOf2 [Param] [Term]) Content
+data Listitem = Listitem [Param] Content
               deriving (Eq, Show)
 
 newtype Term = Term [Term_]
@@ -758,7 +758,7 @@ newtype Psdoc = Psdoc String
 data Pstext = Pstext Pstext_Attrs [Pstext_]
             deriving (Eq, Show)
 
-data Pstext_Attrs = Pstext_Attrs{pstextSection :: String,
+data Pstext_Attrs = Pstext_Attrs{pstextSection :: (Maybe String),
                                  pstextRep_section :: (Maybe String),
                                  pstextMayhavelinks :: (Maybe Pstext_mayhavelinks)}
                   deriving (Eq, Show)
@@ -802,8 +802,29 @@ data Cu_type_variable = Cu_type_variable{cu_type_variableName ::
                                          cu_type_variableValue :: String}
                       deriving (Eq, Show)
 
-newtype Cu_type_text = Cu_type_text [String]
+newtype Cu_type_text = Cu_type_text [Cu_type_text_]
                      deriving (Eq, Show)
+
+data Cu_type_text_ = Cu_type_text_Str String
+                   | Cu_type_text_Instruction Instruction
+                   | Cu_type_text_Literal Literal
+                   | Cu_type_text_Xref Xref
+                   | Cu_type_text_B B
+                   | Cu_type_text_Arm_defined_word Arm_defined_word
+                   | Cu_type_text_Parameter Parameter
+                   | Cu_type_text_Sup Sup
+                   | Cu_type_text_Sub Sub
+                   | Cu_type_text_Binarynumber Binarynumber
+                   | Cu_type_text_Hexnumber Hexnumber
+                   | Cu_type_text_Syntax Syntax
+                   | Cu_type_text_Field Field
+                   | Cu_type_text_Value Value
+                   | Cu_type_text_Function Function
+                   | Cu_type_text_AEnum AEnum
+                   | Cu_type_text_Enumvalue Enumvalue
+                   | Cu_type_text_Url Url
+                   | Cu_type_text_Image Image
+                   deriving (Eq, Show)
 
 newtype Exceptions = Exceptions [Exception_group]
                    deriving (Eq, Show)
@@ -1015,12 +1036,13 @@ instance HTypeable Listitem where
 
 instance XmlContent Listitem where
         toContents (Listitem a b)
-          = [CElem (Elem (N "listitem") [] (toContents a ++ toContents b))
+          = [CElem
+               (Elem (N "listitem") [] (concatMap toContents a ++ toContents b))
                ()]
         parseContents
           = do e@(Elem _ [] _) <- element ["listitem"]
                interior e $
-                 return (Listitem) `apply` parseContents `apply` parseContents
+                 return (Listitem) `apply` many parseContents `apply` parseContents
               `adjustErr` ("in <listitem>, " ++)
 
 instance HTypeable Term where
@@ -3057,12 +3079,12 @@ instance XmlContent Pstext where
 instance XmlAttributes Pstext_Attrs where
         fromAttrs as
           = Pstext_Attrs{pstextSection =
-                           definiteA fromAttrToStr "pstext" "section" as,
+                           possibleA fromAttrToStr "section" as,
                          pstextRep_section = possibleA fromAttrToStr "rep_section" as,
                          pstextMayhavelinks = possibleA fromAttrToTyp "mayhavelinks" as}
         toAttrs v
           = catMaybes
-              [toAttrFrStr "section" (pstextSection v),
+              [maybeToAttr toAttrFrStr "section" (pstextSection v),
                maybeToAttr toAttrFrStr "rep_section" (pstextRep_section v),
                maybeToAttr toAttrFrTyp "mayhavelinks" (pstextMayhavelinks v)]
 
@@ -3200,6 +3222,52 @@ instance XmlContent Cu_type_text where
         parseContents
           = do e@(Elem _ [] _) <- element ["cu_type_text"]
                interior e $ return (Cu_type_text) `apply` many parseContents
+              `adjustErr` ("in <cu_type_text>, " ++)
+
+instance HTypeable Cu_type_text_ where
+        toHType x = Defined "cu_type_text" [] []
+
+instance XmlContent Cu_type_text_ where
+        toContents (Cu_type_text_Str a) = toText a
+        toContents (Cu_type_text_Instruction a) = toContents a
+        toContents (Cu_type_text_Literal a) = toContents a
+        toContents (Cu_type_text_Xref a) = toContents a
+        toContents (Cu_type_text_B a) = toContents a
+        toContents (Cu_type_text_Arm_defined_word a) = toContents a
+        toContents (Cu_type_text_Parameter a) = toContents a
+        toContents (Cu_type_text_Sup a) = toContents a
+        toContents (Cu_type_text_Sub a) = toContents a
+        toContents (Cu_type_text_Binarynumber a) = toContents a
+        toContents (Cu_type_text_Hexnumber a) = toContents a
+        toContents (Cu_type_text_Syntax a) = toContents a
+        toContents (Cu_type_text_Field a) = toContents a
+        toContents (Cu_type_text_Value a) = toContents a
+        toContents (Cu_type_text_Function a) = toContents a
+        toContents (Cu_type_text_AEnum a) = toContents a
+        toContents (Cu_type_text_Enumvalue a) = toContents a
+        toContents (Cu_type_text_Url a) = toContents a
+        toContents (Cu_type_text_Image a) = toContents a
+        parseContents
+          = oneOf
+              [return (Cu_type_text_Str) `apply` text,
+               return (Cu_type_text_Instruction) `apply` parseContents,
+               return (Cu_type_text_Literal) `apply` parseContents,
+               return (Cu_type_text_Xref) `apply` parseContents,
+               return (Cu_type_text_B) `apply` parseContents,
+               return (Cu_type_text_Arm_defined_word) `apply` parseContents,
+               return (Cu_type_text_Parameter) `apply` parseContents,
+               return (Cu_type_text_Sup) `apply` parseContents,
+               return (Cu_type_text_Sub) `apply` parseContents,
+               return (Cu_type_text_Binarynumber) `apply` parseContents,
+               return (Cu_type_text_Hexnumber) `apply` parseContents,
+               return (Cu_type_text_Syntax) `apply` parseContents,
+               return (Cu_type_text_Field) `apply` parseContents,
+               return (Cu_type_text_Value) `apply` parseContents,
+               return (Cu_type_text_Function) `apply` parseContents,
+               return (Cu_type_text_AEnum) `apply` parseContents,
+               return (Cu_type_text_Enumvalue) `apply` parseContents,
+               return (Cu_type_text_Url) `apply` parseContents,
+               return (Cu_type_text_Image) `apply` parseContents]
               `adjustErr` ("in <cu_type_text>, " ++)
 
 instance HTypeable Exceptions where

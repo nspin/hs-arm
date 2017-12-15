@@ -6,14 +6,14 @@ license: MIT
 maintainer: spinalen@gmail.com
 author: Nick Spinale
 exposed-modules:
-    ARM.MRAS.DTD.AArch64.Constrainttextmappings
+    ARM.MRAS.DTD.AArch64.Accounts
     ARM.MRAS.DTD.AArch64.Allinstrs
     ARM.MRAS.DTD.AArch64.Alphaindex
-    ARM.MRAS.DTD.AArch64.Sharedps
-    ARM.MRAS.DTD.AArch64.Iformp
-    ARM.MRAS.DTD.AArch64.Accounts
-    ARM.MRAS.DTD.AArch64.Permindex
+    ARM.MRAS.DTD.AArch64.Constrainttextmappings
     ARM.MRAS.DTD.AArch64.Encodingindex
+    ARM.MRAS.DTD.AArch64.Iformp
+    ARM.MRAS.DTD.AArch64.Permindex
+    ARM.MRAS.DTD.AArch64.Sharedps
 exposed: True
 buildable: True
 build-depends:
