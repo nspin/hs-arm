@@ -11,7 +11,4 @@ root="$here/../nix-results"
 [ -d "$root" ] && rm -r "$root"
 mkdir -p "$root"
 
-go_rw dtd-src.sysreg
-go_rw dtd-src.aarch64
-go_rw dtd-src.aarch32
-go_rw arm-mras-values-src
+go_rw arm-mras.arm-mras-values-src

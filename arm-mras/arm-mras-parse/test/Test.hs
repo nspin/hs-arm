@@ -15,8 +15,8 @@ import System.FilePath
 import Text.XML.HaXml.XmlContent
 
 aarch64, aarch32 :: String
-aarch64 = "../test/nix-results/patched-aarch64/ISA_v83A_A64_xml_00bet5"
-aarch32 = "../test/nix-results/patched-aarch32/ISA_v83A_AArch32_xml_00bet5"
+aarch64 = "../test/nix-results/arm-mras.patched-aarch64/ISA_v83A_A64_xml_00bet5"
+aarch32 = "../test/nix-results/arm-mras.patched-aarch32/ISA_v83A_AArch32_xml_00bet5"
 
 testAll :: IO ([Insn], [Insn])
 testAll = (,) <$> parseBaseFrom aarch64 <*> parseFpSimdFrom aarch64
