@@ -32,8 +32,9 @@ module ARM.MRAS.Types
 
     , DiagramAArch64(..)
     , DiagramAArch32(..)
-    , Box(..)
+    , T32Width(..)
     , Block(..)
+    , BlockUpdate(..)
     , BlockSpec(..)
     , Bit(..)
 
@@ -50,8 +51,8 @@ module ARM.MRAS.Types
 
     , HasDiagramAArch64(..)
     , AsDiagramAArch32(..)
-    , HasBox(..)
     , HasBlock(..)
+    , HasBlockUpdate(..)
 
     , insn_id
     , insn_file
@@ -121,7 +122,7 @@ data PsSection = PsDecode | PsPostDecode | PsExecute
 
 data Encoding = Encoding
     { _encoding_id :: EncodingId
-    , _encoding_diagram :: [(String, BlockSpec)]
+    , _encoding_diagram :: [BlockUpdate]
     , _encoding_template :: Template
     , _encoding_symbols :: [Symbol]
     } deriving (Eq, Show, Generic, NFData)
@@ -150,18 +151,22 @@ data TableRow = TableRow
 
 newtype DiagramAArch64 = DiagramA64 { _diagram_a64 :: [Block] }
     deriving (Eq, Show, Generic, NFData)
-data DiagramAArch32 = DiagramA32 [Block] | DiagamT32 [Block] (Maybe [Block])
+
+data DiagramAArch32 = DiagramA32 [Block] | DiagramT32 T32Width [Block]
     deriving (Eq, Show, Generic, NFData)
 
-data Box = Box
-    { _box_hi :: Int
-    , _box_width :: Int
-    , _box_block :: Block
-    } deriving (Eq, Show, Generic, NFData)
+data T32Width = T32Width16 | T32Width32
+    deriving (Eq, Show, Generic, NFData)
 
 data Block = Block
     { _block_name :: Maybe String
     , _block_spec :: BlockSpec
+    } deriving (Eq, Show, Generic, NFData)
+
+data BlockUpdate = BlockUpdate
+    { _box_hi :: Int
+    , _box_width :: Int
+    , _box_spec :: BlockSpec
     } deriving (Eq, Show, Generic, NFData)
 
 data BlockSpec = BlockEq [Bit] | BlockNeq [Bit]
@@ -191,8 +196,8 @@ makeClassy ''TableRow
 
 makeClassy ''DiagramAArch64
 makeClassyPrisms ''DiagramAArch32
-makeClassy ''Box
 makeClassy ''Block
+makeClassy ''BlockUpdate
 
 makeLenses ''InsnFromWith
 makeLenses ''Class

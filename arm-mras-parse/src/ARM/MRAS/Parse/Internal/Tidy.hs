@@ -7,10 +7,13 @@ import ARM.MRAS.Types
 import ARM.MRAS.Parse.Internal.Distill (C(..), AliasInfo(..), Mapping(..), TableEntry(..))
 import qualified ARM.MRAS.Parse.Internal.Distill as D
 
-import Data.Foldable
-import Control.Exception
-import Data.Maybe
 import Control.Applicative
+import Control.Exception
+import Control.Lens
+import Data.Foldable
+import Data.Maybe
+
+import Debug.Trace
 
 tidyPage :: IsDiagram diag => D.Page -> Either (InsnFromWith diag PageId ()) (PageId, AliasFrom diag ())
 tidyPage (D.Page pid ainfo xclasses expls pss) = mk (map f xclasses)
@@ -19,12 +22,12 @@ tidyPage (D.Page pid ainfo xclasses expls pss) = mk (map f xclasses)
         AliasList apids -> Left (Insn pid () apids classes pss)
         AliasTo apid -> case (classes, pss) of
             ([(clazz, [])], []) -> Right (apid, Alias pid () clazz)
-    f (D.Class cid marchvar (D.Diagram psname boxes) xencs psss)
+    f (D.Class cid marchvar isa diagform (D.Diagram psname boxes) xencs psss)
         = (Class cid marchvar psname diag encs, psss)
       where
-        diag = tidyDiagram boxes
+        diag = tidyDiagram isa diagform boxes
         encs = map g xencs
-        g (D.Encoding eid bxs [tmp]) = Encoding eid (tidySubDiagram diag bxs) tmp syms
+        g (D.Encoding eid bxs (tmp:_)) = Encoding eid (tidySubDiagram bxs) tmp syms -- TODO(nspin) TI block templates (see adc_r.xml)
           where
             syms =
                 [ case mm of
@@ -72,28 +75,30 @@ allUnique (a:as) = elem a as || allUnique as
 
 
 class IsDiagram diag where
-    tidyDiagram :: [D.Box] -> diag
-    tidySubDiagram :: diag -> [D.Box] -> [(String, BlockSpec)]
+    getBlocks :: diag -> [Block]
+    tidyDiagram :: D.ISA -> D.Regdiagram_form -> [D.Box] -> diag
 
 instance IsDiagram DiagramAArch64 where
-
-    tidyDiagram boxes = check `assert` DiagramA64 blocks
-      where
-        blocks = go 32 (map tidyBox boxes)
-        go 0 [] = []
-        go n (Box hi width bl@(Block name spec) : bxs) = (n == hi + 1 && specLength spec == width) `assert` (bl : go (n - width) bxs)
-        check = allUnique (catMaybes [ n | Block n _ <- blocks ])
-
-    tidySubDiagram (DiagramA64 super) sub = go 31 super (map tidyBox sub)
-      where
-        go _ _ [] = []
-        go i aa@((Block name spec):bls) all@((Box hi width (Block n sp)):bxs) = case liftA2 (==) name n of
-            Just True -> assert (hi == i) $ (fromJust n, narrowSpec spec sp) : go (i - width) bls bxs
-            _ -> go (i - specLength spec) bls all
+    getBlocks (DiagramA64 blocks) = blocks
+    tidyDiagram D.A64 D.Regdiagram_form_32 = DiagramA64 . tidyBoxes 32
 
 instance IsDiagram DiagramAArch32 where
-    tidyDiagram boxes = undefined
-    tidySubDiagram = undefined
+    getBlocks (DiagramA32 blocks) = blocks
+    getBlocks (DiagramT32 _ blocks) = blocks
+    tidyDiagram D.A32 D.Regdiagram_form_32 = DiagramA32 . tidyBoxes 32
+    tidyDiagram D.T32 D.Regdiagram_form_16 = DiagramT32 T32Width16 . tidyBoxes 16
+    tidyDiagram D.T32 D.Regdiagram_form_16x2 = DiagramT32 T32Width32 . tidyBoxes 32
+
+tidyBoxes :: Int -> [D.Box] -> [Block]
+tidyBoxes len boxes = trace (show boxes) $ check `assert` blocks
+  where
+    blocks = go 32 (map tidyBox boxes)
+    go n [] | n == 32 - len = []
+    go n (Box hi width bl@(Block name spec) : bxs) = (n == hi + 1 && specLength spec == width) `assert` (bl : go (n - width) bxs)
+    check = allUnique (catMaybes [ n | Block n _ <- blocks ])
+
+tidySubDiagram :: [D.Box] -> [BlockUpdate]
+tidySubDiagram sub = [ BlockUpdate hi lo spec | Box hi lo (Block _ spec) <- map tidyBox sub ]
 
 -- narrowSpec super sub
 narrowSpec :: BlockSpec -> BlockSpec -> BlockSpec
@@ -117,6 +122,8 @@ specLength spec = length $ case spec of
     BlockEq y -> y
     BlockNeq y -> y
 
+data Box = Box Int Int Block
+
 tidyBox :: D.Box -> Box
 tidyBox box@(D.Box hi width name cs) = Box hi width (Block name (assert check spec))
   where
@@ -132,10 +139,11 @@ tidyBox box@(D.Box hi width name cs) = Box hi width (Block name (assert check sp
     with x (C 1 val) = x val
     with _ _ = Nothing
 
-    f "0" = Just O
     f "1" = Just I
+    f "0" = Just O
     f "x" = Just X
     f "(1)" = Just I -- ?
+    f "(0)" = Just O -- ?
     f "" = Just X
     f _ = Nothing
 
@@ -148,4 +156,4 @@ tidyBox box@(D.Box hi width name cs) = Box hi width (Block name (assert check sp
     h [C w ('!':'=':' ':xs)] = (w == length xs) `assert` traverse (f . (:[])) xs
     h _ = Nothing
 
-    check = width == specLength spec
+    check = trace (show (name, width, spec)) $ width == specLength spec

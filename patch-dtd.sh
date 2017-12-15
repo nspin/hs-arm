@@ -8,6 +8,8 @@ for f in $(find $root -name 'iform-p.dtd'); do
   sed -i 's/<!ATTLIST xref armarmref CDATA #REQUIRED>/<!ATTLIST xref linkend CDATA #REQUIRED>/' $f
   sed -i 's/<!ENTITY % formatted_words "instruction|literal|xref|b|arm-defined-word|parameter|sup|sub|binarynumber|hexnumber|syntax|field|value|function|enum|enumvalue|url">/<!ENTITY % formatted_words "instruction|literal|xref|b|arm-defined-word|parameter|sup|sub|binarynumber|hexnumber|syntax|field|value|function|enum|enumvalue|url|image">/' $f
   sed -i 's/<!ENTITY % formatted_text/<!ENTITY % formatted_text "(#PCDATA|para|list|note|%formatted_words;)*"><!ENTITY % NOTHINGTOSEEHERE/' $f
+  sed -i 's/<!ELEMENT cu_type_text (#PCDATA)\*>/<!ELEMENT cu_type_text (#PCDATA|arm-defined-word)*>/' $f
+  sed -i 's/<!ATTLIST pstext section CDATA #REQUIRED/<!ATTLIST pstext section CDATA #IMPLIED/' $f
   echo '<!ELEMENT note (#PCDATA|para|list|table)*>' >> $f
   echo '<!ELEMENT image EMPTY>' >> $f
   echo '<!ATTLIST image file CDATA #REQUIRED label CDATA #IMPLIED>' >> $f

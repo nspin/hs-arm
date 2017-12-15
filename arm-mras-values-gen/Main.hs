@@ -26,7 +26,7 @@ generate outDir inDir = do
   where
     path = outDir </> "gen" </> "ARM" </> "MRAS" </> "Values" </> "Gen.hs"
 
-build :: [Insn] -> [Insn] -> [SharedPs] -> Module ()
+build :: [Insn DiagramAArch64] -> [Insn DiagramAArch64] -> [SharedPs] -> Module ()
 build base fpsimd sharedps = Module () (Just head) [] [imp] decls
   where
     head = ModuleHead () (ModuleName () "ARM.MRAS.Values.Gen") Nothing Nothing
@@ -34,7 +34,9 @@ build base fpsimd sharedps = Module () (Just head) [] [imp] decls
     decl id val =
         [ TypeSig () [Ident () id]
             (TyList ()
-                (TyCon () (UnQual () (Ident () "Insn"))))
+                (TyApp ()
+                    (TyCon () (UnQual () (Ident () "Insn")))
+                    (TyCon () (UnQual () (Ident () "DiagramAArch64")))))
         , FunBind ()
             [ Match () (Ident () id) []
                 (UnGuardedRhs () (() <$ fromParseResult (parseExp (show val))))

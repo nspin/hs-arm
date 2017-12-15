@@ -7,6 +7,7 @@ module ARM.MRAS.Parse.Internal.Distill
     ( Page(..)
     , AliasInfo(..)
     , Class(..)
+    , ISA(..)
     , Diagram(..)
     , Box(..)
     , C(..)
@@ -16,6 +17,7 @@ module ARM.MRAS.Parse.Internal.Distill
     , Table(..)
     , TableEntry(..)
 
+    , Regdiagram_form(..)
     , Entry_class(..)
 
     , distillPage
@@ -38,15 +40,20 @@ import Text.XML.HaXml.XmlContent (List1(..))
 import qualified ARM.MRAS.DTD.AArch64.Iformp as X
 import ARM.MRAS.DTD.AArch64.Iformp hiding (Encoding, Box, C, Explanation, Account, Definition, Table, Symbol, Ps)
 
-
 data Page = Page PageId AliasInfo [Class] [Explanation] [Ps]
     deriving (Show, Generic, NFData)
 
 data AliasInfo = AliasList [PageId] | AliasTo PageId
     deriving (Show, Generic, NFData)
 
-data Class = Class ClassId (Maybe ArchVar) Diagram [Encoding] [Ps]
+data Class = Class ClassId (Maybe ArchVar) ISA Regdiagram_form Diagram [Encoding] [Ps]
     deriving (Show, Generic, NFData)
+
+deriving instance Generic Regdiagram_form
+deriving instance NFData Regdiagram_form
+
+data ISA = A64 | A32 | T32
+    deriving (Read, Show, Generic, NFData)
 
 data Diagram = Diagram PsName [Box]
     deriving (Show, Generic, NFData)
@@ -98,14 +105,13 @@ distillPage (Instructionsection attrs doc head desc xalias (Classes _ (NonEmpty 
 
 distillClass :: Iclass -> Class
 distillClass (Iclass attrs _ _ xavars (Regdiagram atrs xboxes) (NonEmpty xencs) xmps _)
-    = check `assert` Class (iclassId attrs) avars diag encs pss
+    = Class (iclassId attrs) avars (read (iclassIsa attrs)) (regdiagramForm atrs) diag encs pss
   where
     avars = distillArchVars <$> xavars
     diag = Diagram (fromJust (regdiagramPsname atrs)) boxes
     boxes = map distillBox xboxes
     encs = map distillEncoding xencs
     pss = maybe [] distillPss xmps
-    check = iclassIsa attrs == "A64" && regdiagramForm atrs == Regdiagram_form_32
 
 -- TODO(nspin) is it ok to ignore psbits attribute?
 distillBox :: X.Box -> Box
