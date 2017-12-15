@@ -34,14 +34,12 @@ topoSortGeneric :: (Ord i, Ord s) => (a -> i) -> (a -> [s]) -> (a -> [s]) -> [a]
 topoSortGeneric idOf defsOf depsOf nodes = reverse sorted
   where
     symbols = M.fromList [ (def, node) | node <- nodes, def <- defsOf node ]
-    (sorted, visitedNodes, visitedSymbols) = execState (traverse (goNode [] []) nodes) ([], S.empty, S.empty)
-    goNode seenNodes seenSymbols node = unlessM (uses _2 (S.member (idOf node))) $ do
-        _2 %= S.insert (idOf node)
-        mapM (goSymbol (idOf node:seenNodes) seenSymbols) (depsOf node)
-        _1 %= (:) node
-    goSymbol seenNodes seenSymbols sym = unlessM (uses _3 (S.member sym)) $ do
-        _3 %= S.insert sym
-        goNode seenNodes (sym:seenSymbols) (symbols ! sym)
+    (sorted, visited) = execState (traverse (go []) nodes) ([], S.empty)
+    go seen node = assert (not (idOf node `elem` seen)) $
+        unlessM (uses _2 (S.member (idOf node))) $ do
+            _2 %= S.insert (idOf node)
+            mapM (go (idOf node:seen) . (!) symbols) (depsOf node)
+            _1 %= (:) node
 
 
 bindDiagram :: [Block] -> [(String, BlockSpec)] -> [Block]
