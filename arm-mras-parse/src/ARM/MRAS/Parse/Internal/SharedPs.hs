@@ -2,12 +2,12 @@ module ARM.MRAS.Parse.Internal.SharedPs
     ( parseSharedPs
     ) where
 
-import ARM.MRAS.Parse.Internal.Common
+import ARM.MRAS.Parse.Internal.Util
 import ARM.MRAS.Types (SharedPs(..), PsName, PsSymbol)
 import ARM.MRAS.DTD.AArch64.Sharedps
 
-import Data.Maybe
 import Data.List
+import Data.Maybe
 
 import Text.XML.HaXml.XmlContent (List1(..))
 

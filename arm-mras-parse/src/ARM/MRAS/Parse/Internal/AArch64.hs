@@ -1,9 +1,9 @@
-module ARM.MRAS.Parse.Internal.Tidy
+module ARM.MRAS.Parse.Internal.AArch64
     ( tidyPage
     ) where
 
-import ARM.MRAS.Types
-import ARM.MRAS.Parse.Internal.Distill (C(..), AliasInfo(..), Mapping(..), TableEntry(..))
+import ARM.MRAS.Types.AArch64
+import ARM.MRAS.Parse.Internal.Distill (C(..), AliasInfo(..), Mapping(..), TableEntry(..), ISA(..), Regdiagram_form(..))
 import qualified ARM.MRAS.Parse.Internal.Distill as D
 
 import Data.Foldable
@@ -18,13 +18,12 @@ tidyPage (D.Page pid ainfo xclasses expls pss) = mk (map f xclasses)
         AliasList apids -> Left (Insn pid () apids classes pss)
         AliasTo apid -> case (classes, pss) of
             ([(clazz, [])], []) -> Right (apid, Alias pid () clazz)
-    f (D.Class cid marchvar (D.Diagram psname boxes) xencs psss)
-        = (Class cid marchvar diag encs, psss)
+    f (D.Class cid marchvar A64 Regdiagram_form_32 (D.Diagram psname boxes) xencs psss)
+        = (Class cid marchvar psname diag encs, psss)
       where
-        diag = Diagram psname dg
-        dg = tidyDiagram boxes
+        diag = tidyDiagram boxes
         encs = map g xencs
-        g (D.Encoding eid bxs [tmp]) = Encoding eid (tidySubDiagram dg bxs) tmp syms
+        g (D.Encoding eid bxs [tmp]) = Encoding eid (tidySubDiagram diag bxs) tmp syms
           where
             syms =
                 [ case mm of
@@ -107,6 +106,12 @@ specLength :: BlockSpec -> Int
 specLength spec = length $ case spec of
     BlockEq y -> y
     BlockNeq y -> y
+
+data Box = Box
+    { box_hi :: Int
+    , box_lo :: Int
+    , box_block :: Block
+    }
 
 tidyBox :: D.Box -> Box
 tidyBox box@(D.Box hi width name cs) = Box hi width (Block name (assert check spec))

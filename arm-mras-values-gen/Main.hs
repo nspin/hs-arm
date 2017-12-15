@@ -27,10 +27,10 @@ generate outDir inDir = do
     path = outDir </> "gen" </> "ARM" </> "MRAS" </> "Values" </> "Gen.hs"
 
 build :: [Insn] -> [Insn] -> [SharedPs] -> Module ()
-build base fpsimd sharedps = Module () (Just head) [] [imp] decls
+build base fpsimd sharedps = Module () (Just head) [] imps decls
   where
     head = ModuleHead () (ModuleName () "ARM.MRAS.Values.Gen") Nothing Nothing
-    decls = decl "base" base ++ decl "fpsimd" fpsimd ++ [sharedpsTy, sharedpsVal]
+    decls = decl "aarch64Base" base ++ decl "aarch64FpSimd" fpsimd ++ [sharedpsTy, sharedpsVal]
     decl id val =
         [ TypeSig () [Ident () id]
             (TyList ()
@@ -41,21 +41,34 @@ build base fpsimd sharedps = Module () (Just head) [] [imp] decls
                 Nothing
             ]
         ]
-    sharedpsTy = TypeSig () [Ident () "sharedps"]
+    sharedpsTy = TypeSig () [Ident () "sharedPs"]
         (TyList ()
             (TyCon () (UnQual () (Ident () "SharedPs"))))
     sharedpsVal = FunBind ()
-        [ Match () (Ident () "sharedps") []
+        [ Match () (Ident () "sharedPs") []
             (UnGuardedRhs () (() <$ fromParseResult (parseExp (show sharedps))))
             Nothing
         ]
-    imp = ImportDecl
-        { importAnn = ()
-        , importModule = ModuleName () "ARM.MRAS.Types"
-        , importQualified = False
-        , importSrc = False
-        , importSafe = False
-        , importPkg = Nothing
-        , importAs = Nothing
-        , importSpecs = Nothing
-        }
+    imps =
+        [ emptyImport "ARM.MRAS.Types"
+        , (emptyImport "ARM.MRAS.Types.AArch64")
+            { importQualified = True
+            , importAs = "AArch64"
+            }
+        , (emptyImport "ARM.MRAS.Types.AArch32")
+            { importQualified = True
+            , importAs = "AArch32"
+            }
+        ]
+
+emptyImport :: String -> ImportDecl ()
+emptyImport name = ImportDecl
+    { importAnn = ()
+    , importModule = ModuleName () name
+    , importQualified = False
+    , importSrc = False
+    , importSafe = False
+    , importPkg = Nothing
+    , importAs = Nothing
+    , importSpecs = Nothing
+    }

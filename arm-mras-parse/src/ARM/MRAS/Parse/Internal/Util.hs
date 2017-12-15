@@ -1,4 +1,4 @@
-module ARM.MRAS.Parse.Internal.Common
+module ARM.MRAS.Parse.Internal.Util
     ( (<&>)
     , unescape
     ) where

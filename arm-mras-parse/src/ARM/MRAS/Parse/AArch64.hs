@@ -1,4 +1,4 @@
-module ARM.MRAS.Parse
+module ARM.MRAS.Parse.AArch64
     ( parsePage
     , listPages
     , parseBaseFrom
@@ -6,9 +6,9 @@ module ARM.MRAS.Parse
     , parseSharedPsFrom
     ) where
 
-import ARM.MRAS.Types
+import ARM.MRAS.Types.AArch64
+import ARM.MRAS.Parse.Internal.AArch64 (tidyPage)
 import ARM.MRAS.Parse.Internal.Distill (distillPage)
-import ARM.MRAS.Parse.Internal.Tidy (tidyPage)
 import ARM.MRAS.Parse.Internal.SharedPs (parseSharedPs)
 
 import ARM.MRAS.DTD.AArch64.Alphaindex
