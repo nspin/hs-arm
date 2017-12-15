@@ -70,7 +70,7 @@ bindDiagram (block:blocks) bnds = block : bindDiagram blocks bnds
 
 classDiagrams :: Class -> [[Block]]
 classDiagrams cl = map
-    (bindDiagram (cl^.class_diagram.diagram_blocks))
+    (bindDiagram (cl^.class_diagram))
     (cl^..class_encodings.traverse.encoding_diagram)
 
 diagramFields :: [Block] -> [DiagramField]

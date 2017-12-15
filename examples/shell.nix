@@ -1,13 +1,12 @@
 with import <nixpkgs> {};
+with callPackage ../. {};
 
-let arm-mras = callPackage ../. {};
-
-in stdenv.mkDerivation {
+stdenv.mkDerivation {
   name = "env";
   buildInputs = [
     (haskellPackages.ghcWithPackages (hp: with hp; [
-        arm-mras.types
-        arm-mras.values
+        arm-mras
+        asl
         filepath
         lens
     ]))

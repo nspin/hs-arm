@@ -1,6 +1,9 @@
 module ARM.MRAS.ASL.Parser
     ( parseDefs
     , parseStmts
+    , PError(..)
+    , Position(..)
+    , module ARM.MRAS.ASL.Parser.Syntax
     ) where
 
 import ARM.MRAS.ASL.Parser.Parser

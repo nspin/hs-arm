@@ -36,8 +36,7 @@ let
 in rec {
 
   asl = haskellPackages.callPackage ./asl {
-    arm-mras-types = arm-mras-types;
-    arm-mras-values = arm-mras-values;
+    arm-mras = arm-mras;
   };
 
   arm-mras = haskellPackages.callPackage ./arm-mras {
@@ -204,8 +203,8 @@ in rec {
 
       # patches
 
-      echo "__builtin type string;" >> $out/foo.asl
-      echo "__builtin type __RAM;"  >> $out/foo.asl
+      echo "__builtin type string;" >> $out/extra.asl
+      echo "__builtin type __RAM;"  >> $out/extra.asl
 
       sed -i 's|    // assert FALSE;|    foo();|'              $out/support/memory.asl 
       sed -i 's|            // Do nothing|            foo();|' $out/support/fetchdecode.asl

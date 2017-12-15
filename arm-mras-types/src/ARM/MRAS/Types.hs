@@ -15,8 +15,6 @@ module ARM.MRAS.Types
     , Class(..)
     , ClassId
     , ArchVar(..)
-    , Diagram(..)
-    , Box(..)
     , Block(..)
     , BlockSpec(..)
     , Bit(..)
@@ -35,8 +33,6 @@ module ARM.MRAS.Types
 
 
     , HasAliasFrom(..)
-    , HasDiagram(..)
-    , HasBox(..)
     , HasBlock(..)
     , HasEncoding(..)
     , HasSymbol(..)
@@ -86,7 +82,8 @@ type Alias = AliasFrom String
 data Class = Class
     { _class_id :: ClassId
     , _class_arch_var :: Maybe ArchVar
-    , _class_diagram :: Diagram
+    , _class_ps_name :: PsName
+    , _class_diagram :: [Block]
     , _class_encodings :: [Encoding]
     } deriving (Eq, Show, Generic, NFData)
 
@@ -94,17 +91,6 @@ type ClassId = String
 
 data ArchVar = ArchName String | ArchFeature String
     deriving (Eq, Show, Generic, NFData)
-
-data Diagram = Diagram
-    { _diagram_ps_name :: PsName
-    , _diagram_blocks :: [Block]
-    } deriving (Eq, Show, Generic, NFData)
-
-data Box = Box
-    { _box_hi :: Int
-    , _box_width :: Int
-    , _box_block :: Block
-    } deriving (Eq, Show, Generic, NFData)
 
 data Block = Block
     { _block_name :: Maybe String
@@ -172,8 +158,6 @@ data SharedPs = SharedPs
 
 
 makeClassy ''AliasFrom
-makeClassy ''Diagram
-makeClassy ''Box
 makeClassy ''Block
 makeClassy ''Encoding
 makeClassy ''Symbol

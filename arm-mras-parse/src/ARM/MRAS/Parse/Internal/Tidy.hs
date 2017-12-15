@@ -18,17 +18,16 @@ tidyPage (D.Page pid ainfo xclasses expls pss) = mk (map f xclasses)
         AliasList apids -> Left (Insn pid () apids classes pss)
         AliasTo apid -> case (classes, pss) of
             ([(clazz, [])], []) -> Right (apid, Alias pid () clazz)
-    f (D.Class cid marchvar (D.Diagram psname boxes) xencs psss)
-        = (Class cid marchvar diag encs, psss)
+    f (D.Class cid marchvar D.A64 D.Regdiagram_form_32 psname boxes xencs psss)
+        = (Class cid marchvar psname diag encs, psss)
       where
-        diag = Diagram psname dg
-        dg = tidyDiagram boxes
+        diag = tidyDiagram boxes
         encs = map g xencs
-        g (D.Encoding eid bxs [tmp]) = Encoding eid (tidySubDiagram dg bxs) tmp syms
+        g (D.Encoding eid bxs [tmp]) = Encoding eid (tidySubDiagram diag bxs) tmp syms
           where
             syms =
                 [ case mm of
-                    Account x _ -> Symbol ss x Nothing
+                    Account x -> Symbol ss x Nothing
                     Definition x tbl -> Symbol ss x (Just (tidyTable ss tbl))
                 | D.Explanation eids ss mm <- expls
                 , eid `elem` eids
@@ -108,6 +107,12 @@ specLength spec = length $ case spec of
     BlockEq y -> y
     BlockNeq y -> y
 
+data Box = Box
+    { _box_hi :: Int
+    , _box_width :: Int
+    , _box_block :: Block
+    }
+
 tidyBox :: D.Box -> Box
 tidyBox box@(D.Box hi width name cs) = Box hi width (Block name (assert check spec))
   where
@@ -126,7 +131,8 @@ tidyBox box@(D.Box hi width name cs) = Box hi width (Block name (assert check sp
     f "0" = Just O
     f "1" = Just I
     f "x" = Just X
-    f "(1)" = Just I -- ?
+    f "(0)" = Just O
+    f "(1)" = Just I
     f "" = Just X
     f _ = Nothing
 

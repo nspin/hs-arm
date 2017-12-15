@@ -22,6 +22,6 @@ go_r dtd-src.aarch32
 go_r arm-mras-values-src
 
 go_r arm-mras
-# go_r asl
+go_r asl
 
 go_r test-asl

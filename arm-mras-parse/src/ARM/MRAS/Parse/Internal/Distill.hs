@@ -7,7 +7,7 @@ module ARM.MRAS.Parse.Internal.Distill
     ( Page(..)
     , AliasInfo(..)
     , Class(..)
-    , Diagram(..)
+    , ISA(..)
     , Box(..)
     , C(..)
     , Encoding(..)
@@ -16,6 +16,7 @@ module ARM.MRAS.Parse.Internal.Distill
     , Table(..)
     , TableEntry(..)
 
+    , Regdiagram_form(..)
     , Entry_class(..)
 
     , distillPage
@@ -45,11 +46,11 @@ data Page = Page PageId AliasInfo [Class] [Explanation] [Ps]
 data AliasInfo = AliasList [PageId] | AliasTo PageId
     deriving (Show, Generic, NFData)
 
-data Class = Class ClassId (Maybe ArchVar) Diagram [Encoding] [Ps]
+data Class = Class ClassId (Maybe ArchVar) ISA Regdiagram_form PsName [Box] [Encoding] [Ps]
     deriving (Show, Generic, NFData)
 
-data Diagram = Diagram PsName [Box]
-    deriving (Show, Generic, NFData)
+data ISA = A64 | A32 | T32
+    deriving (Read, Show, Generic, NFData)
 
 data Box = Box
     { box_hi :: Int
@@ -71,18 +72,19 @@ data Explanation = Explanation [EncodingId] Symbol Mapping
 
 type Symbol = String
 
-data Mapping = Account String String | Definition String Table
+data Mapping = Account String | Definition String Table
     deriving (Show, Generic, NFData)
 
 data Table = Table [TableEntry] [[TableEntry]]
     deriving (Show, Generic, NFData)
 
-deriving instance Generic Entry_class
-deriving instance NFData Entry_class
-
 data TableEntry = TableEntry Entry_class (Either String ArchVar)
     deriving (Show, Generic, NFData)
 
+deriving instance Generic Regdiagram_form
+deriving instance NFData Regdiagram_form
+deriving instance Generic Entry_class
+deriving instance NFData Entry_class
 
 distillPage :: Instructionsection -> Page
 distillPage (Instructionsection attrs doc head desc xalias (Classes _ (NonEmpty xclasses)) aliasmnem xmexpls _ opss excs)
@@ -97,15 +99,18 @@ distillPage (Instructionsection attrs doc head desc xalias (Classes _ (NonEmpty 
     f _ = []
 
 distillClass :: Iclass -> Class
-distillClass (Iclass attrs _ _ xavars (Regdiagram atrs xboxes) (NonEmpty xencs) xmps _)
-    = check `assert` Class (iclassId attrs) avars diag encs pss
+distillClass (Iclass attrs _ _ xavars (Regdiagram ats xboxes) (NonEmpty xencs) xmps _)
+    = Class
+        (iclassId attrs) avars
+        (read (iclassIsa attrs))
+        (regdiagramForm ats)
+        (fromJust (regdiagramPsname ats)) boxes
+        encs pss
   where
     avars = distillArchVars <$> xavars
-    diag = Diagram (fromJust (regdiagramPsname atrs)) boxes
     boxes = map distillBox xboxes
     encs = map distillEncoding xencs
     pss = maybe [] distillPss xmps
-    check = iclassIsa attrs == "A64" && regdiagramForm atrs == Regdiagram_form_32
 
 distillBox :: X.Box -> Box
 distillBox (X.Box ats xcs) = check `assert` box
@@ -136,7 +141,7 @@ distillExplanation (X.Explanation atrs (X.Symbol _ xsyms) ad _)
     sym = unescape (concatMap f xsyms)
     f (Symbol_Str s) = s
     mapping = case ad of
-        OneOf2 (X.Account as _ intro) -> Account (fromJust (accountEncodedin as)) (distillIntro intro)
+        OneOf2 (X.Account as _ _) -> Account (fromJust (accountEncodedin as))
         TwoOf2 (X.Definition as _ tbl _) -> Definition (definitionEncodedin as) (distillTable tbl)
     check = all (all (flip elem $ ['a'..'z'] ++ ['A'..'Z'] ++ ['0'..'9'] ++ ['_'])) enclist
 
@@ -146,18 +151,6 @@ splitEnclist = map reverse . go [] ""
     go big little (',':' ':rest) = go (little:big) [] rest
     go big little "" = little:big
     go big little (c:rest) = go big (c:little) rest
-
-distillIntro :: Intro -> String
-distillIntro (Intro intros) = case filter h intros of
-    [Intro_Para (Para [Para_Str s])] -> s
-    _ | any (isPrefixOf "Intro_List") (tails (show intros)) -> "Intro_List"
-    _ | any (isPrefixOf "Para_Binarynumber") (tails (show intros)) -> "Para_Binarynumber"
-    _ | any (isPrefixOf "Para_Xref") (tails (show intros)) -> "Para_Xref"
-    _ | any (isPrefixOf "Para_Syntax") (tails (show intros)) -> "Para_Syntax"
-    _ -> error (show intros)
-  where
-    h (Intro_Str s) = not (all isSpace s)
-    h _ = True
 
 distillTable :: X.Table -> Table
 distillTable (X.Table _ (NonEmpty [X.Tgroup _ (Thead (NonEmpty [Row (NonEmpty hents)])) (Tbody (NonEmpty rows))]))

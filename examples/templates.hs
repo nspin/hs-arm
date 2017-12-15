@@ -1,4 +1,5 @@
 import ARM.MRAS
+
 import Control.Lens
 import Data.List
 import Data.Monoid
@@ -8,4 +9,5 @@ templates = sort $ (base ++ fpsimd) ^.. traverse.classes.class_encodings.travers
   where
     classes = insn_classes.traverse._1 <> insn_aliases.traverse.alias_class
 
+main :: IO ()
 main = mapM_ putStrLn templates

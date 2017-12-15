@@ -7,8 +7,8 @@ module ARM.MRAS.Parse
     ) where
 
 import ARM.MRAS.Types
-import ARM.MRAS.Parse.Internal.Distill (distillPage)
 import ARM.MRAS.Parse.Internal.Tidy (tidyPage)
+import ARM.MRAS.Parse.Internal.Distill (distillPage)
 import ARM.MRAS.Parse.Internal.SharedPs (parseSharedPs)
 
 import ARM.MRAS.DTD.AArch64.Alphaindex
