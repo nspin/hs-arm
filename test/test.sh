@@ -8,7 +8,6 @@ here="$(dirname "$0")"
 
 root="$here/nix-results"
 
-[ -d "$root" ] && rm -r "$root"
 mkdir -p "$root"
 
 go_r $1

@@ -14,13 +14,13 @@ in rec {
     inherit (arm-mras) arm-mras;
   };
 
-  test-asl = callPackage ./asl/test-asl.nix {
-    inherit arm-mras;
-  };
-
   harm = callPackage ./harm {
     inherit myLib;
     inherit (arm-mras) arm-mras;
+  };
+
+  test = callPackage ./test {
+    inherit arm-mras;
   };
 
 }

@@ -1,5 +1,3 @@
-expr='(import <nixpkgs> {}).callPackage '"$here"'/../. {}'
-
 setup_dst () {
     attr="$1"
     if [ -n "$2" ]; then
@@ -16,12 +14,12 @@ go_r() {
     attr="$1"
     dst="$(setup_dst "$@")"
     echo "$dst"
-    nix-build -E "$expr" -A "$attr" -o "$dst"
+    nix-build "$here/standalone.nix" -A "$attr" -o "$dst"
 }
 
 go_rw() {
     attr="$1"
-    store_path="$(nix-build -E "$expr" --no-out-link -A "$attr")"
+    store_path="$(nix-build "$here/standalone.nix" --no-out-link -A "$attr")"
     dst="$(setup_dst "$@")"
     echo "$store_path -> $dst"
     cp -r "$store_path" "$dst"

@@ -1,2 +1,2 @@
 gen
-result-*
+test/nix-results

@@ -18,31 +18,33 @@ This code generation process is complex, but [nix](https://nixos.org/nix/) makes
 
 # Example
 
-Print the offset of every return instruction in a raw binary (`*.bin`):
+Print mnemonic and identifier of every instruction in an object file:
 
 ```haskell
 import Harm
-
+import Harm.Extra
 import Control.Monad
-import Data.Foldable
-import Data.Word
-import Foreign.Marshal
-import Foreign.Storable
-import System.IO
 
 main :: IO ()
-main = alloca $ \ptr -> for_ [0, 4..] $ \offset -> do
-    n <- hGetBuf stdin ptr 4
-    when (n == 4) $ do
-        w <- peek ptr
-        case encodingOf w of
-            Just (RET _) -> print offset
-            _ -> return ()
+main = do
+    (start, t) <- elfText "test/nix-results/test.busybox/busybox"
+    forM_ (zip [start, start + 4..] t) $ \(offset, w) -> do
+        putStrLn $ hex offset ++ "  " ++
+            case encodingOf w of
+                Nothing -> hex w
+                Just enc -> show enc
 ```
 ```
-4801
-18319
-31337
+0000000000400200  SUB SUB_64_addsub_imm
+0000000000400204  SUBS SUBS_32S_addsub_imm
+0000000000400208  CSINC CSINC_32_condsel
+000000000040020c  ANDS ANDS_32_log_shift
+0000000000400210  STP STP_64_ldstpair_pre
+0000000000400214  ADD ADD_64_addsub_imm
+0000000000400218  STP STP_64_ldstpair_off
+000000000040021c  ADRP ADRP_only_pcreladdr
+0000000000400220  ADD ADD_64_addsub_imm
+0000000000400224  LDR LDR_64_ldst_pos
 ...
 ```
 
@@ -63,8 +65,9 @@ parse asl = StateT $ ExceptT . return . parseDefs asl
 main :: IO ()
 main = do
     r <- runExceptT . flip runStateT [] $ do
-        liftIO (readFile "prelude.asl") >>= parse
-        forM_ (topoSort sharedps) $ parse . _shared_ps_code >=> liftIO . mapM_ print
+        liftIO (readFile "examples/prelude.asl") >>= parse
+        forM_ (topoSort sharedps) $
+            parse . _shared_ps_code >=> liftIO . mapM_ print
     case r of
         Left err -> die (show err)
         Right _ -> return ()
@@ -90,7 +93,8 @@ import Data.List
 import Data.Monoid
 
 templates :: [String]
-templates = sort $ (base ++ fpsimd) ^.. traverse.classes.class_encodings.traverse.encoding_template
+templates = sort $ (base ++ fpsimd) ^..
+    traverse.classes.class_encodings.traverse.encoding_template
   where
     classes = insn_classes.traverse._1 <> insn_aliases.traverse.alias_class
 
