@@ -32,19 +32,24 @@ build = Module () (Just head) [] imps decls
     imps = [basicImport "Harm.Types"]
     decls = [instrTy, tableSig, tableVal] ++ instrTys
 
-instrTy, tableSig, tableVal :: Decl ()
-instrTys :: [Decl ()]
+instrTy :: Decl ()
 instrTy = buildType "Encoding" [ (mnem, [mnem]) | (mnem, _) <- encodingInfo ] ["Eq", "Read", "Show"]
+
+instrTys :: [Decl ()]
 instrTys =
     [ buildType mnem [ (mnem ++ "_" ++ id, []) | (id, _) <- encs ] ["Eq", "Read", "Show", "Enum"]
     | (mnem, encs) <- encodingInfo
     ]
+
+tableSig :: Decl ()
 tableSig = TypeSig () [Ident () "decodeTable"]
     (TyList ()
         (TyTuple () Boxed
             [ TyCon () (UnQual () (Ident () "Pattern"))
             , TyCon () (UnQual () (Ident () "Encoding"))
             ]))
+
+tableVal :: Decl ()
 tableVal = FunBind ()
     [ Match () (Ident () "decodeTable") []
         (UnGuardedRhs ()

@@ -12,6 +12,7 @@ import ARM.MRAS
 
 import Control.Lens hiding (List)
 import Data.Bits
+import Data.Foldable
 import Data.Function
 import Data.List
 import Data.Monoid
@@ -45,18 +46,10 @@ stitched = go insnEncodings aliasEncodings
     go insns [] = map (, []) insns
     go (insn:insns) aliases = (insn, good) : go insns bad
       where
-        (good, bad) = partition (isAlias (view _1 insn) . view _1) aliases
+        (good, bad) = partition (isAliasOf (view _1 insn) . view _1) aliases
 
-isAlias :: EncodingId -> EncodingId -> Bool
-isAlias insn alias = reverse ('_':insn) `isPrefixOf` reverse alias
-
-fancyPartition :: (a -> Maybe b) -> [a] -> ([b], [a])
-fancyPartition f = go [] []
-  where
-    go good bad [] = (good, bad)
-    go good bad (a:as) = case f a of
-        Just b -> go (b:good) bad as
-        Nothing -> go good (a:bad) as
+isAliasOf :: EncodingId -> EncodingId -> Bool
+isAliasOf insn alias = reverse ('_':insn) `isPrefixOf` reverse alias
 
 insnEncodings, aliasEncodings :: [EncodingInfo1]
 insnEncodings = everything^..traverse.insn_classes.traverse._1.to fromClass.traverse
@@ -65,29 +58,25 @@ aliasEncodings = everything^..traverse.insn_aliases.traverse.alias_class.to from
 fromClass :: Class -> [EncodingInfo1]
 fromClass Class{..} = map (f _class_diagram) _class_encodings
   where
-    f blocks Encoding{..} = (_encoding_id, takeMnemonic _encoding_template, patt)
+    f blocks Encoding{..} = (_encoding_id, takeMnem _encoding_template, patt)
       where
-        patt = compilePattern (map _block_spec (bindDiagram blocks _encoding_diagram))
+        patt = compile (map _block_spec (bindDiagram blocks _encoding_diagram))
 
 mnemonics :: [String]
-mnemonics = nub $ map takeMnemonic templates
+mnemonics = nub $ map takeMnem templates
 
-takeMnemonic :: String -> String
-takeMnemonic = takeWhile (not . flip elem (" .{" :: String))
+takeMnem :: String -> String
+takeMnem = takeWhile (not . flip elem (" .{" :: String))
 
 templates :: [String]
 templates = sort $ everything ^.. traverse.classes.class_encodings.traverse.encoding_template
   where
     classes = insn_classes.traverse._1 <> insn_aliases.traverse.alias_class
 
-compilePattern :: [BlockSpec] -> Pattern
-compilePattern = go 32 [] []
+compile :: [BlockSpec] -> Pattern
+compile = go 32 [] []
   where
-    go 0 pos neg [] =
-        let pos' = Atom
-                (foldr (.|.) 0 (map atom_spec pos))
-                (foldr (.&.) 0 (map atom_mask pos))
-        in Pattern pos'  neg
+    go 0 pos neg [] = Pattern (fold pos) neg
     go hi pos neg (BlockEq  bits : rest) = go (hi - length bits) (toAtom hi bits : pos) neg rest
     go hi pos neg (BlockNeq bits : rest) = go (hi - length bits) pos (toAtom hi bits : neg) rest
 
@@ -96,10 +85,10 @@ toAtom hi bits = Atom
     (f (map (== I) bits))
     (f (map (/= X) bits))
   where
-    f = flip shiftL (hi - length bits) . encodeBits
+    f = flip shiftL (hi - length bits) . encode
 
-encodeBits :: [Bool] -> Word32
-encodeBits = foldl' f 0
+encode :: [Bool] -> Word32
+encode = foldl' f 0
   where
     f acc False = shiftL acc 1
     f acc True  = shiftL acc 1 .|. 1
