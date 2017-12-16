@@ -18,6 +18,34 @@ This code generation process is complex, but [nix](https://nixos.org/nix/) makes
 
 # Example
 
+Print the offset of every return instruction in a raw binary (`*.bin`):
+
+```haskell
+import Harm
+
+import Control.Monad
+import Data.Foldable
+import Data.Word
+import Foreign.Marshal
+import Foreign.Storable
+import System.IO
+
+main :: IO ()
+main = alloca $ \ptr -> for_ [0, 4..] $ \offset -> do
+    n <- hGetBuf stdin ptr 4
+    when (n == 4) $ do
+        w <- peek ptr
+        case encodingOf w of
+            Just (RET _) -> print offset
+            _ -> return ()
+```
+```
+4801
+18319
+31337
+...
+```
+
 Parse all shared pseudocode:
 
 ```haskell

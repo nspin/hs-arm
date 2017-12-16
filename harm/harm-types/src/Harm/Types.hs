@@ -39,9 +39,9 @@ showHex32 w = foldr (flip (.)) (showString "0x")
             (iterate (flip shiftR 4) w)))
 
 match :: Pattern -> Word32 -> Bool
-match (Pattern pos neg) w = 0 == foldr (.|.) (complement (f pos)) (map f neg)
+match (Pattern pos neg) w = foldr (&&) (f pos) (map (not . f) neg)
   where
-    f (Atom spec mask) = xor spec w .&. mask
+    f (Atom spec mask) = xor spec w .&. mask == 0
 
 instance Monoid Atom where
     mempty = Atom 0 0
