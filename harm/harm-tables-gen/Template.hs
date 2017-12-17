@@ -19,7 +19,7 @@ main = withFile "../harm-tables/src/Harm/Tables/Logic.hs" WriteMode $ \h ->
         . suffix "decode" ":: (a) -> a"
         . suffix "decode" "f = f"
         . suffix "encode" ":: (a) -> a"
-        . suffix "encode" "f = f\n"
+        . suffix "encode" "f = f"
         . suffix "parse" ":: (a) -> Parser a"
         . suffix "parse" "f = return f"
         . suffix "show" ":: ShowS"
