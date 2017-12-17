@@ -2,7 +2,7 @@
 , filepath, harm-types, haskell-src-exts, lens, stdenv
 }:
 mkDerivation {
-  pname = "harm-values-gen";
+  pname = "harm-tables-gen";
   version = "0.1";
   src = ./.;
   isLibrary = false;

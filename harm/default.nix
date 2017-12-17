@@ -5,29 +5,29 @@ with myLib;
 rec {
 
   harm = haskellPackages.callPackage ./harm {
-    inherit harm-types harm-values;
+    inherit harm-types harm-tables;
   };
 
   harm-types = haskellPackages.callPackage ./harm-types {};
 
-  harm-values-gen = haskellPackages.callPackage ./harm-values-gen {
+  harm-tables-gen = haskellPackages.callPackage ./harm-tables-gen {
     inherit harm-types arm-mras;
   };
 
-  harm-values-src = mergeFrom ./harm-values [ "harm-values.cabal" "src" ] (stdenv.mkDerivation {
-    name = "harm-values-src";
-    gen = harm-values-gen;
+  harm-tables-src = mergeFrom ./harm-tables [ "harm-tables.cabal" "src" ] (stdenv.mkDerivation {
+    name = "harm-tables-src";
+    gen = harm-tables-gen;
     builder = builtins.toFile "builder.sh" ''
-      $gen/bin/gen-harm-values $out
+      $gen/bin/gen-harm-tables $out
     '';
   });
 
-  harm-values = haskellPackages.mkDerivation {
-    pname = "harm-values";
+  harm-tables = haskellPackages.mkDerivation {
+    pname = "harm-tables";
     version = "0.1";
-    src = harm-values-src;
+    src = harm-tables-src;
     libraryHaskellDepends = with haskellPackages; [
-      base harm-types
+      base harm-types attoparsec
     ];
     license = stdenv.lib.licenses.mit;
   };

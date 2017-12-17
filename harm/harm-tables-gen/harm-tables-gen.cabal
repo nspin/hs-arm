@@ -1,4 +1,4 @@
-Name:                harm-values-gen
+Name:                harm-tables-gen
 Version:             0.1
 license:             MIT
 author:              Nick Spinale
@@ -7,13 +7,14 @@ build-type:          Simple
 extra-source-files:  README.md
 cabal-version:       >=1.10
 
-executable gen-harm-values
+executable gen-harm-tables
   main-is:           Main.hs
   other-modules:     Extract
 
   build-depends:     base
                    , harm-types
                    , arm-mras
+
                    , attoparsec
                    , bytestring
                    , directory

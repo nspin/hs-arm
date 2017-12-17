@@ -16,19 +16,19 @@ main = do
     args <- getArgs
     case args of
         [outDir] -> generate outDir
-        _ -> die $ "Usage: gen-harm-values <outDir>"
+        _ -> die $ "Usage: gen-harm-tables <outDir>"
 
 generate :: FilePath -> IO ()
 generate outDir = do
     createDirectoryIfMissing True (takeDirectory file)
     writeFile file $ prettyPrint build
   where
-    file = outDir </> "gen" </> "Harm" </> "Values" </> "Gen.hs"
+    file = outDir </> "gen" </> "Harm" </> "Tables" </> "Gen.hs"
 
 build :: Module ()
 build = Module () (Just head) [] imps decls
   where
-    head = ModuleHead () (ModuleName () "Harm.Values.Gen") Nothing Nothing
+    head = ModuleHead () (ModuleName () "Harm.Tables.Gen") Nothing Nothing
     imps = [basicImport "Harm.Types"]
     decls = [instrTy, tableSig, tableVal] ++ instrTys
 

@@ -1,12 +1,12 @@
 module Harm
     ( module Harm.Types
-    , module Harm.Values
+    , module Harm.Tables
 
     , encodingOf
     ) where
 
 import Harm.Types
-import Harm.Values
+import Harm.Tables
 
 import Data.List
 import Data.Word
