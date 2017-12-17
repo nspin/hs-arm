@@ -3,22 +3,43 @@
 {-# LANGUAGE TupleSections #-}
 
 module Extract
-    ( encodingInfo
+    ( encodingGroups
+    , encodingInfo
     ) where
 
 import Harm.Types
 
 import ARM.MRAS
 
+import Control.Exception
 import Control.Lens hiding (List)
 import Data.Bits
+import Data.Function
 import Data.Foldable
 import Data.Function
 import Data.List
 import Data.Monoid
 import Data.Word
 import Debug.Trace
-import Control.Exception
+
+-- (template, diagram, [(mnemonic, encoding id, file)])
+encodingGroups :: [(String, [(String, EncodingId, String)])]
+encodingGroups = map reduce . groupBy ((==) `on` view _1) . sortBy (compare `on` view _1) $ concatMap flatten everything
+  where
+    reduce grp@(g:rp) = (g^._1, map f grp)
+      where
+        f (_, m, i, f) = (m, i, f)
+
+flatten :: Insn -> [(String, String, EncodingId, String)]
+flatten Insn{..} = flip concatMap (map fst _insn_classes) $ \Class{..} ->
+    -- keep class in scope this level because binding diagrams may be necessary later
+    flip map _class_encodings $ \Encoding{..} ->
+        let (mnem, tplt) = splitMnem _encoding_template
+        in ( tplt
+           , mnem
+           , _encoding_id
+           , _insn_file
+           )
 
 encodingInfo :: [(Mnemonic, [(String, Pattern)])]
 encodingInfo = map f (groupBy ((==) `on` (view _1 . fst)) (sortBy (compare `on` (view _1 . fst)) distilled))
@@ -58,15 +79,15 @@ aliasEncodings = everything^..traverse.insn_aliases.traverse.alias_class.to from
 fromClass :: Class -> [EncodingInfo1]
 fromClass Class{..} = map (f _class_diagram) _class_encodings
   where
-    f blocks Encoding{..} = (_encoding_id, takeMnem _encoding_template, patt)
+    f blocks Encoding{..} = (_encoding_id, fst (splitMnem _encoding_template), patt)
       where
         patt = compile (map _block_spec (bindDiagram blocks _encoding_diagram))
 
 mnemonics :: [String]
-mnemonics = nub $ map takeMnem templates
+mnemonics = nub $ map (fst . splitMnem) templates
 
-takeMnem :: String -> String
-takeMnem = takeWhile (not . flip elem (" .{" :: String))
+splitMnem :: String -> (String, String)
+splitMnem = span (not . flip elem " .{")
 
 templates :: [String]
 templates = sort $ everything ^.. traverse.classes.class_encodings.traverse.encoding_template
