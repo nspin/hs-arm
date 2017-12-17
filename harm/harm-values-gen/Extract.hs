@@ -23,21 +23,21 @@ import Data.Word
 import Debug.Trace
 
 -- (template, diagram, [(mnemonic, encoding id, file)])
-encodingGroups :: [(String, [(String, EncodingId, String)])]
+encodingGroups :: [(String, [(String, Encoding, String)])]
 encodingGroups = map reduce . groupBy ((==) `on` view _1) . sortBy (compare `on` view _1) $ concatMap flatten everything
   where
     reduce grp@(g:rp) = (g^._1, map f grp)
       where
         f (_, m, i, f) = (m, i, f)
 
-flatten :: Insn -> [(String, String, EncodingId, String)]
+flatten :: Insn -> [(String, String, Encoding, String)]
 flatten Insn{..} = flip concatMap (map fst _insn_classes) $ \Class{..} ->
     -- keep class in scope this level because binding diagrams may be necessary later
-    flip map _class_encodings $ \Encoding{..} ->
+    flip map _class_encodings $ \enc@Encoding{..} ->
         let (mnem, tplt) = splitMnem _encoding_template
         in ( tplt
            , mnem
-           , _encoding_id
+           , enc
            , _insn_file
            )
 

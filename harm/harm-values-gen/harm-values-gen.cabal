@@ -14,6 +14,8 @@ executable gen-harm-values
   build-depends:     base
                    , harm-types
                    , arm-mras
+                   , attoparsec
+                   , bytestring
                    , directory
                    , filepath
                    , haskell-src-exts

@@ -1,5 +1,5 @@
-{ mkDerivation, arm-mras, base, directory, filepath, harm-types
-, haskell-src-exts, lens, stdenv
+{ mkDerivation, arm-mras, attoparsec, base, bytestring, directory
+, filepath, harm-types, haskell-src-exts, lens, stdenv
 }:
 mkDerivation {
   pname = "harm-values-gen";
@@ -8,7 +8,8 @@ mkDerivation {
   isLibrary = false;
   isExecutable = true;
   executableHaskellDepends = [
-    arm-mras base directory filepath harm-types haskell-src-exts lens
+    arm-mras attoparsec base bytestring directory filepath harm-types
+    haskell-src-exts lens
   ];
   license = stdenv.lib.licenses.mit;
 }

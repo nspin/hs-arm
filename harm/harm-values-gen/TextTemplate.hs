@@ -1,6 +1,7 @@
 module Main (main) where
 
 import Extract
+
 import Data.Monoid
 import Data.Foldable
 import Text.Show
@@ -13,10 +14,10 @@ main = puts . unliness $ map f encodingGroups
         . showString "type: \n"
         . showString "fields: \n"
         . unliness (map el grp)
-    el (mnem, encid, file) =
+    el (mnem, enc, file) =
           showString "- "
-        . showString mnem
-        . showString (replicate (10 - length mnem) ' ')
+        . showString (_encoding_id enc)
+        . showString (replicate (30 - length (_encoding_id enc)) ' ')
         . showString file
 
 unliness :: [ShowS] -> ShowS

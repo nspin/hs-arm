@@ -1,2757 +1,2757 @@
 # ""
 type: 
 fields: 
-- AUTIA1716 autia.xml
-- AUTIASP   autia.xml
-- AUTIAZ    autia.xml
-- AUTIB1716 autib.xml
-- AUTIBSP   autib.xml
-- AUTIBZ    autib.xml
-- DRPS      drps.xml
-- ERET      eret.xml
-- ERETAA    ereta.xml
-- ERETAB    ereta.xml
-- ESB       esb.xml
-- NOP       nop.xml
-- PACIA1716 pacia.xml
-- PACIASP   pacia.xml
-- PACIAZ    pacia.xml
-- PACIB1716 pacib.xml
-- PACIBSP   pacib.xml
-- PACIBZ    pacib.xml
-- RETAA     reta.xml
-- RETAB     reta.xml
-- SEV       sev.xml
-- SEVL      sevl.xml
-- WFE       wfe.xml
-- WFI       wfi.xml
-- XPACLRI   xpac.xml
-- YIELD     yield.xml
+- AUTIA1716_HI_system           autia.xml
+- AUTIASP_HI_system             autia.xml
+- AUTIAZ_HI_system              autia.xml
+- AUTIB1716_HI_system           autib.xml
+- AUTIBSP_HI_system             autib.xml
+- AUTIBZ_HI_system              autib.xml
+- DRPS_64E_branch_reg           drps.xml
+- ERET_64E_branch_reg           eret.xml
+- ERETAA_64E_branch_reg         ereta.xml
+- ERETAB_64E_branch_reg         ereta.xml
+- ESB_HI_system                 esb.xml
+- NOP_HI_system                 nop.xml
+- PACIA1716_HI_system           pacia.xml
+- PACIASP_HI_system             pacia.xml
+- PACIAZ_HI_system              pacia.xml
+- PACIB1716_HI_system           pacib.xml
+- PACIBSP_HI_system             pacib.xml
+- PACIBZ_HI_system              pacib.xml
+- RETAA_64E_branch_reg          reta.xml
+- RETAB_64E_branch_reg          reta.xml
+- SEV_HI_system                 sev.xml
+- SEVL_HI_system                sevl.xml
+- WFE_HI_system                 wfe.xml
+- WFI_HI_system                 wfi.xml
+- XPACLRI_HI_system             xpac.xml
+- YIELD_HI_system               yield.xml
 
 # "  #<imm>"
 type: 
 fields: 
-- BRK       brk.xml
-- HINT      hint.xml
-- HINT      hint.xml
-- HINT      hint.xml
-- HLT       hlt.xml
-- HVC       hvc.xml
-- SMC       smc.xml
-- SVC       svc.xml
+- BRK_EX_exception              brk.xml
+- HINT_1                        hint.xml
+- HINT_2                        hint.xml
+- HINT_3                        hint.xml
+- HLT_EX_exception              hlt.xml
+- HVC_EX_exception              hvc.xml
+- SMC_EX_exception              smc.xml
+- SVC_EX_exception              svc.xml
 
 # "  #<op1>, <Cn>, <Cm>, #<op2>{, <Xt>}"
 type: 
 fields: 
-- SYS       sys.xml
+- SYS_CR_system                 sys.xml
 
 # "  (<prfop>|#<imm5>), <label>"
 type: 
 fields: 
-- PRFM      prfm_lit.xml
+- PRFM_P_loadlit                prfm_lit.xml
 
 # "  (<prfop>|#<imm5>), [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]"
 type: 
 fields: 
-- PRFM      prfm_reg.xml
+- PRFM_P_ldst_regoff            prfm_reg.xml
 
 # "  (<prfop>|#<imm5>), [<Xn|SP>{, #<pimm>}]"
 type: 
 fields: 
-- PRFM      prfm_imm.xml
+- PRFM_P_ldst_pos               prfm_imm.xml
 
 # "  (<systemreg>|S<op0>_<op1>_<Cn>_<Cm>_<op2>), <Xt>"
 type: 
 fields: 
-- MSR       msr_reg.xml
+- MSR_SR_system                 msr_reg.xml
 
 # "  <Bt>, [<Xn|SP>, #<simm>]!"
 type: 
 fields: 
-- LDR       ldr_imm_fpsimd.xml
-- STR       str_imm_fpsimd.xml
+- LDR_B_ldst_immpre             ldr_imm_fpsimd.xml
+- STR_B_ldst_immpre             str_imm_fpsimd.xml
 
 # "  <Bt>, [<Xn|SP>, (<Wm>|<Xm>), <extend> {<amount>}]"
 type: 
 fields: 
-- LDR       ldr_reg_fpsimd.xml
-- STR       str_reg_fpsimd.xml
+- LDR_B_ldst_regoff             ldr_reg_fpsimd.xml
+- STR_B_ldst_regoff             str_reg_fpsimd.xml
 
 # "  <Bt>, [<Xn|SP>, <Xm>{, LSL <amount>}]"
 type: 
 fields: 
-- LDR       ldr_reg_fpsimd.xml
-- STR       str_reg_fpsimd.xml
+- LDR_BL_ldst_regoff            ldr_reg_fpsimd.xml
+- STR_BL_ldst_regoff            str_reg_fpsimd.xml
 
 # "  <Bt>, [<Xn|SP>], #<simm>"
 type: 
 fields: 
-- LDR       ldr_imm_fpsimd.xml
-- STR       str_imm_fpsimd.xml
+- LDR_B_ldst_immpost            ldr_imm_fpsimd.xml
+- STR_B_ldst_immpost            str_imm_fpsimd.xml
 
 # "  <Bt>, [<Xn|SP>{, #<pimm>}]"
 type: 
 fields: 
-- LDR       ldr_imm_fpsimd.xml
-- STR       str_imm_fpsimd.xml
+- LDR_B_ldst_pos                ldr_imm_fpsimd.xml
+- STR_B_ldst_pos                str_imm_fpsimd.xml
 
 # "  <Bt>, [<Xn|SP>{, #<simm>}]"
 type: 
 fields: 
-- LDUR      ldur_fpsimd.xml
-- STUR      stur_fpsimd.xml
+- LDUR_B_ldst_unscaled          ldur_fpsimd.xml
+- STUR_B_ldst_unscaled          stur_fpsimd.xml
 
 # "  <Dd>, #<imm>"
 type: 
 fields: 
-- FMOV      fmov_float_imm.xml
-- MOVI      movi_advsimd.xml
+- FMOV_D_floatimm               fmov_float_imm.xml
+- MOVI_asimdimm_D_ds            movi_advsimd.xml
 
 # "  <Dd>, <Dn>"
 type: 
 fields: 
-- FABS      fabs_float.xml
-- FMOV      fmov_float.xml
-- FNEG      fneg_float.xml
-- FRINTA    frinta_float.xml
-- FRINTI    frinti_float.xml
-- FRINTM    frintm_float.xml
-- FRINTN    frintn_float.xml
-- FRINTP    frintp_float.xml
-- FRINTX    frintx_float.xml
-- FRINTZ    frintz_float.xml
-- FSQRT     fsqrt_float.xml
+- FABS_D_floatdp1               fabs_float.xml
+- FMOV_D_floatdp1               fmov_float.xml
+- FNEG_D_floatdp1               fneg_float.xml
+- FRINTA_D_floatdp1             frinta_float.xml
+- FRINTI_D_floatdp1             frinti_float.xml
+- FRINTM_D_floatdp1             frintm_float.xml
+- FRINTN_D_floatdp1             frintn_float.xml
+- FRINTP_D_floatdp1             frintp_float.xml
+- FRINTX_D_floatdp1             frintx_float.xml
+- FRINTZ_D_floatdp1             frintz_float.xml
+- FSQRT_D_floatdp1              fsqrt_float.xml
 
 # "  <Dd>, <Dn>, <Dm>"
 type: 
 fields: 
-- FADD      fadd_float.xml
-- FDIV      fdiv_float.xml
-- FMAX      fmax_float.xml
-- FMAXNM    fmaxnm_float.xml
-- FMIN      fmin_float.xml
-- FMINNM    fminnm_float.xml
-- FMUL      fmul_float.xml
-- FNMUL     fnmul_float.xml
-- FSUB      fsub_float.xml
+- FADD_D_floatdp2               fadd_float.xml
+- FDIV_D_floatdp2               fdiv_float.xml
+- FMAX_D_floatdp2               fmax_float.xml
+- FMAXNM_D_floatdp2             fmaxnm_float.xml
+- FMIN_D_floatdp2               fmin_float.xml
+- FMINNM_D_floatdp2             fminnm_float.xml
+- FMUL_D_floatdp2               fmul_float.xml
+- FNMUL_D_floatdp2              fnmul_float.xml
+- FSUB_D_floatdp2               fsub_float.xml
 
 # "  <Dd>, <Dn>, <Dm>, <Da>"
 type: 
 fields: 
-- FMADD     fmadd_float.xml
-- FMSUB     fmsub_float.xml
-- FNMADD    fnmadd_float.xml
-- FNMSUB    fnmsub_float.xml
+- FMADD_D_floatdp3              fmadd_float.xml
+- FMSUB_D_floatdp3              fmsub_float.xml
+- FNMADD_D_floatdp3             fnmadd_float.xml
+- FNMSUB_D_floatdp3             fnmsub_float.xml
 
 # "  <Dd>, <Dn>, <Dm>, <cond>"
 type: 
 fields: 
-- FCSEL     fcsel_float.xml
+- FCSEL_D_floatsel              fcsel_float.xml
 
 # "  <Dd>, <Hn>"
 type: 
 fields: 
-- FCVT      fcvt_float.xml
+- FCVT_DH_floatdp1              fcvt_float.xml
 
 # "  <Dd>, <Sn>"
 type: 
 fields: 
-- FCVT      fcvt_float.xml
+- FCVT_DS_floatdp1              fcvt_float.xml
 
 # "  <Dd>, <Wn>"
 type: 
 fields: 
-- SCVTF     scvtf_float_int.xml
-- UCVTF     ucvtf_float_int.xml
+- SCVTF_D32_float2int           scvtf_float_int.xml
+- UCVTF_D32_float2int           ucvtf_float_int.xml
 
 # "  <Dd>, <Wn>, #<fbits>"
 type: 
 fields: 
-- SCVTF     scvtf_float_fix.xml
-- UCVTF     ucvtf_float_fix.xml
+- SCVTF_D32_float2fix           scvtf_float_fix.xml
+- UCVTF_D32_float2fix           ucvtf_float_fix.xml
 
 # "  <Dd>, <Xn>"
 type: 
 fields: 
-- FMOV      fmov_float_gen.xml
-- SCVTF     scvtf_float_int.xml
-- UCVTF     ucvtf_float_int.xml
+- FMOV_D64_float2int            fmov_float_gen.xml
+- SCVTF_D64_float2int           scvtf_float_int.xml
+- UCVTF_D64_float2int           ucvtf_float_int.xml
 
 # "  <Dd>, <Xn>, #<fbits>"
 type: 
 fields: 
-- SCVTF     scvtf_float_fix.xml
-- UCVTF     ucvtf_float_fix.xml
+- SCVTF_D64_float2fix           scvtf_float_fix.xml
+- UCVTF_D64_float2fix           ucvtf_float_fix.xml
 
 # "  <Dn>, #0.0"
 type: 
 fields: 
-- FCMP      fcmp_float.xml
-- FCMPE     fcmpe_float.xml
+- FCMP_DZ_floatcmp              fcmp_float.xml
+- FCMPE_DZ_floatcmp             fcmpe_float.xml
 
 # "  <Dn>, <Dm>"
 type: 
 fields: 
-- FCMP      fcmp_float.xml
-- FCMPE     fcmpe_float.xml
+- FCMP_D_floatcmp               fcmp_float.xml
+- FCMPE_D_floatcmp              fcmpe_float.xml
 
 # "  <Dn>, <Dm>, #<nzcv>, <cond>"
 type: 
 fields: 
-- FCCMP     fccmp_float.xml
-- FCCMPE    fccmpe_float.xml
+- FCCMP_D_floatccmp             fccmp_float.xml
+- FCCMPE_D_floatccmp            fccmpe_float.xml
 
 # "  <Dt1>, <Dt2>, [<Xn|SP>, #<imm>]!"
 type: 
 fields: 
-- LDP       ldp_fpsimd.xml
-- STP       stp_fpsimd.xml
+- LDP_D_ldstpair_pre            ldp_fpsimd.xml
+- STP_D_ldstpair_pre            stp_fpsimd.xml
 
 # "  <Dt1>, <Dt2>, [<Xn|SP>], #<imm>"
 type: 
 fields: 
-- LDP       ldp_fpsimd.xml
-- STP       stp_fpsimd.xml
+- LDP_D_ldstpair_post           ldp_fpsimd.xml
+- STP_D_ldstpair_post           stp_fpsimd.xml
 
 # "  <Dt1>, <Dt2>, [<Xn|SP>{, #<imm>}]"
 type: 
 fields: 
-- LDNP      ldnp_fpsimd.xml
-- LDP       ldp_fpsimd.xml
-- STNP      stnp_fpsimd.xml
-- STP       stp_fpsimd.xml
+- LDNP_D_ldstnapair_offs        ldnp_fpsimd.xml
+- LDP_D_ldstpair_off            ldp_fpsimd.xml
+- STNP_D_ldstnapair_offs        stnp_fpsimd.xml
+- STP_D_ldstpair_off            stp_fpsimd.xml
 
 # "  <Dt>, <label>"
 type: 
 fields: 
-- LDR       ldr_lit_fpsimd.xml
+- LDR_D_loadlit                 ldr_lit_fpsimd.xml
 
 # "  <Dt>, [<Xn|SP>, #<simm>]!"
 type: 
 fields: 
-- LDR       ldr_imm_fpsimd.xml
-- STR       str_imm_fpsimd.xml
+- LDR_D_ldst_immpre             ldr_imm_fpsimd.xml
+- STR_D_ldst_immpre             str_imm_fpsimd.xml
 
 # "  <Dt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]"
 type: 
 fields: 
-- LDR       ldr_reg_fpsimd.xml
-- STR       str_reg_fpsimd.xml
+- LDR_D_ldst_regoff             ldr_reg_fpsimd.xml
+- STR_D_ldst_regoff             str_reg_fpsimd.xml
 
 # "  <Dt>, [<Xn|SP>], #<simm>"
 type: 
 fields: 
-- LDR       ldr_imm_fpsimd.xml
-- STR       str_imm_fpsimd.xml
+- LDR_D_ldst_immpost            ldr_imm_fpsimd.xml
+- STR_D_ldst_immpost            str_imm_fpsimd.xml
 
 # "  <Dt>, [<Xn|SP>{, #<pimm>}]"
 type: 
 fields: 
-- LDR       ldr_imm_fpsimd.xml
-- STR       str_imm_fpsimd.xml
+- LDR_D_ldst_pos                ldr_imm_fpsimd.xml
+- STR_D_ldst_pos                str_imm_fpsimd.xml
 
 # "  <Dt>, [<Xn|SP>{, #<simm>}]"
 type: 
 fields: 
-- LDUR      ldur_fpsimd.xml
-- STUR      stur_fpsimd.xml
+- LDUR_D_ldst_unscaled          ldur_fpsimd.xml
+- STUR_D_ldst_unscaled          stur_fpsimd.xml
 
 # "  <Hd>, #<imm>"
 type: 
 fields: 
-- FMOV      fmov_float_imm.xml
+- FMOV_H_floatimm               fmov_float_imm.xml
 
 # "  <Hd>, <Dn>"
 type: 
 fields: 
-- FCVT      fcvt_float.xml
+- FCVT_HD_floatdp1              fcvt_float.xml
 
 # "  <Hd>, <Hn>"
 type: 
 fields: 
-- FABS      fabs_float.xml
-- FCVTAS    fcvtas_advsimd.xml
-- FCVTAU    fcvtau_advsimd.xml
-- FCVTMS    fcvtms_advsimd.xml
-- FCVTMU    fcvtmu_advsimd.xml
-- FCVTNS    fcvtns_advsimd.xml
-- FCVTNU    fcvtnu_advsimd.xml
-- FCVTPS    fcvtps_advsimd.xml
-- FCVTPU    fcvtpu_advsimd.xml
-- FCVTZS    fcvtzs_advsimd_int.xml
-- FCVTZU    fcvtzu_advsimd_int.xml
-- FMOV      fmov_float.xml
-- FNEG      fneg_float.xml
-- FRECPE    frecpe_advsimd.xml
-- FRECPX    frecpx_advsimd.xml
-- FRINTA    frinta_float.xml
-- FRINTI    frinti_float.xml
-- FRINTM    frintm_float.xml
-- FRINTN    frintn_float.xml
-- FRINTP    frintp_float.xml
-- FRINTX    frintx_float.xml
-- FRINTZ    frintz_float.xml
-- FRSQRTE   frsqrte_advsimd.xml
-- FSQRT     fsqrt_float.xml
-- SCVTF     scvtf_advsimd_int.xml
-- UCVTF     ucvtf_advsimd_int.xml
+- FABS_H_floatdp1               fabs_float.xml
+- FCVTAS_asisdmiscfp16_R        fcvtas_advsimd.xml
+- FCVTAU_asisdmiscfp16_R        fcvtau_advsimd.xml
+- FCVTMS_asisdmiscfp16_R        fcvtms_advsimd.xml
+- FCVTMU_asisdmiscfp16_R        fcvtmu_advsimd.xml
+- FCVTNS_asisdmiscfp16_R        fcvtns_advsimd.xml
+- FCVTNU_asisdmiscfp16_R        fcvtnu_advsimd.xml
+- FCVTPS_asisdmiscfp16_R        fcvtps_advsimd.xml
+- FCVTPU_asisdmiscfp16_R        fcvtpu_advsimd.xml
+- FCVTZS_asisdmiscfp16_R        fcvtzs_advsimd_int.xml
+- FCVTZU_asisdmiscfp16_R        fcvtzu_advsimd_int.xml
+- FMOV_H_floatdp1               fmov_float.xml
+- FNEG_H_floatdp1               fneg_float.xml
+- FRECPE_asisdmiscfp16_R        frecpe_advsimd.xml
+- FRECPX_asisdmiscfp16_R        frecpx_advsimd.xml
+- FRINTA_H_floatdp1             frinta_float.xml
+- FRINTI_H_floatdp1             frinti_float.xml
+- FRINTM_H_floatdp1             frintm_float.xml
+- FRINTN_H_floatdp1             frintn_float.xml
+- FRINTP_H_floatdp1             frintp_float.xml
+- FRINTX_H_floatdp1             frintx_float.xml
+- FRINTZ_H_floatdp1             frintz_float.xml
+- FRSQRTE_asisdmiscfp16_R       frsqrte_advsimd.xml
+- FSQRT_H_floatdp1              fsqrt_float.xml
+- SCVTF_asisdmiscfp16_R         scvtf_advsimd_int.xml
+- UCVTF_asisdmiscfp16_R         ucvtf_advsimd_int.xml
 
 # "  <Hd>, <Hn>, #0.0"
 type: 
 fields: 
-- FCMEQ     fcmeq_advsimd_zero.xml
-- FCMGE     fcmge_advsimd_zero.xml
-- FCMGT     fcmgt_advsimd_zero.xml
-- FCMLE     fcmle_advsimd.xml
-- FCMLT     fcmlt_advsimd.xml
+- FCMEQ_asisdmiscfp16_FZ        fcmeq_advsimd_zero.xml
+- FCMGE_asisdmiscfp16_FZ        fcmge_advsimd_zero.xml
+- FCMGT_asisdmiscfp16_FZ        fcmgt_advsimd_zero.xml
+- FCMLE_asisdmiscfp16_FZ        fcmle_advsimd.xml
+- FCMLT_asisdmiscfp16_FZ        fcmlt_advsimd.xml
 
 # "  <Hd>, <Hn>, <Hm>"
 type: 
 fields: 
-- FABD      fabd_advsimd.xml
-- FACGE     facge_advsimd.xml
-- FACGT     facgt_advsimd.xml
-- FADD      fadd_float.xml
-- FCMEQ     fcmeq_advsimd_reg.xml
-- FCMGE     fcmge_advsimd_reg.xml
-- FCMGT     fcmgt_advsimd_reg.xml
-- FDIV      fdiv_float.xml
-- FMAX      fmax_float.xml
-- FMAXNM    fmaxnm_float.xml
-- FMIN      fmin_float.xml
-- FMINNM    fminnm_float.xml
-- FMUL      fmul_float.xml
-- FMULX     fmulx_advsimd_vec.xml
-- FNMUL     fnmul_float.xml
-- FRECPS    frecps_advsimd.xml
-- FRSQRTS   frsqrts_advsimd.xml
-- FSUB      fsub_float.xml
+- FABD_asisdsamefp16_only       fabd_advsimd.xml
+- FACGE_asisdsamefp16_only      facge_advsimd.xml
+- FACGT_asisdsamefp16_only      facgt_advsimd.xml
+- FADD_H_floatdp2               fadd_float.xml
+- FCMEQ_asisdsamefp16_only      fcmeq_advsimd_reg.xml
+- FCMGE_asisdsamefp16_only      fcmge_advsimd_reg.xml
+- FCMGT_asisdsamefp16_only      fcmgt_advsimd_reg.xml
+- FDIV_H_floatdp2               fdiv_float.xml
+- FMAX_H_floatdp2               fmax_float.xml
+- FMAXNM_H_floatdp2             fmaxnm_float.xml
+- FMIN_H_floatdp2               fmin_float.xml
+- FMINNM_H_floatdp2             fminnm_float.xml
+- FMUL_H_floatdp2               fmul_float.xml
+- FMULX_asisdsamefp16_only      fmulx_advsimd_vec.xml
+- FNMUL_H_floatdp2              fnmul_float.xml
+- FRECPS_asisdsamefp16_only     frecps_advsimd.xml
+- FRSQRTS_asisdsamefp16_only    frsqrts_advsimd.xml
+- FSUB_H_floatdp2               fsub_float.xml
 
 # "  <Hd>, <Hn>, <Hm>, <Ha>"
 type: 
 fields: 
-- FMADD     fmadd_float.xml
-- FMSUB     fmsub_float.xml
-- FNMADD    fnmadd_float.xml
-- FNMSUB    fnmsub_float.xml
+- FMADD_H_floatdp3              fmadd_float.xml
+- FMSUB_H_floatdp3              fmsub_float.xml
+- FNMADD_H_floatdp3             fnmadd_float.xml
+- FNMSUB_H_floatdp3             fnmsub_float.xml
 
 # "  <Hd>, <Hn>, <Hm>, <cond>"
 type: 
 fields: 
-- FCSEL     fcsel_float.xml
+- FCSEL_H_floatsel              fcsel_float.xml
 
 # "  <Hd>, <Hn>, <Vm>.H[<index>]"
 type: 
 fields: 
-- FMLA      fmla_advsimd_elt.xml
-- FMLS      fmls_advsimd_elt.xml
-- FMUL      fmul_advsimd_elt.xml
-- FMULX     fmulx_advsimd_elt.xml
+- FMLA_asisdelem_RH_H           fmla_advsimd_elt.xml
+- FMLS_asisdelem_RH_H           fmls_advsimd_elt.xml
+- FMUL_asisdelem_RH_H           fmul_advsimd_elt.xml
+- FMULX_asisdelem_RH_H          fmulx_advsimd_elt.xml
 
 # "  <Hd>, <Sn>"
 type: 
 fields: 
-- FCVT      fcvt_float.xml
+- FCVT_HS_floatdp1              fcvt_float.xml
 
 # "  <Hd>, <Wn>"
 type: 
 fields: 
-- FMOV      fmov_float_gen.xml
-- SCVTF     scvtf_float_int.xml
-- UCVTF     ucvtf_float_int.xml
+- FMOV_H32_float2int            fmov_float_gen.xml
+- SCVTF_H32_float2int           scvtf_float_int.xml
+- UCVTF_H32_float2int           ucvtf_float_int.xml
 
 # "  <Hd>, <Wn>, #<fbits>"
 type: 
 fields: 
-- SCVTF     scvtf_float_fix.xml
-- UCVTF     ucvtf_float_fix.xml
+- SCVTF_H32_float2fix           scvtf_float_fix.xml
+- UCVTF_H32_float2fix           ucvtf_float_fix.xml
 
 # "  <Hd>, <Xn>"
 type: 
 fields: 
-- FMOV      fmov_float_gen.xml
-- SCVTF     scvtf_float_int.xml
-- UCVTF     ucvtf_float_int.xml
+- FMOV_H64_float2int            fmov_float_gen.xml
+- SCVTF_H64_float2int           scvtf_float_int.xml
+- UCVTF_H64_float2int           ucvtf_float_int.xml
 
 # "  <Hd>, <Xn>, #<fbits>"
 type: 
 fields: 
-- SCVTF     scvtf_float_fix.xml
-- UCVTF     ucvtf_float_fix.xml
+- SCVTF_H64_float2fix           scvtf_float_fix.xml
+- UCVTF_H64_float2fix           ucvtf_float_fix.xml
 
 # "  <Hn>, #0.0"
 type: 
 fields: 
-- FCMP      fcmp_float.xml
-- FCMPE     fcmpe_float.xml
+- FCMP_HZ_floatcmp              fcmp_float.xml
+- FCMPE_HZ_floatcmp             fcmpe_float.xml
 
 # "  <Hn>, <Hm>"
 type: 
 fields: 
-- FCMP      fcmp_float.xml
-- FCMPE     fcmpe_float.xml
+- FCMP_H_floatcmp               fcmp_float.xml
+- FCMPE_H_floatcmp              fcmpe_float.xml
 
 # "  <Hn>, <Hm>, #<nzcv>, <cond>"
 type: 
 fields: 
-- FCCMP     fccmp_float.xml
-- FCCMPE    fccmpe_float.xml
+- FCCMP_H_floatccmp             fccmp_float.xml
+- FCCMPE_H_floatccmp            fccmpe_float.xml
 
 # "  <Ht>, [<Xn|SP>, #<simm>]!"
 type: 
 fields: 
-- LDR       ldr_imm_fpsimd.xml
-- STR       str_imm_fpsimd.xml
+- LDR_H_ldst_immpre             ldr_imm_fpsimd.xml
+- STR_H_ldst_immpre             str_imm_fpsimd.xml
 
 # "  <Ht>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]"
 type: 
 fields: 
-- LDR       ldr_reg_fpsimd.xml
-- STR       str_reg_fpsimd.xml
+- LDR_H_ldst_regoff             ldr_reg_fpsimd.xml
+- STR_H_ldst_regoff             str_reg_fpsimd.xml
 
 # "  <Ht>, [<Xn|SP>], #<simm>"
 type: 
 fields: 
-- LDR       ldr_imm_fpsimd.xml
-- STR       str_imm_fpsimd.xml
+- LDR_H_ldst_immpost            ldr_imm_fpsimd.xml
+- STR_H_ldst_immpost            str_imm_fpsimd.xml
 
 # "  <Ht>, [<Xn|SP>{, #<pimm>}]"
 type: 
 fields: 
-- LDR       ldr_imm_fpsimd.xml
-- STR       str_imm_fpsimd.xml
+- LDR_H_ldst_pos                ldr_imm_fpsimd.xml
+- STR_H_ldst_pos                str_imm_fpsimd.xml
 
 # "  <Ht>, [<Xn|SP>{, #<simm>}]"
 type: 
 fields: 
-- LDUR      ldur_fpsimd.xml
-- STUR      stur_fpsimd.xml
+- LDUR_H_ldst_unscaled          ldur_fpsimd.xml
+- STUR_H_ldst_unscaled          stur_fpsimd.xml
 
 # "  <Qd>, <Qn>, <Vm>.2D"
 type: 
 fields: 
-- SHA512H   sha512h_advsimd.xml
-- SHA512H2  sha512h2_advsimd.xml
+- SHA512H_QQV_cryptosha512_3    sha512h_advsimd.xml
+- SHA512H2_QQV_cryptosha512_3   sha512h2_advsimd.xml
 
 # "  <Qd>, <Qn>, <Vm>.4S"
 type: 
 fields: 
-- SHA256H   sha256h_advsimd.xml
-- SHA256H2  sha256h2_advsimd.xml
+- SHA256H_QQV_cryptosha3        sha256h_advsimd.xml
+- SHA256H2_QQV_cryptosha3       sha256h2_advsimd.xml
 
 # "  <Qd>, <Sn>, <Vm>.4S"
 type: 
 fields: 
-- SHA1C     sha1c_advsimd.xml
-- SHA1M     sha1m_advsimd.xml
-- SHA1P     sha1p_advsimd.xml
+- SHA1C_QSV_cryptosha3          sha1c_advsimd.xml
+- SHA1M_QSV_cryptosha3          sha1m_advsimd.xml
+- SHA1P_QSV_cryptosha3          sha1p_advsimd.xml
 
 # "  <Qt1>, <Qt2>, [<Xn|SP>, #<imm>]!"
 type: 
 fields: 
-- LDP       ldp_fpsimd.xml
-- STP       stp_fpsimd.xml
+- LDP_Q_ldstpair_pre            ldp_fpsimd.xml
+- STP_Q_ldstpair_pre            stp_fpsimd.xml
 
 # "  <Qt1>, <Qt2>, [<Xn|SP>], #<imm>"
 type: 
 fields: 
-- LDP       ldp_fpsimd.xml
-- STP       stp_fpsimd.xml
+- LDP_Q_ldstpair_post           ldp_fpsimd.xml
+- STP_Q_ldstpair_post           stp_fpsimd.xml
 
 # "  <Qt1>, <Qt2>, [<Xn|SP>{, #<imm>}]"
 type: 
 fields: 
-- LDNP      ldnp_fpsimd.xml
-- LDP       ldp_fpsimd.xml
-- STNP      stnp_fpsimd.xml
-- STP       stp_fpsimd.xml
+- LDNP_Q_ldstnapair_offs        ldnp_fpsimd.xml
+- LDP_Q_ldstpair_off            ldp_fpsimd.xml
+- STNP_Q_ldstnapair_offs        stnp_fpsimd.xml
+- STP_Q_ldstpair_off            stp_fpsimd.xml
 
 # "  <Qt>, <label>"
 type: 
 fields: 
-- LDR       ldr_lit_fpsimd.xml
+- LDR_Q_loadlit                 ldr_lit_fpsimd.xml
 
 # "  <Qt>, [<Xn|SP>, #<simm>]!"
 type: 
 fields: 
-- LDR       ldr_imm_fpsimd.xml
-- STR       str_imm_fpsimd.xml
+- LDR_Q_ldst_immpre             ldr_imm_fpsimd.xml
+- STR_Q_ldst_immpre             str_imm_fpsimd.xml
 
 # "  <Qt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]"
 type: 
 fields: 
-- LDR       ldr_reg_fpsimd.xml
-- STR       str_reg_fpsimd.xml
+- LDR_Q_ldst_regoff             ldr_reg_fpsimd.xml
+- STR_Q_ldst_regoff             str_reg_fpsimd.xml
 
 # "  <Qt>, [<Xn|SP>], #<simm>"
 type: 
 fields: 
-- LDR       ldr_imm_fpsimd.xml
-- STR       str_imm_fpsimd.xml
+- LDR_Q_ldst_immpost            ldr_imm_fpsimd.xml
+- STR_Q_ldst_immpost            str_imm_fpsimd.xml
 
 # "  <Qt>, [<Xn|SP>{, #<pimm>}]"
 type: 
 fields: 
-- LDR       ldr_imm_fpsimd.xml
-- STR       str_imm_fpsimd.xml
+- LDR_Q_ldst_pos                ldr_imm_fpsimd.xml
+- STR_Q_ldst_pos                str_imm_fpsimd.xml
 
 # "  <Qt>, [<Xn|SP>{, #<simm>}]"
 type: 
 fields: 
-- LDUR      ldur_fpsimd.xml
-- STUR      stur_fpsimd.xml
+- LDUR_Q_ldst_unscaled          ldur_fpsimd.xml
+- STUR_Q_ldst_unscaled          stur_fpsimd.xml
 
 # "  <R><t>, #<imm>, <label>"
 type: 
 fields: 
-- TBNZ      tbnz.xml
-- TBZ       tbz.xml
+- TBNZ_only_testbranch          tbnz.xml
+- TBZ_only_testbranch           tbz.xml
 
 # "  <Sd>, #<imm>"
 type: 
 fields: 
-- FMOV      fmov_float_imm.xml
+- FMOV_S_floatimm               fmov_float_imm.xml
 
 # "  <Sd>, <Dn>"
 type: 
 fields: 
-- FCVT      fcvt_float.xml
+- FCVT_SD_floatdp1              fcvt_float.xml
 
 # "  <Sd>, <Hn>"
 type: 
 fields: 
-- FCVT      fcvt_float.xml
+- FCVT_SH_floatdp1              fcvt_float.xml
 
 # "  <Sd>, <Sn>"
 type: 
 fields: 
-- FABS      fabs_float.xml
-- FMOV      fmov_float.xml
-- FNEG      fneg_float.xml
-- FRINTA    frinta_float.xml
-- FRINTI    frinti_float.xml
-- FRINTM    frintm_float.xml
-- FRINTN    frintn_float.xml
-- FRINTP    frintp_float.xml
-- FRINTX    frintx_float.xml
-- FRINTZ    frintz_float.xml
-- FSQRT     fsqrt_float.xml
-- SHA1H     sha1h_advsimd.xml
+- FABS_S_floatdp1               fabs_float.xml
+- FMOV_S_floatdp1               fmov_float.xml
+- FNEG_S_floatdp1               fneg_float.xml
+- FRINTA_S_floatdp1             frinta_float.xml
+- FRINTI_S_floatdp1             frinti_float.xml
+- FRINTM_S_floatdp1             frintm_float.xml
+- FRINTN_S_floatdp1             frintn_float.xml
+- FRINTP_S_floatdp1             frintp_float.xml
+- FRINTX_S_floatdp1             frintx_float.xml
+- FRINTZ_S_floatdp1             frintz_float.xml
+- FSQRT_S_floatdp1              fsqrt_float.xml
+- SHA1H_SS_cryptosha2           sha1h_advsimd.xml
 
 # "  <Sd>, <Sn>, <Sm>"
 type: 
 fields: 
-- FADD      fadd_float.xml
-- FDIV      fdiv_float.xml
-- FMAX      fmax_float.xml
-- FMAXNM    fmaxnm_float.xml
-- FMIN      fmin_float.xml
-- FMINNM    fminnm_float.xml
-- FMUL      fmul_float.xml
-- FNMUL     fnmul_float.xml
-- FSUB      fsub_float.xml
+- FADD_S_floatdp2               fadd_float.xml
+- FDIV_S_floatdp2               fdiv_float.xml
+- FMAX_S_floatdp2               fmax_float.xml
+- FMAXNM_S_floatdp2             fmaxnm_float.xml
+- FMIN_S_floatdp2               fmin_float.xml
+- FMINNM_S_floatdp2             fminnm_float.xml
+- FMUL_S_floatdp2               fmul_float.xml
+- FNMUL_S_floatdp2              fnmul_float.xml
+- FSUB_S_floatdp2               fsub_float.xml
 
 # "  <Sd>, <Sn>, <Sm>, <Sa>"
 type: 
 fields: 
-- FMADD     fmadd_float.xml
-- FMSUB     fmsub_float.xml
-- FNMADD    fnmadd_float.xml
-- FNMSUB    fnmsub_float.xml
+- FMADD_S_floatdp3              fmadd_float.xml
+- FMSUB_S_floatdp3              fmsub_float.xml
+- FNMADD_S_floatdp3             fnmadd_float.xml
+- FNMSUB_S_floatdp3             fnmsub_float.xml
 
 # "  <Sd>, <Sn>, <Sm>, <cond>"
 type: 
 fields: 
-- FCSEL     fcsel_float.xml
+- FCSEL_S_floatsel              fcsel_float.xml
 
 # "  <Sd>, <Wn>"
 type: 
 fields: 
-- FMOV      fmov_float_gen.xml
-- SCVTF     scvtf_float_int.xml
-- UCVTF     ucvtf_float_int.xml
+- FMOV_S32_float2int            fmov_float_gen.xml
+- SCVTF_S32_float2int           scvtf_float_int.xml
+- UCVTF_S32_float2int           ucvtf_float_int.xml
 
 # "  <Sd>, <Wn>, #<fbits>"
 type: 
 fields: 
-- SCVTF     scvtf_float_fix.xml
-- UCVTF     ucvtf_float_fix.xml
+- SCVTF_S32_float2fix           scvtf_float_fix.xml
+- UCVTF_S32_float2fix           ucvtf_float_fix.xml
 
 # "  <Sd>, <Xn>"
 type: 
 fields: 
-- SCVTF     scvtf_float_int.xml
-- UCVTF     ucvtf_float_int.xml
+- SCVTF_S64_float2int           scvtf_float_int.xml
+- UCVTF_S64_float2int           ucvtf_float_int.xml
 
 # "  <Sd>, <Xn>, #<fbits>"
 type: 
 fields: 
-- SCVTF     scvtf_float_fix.xml
-- UCVTF     ucvtf_float_fix.xml
+- SCVTF_S64_float2fix           scvtf_float_fix.xml
+- UCVTF_S64_float2fix           ucvtf_float_fix.xml
 
 # "  <Sn>, #0.0"
 type: 
 fields: 
-- FCMP      fcmp_float.xml
-- FCMPE     fcmpe_float.xml
+- FCMP_SZ_floatcmp              fcmp_float.xml
+- FCMPE_SZ_floatcmp             fcmpe_float.xml
 
 # "  <Sn>, <Sm>"
 type: 
 fields: 
-- FCMP      fcmp_float.xml
-- FCMPE     fcmpe_float.xml
+- FCMP_S_floatcmp               fcmp_float.xml
+- FCMPE_S_floatcmp              fcmpe_float.xml
 
 # "  <Sn>, <Sm>, #<nzcv>, <cond>"
 type: 
 fields: 
-- FCCMP     fccmp_float.xml
-- FCCMPE    fccmpe_float.xml
+- FCCMP_S_floatccmp             fccmp_float.xml
+- FCCMPE_S_floatccmp            fccmpe_float.xml
 
 # "  <St1>, <St2>, [<Xn|SP>, #<imm>]!"
 type: 
 fields: 
-- LDP       ldp_fpsimd.xml
-- STP       stp_fpsimd.xml
+- LDP_S_ldstpair_pre            ldp_fpsimd.xml
+- STP_S_ldstpair_pre            stp_fpsimd.xml
 
 # "  <St1>, <St2>, [<Xn|SP>], #<imm>"
 type: 
 fields: 
-- LDP       ldp_fpsimd.xml
-- STP       stp_fpsimd.xml
+- LDP_S_ldstpair_post           ldp_fpsimd.xml
+- STP_S_ldstpair_post           stp_fpsimd.xml
 
 # "  <St1>, <St2>, [<Xn|SP>{, #<imm>}]"
 type: 
 fields: 
-- LDNP      ldnp_fpsimd.xml
-- LDP       ldp_fpsimd.xml
-- STNP      stnp_fpsimd.xml
-- STP       stp_fpsimd.xml
+- LDNP_S_ldstnapair_offs        ldnp_fpsimd.xml
+- LDP_S_ldstpair_off            ldp_fpsimd.xml
+- STNP_S_ldstnapair_offs        stnp_fpsimd.xml
+- STP_S_ldstpair_off            stp_fpsimd.xml
 
 # "  <St>, <label>"
 type: 
 fields: 
-- LDR       ldr_lit_fpsimd.xml
+- LDR_S_loadlit                 ldr_lit_fpsimd.xml
 
 # "  <St>, [<Xn|SP>, #<simm>]!"
 type: 
 fields: 
-- LDR       ldr_imm_fpsimd.xml
-- STR       str_imm_fpsimd.xml
+- LDR_S_ldst_immpre             ldr_imm_fpsimd.xml
+- STR_S_ldst_immpre             str_imm_fpsimd.xml
 
 # "  <St>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]"
 type: 
 fields: 
-- LDR       ldr_reg_fpsimd.xml
-- STR       str_reg_fpsimd.xml
+- LDR_S_ldst_regoff             ldr_reg_fpsimd.xml
+- STR_S_ldst_regoff             str_reg_fpsimd.xml
 
 # "  <St>, [<Xn|SP>], #<simm>"
 type: 
 fields: 
-- LDR       ldr_imm_fpsimd.xml
-- STR       str_imm_fpsimd.xml
+- LDR_S_ldst_immpost            ldr_imm_fpsimd.xml
+- STR_S_ldst_immpost            str_imm_fpsimd.xml
 
 # "  <St>, [<Xn|SP>{, #<pimm>}]"
 type: 
 fields: 
-- LDR       ldr_imm_fpsimd.xml
-- STR       str_imm_fpsimd.xml
+- LDR_S_ldst_pos                ldr_imm_fpsimd.xml
+- STR_S_ldst_pos                str_imm_fpsimd.xml
 
 # "  <St>, [<Xn|SP>{, #<simm>}]"
 type: 
 fields: 
-- LDUR      ldur_fpsimd.xml
-- STUR      stur_fpsimd.xml
+- LDUR_S_ldst_unscaled          ldur_fpsimd.xml
+- STUR_S_ldst_unscaled          stur_fpsimd.xml
 
 # "  <V><d>, <V><n>"
 type: 
 fields: 
-- ABS       abs_advsimd.xml
-- FCVTAS    fcvtas_advsimd.xml
-- FCVTAU    fcvtau_advsimd.xml
-- FCVTMS    fcvtms_advsimd.xml
-- FCVTMU    fcvtmu_advsimd.xml
-- FCVTNS    fcvtns_advsimd.xml
-- FCVTNU    fcvtnu_advsimd.xml
-- FCVTPS    fcvtps_advsimd.xml
-- FCVTPU    fcvtpu_advsimd.xml
-- FCVTZS    fcvtzs_advsimd_int.xml
-- FCVTZU    fcvtzu_advsimd_int.xml
-- FRECPE    frecpe_advsimd.xml
-- FRECPX    frecpx_advsimd.xml
-- FRSQRTE   frsqrte_advsimd.xml
-- NEG       neg_advsimd.xml
-- SCVTF     scvtf_advsimd_int.xml
-- SQABS     sqabs_advsimd.xml
-- SQNEG     sqneg_advsimd.xml
-- SUQADD    suqadd_advsimd.xml
-- UCVTF     ucvtf_advsimd_int.xml
-- USQADD    usqadd_advsimd.xml
+- ABS_asisdmisc_R               abs_advsimd.xml
+- FCVTAS_asisdmisc_R            fcvtas_advsimd.xml
+- FCVTAU_asisdmisc_R            fcvtau_advsimd.xml
+- FCVTMS_asisdmisc_R            fcvtms_advsimd.xml
+- FCVTMU_asisdmisc_R            fcvtmu_advsimd.xml
+- FCVTNS_asisdmisc_R            fcvtns_advsimd.xml
+- FCVTNU_asisdmisc_R            fcvtnu_advsimd.xml
+- FCVTPS_asisdmisc_R            fcvtps_advsimd.xml
+- FCVTPU_asisdmisc_R            fcvtpu_advsimd.xml
+- FCVTZS_asisdmisc_R            fcvtzs_advsimd_int.xml
+- FCVTZU_asisdmisc_R            fcvtzu_advsimd_int.xml
+- FRECPE_asisdmisc_R            frecpe_advsimd.xml
+- FRECPX_asisdmisc_R            frecpx_advsimd.xml
+- FRSQRTE_asisdmisc_R           frsqrte_advsimd.xml
+- NEG_asisdmisc_R               neg_advsimd.xml
+- SCVTF_asisdmisc_R             scvtf_advsimd_int.xml
+- SQABS_asisdmisc_R             sqabs_advsimd.xml
+- SQNEG_asisdmisc_R             sqneg_advsimd.xml
+- SUQADD_asisdmisc_R            suqadd_advsimd.xml
+- UCVTF_asisdmisc_R             ucvtf_advsimd_int.xml
+- USQADD_asisdmisc_R            usqadd_advsimd.xml
 
 # "  <V><d>, <V><n>, #0"
 type: 
 fields: 
-- CMEQ      cmeq_advsimd_zero.xml
-- CMGE      cmge_advsimd_zero.xml
-- CMGT      cmgt_advsimd_zero.xml
-- CMLE      cmle_advsimd.xml
-- CMLT      cmlt_advsimd.xml
+- CMEQ_asisdmisc_Z              cmeq_advsimd_zero.xml
+- CMGE_asisdmisc_Z              cmge_advsimd_zero.xml
+- CMGT_asisdmisc_Z              cmgt_advsimd_zero.xml
+- CMLE_asisdmisc_Z              cmle_advsimd.xml
+- CMLT_asisdmisc_Z              cmlt_advsimd.xml
 
 # "  <V><d>, <V><n>, #0.0"
 type: 
 fields: 
-- FCMEQ     fcmeq_advsimd_zero.xml
-- FCMGE     fcmge_advsimd_zero.xml
-- FCMGT     fcmgt_advsimd_zero.xml
-- FCMLE     fcmle_advsimd.xml
-- FCMLT     fcmlt_advsimd.xml
+- FCMEQ_asisdmisc_FZ            fcmeq_advsimd_zero.xml
+- FCMGE_asisdmisc_FZ            fcmge_advsimd_zero.xml
+- FCMGT_asisdmisc_FZ            fcmgt_advsimd_zero.xml
+- FCMLE_asisdmisc_FZ            fcmle_advsimd.xml
+- FCMLT_asisdmisc_FZ            fcmlt_advsimd.xml
 
 # "  <V><d>, <V><n>, #<fbits>"
 type: 
 fields: 
-- FCVTZS    fcvtzs_advsimd_fix.xml
-- FCVTZU    fcvtzu_advsimd_fix.xml
-- SCVTF     scvtf_advsimd_fix.xml
-- UCVTF     ucvtf_advsimd_fix.xml
+- FCVTZS_asisdshf_C             fcvtzs_advsimd_fix.xml
+- FCVTZU_asisdshf_C             fcvtzu_advsimd_fix.xml
+- SCVTF_asisdshf_C              scvtf_advsimd_fix.xml
+- UCVTF_asisdshf_C              ucvtf_advsimd_fix.xml
 
 # "  <V><d>, <V><n>, #<shift>"
 type: 
 fields: 
-- SHL       shl_advsimd.xml
-- SLI       sli_advsimd.xml
-- SQSHL     sqshl_advsimd_imm.xml
-- SQSHLU    sqshlu_advsimd.xml
-- SRI       sri_advsimd.xml
-- SRSHR     srshr_advsimd.xml
-- SRSRA     srsra_advsimd.xml
-- SSHR      sshr_advsimd.xml
-- SSRA      ssra_advsimd.xml
-- UQSHL     uqshl_advsimd_imm.xml
-- URSHR     urshr_advsimd.xml
-- URSRA     ursra_advsimd.xml
-- USHR      ushr_advsimd.xml
-- USRA      usra_advsimd.xml
+- SHL_asisdshf_R                shl_advsimd.xml
+- SLI_asisdshf_R                sli_advsimd.xml
+- SQSHL_asisdshf_R              sqshl_advsimd_imm.xml
+- SQSHLU_asisdshf_R             sqshlu_advsimd.xml
+- SRI_asisdshf_R                sri_advsimd.xml
+- SRSHR_asisdshf_R              srshr_advsimd.xml
+- SRSRA_asisdshf_R              srsra_advsimd.xml
+- SSHR_asisdshf_R               sshr_advsimd.xml
+- SSRA_asisdshf_R               ssra_advsimd.xml
+- UQSHL_asisdshf_R              uqshl_advsimd_imm.xml
+- URSHR_asisdshf_R              urshr_advsimd.xml
+- URSRA_asisdshf_R              ursra_advsimd.xml
+- USHR_asisdshf_R               ushr_advsimd.xml
+- USRA_asisdshf_R               usra_advsimd.xml
 
 # "  <V><d>, <V><n>, <V><m>"
 type: 
 fields: 
-- ADD       add_advsimd.xml
-- CMEQ      cmeq_advsimd_reg.xml
-- CMGE      cmge_advsimd_reg.xml
-- CMGT      cmgt_advsimd_reg.xml
-- CMHI      cmhi_advsimd.xml
-- CMHS      cmhs_advsimd.xml
-- CMTST     cmtst_advsimd.xml
-- FABD      fabd_advsimd.xml
-- FACGE     facge_advsimd.xml
-- FACGT     facgt_advsimd.xml
-- FCMEQ     fcmeq_advsimd_reg.xml
-- FCMGE     fcmge_advsimd_reg.xml
-- FCMGT     fcmgt_advsimd_reg.xml
-- FMULX     fmulx_advsimd_vec.xml
-- FRECPS    frecps_advsimd.xml
-- FRSQRTS   frsqrts_advsimd.xml
-- SQADD     sqadd_advsimd.xml
-- SQDMULH   sqdmulh_advsimd_vec.xml
-- SQRDMLAH  sqrdmlah_advsimd_vec.xml
-- SQRDMLSH  sqrdmlsh_advsimd_vec.xml
-- SQRDMULH  sqrdmulh_advsimd_vec.xml
-- SQRSHL    sqrshl_advsimd.xml
-- SQSHL     sqshl_advsimd_reg.xml
-- SQSUB     sqsub_advsimd.xml
-- SRSHL     srshl_advsimd.xml
-- SSHL      sshl_advsimd.xml
-- SUB       sub_advsimd.xml
-- UQADD     uqadd_advsimd.xml
-- UQRSHL    uqrshl_advsimd.xml
-- UQSHL     uqshl_advsimd_reg.xml
-- UQSUB     uqsub_advsimd.xml
-- URSHL     urshl_advsimd.xml
-- USHL      ushl_advsimd.xml
+- ADD_asisdsame_only            add_advsimd.xml
+- CMEQ_asisdsame_only           cmeq_advsimd_reg.xml
+- CMGE_asisdsame_only           cmge_advsimd_reg.xml
+- CMGT_asisdsame_only           cmgt_advsimd_reg.xml
+- CMHI_asisdsame_only           cmhi_advsimd.xml
+- CMHS_asisdsame_only           cmhs_advsimd.xml
+- CMTST_asisdsame_only          cmtst_advsimd.xml
+- FABD_asisdsame_only           fabd_advsimd.xml
+- FACGE_asisdsame_only          facge_advsimd.xml
+- FACGT_asisdsame_only          facgt_advsimd.xml
+- FCMEQ_asisdsame_only          fcmeq_advsimd_reg.xml
+- FCMGE_asisdsame_only          fcmge_advsimd_reg.xml
+- FCMGT_asisdsame_only          fcmgt_advsimd_reg.xml
+- FMULX_asisdsame_only          fmulx_advsimd_vec.xml
+- FRECPS_asisdsame_only         frecps_advsimd.xml
+- FRSQRTS_asisdsame_only        frsqrts_advsimd.xml
+- SQADD_asisdsame_only          sqadd_advsimd.xml
+- SQDMULH_asisdsame_only        sqdmulh_advsimd_vec.xml
+- SQRDMLAH_asisdsame2_only      sqrdmlah_advsimd_vec.xml
+- SQRDMLSH_asisdsame2_only      sqrdmlsh_advsimd_vec.xml
+- SQRDMULH_asisdsame_only       sqrdmulh_advsimd_vec.xml
+- SQRSHL_asisdsame_only         sqrshl_advsimd.xml
+- SQSHL_asisdsame_only          sqshl_advsimd_reg.xml
+- SQSUB_asisdsame_only          sqsub_advsimd.xml
+- SRSHL_asisdsame_only          srshl_advsimd.xml
+- SSHL_asisdsame_only           sshl_advsimd.xml
+- SUB_asisdsame_only            sub_advsimd.xml
+- UQADD_asisdsame_only          uqadd_advsimd.xml
+- UQRSHL_asisdsame_only         uqrshl_advsimd.xml
+- UQSHL_asisdsame_only          uqshl_advsimd_reg.xml
+- UQSUB_asisdsame_only          uqsub_advsimd.xml
+- URSHL_asisdsame_only          urshl_advsimd.xml
+- USHL_asisdsame_only           ushl_advsimd.xml
 
 # "  <V><d>, <V><n>, <Vm>.<Ts>[<index>]"
 type: 
 fields: 
-- FMLA      fmla_advsimd_elt.xml
-- FMLS      fmls_advsimd_elt.xml
-- FMUL      fmul_advsimd_elt.xml
-- FMULX     fmulx_advsimd_elt.xml
-- SQDMULH   sqdmulh_advsimd_elt.xml
-- SQRDMLAH  sqrdmlah_advsimd_elt.xml
-- SQRDMLSH  sqrdmlsh_advsimd_elt.xml
-- SQRDMULH  sqrdmulh_advsimd_elt.xml
+- FMLA_asisdelem_R_SD           fmla_advsimd_elt.xml
+- FMLS_asisdelem_R_SD           fmls_advsimd_elt.xml
+- FMUL_asisdelem_R_SD           fmul_advsimd_elt.xml
+- FMULX_asisdelem_R_SD          fmulx_advsimd_elt.xml
+- SQDMULH_asisdelem_R           sqdmulh_advsimd_elt.xml
+- SQRDMLAH_asisdelem_R          sqrdmlah_advsimd_elt.xml
+- SQRDMLSH_asisdelem_R          sqrdmlsh_advsimd_elt.xml
+- SQRDMULH_asisdelem_R          sqrdmulh_advsimd_elt.xml
 
 # "  <V><d>, <Vn>.<T>"
 type: 
 fields: 
-- ADDP      addp_advsimd_pair.xml
-- ADDV      addv_advsimd.xml
-- FADDP     faddp_advsimd_pair.xml
-- FADDP     faddp_advsimd_pair.xml
-- FMAXNMP   fmaxnmp_advsimd_pair.xml
-- FMAXNMP   fmaxnmp_advsimd_pair.xml
-- FMAXNMV   fmaxnmv_advsimd.xml
-- FMAXNMV   fmaxnmv_advsimd.xml
-- FMAXP     fmaxp_advsimd_pair.xml
-- FMAXP     fmaxp_advsimd_pair.xml
-- FMAXV     fmaxv_advsimd.xml
-- FMAXV     fmaxv_advsimd.xml
-- FMINNMP   fminnmp_advsimd_pair.xml
-- FMINNMP   fminnmp_advsimd_pair.xml
-- FMINNMV   fminnmv_advsimd.xml
-- FMINNMV   fminnmv_advsimd.xml
-- FMINP     fminp_advsimd_pair.xml
-- FMINP     fminp_advsimd_pair.xml
-- FMINV     fminv_advsimd.xml
-- FMINV     fminv_advsimd.xml
-- SADDLV    saddlv_advsimd.xml
-- SMAXV     smaxv_advsimd.xml
-- SMINV     sminv_advsimd.xml
-- UADDLV    uaddlv_advsimd.xml
-- UMAXV     umaxv_advsimd.xml
-- UMINV     uminv_advsimd.xml
+- ADDP_asisdpair_only           addp_advsimd_pair.xml
+- ADDV_asimdall_only            addv_advsimd.xml
+- FADDP_asisdpair_only_H        faddp_advsimd_pair.xml
+- FADDP_asisdpair_only_SD       faddp_advsimd_pair.xml
+- FMAXNMP_asisdpair_only_H      fmaxnmp_advsimd_pair.xml
+- FMAXNMP_asisdpair_only_SD     fmaxnmp_advsimd_pair.xml
+- FMAXNMV_asimdall_only_H       fmaxnmv_advsimd.xml
+- FMAXNMV_asimdall_only_SD      fmaxnmv_advsimd.xml
+- FMAXP_asisdpair_only_H        fmaxp_advsimd_pair.xml
+- FMAXP_asisdpair_only_SD       fmaxp_advsimd_pair.xml
+- FMAXV_asimdall_only_H         fmaxv_advsimd.xml
+- FMAXV_asimdall_only_SD        fmaxv_advsimd.xml
+- FMINNMP_asisdpair_only_H      fminnmp_advsimd_pair.xml
+- FMINNMP_asisdpair_only_SD     fminnmp_advsimd_pair.xml
+- FMINNMV_asimdall_only_H       fminnmv_advsimd.xml
+- FMINNMV_asimdall_only_SD      fminnmv_advsimd.xml
+- FMINP_asisdpair_only_H        fminp_advsimd_pair.xml
+- FMINP_asisdpair_only_SD       fminp_advsimd_pair.xml
+- FMINV_asimdall_only_H         fminv_advsimd.xml
+- FMINV_asimdall_only_SD        fminv_advsimd.xml
+- SADDLV_asimdall_only          saddlv_advsimd.xml
+- SMAXV_asimdall_only           smaxv_advsimd.xml
+- SMINV_asimdall_only           sminv_advsimd.xml
+- UADDLV_asimdall_only          uaddlv_advsimd.xml
+- UMAXV_asimdall_only           umaxv_advsimd.xml
+- UMINV_asimdall_only           uminv_advsimd.xml
 
 # "  <V><d>, <Vn>.<T>[<index>]"
 type: 
 fields: 
-- DUP       dup_advsimd_elt.xml
+- DUP_asisdone_only             dup_advsimd_elt.xml
 
 # "  <Va><d>, <Vb><n>, <Vb><m>"
 type: 
 fields: 
-- SQDMLAL   sqdmlal_advsimd_vec.xml
-- SQDMLSL   sqdmlsl_advsimd_vec.xml
-- SQDMULL   sqdmull_advsimd_vec.xml
+- SQDMLAL_asisddiff_only        sqdmlal_advsimd_vec.xml
+- SQDMLSL_asisddiff_only        sqdmlsl_advsimd_vec.xml
+- SQDMULL_asisddiff_only        sqdmull_advsimd_vec.xml
 
 # "  <Va><d>, <Vb><n>, <Vm>.<Ts>[<index>]"
 type: 
 fields: 
-- SQDMLAL   sqdmlal_advsimd_elt.xml
-- SQDMLSL   sqdmlsl_advsimd_elt.xml
-- SQDMULL   sqdmull_advsimd_elt.xml
+- SQDMLAL_asisdelem_L           sqdmlal_advsimd_elt.xml
+- SQDMLSL_asisdelem_L           sqdmlsl_advsimd_elt.xml
+- SQDMULL_asisdelem_L           sqdmull_advsimd_elt.xml
 
 # "  <Vb><d>, <Va><n>"
 type: 
 fields: 
-- FCVTXN    fcvtxn_advsimd.xml
-- SQXTN     sqxtn_advsimd.xml
-- SQXTUN    sqxtun_advsimd.xml
-- UQXTN     uqxtn_advsimd.xml
+- FCVTXN_asisdmisc_N            fcvtxn_advsimd.xml
+- SQXTN_asisdmisc_N             sqxtn_advsimd.xml
+- SQXTUN_asisdmisc_N            sqxtun_advsimd.xml
+- UQXTN_asisdmisc_N             uqxtn_advsimd.xml
 
 # "  <Vb><d>, <Va><n>, #<shift>"
 type: 
 fields: 
-- SQRSHRN   sqrshrn_advsimd.xml
-- SQRSHRUN  sqrshrun_advsimd.xml
-- SQSHRN    sqshrn_advsimd.xml
-- SQSHRUN   sqshrun_advsimd.xml
-- UQRSHRN   uqrshrn_advsimd.xml
-- UQSHRN    uqshrn_advsimd.xml
+- SQRSHRN_asisdshf_N            sqrshrn_advsimd.xml
+- SQRSHRUN_asisdshf_N           sqrshrun_advsimd.xml
+- SQSHRN_asisdshf_N             sqshrn_advsimd.xml
+- SQSHRUN_asisdshf_N            sqshrun_advsimd.xml
+- UQRSHRN_asisdshf_N            uqrshrn_advsimd.xml
+- UQSHRN_asisdshf_N             uqshrn_advsimd.xml
 
 # "  <Vd>.16B, <Vn>.16B"
 type: 
 fields: 
-- AESD      aesd_advsimd.xml
-- AESE      aese_advsimd.xml
-- AESIMC    aesimc_advsimd.xml
-- AESMC     aesmc_advsimd.xml
+- AESD_B_cryptoaes              aesd_advsimd.xml
+- AESE_B_cryptoaes              aese_advsimd.xml
+- AESIMC_B_cryptoaes            aesimc_advsimd.xml
+- AESMC_B_cryptoaes             aesmc_advsimd.xml
 
 # "  <Vd>.16B, <Vn>.16B, <Vm>.16B, <Va>.16B"
 type: 
 fields: 
-- BCAX      bcax_advsimd.xml
-- EOR3      eor3_advsimd.xml
+- BCAX_VVV16_crypto4            bcax_advsimd.xml
+- EOR3_VVV16_crypto4            eor3_advsimd.xml
 
 # "  <Vd>.2D, #<imm>"
 type: 
 fields: 
-- FMOV      fmov_advsimd.xml
-- MOVI      movi_advsimd.xml
+- FMOV_asimdimm_D2_d            fmov_advsimd.xml
+- MOVI_asimdimm_D2_d            movi_advsimd.xml
 
 # "  <Vd>.2D, <Vn>.2D"
 type: 
 fields: 
-- SHA512SU0 sha512su0_advsimd.xml
+- SHA512SU0_VV2_cryptosha512_2  sha512su0_advsimd.xml
 
 # "  <Vd>.2D, <Vn>.2D, <Vm>.2D"
 type: 
 fields: 
-- RAX1      rax1_advsimd.xml
-- SHA512SU1 sha512su1_advsimd.xml
+- RAX1_VVV2_cryptosha512_3      rax1_advsimd.xml
+- SHA512SU1_VVV2_cryptosha512_3 sha512su1_advsimd.xml
 
 # "  <Vd>.2D, <Vn>.2D, <Vm>.2D, #<imm6>"
 type: 
 fields: 
-- XAR       xar_advsimd.xml
+- XAR_VVV2_crypto3_imm6         xar_advsimd.xml
 
 # "  <Vd>.4S, <Vn>.4S"
 type: 
 fields: 
-- SHA1SU1   sha1su1_advsimd.xml
-- SHA256SU0 sha256su0_advsimd.xml
-- SM4E      sm4e_advsimd.xml
+- SHA1SU1_VV_cryptosha2         sha1su1_advsimd.xml
+- SHA256SU0_VV_cryptosha2       sha256su0_advsimd.xml
+- SM4E_VV4_cryptosha512_2       sm4e_advsimd.xml
 
 # "  <Vd>.4S, <Vn>.4S, <Vm>.4S"
 type: 
 fields: 
-- SHA1SU0   sha1su0_advsimd.xml
-- SHA256SU1 sha256su1_advsimd.xml
-- SM3PARTW1 sm3partw1_advsimd.xml
-- SM3PARTW2 sm3partw2_advsimd.xml
-- SM4EKEY   sm4ekey_advsimd.xml
+- SHA1SU0_VVV_cryptosha3        sha1su0_advsimd.xml
+- SHA256SU1_VVV_cryptosha3      sha256su1_advsimd.xml
+- SM3PARTW1_VVV4_cryptosha512_3 sm3partw1_advsimd.xml
+- SM3PARTW2_VVV4_cryptosha512_3 sm3partw2_advsimd.xml
+- SM4EKEY_VVV4_cryptosha512_3   sm4ekey_advsimd.xml
 
 # "  <Vd>.4S, <Vn>.4S, <Vm>.4S, <Va>.4S"
 type: 
 fields: 
-- SM3SS1    sm3ss1_advsimd.xml
+- SM3SS1_VVV4_crypto4           sm3ss1_advsimd.xml
 
 # "  <Vd>.4S, <Vn>.4S, <Vm>.S[<imm2>]"
 type: 
 fields: 
-- SM3TT1A   sm3tt1a_advsimd.xml
-- SM3TT1B   sm3tt1b_advsimd.xml
-- SM3TT2A   sm3tt2a_advsimd.xml
+- SM3TT1A_VVV4_crypto3_imm2     sm3tt1a_advsimd.xml
+- SM3TT1B_VVV4_crypto3_imm2     sm3tt1b_advsimd.xml
+- SM3TT2A_VVV4_crypto3_imm2     sm3tt2a_advsimd.xml
 
 # "  <Vd>.<T>, #<imm8>, MSL #<amount>"
 type: 
 fields: 
-- MOVI      movi_advsimd.xml
-- MVNI      mvni_advsimd.xml
+- MOVI_asimdimm_M_sm            movi_advsimd.xml
+- MVNI_asimdimm_M_sm            mvni_advsimd.xml
 
 # "  <Vd>.<T>, #<imm8>{, LSL #0}"
 type: 
 fields: 
-- MOVI      movi_advsimd.xml
+- MOVI_asimdimm_N_b             movi_advsimd.xml
 
 # "  <Vd>.<T>, #<imm8>{, LSL #<amount>}"
 type: 
 fields: 
-- BIC       bic_advsimd_imm.xml
-- BIC       bic_advsimd_imm.xml
-- MOVI      movi_advsimd.xml
-- MOVI      movi_advsimd.xml
-- MVNI      mvni_advsimd.xml
-- MVNI      mvni_advsimd.xml
-- ORR       orr_advsimd_imm.xml
-- ORR       orr_advsimd_imm.xml
+- BIC_asimdimm_L_hl             bic_advsimd_imm.xml
+- BIC_asimdimm_L_sl             bic_advsimd_imm.xml
+- MOVI_asimdimm_L_hl            movi_advsimd.xml
+- MOVI_asimdimm_L_sl            movi_advsimd.xml
+- MVNI_asimdimm_L_hl            mvni_advsimd.xml
+- MVNI_asimdimm_L_sl            mvni_advsimd.xml
+- ORR_asimdimm_L_hl             orr_advsimd_imm.xml
+- ORR_asimdimm_L_sl             orr_advsimd_imm.xml
 
 # "  <Vd>.<T>, #<imm>"
 type: 
 fields: 
-- FMOV      fmov_advsimd.xml
-- FMOV      fmov_advsimd.xml
+- FMOV_asimdimm_H_h             fmov_advsimd.xml
+- FMOV_asimdimm_S_s             fmov_advsimd.xml
 
 # "  <Vd>.<T>, <R><n>"
 type: 
 fields: 
-- DUP       dup_advsimd_gen.xml
+- DUP_asimdins_DR_r             dup_advsimd_gen.xml
 
 # "  <Vd>.<T>, <Vn>.<T>"
 type: 
 fields: 
-- ABS       abs_advsimd.xml
-- CLS       cls_advsimd.xml
-- CLZ       clz_advsimd.xml
-- CNT       cnt_advsimd.xml
-- FABS      fabs_advsimd.xml
-- FABS      fabs_advsimd.xml
-- FCVTAS    fcvtas_advsimd.xml
-- FCVTAS    fcvtas_advsimd.xml
-- FCVTAU    fcvtau_advsimd.xml
-- FCVTAU    fcvtau_advsimd.xml
-- FCVTMS    fcvtms_advsimd.xml
-- FCVTMS    fcvtms_advsimd.xml
-- FCVTMU    fcvtmu_advsimd.xml
-- FCVTMU    fcvtmu_advsimd.xml
-- FCVTNS    fcvtns_advsimd.xml
-- FCVTNS    fcvtns_advsimd.xml
-- FCVTNU    fcvtnu_advsimd.xml
-- FCVTNU    fcvtnu_advsimd.xml
-- FCVTPS    fcvtps_advsimd.xml
-- FCVTPS    fcvtps_advsimd.xml
-- FCVTPU    fcvtpu_advsimd.xml
-- FCVTPU    fcvtpu_advsimd.xml
-- FCVTZS    fcvtzs_advsimd_int.xml
-- FCVTZS    fcvtzs_advsimd_int.xml
-- FCVTZU    fcvtzu_advsimd_int.xml
-- FCVTZU    fcvtzu_advsimd_int.xml
-- FNEG      fneg_advsimd.xml
-- FNEG      fneg_advsimd.xml
-- FRECPE    frecpe_advsimd.xml
-- FRECPE    frecpe_advsimd.xml
-- FRINTA    frinta_advsimd.xml
-- FRINTA    frinta_advsimd.xml
-- FRINTI    frinti_advsimd.xml
-- FRINTI    frinti_advsimd.xml
-- FRINTM    frintm_advsimd.xml
-- FRINTM    frintm_advsimd.xml
-- FRINTN    frintn_advsimd.xml
-- FRINTN    frintn_advsimd.xml
-- FRINTP    frintp_advsimd.xml
-- FRINTP    frintp_advsimd.xml
-- FRINTX    frintx_advsimd.xml
-- FRINTX    frintx_advsimd.xml
-- FRINTZ    frintz_advsimd.xml
-- FRINTZ    frintz_advsimd.xml
-- FRSQRTE   frsqrte_advsimd.xml
-- FRSQRTE   frsqrte_advsimd.xml
-- FSQRT     fsqrt_advsimd.xml
-- FSQRT     fsqrt_advsimd.xml
-- NEG       neg_advsimd.xml
-- NOT       not_advsimd.xml
-- RBIT      rbit_advsimd.xml
-- REV16     rev16_advsimd.xml
-- REV32     rev32_advsimd.xml
-- REV64     rev64_advsimd.xml
-- SCVTF     scvtf_advsimd_int.xml
-- SCVTF     scvtf_advsimd_int.xml
-- SQABS     sqabs_advsimd.xml
-- SQNEG     sqneg_advsimd.xml
-- SUQADD    suqadd_advsimd.xml
-- UCVTF     ucvtf_advsimd_int.xml
-- UCVTF     ucvtf_advsimd_int.xml
-- URECPE    urecpe_advsimd.xml
-- URSQRTE   ursqrte_advsimd.xml
-- USQADD    usqadd_advsimd.xml
+- ABS_asimdmisc_R               abs_advsimd.xml
+- CLS_asimdmisc_R               cls_advsimd.xml
+- CLZ_asimdmisc_R               clz_advsimd.xml
+- CNT_asimdmisc_R               cnt_advsimd.xml
+- FABS_asimdmiscfp16_R          fabs_advsimd.xml
+- FABS_asimdmisc_R              fabs_advsimd.xml
+- FCVTAS_asimdmiscfp16_R        fcvtas_advsimd.xml
+- FCVTAS_asimdmisc_R            fcvtas_advsimd.xml
+- FCVTAU_asimdmiscfp16_R        fcvtau_advsimd.xml
+- FCVTAU_asimdmisc_R            fcvtau_advsimd.xml
+- FCVTMS_asimdmiscfp16_R        fcvtms_advsimd.xml
+- FCVTMS_asimdmisc_R            fcvtms_advsimd.xml
+- FCVTMU_asimdmiscfp16_R        fcvtmu_advsimd.xml
+- FCVTMU_asimdmisc_R            fcvtmu_advsimd.xml
+- FCVTNS_asimdmiscfp16_R        fcvtns_advsimd.xml
+- FCVTNS_asimdmisc_R            fcvtns_advsimd.xml
+- FCVTNU_asimdmiscfp16_R        fcvtnu_advsimd.xml
+- FCVTNU_asimdmisc_R            fcvtnu_advsimd.xml
+- FCVTPS_asimdmiscfp16_R        fcvtps_advsimd.xml
+- FCVTPS_asimdmisc_R            fcvtps_advsimd.xml
+- FCVTPU_asimdmiscfp16_R        fcvtpu_advsimd.xml
+- FCVTPU_asimdmisc_R            fcvtpu_advsimd.xml
+- FCVTZS_asimdmiscfp16_R        fcvtzs_advsimd_int.xml
+- FCVTZS_asimdmisc_R            fcvtzs_advsimd_int.xml
+- FCVTZU_asimdmiscfp16_R        fcvtzu_advsimd_int.xml
+- FCVTZU_asimdmisc_R            fcvtzu_advsimd_int.xml
+- FNEG_asimdmiscfp16_R          fneg_advsimd.xml
+- FNEG_asimdmisc_R              fneg_advsimd.xml
+- FRECPE_asimdmiscfp16_R        frecpe_advsimd.xml
+- FRECPE_asimdmisc_R            frecpe_advsimd.xml
+- FRINTA_asimdmiscfp16_R        frinta_advsimd.xml
+- FRINTA_asimdmisc_R            frinta_advsimd.xml
+- FRINTI_asimdmiscfp16_R        frinti_advsimd.xml
+- FRINTI_asimdmisc_R            frinti_advsimd.xml
+- FRINTM_asimdmiscfp16_R        frintm_advsimd.xml
+- FRINTM_asimdmisc_R            frintm_advsimd.xml
+- FRINTN_asimdmiscfp16_R        frintn_advsimd.xml
+- FRINTN_asimdmisc_R            frintn_advsimd.xml
+- FRINTP_asimdmiscfp16_R        frintp_advsimd.xml
+- FRINTP_asimdmisc_R            frintp_advsimd.xml
+- FRINTX_asimdmiscfp16_R        frintx_advsimd.xml
+- FRINTX_asimdmisc_R            frintx_advsimd.xml
+- FRINTZ_asimdmiscfp16_R        frintz_advsimd.xml
+- FRINTZ_asimdmisc_R            frintz_advsimd.xml
+- FRSQRTE_asimdmiscfp16_R       frsqrte_advsimd.xml
+- FRSQRTE_asimdmisc_R           frsqrte_advsimd.xml
+- FSQRT_asimdmiscfp16_R         fsqrt_advsimd.xml
+- FSQRT_asimdmisc_R             fsqrt_advsimd.xml
+- NEG_asimdmisc_R               neg_advsimd.xml
+- NOT_asimdmisc_R               not_advsimd.xml
+- RBIT_asimdmisc_R              rbit_advsimd.xml
+- REV16_asimdmisc_R             rev16_advsimd.xml
+- REV32_asimdmisc_R             rev32_advsimd.xml
+- REV64_asimdmisc_R             rev64_advsimd.xml
+- SCVTF_asimdmiscfp16_R         scvtf_advsimd_int.xml
+- SCVTF_asimdmisc_R             scvtf_advsimd_int.xml
+- SQABS_asimdmisc_R             sqabs_advsimd.xml
+- SQNEG_asimdmisc_R             sqneg_advsimd.xml
+- SUQADD_asimdmisc_R            suqadd_advsimd.xml
+- UCVTF_asimdmiscfp16_R         ucvtf_advsimd_int.xml
+- UCVTF_asimdmisc_R             ucvtf_advsimd_int.xml
+- URECPE_asimdmisc_R            urecpe_advsimd.xml
+- URSQRTE_asimdmisc_R           ursqrte_advsimd.xml
+- USQADD_asimdmisc_R            usqadd_advsimd.xml
 
 # "  <Vd>.<T>, <Vn>.<T>, #0"
 type: 
 fields: 
-- CMEQ      cmeq_advsimd_zero.xml
-- CMGE      cmge_advsimd_zero.xml
-- CMGT      cmgt_advsimd_zero.xml
-- CMLE      cmle_advsimd.xml
-- CMLT      cmlt_advsimd.xml
+- CMEQ_asimdmisc_Z              cmeq_advsimd_zero.xml
+- CMGE_asimdmisc_Z              cmge_advsimd_zero.xml
+- CMGT_asimdmisc_Z              cmgt_advsimd_zero.xml
+- CMLE_asimdmisc_Z              cmle_advsimd.xml
+- CMLT_asimdmisc_Z              cmlt_advsimd.xml
 
 # "  <Vd>.<T>, <Vn>.<T>, #0.0"
 type: 
 fields: 
-- FCMEQ     fcmeq_advsimd_zero.xml
-- FCMEQ     fcmeq_advsimd_zero.xml
-- FCMGE     fcmge_advsimd_zero.xml
-- FCMGE     fcmge_advsimd_zero.xml
-- FCMGT     fcmgt_advsimd_zero.xml
-- FCMGT     fcmgt_advsimd_zero.xml
-- FCMLE     fcmle_advsimd.xml
-- FCMLE     fcmle_advsimd.xml
-- FCMLT     fcmlt_advsimd.xml
-- FCMLT     fcmlt_advsimd.xml
+- FCMEQ_asimdmiscfp16_FZ        fcmeq_advsimd_zero.xml
+- FCMEQ_asimdmisc_FZ            fcmeq_advsimd_zero.xml
+- FCMGE_asimdmiscfp16_FZ        fcmge_advsimd_zero.xml
+- FCMGE_asimdmisc_FZ            fcmge_advsimd_zero.xml
+- FCMGT_asimdmiscfp16_FZ        fcmgt_advsimd_zero.xml
+- FCMGT_asimdmisc_FZ            fcmgt_advsimd_zero.xml
+- FCMLE_asimdmiscfp16_FZ        fcmle_advsimd.xml
+- FCMLE_asimdmisc_FZ            fcmle_advsimd.xml
+- FCMLT_asimdmiscfp16_FZ        fcmlt_advsimd.xml
+- FCMLT_asimdmisc_FZ            fcmlt_advsimd.xml
 
 # "  <Vd>.<T>, <Vn>.<T>, #<fbits>"
 type: 
 fields: 
-- FCVTZS    fcvtzs_advsimd_fix.xml
-- FCVTZU    fcvtzu_advsimd_fix.xml
-- SCVTF     scvtf_advsimd_fix.xml
-- UCVTF     ucvtf_advsimd_fix.xml
+- FCVTZS_asimdshf_C             fcvtzs_advsimd_fix.xml
+- FCVTZU_asimdshf_C             fcvtzu_advsimd_fix.xml
+- SCVTF_asimdshf_C              scvtf_advsimd_fix.xml
+- UCVTF_asimdshf_C              ucvtf_advsimd_fix.xml
 
 # "  <Vd>.<T>, <Vn>.<T>, #<shift>"
 type: 
 fields: 
-- SHL       shl_advsimd.xml
-- SLI       sli_advsimd.xml
-- SQSHL     sqshl_advsimd_imm.xml
-- SQSHLU    sqshlu_advsimd.xml
-- SRI       sri_advsimd.xml
-- SRSHR     srshr_advsimd.xml
-- SRSRA     srsra_advsimd.xml
-- SSHR      sshr_advsimd.xml
-- SSRA      ssra_advsimd.xml
-- UQSHL     uqshl_advsimd_imm.xml
-- URSHR     urshr_advsimd.xml
-- URSRA     ursra_advsimd.xml
-- USHR      ushr_advsimd.xml
-- USRA      usra_advsimd.xml
+- SHL_asimdshf_R                shl_advsimd.xml
+- SLI_asimdshf_R                sli_advsimd.xml
+- SQSHL_asimdshf_R              sqshl_advsimd_imm.xml
+- SQSHLU_asimdshf_R             sqshlu_advsimd.xml
+- SRI_asimdshf_R                sri_advsimd.xml
+- SRSHR_asimdshf_R              srshr_advsimd.xml
+- SRSRA_asimdshf_R              srsra_advsimd.xml
+- SSHR_asimdshf_R               sshr_advsimd.xml
+- SSRA_asimdshf_R               ssra_advsimd.xml
+- UQSHL_asimdshf_R              uqshl_advsimd_imm.xml
+- URSHR_asimdshf_R              urshr_advsimd.xml
+- URSRA_asimdshf_R              ursra_advsimd.xml
+- USHR_asimdshf_R               ushr_advsimd.xml
+- USRA_asimdshf_R               usra_advsimd.xml
 
 # "  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>"
 type: 
 fields: 
-- ADD       add_advsimd.xml
-- ADDP      addp_advsimd_vec.xml
-- AND       and_advsimd.xml
-- BIC       bic_advsimd_reg.xml
-- BIF       bif_advsimd.xml
-- BIT       bit_advsimd.xml
-- BSL       bsl_advsimd.xml
-- CMEQ      cmeq_advsimd_reg.xml
-- CMGE      cmge_advsimd_reg.xml
-- CMGT      cmgt_advsimd_reg.xml
-- CMHI      cmhi_advsimd.xml
-- CMHS      cmhs_advsimd.xml
-- CMTST     cmtst_advsimd.xml
-- EOR       eor_advsimd.xml
-- FABD      fabd_advsimd.xml
-- FABD      fabd_advsimd.xml
-- FACGE     facge_advsimd.xml
-- FACGE     facge_advsimd.xml
-- FACGT     facgt_advsimd.xml
-- FACGT     facgt_advsimd.xml
-- FADD      fadd_advsimd.xml
-- FADD      fadd_advsimd.xml
-- FADDP     faddp_advsimd_vec.xml
-- FADDP     faddp_advsimd_vec.xml
-- FCMEQ     fcmeq_advsimd_reg.xml
-- FCMEQ     fcmeq_advsimd_reg.xml
-- FCMGE     fcmge_advsimd_reg.xml
-- FCMGE     fcmge_advsimd_reg.xml
-- FCMGT     fcmgt_advsimd_reg.xml
-- FCMGT     fcmgt_advsimd_reg.xml
-- FDIV      fdiv_advsimd.xml
-- FDIV      fdiv_advsimd.xml
-- FMAX      fmax_advsimd.xml
-- FMAX      fmax_advsimd.xml
-- FMAXNM    fmaxnm_advsimd.xml
-- FMAXNM    fmaxnm_advsimd.xml
-- FMAXNMP   fmaxnmp_advsimd_vec.xml
-- FMAXNMP   fmaxnmp_advsimd_vec.xml
-- FMAXP     fmaxp_advsimd_vec.xml
-- FMAXP     fmaxp_advsimd_vec.xml
-- FMIN      fmin_advsimd.xml
-- FMIN      fmin_advsimd.xml
-- FMINNM    fminnm_advsimd.xml
-- FMINNM    fminnm_advsimd.xml
-- FMINNMP   fminnmp_advsimd_vec.xml
-- FMINNMP   fminnmp_advsimd_vec.xml
-- FMINP     fminp_advsimd_vec.xml
-- FMINP     fminp_advsimd_vec.xml
-- FMLA      fmla_advsimd_vec.xml
-- FMLA      fmla_advsimd_vec.xml
-- FMLS      fmls_advsimd_vec.xml
-- FMLS      fmls_advsimd_vec.xml
-- FMUL      fmul_advsimd_vec.xml
-- FMUL      fmul_advsimd_vec.xml
-- FMULX     fmulx_advsimd_vec.xml
-- FMULX     fmulx_advsimd_vec.xml
-- FRECPS    frecps_advsimd.xml
-- FRECPS    frecps_advsimd.xml
-- FRSQRTS   frsqrts_advsimd.xml
-- FRSQRTS   frsqrts_advsimd.xml
-- FSUB      fsub_advsimd.xml
-- FSUB      fsub_advsimd.xml
-- MLA       mla_advsimd_vec.xml
-- MLS       mls_advsimd_vec.xml
-- MUL       mul_advsimd_vec.xml
-- ORN       orn_advsimd.xml
-- ORR       orr_advsimd_reg.xml
-- PMUL      pmul_advsimd.xml
-- SABA      saba_advsimd.xml
-- SABD      sabd_advsimd.xml
-- SHADD     shadd_advsimd.xml
-- SHSUB     shsub_advsimd.xml
-- SMAX      smax_advsimd.xml
-- SMAXP     smaxp_advsimd.xml
-- SMIN      smin_advsimd.xml
-- SMINP     sminp_advsimd.xml
-- SQADD     sqadd_advsimd.xml
-- SQDMULH   sqdmulh_advsimd_vec.xml
-- SQRDMLAH  sqrdmlah_advsimd_vec.xml
-- SQRDMLSH  sqrdmlsh_advsimd_vec.xml
-- SQRDMULH  sqrdmulh_advsimd_vec.xml
-- SQRSHL    sqrshl_advsimd.xml
-- SQSHL     sqshl_advsimd_reg.xml
-- SQSUB     sqsub_advsimd.xml
-- SRHADD    srhadd_advsimd.xml
-- SRSHL     srshl_advsimd.xml
-- SSHL      sshl_advsimd.xml
-- SUB       sub_advsimd.xml
-- TRN1      trn1_advsimd.xml
-- TRN2      trn2_advsimd.xml
-- UABA      uaba_advsimd.xml
-- UABD      uabd_advsimd.xml
-- UHADD     uhadd_advsimd.xml
-- UHSUB     uhsub_advsimd.xml
-- UMAX      umax_advsimd.xml
-- UMAXP     umaxp_advsimd.xml
-- UMIN      umin_advsimd.xml
-- UMINP     uminp_advsimd.xml
-- UQADD     uqadd_advsimd.xml
-- UQRSHL    uqrshl_advsimd.xml
-- UQSHL     uqshl_advsimd_reg.xml
-- UQSUB     uqsub_advsimd.xml
-- URHADD    urhadd_advsimd.xml
-- URSHL     urshl_advsimd.xml
-- USHL      ushl_advsimd.xml
-- UZP1      uzp1_advsimd.xml
-- UZP2      uzp2_advsimd.xml
-- ZIP1      zip1_advsimd.xml
-- ZIP2      zip2_advsimd.xml
+- ADD_asimdsame_only            add_advsimd.xml
+- ADDP_asimdsame_only           addp_advsimd_vec.xml
+- AND_asimdsame_only            and_advsimd.xml
+- BIC_asimdsame_only            bic_advsimd_reg.xml
+- BIF_asimdsame_only            bif_advsimd.xml
+- BIT_asimdsame_only            bit_advsimd.xml
+- BSL_asimdsame_only            bsl_advsimd.xml
+- CMEQ_asimdsame_only           cmeq_advsimd_reg.xml
+- CMGE_asimdsame_only           cmge_advsimd_reg.xml
+- CMGT_asimdsame_only           cmgt_advsimd_reg.xml
+- CMHI_asimdsame_only           cmhi_advsimd.xml
+- CMHS_asimdsame_only           cmhs_advsimd.xml
+- CMTST_asimdsame_only          cmtst_advsimd.xml
+- EOR_asimdsame_only            eor_advsimd.xml
+- FABD_asimdsamefp16_only       fabd_advsimd.xml
+- FABD_asimdsame_only           fabd_advsimd.xml
+- FACGE_asimdsamefp16_only      facge_advsimd.xml
+- FACGE_asimdsame_only          facge_advsimd.xml
+- FACGT_asimdsamefp16_only      facgt_advsimd.xml
+- FACGT_asimdsame_only          facgt_advsimd.xml
+- FADD_asimdsamefp16_only       fadd_advsimd.xml
+- FADD_asimdsame_only           fadd_advsimd.xml
+- FADDP_asimdsamefp16_only      faddp_advsimd_vec.xml
+- FADDP_asimdsame_only          faddp_advsimd_vec.xml
+- FCMEQ_asimdsamefp16_only      fcmeq_advsimd_reg.xml
+- FCMEQ_asimdsame_only          fcmeq_advsimd_reg.xml
+- FCMGE_asimdsamefp16_only      fcmge_advsimd_reg.xml
+- FCMGE_asimdsame_only          fcmge_advsimd_reg.xml
+- FCMGT_asimdsamefp16_only      fcmgt_advsimd_reg.xml
+- FCMGT_asimdsame_only          fcmgt_advsimd_reg.xml
+- FDIV_asimdsamefp16_only       fdiv_advsimd.xml
+- FDIV_asimdsame_only           fdiv_advsimd.xml
+- FMAX_asimdsamefp16_only       fmax_advsimd.xml
+- FMAX_asimdsame_only           fmax_advsimd.xml
+- FMAXNM_asimdsamefp16_only     fmaxnm_advsimd.xml
+- FMAXNM_asimdsame_only         fmaxnm_advsimd.xml
+- FMAXNMP_asimdsamefp16_only    fmaxnmp_advsimd_vec.xml
+- FMAXNMP_asimdsame_only        fmaxnmp_advsimd_vec.xml
+- FMAXP_asimdsamefp16_only      fmaxp_advsimd_vec.xml
+- FMAXP_asimdsame_only          fmaxp_advsimd_vec.xml
+- FMIN_asimdsamefp16_only       fmin_advsimd.xml
+- FMIN_asimdsame_only           fmin_advsimd.xml
+- FMINNM_asimdsamefp16_only     fminnm_advsimd.xml
+- FMINNM_asimdsame_only         fminnm_advsimd.xml
+- FMINNMP_asimdsamefp16_only    fminnmp_advsimd_vec.xml
+- FMINNMP_asimdsame_only        fminnmp_advsimd_vec.xml
+- FMINP_asimdsamefp16_only      fminp_advsimd_vec.xml
+- FMINP_asimdsame_only          fminp_advsimd_vec.xml
+- FMLA_asimdsamefp16_only       fmla_advsimd_vec.xml
+- FMLA_asimdsame_only           fmla_advsimd_vec.xml
+- FMLS_asimdsamefp16_only       fmls_advsimd_vec.xml
+- FMLS_asimdsame_only           fmls_advsimd_vec.xml
+- FMUL_asimdsamefp16_only       fmul_advsimd_vec.xml
+- FMUL_asimdsame_only           fmul_advsimd_vec.xml
+- FMULX_asimdsamefp16_only      fmulx_advsimd_vec.xml
+- FMULX_asimdsame_only          fmulx_advsimd_vec.xml
+- FRECPS_asimdsamefp16_only     frecps_advsimd.xml
+- FRECPS_asimdsame_only         frecps_advsimd.xml
+- FRSQRTS_asimdsamefp16_only    frsqrts_advsimd.xml
+- FRSQRTS_asimdsame_only        frsqrts_advsimd.xml
+- FSUB_asimdsamefp16_only       fsub_advsimd.xml
+- FSUB_asimdsame_only           fsub_advsimd.xml
+- MLA_asimdsame_only            mla_advsimd_vec.xml
+- MLS_asimdsame_only            mls_advsimd_vec.xml
+- MUL_asimdsame_only            mul_advsimd_vec.xml
+- ORN_asimdsame_only            orn_advsimd.xml
+- ORR_asimdsame_only            orr_advsimd_reg.xml
+- PMUL_asimdsame_only           pmul_advsimd.xml
+- SABA_asimdsame_only           saba_advsimd.xml
+- SABD_asimdsame_only           sabd_advsimd.xml
+- SHADD_asimdsame_only          shadd_advsimd.xml
+- SHSUB_asimdsame_only          shsub_advsimd.xml
+- SMAX_asimdsame_only           smax_advsimd.xml
+- SMAXP_asimdsame_only          smaxp_advsimd.xml
+- SMIN_asimdsame_only           smin_advsimd.xml
+- SMINP_asimdsame_only          sminp_advsimd.xml
+- SQADD_asimdsame_only          sqadd_advsimd.xml
+- SQDMULH_asimdsame_only        sqdmulh_advsimd_vec.xml
+- SQRDMLAH_asimdsame2_only      sqrdmlah_advsimd_vec.xml
+- SQRDMLSH_asimdsame2_only      sqrdmlsh_advsimd_vec.xml
+- SQRDMULH_asimdsame_only       sqrdmulh_advsimd_vec.xml
+- SQRSHL_asimdsame_only         sqrshl_advsimd.xml
+- SQSHL_asimdsame_only          sqshl_advsimd_reg.xml
+- SQSUB_asimdsame_only          sqsub_advsimd.xml
+- SRHADD_asimdsame_only         srhadd_advsimd.xml
+- SRSHL_asimdsame_only          srshl_advsimd.xml
+- SSHL_asimdsame_only           sshl_advsimd.xml
+- SUB_asimdsame_only            sub_advsimd.xml
+- TRN1_asimdperm_only           trn1_advsimd.xml
+- TRN2_asimdperm_only           trn2_advsimd.xml
+- UABA_asimdsame_only           uaba_advsimd.xml
+- UABD_asimdsame_only           uabd_advsimd.xml
+- UHADD_asimdsame_only          uhadd_advsimd.xml
+- UHSUB_asimdsame_only          uhsub_advsimd.xml
+- UMAX_asimdsame_only           umax_advsimd.xml
+- UMAXP_asimdsame_only          umaxp_advsimd.xml
+- UMIN_asimdsame_only           umin_advsimd.xml
+- UMINP_asimdsame_only          uminp_advsimd.xml
+- UQADD_asimdsame_only          uqadd_advsimd.xml
+- UQRSHL_asimdsame_only         uqrshl_advsimd.xml
+- UQSHL_asimdsame_only          uqshl_advsimd_reg.xml
+- UQSUB_asimdsame_only          uqsub_advsimd.xml
+- URHADD_asimdsame_only         urhadd_advsimd.xml
+- URSHL_asimdsame_only          urshl_advsimd.xml
+- USHL_asimdsame_only           ushl_advsimd.xml
+- UZP1_asimdperm_only           uzp1_advsimd.xml
+- UZP2_asimdperm_only           uzp2_advsimd.xml
+- ZIP1_asimdperm_only           zip1_advsimd.xml
+- ZIP2_asimdperm_only           zip2_advsimd.xml
 
 # "  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>, #<index>"
 type: 
 fields: 
-- EXT       ext_advsimd.xml
+- EXT_asimdext_only             ext_advsimd.xml
 
 # "  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>, #<rotate>"
 type: 
 fields: 
-- FCADD     fcadd_advsimd_vec.xml
-- FCMLA     fcmla_advsimd_vec.xml
+- FCADD_asimdsame2_C            fcadd_advsimd_vec.xml
+- FCMLA_asimdsame2_C            fcmla_advsimd_vec.xml
 
 # "  <Vd>.<T>, <Vn>.<T>, <Vm>.<Ts>[<index>]"
 type: 
 fields: 
-- FMLA      fmla_advsimd_elt.xml
-- FMLS      fmls_advsimd_elt.xml
-- FMUL      fmul_advsimd_elt.xml
-- FMULX     fmulx_advsimd_elt.xml
-- MLA       mla_advsimd_elt.xml
-- MLS       mls_advsimd_elt.xml
-- MUL       mul_advsimd_elt.xml
-- SQDMULH   sqdmulh_advsimd_elt.xml
-- SQRDMLAH  sqrdmlah_advsimd_elt.xml
-- SQRDMLSH  sqrdmlsh_advsimd_elt.xml
-- SQRDMULH  sqrdmulh_advsimd_elt.xml
+- FMLA_asimdelem_R_SD           fmla_advsimd_elt.xml
+- FMLS_asimdelem_R_SD           fmls_advsimd_elt.xml
+- FMUL_asimdelem_R_SD           fmul_advsimd_elt.xml
+- FMULX_asimdelem_R_SD          fmulx_advsimd_elt.xml
+- MLA_asimdelem_R               mla_advsimd_elt.xml
+- MLS_asimdelem_R               mls_advsimd_elt.xml
+- MUL_asimdelem_R               mul_advsimd_elt.xml
+- SQDMULH_asimdelem_R           sqdmulh_advsimd_elt.xml
+- SQRDMLAH_asimdelem_R          sqrdmlah_advsimd_elt.xml
+- SQRDMLSH_asimdelem_R          sqrdmlsh_advsimd_elt.xml
+- SQRDMULH_asimdelem_R          sqrdmulh_advsimd_elt.xml
 
 # "  <Vd>.<T>, <Vn>.<T>, <Vm>.<Ts>[<index>], #<rotate>"
 type: 
 fields: 
-- FCMLA     fcmla_advsimd_elt.xml
-- FCMLA     fcmla_advsimd_elt.xml
+- FCMLA_asimdelem_C_H           fcmla_advsimd_elt.xml
+- FCMLA_asimdelem_C_S           fcmla_advsimd_elt.xml
 
 # "  <Vd>.<T>, <Vn>.<T>, <Vm>.H[<index>]"
 type: 
 fields: 
-- FMLA      fmla_advsimd_elt.xml
-- FMLS      fmls_advsimd_elt.xml
-- FMUL      fmul_advsimd_elt.xml
-- FMULX     fmulx_advsimd_elt.xml
+- FMLA_asimdelem_RH_H           fmla_advsimd_elt.xml
+- FMLS_asimdelem_RH_H           fmls_advsimd_elt.xml
+- FMUL_asimdelem_RH_H           fmul_advsimd_elt.xml
+- FMULX_asimdelem_RH_H          fmulx_advsimd_elt.xml
 
 # "  <Vd>.<T>, <Vn>.<Ts>[<index>]"
 type: 
 fields: 
-- DUP       dup_advsimd_elt.xml
+- DUP_asimdins_DV_v             dup_advsimd_elt.xml
 
 # "  <Vd>.<Ta>, <Vn>.<Tb>"
 type: 
 fields: 
-- SADALP    sadalp_advsimd.xml
-- SADDLP    saddlp_advsimd.xml
-- UADALP    uadalp_advsimd.xml
-- UADDLP    uaddlp_advsimd.xml
+- SADALP_asimdmisc_P            sadalp_advsimd.xml
+- SADDLP_asimdmisc_P            saddlp_advsimd.xml
+- UADALP_asimdmisc_P            uadalp_advsimd.xml
+- UADDLP_asimdmisc_P            uaddlp_advsimd.xml
 
 # "  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.4B[<index>]"
 type: 
 fields: 
-- SDOT      sdot_advsimd_elt.xml
-- UDOT      udot_advsimd_elt.xml
+- SDOT_asimdelem_D              sdot_advsimd_elt.xml
+- UDOT_asimdelem_D              udot_advsimd_elt.xml
 
 # "  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.<Tb>"
 type: 
 fields: 
-- SDOT      sdot_advsimd_vec.xml
-- UDOT      udot_advsimd_vec.xml
+- SDOT_asimdsame2_D             sdot_advsimd_vec.xml
+- UDOT_asimdsame2_D             udot_advsimd_vec.xml
 
 # "  <Vd>.<Ta>, { <Vn>.16B }, <Vm>.<Ta>"
 type: 
 fields: 
-- TBL       tbl_advsimd.xml
-- TBX       tbx_advsimd.xml
+- TBL_asimdtbl_L1_1             tbl_advsimd.xml
+- TBX_asimdtbl_L1_1             tbx_advsimd.xml
 
 # "  <Vd>.<Ta>, { <Vn>.16B, <Vn+1>.16B }, <Vm>.<Ta>"
 type: 
 fields: 
-- TBL       tbl_advsimd.xml
-- TBX       tbx_advsimd.xml
+- TBL_asimdtbl_L2_2             tbl_advsimd.xml
+- TBX_asimdtbl_L2_2             tbx_advsimd.xml
 
 # "  <Vd>.<Ta>, { <Vn>.16B, <Vn+1>.16B, <Vn+2>.16B }, <Vm>.<Ta>"
 type: 
 fields: 
-- TBL       tbl_advsimd.xml
-- TBX       tbx_advsimd.xml
+- TBL_asimdtbl_L3_3             tbl_advsimd.xml
+- TBX_asimdtbl_L3_3             tbx_advsimd.xml
 
 # "  <Vd>.<Ta>, { <Vn>.16B, <Vn+1>.16B, <Vn+2>.16B, <Vn+3>.16B }, <Vm>.<Ta>"
 type: 
 fields: 
-- TBL       tbl_advsimd.xml
-- TBX       tbx_advsimd.xml
+- TBL_asimdtbl_L4_4             tbl_advsimd.xml
+- TBX_asimdtbl_L4_4             tbx_advsimd.xml
 
 # "  <Vd>.<Ts>[<index1>], <Vn>.<Ts>[<index2>]"
 type: 
 fields: 
-- INS       ins_advsimd_elt.xml
+- INS_asimdins_IV_v             ins_advsimd_elt.xml
 
 # "  <Vd>.<Ts>[<index>], <R><n>"
 type: 
 fields: 
-- INS       ins_advsimd_gen.xml
+- INS_asimdins_IR_r             ins_advsimd_gen.xml
 
 # "  <Vd>.D[1], <Xn>"
 type: 
 fields: 
-- FMOV      fmov_float_gen.xml
+- FMOV_V64I_float2int           fmov_float_gen.xml
 
 # "  <Vd>.S, <Vn>.S, <Vm>.S[<imm2>]"
 type: 
 fields: 
-- SM3TT2B   sm3tt2b_advsimd.xml
+- SM3TT2B_VVV_crypto3_imm2      sm3tt2b_advsimd.xml
 
 # "  <Wd>, #<imm>{, LSL #<shift>}"
 type: 
 fields: 
-- MOVK      movk.xml
-- MOVN      movn.xml
-- MOVZ      movz.xml
+- MOVK_32_movewide              movk.xml
+- MOVN_32_movewide              movn.xml
+- MOVZ_32_movewide              movz.xml
 
 # "  <Wd>, <Dn>"
 type: 
 fields: 
-- FCVTAS    fcvtas_float.xml
-- FCVTAU    fcvtau_float.xml
-- FCVTMS    fcvtms_float.xml
-- FCVTMU    fcvtmu_float.xml
-- FCVTNS    fcvtns_float.xml
-- FCVTNU    fcvtnu_float.xml
-- FCVTPS    fcvtps_float.xml
-- FCVTPU    fcvtpu_float.xml
-- FCVTZS    fcvtzs_float_int.xml
-- FCVTZU    fcvtzu_float_int.xml
-- FJCVTZS   fjcvtzs.xml
+- FCVTAS_32D_float2int          fcvtas_float.xml
+- FCVTAU_32D_float2int          fcvtau_float.xml
+- FCVTMS_32D_float2int          fcvtms_float.xml
+- FCVTMU_32D_float2int          fcvtmu_float.xml
+- FCVTNS_32D_float2int          fcvtns_float.xml
+- FCVTNU_32D_float2int          fcvtnu_float.xml
+- FCVTPS_32D_float2int          fcvtps_float.xml
+- FCVTPU_32D_float2int          fcvtpu_float.xml
+- FCVTZS_32D_float2int          fcvtzs_float_int.xml
+- FCVTZU_32D_float2int          fcvtzu_float_int.xml
+- FJCVTZS_32D_float2int         fjcvtzs.xml
 
 # "  <Wd>, <Dn>, #<fbits>"
 type: 
 fields: 
-- FCVTZS    fcvtzs_float_fix.xml
-- FCVTZU    fcvtzu_float_fix.xml
+- FCVTZS_32D_float2fix          fcvtzs_float_fix.xml
+- FCVTZU_32D_float2fix          fcvtzu_float_fix.xml
 
 # "  <Wd>, <Hn>"
 type: 
 fields: 
-- FCVTAS    fcvtas_float.xml
-- FCVTAU    fcvtau_float.xml
-- FCVTMS    fcvtms_float.xml
-- FCVTMU    fcvtmu_float.xml
-- FCVTNS    fcvtns_float.xml
-- FCVTNU    fcvtnu_float.xml
-- FCVTPS    fcvtps_float.xml
-- FCVTPU    fcvtpu_float.xml
-- FCVTZS    fcvtzs_float_int.xml
-- FCVTZU    fcvtzu_float_int.xml
-- FMOV      fmov_float_gen.xml
+- FCVTAS_32H_float2int          fcvtas_float.xml
+- FCVTAU_32H_float2int          fcvtau_float.xml
+- FCVTMS_32H_float2int          fcvtms_float.xml
+- FCVTMU_32H_float2int          fcvtmu_float.xml
+- FCVTNS_32H_float2int          fcvtns_float.xml
+- FCVTNU_32H_float2int          fcvtnu_float.xml
+- FCVTPS_32H_float2int          fcvtps_float.xml
+- FCVTPU_32H_float2int          fcvtpu_float.xml
+- FCVTZS_32H_float2int          fcvtzs_float_int.xml
+- FCVTZU_32H_float2int          fcvtzu_float_int.xml
+- FMOV_32H_float2int            fmov_float_gen.xml
 
 # "  <Wd>, <Hn>, #<fbits>"
 type: 
 fields: 
-- FCVTZS    fcvtzs_float_fix.xml
-- FCVTZU    fcvtzu_float_fix.xml
+- FCVTZS_32H_float2fix          fcvtzs_float_fix.xml
+- FCVTZU_32H_float2fix          fcvtzu_float_fix.xml
 
 # "  <Wd>, <Sn>"
 type: 
 fields: 
-- FCVTAS    fcvtas_float.xml
-- FCVTAU    fcvtau_float.xml
-- FCVTMS    fcvtms_float.xml
-- FCVTMU    fcvtmu_float.xml
-- FCVTNS    fcvtns_float.xml
-- FCVTNU    fcvtnu_float.xml
-- FCVTPS    fcvtps_float.xml
-- FCVTPU    fcvtpu_float.xml
-- FCVTZS    fcvtzs_float_int.xml
-- FCVTZU    fcvtzu_float_int.xml
-- FMOV      fmov_float_gen.xml
+- FCVTAS_32S_float2int          fcvtas_float.xml
+- FCVTAU_32S_float2int          fcvtau_float.xml
+- FCVTMS_32S_float2int          fcvtms_float.xml
+- FCVTMU_32S_float2int          fcvtmu_float.xml
+- FCVTNS_32S_float2int          fcvtns_float.xml
+- FCVTNU_32S_float2int          fcvtnu_float.xml
+- FCVTPS_32S_float2int          fcvtps_float.xml
+- FCVTPU_32S_float2int          fcvtpu_float.xml
+- FCVTZS_32S_float2int          fcvtzs_float_int.xml
+- FCVTZU_32S_float2int          fcvtzu_float_int.xml
+- FMOV_32S_float2int            fmov_float_gen.xml
 
 # "  <Wd>, <Sn>, #<fbits>"
 type: 
 fields: 
-- FCVTZS    fcvtzs_float_fix.xml
-- FCVTZU    fcvtzu_float_fix.xml
+- FCVTZS_32S_float2fix          fcvtzs_float_fix.xml
+- FCVTZU_32S_float2fix          fcvtzu_float_fix.xml
 
 # "  <Wd>, <Vn>.<Ts>[<index>]"
 type: 
 fields: 
-- SMOV      smov_advsimd.xml
-- UMOV      umov_advsimd.xml
+- SMOV_asimdins_W_w             smov_advsimd.xml
+- UMOV_asimdins_W_w             umov_advsimd.xml
 
 # "  <Wd>, <Wn>"
 type: 
 fields: 
-- CLS       cls_int.xml
-- CLZ       clz_int.xml
-- RBIT      rbit_int.xml
-- REV       rev.xml
-- REV16     rev16_int.xml
+- CLS_32_dp_1src                cls_int.xml
+- CLZ_32_dp_1src                clz_int.xml
+- RBIT_32_dp_1src               rbit_int.xml
+- REV_32_dp_1src                rev.xml
+- REV16_32_dp_1src              rev16_int.xml
 
 # "  <Wd>, <Wn>, #<imm>"
 type: 
 fields: 
-- ANDS      ands_log_imm.xml
+- ANDS_32S_log_imm              ands_log_imm.xml
 
 # "  <Wd>, <Wn>, #<immr>, #<imms>"
 type: 
 fields: 
-- BFM       bfm.xml
-- SBFM      sbfm.xml
-- UBFM      ubfm.xml
+- BFM_32M_bitfield              bfm.xml
+- SBFM_32M_bitfield             sbfm.xml
+- UBFM_32M_bitfield             ubfm.xml
 
 # "  <Wd>, <Wn>, <Wm>"
 type: 
 fields: 
-- ADC       adc.xml
-- ADCS      adcs.xml
-- ASRV      asrv.xml
-- CRC32B    crc32.xml
-- CRC32H    crc32.xml
-- CRC32W    crc32.xml
-- CRC32CB   crc32c.xml
-- CRC32CH   crc32c.xml
-- CRC32CW   crc32c.xml
-- LSLV      lslv.xml
-- LSRV      lsrv.xml
-- RORV      rorv.xml
-- SBC       sbc.xml
-- SBCS      sbcs.xml
-- SDIV      sdiv.xml
-- UDIV      udiv.xml
+- ADC_32_addsub_carry           adc.xml
+- ADCS_32_addsub_carry          adcs.xml
+- ASRV_32_dp_2src               asrv.xml
+- CRC32B_32C_dp_2src            crc32.xml
+- CRC32H_32C_dp_2src            crc32.xml
+- CRC32W_32C_dp_2src            crc32.xml
+- CRC32CB_32C_dp_2src           crc32c.xml
+- CRC32CH_32C_dp_2src           crc32c.xml
+- CRC32CW_32C_dp_2src           crc32c.xml
+- LSLV_32_dp_2src               lslv.xml
+- LSRV_32_dp_2src               lsrv.xml
+- RORV_32_dp_2src               rorv.xml
+- SBC_32_addsub_carry           sbc.xml
+- SBCS_32_addsub_carry          sbcs.xml
+- SDIV_32_dp_2src               sdiv.xml
+- UDIV_32_dp_2src               udiv.xml
 
 # "  <Wd>, <Wn>, <Wm>, #<lsb>"
 type: 
 fields: 
-- EXTR      extr.xml
+- EXTR_32_extract               extr.xml
 
 # "  <Wd>, <Wn>, <Wm>, <Wa>"
 type: 
 fields: 
-- MADD      madd.xml
-- MSUB      msub.xml
+- MADD_32A_dp_3src              madd.xml
+- MSUB_32A_dp_3src              msub.xml
 
 # "  <Wd>, <Wn>, <Wm>, <cond>"
 type: 
 fields: 
-- CSEL      csel.xml
-- CSINC     csinc.xml
-- CSINV     csinv.xml
-- CSNEG     csneg.xml
+- CSEL_32_condsel               csel.xml
+- CSINC_32_condsel              csinc.xml
+- CSINV_32_condsel              csinv.xml
+- CSNEG_32_condsel              csneg.xml
 
 # "  <Wd>, <Wn>, <Wm>{, <shift> #<amount>}"
 type: 
 fields: 
-- ADD       add_addsub_shift.xml
-- ADDS      adds_addsub_shift.xml
-- AND       and_log_shift.xml
-- ANDS      ands_log_shift.xml
-- BIC       bic_log_shift.xml
-- BICS      bics.xml
-- EON       eon.xml
-- EOR       eor_log_shift.xml
-- ORN       orn_log_shift.xml
-- ORR       orr_log_shift.xml
-- SUB       sub_addsub_shift.xml
-- SUBS      subs_addsub_shift.xml
+- ADD_32_addsub_shift           add_addsub_shift.xml
+- ADDS_32_addsub_shift          adds_addsub_shift.xml
+- AND_32_log_shift              and_log_shift.xml
+- ANDS_32_log_shift             ands_log_shift.xml
+- BIC_32_log_shift              bic_log_shift.xml
+- BICS_32_log_shift             bics.xml
+- EON_32_log_shift              eon.xml
+- EOR_32_log_shift              eor_log_shift.xml
+- ORN_32_log_shift              orn_log_shift.xml
+- ORR_32_log_shift              orr_log_shift.xml
+- SUB_32_addsub_shift           sub_addsub_shift.xml
+- SUBS_32_addsub_shift          subs_addsub_shift.xml
 
 # "  <Wd>, <Wn>, <Xm>"
 type: 
 fields: 
-- CRC32X    crc32.xml
-- CRC32CX   crc32c.xml
+- CRC32X_64C_dp_2src            crc32.xml
+- CRC32CX_64C_dp_2src           crc32c.xml
 
 # "  <Wd>, <Wn|WSP>, #<imm>{, <shift>}"
 type: 
 fields: 
-- ADDS      adds_addsub_imm.xml
-- SUBS      subs_addsub_imm.xml
+- ADDS_32S_addsub_imm           adds_addsub_imm.xml
+- SUBS_32S_addsub_imm           subs_addsub_imm.xml
 
 # "  <Wd>, <Wn|WSP>, <Wm>{, <extend> {#<amount>}}"
 type: 
 fields: 
-- ADDS      adds_addsub_ext.xml
-- SUBS      subs_addsub_ext.xml
+- ADDS_32S_addsub_ext           adds_addsub_ext.xml
+- SUBS_32S_addsub_ext           subs_addsub_ext.xml
 
 # "  <Wd|WSP>, <Wn>, #<imm>"
 type: 
 fields: 
-- AND       and_log_imm.xml
-- EOR       eor_log_imm.xml
-- ORR       orr_log_imm.xml
+- AND_32_log_imm                and_log_imm.xml
+- EOR_32_log_imm                eor_log_imm.xml
+- ORR_32_log_imm                orr_log_imm.xml
 
 # "  <Wd|WSP>, <Wn|WSP>, #<imm>{, <shift>}"
 type: 
 fields: 
-- ADD       add_addsub_imm.xml
-- SUB       sub_addsub_imm.xml
+- ADD_32_addsub_imm             add_addsub_imm.xml
+- SUB_32_addsub_imm             sub_addsub_imm.xml
 
 # "  <Wd|WSP>, <Wn|WSP>, <Wm>{, <extend> {#<amount>}}"
 type: 
 fields: 
-- ADD       add_addsub_ext.xml
-- SUB       sub_addsub_ext.xml
+- ADD_32_addsub_ext             add_addsub_ext.xml
+- SUB_32_addsub_ext             sub_addsub_ext.xml
 
 # "  <Wn>, #<imm>, #<nzcv>, <cond>"
 type: 
 fields: 
-- CCMN      ccmn_imm.xml
-- CCMP      ccmp_imm.xml
+- CCMN_32_condcmp_imm           ccmn_imm.xml
+- CCMP_32_condcmp_imm           ccmp_imm.xml
 
 # "  <Wn>, <Wm>, #<nzcv>, <cond>"
 type: 
 fields: 
-- CCMN      ccmn_reg.xml
-- CCMP      ccmp_reg.xml
+- CCMN_32_condcmp_reg           ccmn_reg.xml
+- CCMP_32_condcmp_reg           ccmp_reg.xml
 
 # "  <Ws>, <W(s+1)>, <Wt>, <W(t+1)>, [<Xn|SP>{,#0}]"
 type: 
 fields: 
-- CASP      casp.xml
-- CASPA     casp.xml
-- CASPAL    casp.xml
-- CASPL     casp.xml
+- CASP_CP32_ldstexcl            casp.xml
+- CASPA_CP32_ldstexcl           casp.xml
+- CASPAL_CP32_ldstexcl          casp.xml
+- CASPL_CP32_ldstexcl           casp.xml
 
 # "  <Ws>, <Wt1>, <Wt2>, [<Xn|SP>{,#0}]"
 type: 
 fields: 
-- STLXP     stlxp.xml
-- STXP      stxp.xml
+- STLXP_SP32_ldstexcl           stlxp.xml
+- STXP_SP32_ldstexcl            stxp.xml
 
 # "  <Ws>, <Wt>, [<Xn|SP>]"
 type: 
 fields: 
-- LDADD     ldadd.xml
-- LDADDA    ldadd.xml
-- LDADDAL   ldadd.xml
-- LDADDL    ldadd.xml
-- LDADDAB   ldaddb.xml
-- LDADDALB  ldaddb.xml
-- LDADDB    ldaddb.xml
-- LDADDLB   ldaddb.xml
-- LDADDAH   ldaddh.xml
-- LDADDALH  ldaddh.xml
-- LDADDH    ldaddh.xml
-- LDADDLH   ldaddh.xml
-- LDCLR     ldclr.xml
-- LDCLRA    ldclr.xml
-- LDCLRAL   ldclr.xml
-- LDCLRL    ldclr.xml
-- LDCLRAB   ldclrb.xml
-- LDCLRALB  ldclrb.xml
-- LDCLRB    ldclrb.xml
-- LDCLRLB   ldclrb.xml
-- LDCLRAH   ldclrh.xml
-- LDCLRALH  ldclrh.xml
-- LDCLRH    ldclrh.xml
-- LDCLRLH   ldclrh.xml
-- LDEOR     ldeor.xml
-- LDEORA    ldeor.xml
-- LDEORAL   ldeor.xml
-- LDEORL    ldeor.xml
-- LDEORAB   ldeorb.xml
-- LDEORALB  ldeorb.xml
-- LDEORB    ldeorb.xml
-- LDEORLB   ldeorb.xml
-- LDEORAH   ldeorh.xml
-- LDEORALH  ldeorh.xml
-- LDEORH    ldeorh.xml
-- LDEORLH   ldeorh.xml
-- LDSET     ldset.xml
-- LDSETA    ldset.xml
-- LDSETAL   ldset.xml
-- LDSETL    ldset.xml
-- LDSETAB   ldsetb.xml
-- LDSETALB  ldsetb.xml
-- LDSETB    ldsetb.xml
-- LDSETLB   ldsetb.xml
-- LDSETAH   ldseth.xml
-- LDSETALH  ldseth.xml
-- LDSETH    ldseth.xml
-- LDSETLH   ldseth.xml
-- LDSMAX    ldsmax.xml
-- LDSMAXA   ldsmax.xml
-- LDSMAXAL  ldsmax.xml
-- LDSMAXL   ldsmax.xml
-- LDSMAXAB  ldsmaxb.xml
-- LDSMAXALB ldsmaxb.xml
-- LDSMAXB   ldsmaxb.xml
-- LDSMAXLB  ldsmaxb.xml
-- LDSMAXAH  ldsmaxh.xml
-- LDSMAXALH ldsmaxh.xml
-- LDSMAXH   ldsmaxh.xml
-- LDSMAXLH  ldsmaxh.xml
-- LDSMIN    ldsmin.xml
-- LDSMINA   ldsmin.xml
-- LDSMINAL  ldsmin.xml
-- LDSMINL   ldsmin.xml
-- LDSMINAB  ldsminb.xml
-- LDSMINALB ldsminb.xml
-- LDSMINB   ldsminb.xml
-- LDSMINLB  ldsminb.xml
-- LDSMINAH  ldsminh.xml
-- LDSMINALH ldsminh.xml
-- LDSMINH   ldsminh.xml
-- LDSMINLH  ldsminh.xml
-- LDUMAX    ldumax.xml
-- LDUMAXA   ldumax.xml
-- LDUMAXAL  ldumax.xml
-- LDUMAXL   ldumax.xml
-- LDUMAXAB  ldumaxb.xml
-- LDUMAXALB ldumaxb.xml
-- LDUMAXB   ldumaxb.xml
-- LDUMAXLB  ldumaxb.xml
-- LDUMAXAH  ldumaxh.xml
-- LDUMAXALH ldumaxh.xml
-- LDUMAXH   ldumaxh.xml
-- LDUMAXLH  ldumaxh.xml
-- LDUMIN    ldumin.xml
-- LDUMINA   ldumin.xml
-- LDUMINAL  ldumin.xml
-- LDUMINL   ldumin.xml
-- LDUMINAB  lduminb.xml
-- LDUMINALB lduminb.xml
-- LDUMINB   lduminb.xml
-- LDUMINLB  lduminb.xml
-- LDUMINAH  lduminh.xml
-- LDUMINALH lduminh.xml
-- LDUMINH   lduminh.xml
-- LDUMINLH  lduminh.xml
-- SWP       swp.xml
-- SWPA      swp.xml
-- SWPAL     swp.xml
-- SWPL      swp.xml
-- SWPAB     swpb.xml
-- SWPALB    swpb.xml
-- SWPB      swpb.xml
-- SWPLB     swpb.xml
-- SWPAH     swph.xml
-- SWPALH    swph.xml
-- SWPH      swph.xml
-- SWPLH     swph.xml
+- LDADD_32_memop                ldadd.xml
+- LDADDA_32_memop               ldadd.xml
+- LDADDAL_32_memop              ldadd.xml
+- LDADDL_32_memop               ldadd.xml
+- LDADDAB_32_memop              ldaddb.xml
+- LDADDALB_32_memop             ldaddb.xml
+- LDADDB_32_memop               ldaddb.xml
+- LDADDLB_32_memop              ldaddb.xml
+- LDADDAH_32_memop              ldaddh.xml
+- LDADDALH_32_memop             ldaddh.xml
+- LDADDH_32_memop               ldaddh.xml
+- LDADDLH_32_memop              ldaddh.xml
+- LDCLR_32_memop                ldclr.xml
+- LDCLRA_32_memop               ldclr.xml
+- LDCLRAL_32_memop              ldclr.xml
+- LDCLRL_32_memop               ldclr.xml
+- LDCLRAB_32_memop              ldclrb.xml
+- LDCLRALB_32_memop             ldclrb.xml
+- LDCLRB_32_memop               ldclrb.xml
+- LDCLRLB_32_memop              ldclrb.xml
+- LDCLRAH_32_memop              ldclrh.xml
+- LDCLRALH_32_memop             ldclrh.xml
+- LDCLRH_32_memop               ldclrh.xml
+- LDCLRLH_32_memop              ldclrh.xml
+- LDEOR_32_memop                ldeor.xml
+- LDEORA_32_memop               ldeor.xml
+- LDEORAL_32_memop              ldeor.xml
+- LDEORL_32_memop               ldeor.xml
+- LDEORAB_32_memop              ldeorb.xml
+- LDEORALB_32_memop             ldeorb.xml
+- LDEORB_32_memop               ldeorb.xml
+- LDEORLB_32_memop              ldeorb.xml
+- LDEORAH_32_memop              ldeorh.xml
+- LDEORALH_32_memop             ldeorh.xml
+- LDEORH_32_memop               ldeorh.xml
+- LDEORLH_32_memop              ldeorh.xml
+- LDSET_32_memop                ldset.xml
+- LDSETA_32_memop               ldset.xml
+- LDSETAL_32_memop              ldset.xml
+- LDSETL_32_memop               ldset.xml
+- LDSETAB_32_memop              ldsetb.xml
+- LDSETALB_32_memop             ldsetb.xml
+- LDSETB_32_memop               ldsetb.xml
+- LDSETLB_32_memop              ldsetb.xml
+- LDSETAH_32_memop              ldseth.xml
+- LDSETALH_32_memop             ldseth.xml
+- LDSETH_32_memop               ldseth.xml
+- LDSETLH_32_memop              ldseth.xml
+- LDSMAX_32_memop               ldsmax.xml
+- LDSMAXA_32_memop              ldsmax.xml
+- LDSMAXAL_32_memop             ldsmax.xml
+- LDSMAXL_32_memop              ldsmax.xml
+- LDSMAXAB_32_memop             ldsmaxb.xml
+- LDSMAXALB_32_memop            ldsmaxb.xml
+- LDSMAXB_32_memop              ldsmaxb.xml
+- LDSMAXLB_32_memop             ldsmaxb.xml
+- LDSMAXAH_32_memop             ldsmaxh.xml
+- LDSMAXALH_32_memop            ldsmaxh.xml
+- LDSMAXH_32_memop              ldsmaxh.xml
+- LDSMAXLH_32_memop             ldsmaxh.xml
+- LDSMIN_32_memop               ldsmin.xml
+- LDSMINA_32_memop              ldsmin.xml
+- LDSMINAL_32_memop             ldsmin.xml
+- LDSMINL_32_memop              ldsmin.xml
+- LDSMINAB_32_memop             ldsminb.xml
+- LDSMINALB_32_memop            ldsminb.xml
+- LDSMINB_32_memop              ldsminb.xml
+- LDSMINLB_32_memop             ldsminb.xml
+- LDSMINAH_32_memop             ldsminh.xml
+- LDSMINALH_32_memop            ldsminh.xml
+- LDSMINH_32_memop              ldsminh.xml
+- LDSMINLH_32_memop             ldsminh.xml
+- LDUMAX_32_memop               ldumax.xml
+- LDUMAXA_32_memop              ldumax.xml
+- LDUMAXAL_32_memop             ldumax.xml
+- LDUMAXL_32_memop              ldumax.xml
+- LDUMAXAB_32_memop             ldumaxb.xml
+- LDUMAXALB_32_memop            ldumaxb.xml
+- LDUMAXB_32_memop              ldumaxb.xml
+- LDUMAXLB_32_memop             ldumaxb.xml
+- LDUMAXAH_32_memop             ldumaxh.xml
+- LDUMAXALH_32_memop            ldumaxh.xml
+- LDUMAXH_32_memop              ldumaxh.xml
+- LDUMAXLH_32_memop             ldumaxh.xml
+- LDUMIN_32_memop               ldumin.xml
+- LDUMINA_32_memop              ldumin.xml
+- LDUMINAL_32_memop             ldumin.xml
+- LDUMINL_32_memop              ldumin.xml
+- LDUMINAB_32_memop             lduminb.xml
+- LDUMINALB_32_memop            lduminb.xml
+- LDUMINB_32_memop              lduminb.xml
+- LDUMINLB_32_memop             lduminb.xml
+- LDUMINAH_32_memop             lduminh.xml
+- LDUMINALH_32_memop            lduminh.xml
+- LDUMINH_32_memop              lduminh.xml
+- LDUMINLH_32_memop             lduminh.xml
+- SWP_32_memop                  swp.xml
+- SWPA_32_memop                 swp.xml
+- SWPAL_32_memop                swp.xml
+- SWPL_32_memop                 swp.xml
+- SWPAB_32_memop                swpb.xml
+- SWPALB_32_memop               swpb.xml
+- SWPB_32_memop                 swpb.xml
+- SWPLB_32_memop                swpb.xml
+- SWPAH_32_memop                swph.xml
+- SWPALH_32_memop               swph.xml
+- SWPH_32_memop                 swph.xml
+- SWPLH_32_memop                swph.xml
 
 # "  <Ws>, <Wt>, [<Xn|SP>{,#0}]"
 type: 
 fields: 
-- CAS       cas.xml
-- CASA      cas.xml
-- CASAL     cas.xml
-- CASL      cas.xml
-- CASAB     casb.xml
-- CASALB    casb.xml
-- CASB      casb.xml
-- CASLB     casb.xml
-- CASAH     cash.xml
-- CASALH    cash.xml
-- CASH      cash.xml
-- CASLH     cash.xml
-- STLXR     stlxr.xml
-- STLXRB    stlxrb.xml
-- STLXRH    stlxrh.xml
-- STXR      stxr.xml
-- STXRB     stxrb.xml
-- STXRH     stxrh.xml
+- CAS_C32_ldstexcl              cas.xml
+- CASA_C32_ldstexcl             cas.xml
+- CASAL_C32_ldstexcl            cas.xml
+- CASL_C32_ldstexcl             cas.xml
+- CASAB_C32_ldstexcl            casb.xml
+- CASALB_C32_ldstexcl           casb.xml
+- CASB_C32_ldstexcl             casb.xml
+- CASLB_C32_ldstexcl            casb.xml
+- CASAH_C32_ldstexcl            cash.xml
+- CASALH_C32_ldstexcl           cash.xml
+- CASH_C32_ldstexcl             cash.xml
+- CASLH_C32_ldstexcl            cash.xml
+- STLXR_SR32_ldstexcl           stlxr.xml
+- STLXRB_SR32_ldstexcl          stlxrb.xml
+- STLXRH_SR32_ldstexcl          stlxrh.xml
+- STXR_SR32_ldstexcl            stxr.xml
+- STXRB_SR32_ldstexcl           stxrb.xml
+- STXRH_SR32_ldstexcl           stxrh.xml
 
 # "  <Ws>, <Xt1>, <Xt2>, [<Xn|SP>{,#0}]"
 type: 
 fields: 
-- STLXP     stlxp.xml
-- STXP      stxp.xml
+- STLXP_SP64_ldstexcl           stlxp.xml
+- STXP_SP64_ldstexcl            stxp.xml
 
 # "  <Ws>, <Xt>, [<Xn|SP>{,#0}]"
 type: 
 fields: 
-- STLXR     stlxr.xml
-- STXR      stxr.xml
+- STLXR_SR64_ldstexcl           stlxr.xml
+- STXR_SR64_ldstexcl            stxr.xml
 
 # "  <Wt1>, <Wt2>, [<Xn|SP>, #<imm>]!"
 type: 
 fields: 
-- LDP       ldp_gen.xml
-- STP       stp_gen.xml
+- LDP_32_ldstpair_pre           ldp_gen.xml
+- STP_32_ldstpair_pre           stp_gen.xml
 
 # "  <Wt1>, <Wt2>, [<Xn|SP>], #<imm>"
 type: 
 fields: 
-- LDP       ldp_gen.xml
-- STP       stp_gen.xml
+- LDP_32_ldstpair_post          ldp_gen.xml
+- STP_32_ldstpair_post          stp_gen.xml
 
 # "  <Wt1>, <Wt2>, [<Xn|SP>{, #<imm>}]"
 type: 
 fields: 
-- LDNP      ldnp_gen.xml
-- LDP       ldp_gen.xml
-- STNP      stnp_gen.xml
-- STP       stp_gen.xml
+- LDNP_32_ldstnapair_offs       ldnp_gen.xml
+- LDP_32_ldstpair_off           ldp_gen.xml
+- STNP_32_ldstnapair_offs       stnp_gen.xml
+- STP_32_ldstpair_off           stp_gen.xml
 
 # "  <Wt1>, <Wt2>, [<Xn|SP>{,#0}]"
 type: 
 fields: 
-- LDAXP     ldaxp.xml
-- LDXP      ldxp.xml
+- LDAXP_LP32_ldstexcl           ldaxp.xml
+- LDXP_LP32_ldstexcl            ldxp.xml
 
 # "  <Wt>, <label>"
 type: 
 fields: 
-- CBNZ      cbnz.xml
-- CBZ       cbz.xml
-- LDR       ldr_lit_gen.xml
+- CBNZ_32_compbranch            cbnz.xml
+- CBZ_32_compbranch             cbz.xml
+- LDR_32_loadlit                ldr_lit_gen.xml
 
 # "  <Wt>, [<Xn|SP> {,#0}]"
 type: 
 fields: 
-- LDAPR     ldapr.xml
-- LDAPRB    ldaprb.xml
-- LDAPRH    ldaprh.xml
+- LDAPR_32L_memop               ldapr.xml
+- LDAPRB_32L_memop              ldaprb.xml
+- LDAPRH_32L_memop              ldaprh.xml
 
 # "  <Wt>, [<Xn|SP>, #<simm>]!"
 type: 
 fields: 
-- LDR       ldr_imm_gen.xml
-- LDRB      ldrb_imm.xml
-- LDRH      ldrh_imm.xml
-- LDRSB     ldrsb_imm.xml
-- LDRSH     ldrsh_imm.xml
-- STR       str_imm_gen.xml
-- STRB      strb_imm.xml
-- STRH      strh_imm.xml
+- LDR_32_ldst_immpre            ldr_imm_gen.xml
+- LDRB_32_ldst_immpre           ldrb_imm.xml
+- LDRH_32_ldst_immpre           ldrh_imm.xml
+- LDRSB_32_ldst_immpre          ldrsb_imm.xml
+- LDRSH_32_ldst_immpre          ldrsh_imm.xml
+- STR_32_ldst_immpre            str_imm_gen.xml
+- STRB_32_ldst_immpre           strb_imm.xml
+- STRH_32_ldst_immpre           strh_imm.xml
 
 # "  <Wt>, [<Xn|SP>, (<Wm>|<Xm>), <extend> {<amount>}]"
 type: 
 fields: 
-- LDRB      ldrb_reg.xml
-- LDRSB     ldrsb_reg.xml
-- STRB      strb_reg.xml
+- LDRB_32B_ldst_regoff          ldrb_reg.xml
+- LDRSB_32B_ldst_regoff         ldrsb_reg.xml
+- STRB_32B_ldst_regoff          strb_reg.xml
 
 # "  <Wt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]"
 type: 
 fields: 
-- LDR       ldr_reg_gen.xml
-- LDRH      ldrh_reg.xml
-- LDRSH     ldrsh_reg.xml
-- STR       str_reg_gen.xml
-- STRH      strh_reg.xml
+- LDR_32_ldst_regoff            ldr_reg_gen.xml
+- LDRH_32_ldst_regoff           ldrh_reg.xml
+- LDRSH_32_ldst_regoff          ldrsh_reg.xml
+- STR_32_ldst_regoff            str_reg_gen.xml
+- STRH_32_ldst_regoff           strh_reg.xml
 
 # "  <Wt>, [<Xn|SP>, <Xm>{, LSL <amount>}]"
 type: 
 fields: 
-- LDRB      ldrb_reg.xml
-- LDRSB     ldrsb_reg.xml
-- STRB      strb_reg.xml
+- LDRB_32BL_ldst_regoff         ldrb_reg.xml
+- LDRSB_32BL_ldst_regoff        ldrsb_reg.xml
+- STRB_32BL_ldst_regoff         strb_reg.xml
 
 # "  <Wt>, [<Xn|SP>], #<simm>"
 type: 
 fields: 
-- LDR       ldr_imm_gen.xml
-- LDRB      ldrb_imm.xml
-- LDRH      ldrh_imm.xml
-- LDRSB     ldrsb_imm.xml
-- LDRSH     ldrsh_imm.xml
-- STR       str_imm_gen.xml
-- STRB      strb_imm.xml
-- STRH      strh_imm.xml
+- LDR_32_ldst_immpost           ldr_imm_gen.xml
+- LDRB_32_ldst_immpost          ldrb_imm.xml
+- LDRH_32_ldst_immpost          ldrh_imm.xml
+- LDRSB_32_ldst_immpost         ldrsb_imm.xml
+- LDRSH_32_ldst_immpost         ldrsh_imm.xml
+- STR_32_ldst_immpost           str_imm_gen.xml
+- STRB_32_ldst_immpost          strb_imm.xml
+- STRH_32_ldst_immpost          strh_imm.xml
 
 # "  <Wt>, [<Xn|SP>{, #<pimm>}]"
 type: 
 fields: 
-- LDR       ldr_imm_gen.xml
-- LDRB      ldrb_imm.xml
-- LDRH      ldrh_imm.xml
-- LDRSB     ldrsb_imm.xml
-- LDRSH     ldrsh_imm.xml
-- STR       str_imm_gen.xml
-- STRB      strb_imm.xml
-- STRH      strh_imm.xml
+- LDR_32_ldst_pos               ldr_imm_gen.xml
+- LDRB_32_ldst_pos              ldrb_imm.xml
+- LDRH_32_ldst_pos              ldrh_imm.xml
+- LDRSB_32_ldst_pos             ldrsb_imm.xml
+- LDRSH_32_ldst_pos             ldrsh_imm.xml
+- STR_32_ldst_pos               str_imm_gen.xml
+- STRB_32_ldst_pos              strb_imm.xml
+- STRH_32_ldst_pos              strh_imm.xml
 
 # "  <Wt>, [<Xn|SP>{, #<simm>}]"
 type: 
 fields: 
-- LDTR      ldtr.xml
-- LDTRB     ldtrb.xml
-- LDTRH     ldtrh.xml
-- LDTRSB    ldtrsb.xml
-- LDTRSH    ldtrsh.xml
-- LDUR      ldur_gen.xml
-- LDURB     ldurb.xml
-- LDURH     ldurh.xml
-- LDURSB    ldursb.xml
-- LDURSH    ldursh.xml
-- STTR      sttr.xml
-- STTRB     sttrb.xml
-- STTRH     sttrh.xml
-- STUR      stur_gen.xml
-- STURB     sturb.xml
-- STURH     sturh.xml
+- LDTR_32_ldst_unpriv           ldtr.xml
+- LDTRB_32_ldst_unpriv          ldtrb.xml
+- LDTRH_32_ldst_unpriv          ldtrh.xml
+- LDTRSB_32_ldst_unpriv         ldtrsb.xml
+- LDTRSH_32_ldst_unpriv         ldtrsh.xml
+- LDUR_32_ldst_unscaled         ldur_gen.xml
+- LDURB_32_ldst_unscaled        ldurb.xml
+- LDURH_32_ldst_unscaled        ldurh.xml
+- LDURSB_32_ldst_unscaled       ldursb.xml
+- LDURSH_32_ldst_unscaled       ldursh.xml
+- STTR_32_ldst_unpriv           sttr.xml
+- STTRB_32_ldst_unpriv          sttrb.xml
+- STTRH_32_ldst_unpriv          sttrh.xml
+- STUR_32_ldst_unscaled         stur_gen.xml
+- STURB_32_ldst_unscaled        sturb.xml
+- STURH_32_ldst_unscaled        sturh.xml
 
 # "  <Wt>, [<Xn|SP>{,#0}]"
 type: 
 fields: 
-- LDAR      ldar.xml
-- LDARB     ldarb.xml
-- LDARH     ldarh.xml
-- LDAXR     ldaxr.xml
-- LDAXRB    ldaxrb.xml
-- LDAXRH    ldaxrh.xml
-- LDLAR     ldlar.xml
-- LDLARB    ldlarb.xml
-- LDLARH    ldlarh.xml
-- LDXR      ldxr.xml
-- LDXRB     ldxrb.xml
-- LDXRH     ldxrh.xml
-- STLLR     stllr.xml
-- STLLRB    stllrb.xml
-- STLLRH    stllrh.xml
-- STLR      stlr.xml
-- STLRB     stlrb.xml
-- STLRH     stlrh.xml
+- LDAR_LR32_ldstexcl            ldar.xml
+- LDARB_LR32_ldstexcl           ldarb.xml
+- LDARH_LR32_ldstexcl           ldarh.xml
+- LDAXR_LR32_ldstexcl           ldaxr.xml
+- LDAXRB_LR32_ldstexcl          ldaxrb.xml
+- LDAXRH_LR32_ldstexcl          ldaxrh.xml
+- LDLAR_LR32_ldstexcl           ldlar.xml
+- LDLARB_LR32_ldstexcl          ldlarb.xml
+- LDLARH_LR32_ldstexcl          ldlarh.xml
+- LDXR_LR32_ldstexcl            ldxr.xml
+- LDXRB_LR32_ldstexcl           ldxrb.xml
+- LDXRH_LR32_ldstexcl           ldxrh.xml
+- STLLR_SL32_ldstexcl           stllr.xml
+- STLLRB_SL32_ldstexcl          stllrb.xml
+- STLLRH_SL32_ldstexcl          stllrh.xml
+- STLR_SL32_ldstexcl            stlr.xml
+- STLRB_SL32_ldstexcl           stlrb.xml
+- STLRH_SL32_ldstexcl           stlrh.xml
 
 # "  <Xd>"
 type: 
 fields: 
-- AUTDZA    autda.xml
-- AUTDZB    autdb.xml
-- AUTIZA    autia.xml
-- AUTIZB    autib.xml
-- PACDZA    pacda.xml
-- PACDZB    pacdb.xml
-- PACIZA    pacia.xml
-- PACIZB    pacib.xml
-- XPACD     xpac.xml
-- XPACI     xpac.xml
+- AUTDZA_64Z_dp_1src            autda.xml
+- AUTDZB_64Z_dp_1src            autdb.xml
+- AUTIZA_64Z_dp_1src            autia.xml
+- AUTIZB_64Z_dp_1src            autib.xml
+- PACDZA_64Z_dp_1src            pacda.xml
+- PACDZB_64Z_dp_1src            pacdb.xml
+- PACIZA_64Z_dp_1src            pacia.xml
+- PACIZB_64Z_dp_1src            pacib.xml
+- XPACD_64Z_dp_1src             xpac.xml
+- XPACI_64Z_dp_1src             xpac.xml
 
 # "  <Xd>, #<imm>{, LSL #<shift>}"
 type: 
 fields: 
-- MOVK      movk.xml
-- MOVN      movn.xml
-- MOVZ      movz.xml
+- MOVK_64_movewide              movk.xml
+- MOVN_64_movewide              movn.xml
+- MOVZ_64_movewide              movz.xml
 
 # "  <Xd>, <Dn>"
 type: 
 fields: 
-- FCVTAS    fcvtas_float.xml
-- FCVTAU    fcvtau_float.xml
-- FCVTMS    fcvtms_float.xml
-- FCVTMU    fcvtmu_float.xml
-- FCVTNS    fcvtns_float.xml
-- FCVTNU    fcvtnu_float.xml
-- FCVTPS    fcvtps_float.xml
-- FCVTPU    fcvtpu_float.xml
-- FCVTZS    fcvtzs_float_int.xml
-- FCVTZU    fcvtzu_float_int.xml
-- FMOV      fmov_float_gen.xml
+- FCVTAS_64D_float2int          fcvtas_float.xml
+- FCVTAU_64D_float2int          fcvtau_float.xml
+- FCVTMS_64D_float2int          fcvtms_float.xml
+- FCVTMU_64D_float2int          fcvtmu_float.xml
+- FCVTNS_64D_float2int          fcvtns_float.xml
+- FCVTNU_64D_float2int          fcvtnu_float.xml
+- FCVTPS_64D_float2int          fcvtps_float.xml
+- FCVTPU_64D_float2int          fcvtpu_float.xml
+- FCVTZS_64D_float2int          fcvtzs_float_int.xml
+- FCVTZU_64D_float2int          fcvtzu_float_int.xml
+- FMOV_64D_float2int            fmov_float_gen.xml
 
 # "  <Xd>, <Dn>, #<fbits>"
 type: 
 fields: 
-- FCVTZS    fcvtzs_float_fix.xml
-- FCVTZU    fcvtzu_float_fix.xml
+- FCVTZS_64D_float2fix          fcvtzs_float_fix.xml
+- FCVTZU_64D_float2fix          fcvtzu_float_fix.xml
 
 # "  <Xd>, <Hn>"
 type: 
 fields: 
-- FCVTAS    fcvtas_float.xml
-- FCVTAU    fcvtau_float.xml
-- FCVTMS    fcvtms_float.xml
-- FCVTMU    fcvtmu_float.xml
-- FCVTNS    fcvtns_float.xml
-- FCVTNU    fcvtnu_float.xml
-- FCVTPS    fcvtps_float.xml
-- FCVTPU    fcvtpu_float.xml
-- FCVTZS    fcvtzs_float_int.xml
-- FCVTZU    fcvtzu_float_int.xml
-- FMOV      fmov_float_gen.xml
+- FCVTAS_64H_float2int          fcvtas_float.xml
+- FCVTAU_64H_float2int          fcvtau_float.xml
+- FCVTMS_64H_float2int          fcvtms_float.xml
+- FCVTMU_64H_float2int          fcvtmu_float.xml
+- FCVTNS_64H_float2int          fcvtns_float.xml
+- FCVTNU_64H_float2int          fcvtnu_float.xml
+- FCVTPS_64H_float2int          fcvtps_float.xml
+- FCVTPU_64H_float2int          fcvtpu_float.xml
+- FCVTZS_64H_float2int          fcvtzs_float_int.xml
+- FCVTZU_64H_float2int          fcvtzu_float_int.xml
+- FMOV_64H_float2int            fmov_float_gen.xml
 
 # "  <Xd>, <Hn>, #<fbits>"
 type: 
 fields: 
-- FCVTZS    fcvtzs_float_fix.xml
-- FCVTZU    fcvtzu_float_fix.xml
+- FCVTZS_64H_float2fix          fcvtzs_float_fix.xml
+- FCVTZU_64H_float2fix          fcvtzu_float_fix.xml
 
 # "  <Xd>, <Sn>"
 type: 
 fields: 
-- FCVTAS    fcvtas_float.xml
-- FCVTAU    fcvtau_float.xml
-- FCVTMS    fcvtms_float.xml
-- FCVTMU    fcvtmu_float.xml
-- FCVTNS    fcvtns_float.xml
-- FCVTNU    fcvtnu_float.xml
-- FCVTPS    fcvtps_float.xml
-- FCVTPU    fcvtpu_float.xml
-- FCVTZS    fcvtzs_float_int.xml
-- FCVTZU    fcvtzu_float_int.xml
+- FCVTAS_64S_float2int          fcvtas_float.xml
+- FCVTAU_64S_float2int          fcvtau_float.xml
+- FCVTMS_64S_float2int          fcvtms_float.xml
+- FCVTMU_64S_float2int          fcvtmu_float.xml
+- FCVTNS_64S_float2int          fcvtns_float.xml
+- FCVTNU_64S_float2int          fcvtnu_float.xml
+- FCVTPS_64S_float2int          fcvtps_float.xml
+- FCVTPU_64S_float2int          fcvtpu_float.xml
+- FCVTZS_64S_float2int          fcvtzs_float_int.xml
+- FCVTZU_64S_float2int          fcvtzu_float_int.xml
 
 # "  <Xd>, <Sn>, #<fbits>"
 type: 
 fields: 
-- FCVTZS    fcvtzs_float_fix.xml
-- FCVTZU    fcvtzu_float_fix.xml
+- FCVTZS_64S_float2fix          fcvtzs_float_fix.xml
+- FCVTZU_64S_float2fix          fcvtzu_float_fix.xml
 
 # "  <Xd>, <Vn>.<Ts>[<index>]"
 type: 
 fields: 
-- SMOV      smov_advsimd.xml
-- UMOV      umov_advsimd.xml
+- SMOV_asimdins_X_x             smov_advsimd.xml
+- UMOV_asimdins_X_x             umov_advsimd.xml
 
 # "  <Xd>, <Vn>.D[1]"
 type: 
 fields: 
-- FMOV      fmov_float_gen.xml
+- FMOV_64VX_float2int           fmov_float_gen.xml
 
 # "  <Xd>, <Wn>, <Wm>, <Xa>"
 type: 
 fields: 
-- SMADDL    smaddl.xml
-- SMSUBL    smsubl.xml
-- UMADDL    umaddl.xml
-- UMSUBL    umsubl.xml
+- SMADDL_64WA_dp_3src           smaddl.xml
+- SMSUBL_64WA_dp_3src           smsubl.xml
+- UMADDL_64WA_dp_3src           umaddl.xml
+- UMSUBL_64WA_dp_3src           umsubl.xml
 
 # "  <Xd>, <Xn>"
 type: 
 fields: 
-- CLS       cls_int.xml
-- CLZ       clz_int.xml
-- RBIT      rbit_int.xml
-- REV       rev.xml
-- REV16     rev16_int.xml
-- REV32     rev32_int.xml
+- CLS_64_dp_1src                cls_int.xml
+- CLZ_64_dp_1src                clz_int.xml
+- RBIT_64_dp_1src               rbit_int.xml
+- REV_64_dp_1src                rev.xml
+- REV16_64_dp_1src              rev16_int.xml
+- REV32_64_dp_1src              rev32_int.xml
 
 # "  <Xd>, <Xn>, #<imm>"
 type: 
 fields: 
-- ANDS      ands_log_imm.xml
+- ANDS_64S_log_imm              ands_log_imm.xml
 
 # "  <Xd>, <Xn>, #<immr>, #<imms>"
 type: 
 fields: 
-- BFM       bfm.xml
-- SBFM      sbfm.xml
-- UBFM      ubfm.xml
+- BFM_64M_bitfield              bfm.xml
+- SBFM_64M_bitfield             sbfm.xml
+- UBFM_64M_bitfield             ubfm.xml
 
 # "  <Xd>, <Xn>, <Xm>"
 type: 
 fields: 
-- ADC       adc.xml
-- ADCS      adcs.xml
-- ASRV      asrv.xml
-- LSLV      lslv.xml
-- LSRV      lsrv.xml
-- RORV      rorv.xml
-- SBC       sbc.xml
-- SBCS      sbcs.xml
-- SDIV      sdiv.xml
-- SMULH     smulh.xml
-- UDIV      udiv.xml
-- UMULH     umulh.xml
+- ADC_64_addsub_carry           adc.xml
+- ADCS_64_addsub_carry          adcs.xml
+- ASRV_64_dp_2src               asrv.xml
+- LSLV_64_dp_2src               lslv.xml
+- LSRV_64_dp_2src               lsrv.xml
+- RORV_64_dp_2src               rorv.xml
+- SBC_64_addsub_carry           sbc.xml
+- SBCS_64_addsub_carry          sbcs.xml
+- SDIV_64_dp_2src               sdiv.xml
+- SMULH_64_dp_3src              smulh.xml
+- UDIV_64_dp_2src               udiv.xml
+- UMULH_64_dp_3src              umulh.xml
 
 # "  <Xd>, <Xn>, <Xm>, #<lsb>"
 type: 
 fields: 
-- EXTR      extr.xml
+- EXTR_64_extract               extr.xml
 
 # "  <Xd>, <Xn>, <Xm>, <Xa>"
 type: 
 fields: 
-- MADD      madd.xml
-- MSUB      msub.xml
+- MADD_64A_dp_3src              madd.xml
+- MSUB_64A_dp_3src              msub.xml
 
 # "  <Xd>, <Xn>, <Xm>, <cond>"
 type: 
 fields: 
-- CSEL      csel.xml
-- CSINC     csinc.xml
-- CSINV     csinv.xml
-- CSNEG     csneg.xml
+- CSEL_64_condsel               csel.xml
+- CSINC_64_condsel              csinc.xml
+- CSINV_64_condsel              csinv.xml
+- CSNEG_64_condsel              csneg.xml
 
 # "  <Xd>, <Xn>, <Xm>{, <shift> #<amount>}"
 type: 
 fields: 
-- ADD       add_addsub_shift.xml
-- ADDS      adds_addsub_shift.xml
-- AND       and_log_shift.xml
-- ANDS      ands_log_shift.xml
-- BIC       bic_log_shift.xml
-- BICS      bics.xml
-- EON       eon.xml
-- EOR       eor_log_shift.xml
-- ORN       orn_log_shift.xml
-- ORR       orr_log_shift.xml
-- SUB       sub_addsub_shift.xml
-- SUBS      subs_addsub_shift.xml
+- ADD_64_addsub_shift           add_addsub_shift.xml
+- ADDS_64_addsub_shift          adds_addsub_shift.xml
+- AND_64_log_shift              and_log_shift.xml
+- ANDS_64_log_shift             ands_log_shift.xml
+- BIC_64_log_shift              bic_log_shift.xml
+- BICS_64_log_shift             bics.xml
+- EON_64_log_shift              eon.xml
+- EOR_64_log_shift              eor_log_shift.xml
+- ORN_64_log_shift              orn_log_shift.xml
+- ORR_64_log_shift              orr_log_shift.xml
+- SUB_64_addsub_shift           sub_addsub_shift.xml
+- SUBS_64_addsub_shift          subs_addsub_shift.xml
 
 # "  <Xd>, <Xn>, <Xm|SP>"
 type: 
 fields: 
-- PACGA     pacga.xml
+- PACGA_64P_dp_2src             pacga.xml
 
 # "  <Xd>, <Xn|SP>"
 type: 
 fields: 
-- AUTDA     autda.xml
-- AUTDB     autdb.xml
-- AUTIA     autia.xml
-- AUTIB     autib.xml
-- PACDA     pacda.xml
-- PACDB     pacdb.xml
-- PACIA     pacia.xml
-- PACIB     pacib.xml
+- AUTDA_64P_dp_1src             autda.xml
+- AUTDB_64P_dp_1src             autdb.xml
+- AUTIA_64P_dp_1src             autia.xml
+- AUTIB_64P_dp_1src             autib.xml
+- PACDA_64P_dp_1src             pacda.xml
+- PACDB_64P_dp_1src             pacdb.xml
+- PACIA_64P_dp_1src             pacia.xml
+- PACIB_64P_dp_1src             pacib.xml
 
 # "  <Xd>, <Xn|SP>, #<imm>{, <shift>}"
 type: 
 fields: 
-- ADDS      adds_addsub_imm.xml
-- SUBS      subs_addsub_imm.xml
+- ADDS_64S_addsub_imm           adds_addsub_imm.xml
+- SUBS_64S_addsub_imm           subs_addsub_imm.xml
 
 # "  <Xd>, <Xn|SP>, <R><m>{, <extend> {#<amount>}}"
 type: 
 fields: 
-- ADDS      adds_addsub_ext.xml
-- SUBS      subs_addsub_ext.xml
+- ADDS_64S_addsub_ext           adds_addsub_ext.xml
+- SUBS_64S_addsub_ext           subs_addsub_ext.xml
 
 # "  <Xd>, <label>"
 type: 
 fields: 
-- ADR       adr.xml
-- ADRP      adrp.xml
+- ADR_only_pcreladdr            adr.xml
+- ADRP_only_pcreladdr           adrp.xml
 
 # "  <Xd|SP>, <Xn>, #<imm>"
 type: 
 fields: 
-- AND       and_log_imm.xml
-- EOR       eor_log_imm.xml
-- ORR       orr_log_imm.xml
+- AND_64_log_imm                and_log_imm.xml
+- EOR_64_log_imm                eor_log_imm.xml
+- ORR_64_log_imm                orr_log_imm.xml
 
 # "  <Xd|SP>, <Xn|SP>, #<imm>{, <shift>}"
 type: 
 fields: 
-- ADD       add_addsub_imm.xml
-- SUB       sub_addsub_imm.xml
+- ADD_64_addsub_imm             add_addsub_imm.xml
+- SUB_64_addsub_imm             sub_addsub_imm.xml
 
 # "  <Xd|SP>, <Xn|SP>, <R><m>{, <extend> {#<amount>}}"
 type: 
 fields: 
-- ADD       add_addsub_ext.xml
-- SUB       sub_addsub_ext.xml
+- ADD_64_addsub_ext             add_addsub_ext.xml
+- SUB_64_addsub_ext             sub_addsub_ext.xml
 
 # "  <Xn>"
 type: 
 fields: 
-- BLR       blr.xml
-- BLRAAZ    blra.xml
-- BLRABZ    blra.xml
-- BR        br.xml
-- BRAAZ     bra.xml
-- BRABZ     bra.xml
+- BLR_64_branch_reg             blr.xml
+- BLRAAZ_64_branch_reg          blra.xml
+- BLRABZ_64_branch_reg          blra.xml
+- BR_64_branch_reg              br.xml
+- BRAAZ_64_branch_reg           bra.xml
+- BRABZ_64_branch_reg           bra.xml
 
 # "  <Xn>, #<imm>, #<nzcv>, <cond>"
 type: 
 fields: 
-- CCMN      ccmn_imm.xml
-- CCMP      ccmp_imm.xml
+- CCMN_64_condcmp_imm           ccmn_imm.xml
+- CCMP_64_condcmp_imm           ccmp_imm.xml
 
 # "  <Xn>, <Xm>, #<nzcv>, <cond>"
 type: 
 fields: 
-- CCMN      ccmn_reg.xml
-- CCMP      ccmp_reg.xml
+- CCMN_64_condcmp_reg           ccmn_reg.xml
+- CCMP_64_condcmp_reg           ccmp_reg.xml
 
 # "  <Xn>, <Xm|SP>"
 type: 
 fields: 
-- BLRAA     blra.xml
-- BLRAB     blra.xml
-- BRAA      bra.xml
-- BRAB      bra.xml
+- BLRAA_64P_branch_reg          blra.xml
+- BLRAB_64P_branch_reg          blra.xml
+- BRAA_64P_branch_reg           bra.xml
+- BRAB_64P_branch_reg           bra.xml
 
 # "  <Xs>, <X(s+1)>, <Xt>, <X(t+1)>, [<Xn|SP>{,#0}]"
 type: 
 fields: 
-- CASP      casp.xml
-- CASPA     casp.xml
-- CASPAL    casp.xml
-- CASPL     casp.xml
+- CASP_CP64_ldstexcl            casp.xml
+- CASPA_CP64_ldstexcl           casp.xml
+- CASPAL_CP64_ldstexcl          casp.xml
+- CASPL_CP64_ldstexcl           casp.xml
 
 # "  <Xs>, <Xt>, [<Xn|SP>]"
 type: 
 fields: 
-- LDADD     ldadd.xml
-- LDADDA    ldadd.xml
-- LDADDAL   ldadd.xml
-- LDADDL    ldadd.xml
-- LDCLR     ldclr.xml
-- LDCLRA    ldclr.xml
-- LDCLRAL   ldclr.xml
-- LDCLRL    ldclr.xml
-- LDEOR     ldeor.xml
-- LDEORA    ldeor.xml
-- LDEORAL   ldeor.xml
-- LDEORL    ldeor.xml
-- LDSET     ldset.xml
-- LDSETA    ldset.xml
-- LDSETAL   ldset.xml
-- LDSETL    ldset.xml
-- LDSMAX    ldsmax.xml
-- LDSMAXA   ldsmax.xml
-- LDSMAXAL  ldsmax.xml
-- LDSMAXL   ldsmax.xml
-- LDSMIN    ldsmin.xml
-- LDSMINA   ldsmin.xml
-- LDSMINAL  ldsmin.xml
-- LDSMINL   ldsmin.xml
-- LDUMAX    ldumax.xml
-- LDUMAXA   ldumax.xml
-- LDUMAXAL  ldumax.xml
-- LDUMAXL   ldumax.xml
-- LDUMIN    ldumin.xml
-- LDUMINA   ldumin.xml
-- LDUMINAL  ldumin.xml
-- LDUMINL   ldumin.xml
-- SWP       swp.xml
-- SWPA      swp.xml
-- SWPAL     swp.xml
-- SWPL      swp.xml
+- LDADD_64_memop                ldadd.xml
+- LDADDA_64_memop               ldadd.xml
+- LDADDAL_64_memop              ldadd.xml
+- LDADDL_64_memop               ldadd.xml
+- LDCLR_64_memop                ldclr.xml
+- LDCLRA_64_memop               ldclr.xml
+- LDCLRAL_64_memop              ldclr.xml
+- LDCLRL_64_memop               ldclr.xml
+- LDEOR_64_memop                ldeor.xml
+- LDEORA_64_memop               ldeor.xml
+- LDEORAL_64_memop              ldeor.xml
+- LDEORL_64_memop               ldeor.xml
+- LDSET_64_memop                ldset.xml
+- LDSETA_64_memop               ldset.xml
+- LDSETAL_64_memop              ldset.xml
+- LDSETL_64_memop               ldset.xml
+- LDSMAX_64_memop               ldsmax.xml
+- LDSMAXA_64_memop              ldsmax.xml
+- LDSMAXAL_64_memop             ldsmax.xml
+- LDSMAXL_64_memop              ldsmax.xml
+- LDSMIN_64_memop               ldsmin.xml
+- LDSMINA_64_memop              ldsmin.xml
+- LDSMINAL_64_memop             ldsmin.xml
+- LDSMINL_64_memop              ldsmin.xml
+- LDUMAX_64_memop               ldumax.xml
+- LDUMAXA_64_memop              ldumax.xml
+- LDUMAXAL_64_memop             ldumax.xml
+- LDUMAXL_64_memop              ldumax.xml
+- LDUMIN_64_memop               ldumin.xml
+- LDUMINA_64_memop              ldumin.xml
+- LDUMINAL_64_memop             ldumin.xml
+- LDUMINL_64_memop              ldumin.xml
+- SWP_64_memop                  swp.xml
+- SWPA_64_memop                 swp.xml
+- SWPAL_64_memop                swp.xml
+- SWPL_64_memop                 swp.xml
 
 # "  <Xs>, <Xt>, [<Xn|SP>{,#0}]"
 type: 
 fields: 
-- CAS       cas.xml
-- CASA      cas.xml
-- CASAL     cas.xml
-- CASL      cas.xml
+- CAS_C64_ldstexcl              cas.xml
+- CASA_C64_ldstexcl             cas.xml
+- CASAL_C64_ldstexcl            cas.xml
+- CASL_C64_ldstexcl             cas.xml
 
 # "  <Xt1>, <Xt2>, [<Xn|SP>, #<imm>]!"
 type: 
 fields: 
-- LDP       ldp_gen.xml
-- LDPSW     ldpsw.xml
-- STP       stp_gen.xml
+- LDP_64_ldstpair_pre           ldp_gen.xml
+- LDPSW_64_ldstpair_pre         ldpsw.xml
+- STP_64_ldstpair_pre           stp_gen.xml
 
 # "  <Xt1>, <Xt2>, [<Xn|SP>], #<imm>"
 type: 
 fields: 
-- LDP       ldp_gen.xml
-- LDPSW     ldpsw.xml
-- STP       stp_gen.xml
+- LDP_64_ldstpair_post          ldp_gen.xml
+- LDPSW_64_ldstpair_post        ldpsw.xml
+- STP_64_ldstpair_post          stp_gen.xml
 
 # "  <Xt1>, <Xt2>, [<Xn|SP>{, #<imm>}]"
 type: 
 fields: 
-- LDNP      ldnp_gen.xml
-- LDP       ldp_gen.xml
-- LDPSW     ldpsw.xml
-- STNP      stnp_gen.xml
-- STP       stp_gen.xml
+- LDNP_64_ldstnapair_offs       ldnp_gen.xml
+- LDP_64_ldstpair_off           ldp_gen.xml
+- LDPSW_64_ldstpair_off         ldpsw.xml
+- STNP_64_ldstnapair_offs       stnp_gen.xml
+- STP_64_ldstpair_off           stp_gen.xml
 
 # "  <Xt1>, <Xt2>, [<Xn|SP>{,#0}]"
 type: 
 fields: 
-- LDAXP     ldaxp.xml
-- LDXP      ldxp.xml
+- LDAXP_LP64_ldstexcl           ldaxp.xml
+- LDXP_LP64_ldstexcl            ldxp.xml
 
 # "  <Xt>, #<op1>, <Cn>, <Cm>, #<op2>"
 type: 
 fields: 
-- SYSL      sysl.xml
+- SYSL_RC_system                sysl.xml
 
 # "  <Xt>, (<systemreg>|S<op0>_<op1>_<Cn>_<Cm>_<op2>)"
 type: 
 fields: 
-- MRS       mrs.xml
+- MRS_RS_system                 mrs.xml
 
 # "  <Xt>, <label>"
 type: 
 fields: 
-- CBNZ      cbnz.xml
-- CBZ       cbz.xml
-- LDR       ldr_lit_gen.xml
-- LDRSW     ldrsw_lit.xml
+- CBNZ_64_compbranch            cbnz.xml
+- CBZ_64_compbranch             cbz.xml
+- LDR_64_loadlit                ldr_lit_gen.xml
+- LDRSW_64_loadlit              ldrsw_lit.xml
 
 # "  <Xt>, [<Xn|SP> {,#0}]"
 type: 
 fields: 
-- LDAPR     ldapr.xml
+- LDAPR_64L_memop               ldapr.xml
 
 # "  <Xt>, [<Xn|SP>, #<simm>]!"
 type: 
 fields: 
-- LDR       ldr_imm_gen.xml
-- LDRSB     ldrsb_imm.xml
-- LDRSH     ldrsh_imm.xml
-- LDRSW     ldrsw_imm.xml
-- STR       str_imm_gen.xml
+- LDR_64_ldst_immpre            ldr_imm_gen.xml
+- LDRSB_64_ldst_immpre          ldrsb_imm.xml
+- LDRSH_64_ldst_immpre          ldrsh_imm.xml
+- LDRSW_64_ldst_immpre          ldrsw_imm.xml
+- STR_64_ldst_immpre            str_imm_gen.xml
 
 # "  <Xt>, [<Xn|SP>, (<Wm>|<Xm>), <extend> {<amount>}]"
 type: 
 fields: 
-- LDRSB     ldrsb_reg.xml
+- LDRSB_64B_ldst_regoff         ldrsb_reg.xml
 
 # "  <Xt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]"
 type: 
 fields: 
-- LDR       ldr_reg_gen.xml
-- LDRSH     ldrsh_reg.xml
-- LDRSW     ldrsw_reg.xml
-- STR       str_reg_gen.xml
+- LDR_64_ldst_regoff            ldr_reg_gen.xml
+- LDRSH_64_ldst_regoff          ldrsh_reg.xml
+- LDRSW_64_ldst_regoff          ldrsw_reg.xml
+- STR_64_ldst_regoff            str_reg_gen.xml
 
 # "  <Xt>, [<Xn|SP>, <Xm>{, LSL <amount>}]"
 type: 
 fields: 
-- LDRSB     ldrsb_reg.xml
+- LDRSB_64BL_ldst_regoff        ldrsb_reg.xml
 
 # "  <Xt>, [<Xn|SP>], #<simm>"
 type: 
 fields: 
-- LDR       ldr_imm_gen.xml
-- LDRSB     ldrsb_imm.xml
-- LDRSH     ldrsh_imm.xml
-- LDRSW     ldrsw_imm.xml
-- STR       str_imm_gen.xml
+- LDR_64_ldst_immpost           ldr_imm_gen.xml
+- LDRSB_64_ldst_immpost         ldrsb_imm.xml
+- LDRSH_64_ldst_immpost         ldrsh_imm.xml
+- LDRSW_64_ldst_immpost         ldrsw_imm.xml
+- STR_64_ldst_immpost           str_imm_gen.xml
 
 # "  <Xt>, [<Xn|SP>{, #<pimm>}]"
 type: 
 fields: 
-- LDR       ldr_imm_gen.xml
-- LDRSB     ldrsb_imm.xml
-- LDRSH     ldrsh_imm.xml
-- LDRSW     ldrsw_imm.xml
-- STR       str_imm_gen.xml
+- LDR_64_ldst_pos               ldr_imm_gen.xml
+- LDRSB_64_ldst_pos             ldrsb_imm.xml
+- LDRSH_64_ldst_pos             ldrsh_imm.xml
+- LDRSW_64_ldst_pos             ldrsw_imm.xml
+- STR_64_ldst_pos               str_imm_gen.xml
 
 # "  <Xt>, [<Xn|SP>{, #<simm>}]"
 type: 
 fields: 
-- LDRAA     ldra.xml
-- LDRAB     ldra.xml
-- LDTR      ldtr.xml
-- LDTRSB    ldtrsb.xml
-- LDTRSH    ldtrsh.xml
-- LDTRSW    ldtrsw.xml
-- LDUR      ldur_gen.xml
-- LDURSB    ldursb.xml
-- LDURSH    ldursh.xml
-- LDURSW    ldursw.xml
-- STTR      sttr.xml
-- STUR      stur_gen.xml
+- LDRAA_64_ldst_pac             ldra.xml
+- LDRAB_64_ldst_pac             ldra.xml
+- LDTR_64_ldst_unpriv           ldtr.xml
+- LDTRSB_64_ldst_unpriv         ldtrsb.xml
+- LDTRSH_64_ldst_unpriv         ldtrsh.xml
+- LDTRSW_64_ldst_unpriv         ldtrsw.xml
+- LDUR_64_ldst_unscaled         ldur_gen.xml
+- LDURSB_64_ldst_unscaled       ldursb.xml
+- LDURSH_64_ldst_unscaled       ldursh.xml
+- LDURSW_64_ldst_unscaled       ldursw.xml
+- STTR_64_ldst_unpriv           sttr.xml
+- STUR_64_ldst_unscaled         stur_gen.xml
 
 # "  <Xt>, [<Xn|SP>{, #<simm>}]!"
 type: 
 fields: 
-- LDRAA     ldra.xml
-- LDRAB     ldra.xml
+- LDRAA_64W_ldst_pac            ldra.xml
+- LDRAB_64W_ldst_pac            ldra.xml
 
 # "  <Xt>, [<Xn|SP>{,#0}]"
 type: 
 fields: 
-- LDAR      ldar.xml
-- LDAXR     ldaxr.xml
-- LDLAR     ldlar.xml
-- LDXR      ldxr.xml
-- STLLR     stllr.xml
-- STLR      stlr.xml
+- LDAR_LR64_ldstexcl            ldar.xml
+- LDAXR_LR64_ldstexcl           ldaxr.xml
+- LDLAR_LR64_ldstexcl           ldlar.xml
+- LDXR_LR64_ldstexcl            ldxr.xml
+- STLLR_SL64_ldstexcl           stllr.xml
+- STLR_SL64_ldstexcl            stlr.xml
 
 # "  <label>"
 type: 
 fields: 
-- B         b_uncond.xml
-- BL        bl.xml
+- B_only_branch_imm             b_uncond.xml
+- BL_only_branch_imm            bl.xml
 
 # "  <option>|#<imm>"
 type: 
 fields: 
-- DMB       dmb.xml
-- DSB       dsb.xml
+- DMB_BO_system                 dmb.xml
+- DSB_BO_system                 dsb.xml
 
 # "  <pstatefield>, #<imm>"
 type: 
 fields: 
-- MSR       msr_imm.xml
+- MSR_SI_system                 msr_imm.xml
 
 # "  { <Vt>.<T> }, [<Xn|SP>]"
 type: 
 fields: 
-- LD1       ld1_advsimd_mult.xml
-- LD1R      ld1r_advsimd.xml
-- ST1       st1_advsimd_mult.xml
+- LD1_asisdlse_R1_1v            ld1_advsimd_mult.xml
+- LD1R_asisdlso_R1              ld1r_advsimd.xml
+- ST1_asisdlse_R1_1v            st1_advsimd_mult.xml
 
 # "  { <Vt>.<T> }, [<Xn|SP>], <Xm>"
 type: 
 fields: 
-- LD1       ld1_advsimd_mult.xml
-- LD1R      ld1r_advsimd.xml
-- ST1       st1_advsimd_mult.xml
+- LD1_asisdlsep_R1_r1           ld1_advsimd_mult.xml
+- LD1R_asisdlsop_RX1_r          ld1r_advsimd.xml
+- ST1_asisdlsep_R1_r1           st1_advsimd_mult.xml
 
 # "  { <Vt>.<T> }, [<Xn|SP>], <imm>"
 type: 
 fields: 
-- LD1       ld1_advsimd_mult.xml
-- LD1R      ld1r_advsimd.xml
-- ST1       st1_advsimd_mult.xml
+- LD1_asisdlsep_I1_i1           ld1_advsimd_mult.xml
+- LD1R_asisdlsop_R1_i           ld1r_advsimd.xml
+- ST1_asisdlsep_I1_i1           st1_advsimd_mult.xml
 
 # "  { <Vt>.<T>, <Vt2>.<T> }, [<Xn|SP>]"
 type: 
 fields: 
-- LD1       ld1_advsimd_mult.xml
-- LD2       ld2_advsimd_mult.xml
-- LD2R      ld2r_advsimd.xml
-- ST1       st1_advsimd_mult.xml
-- ST2       st2_advsimd_mult.xml
+- LD1_asisdlse_R2_2v            ld1_advsimd_mult.xml
+- LD2_asisdlse_R2               ld2_advsimd_mult.xml
+- LD2R_asisdlso_R2              ld2r_advsimd.xml
+- ST1_asisdlse_R2_2v            st1_advsimd_mult.xml
+- ST2_asisdlse_R2               st2_advsimd_mult.xml
 
 # "  { <Vt>.<T>, <Vt2>.<T> }, [<Xn|SP>], <Xm>"
 type: 
 fields: 
-- LD1       ld1_advsimd_mult.xml
-- LD2       ld2_advsimd_mult.xml
-- LD2R      ld2r_advsimd.xml
-- ST1       st1_advsimd_mult.xml
-- ST2       st2_advsimd_mult.xml
+- LD1_asisdlsep_R2_r2           ld1_advsimd_mult.xml
+- LD2_asisdlsep_R2_r            ld2_advsimd_mult.xml
+- LD2R_asisdlsop_RX2_r          ld2r_advsimd.xml
+- ST1_asisdlsep_R2_r2           st1_advsimd_mult.xml
+- ST2_asisdlsep_R2_r            st2_advsimd_mult.xml
 
 # "  { <Vt>.<T>, <Vt2>.<T> }, [<Xn|SP>], <imm>"
 type: 
 fields: 
-- LD1       ld1_advsimd_mult.xml
-- LD2       ld2_advsimd_mult.xml
-- LD2R      ld2r_advsimd.xml
-- ST1       st1_advsimd_mult.xml
-- ST2       st2_advsimd_mult.xml
+- LD1_asisdlsep_I2_i2           ld1_advsimd_mult.xml
+- LD2_asisdlsep_I2_i            ld2_advsimd_mult.xml
+- LD2R_asisdlsop_R2_i           ld2r_advsimd.xml
+- ST1_asisdlsep_I2_i2           st1_advsimd_mult.xml
+- ST2_asisdlsep_I2_i            st2_advsimd_mult.xml
 
 # "  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T> }, [<Xn|SP>]"
 type: 
 fields: 
-- LD1       ld1_advsimd_mult.xml
-- LD3       ld3_advsimd_mult.xml
-- LD3R      ld3r_advsimd.xml
-- ST1       st1_advsimd_mult.xml
-- ST3       st3_advsimd_mult.xml
+- LD1_asisdlse_R3_3v            ld1_advsimd_mult.xml
+- LD3_asisdlse_R3               ld3_advsimd_mult.xml
+- LD3R_asisdlso_R3              ld3r_advsimd.xml
+- ST1_asisdlse_R3_3v            st1_advsimd_mult.xml
+- ST3_asisdlse_R3               st3_advsimd_mult.xml
 
 # "  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T> }, [<Xn|SP>], <Xm>"
 type: 
 fields: 
-- LD1       ld1_advsimd_mult.xml
-- LD3       ld3_advsimd_mult.xml
-- LD3R      ld3r_advsimd.xml
-- ST1       st1_advsimd_mult.xml
-- ST3       st3_advsimd_mult.xml
+- LD1_asisdlsep_R3_r3           ld1_advsimd_mult.xml
+- LD3_asisdlsep_R3_r            ld3_advsimd_mult.xml
+- LD3R_asisdlsop_RX3_r          ld3r_advsimd.xml
+- ST1_asisdlsep_R3_r3           st1_advsimd_mult.xml
+- ST3_asisdlsep_R3_r            st3_advsimd_mult.xml
 
 # "  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T> }, [<Xn|SP>], <imm>"
 type: 
 fields: 
-- LD1       ld1_advsimd_mult.xml
-- LD3       ld3_advsimd_mult.xml
-- LD3R      ld3r_advsimd.xml
-- ST1       st1_advsimd_mult.xml
-- ST3       st3_advsimd_mult.xml
+- LD1_asisdlsep_I3_i3           ld1_advsimd_mult.xml
+- LD3_asisdlsep_I3_i            ld3_advsimd_mult.xml
+- LD3R_asisdlsop_R3_i           ld3r_advsimd.xml
+- ST1_asisdlsep_I3_i3           st1_advsimd_mult.xml
+- ST3_asisdlsep_I3_i            st3_advsimd_mult.xml
 
 # "  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T>, <Vt4>.<T> }, [<Xn|SP>]"
 type: 
 fields: 
-- LD1       ld1_advsimd_mult.xml
-- LD4       ld4_advsimd_mult.xml
-- LD4R      ld4r_advsimd.xml
-- ST1       st1_advsimd_mult.xml
-- ST4       st4_advsimd_mult.xml
+- LD1_asisdlse_R4_4v            ld1_advsimd_mult.xml
+- LD4_asisdlse_R4               ld4_advsimd_mult.xml
+- LD4R_asisdlso_R4              ld4r_advsimd.xml
+- ST1_asisdlse_R4_4v            st1_advsimd_mult.xml
+- ST4_asisdlse_R4               st4_advsimd_mult.xml
 
 # "  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T>, <Vt4>.<T> }, [<Xn|SP>], <Xm>"
 type: 
 fields: 
-- LD1       ld1_advsimd_mult.xml
-- LD4       ld4_advsimd_mult.xml
-- LD4R      ld4r_advsimd.xml
-- ST1       st1_advsimd_mult.xml
-- ST4       st4_advsimd_mult.xml
+- LD1_asisdlsep_R4_r4           ld1_advsimd_mult.xml
+- LD4_asisdlsep_R4_r            ld4_advsimd_mult.xml
+- LD4R_asisdlsop_RX4_r          ld4r_advsimd.xml
+- ST1_asisdlsep_R4_r4           st1_advsimd_mult.xml
+- ST4_asisdlsep_R4_r            st4_advsimd_mult.xml
 
 # "  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T>, <Vt4>.<T> }, [<Xn|SP>], <imm>"
 type: 
 fields: 
-- LD1       ld1_advsimd_mult.xml
-- LD4       ld4_advsimd_mult.xml
-- LD4R      ld4r_advsimd.xml
-- ST1       st1_advsimd_mult.xml
-- ST4       st4_advsimd_mult.xml
+- LD1_asisdlsep_I4_i4           ld1_advsimd_mult.xml
+- LD4_asisdlsep_I4_i            ld4_advsimd_mult.xml
+- LD4R_asisdlsop_R4_i           ld4r_advsimd.xml
+- ST1_asisdlsep_I4_i4           st1_advsimd_mult.xml
+- ST4_asisdlsep_I4_i            st4_advsimd_mult.xml
 
 # "  { <Vt>.B }[<index>], [<Xn|SP>]"
 type: 
 fields: 
-- LD1       ld1_advsimd_sngl.xml
-- ST1       st1_advsimd_sngl.xml
+- LD1_asisdlso_B1_1b            ld1_advsimd_sngl.xml
+- ST1_asisdlso_B1_1b            st1_advsimd_sngl.xml
 
 # "  { <Vt>.B }[<index>], [<Xn|SP>], #1"
 type: 
 fields: 
-- LD1       ld1_advsimd_sngl.xml
-- ST1       st1_advsimd_sngl.xml
+- LD1_asisdlsop_B1_i1b          ld1_advsimd_sngl.xml
+- ST1_asisdlsop_B1_i1b          st1_advsimd_sngl.xml
 
 # "  { <Vt>.B }[<index>], [<Xn|SP>], <Xm>"
 type: 
 fields: 
-- LD1       ld1_advsimd_sngl.xml
-- ST1       st1_advsimd_sngl.xml
+- LD1_asisdlsop_BX1_r1b         ld1_advsimd_sngl.xml
+- ST1_asisdlsop_BX1_r1b         st1_advsimd_sngl.xml
 
 # "  { <Vt>.B, <Vt2>.B }[<index>], [<Xn|SP>]"
 type: 
 fields: 
-- LD2       ld2_advsimd_sngl.xml
-- ST2       st2_advsimd_sngl.xml
+- LD2_asisdlso_B2_2b            ld2_advsimd_sngl.xml
+- ST2_asisdlso_B2_2b            st2_advsimd_sngl.xml
 
 # "  { <Vt>.B, <Vt2>.B }[<index>], [<Xn|SP>], #2"
 type: 
 fields: 
-- LD2       ld2_advsimd_sngl.xml
-- ST2       st2_advsimd_sngl.xml
+- LD2_asisdlsop_B2_i2b          ld2_advsimd_sngl.xml
+- ST2_asisdlsop_B2_i2b          st2_advsimd_sngl.xml
 
 # "  { <Vt>.B, <Vt2>.B }[<index>], [<Xn|SP>], <Xm>"
 type: 
 fields: 
-- LD2       ld2_advsimd_sngl.xml
-- ST2       st2_advsimd_sngl.xml
+- LD2_asisdlsop_BX2_r2b         ld2_advsimd_sngl.xml
+- ST2_asisdlsop_BX2_r2b         st2_advsimd_sngl.xml
 
 # "  { <Vt>.B, <Vt2>.B, <Vt3>.B }[<index>], [<Xn|SP>]"
 type: 
 fields: 
-- LD3       ld3_advsimd_sngl.xml
-- ST3       st3_advsimd_sngl.xml
+- LD3_asisdlso_B3_3b            ld3_advsimd_sngl.xml
+- ST3_asisdlso_B3_3b            st3_advsimd_sngl.xml
 
 # "  { <Vt>.B, <Vt2>.B, <Vt3>.B }[<index>], [<Xn|SP>], #3"
 type: 
 fields: 
-- LD3       ld3_advsimd_sngl.xml
-- ST3       st3_advsimd_sngl.xml
+- LD3_asisdlsop_B3_i3b          ld3_advsimd_sngl.xml
+- ST3_asisdlsop_B3_i3b          st3_advsimd_sngl.xml
 
 # "  { <Vt>.B, <Vt2>.B, <Vt3>.B }[<index>], [<Xn|SP>], <Xm>"
 type: 
 fields: 
-- LD3       ld3_advsimd_sngl.xml
-- ST3       st3_advsimd_sngl.xml
+- LD3_asisdlsop_BX3_r3b         ld3_advsimd_sngl.xml
+- ST3_asisdlsop_BX3_r3b         st3_advsimd_sngl.xml
 
 # "  { <Vt>.B, <Vt2>.B, <Vt3>.B, <Vt4>.B }[<index>], [<Xn|SP>]"
 type: 
 fields: 
-- LD4       ld4_advsimd_sngl.xml
-- ST4       st4_advsimd_sngl.xml
+- LD4_asisdlso_B4_4b            ld4_advsimd_sngl.xml
+- ST4_asisdlso_B4_4b            st4_advsimd_sngl.xml
 
 # "  { <Vt>.B, <Vt2>.B, <Vt3>.B, <Vt4>.B }[<index>], [<Xn|SP>], #4"
 type: 
 fields: 
-- LD4       ld4_advsimd_sngl.xml
-- ST4       st4_advsimd_sngl.xml
+- LD4_asisdlsop_B4_i4b          ld4_advsimd_sngl.xml
+- ST4_asisdlsop_B4_i4b          st4_advsimd_sngl.xml
 
 # "  { <Vt>.B, <Vt2>.B, <Vt3>.B, <Vt4>.B }[<index>], [<Xn|SP>], <Xm>"
 type: 
 fields: 
-- LD4       ld4_advsimd_sngl.xml
-- ST4       st4_advsimd_sngl.xml
+- LD4_asisdlsop_BX4_r4b         ld4_advsimd_sngl.xml
+- ST4_asisdlsop_BX4_r4b         st4_advsimd_sngl.xml
 
 # "  { <Vt>.D }[<index>], [<Xn|SP>]"
 type: 
 fields: 
-- LD1       ld1_advsimd_sngl.xml
-- ST1       st1_advsimd_sngl.xml
+- LD1_asisdlso_D1_1d            ld1_advsimd_sngl.xml
+- ST1_asisdlso_D1_1d            st1_advsimd_sngl.xml
 
 # "  { <Vt>.D }[<index>], [<Xn|SP>], #8"
 type: 
 fields: 
-- LD1       ld1_advsimd_sngl.xml
-- ST1       st1_advsimd_sngl.xml
+- LD1_asisdlsop_D1_i1d          ld1_advsimd_sngl.xml
+- ST1_asisdlsop_D1_i1d          st1_advsimd_sngl.xml
 
 # "  { <Vt>.D }[<index>], [<Xn|SP>], <Xm>"
 type: 
 fields: 
-- LD1       ld1_advsimd_sngl.xml
-- ST1       st1_advsimd_sngl.xml
+- LD1_asisdlsop_DX1_r1d         ld1_advsimd_sngl.xml
+- ST1_asisdlsop_DX1_r1d         st1_advsimd_sngl.xml
 
 # "  { <Vt>.D, <Vt2>.D }[<index>], [<Xn|SP>]"
 type: 
 fields: 
-- LD2       ld2_advsimd_sngl.xml
-- ST2       st2_advsimd_sngl.xml
+- LD2_asisdlso_D2_2d            ld2_advsimd_sngl.xml
+- ST2_asisdlso_D2_2d            st2_advsimd_sngl.xml
 
 # "  { <Vt>.D, <Vt2>.D }[<index>], [<Xn|SP>], #16"
 type: 
 fields: 
-- LD2       ld2_advsimd_sngl.xml
-- ST2       st2_advsimd_sngl.xml
+- LD2_asisdlsop_D2_i2d          ld2_advsimd_sngl.xml
+- ST2_asisdlsop_D2_i2d          st2_advsimd_sngl.xml
 
 # "  { <Vt>.D, <Vt2>.D }[<index>], [<Xn|SP>], <Xm>"
 type: 
 fields: 
-- LD2       ld2_advsimd_sngl.xml
-- ST2       st2_advsimd_sngl.xml
+- LD2_asisdlsop_DX2_r2d         ld2_advsimd_sngl.xml
+- ST2_asisdlsop_DX2_r2d         st2_advsimd_sngl.xml
 
 # "  { <Vt>.D, <Vt2>.D, <Vt3>.D }[<index>], [<Xn|SP>]"
 type: 
 fields: 
-- LD3       ld3_advsimd_sngl.xml
-- ST3       st3_advsimd_sngl.xml
+- LD3_asisdlso_D3_3d            ld3_advsimd_sngl.xml
+- ST3_asisdlso_D3_3d            st3_advsimd_sngl.xml
 
 # "  { <Vt>.D, <Vt2>.D, <Vt3>.D }[<index>], [<Xn|SP>], #24"
 type: 
 fields: 
-- LD3       ld3_advsimd_sngl.xml
-- ST3       st3_advsimd_sngl.xml
+- LD3_asisdlsop_D3_i3d          ld3_advsimd_sngl.xml
+- ST3_asisdlsop_D3_i3d          st3_advsimd_sngl.xml
 
 # "  { <Vt>.D, <Vt2>.D, <Vt3>.D }[<index>], [<Xn|SP>], <Xm>"
 type: 
 fields: 
-- LD3       ld3_advsimd_sngl.xml
-- ST3       st3_advsimd_sngl.xml
+- LD3_asisdlsop_DX3_r3d         ld3_advsimd_sngl.xml
+- ST3_asisdlsop_DX3_r3d         st3_advsimd_sngl.xml
 
 # "  { <Vt>.D, <Vt2>.D, <Vt3>.D, <Vt4>.D }[<index>], [<Xn|SP>]"
 type: 
 fields: 
-- LD4       ld4_advsimd_sngl.xml
-- ST4       st4_advsimd_sngl.xml
+- LD4_asisdlso_D4_4d            ld4_advsimd_sngl.xml
+- ST4_asisdlso_D4_4d            st4_advsimd_sngl.xml
 
 # "  { <Vt>.D, <Vt2>.D, <Vt3>.D, <Vt4>.D }[<index>], [<Xn|SP>], #32"
 type: 
 fields: 
-- LD4       ld4_advsimd_sngl.xml
-- ST4       st4_advsimd_sngl.xml
+- LD4_asisdlsop_D4_i4d          ld4_advsimd_sngl.xml
+- ST4_asisdlsop_D4_i4d          st4_advsimd_sngl.xml
 
 # "  { <Vt>.D, <Vt2>.D, <Vt3>.D, <Vt4>.D }[<index>], [<Xn|SP>], <Xm>"
 type: 
 fields: 
-- LD4       ld4_advsimd_sngl.xml
-- ST4       st4_advsimd_sngl.xml
+- LD4_asisdlsop_DX4_r4d         ld4_advsimd_sngl.xml
+- ST4_asisdlsop_DX4_r4d         st4_advsimd_sngl.xml
 
 # "  { <Vt>.H }[<index>], [<Xn|SP>]"
 type: 
 fields: 
-- LD1       ld1_advsimd_sngl.xml
-- ST1       st1_advsimd_sngl.xml
+- LD1_asisdlso_H1_1h            ld1_advsimd_sngl.xml
+- ST1_asisdlso_H1_1h            st1_advsimd_sngl.xml
 
 # "  { <Vt>.H }[<index>], [<Xn|SP>], #2"
 type: 
 fields: 
-- LD1       ld1_advsimd_sngl.xml
-- ST1       st1_advsimd_sngl.xml
+- LD1_asisdlsop_H1_i1h          ld1_advsimd_sngl.xml
+- ST1_asisdlsop_H1_i1h          st1_advsimd_sngl.xml
 
 # "  { <Vt>.H }[<index>], [<Xn|SP>], <Xm>"
 type: 
 fields: 
-- LD1       ld1_advsimd_sngl.xml
-- ST1       st1_advsimd_sngl.xml
+- LD1_asisdlsop_HX1_r1h         ld1_advsimd_sngl.xml
+- ST1_asisdlsop_HX1_r1h         st1_advsimd_sngl.xml
 
 # "  { <Vt>.H, <Vt2>.H }[<index>], [<Xn|SP>]"
 type: 
 fields: 
-- LD2       ld2_advsimd_sngl.xml
-- ST2       st2_advsimd_sngl.xml
+- LD2_asisdlso_H2_2h            ld2_advsimd_sngl.xml
+- ST2_asisdlso_H2_2h            st2_advsimd_sngl.xml
 
 # "  { <Vt>.H, <Vt2>.H }[<index>], [<Xn|SP>], #4"
 type: 
 fields: 
-- LD2       ld2_advsimd_sngl.xml
-- ST2       st2_advsimd_sngl.xml
+- LD2_asisdlsop_H2_i2h          ld2_advsimd_sngl.xml
+- ST2_asisdlsop_H2_i2h          st2_advsimd_sngl.xml
 
 # "  { <Vt>.H, <Vt2>.H }[<index>], [<Xn|SP>], <Xm>"
 type: 
 fields: 
-- LD2       ld2_advsimd_sngl.xml
-- ST2       st2_advsimd_sngl.xml
+- LD2_asisdlsop_HX2_r2h         ld2_advsimd_sngl.xml
+- ST2_asisdlsop_HX2_r2h         st2_advsimd_sngl.xml
 
 # "  { <Vt>.H, <Vt2>.H, <Vt3>.H }[<index>], [<Xn|SP>]"
 type: 
 fields: 
-- LD3       ld3_advsimd_sngl.xml
-- ST3       st3_advsimd_sngl.xml
+- LD3_asisdlso_H3_3h            ld3_advsimd_sngl.xml
+- ST3_asisdlso_H3_3h            st3_advsimd_sngl.xml
 
 # "  { <Vt>.H, <Vt2>.H, <Vt3>.H }[<index>], [<Xn|SP>], #6"
 type: 
 fields: 
-- LD3       ld3_advsimd_sngl.xml
-- ST3       st3_advsimd_sngl.xml
+- LD3_asisdlsop_H3_i3h          ld3_advsimd_sngl.xml
+- ST3_asisdlsop_H3_i3h          st3_advsimd_sngl.xml
 
 # "  { <Vt>.H, <Vt2>.H, <Vt3>.H }[<index>], [<Xn|SP>], <Xm>"
 type: 
 fields: 
-- LD3       ld3_advsimd_sngl.xml
-- ST3       st3_advsimd_sngl.xml
+- LD3_asisdlsop_HX3_r3h         ld3_advsimd_sngl.xml
+- ST3_asisdlsop_HX3_r3h         st3_advsimd_sngl.xml
 
 # "  { <Vt>.H, <Vt2>.H, <Vt3>.H, <Vt4>.H }[<index>], [<Xn|SP>]"
 type: 
 fields: 
-- LD4       ld4_advsimd_sngl.xml
-- ST4       st4_advsimd_sngl.xml
+- LD4_asisdlso_H4_4h            ld4_advsimd_sngl.xml
+- ST4_asisdlso_H4_4h            st4_advsimd_sngl.xml
 
 # "  { <Vt>.H, <Vt2>.H, <Vt3>.H, <Vt4>.H }[<index>], [<Xn|SP>], #8"
 type: 
 fields: 
-- LD4       ld4_advsimd_sngl.xml
-- ST4       st4_advsimd_sngl.xml
+- LD4_asisdlsop_H4_i4h          ld4_advsimd_sngl.xml
+- ST4_asisdlsop_H4_i4h          st4_advsimd_sngl.xml
 
 # "  { <Vt>.H, <Vt2>.H, <Vt3>.H, <Vt4>.H }[<index>], [<Xn|SP>], <Xm>"
 type: 
 fields: 
-- LD4       ld4_advsimd_sngl.xml
-- ST4       st4_advsimd_sngl.xml
+- LD4_asisdlsop_HX4_r4h         ld4_advsimd_sngl.xml
+- ST4_asisdlsop_HX4_r4h         st4_advsimd_sngl.xml
 
 # "  { <Vt>.S }[<index>], [<Xn|SP>]"
 type: 
 fields: 
-- LD1       ld1_advsimd_sngl.xml
-- ST1       st1_advsimd_sngl.xml
+- LD1_asisdlso_S1_1s            ld1_advsimd_sngl.xml
+- ST1_asisdlso_S1_1s            st1_advsimd_sngl.xml
 
 # "  { <Vt>.S }[<index>], [<Xn|SP>], #4"
 type: 
 fields: 
-- LD1       ld1_advsimd_sngl.xml
-- ST1       st1_advsimd_sngl.xml
+- LD1_asisdlsop_S1_i1s          ld1_advsimd_sngl.xml
+- ST1_asisdlsop_S1_i1s          st1_advsimd_sngl.xml
 
 # "  { <Vt>.S }[<index>], [<Xn|SP>], <Xm>"
 type: 
 fields: 
-- LD1       ld1_advsimd_sngl.xml
-- ST1       st1_advsimd_sngl.xml
+- LD1_asisdlsop_SX1_r1s         ld1_advsimd_sngl.xml
+- ST1_asisdlsop_SX1_r1s         st1_advsimd_sngl.xml
 
 # "  { <Vt>.S, <Vt2>.S }[<index>], [<Xn|SP>]"
 type: 
 fields: 
-- LD2       ld2_advsimd_sngl.xml
-- ST2       st2_advsimd_sngl.xml
+- LD2_asisdlso_S2_2s            ld2_advsimd_sngl.xml
+- ST2_asisdlso_S2_2s            st2_advsimd_sngl.xml
 
 # "  { <Vt>.S, <Vt2>.S }[<index>], [<Xn|SP>], #8"
 type: 
 fields: 
-- LD2       ld2_advsimd_sngl.xml
-- ST2       st2_advsimd_sngl.xml
+- LD2_asisdlsop_S2_i2s          ld2_advsimd_sngl.xml
+- ST2_asisdlsop_S2_i2s          st2_advsimd_sngl.xml
 
 # "  { <Vt>.S, <Vt2>.S }[<index>], [<Xn|SP>], <Xm>"
 type: 
 fields: 
-- LD2       ld2_advsimd_sngl.xml
-- ST2       st2_advsimd_sngl.xml
+- LD2_asisdlsop_SX2_r2s         ld2_advsimd_sngl.xml
+- ST2_asisdlsop_SX2_r2s         st2_advsimd_sngl.xml
 
 # "  { <Vt>.S, <Vt2>.S, <Vt3>.S }[<index>], [<Xn|SP>]"
 type: 
 fields: 
-- LD3       ld3_advsimd_sngl.xml
-- ST3       st3_advsimd_sngl.xml
+- LD3_asisdlso_S3_3s            ld3_advsimd_sngl.xml
+- ST3_asisdlso_S3_3s            st3_advsimd_sngl.xml
 
 # "  { <Vt>.S, <Vt2>.S, <Vt3>.S }[<index>], [<Xn|SP>], #12"
 type: 
 fields: 
-- LD3       ld3_advsimd_sngl.xml
-- ST3       st3_advsimd_sngl.xml
+- LD3_asisdlsop_S3_i3s          ld3_advsimd_sngl.xml
+- ST3_asisdlsop_S3_i3s          st3_advsimd_sngl.xml
 
 # "  { <Vt>.S, <Vt2>.S, <Vt3>.S }[<index>], [<Xn|SP>], <Xm>"
 type: 
 fields: 
-- LD3       ld3_advsimd_sngl.xml
-- ST3       st3_advsimd_sngl.xml
+- LD3_asisdlsop_SX3_r3s         ld3_advsimd_sngl.xml
+- ST3_asisdlsop_SX3_r3s         st3_advsimd_sngl.xml
 
 # "  { <Vt>.S, <Vt2>.S, <Vt3>.S, <Vt4>.S }[<index>], [<Xn|SP>]"
 type: 
 fields: 
-- LD4       ld4_advsimd_sngl.xml
-- ST4       st4_advsimd_sngl.xml
+- LD4_asisdlso_S4_4s            ld4_advsimd_sngl.xml
+- ST4_asisdlso_S4_4s            st4_advsimd_sngl.xml
 
 # "  { <Vt>.S, <Vt2>.S, <Vt3>.S, <Vt4>.S }[<index>], [<Xn|SP>], #16"
 type: 
 fields: 
-- LD4       ld4_advsimd_sngl.xml
-- ST4       st4_advsimd_sngl.xml
+- LD4_asisdlsop_S4_i4s          ld4_advsimd_sngl.xml
+- ST4_asisdlsop_S4_i4s          st4_advsimd_sngl.xml
 
 # "  { <Vt>.S, <Vt2>.S, <Vt3>.S, <Vt4>.S }[<index>], [<Xn|SP>], <Xm>"
 type: 
 fields: 
-- LD4       ld4_advsimd_sngl.xml
-- ST4       st4_advsimd_sngl.xml
+- LD4_asisdlsop_SX4_r4s         ld4_advsimd_sngl.xml
+- ST4_asisdlsop_SX4_r4s         st4_advsimd_sngl.xml
 
 # "  {#<imm>}"
 type: 
 fields: 
-- CLREX     clrex.xml
-- DCPS1     dcps1.xml
-- DCPS2     dcps2.xml
-- DCPS3     dcps3.xml
+- CLREX_BN_system               clrex.xml
+- DCPS1_DC_exception            dcps1.xml
+- DCPS2_DC_exception            dcps2.xml
+- DCPS3_DC_exception            dcps3.xml
 
 # "  {<Xn>}"
 type: 
 fields: 
-- RET       ret.xml
+- RET_64R_branch_reg            ret.xml
 
 # "  {<option>|#<imm>}"
 type: 
 fields: 
-- ISB       isb.xml
+- ISB_BI_system                 isb.xml
 
 # " (<prfop>|#<imm5>), [<Xn|SP>{, #<simm>}]"
 type: 
 fields: 
-- PRFUM     prfum.xml
+- PRFUM_P_ldst_unscaled         prfum.xml
 
 # " CSYNC"
 type: 
 fields: 
-- PSB       psb.xml
+- PSB_HC_system                 psb.xml
 
 # ".<cond>  <label>"
 type: 
 fields: 
-- B         b_cond.xml
+- B_only_condbranch             b_cond.xml
 
 # "{2}  <Vd>.<Ta>, <Vn>.<Ta>, <Vm>.<Tb>"
 type: 
 fields: 
-- SADDW     saddw_advsimd.xml
-- SSUBW     ssubw_advsimd.xml
-- UADDW     uaddw_advsimd.xml
-- USUBW     usubw_advsimd.xml
+- SADDW_asimddiff_W             saddw_advsimd.xml
+- SSUBW_asimddiff_W             ssubw_advsimd.xml
+- UADDW_asimddiff_W             uaddw_advsimd.xml
+- USUBW_asimddiff_W             usubw_advsimd.xml
 
 # "{2}  <Vd>.<Ta>, <Vn>.<Tb>"
 type: 
 fields: 
-- FCVTL     fcvtl_advsimd.xml
+- FCVTL_asimdmisc_L             fcvtl_advsimd.xml
 
 # "{2}  <Vd>.<Ta>, <Vn>.<Tb>, #<shift>"
 type: 
 fields: 
-- SHLL      shll_advsimd.xml
-- SSHLL     sshll_advsimd.xml
-- USHLL     ushll_advsimd.xml
+- SHLL_asimdmisc_S              shll_advsimd.xml
+- SSHLL_asimdshf_L              sshll_advsimd.xml
+- USHLL_asimdshf_L              ushll_advsimd.xml
 
 # "{2}  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.<Tb>"
 type: 
 fields: 
-- PMULL     pmull_advsimd.xml
-- SABAL     sabal_advsimd.xml
-- SABDL     sabdl_advsimd.xml
-- SADDL     saddl_advsimd.xml
-- SMLAL     smlal_advsimd_vec.xml
-- SMLSL     smlsl_advsimd_vec.xml
-- SMULL     smull_advsimd_vec.xml
-- SQDMLAL   sqdmlal_advsimd_vec.xml
-- SQDMLSL   sqdmlsl_advsimd_vec.xml
-- SQDMULL   sqdmull_advsimd_vec.xml
-- SSUBL     ssubl_advsimd.xml
-- UABAL     uabal_advsimd.xml
-- UABDL     uabdl_advsimd.xml
-- UADDL     uaddl_advsimd.xml
-- UMLAL     umlal_advsimd_vec.xml
-- UMLSL     umlsl_advsimd_vec.xml
-- UMULL     umull_advsimd_vec.xml
-- USUBL     usubl_advsimd.xml
+- PMULL_asimddiff_L             pmull_advsimd.xml
+- SABAL_asimddiff_L             sabal_advsimd.xml
+- SABDL_asimddiff_L             sabdl_advsimd.xml
+- SADDL_asimddiff_L             saddl_advsimd.xml
+- SMLAL_asimddiff_L             smlal_advsimd_vec.xml
+- SMLSL_asimddiff_L             smlsl_advsimd_vec.xml
+- SMULL_asimddiff_L             smull_advsimd_vec.xml
+- SQDMLAL_asimddiff_L           sqdmlal_advsimd_vec.xml
+- SQDMLSL_asimddiff_L           sqdmlsl_advsimd_vec.xml
+- SQDMULL_asimddiff_L           sqdmull_advsimd_vec.xml
+- SSUBL_asimddiff_L             ssubl_advsimd.xml
+- UABAL_asimddiff_L             uabal_advsimd.xml
+- UABDL_asimddiff_L             uabdl_advsimd.xml
+- UADDL_asimddiff_L             uaddl_advsimd.xml
+- UMLAL_asimddiff_L             umlal_advsimd_vec.xml
+- UMLSL_asimddiff_L             umlsl_advsimd_vec.xml
+- UMULL_asimddiff_L             umull_advsimd_vec.xml
+- USUBL_asimddiff_L             usubl_advsimd.xml
 
 # "{2}  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.<Ts>[<index>]"
 type: 
 fields: 
-- SMLAL     smlal_advsimd_elt.xml
-- SMLSL     smlsl_advsimd_elt.xml
-- SMULL     smull_advsimd_elt.xml
-- SQDMLAL   sqdmlal_advsimd_elt.xml
-- SQDMLSL   sqdmlsl_advsimd_elt.xml
-- SQDMULL   sqdmull_advsimd_elt.xml
-- UMLAL     umlal_advsimd_elt.xml
-- UMLSL     umlsl_advsimd_elt.xml
-- UMULL     umull_advsimd_elt.xml
+- SMLAL_asimdelem_L             smlal_advsimd_elt.xml
+- SMLSL_asimdelem_L             smlsl_advsimd_elt.xml
+- SMULL_asimdelem_L             smull_advsimd_elt.xml
+- SQDMLAL_asimdelem_L           sqdmlal_advsimd_elt.xml
+- SQDMLSL_asimdelem_L           sqdmlsl_advsimd_elt.xml
+- SQDMULL_asimdelem_L           sqdmull_advsimd_elt.xml
+- UMLAL_asimdelem_L             umlal_advsimd_elt.xml
+- UMLSL_asimdelem_L             umlsl_advsimd_elt.xml
+- UMULL_asimdelem_L             umull_advsimd_elt.xml
 
 # "{2}  <Vd>.<Tb>, <Vn>.<Ta>"
 type: 
 fields: 
-- FCVTN     fcvtn_advsimd.xml
-- FCVTXN    fcvtxn_advsimd.xml
-- SQXTN     sqxtn_advsimd.xml
-- SQXTUN    sqxtun_advsimd.xml
-- UQXTN     uqxtn_advsimd.xml
-- XTN       xtn_advsimd.xml
+- FCVTN_asimdmisc_N             fcvtn_advsimd.xml
+- FCVTXN_asimdmisc_N            fcvtxn_advsimd.xml
+- SQXTN_asimdmisc_N             sqxtn_advsimd.xml
+- SQXTUN_asimdmisc_N            sqxtun_advsimd.xml
+- UQXTN_asimdmisc_N             uqxtn_advsimd.xml
+- XTN_asimdmisc_N               xtn_advsimd.xml
 
 # "{2}  <Vd>.<Tb>, <Vn>.<Ta>, #<shift>"
 type: 
 fields: 
-- RSHRN     rshrn_advsimd.xml
-- SHRN      shrn_advsimd.xml
-- SQRSHRN   sqrshrn_advsimd.xml
-- SQRSHRUN  sqrshrun_advsimd.xml
-- SQSHRN    sqshrn_advsimd.xml
-- SQSHRUN   sqshrun_advsimd.xml
-- UQRSHRN   uqrshrn_advsimd.xml
-- UQSHRN    uqshrn_advsimd.xml
+- RSHRN_asimdshf_N              rshrn_advsimd.xml
+- SHRN_asimdshf_N               shrn_advsimd.xml
+- SQRSHRN_asimdshf_N            sqrshrn_advsimd.xml
+- SQRSHRUN_asimdshf_N           sqrshrun_advsimd.xml
+- SQSHRN_asimdshf_N             sqshrn_advsimd.xml
+- SQSHRUN_asimdshf_N            sqshrun_advsimd.xml
+- UQRSHRN_asimdshf_N            uqrshrn_advsimd.xml
+- UQSHRN_asimdshf_N             uqshrn_advsimd.xml
 
 # "{2}  <Vd>.<Tb>, <Vn>.<Ta>, <Vm>.<Ta>"
 type: 
 fields: 
-- ADDHN     addhn_advsimd.xml
-- RADDHN    raddhn_advsimd.xml
-- RSUBHN    rsubhn_advsimd.xml
-- SUBHN     subhn_advsimd.xml
+- ADDHN_asimddiff_N             addhn_advsimd.xml
+- RADDHN_asimddiff_N            raddhn_advsimd.xml
+- RSUBHN_asimddiff_N            rsubhn_advsimd.xml
+- SUBHN_asimddiff_N             subhn_advsimd.xml
 
