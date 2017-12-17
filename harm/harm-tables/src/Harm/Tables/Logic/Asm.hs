@@ -1,6 +1,6 @@
-{-# LANGUAGE OverloadedString #-}
+{-# LANGUAGE OverloadedStrings #-}
 
-module Harm.Tables.Asm
+module Harm.Tables.Logic.Asm
     (
     ) where
 

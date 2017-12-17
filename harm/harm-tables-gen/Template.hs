@@ -16,15 +16,16 @@ main = withFile "../harm-tables/src/Harm/Tables/Logic.hs" WriteMode $ \h ->
     f n (tplt, grp) =
           showString "-- '" . showString tplt . showString "'\n"
         . concats (map el grp)
+        . showChar '\n'
         . suffix "decode" ":: (a) -> a"
-        . suffix "decode" "f = f"
+        . suffix "decode" "f = f\n"
         . suffix "encode" ":: (a) -> a"
-        . suffix "encode" "f = f"
+        . suffix "encode" "f = f\n"
         . suffix "parse" ":: (a) -> Parser a"
-        . suffix "parse" "f = return f"
+        . suffix "parse" "f = return f\n"
         . suffix "show" ":: ShowS"
         . suffix "show" "= id"
-        . showChar '\n'
+        . showString "\n\n"
       where
         suffix before after =
               showString before

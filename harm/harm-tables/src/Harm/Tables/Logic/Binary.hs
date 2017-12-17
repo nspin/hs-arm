@@ -1,3 +1,3 @@
-module Harm.Tables.Binary
+module Harm.Tables.Logic.Binary
     (
     ) where
