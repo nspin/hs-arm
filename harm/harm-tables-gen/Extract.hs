@@ -24,11 +24,16 @@ import Debug.Trace
 
 -- (template, diagram, [(mnemonic, encoding id, file)])
 encodingGroups :: [(String, [(String, Encoding, String)])]
-encodingGroups = map reduce . groupBy ((==) `on` view _1) . sortBy (compare `on` view _1) $ concatMap flatten everything
+encodingGroups = map reduce . groupBy ((==) `on` view _1) . sortBy (lengthFirst `on` view _1) $ concatMap flatten everything
   where
     reduce grp@(g:rp) = (g^._1, map f grp)
       where
         f (_, m, i, f) = (m, i, f)
+
+lengthFirst :: Ord a => [a] -> [a] -> Ordering
+lengthFirst x y = case compare (length x) (length y) of
+    EQ -> compare x y
+    c -> c
 
 flatten :: Insn -> [(String, String, Encoding, String)]
 flatten Insn{..} = flip concatMap (map fst _insn_classes) $ \Class{..} ->
