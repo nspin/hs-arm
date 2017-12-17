@@ -1,23 +1,22 @@
-Name:                harm-tables-gen
-Version:             0.1
-license:             MIT
-author:              Nick Spinale
-maintainer:          spinalen@gmail.com
-build-type:          Simple
-extra-source-files:  README.md
-cabal-version:       >=1.10
+Name:                 harm-tables-gen
+Version:              0.1
+license:              MIT
+author:               Nick Spinale
+maintainer:           spinalen@gmail.com
+build-type:           Simple
+extra-source-files:   README.md
+cabal-version:        >=1.10
 
 executable gen-harm-tables
-  main-is:           Main.hs
-  other-modules:     Extract
+  main-is:            Main.hs
 
-  build-depends:     base
-                   , harm-types
-                   , arm-mras
+  build-depends:      base
+                    , harm-types
+                    , arm-mras
 
-                   , attoparsec
-                   , bytestring
-                   , directory
-                   , filepath
-                   , haskell-src-exts
-                   , lens
+                    , attoparsec
+                    , bytestring
+                    , directory
+                    , filepath
+                    , haskell-src-exts
+                    , lens

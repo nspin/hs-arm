@@ -1,6 +1,6 @@
 module Main (main) where
 
-import Extract
+import ReadLogic
 
 import ARM.MRAS
 
@@ -8,61 +8,142 @@ import Language.Haskell.Exts
 import System.Environment
 import System.Exit
 import System.FilePath
+import System.IO
 import System.Directory
-
 
 main :: IO ()
 main = do
     args <- getArgs
     case args of
-        [outDir] -> generate outDir
+        [outDir] -> generate stdin outDir
         _ -> die $ "Usage: gen-harm-tables <outDir>"
 
-generate :: FilePath -> IO ()
-generate outDir = do
-    createDirectoryIfMissing True (takeDirectory file)
-    writeFile file $ prettyPrint build
+test :: IO ()
+test = withFile "../harm-tables/src/Harm/Tables/Logic.hs" ReadMode $ \h -> do
+    generate h "."
+
+generate :: Handle -> FilePath -> IO ()
+generate hin outDir = do
+    createDirectoryIfMissing True basePath
+    logic <- readLogic hin
+    let out builder name deps = writeFile (pathOf name) . prettyPrint $
+            Module () (Just head) [] (map basicImport deps) (builder logic)
+              where
+                head = ModuleHead () (ModuleName () ("Harm.Tables.Gen." ++ name)) Nothing Nothing
+    out modInsn "Insn" []
+    out modDecode "Decode"
+        [ "Harm.Tables.Gen.Insn"
+        , "Harm.Tables.Logic"
+        , "Harm.Tables.Logic.Binary"
+        , "Harm.Types.Pattern"
+        , "Data.Word"
+        ]
+    out modEncode "Encode"
+        [ "Harm.Tables.Gen.Insn"
+        , "Harm.Tables.Logic"
+        , "Harm.Tables.Logic.Binary"
+        , "Data.Word"
+        ]
+    out modParse "Parse"
+        [ "Harm.Tables.Gen.Insn"
+        , "Harm.Tables.Logic"
+        , "Harm.Tables.Logic.Asm"
+        , "Data.Word"
+        , "Data.Attoparsec.ByteString.Char8"
+        ]
+    out modShow "Show"
+        [ "Harm.Tables.Gen.Insn"
+        ]
   where
-    file = outDir </> "gen" </> "Harm" </> "Tables" </> "Gen.hs"
+    basePath = outDir </> "gen" </> "Harm" </> "Tables" </> "Gen"
+    pathOf name = basePath </> name <.> ".hs"
 
-build :: Module ()
-build = Module () (Just head) [] imps decls
+modInsn :: Logic -> [Decl ()]
+modInsn logic = [ty] ++ tys
   where
-    head = ModuleHead () (ModuleName () "Harm.Tables.Gen") Nothing Nothing
-    imps = [basicImport "Harm.Types"]
-    decls = [instrTy, tableSig, tableVal] ++ instrTys
+    ty = buildType "Insn" [("B", [])] ["Eq", "Read", "Show"]
+    tys = []
+        -- [ buildType mnem [ (mnem ++ "_" ++ id, []) | (id, _) <- encs ] ["Eq", "Read", "Show", "Enum"]
+        -- | (mnem, encs) <- encodingInfo
+        -- ]
 
-instrTy :: Decl ()
-instrTy = buildType "Encoding" [ (mnem, [mnem]) | (mnem, _) <- encodingInfo ] ["Eq", "Read", "Show"]
-
-instrTys :: [Decl ()]
-instrTys =
-    [ buildType mnem [ (mnem ++ "_" ++ id, []) | (id, _) <- encs ] ["Eq", "Read", "Show", "Enum"]
-    | (mnem, encs) <- encodingInfo
-    ]
-
-tableSig :: Decl ()
-tableSig = TypeSig () [Ident () "decodeTable"]
-    (TyList ()
-        (TyTuple () Boxed
-            [ TyCon () (UnQual () (Ident () "Pattern"))
-            , TyCon () (UnQual () (Ident () "Encoding"))
-            ]))
-
-tableVal :: Decl ()
-tableVal = FunBind ()
-    [ Match () (Ident () "decodeTable") []
-        (UnGuardedRhs ()
-            (List () (concatMap f encodingInfo)))
-        Nothing
-    ]
+modDecode :: Logic -> [Decl ()]
+modDecode logic = [sig, val]
   where
-    f (mnem, encs) = map g encs
-      where
-        g (id, patt) = Tuple () Boxed
-            [ () <$ fromParseResult (parseExp (show patt))
-            , App () (Con () (UnQual () (Ident () mnem))) (Con () (UnQual () (Ident () (mnem ++ "_" ++ id))))
-            ]
+    sig = TypeSig () [Ident () "decodeTable"]
+        (TyList ()
+            (TyTuple () Boxed
+                [ TyCon () (UnQual () (Ident () "Pattern"))
+                , TyFun ()
+                    (TyCon () (UnQual () (Ident () "Word32")))
+                    (TyApp ()
+                        (TyCon () (UnQual () (Ident () "Decode")))
+                        (TyCon () (UnQual () (Ident () "Insn"))))
+                ]))
+    val = FunBind ()
+        [ Match () (Ident () "decodeTable") []
+            (UnGuardedRhs ()
+                (List () []))
+            Nothing
+        ]
+      -- where
+      --   f (mnem, encs) = map g encs
+      --     where
+      --       g (id, patt) = Tuple () Boxed
+      --           [ () <$ fromParseResult (parseExp (show patt))
+      --           , App () (Con () (UnQual () (Ident () mnem))) (Con () (UnQual () (Ident () (mnem ++ "_" ++ id))))
+      --           ]
+
+modEncode :: Logic -> [Decl ()]
+modEncode logic = [sig, val]
+  where
+    sig = TypeSig () [Ident () "encode"]
+        (TyFun ()
+            (TyCon () (UnQual () (Ident () "Insn")))
+            (TyApp ()
+                (TyCon () (UnQual () (Ident () "Encode")))
+                (TyCon () (UnQual () (Ident () "Word32")))))
+    val = FunBind ()
+        [ Match () (Ident () "encode") [PVar () (Ident () "insn")]
+            (UnGuardedRhs ()
+                (App ()
+                    (Var () (UnQual () (Ident () "return")))
+                    (Lit () (Int () 0 "0"))))
+            Nothing
+        ]
+
+modParse :: Logic -> [Decl ()]
+modParse logic = [sig, val]
+  where
+    sig = TypeSig () [Ident () "parseAsm"]
+        (TyApp ()
+            (TyCon () (UnQual () (Ident () "Parser")))
+            (TyCon () (UnQual () (Ident () "Insn"))))
+    val = FunBind ()
+        [ Match () (Ident () "parseAsm") []
+            (UnGuardedRhs ()
+                (App ()
+                    (Var () (UnQual () (Ident () "fail")))
+                    (Lit () (String () "not yet implemented" "not yet implemented"))))
+            Nothing
+        ]
+
+modShow :: Logic -> [Decl ()]
+modShow logic = [sig, val]
+  where
+    sig = TypeSig () [Ident () "showsAsm"]
+        (TyFun ()
+            (TyCon () (UnQual () (Ident () "Insn")))
+            (TyTuple () Boxed
+                [ TyCon () (UnQual () (Ident () "String"))
+                , TyCon () (UnQual () (Ident () "ShowS"))
+                ]))
+    val = FunBind ()
+        [ Match () (Ident () "showsAsm") [PVar () (Ident () "insn")]
+            (UnGuardedRhs ()
+                (Tuple () Boxed [Lit () (String () "NOP" "NOP"), Var () (UnQual () (Ident () "id"))]))
+            Nothing
+        ]
 
 basicImport :: String -> ImportDecl ()
 basicImport name = ImportDecl
