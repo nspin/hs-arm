@@ -46,3 +46,10 @@ instance IsBinary 7 Hint where
         HintSEV   -> 4
         HintSEVL  -> 5
         HintUnk w -> w
+
+toHalf :: W 1 -> Half
+toHalf 0 = Lower
+toHalf 1 = Upper
+
+toCond :: W 4 -> Cond
+toCond = toEnum . fromIntegral . unW

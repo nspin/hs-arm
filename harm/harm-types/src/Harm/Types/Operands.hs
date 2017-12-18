@@ -13,6 +13,8 @@ module Harm.Types.Operands
     , XnOrSP(..)
     , WnOrSP(..)
     , Hint(..)
+    , Half(..)
+    , Cond(..)
     ) where
 
 import Harm.Types.W
@@ -47,22 +49,24 @@ newtype WnOrSP = WnOrSP { unWnOrSP :: Rn }
     deriving (Eq, Num)
 
 
-data ArrSpec = ArrSpec ArrHalfWhole ArrWidth
-data ArrHalfWhole = Half | Whole
-data ArrWidth = ArrB | ArrH | ArrS | ArrD
+data ArrSpec = ArrSpec ArrHalfWhole ArrWidth deriving (Eq, Show, Read)
+data ArrHalfWhole = Half | Whole deriving (Eq, Show, Read)
+data ArrWidth = ArrB | ArrH | ArrS | ArrD deriving (Eq, Show, Read)
 
-data GPRWidth = GPRWidthW | GPRWidthX
-data FPRWidth = FPRWidthB | FPRWidthH | FPRWidthS | FPRWidthD
+data GPRWidth = GPRWidthW | GPRWidthX deriving (Eq, Show, Read)
+data FPRWidth = FPRWidthB | FPRWidthH | FPRWidthS | FPRWidthD deriving (Eq, Show, Read)
 
-data ShiftType = LSL | LSR | ASR | ROR
-data Amount32 = Amount32
-data Amount64 = Amount64
-data Shift32 = Shift32 ShiftType Amount32
-data Shift64 = Shift64 ShiftType Amount64
+data ShiftType = LSL | LSR | ASR | ROR deriving (Eq, Show, Read)
+data Amount32 = Amount32 deriving (Eq, Show, Read)
+data Amount64 = Amount64 deriving (Eq, Show, Read)
+data Shift32 = Shift32 ShiftType Amount32 deriving (Eq, Show, Read)
+data Shift64 = Shift64 ShiftType Amount64 deriving (Eq, Show, Read)
 
 
-newtype BitWidth = BitWidth { unBitWidth :: Integer } deriving (Num)
+newtype BitWidth = BitWidth { unBitWidth :: Integer } deriving (Eq, Show, Read)
 
+
+data Half = Upper | Lower deriving (Eq, Show, Read)
 
 data Cond
     = EQ
@@ -80,6 +84,7 @@ data Cond
     | GT
     | LE
     | AL
+    deriving (Eq, Show, Read, Enum)
 
 data NZCV = NZCV Bool Bool Bool Bool
 

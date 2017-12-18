@@ -5,6 +5,7 @@ module ReadLogic
     , Logic
     , GroupId
     , FieldName
+    , testReadLogic
     ) where
 
 import ARM.MRAS
@@ -16,10 +17,12 @@ import System.IO
 import Text.Show
 import qualified Data.ByteString.Char8 as C
 
-test :: IO Logic
-test = withFile "../harm-tables/src/Harm/Tables/Logic.hs" ReadMode readLogic
+import Debug.Trace
 
-type Logic = [(GroupId, [EncodingId], [Type ()], [FieldName])]
+testReadLogic:: IO Logic
+testReadLogic = withFile "../harm-tables/src/Harm/Tables/Logic.hs" ReadMode readLogic
+
+type Logic = [(GroupId, Template, [EncodingId], [Type ()], [FieldName])]
 type GroupId = String
 type FieldName = String
 
@@ -37,7 +40,8 @@ parseLogic = [] <$ endOfInput <|> go <|> (anyChar *> parseLogic)
     skipLine = skipWhile ((&&) <$> (/= '\n') <*> (/= '\r')) <* endOfLine
     go = do
         "--- "
-        gid <- C.unpack <$> takeTill (== ':') <* skipLine
+        gid <- C.unpack <$> takeTill (== ':') <* ": '"
+        tplt <- C.unpack <$> takeTill (== '\'') <* "'\n"
         eids <- many $ do
             "--- "
             C.unpack <$> takeTill (== ' ') <* skipLine
@@ -46,4 +50,4 @@ parseLogic = [] <$ endOfInput <|> go <|> (anyChar *> parseLogic)
         let TyTuple _ _ (_:_:tys) = (() <$) . fromParseResult . parseType $ "((),()" ++ (if null innerTy then "" else ",") ++ innerTy ++ ")" -- lol
         manyTill anyChar $ "\ndecode_" *> decimal *> " f "
         fields <- manyTill anyChar " " `manyTill` "="
-        (:) (gid, eids, tys, fields) <$> parseLogic
+        (:) (gid, tplt, eids, tys, fields) <$> parseLogic

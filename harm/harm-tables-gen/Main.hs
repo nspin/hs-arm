@@ -1,9 +1,11 @@
 module Main (main) where
 
+import Values
 import ReadLogic
 
 import ARM.MRAS
 
+import Data.Char
 import Language.Haskell.Exts
 import System.Environment
 import System.Exit
@@ -30,9 +32,12 @@ generate hin outDir = do
             Module () (Just head) [] (map basicImport deps) (builder logic)
               where
                 head = ModuleHead () (ModuleName () ("Harm.Tables.Gen." ++ name)) Nothing Nothing
-    out modInsn "Insn" []
+    out modInsn "Insn"
+        [ "Harm.Types"
+        ]
     out modDecode "Decode"
-        [ "Harm.Tables.Gen.Insn"
+        [ "Harm.Types"
+        , "Harm.Tables.Gen.Insn"
         , "Harm.Tables.Logic"
         , "Harm.Tables.Logic.Binary"
         , "Harm.Types.Pattern"
@@ -59,16 +64,33 @@ generate hin outDir = do
     pathOf name = basePath </> name <.> ".hs"
 
 modInsn :: Logic -> [Decl ()]
-modInsn logic = [ty] ++ tys
+modInsn logic = [ty] ++ tys ++ fns
   where
-    ty = buildType "Insn" [("B", [])] ["Eq", "Read", "Show"]
-    tys = []
-        -- [ buildType mnem [ (mnem ++ "_" ++ id, []) | (id, _) <- encs ] ["Eq", "Read", "Show", "Enum"]
-        -- | (mnem, encs) <- encodingInfo
-        -- ]
+    ty = buildType "Insn" [ (mnem, [h mnem]) | mnem <- bigTy ] ["Eq", "Read", "Show"]
+    tys = [ buildType mnem [ (eid, tys) | (eid, tys) <- encs ] ["Eq", "Read", "Show"]
+          | (mnem, encs) <- littleTys logic
+          ]
+    h = TyCon () . UnQual () . Ident ()
+    fns = concat
+        [ [ TypeSig () [Ident () name]
+                (foldr (TyFun ()) (TyCon () (UnQual () (Ident () "Insn"))) ts)
+          , FunBind ()
+                [ Match () (Ident () name)
+                    [ PVar () (Ident () ('x':show i)) | i <- [1..length ts] ]
+                    (UnGuardedRhs ()
+                        (App ()
+                            (Con () (UnQual () (Ident () mnem)))
+                            (foldl (App ()) 
+                                (Con () (UnQual () (Ident () eid)))
+                                [ Var () (UnQual () (Ident () ('x':show i))) | i <- [1..length ts] ])))
+                    Nothing
+                ]
+          ]
+        | (name, ts, mnem, eid) <- littleFns logic
+        ]
 
 modDecode :: Logic -> [Decl ()]
-modDecode logic = [sig, val]
+modDecode l = [sig, val] ++ fns
   where
     sig = TypeSig () [Ident () "decodeTable"]
         (TyList ()
@@ -83,16 +105,44 @@ modDecode logic = [sig, val]
     val = FunBind ()
         [ Match () (Ident () "decodeTable") []
             (UnGuardedRhs ()
-                (List () []))
+                (List () elems))
             Nothing
         ]
-      -- where
-      --   f (mnem, encs) = map g encs
-      --     where
-      --       g (id, patt) = Tuple () Boxed
-      --           [ () <$ fromParseResult (parseExp (show patt))
-      --           , App () (Con () (UnQual () (Ident () mnem))) (Con () (UnQual () (Ident () (mnem ++ "_" ++ id))))
-      --           ]
+    elems =
+        [ Tuple () Boxed
+            [ () <$ fromParseResult (parseExp (show patt))
+            , App () (Var () (UnQual () (Ident () ("decode_inner_" ++ gid)))) (Con () (UnQual () (Ident () (map toLower eid))))
+            ]
+        | (patt, gid, eid) <- decodeTable l
+        ]
+    fns = concat
+        [ [ TypeSig () [Ident () ("decode_inner_" ++ gid)]
+                (TyFun ()
+                    (foldr (TyFun ())
+                        (TyCon () (UnQual () (Ident () "Insn")))
+                        tys)
+                    (TyFun ()
+                        (TyCon () (UnQual () (Ident () "Word32")))
+                        (TyApp ()
+                            (TyCon () (UnQual () (Ident () "Decode")))
+                            (TyCon () (UnQual () (Ident () "Insn"))))))
+          , FunBind ()
+                [ Match () (Ident () ("decode_inner_" ++ gid))
+                    [ PVar () (Ident () "f")
+                    , PVar () (Ident () "w")
+                    ]
+                    (UnGuardedRhs ()
+                        (foldl (App ()) 
+                            -- (Con () (UnQual () (Ident () "f")))
+                            (App ()
+                                (Var () (UnQual () (Ident () ("decode_" ++ gid))))
+                                exp)
+                            exps))
+                    Nothing
+                ]
+          ]
+        | (gid, tys, exp, exps) <- decodeFns l
+        ]
 
 modEncode :: Logic -> [Decl ()]
 modEncode logic = [sig, val]
@@ -157,12 +207,11 @@ basicImport name = ImportDecl
     , importSpecs = Nothing
     }
 
-buildType :: String -> [(String, [String])] -> [String] -> Decl ()
+buildType :: String -> [(String, [Type ()])] -> [String] -> Decl ()
 buildType name vals deriv = DataDecl () (DataType ()) Nothing
     (DHead () (Ident () name))
     (map f vals)
     (Just (Deriving () (map g deriv)))
   where
-    f (cons, args) = QualConDecl () Nothing Nothing (ConDecl () (Ident () cons) (map h args))
+    f (cons, args) = QualConDecl () Nothing Nothing (ConDecl () (Ident () cons) args)
     g cl = IRule () Nothing Nothing (IHCon () (UnQual () (Ident () cl)))
-    h = TyCon () . UnQual () . Ident ()

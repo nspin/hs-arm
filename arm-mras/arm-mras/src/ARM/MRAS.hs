@@ -57,10 +57,13 @@ diagramFields :: [Block] -> [DiagramField]
 diagramFields = go 32
   where
     go hi (Block Nothing spec : blks) = go (hi - len spec) blks
-    go hi (Block (Just n) spec : blks) = Field (hi - 1) (hi - len spec) n : go (hi - len spec) blks
+    go hi (Block (Just n) spec : blks) = DiagramField (len spec) (hi - len spec) n : go (hi - len spec) blks
     go 0 [] = []
     len (BlockEq bs) = length bs
     len (BlockNeq bs) = length bs
 
-data DiagramField = Field Int Int String
-    deriving (Show, Eq, Ord)
+data DiagramField = DiagramField
+    { diagram_field_width :: Int
+    , diagram_field_lo :: Int
+    , diagram_field_name :: String
+    } deriving (Show, Eq, Ord)

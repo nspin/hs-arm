@@ -46,7 +46,7 @@ fromClass Class{..} = map f _class_encodings
         Just (_:rest) = stripPrefix mnem _encoding_id
 
 splitMnem :: String -> (String, String)
-splitMnem = span (not . flip elem " .{")
+splitMnem = span (not . flip elem (" .{" :: String))
 
 namedBlocks :: [Block] -> [(String, BlockSpec)]
 namedBlocks = catMaybes . map f
