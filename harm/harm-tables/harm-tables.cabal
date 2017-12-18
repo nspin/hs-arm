@@ -11,7 +11,17 @@ library
   default-language:   Haskell2010
 
   exposed-modules:    Harm.Tables
-                    , Harm.Tables.Gen
+
+                    , Harm.Tables.Gen.Insn
+                    , Harm.Tables.Gen.Decode
+                    , Harm.Tables.Gen.Encode
+                    , Harm.Tables.Gen.Parse
+                    , Harm.Tables.Gen.Show
+
+                    , Harm.Tables.Logic
+                    , Harm.Tables.Logic.Binary
+                    , Harm.Tables.Logic.Asm
+                    , Harm.Tables.Logic.Types
 
   build-depends:      base >=4.8 && <5
                     , harm-types

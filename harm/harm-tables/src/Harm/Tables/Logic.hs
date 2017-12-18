@@ -4,2596 +4,2596 @@
 
 module Harm.Tables.Logic where
 
-import Harm.Tables.Types
+import Harm.Types
 import Harm.Tables.Logic.Types
 import Harm.Tables.Logic.Asm
 import Harm.Tables.Logic.Binary
 
 import Data.Attoparsec.ByteString.Char8
 
--- ''
--- AUTIA1716_HI_system autia.xml
--- AUTIASP_HI_system   autia.xml
--- AUTIAZ_HI_system    autia.xml
--- AUTIB1716_HI_system autib.xml
--- AUTIBSP_HI_system   autib.xml
--- AUTIBZ_HI_system    autib.xml
--- DRPS_64E_branch_reg drps.xml
--- ERET_64E_branch_reg eret.xml
--- ERETAA_64E_branch_regereta.xml
--- ERETAB_64E_branch_regereta.xml
--- ESB_HI_system       esb.xml
--- NOP_HI_system       nop.xml
--- PACIA1716_HI_system pacia.xml
--- PACIASP_HI_system   pacia.xml
--- PACIAZ_HI_system    pacia.xml
--- PACIB1716_HI_system pacib.xml
--- PACIBSP_HI_system   pacib.xml
--- PACIBZ_HI_system    pacib.xml
--- RETAA_64E_branch_regreta.xml
--- RETAB_64E_branch_regreta.xml
--- SEV_HI_system       sev.xml
--- SEVL_HI_system      sevl.xml
--- WFE_HI_system       wfe.xml
--- WFI_HI_system       wfi.xml
--- XPACLRI_HI_system   xpac.xml
--- YIELD_HI_system     yield.xml
+--- 0: ''
+--- AUTIA1716_HI_system           autia.xml
+--- AUTIASP_HI_system             autia.xml
+--- AUTIAZ_HI_system              autia.xml
+--- AUTIB1716_HI_system           autib.xml
+--- AUTIBSP_HI_system             autib.xml
+--- AUTIBZ_HI_system              autib.xml
+--- DRPS_64E_branch_reg           drps.xml
+--- ERET_64E_branch_reg           eret.xml
+--- ERETAA_64E_branch_reg         ereta.xml
+--- ERETAB_64E_branch_reg         ereta.xml
+--- ESB_HI_system                 esb.xml
+--- NOP_HI_system                 nop.xml
+--- PACIA1716_HI_system           pacia.xml
+--- PACIASP_HI_system             pacia.xml
+--- PACIAZ_HI_system              pacia.xml
+--- PACIB1716_HI_system           pacib.xml
+--- PACIBSP_HI_system             pacib.xml
+--- PACIBZ_HI_system              pacib.xml
+--- RETAA_64E_branch_reg          reta.xml
+--- RETAB_64E_branch_reg          reta.xml
+--- SEV_HI_system                 sev.xml
+--- SEVL_HI_system                sevl.xml
+--- WFE_HI_system                 wfe.xml
+--- WFI_HI_system                 wfi.xml
+--- XPACLRI_HI_system             xpac.xml
+--- YIELD_HI_system               yield.xml
 
-type Logical_000 = '[]
-type Binary_000  = '[]
+type Logical_0 = '[]
+type Binary_0  = '[]
 
-decode_000 :: Fn Logical_000 a -> FnW Binary_000 (Decode a)
-decode_000 f = return f
+decode_0 :: Fn Logical_0 a -> FnW Binary_0 (Decode a)
+decode_0 f = return f
 
-encode_000 :: FnW Binary_000 a -> Fn Logical_000 (Encode a)
-encode_000 f = return f
+encode_0 :: FnW Binary_0 a -> Fn Logical_0 (Encode a)
+encode_0 f = return f
 
-parse_000 :: Fn Logical_000 a -> Parser a
-parse_000 f = do
+parse_0 :: Fn Logical_0 a -> Parser a
+parse_0 f = do
     return $ f
 
-show_000 :: Fn Logical_000 ShowS
-show_000 = id
+show_0 :: Fn Logical_0 ShowS
+show_0 = id
 
 
--- '  <Xd>'
--- AUTDZA_64Z_dp_1src  autda.xml
--- AUTDZB_64Z_dp_1src  autdb.xml
--- AUTIZA_64Z_dp_1src  autia.xml
--- AUTIZB_64Z_dp_1src  autib.xml
--- PACDZA_64Z_dp_1src  pacda.xml
--- PACDZB_64Z_dp_1src  pacdb.xml
--- PACIZA_64Z_dp_1src  pacia.xml
--- PACIZB_64Z_dp_1src  pacib.xml
--- XPACD_64Z_dp_1src   xpac.xml
--- XPACI_64Z_dp_1src   xpac.xml
+--- 1: '  <Xd>'
+--- AUTDZA_64Z_dp_1src            autda.xml
+--- AUTDZB_64Z_dp_1src            autdb.xml
+--- AUTIZA_64Z_dp_1src            autia.xml
+--- AUTIZB_64Z_dp_1src            autib.xml
+--- PACDZA_64Z_dp_1src            pacda.xml
+--- PACDZB_64Z_dp_1src            pacdb.xml
+--- PACIZA_64Z_dp_1src            pacia.xml
+--- PACIZB_64Z_dp_1src            pacib.xml
+--- XPACD_64Z_dp_1src             xpac.xml
+--- XPACI_64Z_dp_1src             xpac.xml
 
-type Logical_001 = '[]
-type Binary_001  = '[]
+type Logical_1 = '[]
+type Binary_1  = '[]
 
-decode_001 :: Fn Logical_001 a -> FnW Binary_001 (Decode a)
-decode_001 f = return f
+decode_1 :: Fn Logical_1 a -> FnW Binary_1 (Decode a)
+decode_1 f = return f
 
-encode_001 :: FnW Binary_001 a -> Fn Logical_001 (Encode a)
-encode_001 f = return f
+encode_1 :: FnW Binary_1 a -> Fn Logical_1 (Encode a)
+encode_1 f = return f
 
-parse_001 :: Fn Logical_001 a -> Parser a
-parse_001 f = do
+parse_1 :: Fn Logical_1 a -> Parser a
+parse_1 f = do
     return $ f
 
-show_001 :: Fn Logical_001 ShowS
-show_001 = id
+show_1 :: Fn Logical_1 ShowS
+show_1 = id
 
 
--- '  <Xn>'
--- BLR_64_branch_reg   blr.xml
--- BLRAAZ_64_branch_regblra.xml
--- BLRABZ_64_branch_regblra.xml
--- BR_64_branch_reg    br.xml
--- BRAAZ_64_branch_reg bra.xml
--- BRABZ_64_branch_reg bra.xml
+--- 2: '  <Xn>'
+--- BLR_64_branch_reg             blr.xml
+--- BLRAAZ_64_branch_reg          blra.xml
+--- BLRABZ_64_branch_reg          blra.xml
+--- BR_64_branch_reg              br.xml
+--- BRAAZ_64_branch_reg           bra.xml
+--- BRABZ_64_branch_reg           bra.xml
 
-type Logical_002 = '[]
-type Binary_002  = '[]
+type Logical_2 = '[]
+type Binary_2  = '[]
 
-decode_002 :: Fn Logical_002 a -> FnW Binary_002 (Decode a)
-decode_002 f = return f
+decode_2 :: Fn Logical_2 a -> FnW Binary_2 (Decode a)
+decode_2 f = return f
 
-encode_002 :: FnW Binary_002 a -> Fn Logical_002 (Encode a)
-encode_002 f = return f
+encode_2 :: FnW Binary_2 a -> Fn Logical_2 (Encode a)
+encode_2 f = return f
 
-parse_002 :: Fn Logical_002 a -> Parser a
-parse_002 f = do
+parse_2 :: Fn Logical_2 a -> Parser a
+parse_2 f = do
     return $ f
 
-show_002 :: Fn Logical_002 ShowS
-show_002 = id
+show_2 :: Fn Logical_2 ShowS
+show_2 = id
 
 
--- ' CSYNC'
--- PSB_HC_system       psb.xml
+--- 3: ' CSYNC'
+--- PSB_HC_system                 psb.xml
 
-type Logical_003 = '[]
-type Binary_003  = '[]
+type Logical_3 = '[]
+type Binary_3  = '[]
 
-decode_003 :: Fn Logical_003 a -> FnW Binary_003 (Decode a)
-decode_003 f = return f
+decode_3 :: Fn Logical_3 a -> FnW Binary_3 (Decode a)
+decode_3 f = return f
 
-encode_003 :: FnW Binary_003 a -> Fn Logical_003 (Encode a)
-encode_003 f = return f
+encode_3 :: FnW Binary_3 a -> Fn Logical_3 (Encode a)
+encode_3 f = return f
 
-parse_003 :: Fn Logical_003 a -> Parser a
-parse_003 f = do
+parse_3 :: Fn Logical_3 a -> Parser a
+parse_3 f = do
     return $ f
 
-show_003 :: Fn Logical_003 ShowS
-show_003 = id
+show_3 :: Fn Logical_3 ShowS
+show_3 = id
 
 
--- '  #<imm>'
--- BRK_EX_exception    brk.xml
--- HINT_1              hint.xml
--- HINT_2              hint.xml
--- HINT_3              hint.xml
--- HLT_EX_exception    hlt.xml
--- HVC_EX_exception    hvc.xml
--- SMC_EX_exception    smc.xml
--- SVC_EX_exception    svc.xml
+--- 4: '  #<imm>'
+--- BRK_EX_exception              brk.xml
+--- HINT_1                        hint.xml
+--- HINT_2                        hint.xml
+--- HINT_3                        hint.xml
+--- HLT_EX_exception              hlt.xml
+--- HVC_EX_exception              hvc.xml
+--- SMC_EX_exception              smc.xml
+--- SVC_EX_exception              svc.xml
 
-type Logical_004 = '[]
-type Binary_004  = '[]
+type Logical_4 = '[]
+type Binary_4  = '[]
 
-decode_004 :: Fn Logical_004 a -> FnW Binary_004 (Decode a)
-decode_004 f = return f
+decode_4 :: Fn Logical_4 a -> FnW Binary_4 (Decode a)
+decode_4 f = return f
 
-encode_004 :: FnW Binary_004 a -> Fn Logical_004 (Encode a)
-encode_004 f = return f
+encode_4 :: FnW Binary_4 a -> Fn Logical_4 (Encode a)
+encode_4 f = return f
 
-parse_004 :: Fn Logical_004 a -> Parser a
-parse_004 f = do
+parse_4 :: Fn Logical_4 a -> Parser a
+parse_4 f = do
     return $ f
 
-show_004 :: Fn Logical_004 ShowS
-show_004 = id
+show_4 :: Fn Logical_4 ShowS
+show_4 = id
 
 
--- '  {<Xn>}'
--- RET_64R_branch_reg  ret.xml
+--- 5: '  {<Xn>}'
+--- RET_64R_branch_reg            ret.xml
 
-type Logical_005 = '[]
-type Binary_005  = '[]
+type Logical_5 = '[]
+type Binary_5  = '[]
 
-decode_005 :: Fn Logical_005 a -> FnW Binary_005 (Decode a)
-decode_005 f = return f
+decode_5 :: Fn Logical_5 a -> FnW Binary_5 (Decode a)
+decode_5 f = return f
 
-encode_005 :: FnW Binary_005 a -> Fn Logical_005 (Encode a)
-encode_005 f = return f
+encode_5 :: FnW Binary_5 a -> Fn Logical_5 (Encode a)
+encode_5 f = return f
 
-parse_005 :: Fn Logical_005 a -> Parser a
-parse_005 f = do
+parse_5 :: Fn Logical_5 a -> Parser a
+parse_5 f = do
     return $ f
 
-show_005 :: Fn Logical_005 ShowS
-show_005 = id
+show_5 :: Fn Logical_5 ShowS
+show_5 = id
 
 
--- '  <label>'
--- B_only_branch_imm   b_uncond.xml
--- BL_only_branch_imm  bl.xml
+--- 6: '  <label>'
+--- B_only_branch_imm             b_uncond.xml
+--- BL_only_branch_imm            bl.xml
 
-type Logical_006 = '[]
-type Binary_006  = '[]
+type Logical_6 = '[]
+type Binary_6  = '[]
 
-decode_006 :: Fn Logical_006 a -> FnW Binary_006 (Decode a)
-decode_006 f = return f
+decode_6 :: Fn Logical_6 a -> FnW Binary_6 (Decode a)
+decode_6 f = return f
 
-encode_006 :: FnW Binary_006 a -> Fn Logical_006 (Encode a)
-encode_006 f = return f
+encode_6 :: FnW Binary_6 a -> Fn Logical_6 (Encode a)
+encode_6 f = return f
 
-parse_006 :: Fn Logical_006 a -> Parser a
-parse_006 f = do
+parse_6 :: Fn Logical_6 a -> Parser a
+parse_6 f = do
     return $ f
 
-show_006 :: Fn Logical_006 ShowS
-show_006 = id
+show_6 :: Fn Logical_6 ShowS
+show_6 = id
 
 
--- '  {#<imm>}'
--- CLREX_BN_system     clrex.xml
--- DCPS1_DC_exception  dcps1.xml
--- DCPS2_DC_exception  dcps2.xml
--- DCPS3_DC_exception  dcps3.xml
+--- 7: '  {#<imm>}'
+--- CLREX_BN_system               clrex.xml
+--- DCPS1_DC_exception            dcps1.xml
+--- DCPS2_DC_exception            dcps2.xml
+--- DCPS3_DC_exception            dcps3.xml
 
-type Logical_007 = '[]
-type Binary_007  = '[]
+type Logical_7 = '[]
+type Binary_7  = '[]
 
-decode_007 :: Fn Logical_007 a -> FnW Binary_007 (Decode a)
-decode_007 f = return f
+decode_7 :: Fn Logical_7 a -> FnW Binary_7 (Decode a)
+decode_7 f = return f
 
-encode_007 :: FnW Binary_007 a -> Fn Logical_007 (Encode a)
-encode_007 f = return f
+encode_7 :: FnW Binary_7 a -> Fn Logical_7 (Encode a)
+encode_7 f = return f
 
-parse_007 :: Fn Logical_007 a -> Parser a
-parse_007 f = do
+parse_7 :: Fn Logical_7 a -> Parser a
+parse_7 f = do
     return $ f
 
-show_007 :: Fn Logical_007 ShowS
-show_007 = id
+show_7 :: Fn Logical_7 ShowS
+show_7 = id
 
 
--- '  <Dd>, <Dn>'
--- FABS_D_floatdp1     fabs_float.xml
--- FMOV_D_floatdp1     fmov_float.xml
--- FNEG_D_floatdp1     fneg_float.xml
--- FRINTA_D_floatdp1   frinta_float.xml
--- FRINTI_D_floatdp1   frinti_float.xml
--- FRINTM_D_floatdp1   frintm_float.xml
--- FRINTN_D_floatdp1   frintn_float.xml
--- FRINTP_D_floatdp1   frintp_float.xml
--- FRINTX_D_floatdp1   frintx_float.xml
--- FRINTZ_D_floatdp1   frintz_float.xml
--- FSQRT_D_floatdp1    fsqrt_float.xml
+--- 8: '  <Dd>, <Dn>'
+--- FABS_D_floatdp1               fabs_float.xml
+--- FMOV_D_floatdp1               fmov_float.xml
+--- FNEG_D_floatdp1               fneg_float.xml
+--- FRINTA_D_floatdp1             frinta_float.xml
+--- FRINTI_D_floatdp1             frinti_float.xml
+--- FRINTM_D_floatdp1             frintm_float.xml
+--- FRINTN_D_floatdp1             frintn_float.xml
+--- FRINTP_D_floatdp1             frintp_float.xml
+--- FRINTX_D_floatdp1             frintx_float.xml
+--- FRINTZ_D_floatdp1             frintz_float.xml
+--- FSQRT_D_floatdp1              fsqrt_float.xml
 
-type Logical_008 = '[]
-type Binary_008  = '[]
+type Logical_8 = '[]
+type Binary_8  = '[]
 
-decode_008 :: Fn Logical_008 a -> FnW Binary_008 (Decode a)
-decode_008 f = return f
+decode_8 :: Fn Logical_8 a -> FnW Binary_8 (Decode a)
+decode_8 f = return f
 
-encode_008 :: FnW Binary_008 a -> Fn Logical_008 (Encode a)
-encode_008 f = return f
+encode_8 :: FnW Binary_8 a -> Fn Logical_8 (Encode a)
+encode_8 f = return f
 
-parse_008 :: Fn Logical_008 a -> Parser a
-parse_008 f = do
+parse_8 :: Fn Logical_8 a -> Parser a
+parse_8 f = do
     return $ f
 
-show_008 :: Fn Logical_008 ShowS
-show_008 = id
+show_8 :: Fn Logical_8 ShowS
+show_8 = id
 
 
--- '  <Dd>, <Hn>'
--- FCVT_DH_floatdp1    fcvt_float.xml
+--- 9: '  <Dd>, <Hn>'
+--- FCVT_DH_floatdp1              fcvt_float.xml
 
-type Logical_009 = '[]
-type Binary_009  = '[]
+type Logical_9 = '[]
+type Binary_9  = '[]
 
-decode_009 :: Fn Logical_009 a -> FnW Binary_009 (Decode a)
-decode_009 f = return f
+decode_9 :: Fn Logical_9 a -> FnW Binary_9 (Decode a)
+decode_9 f = return f
 
-encode_009 :: FnW Binary_009 a -> Fn Logical_009 (Encode a)
-encode_009 f = return f
+encode_9 :: FnW Binary_9 a -> Fn Logical_9 (Encode a)
+encode_9 f = return f
 
-parse_009 :: Fn Logical_009 a -> Parser a
-parse_009 f = do
+parse_9 :: Fn Logical_9 a -> Parser a
+parse_9 f = do
     return $ f
 
-show_009 :: Fn Logical_009 ShowS
-show_009 = id
+show_9 :: Fn Logical_9 ShowS
+show_9 = id
 
 
--- '  <Dd>, <Sn>'
--- FCVT_DS_floatdp1    fcvt_float.xml
+--- 10: '  <Dd>, <Sn>'
+--- FCVT_DS_floatdp1              fcvt_float.xml
 
-type Logical_010 = '[]
-type Binary_010  = '[]
+type Logical_10 = '[]
+type Binary_10  = '[]
 
-decode_010 :: Fn Logical_010 a -> FnW Binary_010 (Decode a)
-decode_010 f = return f
+decode_10 :: Fn Logical_10 a -> FnW Binary_10 (Decode a)
+decode_10 f = return f
 
-encode_010 :: FnW Binary_010 a -> Fn Logical_010 (Encode a)
-encode_010 f = return f
+encode_10 :: FnW Binary_10 a -> Fn Logical_10 (Encode a)
+encode_10 f = return f
 
-parse_010 :: Fn Logical_010 a -> Parser a
-parse_010 f = do
+parse_10 :: Fn Logical_10 a -> Parser a
+parse_10 f = do
     return $ f
 
-show_010 :: Fn Logical_010 ShowS
-show_010 = id
+show_10 :: Fn Logical_10 ShowS
+show_10 = id
 
 
--- '  <Dd>, <Wn>'
--- SCVTF_D32_float2int scvtf_float_int.xml
--- UCVTF_D32_float2int ucvtf_float_int.xml
+--- 11: '  <Dd>, <Wn>'
+--- SCVTF_D32_float2int           scvtf_float_int.xml
+--- UCVTF_D32_float2int           ucvtf_float_int.xml
 
-type Logical_011 = '[]
-type Binary_011  = '[]
+type Logical_11 = '[]
+type Binary_11  = '[]
 
-decode_011 :: Fn Logical_011 a -> FnW Binary_011 (Decode a)
-decode_011 f = return f
+decode_11 :: Fn Logical_11 a -> FnW Binary_11 (Decode a)
+decode_11 f = return f
 
-encode_011 :: FnW Binary_011 a -> Fn Logical_011 (Encode a)
-encode_011 f = return f
+encode_11 :: FnW Binary_11 a -> Fn Logical_11 (Encode a)
+encode_11 f = return f
 
-parse_011 :: Fn Logical_011 a -> Parser a
-parse_011 f = do
+parse_11 :: Fn Logical_11 a -> Parser a
+parse_11 f = do
     return $ f
 
-show_011 :: Fn Logical_011 ShowS
-show_011 = id
+show_11 :: Fn Logical_11 ShowS
+show_11 = id
 
 
--- '  <Dd>, <Xn>'
--- FMOV_D64_float2int  fmov_float_gen.xml
--- SCVTF_D64_float2int scvtf_float_int.xml
--- UCVTF_D64_float2int ucvtf_float_int.xml
+--- 12: '  <Dd>, <Xn>'
+--- FMOV_D64_float2int            fmov_float_gen.xml
+--- SCVTF_D64_float2int           scvtf_float_int.xml
+--- UCVTF_D64_float2int           ucvtf_float_int.xml
 
-type Logical_012 = '[]
-type Binary_012  = '[]
+type Logical_12 = '[]
+type Binary_12  = '[]
 
-decode_012 :: Fn Logical_012 a -> FnW Binary_012 (Decode a)
-decode_012 f = return f
+decode_12 :: Fn Logical_12 a -> FnW Binary_12 (Decode a)
+decode_12 f = return f
 
-encode_012 :: FnW Binary_012 a -> Fn Logical_012 (Encode a)
-encode_012 f = return f
+encode_12 :: FnW Binary_12 a -> Fn Logical_12 (Encode a)
+encode_12 f = return f
 
-parse_012 :: Fn Logical_012 a -> Parser a
-parse_012 f = do
+parse_12 :: Fn Logical_12 a -> Parser a
+parse_12 f = do
     return $ f
 
-show_012 :: Fn Logical_012 ShowS
-show_012 = id
+show_12 :: Fn Logical_12 ShowS
+show_12 = id
 
 
--- '  <Dn>, #0.0'
--- FCMP_DZ_floatcmp    fcmp_float.xml
--- FCMPE_DZ_floatcmp   fcmpe_float.xml
+--- 13: '  <Dn>, #0.0'
+--- FCMP_DZ_floatcmp              fcmp_float.xml
+--- FCMPE_DZ_floatcmp             fcmpe_float.xml
 
-type Logical_013 = '[]
-type Binary_013  = '[]
+type Logical_13 = '[]
+type Binary_13  = '[]
 
-decode_013 :: Fn Logical_013 a -> FnW Binary_013 (Decode a)
-decode_013 f = return f
+decode_13 :: Fn Logical_13 a -> FnW Binary_13 (Decode a)
+decode_13 f = return f
 
-encode_013 :: FnW Binary_013 a -> Fn Logical_013 (Encode a)
-encode_013 f = return f
+encode_13 :: FnW Binary_13 a -> Fn Logical_13 (Encode a)
+encode_13 f = return f
 
-parse_013 :: Fn Logical_013 a -> Parser a
-parse_013 f = do
+parse_13 :: Fn Logical_13 a -> Parser a
+parse_13 f = do
     return $ f
 
-show_013 :: Fn Logical_013 ShowS
-show_013 = id
+show_13 :: Fn Logical_13 ShowS
+show_13 = id
 
 
--- '  <Dn>, <Dm>'
--- FCMP_D_floatcmp     fcmp_float.xml
--- FCMPE_D_floatcmp    fcmpe_float.xml
+--- 14: '  <Dn>, <Dm>'
+--- FCMP_D_floatcmp               fcmp_float.xml
+--- FCMPE_D_floatcmp              fcmpe_float.xml
 
-type Logical_014 = '[]
-type Binary_014  = '[]
+type Logical_14 = '[]
+type Binary_14  = '[]
 
-decode_014 :: Fn Logical_014 a -> FnW Binary_014 (Decode a)
-decode_014 f = return f
+decode_14 :: Fn Logical_14 a -> FnW Binary_14 (Decode a)
+decode_14 f = return f
 
-encode_014 :: FnW Binary_014 a -> Fn Logical_014 (Encode a)
-encode_014 f = return f
+encode_14 :: FnW Binary_14 a -> Fn Logical_14 (Encode a)
+encode_14 f = return f
 
-parse_014 :: Fn Logical_014 a -> Parser a
-parse_014 f = do
+parse_14 :: Fn Logical_14 a -> Parser a
+parse_14 f = do
     return $ f
 
-show_014 :: Fn Logical_014 ShowS
-show_014 = id
+show_14 :: Fn Logical_14 ShowS
+show_14 = id
 
 
--- '  <Hd>, <Dn>'
--- FCVT_HD_floatdp1    fcvt_float.xml
+--- 15: '  <Hd>, <Dn>'
+--- FCVT_HD_floatdp1              fcvt_float.xml
 
-type Logical_015 = '[]
-type Binary_015  = '[]
+type Logical_15 = '[]
+type Binary_15  = '[]
 
-decode_015 :: Fn Logical_015 a -> FnW Binary_015 (Decode a)
-decode_015 f = return f
+decode_15 :: Fn Logical_15 a -> FnW Binary_15 (Decode a)
+decode_15 f = return f
 
-encode_015 :: FnW Binary_015 a -> Fn Logical_015 (Encode a)
-encode_015 f = return f
+encode_15 :: FnW Binary_15 a -> Fn Logical_15 (Encode a)
+encode_15 f = return f
 
-parse_015 :: Fn Logical_015 a -> Parser a
-parse_015 f = do
+parse_15 :: Fn Logical_15 a -> Parser a
+parse_15 f = do
     return $ f
 
-show_015 :: Fn Logical_015 ShowS
-show_015 = id
+show_15 :: Fn Logical_15 ShowS
+show_15 = id
 
 
--- '  <Hd>, <Hn>'
--- FABS_H_floatdp1     fabs_float.xml
--- FCVTAS_asisdmiscfp16_Rfcvtas_advsimd.xml
--- FCVTAU_asisdmiscfp16_Rfcvtau_advsimd.xml
--- FCVTMS_asisdmiscfp16_Rfcvtms_advsimd.xml
--- FCVTMU_asisdmiscfp16_Rfcvtmu_advsimd.xml
--- FCVTNS_asisdmiscfp16_Rfcvtns_advsimd.xml
--- FCVTNU_asisdmiscfp16_Rfcvtnu_advsimd.xml
--- FCVTPS_asisdmiscfp16_Rfcvtps_advsimd.xml
--- FCVTPU_asisdmiscfp16_Rfcvtpu_advsimd.xml
--- FCVTZS_asisdmiscfp16_Rfcvtzs_advsimd_int.xml
--- FCVTZU_asisdmiscfp16_Rfcvtzu_advsimd_int.xml
--- FMOV_H_floatdp1     fmov_float.xml
--- FNEG_H_floatdp1     fneg_float.xml
--- FRECPE_asisdmiscfp16_Rfrecpe_advsimd.xml
--- FRECPX_asisdmiscfp16_Rfrecpx_advsimd.xml
--- FRINTA_H_floatdp1   frinta_float.xml
--- FRINTI_H_floatdp1   frinti_float.xml
--- FRINTM_H_floatdp1   frintm_float.xml
--- FRINTN_H_floatdp1   frintn_float.xml
--- FRINTP_H_floatdp1   frintp_float.xml
--- FRINTX_H_floatdp1   frintx_float.xml
--- FRINTZ_H_floatdp1   frintz_float.xml
--- FRSQRTE_asisdmiscfp16_Rfrsqrte_advsimd.xml
--- FSQRT_H_floatdp1    fsqrt_float.xml
--- SCVTF_asisdmiscfp16_Rscvtf_advsimd_int.xml
--- UCVTF_asisdmiscfp16_Rucvtf_advsimd_int.xml
+--- 16: '  <Hd>, <Hn>'
+--- FABS_H_floatdp1               fabs_float.xml
+--- FCVTAS_asisdmiscfp16_R        fcvtas_advsimd.xml
+--- FCVTAU_asisdmiscfp16_R        fcvtau_advsimd.xml
+--- FCVTMS_asisdmiscfp16_R        fcvtms_advsimd.xml
+--- FCVTMU_asisdmiscfp16_R        fcvtmu_advsimd.xml
+--- FCVTNS_asisdmiscfp16_R        fcvtns_advsimd.xml
+--- FCVTNU_asisdmiscfp16_R        fcvtnu_advsimd.xml
+--- FCVTPS_asisdmiscfp16_R        fcvtps_advsimd.xml
+--- FCVTPU_asisdmiscfp16_R        fcvtpu_advsimd.xml
+--- FCVTZS_asisdmiscfp16_R        fcvtzs_advsimd_int.xml
+--- FCVTZU_asisdmiscfp16_R        fcvtzu_advsimd_int.xml
+--- FMOV_H_floatdp1               fmov_float.xml
+--- FNEG_H_floatdp1               fneg_float.xml
+--- FRECPE_asisdmiscfp16_R        frecpe_advsimd.xml
+--- FRECPX_asisdmiscfp16_R        frecpx_advsimd.xml
+--- FRINTA_H_floatdp1             frinta_float.xml
+--- FRINTI_H_floatdp1             frinti_float.xml
+--- FRINTM_H_floatdp1             frintm_float.xml
+--- FRINTN_H_floatdp1             frintn_float.xml
+--- FRINTP_H_floatdp1             frintp_float.xml
+--- FRINTX_H_floatdp1             frintx_float.xml
+--- FRINTZ_H_floatdp1             frintz_float.xml
+--- FRSQRTE_asisdmiscfp16_R       frsqrte_advsimd.xml
+--- FSQRT_H_floatdp1              fsqrt_float.xml
+--- SCVTF_asisdmiscfp16_R         scvtf_advsimd_int.xml
+--- UCVTF_asisdmiscfp16_R         ucvtf_advsimd_int.xml
 
-type Logical_016 = '[]
-type Binary_016  = '[]
+type Logical_16 = '[]
+type Binary_16  = '[]
 
-decode_016 :: Fn Logical_016 a -> FnW Binary_016 (Decode a)
-decode_016 f = return f
+decode_16 :: Fn Logical_16 a -> FnW Binary_16 (Decode a)
+decode_16 f = return f
 
-encode_016 :: FnW Binary_016 a -> Fn Logical_016 (Encode a)
-encode_016 f = return f
+encode_16 :: FnW Binary_16 a -> Fn Logical_16 (Encode a)
+encode_16 f = return f
 
-parse_016 :: Fn Logical_016 a -> Parser a
-parse_016 f = do
+parse_16 :: Fn Logical_16 a -> Parser a
+parse_16 f = do
     return $ f
 
-show_016 :: Fn Logical_016 ShowS
-show_016 = id
+show_16 :: Fn Logical_16 ShowS
+show_16 = id
 
 
--- '  <Hd>, <Sn>'
--- FCVT_HS_floatdp1    fcvt_float.xml
+--- 17: '  <Hd>, <Sn>'
+--- FCVT_HS_floatdp1              fcvt_float.xml
 
-type Logical_017 = '[]
-type Binary_017  = '[]
+type Logical_17 = '[]
+type Binary_17  = '[]
 
-decode_017 :: Fn Logical_017 a -> FnW Binary_017 (Decode a)
-decode_017 f = return f
+decode_17 :: Fn Logical_17 a -> FnW Binary_17 (Decode a)
+decode_17 f = return f
 
-encode_017 :: FnW Binary_017 a -> Fn Logical_017 (Encode a)
-encode_017 f = return f
+encode_17 :: FnW Binary_17 a -> Fn Logical_17 (Encode a)
+encode_17 f = return f
 
-parse_017 :: Fn Logical_017 a -> Parser a
-parse_017 f = do
+parse_17 :: Fn Logical_17 a -> Parser a
+parse_17 f = do
     return $ f
 
-show_017 :: Fn Logical_017 ShowS
-show_017 = id
+show_17 :: Fn Logical_17 ShowS
+show_17 = id
 
 
--- '  <Hd>, <Wn>'
--- FMOV_H32_float2int  fmov_float_gen.xml
--- SCVTF_H32_float2int scvtf_float_int.xml
--- UCVTF_H32_float2int ucvtf_float_int.xml
+--- 18: '  <Hd>, <Wn>'
+--- FMOV_H32_float2int            fmov_float_gen.xml
+--- SCVTF_H32_float2int           scvtf_float_int.xml
+--- UCVTF_H32_float2int           ucvtf_float_int.xml
 
-type Logical_018 = '[]
-type Binary_018  = '[]
+type Logical_18 = '[]
+type Binary_18  = '[]
 
-decode_018 :: Fn Logical_018 a -> FnW Binary_018 (Decode a)
-decode_018 f = return f
+decode_18 :: Fn Logical_18 a -> FnW Binary_18 (Decode a)
+decode_18 f = return f
 
-encode_018 :: FnW Binary_018 a -> Fn Logical_018 (Encode a)
-encode_018 f = return f
+encode_18 :: FnW Binary_18 a -> Fn Logical_18 (Encode a)
+encode_18 f = return f
 
-parse_018 :: Fn Logical_018 a -> Parser a
-parse_018 f = do
+parse_18 :: Fn Logical_18 a -> Parser a
+parse_18 f = do
     return $ f
 
-show_018 :: Fn Logical_018 ShowS
-show_018 = id
+show_18 :: Fn Logical_18 ShowS
+show_18 = id
 
 
--- '  <Hd>, <Xn>'
--- FMOV_H64_float2int  fmov_float_gen.xml
--- SCVTF_H64_float2int scvtf_float_int.xml
--- UCVTF_H64_float2int ucvtf_float_int.xml
+--- 19: '  <Hd>, <Xn>'
+--- FMOV_H64_float2int            fmov_float_gen.xml
+--- SCVTF_H64_float2int           scvtf_float_int.xml
+--- UCVTF_H64_float2int           ucvtf_float_int.xml
 
-type Logical_019 = '[]
-type Binary_019  = '[]
+type Logical_19 = '[]
+type Binary_19  = '[]
 
-decode_019 :: Fn Logical_019 a -> FnW Binary_019 (Decode a)
-decode_019 f = return f
+decode_19 :: Fn Logical_19 a -> FnW Binary_19 (Decode a)
+decode_19 f = return f
 
-encode_019 :: FnW Binary_019 a -> Fn Logical_019 (Encode a)
-encode_019 f = return f
+encode_19 :: FnW Binary_19 a -> Fn Logical_19 (Encode a)
+encode_19 f = return f
 
-parse_019 :: Fn Logical_019 a -> Parser a
-parse_019 f = do
+parse_19 :: Fn Logical_19 a -> Parser a
+parse_19 f = do
     return $ f
 
-show_019 :: Fn Logical_019 ShowS
-show_019 = id
+show_19 :: Fn Logical_19 ShowS
+show_19 = id
 
 
--- '  <Hn>, #0.0'
--- FCMP_HZ_floatcmp    fcmp_float.xml
--- FCMPE_HZ_floatcmp   fcmpe_float.xml
+--- 20: '  <Hn>, #0.0'
+--- FCMP_HZ_floatcmp              fcmp_float.xml
+--- FCMPE_HZ_floatcmp             fcmpe_float.xml
 
-type Logical_020 = '[]
-type Binary_020  = '[]
+type Logical_20 = '[]
+type Binary_20  = '[]
 
-decode_020 :: Fn Logical_020 a -> FnW Binary_020 (Decode a)
-decode_020 f = return f
+decode_20 :: Fn Logical_20 a -> FnW Binary_20 (Decode a)
+decode_20 f = return f
 
-encode_020 :: FnW Binary_020 a -> Fn Logical_020 (Encode a)
-encode_020 f = return f
+encode_20 :: FnW Binary_20 a -> Fn Logical_20 (Encode a)
+encode_20 f = return f
 
-parse_020 :: Fn Logical_020 a -> Parser a
-parse_020 f = do
+parse_20 :: Fn Logical_20 a -> Parser a
+parse_20 f = do
     return $ f
 
-show_020 :: Fn Logical_020 ShowS
-show_020 = id
+show_20 :: Fn Logical_20 ShowS
+show_20 = id
 
 
--- '  <Hn>, <Hm>'
--- FCMP_H_floatcmp     fcmp_float.xml
--- FCMPE_H_floatcmp    fcmpe_float.xml
+--- 21: '  <Hn>, <Hm>'
+--- FCMP_H_floatcmp               fcmp_float.xml
+--- FCMPE_H_floatcmp              fcmpe_float.xml
 
-type Logical_021 = '[]
-type Binary_021  = '[]
+type Logical_21 = '[]
+type Binary_21  = '[]
 
-decode_021 :: Fn Logical_021 a -> FnW Binary_021 (Decode a)
-decode_021 f = return f
+decode_21 :: Fn Logical_21 a -> FnW Binary_21 (Decode a)
+decode_21 f = return f
 
-encode_021 :: FnW Binary_021 a -> Fn Logical_021 (Encode a)
-encode_021 f = return f
+encode_21 :: FnW Binary_21 a -> Fn Logical_21 (Encode a)
+encode_21 f = return f
 
-parse_021 :: Fn Logical_021 a -> Parser a
-parse_021 f = do
+parse_21 :: Fn Logical_21 a -> Parser a
+parse_21 f = do
     return $ f
 
-show_021 :: Fn Logical_021 ShowS
-show_021 = id
+show_21 :: Fn Logical_21 ShowS
+show_21 = id
 
 
--- '  <Sd>, <Dn>'
--- FCVT_SD_floatdp1    fcvt_float.xml
+--- 22: '  <Sd>, <Dn>'
+--- FCVT_SD_floatdp1              fcvt_float.xml
 
-type Logical_022 = '[]
-type Binary_022  = '[]
+type Logical_22 = '[]
+type Binary_22  = '[]
 
-decode_022 :: Fn Logical_022 a -> FnW Binary_022 (Decode a)
-decode_022 f = return f
+decode_22 :: Fn Logical_22 a -> FnW Binary_22 (Decode a)
+decode_22 f = return f
 
-encode_022 :: FnW Binary_022 a -> Fn Logical_022 (Encode a)
-encode_022 f = return f
+encode_22 :: FnW Binary_22 a -> Fn Logical_22 (Encode a)
+encode_22 f = return f
 
-parse_022 :: Fn Logical_022 a -> Parser a
-parse_022 f = do
+parse_22 :: Fn Logical_22 a -> Parser a
+parse_22 f = do
     return $ f
 
-show_022 :: Fn Logical_022 ShowS
-show_022 = id
+show_22 :: Fn Logical_22 ShowS
+show_22 = id
 
 
--- '  <Sd>, <Hn>'
--- FCVT_SH_floatdp1    fcvt_float.xml
+--- 23: '  <Sd>, <Hn>'
+--- FCVT_SH_floatdp1              fcvt_float.xml
 
-type Logical_023 = '[]
-type Binary_023  = '[]
+type Logical_23 = '[]
+type Binary_23  = '[]
 
-decode_023 :: Fn Logical_023 a -> FnW Binary_023 (Decode a)
-decode_023 f = return f
+decode_23 :: Fn Logical_23 a -> FnW Binary_23 (Decode a)
+decode_23 f = return f
 
-encode_023 :: FnW Binary_023 a -> Fn Logical_023 (Encode a)
-encode_023 f = return f
+encode_23 :: FnW Binary_23 a -> Fn Logical_23 (Encode a)
+encode_23 f = return f
 
-parse_023 :: Fn Logical_023 a -> Parser a
-parse_023 f = do
+parse_23 :: Fn Logical_23 a -> Parser a
+parse_23 f = do
     return $ f
 
-show_023 :: Fn Logical_023 ShowS
-show_023 = id
+show_23 :: Fn Logical_23 ShowS
+show_23 = id
 
 
--- '  <Sd>, <Sn>'
--- FABS_S_floatdp1     fabs_float.xml
--- FMOV_S_floatdp1     fmov_float.xml
--- FNEG_S_floatdp1     fneg_float.xml
--- FRINTA_S_floatdp1   frinta_float.xml
--- FRINTI_S_floatdp1   frinti_float.xml
--- FRINTM_S_floatdp1   frintm_float.xml
--- FRINTN_S_floatdp1   frintn_float.xml
--- FRINTP_S_floatdp1   frintp_float.xml
--- FRINTX_S_floatdp1   frintx_float.xml
--- FRINTZ_S_floatdp1   frintz_float.xml
--- FSQRT_S_floatdp1    fsqrt_float.xml
--- SHA1H_SS_cryptosha2 sha1h_advsimd.xml
+--- 24: '  <Sd>, <Sn>'
+--- FABS_S_floatdp1               fabs_float.xml
+--- FMOV_S_floatdp1               fmov_float.xml
+--- FNEG_S_floatdp1               fneg_float.xml
+--- FRINTA_S_floatdp1             frinta_float.xml
+--- FRINTI_S_floatdp1             frinti_float.xml
+--- FRINTM_S_floatdp1             frintm_float.xml
+--- FRINTN_S_floatdp1             frintn_float.xml
+--- FRINTP_S_floatdp1             frintp_float.xml
+--- FRINTX_S_floatdp1             frintx_float.xml
+--- FRINTZ_S_floatdp1             frintz_float.xml
+--- FSQRT_S_floatdp1              fsqrt_float.xml
+--- SHA1H_SS_cryptosha2           sha1h_advsimd.xml
 
-type Logical_024 = '[]
-type Binary_024  = '[]
+type Logical_24 = '[]
+type Binary_24  = '[]
 
-decode_024 :: Fn Logical_024 a -> FnW Binary_024 (Decode a)
-decode_024 f = return f
+decode_24 :: Fn Logical_24 a -> FnW Binary_24 (Decode a)
+decode_24 f = return f
 
-encode_024 :: FnW Binary_024 a -> Fn Logical_024 (Encode a)
-encode_024 f = return f
+encode_24 :: FnW Binary_24 a -> Fn Logical_24 (Encode a)
+encode_24 f = return f
 
-parse_024 :: Fn Logical_024 a -> Parser a
-parse_024 f = do
+parse_24 :: Fn Logical_24 a -> Parser a
+parse_24 f = do
     return $ f
 
-show_024 :: Fn Logical_024 ShowS
-show_024 = id
+show_24 :: Fn Logical_24 ShowS
+show_24 = id
 
 
--- '  <Sd>, <Wn>'
--- FMOV_S32_float2int  fmov_float_gen.xml
--- SCVTF_S32_float2int scvtf_float_int.xml
--- UCVTF_S32_float2int ucvtf_float_int.xml
+--- 25: '  <Sd>, <Wn>'
+--- FMOV_S32_float2int            fmov_float_gen.xml
+--- SCVTF_S32_float2int           scvtf_float_int.xml
+--- UCVTF_S32_float2int           ucvtf_float_int.xml
 
-type Logical_025 = '[]
-type Binary_025  = '[]
+type Logical_25 = '[]
+type Binary_25  = '[]
 
-decode_025 :: Fn Logical_025 a -> FnW Binary_025 (Decode a)
-decode_025 f = return f
+decode_25 :: Fn Logical_25 a -> FnW Binary_25 (Decode a)
+decode_25 f = return f
 
-encode_025 :: FnW Binary_025 a -> Fn Logical_025 (Encode a)
-encode_025 f = return f
+encode_25 :: FnW Binary_25 a -> Fn Logical_25 (Encode a)
+encode_25 f = return f
 
-parse_025 :: Fn Logical_025 a -> Parser a
-parse_025 f = do
+parse_25 :: Fn Logical_25 a -> Parser a
+parse_25 f = do
     return $ f
 
-show_025 :: Fn Logical_025 ShowS
-show_025 = id
+show_25 :: Fn Logical_25 ShowS
+show_25 = id
 
 
--- '  <Sd>, <Xn>'
--- SCVTF_S64_float2int scvtf_float_int.xml
--- UCVTF_S64_float2int ucvtf_float_int.xml
+--- 26: '  <Sd>, <Xn>'
+--- SCVTF_S64_float2int           scvtf_float_int.xml
+--- UCVTF_S64_float2int           ucvtf_float_int.xml
 
-type Logical_026 = '[]
-type Binary_026  = '[]
+type Logical_26 = '[]
+type Binary_26  = '[]
 
-decode_026 :: Fn Logical_026 a -> FnW Binary_026 (Decode a)
-decode_026 f = return f
+decode_26 :: Fn Logical_26 a -> FnW Binary_26 (Decode a)
+decode_26 f = return f
 
-encode_026 :: FnW Binary_026 a -> Fn Logical_026 (Encode a)
-encode_026 f = return f
+encode_26 :: FnW Binary_26 a -> Fn Logical_26 (Encode a)
+encode_26 f = return f
 
-parse_026 :: Fn Logical_026 a -> Parser a
-parse_026 f = do
+parse_26 :: Fn Logical_26 a -> Parser a
+parse_26 f = do
     return $ f
 
-show_026 :: Fn Logical_026 ShowS
-show_026 = id
+show_26 :: Fn Logical_26 ShowS
+show_26 = id
 
 
--- '  <Sn>, #0.0'
--- FCMP_SZ_floatcmp    fcmp_float.xml
--- FCMPE_SZ_floatcmp   fcmpe_float.xml
+--- 27: '  <Sn>, #0.0'
+--- FCMP_SZ_floatcmp              fcmp_float.xml
+--- FCMPE_SZ_floatcmp             fcmpe_float.xml
 
-type Logical_027 = '[]
-type Binary_027  = '[]
+type Logical_27 = '[]
+type Binary_27  = '[]
 
-decode_027 :: Fn Logical_027 a -> FnW Binary_027 (Decode a)
-decode_027 f = return f
+decode_27 :: Fn Logical_27 a -> FnW Binary_27 (Decode a)
+decode_27 f = return f
 
-encode_027 :: FnW Binary_027 a -> Fn Logical_027 (Encode a)
-encode_027 f = return f
+encode_27 :: FnW Binary_27 a -> Fn Logical_27 (Encode a)
+encode_27 f = return f
 
-parse_027 :: Fn Logical_027 a -> Parser a
-parse_027 f = do
+parse_27 :: Fn Logical_27 a -> Parser a
+parse_27 f = do
     return $ f
 
-show_027 :: Fn Logical_027 ShowS
-show_027 = id
+show_27 :: Fn Logical_27 ShowS
+show_27 = id
 
 
--- '  <Sn>, <Sm>'
--- FCMP_S_floatcmp     fcmp_float.xml
--- FCMPE_S_floatcmp    fcmpe_float.xml
+--- 28: '  <Sn>, <Sm>'
+--- FCMP_S_floatcmp               fcmp_float.xml
+--- FCMPE_S_floatcmp              fcmpe_float.xml
 
-type Logical_028 = '[]
-type Binary_028  = '[]
+type Logical_28 = '[]
+type Binary_28  = '[]
 
-decode_028 :: Fn Logical_028 a -> FnW Binary_028 (Decode a)
-decode_028 f = return f
+decode_28 :: Fn Logical_28 a -> FnW Binary_28 (Decode a)
+decode_28 f = return f
 
-encode_028 :: FnW Binary_028 a -> Fn Logical_028 (Encode a)
-encode_028 f = return f
+encode_28 :: FnW Binary_28 a -> Fn Logical_28 (Encode a)
+encode_28 f = return f
 
-parse_028 :: Fn Logical_028 a -> Parser a
-parse_028 f = do
+parse_28 :: Fn Logical_28 a -> Parser a
+parse_28 f = do
     return $ f
 
-show_028 :: Fn Logical_028 ShowS
-show_028 = id
+show_28 :: Fn Logical_28 ShowS
+show_28 = id
 
 
--- '  <Wd>, <Dn>'
--- FCVTAS_32D_float2intfcvtas_float.xml
--- FCVTAU_32D_float2intfcvtau_float.xml
--- FCVTMS_32D_float2intfcvtms_float.xml
--- FCVTMU_32D_float2intfcvtmu_float.xml
--- FCVTNS_32D_float2intfcvtns_float.xml
--- FCVTNU_32D_float2intfcvtnu_float.xml
--- FCVTPS_32D_float2intfcvtps_float.xml
--- FCVTPU_32D_float2intfcvtpu_float.xml
--- FCVTZS_32D_float2intfcvtzs_float_int.xml
--- FCVTZU_32D_float2intfcvtzu_float_int.xml
--- FJCVTZS_32D_float2intfjcvtzs.xml
+--- 29: '  <Wd>, <Dn>'
+--- FCVTAS_32D_float2int          fcvtas_float.xml
+--- FCVTAU_32D_float2int          fcvtau_float.xml
+--- FCVTMS_32D_float2int          fcvtms_float.xml
+--- FCVTMU_32D_float2int          fcvtmu_float.xml
+--- FCVTNS_32D_float2int          fcvtns_float.xml
+--- FCVTNU_32D_float2int          fcvtnu_float.xml
+--- FCVTPS_32D_float2int          fcvtps_float.xml
+--- FCVTPU_32D_float2int          fcvtpu_float.xml
+--- FCVTZS_32D_float2int          fcvtzs_float_int.xml
+--- FCVTZU_32D_float2int          fcvtzu_float_int.xml
+--- FJCVTZS_32D_float2int         fjcvtzs.xml
 
-type Logical_029 = '[]
-type Binary_029  = '[]
+type Logical_29 = '[]
+type Binary_29  = '[]
 
-decode_029 :: Fn Logical_029 a -> FnW Binary_029 (Decode a)
-decode_029 f = return f
+decode_29 :: Fn Logical_29 a -> FnW Binary_29 (Decode a)
+decode_29 f = return f
 
-encode_029 :: FnW Binary_029 a -> Fn Logical_029 (Encode a)
-encode_029 f = return f
+encode_29 :: FnW Binary_29 a -> Fn Logical_29 (Encode a)
+encode_29 f = return f
 
-parse_029 :: Fn Logical_029 a -> Parser a
-parse_029 f = do
+parse_29 :: Fn Logical_29 a -> Parser a
+parse_29 f = do
     return $ f
 
-show_029 :: Fn Logical_029 ShowS
-show_029 = id
+show_29 :: Fn Logical_29 ShowS
+show_29 = id
 
 
--- '  <Wd>, <Hn>'
--- FCVTAS_32H_float2intfcvtas_float.xml
--- FCVTAU_32H_float2intfcvtau_float.xml
--- FCVTMS_32H_float2intfcvtms_float.xml
--- FCVTMU_32H_float2intfcvtmu_float.xml
--- FCVTNS_32H_float2intfcvtns_float.xml
--- FCVTNU_32H_float2intfcvtnu_float.xml
--- FCVTPS_32H_float2intfcvtps_float.xml
--- FCVTPU_32H_float2intfcvtpu_float.xml
--- FCVTZS_32H_float2intfcvtzs_float_int.xml
--- FCVTZU_32H_float2intfcvtzu_float_int.xml
--- FMOV_32H_float2int  fmov_float_gen.xml
+--- 30: '  <Wd>, <Hn>'
+--- FCVTAS_32H_float2int          fcvtas_float.xml
+--- FCVTAU_32H_float2int          fcvtau_float.xml
+--- FCVTMS_32H_float2int          fcvtms_float.xml
+--- FCVTMU_32H_float2int          fcvtmu_float.xml
+--- FCVTNS_32H_float2int          fcvtns_float.xml
+--- FCVTNU_32H_float2int          fcvtnu_float.xml
+--- FCVTPS_32H_float2int          fcvtps_float.xml
+--- FCVTPU_32H_float2int          fcvtpu_float.xml
+--- FCVTZS_32H_float2int          fcvtzs_float_int.xml
+--- FCVTZU_32H_float2int          fcvtzu_float_int.xml
+--- FMOV_32H_float2int            fmov_float_gen.xml
 
-type Logical_030 = '[]
-type Binary_030  = '[]
+type Logical_30 = '[]
+type Binary_30  = '[]
 
-decode_030 :: Fn Logical_030 a -> FnW Binary_030 (Decode a)
-decode_030 f = return f
+decode_30 :: Fn Logical_30 a -> FnW Binary_30 (Decode a)
+decode_30 f = return f
 
-encode_030 :: FnW Binary_030 a -> Fn Logical_030 (Encode a)
-encode_030 f = return f
+encode_30 :: FnW Binary_30 a -> Fn Logical_30 (Encode a)
+encode_30 f = return f
 
-parse_030 :: Fn Logical_030 a -> Parser a
-parse_030 f = do
+parse_30 :: Fn Logical_30 a -> Parser a
+parse_30 f = do
     return $ f
 
-show_030 :: Fn Logical_030 ShowS
-show_030 = id
+show_30 :: Fn Logical_30 ShowS
+show_30 = id
 
 
--- '  <Wd>, <Sn>'
--- FCVTAS_32S_float2intfcvtas_float.xml
--- FCVTAU_32S_float2intfcvtau_float.xml
--- FCVTMS_32S_float2intfcvtms_float.xml
--- FCVTMU_32S_float2intfcvtmu_float.xml
--- FCVTNS_32S_float2intfcvtns_float.xml
--- FCVTNU_32S_float2intfcvtnu_float.xml
--- FCVTPS_32S_float2intfcvtps_float.xml
--- FCVTPU_32S_float2intfcvtpu_float.xml
--- FCVTZS_32S_float2intfcvtzs_float_int.xml
--- FCVTZU_32S_float2intfcvtzu_float_int.xml
--- FMOV_32S_float2int  fmov_float_gen.xml
+--- 31: '  <Wd>, <Sn>'
+--- FCVTAS_32S_float2int          fcvtas_float.xml
+--- FCVTAU_32S_float2int          fcvtau_float.xml
+--- FCVTMS_32S_float2int          fcvtms_float.xml
+--- FCVTMU_32S_float2int          fcvtmu_float.xml
+--- FCVTNS_32S_float2int          fcvtns_float.xml
+--- FCVTNU_32S_float2int          fcvtnu_float.xml
+--- FCVTPS_32S_float2int          fcvtps_float.xml
+--- FCVTPU_32S_float2int          fcvtpu_float.xml
+--- FCVTZS_32S_float2int          fcvtzs_float_int.xml
+--- FCVTZU_32S_float2int          fcvtzu_float_int.xml
+--- FMOV_32S_float2int            fmov_float_gen.xml
 
-type Logical_031 = '[]
-type Binary_031  = '[]
+type Logical_31 = '[]
+type Binary_31  = '[]
 
-decode_031 :: Fn Logical_031 a -> FnW Binary_031 (Decode a)
-decode_031 f = return f
+decode_31 :: Fn Logical_31 a -> FnW Binary_31 (Decode a)
+decode_31 f = return f
 
-encode_031 :: FnW Binary_031 a -> Fn Logical_031 (Encode a)
-encode_031 f = return f
+encode_31 :: FnW Binary_31 a -> Fn Logical_31 (Encode a)
+encode_31 f = return f
 
-parse_031 :: Fn Logical_031 a -> Parser a
-parse_031 f = do
+parse_31 :: Fn Logical_31 a -> Parser a
+parse_31 f = do
     return $ f
 
-show_031 :: Fn Logical_031 ShowS
-show_031 = id
+show_31 :: Fn Logical_31 ShowS
+show_31 = id
 
 
--- '  <Wd>, <Wn>'
--- CLS_32_dp_1src      cls_int.xml
--- CLZ_32_dp_1src      clz_int.xml
--- RBIT_32_dp_1src     rbit_int.xml
--- REV_32_dp_1src      rev.xml
--- REV16_32_dp_1src    rev16_int.xml
+--- 32: '  <Wd>, <Wn>'
+--- CLS_32_dp_1src                cls_int.xml
+--- CLZ_32_dp_1src                clz_int.xml
+--- RBIT_32_dp_1src               rbit_int.xml
+--- REV_32_dp_1src                rev.xml
+--- REV16_32_dp_1src              rev16_int.xml
 
-type Logical_032 = '[]
-type Binary_032  = '[]
+type Logical_32 = '[]
+type Binary_32  = '[]
 
-decode_032 :: Fn Logical_032 a -> FnW Binary_032 (Decode a)
-decode_032 f = return f
+decode_32 :: Fn Logical_32 a -> FnW Binary_32 (Decode a)
+decode_32 f = return f
 
-encode_032 :: FnW Binary_032 a -> Fn Logical_032 (Encode a)
-encode_032 f = return f
+encode_32 :: FnW Binary_32 a -> Fn Logical_32 (Encode a)
+encode_32 f = return f
 
-parse_032 :: Fn Logical_032 a -> Parser a
-parse_032 f = do
+parse_32 :: Fn Logical_32 a -> Parser a
+parse_32 f = do
     return $ f
 
-show_032 :: Fn Logical_032 ShowS
-show_032 = id
+show_32 :: Fn Logical_32 ShowS
+show_32 = id
 
 
--- '  <Xd>, <Dn>'
--- FCVTAS_64D_float2intfcvtas_float.xml
--- FCVTAU_64D_float2intfcvtau_float.xml
--- FCVTMS_64D_float2intfcvtms_float.xml
--- FCVTMU_64D_float2intfcvtmu_float.xml
--- FCVTNS_64D_float2intfcvtns_float.xml
--- FCVTNU_64D_float2intfcvtnu_float.xml
--- FCVTPS_64D_float2intfcvtps_float.xml
--- FCVTPU_64D_float2intfcvtpu_float.xml
--- FCVTZS_64D_float2intfcvtzs_float_int.xml
--- FCVTZU_64D_float2intfcvtzu_float_int.xml
--- FMOV_64D_float2int  fmov_float_gen.xml
+--- 33: '  <Xd>, <Dn>'
+--- FCVTAS_64D_float2int          fcvtas_float.xml
+--- FCVTAU_64D_float2int          fcvtau_float.xml
+--- FCVTMS_64D_float2int          fcvtms_float.xml
+--- FCVTMU_64D_float2int          fcvtmu_float.xml
+--- FCVTNS_64D_float2int          fcvtns_float.xml
+--- FCVTNU_64D_float2int          fcvtnu_float.xml
+--- FCVTPS_64D_float2int          fcvtps_float.xml
+--- FCVTPU_64D_float2int          fcvtpu_float.xml
+--- FCVTZS_64D_float2int          fcvtzs_float_int.xml
+--- FCVTZU_64D_float2int          fcvtzu_float_int.xml
+--- FMOV_64D_float2int            fmov_float_gen.xml
 
-type Logical_033 = '[]
-type Binary_033  = '[]
+type Logical_33 = '[]
+type Binary_33  = '[]
 
-decode_033 :: Fn Logical_033 a -> FnW Binary_033 (Decode a)
-decode_033 f = return f
+decode_33 :: Fn Logical_33 a -> FnW Binary_33 (Decode a)
+decode_33 f = return f
 
-encode_033 :: FnW Binary_033 a -> Fn Logical_033 (Encode a)
-encode_033 f = return f
+encode_33 :: FnW Binary_33 a -> Fn Logical_33 (Encode a)
+encode_33 f = return f
 
-parse_033 :: Fn Logical_033 a -> Parser a
-parse_033 f = do
+parse_33 :: Fn Logical_33 a -> Parser a
+parse_33 f = do
     return $ f
 
-show_033 :: Fn Logical_033 ShowS
-show_033 = id
+show_33 :: Fn Logical_33 ShowS
+show_33 = id
 
 
--- '  <Xd>, <Hn>'
--- FCVTAS_64H_float2intfcvtas_float.xml
--- FCVTAU_64H_float2intfcvtau_float.xml
--- FCVTMS_64H_float2intfcvtms_float.xml
--- FCVTMU_64H_float2intfcvtmu_float.xml
--- FCVTNS_64H_float2intfcvtns_float.xml
--- FCVTNU_64H_float2intfcvtnu_float.xml
--- FCVTPS_64H_float2intfcvtps_float.xml
--- FCVTPU_64H_float2intfcvtpu_float.xml
--- FCVTZS_64H_float2intfcvtzs_float_int.xml
--- FCVTZU_64H_float2intfcvtzu_float_int.xml
--- FMOV_64H_float2int  fmov_float_gen.xml
+--- 34: '  <Xd>, <Hn>'
+--- FCVTAS_64H_float2int          fcvtas_float.xml
+--- FCVTAU_64H_float2int          fcvtau_float.xml
+--- FCVTMS_64H_float2int          fcvtms_float.xml
+--- FCVTMU_64H_float2int          fcvtmu_float.xml
+--- FCVTNS_64H_float2int          fcvtns_float.xml
+--- FCVTNU_64H_float2int          fcvtnu_float.xml
+--- FCVTPS_64H_float2int          fcvtps_float.xml
+--- FCVTPU_64H_float2int          fcvtpu_float.xml
+--- FCVTZS_64H_float2int          fcvtzs_float_int.xml
+--- FCVTZU_64H_float2int          fcvtzu_float_int.xml
+--- FMOV_64H_float2int            fmov_float_gen.xml
 
-type Logical_034 = '[]
-type Binary_034  = '[]
+type Logical_34 = '[]
+type Binary_34  = '[]
 
-decode_034 :: Fn Logical_034 a -> FnW Binary_034 (Decode a)
-decode_034 f = return f
+decode_34 :: Fn Logical_34 a -> FnW Binary_34 (Decode a)
+decode_34 f = return f
 
-encode_034 :: FnW Binary_034 a -> Fn Logical_034 (Encode a)
-encode_034 f = return f
+encode_34 :: FnW Binary_34 a -> Fn Logical_34 (Encode a)
+encode_34 f = return f
 
-parse_034 :: Fn Logical_034 a -> Parser a
-parse_034 f = do
+parse_34 :: Fn Logical_34 a -> Parser a
+parse_34 f = do
     return $ f
 
-show_034 :: Fn Logical_034 ShowS
-show_034 = id
+show_34 :: Fn Logical_34 ShowS
+show_34 = id
 
 
--- '  <Xd>, <Sn>'
--- FCVTAS_64S_float2intfcvtas_float.xml
--- FCVTAU_64S_float2intfcvtau_float.xml
--- FCVTMS_64S_float2intfcvtms_float.xml
--- FCVTMU_64S_float2intfcvtmu_float.xml
--- FCVTNS_64S_float2intfcvtns_float.xml
--- FCVTNU_64S_float2intfcvtnu_float.xml
--- FCVTPS_64S_float2intfcvtps_float.xml
--- FCVTPU_64S_float2intfcvtpu_float.xml
--- FCVTZS_64S_float2intfcvtzs_float_int.xml
--- FCVTZU_64S_float2intfcvtzu_float_int.xml
+--- 35: '  <Xd>, <Sn>'
+--- FCVTAS_64S_float2int          fcvtas_float.xml
+--- FCVTAU_64S_float2int          fcvtau_float.xml
+--- FCVTMS_64S_float2int          fcvtms_float.xml
+--- FCVTMU_64S_float2int          fcvtmu_float.xml
+--- FCVTNS_64S_float2int          fcvtns_float.xml
+--- FCVTNU_64S_float2int          fcvtnu_float.xml
+--- FCVTPS_64S_float2int          fcvtps_float.xml
+--- FCVTPU_64S_float2int          fcvtpu_float.xml
+--- FCVTZS_64S_float2int          fcvtzs_float_int.xml
+--- FCVTZU_64S_float2int          fcvtzu_float_int.xml
 
-type Logical_035 = '[]
-type Binary_035  = '[]
+type Logical_35 = '[]
+type Binary_35  = '[]
 
-decode_035 :: Fn Logical_035 a -> FnW Binary_035 (Decode a)
-decode_035 f = return f
+decode_35 :: Fn Logical_35 a -> FnW Binary_35 (Decode a)
+decode_35 f = return f
 
-encode_035 :: FnW Binary_035 a -> Fn Logical_035 (Encode a)
-encode_035 f = return f
+encode_35 :: FnW Binary_35 a -> Fn Logical_35 (Encode a)
+encode_35 f = return f
 
-parse_035 :: Fn Logical_035 a -> Parser a
-parse_035 f = do
+parse_35 :: Fn Logical_35 a -> Parser a
+parse_35 f = do
     return $ f
 
-show_035 :: Fn Logical_035 ShowS
-show_035 = id
+show_35 :: Fn Logical_35 ShowS
+show_35 = id
 
 
--- '  <Xd>, <Xn>'
--- CLS_64_dp_1src      cls_int.xml
--- CLZ_64_dp_1src      clz_int.xml
--- RBIT_64_dp_1src     rbit_int.xml
--- REV_64_dp_1src      rev.xml
--- REV16_64_dp_1src    rev16_int.xml
--- REV32_64_dp_1src    rev32_int.xml
+--- 36: '  <Xd>, <Xn>'
+--- CLS_64_dp_1src                cls_int.xml
+--- CLZ_64_dp_1src                clz_int.xml
+--- RBIT_64_dp_1src               rbit_int.xml
+--- REV_64_dp_1src                rev.xml
+--- REV16_64_dp_1src              rev16_int.xml
+--- REV32_64_dp_1src              rev32_int.xml
 
-type Logical_036 = '[]
-type Binary_036  = '[]
+type Logical_36 = '[]
+type Binary_36  = '[]
 
-decode_036 :: Fn Logical_036 a -> FnW Binary_036 (Decode a)
-decode_036 f = return f
+decode_36 :: Fn Logical_36 a -> FnW Binary_36 (Decode a)
+decode_36 f = return f
 
-encode_036 :: FnW Binary_036 a -> Fn Logical_036 (Encode a)
-encode_036 f = return f
+encode_36 :: FnW Binary_36 a -> Fn Logical_36 (Encode a)
+encode_36 f = return f
 
-parse_036 :: Fn Logical_036 a -> Parser a
-parse_036 f = do
+parse_36 :: Fn Logical_36 a -> Parser a
+parse_36 f = do
     return $ f
 
-show_036 :: Fn Logical_036 ShowS
-show_036 = id
+show_36 :: Fn Logical_36 ShowS
+show_36 = id
 
 
--- '  <Dd>, #<imm>'
--- FMOV_D_floatimm     fmov_float_imm.xml
--- MOVI_asimdimm_D_ds  movi_advsimd.xml
+--- 37: '  <Dd>, #<imm>'
+--- FMOV_D_floatimm               fmov_float_imm.xml
+--- MOVI_asimdimm_D_ds            movi_advsimd.xml
 
-type Logical_037 = '[]
-type Binary_037  = '[]
+type Logical_37 = '[]
+type Binary_37  = '[]
 
-decode_037 :: Fn Logical_037 a -> FnW Binary_037 (Decode a)
-decode_037 f = return f
+decode_37 :: Fn Logical_37 a -> FnW Binary_37 (Decode a)
+decode_37 f = return f
 
-encode_037 :: FnW Binary_037 a -> Fn Logical_037 (Encode a)
-encode_037 f = return f
+encode_37 :: FnW Binary_37 a -> Fn Logical_37 (Encode a)
+encode_37 f = return f
 
-parse_037 :: Fn Logical_037 a -> Parser a
-parse_037 f = do
+parse_37 :: Fn Logical_37 a -> Parser a
+parse_37 f = do
     return $ f
 
-show_037 :: Fn Logical_037 ShowS
-show_037 = id
+show_37 :: Fn Logical_37 ShowS
+show_37 = id
 
 
--- '  <Hd>, #<imm>'
--- FMOV_H_floatimm     fmov_float_imm.xml
+--- 38: '  <Hd>, #<imm>'
+--- FMOV_H_floatimm               fmov_float_imm.xml
 
-type Logical_038 = '[]
-type Binary_038  = '[]
+type Logical_38 = '[]
+type Binary_38  = '[]
 
-decode_038 :: Fn Logical_038 a -> FnW Binary_038 (Decode a)
-decode_038 f = return f
+decode_38 :: Fn Logical_38 a -> FnW Binary_38 (Decode a)
+decode_38 f = return f
 
-encode_038 :: FnW Binary_038 a -> Fn Logical_038 (Encode a)
-encode_038 f = return f
+encode_38 :: FnW Binary_38 a -> Fn Logical_38 (Encode a)
+encode_38 f = return f
 
-parse_038 :: Fn Logical_038 a -> Parser a
-parse_038 f = do
+parse_38 :: Fn Logical_38 a -> Parser a
+parse_38 f = do
     return $ f
 
-show_038 :: Fn Logical_038 ShowS
-show_038 = id
+show_38 :: Fn Logical_38 ShowS
+show_38 = id
 
 
--- '  <Sd>, #<imm>'
--- FMOV_S_floatimm     fmov_float_imm.xml
+--- 39: '  <Sd>, #<imm>'
+--- FMOV_S_floatimm               fmov_float_imm.xml
 
-type Logical_039 = '[]
-type Binary_039  = '[]
+type Logical_39 = '[]
+type Binary_39  = '[]
 
-decode_039 :: Fn Logical_039 a -> FnW Binary_039 (Decode a)
-decode_039 f = return f
+decode_39 :: Fn Logical_39 a -> FnW Binary_39 (Decode a)
+decode_39 f = return f
 
-encode_039 :: FnW Binary_039 a -> Fn Logical_039 (Encode a)
-encode_039 f = return f
+encode_39 :: FnW Binary_39 a -> Fn Logical_39 (Encode a)
+encode_39 f = return f
 
-parse_039 :: Fn Logical_039 a -> Parser a
-parse_039 f = do
+parse_39 :: Fn Logical_39 a -> Parser a
+parse_39 f = do
     return $ f
 
-show_039 :: Fn Logical_039 ShowS
-show_039 = id
+show_39 :: Fn Logical_39 ShowS
+show_39 = id
 
 
--- '  <Dt>, <label>'
--- LDR_D_loadlit       ldr_lit_fpsimd.xml
+--- 40: '  <Dt>, <label>'
+--- LDR_D_loadlit                 ldr_lit_fpsimd.xml
 
-type Logical_040 = '[]
-type Binary_040  = '[]
+type Logical_40 = '[]
+type Binary_40  = '[]
 
-decode_040 :: Fn Logical_040 a -> FnW Binary_040 (Decode a)
-decode_040 f = return f
+decode_40 :: Fn Logical_40 a -> FnW Binary_40 (Decode a)
+decode_40 f = return f
 
-encode_040 :: FnW Binary_040 a -> Fn Logical_040 (Encode a)
-encode_040 f = return f
+encode_40 :: FnW Binary_40 a -> Fn Logical_40 (Encode a)
+encode_40 f = return f
 
-parse_040 :: Fn Logical_040 a -> Parser a
-parse_040 f = do
+parse_40 :: Fn Logical_40 a -> Parser a
+parse_40 f = do
     return $ f
 
-show_040 :: Fn Logical_040 ShowS
-show_040 = id
+show_40 :: Fn Logical_40 ShowS
+show_40 = id
 
 
--- '  <Qt>, <label>'
--- LDR_Q_loadlit       ldr_lit_fpsimd.xml
+--- 41: '  <Qt>, <label>'
+--- LDR_Q_loadlit                 ldr_lit_fpsimd.xml
 
-type Logical_041 = '[]
-type Binary_041  = '[]
+type Logical_41 = '[]
+type Binary_41  = '[]
 
-decode_041 :: Fn Logical_041 a -> FnW Binary_041 (Decode a)
-decode_041 f = return f
+decode_41 :: Fn Logical_41 a -> FnW Binary_41 (Decode a)
+decode_41 f = return f
 
-encode_041 :: FnW Binary_041 a -> Fn Logical_041 (Encode a)
-encode_041 f = return f
+encode_41 :: FnW Binary_41 a -> Fn Logical_41 (Encode a)
+encode_41 f = return f
 
-parse_041 :: Fn Logical_041 a -> Parser a
-parse_041 f = do
+parse_41 :: Fn Logical_41 a -> Parser a
+parse_41 f = do
     return $ f
 
-show_041 :: Fn Logical_041 ShowS
-show_041 = id
+show_41 :: Fn Logical_41 ShowS
+show_41 = id
 
 
--- '  <St>, <label>'
--- LDR_S_loadlit       ldr_lit_fpsimd.xml
+--- 42: '  <St>, <label>'
+--- LDR_S_loadlit                 ldr_lit_fpsimd.xml
 
-type Logical_042 = '[]
-type Binary_042  = '[]
+type Logical_42 = '[]
+type Binary_42  = '[]
 
-decode_042 :: Fn Logical_042 a -> FnW Binary_042 (Decode a)
-decode_042 f = return f
+decode_42 :: Fn Logical_42 a -> FnW Binary_42 (Decode a)
+decode_42 f = return f
 
-encode_042 :: FnW Binary_042 a -> Fn Logical_042 (Encode a)
-encode_042 f = return f
+encode_42 :: FnW Binary_42 a -> Fn Logical_42 (Encode a)
+encode_42 f = return f
 
-parse_042 :: Fn Logical_042 a -> Parser a
-parse_042 f = do
+parse_42 :: Fn Logical_42 a -> Parser a
+parse_42 f = do
     return $ f
 
-show_042 :: Fn Logical_042 ShowS
-show_042 = id
+show_42 :: Fn Logical_42 ShowS
+show_42 = id
 
 
--- '  <Wt>, <label>'
--- CBNZ_32_compbranch  cbnz.xml
--- CBZ_32_compbranch   cbz.xml
--- LDR_32_loadlit      ldr_lit_gen.xml
+--- 43: '  <Wt>, <label>'
+--- CBNZ_32_compbranch            cbnz.xml
+--- CBZ_32_compbranch             cbz.xml
+--- LDR_32_loadlit                ldr_lit_gen.xml
 
-type Logical_043 = '[]
-type Binary_043  = '[]
+type Logical_43 = '[]
+type Binary_43  = '[]
 
-decode_043 :: Fn Logical_043 a -> FnW Binary_043 (Decode a)
-decode_043 f = return f
+decode_43 :: Fn Logical_43 a -> FnW Binary_43 (Decode a)
+decode_43 f = return f
 
-encode_043 :: FnW Binary_043 a -> Fn Logical_043 (Encode a)
-encode_043 f = return f
+encode_43 :: FnW Binary_43 a -> Fn Logical_43 (Encode a)
+encode_43 f = return f
 
-parse_043 :: Fn Logical_043 a -> Parser a
-parse_043 f = do
+parse_43 :: Fn Logical_43 a -> Parser a
+parse_43 f = do
     return $ f
 
-show_043 :: Fn Logical_043 ShowS
-show_043 = id
+show_43 :: Fn Logical_43 ShowS
+show_43 = id
 
 
--- '  <Xd>, <Xn|SP>'
--- AUTDA_64P_dp_1src   autda.xml
--- AUTDB_64P_dp_1src   autdb.xml
--- AUTIA_64P_dp_1src   autia.xml
--- AUTIB_64P_dp_1src   autib.xml
--- PACDA_64P_dp_1src   pacda.xml
--- PACDB_64P_dp_1src   pacdb.xml
--- PACIA_64P_dp_1src   pacia.xml
--- PACIB_64P_dp_1src   pacib.xml
+--- 44: '  <Xd>, <Xn|SP>'
+--- AUTDA_64P_dp_1src             autda.xml
+--- AUTDB_64P_dp_1src             autdb.xml
+--- AUTIA_64P_dp_1src             autia.xml
+--- AUTIB_64P_dp_1src             autib.xml
+--- PACDA_64P_dp_1src             pacda.xml
+--- PACDB_64P_dp_1src             pacdb.xml
+--- PACIA_64P_dp_1src             pacia.xml
+--- PACIB_64P_dp_1src             pacib.xml
 
-type Logical_044 = '[]
-type Binary_044  = '[]
+type Logical_44 = '[]
+type Binary_44  = '[]
 
-decode_044 :: Fn Logical_044 a -> FnW Binary_044 (Decode a)
-decode_044 f = return f
+decode_44 :: Fn Logical_44 a -> FnW Binary_44 (Decode a)
+decode_44 f = return f
 
-encode_044 :: FnW Binary_044 a -> Fn Logical_044 (Encode a)
-encode_044 f = return f
+encode_44 :: FnW Binary_44 a -> Fn Logical_44 (Encode a)
+encode_44 f = return f
 
-parse_044 :: Fn Logical_044 a -> Parser a
-parse_044 f = do
+parse_44 :: Fn Logical_44 a -> Parser a
+parse_44 f = do
     return $ f
 
-show_044 :: Fn Logical_044 ShowS
-show_044 = id
+show_44 :: Fn Logical_44 ShowS
+show_44 = id
 
 
--- '  <Xd>, <label>'
--- ADR_only_pcreladdr  adr.xml
--- ADRP_only_pcreladdr adrp.xml
+--- 45: '  <Xd>, <label>'
+--- ADR_only_pcreladdr            adr.xml
+--- ADRP_only_pcreladdr           adrp.xml
 
-type Logical_045 = '[]
-type Binary_045  = '[]
+type Logical_45 = '[]
+type Binary_45  = '[]
 
-decode_045 :: Fn Logical_045 a -> FnW Binary_045 (Decode a)
-decode_045 f = return f
+decode_45 :: Fn Logical_45 a -> FnW Binary_45 (Decode a)
+decode_45 f = return f
 
-encode_045 :: FnW Binary_045 a -> Fn Logical_045 (Encode a)
-encode_045 f = return f
+encode_45 :: FnW Binary_45 a -> Fn Logical_45 (Encode a)
+encode_45 f = return f
 
-parse_045 :: Fn Logical_045 a -> Parser a
-parse_045 f = do
+parse_45 :: Fn Logical_45 a -> Parser a
+parse_45 f = do
     return $ f
 
-show_045 :: Fn Logical_045 ShowS
-show_045 = id
+show_45 :: Fn Logical_45 ShowS
+show_45 = id
 
 
--- '  <Xn>, <Xm|SP>'
--- BLRAA_64P_branch_regblra.xml
--- BLRAB_64P_branch_regblra.xml
--- BRAA_64P_branch_reg bra.xml
--- BRAB_64P_branch_reg bra.xml
+--- 46: '  <Xn>, <Xm|SP>'
+--- BLRAA_64P_branch_reg          blra.xml
+--- BLRAB_64P_branch_reg          blra.xml
+--- BRAA_64P_branch_reg           bra.xml
+--- BRAB_64P_branch_reg           bra.xml
 
-type Logical_046 = '[]
-type Binary_046  = '[]
+type Logical_46 = '[]
+type Binary_46  = '[]
 
-decode_046 :: Fn Logical_046 a -> FnW Binary_046 (Decode a)
-decode_046 f = return f
+decode_46 :: Fn Logical_46 a -> FnW Binary_46 (Decode a)
+decode_46 f = return f
 
-encode_046 :: FnW Binary_046 a -> Fn Logical_046 (Encode a)
-encode_046 f = return f
+encode_46 :: FnW Binary_46 a -> Fn Logical_46 (Encode a)
+encode_46 f = return f
 
-parse_046 :: Fn Logical_046 a -> Parser a
-parse_046 f = do
+parse_46 :: Fn Logical_46 a -> Parser a
+parse_46 f = do
     return $ f
 
-show_046 :: Fn Logical_046 ShowS
-show_046 = id
+show_46 :: Fn Logical_46 ShowS
+show_46 = id
 
 
--- '  <Xt>, <label>'
--- CBNZ_64_compbranch  cbnz.xml
--- CBZ_64_compbranch   cbz.xml
--- LDR_64_loadlit      ldr_lit_gen.xml
--- LDRSW_64_loadlit    ldrsw_lit.xml
+--- 47: '  <Xt>, <label>'
+--- CBNZ_64_compbranch            cbnz.xml
+--- CBZ_64_compbranch             cbz.xml
+--- LDR_64_loadlit                ldr_lit_gen.xml
+--- LDRSW_64_loadlit              ldrsw_lit.xml
 
-type Logical_047 = '[]
-type Binary_047  = '[]
+type Logical_47 = '[]
+type Binary_47  = '[]
 
-decode_047 :: Fn Logical_047 a -> FnW Binary_047 (Decode a)
-decode_047 f = return f
+decode_47 :: Fn Logical_47 a -> FnW Binary_47 (Decode a)
+decode_47 f = return f
 
-encode_047 :: FnW Binary_047 a -> Fn Logical_047 (Encode a)
-encode_047 f = return f
+encode_47 :: FnW Binary_47 a -> Fn Logical_47 (Encode a)
+encode_47 f = return f
 
-parse_047 :: Fn Logical_047 a -> Parser a
-parse_047 f = do
+parse_47 :: Fn Logical_47 a -> Parser a
+parse_47 f = do
     return $ f
 
-show_047 :: Fn Logical_047 ShowS
-show_047 = id
+show_47 :: Fn Logical_47 ShowS
+show_47 = id
 
 
--- '  <V><d>, <V><n>'
--- ABS_asisdmisc_R     abs_advsimd.xml
--- FCVTAS_asisdmisc_R  fcvtas_advsimd.xml
--- FCVTAU_asisdmisc_R  fcvtau_advsimd.xml
--- FCVTMS_asisdmisc_R  fcvtms_advsimd.xml
--- FCVTMU_asisdmisc_R  fcvtmu_advsimd.xml
--- FCVTNS_asisdmisc_R  fcvtns_advsimd.xml
--- FCVTNU_asisdmisc_R  fcvtnu_advsimd.xml
--- FCVTPS_asisdmisc_R  fcvtps_advsimd.xml
--- FCVTPU_asisdmisc_R  fcvtpu_advsimd.xml
--- FCVTZS_asisdmisc_R  fcvtzs_advsimd_int.xml
--- FCVTZU_asisdmisc_R  fcvtzu_advsimd_int.xml
--- FRECPE_asisdmisc_R  frecpe_advsimd.xml
--- FRECPX_asisdmisc_R  frecpx_advsimd.xml
--- FRSQRTE_asisdmisc_R frsqrte_advsimd.xml
--- NEG_asisdmisc_R     neg_advsimd.xml
--- SCVTF_asisdmisc_R   scvtf_advsimd_int.xml
--- SQABS_asisdmisc_R   sqabs_advsimd.xml
--- SQNEG_asisdmisc_R   sqneg_advsimd.xml
--- SUQADD_asisdmisc_R  suqadd_advsimd.xml
--- UCVTF_asisdmisc_R   ucvtf_advsimd_int.xml
--- USQADD_asisdmisc_R  usqadd_advsimd.xml
+--- 48: '  <V><d>, <V><n>'
+--- ABS_asisdmisc_R               abs_advsimd.xml
+--- FCVTAS_asisdmisc_R            fcvtas_advsimd.xml
+--- FCVTAU_asisdmisc_R            fcvtau_advsimd.xml
+--- FCVTMS_asisdmisc_R            fcvtms_advsimd.xml
+--- FCVTMU_asisdmisc_R            fcvtmu_advsimd.xml
+--- FCVTNS_asisdmisc_R            fcvtns_advsimd.xml
+--- FCVTNU_asisdmisc_R            fcvtnu_advsimd.xml
+--- FCVTPS_asisdmisc_R            fcvtps_advsimd.xml
+--- FCVTPU_asisdmisc_R            fcvtpu_advsimd.xml
+--- FCVTZS_asisdmisc_R            fcvtzs_advsimd_int.xml
+--- FCVTZU_asisdmisc_R            fcvtzu_advsimd_int.xml
+--- FRECPE_asisdmisc_R            frecpe_advsimd.xml
+--- FRECPX_asisdmisc_R            frecpx_advsimd.xml
+--- FRSQRTE_asisdmisc_R           frsqrte_advsimd.xml
+--- NEG_asisdmisc_R               neg_advsimd.xml
+--- SCVTF_asisdmisc_R             scvtf_advsimd_int.xml
+--- SQABS_asisdmisc_R             sqabs_advsimd.xml
+--- SQNEG_asisdmisc_R             sqneg_advsimd.xml
+--- SUQADD_asisdmisc_R            suqadd_advsimd.xml
+--- UCVTF_asisdmisc_R             ucvtf_advsimd_int.xml
+--- USQADD_asisdmisc_R            usqadd_advsimd.xml
 
-type Logical_048 = '[]
-type Binary_048  = '[]
+type Logical_48 = '[]
+type Binary_48  = '[]
 
-decode_048 :: Fn Logical_048 a -> FnW Binary_048 (Decode a)
-decode_048 f = return f
+decode_48 :: Fn Logical_48 a -> FnW Binary_48 (Decode a)
+decode_48 f = return f
 
-encode_048 :: FnW Binary_048 a -> Fn Logical_048 (Encode a)
-encode_048 f = return f
+encode_48 :: FnW Binary_48 a -> Fn Logical_48 (Encode a)
+encode_48 f = return f
 
-parse_048 :: Fn Logical_048 a -> Parser a
-parse_048 f = do
+parse_48 :: Fn Logical_48 a -> Parser a
+parse_48 f = do
     return $ f
 
-show_048 :: Fn Logical_048 ShowS
-show_048 = id
+show_48 :: Fn Logical_48 ShowS
+show_48 = id
 
 
--- '.<cond>  <label>'
--- B_only_condbranch   b_cond.xml
+--- 49: '.<cond>  <label>'
+--- B_only_condbranch             b_cond.xml
 
-type Logical_049 = '[]
-type Binary_049  = '[]
+type Logical_49 = '[]
+type Binary_49  = '[]
 
-decode_049 :: Fn Logical_049 a -> FnW Binary_049 (Decode a)
-decode_049 f = return f
+decode_49 :: Fn Logical_49 a -> FnW Binary_49 (Decode a)
+decode_49 f = return f
 
-encode_049 :: FnW Binary_049 a -> Fn Logical_049 (Encode a)
-encode_049 f = return f
+encode_49 :: FnW Binary_49 a -> Fn Logical_49 (Encode a)
+encode_49 f = return f
 
-parse_049 :: Fn Logical_049 a -> Parser a
-parse_049 f = do
+parse_49 :: Fn Logical_49 a -> Parser a
+parse_49 f = do
     return $ f
 
-show_049 :: Fn Logical_049 ShowS
-show_049 = id
+show_49 :: Fn Logical_49 ShowS
+show_49 = id
 
 
--- '  <Vd>.2D, #<imm>'
--- FMOV_asimdimm_D2_d  fmov_advsimd.xml
--- MOVI_asimdimm_D2_d  movi_advsimd.xml
+--- 50: '  <Vd>.2D, #<imm>'
+--- FMOV_asimdimm_D2_d            fmov_advsimd.xml
+--- MOVI_asimdimm_D2_d            movi_advsimd.xml
 
-type Logical_050 = '[]
-type Binary_050  = '[]
+type Logical_50 = '[]
+type Binary_50  = '[]
 
-decode_050 :: Fn Logical_050 a -> FnW Binary_050 (Decode a)
-decode_050 f = return f
+decode_50 :: Fn Logical_50 a -> FnW Binary_50 (Decode a)
+decode_50 f = return f
 
-encode_050 :: FnW Binary_050 a -> Fn Logical_050 (Encode a)
-encode_050 f = return f
+encode_50 :: FnW Binary_50 a -> Fn Logical_50 (Encode a)
+encode_50 f = return f
 
-parse_050 :: Fn Logical_050 a -> Parser a
-parse_050 f = do
+parse_50 :: Fn Logical_50 a -> Parser a
+parse_50 f = do
     return $ f
 
-show_050 :: Fn Logical_050 ShowS
-show_050 = id
+show_50 :: Fn Logical_50 ShowS
+show_50 = id
 
 
--- '  <Vd>.D[1], <Xn>'
--- FMOV_V64I_float2int fmov_float_gen.xml
+--- 51: '  <Vd>.D[1], <Xn>'
+--- FMOV_V64I_float2int           fmov_float_gen.xml
 
-type Logical_051 = '[]
-type Binary_051  = '[]
+type Logical_51 = '[]
+type Binary_51  = '[]
 
-decode_051 :: Fn Logical_051 a -> FnW Binary_051 (Decode a)
-decode_051 f = return f
+decode_51 :: Fn Logical_51 a -> FnW Binary_51 (Decode a)
+decode_51 f = return f
 
-encode_051 :: FnW Binary_051 a -> Fn Logical_051 (Encode a)
-encode_051 f = return f
+encode_51 :: FnW Binary_51 a -> Fn Logical_51 (Encode a)
+encode_51 f = return f
 
-parse_051 :: Fn Logical_051 a -> Parser a
-parse_051 f = do
+parse_51 :: Fn Logical_51 a -> Parser a
+parse_51 f = do
     return $ f
 
-show_051 :: Fn Logical_051 ShowS
-show_051 = id
+show_51 :: Fn Logical_51 ShowS
+show_51 = id
 
 
--- '  <Xd>, <Vn>.D[1]'
--- FMOV_64VX_float2int fmov_float_gen.xml
+--- 52: '  <Xd>, <Vn>.D[1]'
+--- FMOV_64VX_float2int           fmov_float_gen.xml
 
-type Logical_052 = '[]
-type Binary_052  = '[]
+type Logical_52 = '[]
+type Binary_52  = '[]
 
-decode_052 :: Fn Logical_052 a -> FnW Binary_052 (Decode a)
-decode_052 f = return f
+decode_52 :: Fn Logical_52 a -> FnW Binary_52 (Decode a)
+decode_52 f = return f
 
-encode_052 :: FnW Binary_052 a -> Fn Logical_052 (Encode a)
-encode_052 f = return f
+encode_52 :: FnW Binary_52 a -> Fn Logical_52 (Encode a)
+encode_52 f = return f
 
-parse_052 :: Fn Logical_052 a -> Parser a
-parse_052 f = do
+parse_52 :: Fn Logical_52 a -> Parser a
+parse_52 f = do
     return $ f
 
-show_052 :: Fn Logical_052 ShowS
-show_052 = id
+show_52 :: Fn Logical_52 ShowS
+show_52 = id
 
 
--- '  <option>|#<imm>'
--- DMB_BO_system       dmb.xml
--- DSB_BO_system       dsb.xml
+--- 53: '  <option>|#<imm>'
+--- DMB_BO_system                 dmb.xml
+--- DSB_BO_system                 dsb.xml
 
-type Logical_053 = '[]
-type Binary_053  = '[]
+type Logical_53 = '[]
+type Binary_53  = '[]
 
-decode_053 :: Fn Logical_053 a -> FnW Binary_053 (Decode a)
-decode_053 f = return f
+decode_53 :: Fn Logical_53 a -> FnW Binary_53 (Decode a)
+decode_53 f = return f
 
-encode_053 :: FnW Binary_053 a -> Fn Logical_053 (Encode a)
-encode_053 f = return f
+encode_53 :: FnW Binary_53 a -> Fn Logical_53 (Encode a)
+encode_53 f = return f
 
-parse_053 :: Fn Logical_053 a -> Parser a
-parse_053 f = do
+parse_53 :: Fn Logical_53 a -> Parser a
+parse_53 f = do
     return $ f
 
-show_053 :: Fn Logical_053 ShowS
-show_053 = id
+show_53 :: Fn Logical_53 ShowS
+show_53 = id
 
 
--- '  <Dd>, <Dn>, <Dm>'
--- FADD_D_floatdp2     fadd_float.xml
--- FDIV_D_floatdp2     fdiv_float.xml
--- FMAX_D_floatdp2     fmax_float.xml
--- FMAXNM_D_floatdp2   fmaxnm_float.xml
--- FMIN_D_floatdp2     fmin_float.xml
--- FMINNM_D_floatdp2   fminnm_float.xml
--- FMUL_D_floatdp2     fmul_float.xml
--- FNMUL_D_floatdp2    fnmul_float.xml
--- FSUB_D_floatdp2     fsub_float.xml
+--- 54: '  <Dd>, <Dn>, <Dm>'
+--- FADD_D_floatdp2               fadd_float.xml
+--- FDIV_D_floatdp2               fdiv_float.xml
+--- FMAX_D_floatdp2               fmax_float.xml
+--- FMAXNM_D_floatdp2             fmaxnm_float.xml
+--- FMIN_D_floatdp2               fmin_float.xml
+--- FMINNM_D_floatdp2             fminnm_float.xml
+--- FMUL_D_floatdp2               fmul_float.xml
+--- FNMUL_D_floatdp2              fnmul_float.xml
+--- FSUB_D_floatdp2               fsub_float.xml
 
-type Logical_054 = '[]
-type Binary_054  = '[]
+type Logical_54 = '[]
+type Binary_54  = '[]
 
-decode_054 :: Fn Logical_054 a -> FnW Binary_054 (Decode a)
-decode_054 f = return f
+decode_54 :: Fn Logical_54 a -> FnW Binary_54 (Decode a)
+decode_54 f = return f
 
-encode_054 :: FnW Binary_054 a -> Fn Logical_054 (Encode a)
-encode_054 f = return f
+encode_54 :: FnW Binary_54 a -> Fn Logical_54 (Encode a)
+encode_54 f = return f
 
-parse_054 :: Fn Logical_054 a -> Parser a
-parse_054 f = do
+parse_54 :: Fn Logical_54 a -> Parser a
+parse_54 f = do
     return $ f
 
-show_054 :: Fn Logical_054 ShowS
-show_054 = id
+show_54 :: Fn Logical_54 ShowS
+show_54 = id
 
 
--- '  <Hd>, <Hn>, #0.0'
--- FCMEQ_asisdmiscfp16_FZfcmeq_advsimd_zero.xml
--- FCMGE_asisdmiscfp16_FZfcmge_advsimd_zero.xml
--- FCMGT_asisdmiscfp16_FZfcmgt_advsimd_zero.xml
--- FCMLE_asisdmiscfp16_FZfcmle_advsimd.xml
--- FCMLT_asisdmiscfp16_FZfcmlt_advsimd.xml
+--- 55: '  <Hd>, <Hn>, #0.0'
+--- FCMEQ_asisdmiscfp16_FZ        fcmeq_advsimd_zero.xml
+--- FCMGE_asisdmiscfp16_FZ        fcmge_advsimd_zero.xml
+--- FCMGT_asisdmiscfp16_FZ        fcmgt_advsimd_zero.xml
+--- FCMLE_asisdmiscfp16_FZ        fcmle_advsimd.xml
+--- FCMLT_asisdmiscfp16_FZ        fcmlt_advsimd.xml
 
-type Logical_055 = '[]
-type Binary_055  = '[]
+type Logical_55 = '[]
+type Binary_55  = '[]
 
-decode_055 :: Fn Logical_055 a -> FnW Binary_055 (Decode a)
-decode_055 f = return f
+decode_55 :: Fn Logical_55 a -> FnW Binary_55 (Decode a)
+decode_55 f = return f
 
-encode_055 :: FnW Binary_055 a -> Fn Logical_055 (Encode a)
-encode_055 f = return f
+encode_55 :: FnW Binary_55 a -> Fn Logical_55 (Encode a)
+encode_55 f = return f
 
-parse_055 :: Fn Logical_055 a -> Parser a
-parse_055 f = do
+parse_55 :: Fn Logical_55 a -> Parser a
+parse_55 f = do
     return $ f
 
-show_055 :: Fn Logical_055 ShowS
-show_055 = id
+show_55 :: Fn Logical_55 ShowS
+show_55 = id
 
 
--- '  <Hd>, <Hn>, <Hm>'
--- FABD_asisdsamefp16_onlyfabd_advsimd.xml
--- FACGE_asisdsamefp16_onlyfacge_advsimd.xml
--- FACGT_asisdsamefp16_onlyfacgt_advsimd.xml
--- FADD_H_floatdp2     fadd_float.xml
--- FCMEQ_asisdsamefp16_onlyfcmeq_advsimd_reg.xml
--- FCMGE_asisdsamefp16_onlyfcmge_advsimd_reg.xml
--- FCMGT_asisdsamefp16_onlyfcmgt_advsimd_reg.xml
--- FDIV_H_floatdp2     fdiv_float.xml
--- FMAX_H_floatdp2     fmax_float.xml
--- FMAXNM_H_floatdp2   fmaxnm_float.xml
--- FMIN_H_floatdp2     fmin_float.xml
--- FMINNM_H_floatdp2   fminnm_float.xml
--- FMUL_H_floatdp2     fmul_float.xml
--- FMULX_asisdsamefp16_onlyfmulx_advsimd_vec.xml
--- FNMUL_H_floatdp2    fnmul_float.xml
--- FRECPS_asisdsamefp16_onlyfrecps_advsimd.xml
--- FRSQRTS_asisdsamefp16_onlyfrsqrts_advsimd.xml
--- FSUB_H_floatdp2     fsub_float.xml
+--- 56: '  <Hd>, <Hn>, <Hm>'
+--- FABD_asisdsamefp16_only       fabd_advsimd.xml
+--- FACGE_asisdsamefp16_only      facge_advsimd.xml
+--- FACGT_asisdsamefp16_only      facgt_advsimd.xml
+--- FADD_H_floatdp2               fadd_float.xml
+--- FCMEQ_asisdsamefp16_only      fcmeq_advsimd_reg.xml
+--- FCMGE_asisdsamefp16_only      fcmge_advsimd_reg.xml
+--- FCMGT_asisdsamefp16_only      fcmgt_advsimd_reg.xml
+--- FDIV_H_floatdp2               fdiv_float.xml
+--- FMAX_H_floatdp2               fmax_float.xml
+--- FMAXNM_H_floatdp2             fmaxnm_float.xml
+--- FMIN_H_floatdp2               fmin_float.xml
+--- FMINNM_H_floatdp2             fminnm_float.xml
+--- FMUL_H_floatdp2               fmul_float.xml
+--- FMULX_asisdsamefp16_only      fmulx_advsimd_vec.xml
+--- FNMUL_H_floatdp2              fnmul_float.xml
+--- FRECPS_asisdsamefp16_only     frecps_advsimd.xml
+--- FRSQRTS_asisdsamefp16_only    frsqrts_advsimd.xml
+--- FSUB_H_floatdp2               fsub_float.xml
 
-type Logical_056 = '[]
-type Binary_056  = '[]
+type Logical_56 = '[]
+type Binary_56  = '[]
 
-decode_056 :: Fn Logical_056 a -> FnW Binary_056 (Decode a)
-decode_056 f = return f
+decode_56 :: Fn Logical_56 a -> FnW Binary_56 (Decode a)
+decode_56 f = return f
 
-encode_056 :: FnW Binary_056 a -> Fn Logical_056 (Encode a)
-encode_056 f = return f
+encode_56 :: FnW Binary_56 a -> Fn Logical_56 (Encode a)
+encode_56 f = return f
 
-parse_056 :: Fn Logical_056 a -> Parser a
-parse_056 f = do
+parse_56 :: Fn Logical_56 a -> Parser a
+parse_56 f = do
     return $ f
 
-show_056 :: Fn Logical_056 ShowS
-show_056 = id
+show_56 :: Fn Logical_56 ShowS
+show_56 = id
 
 
--- '  <Sd>, <Sn>, <Sm>'
--- FADD_S_floatdp2     fadd_float.xml
--- FDIV_S_floatdp2     fdiv_float.xml
--- FMAX_S_floatdp2     fmax_float.xml
--- FMAXNM_S_floatdp2   fmaxnm_float.xml
--- FMIN_S_floatdp2     fmin_float.xml
--- FMINNM_S_floatdp2   fminnm_float.xml
--- FMUL_S_floatdp2     fmul_float.xml
--- FNMUL_S_floatdp2    fnmul_float.xml
--- FSUB_S_floatdp2     fsub_float.xml
+--- 57: '  <Sd>, <Sn>, <Sm>'
+--- FADD_S_floatdp2               fadd_float.xml
+--- FDIV_S_floatdp2               fdiv_float.xml
+--- FMAX_S_floatdp2               fmax_float.xml
+--- FMAXNM_S_floatdp2             fmaxnm_float.xml
+--- FMIN_S_floatdp2               fmin_float.xml
+--- FMINNM_S_floatdp2             fminnm_float.xml
+--- FMUL_S_floatdp2               fmul_float.xml
+--- FNMUL_S_floatdp2              fnmul_float.xml
+--- FSUB_S_floatdp2               fsub_float.xml
 
-type Logical_057 = '[]
-type Binary_057  = '[]
+type Logical_57 = '[]
+type Binary_57  = '[]
 
-decode_057 :: Fn Logical_057 a -> FnW Binary_057 (Decode a)
-decode_057 f = return f
+decode_57 :: Fn Logical_57 a -> FnW Binary_57 (Decode a)
+decode_57 f = return f
 
-encode_057 :: FnW Binary_057 a -> Fn Logical_057 (Encode a)
-encode_057 f = return f
+encode_57 :: FnW Binary_57 a -> Fn Logical_57 (Encode a)
+encode_57 f = return f
 
-parse_057 :: Fn Logical_057 a -> Parser a
-parse_057 f = do
+parse_57 :: Fn Logical_57 a -> Parser a
+parse_57 f = do
     return $ f
 
-show_057 :: Fn Logical_057 ShowS
-show_057 = id
+show_57 :: Fn Logical_57 ShowS
+show_57 = id
 
 
--- '  <V><d>, <Vn>.<T>'
--- ADDP_asisdpair_only addp_advsimd_pair.xml
--- ADDV_asimdall_only  addv_advsimd.xml
--- FADDP_asisdpair_only_Hfaddp_advsimd_pair.xml
--- FADDP_asisdpair_only_SDfaddp_advsimd_pair.xml
--- FMAXNMP_asisdpair_only_Hfmaxnmp_advsimd_pair.xml
--- FMAXNMP_asisdpair_only_SDfmaxnmp_advsimd_pair.xml
--- FMAXNMV_asimdall_only_Hfmaxnmv_advsimd.xml
--- FMAXNMV_asimdall_only_SDfmaxnmv_advsimd.xml
--- FMAXP_asisdpair_only_Hfmaxp_advsimd_pair.xml
--- FMAXP_asisdpair_only_SDfmaxp_advsimd_pair.xml
--- FMAXV_asimdall_only_Hfmaxv_advsimd.xml
--- FMAXV_asimdall_only_SDfmaxv_advsimd.xml
--- FMINNMP_asisdpair_only_Hfminnmp_advsimd_pair.xml
--- FMINNMP_asisdpair_only_SDfminnmp_advsimd_pair.xml
--- FMINNMV_asimdall_only_Hfminnmv_advsimd.xml
--- FMINNMV_asimdall_only_SDfminnmv_advsimd.xml
--- FMINP_asisdpair_only_Hfminp_advsimd_pair.xml
--- FMINP_asisdpair_only_SDfminp_advsimd_pair.xml
--- FMINV_asimdall_only_Hfminv_advsimd.xml
--- FMINV_asimdall_only_SDfminv_advsimd.xml
--- SADDLV_asimdall_onlysaddlv_advsimd.xml
--- SMAXV_asimdall_only smaxv_advsimd.xml
--- SMINV_asimdall_only sminv_advsimd.xml
--- UADDLV_asimdall_onlyuaddlv_advsimd.xml
--- UMAXV_asimdall_only umaxv_advsimd.xml
--- UMINV_asimdall_only uminv_advsimd.xml
+--- 58: '  <V><d>, <Vn>.<T>'
+--- ADDP_asisdpair_only           addp_advsimd_pair.xml
+--- ADDV_asimdall_only            addv_advsimd.xml
+--- FADDP_asisdpair_only_H        faddp_advsimd_pair.xml
+--- FADDP_asisdpair_only_SD       faddp_advsimd_pair.xml
+--- FMAXNMP_asisdpair_only_H      fmaxnmp_advsimd_pair.xml
+--- FMAXNMP_asisdpair_only_SD     fmaxnmp_advsimd_pair.xml
+--- FMAXNMV_asimdall_only_H       fmaxnmv_advsimd.xml
+--- FMAXNMV_asimdall_only_SD      fmaxnmv_advsimd.xml
+--- FMAXP_asisdpair_only_H        fmaxp_advsimd_pair.xml
+--- FMAXP_asisdpair_only_SD       fmaxp_advsimd_pair.xml
+--- FMAXV_asimdall_only_H         fmaxv_advsimd.xml
+--- FMAXV_asimdall_only_SD        fmaxv_advsimd.xml
+--- FMINNMP_asisdpair_only_H      fminnmp_advsimd_pair.xml
+--- FMINNMP_asisdpair_only_SD     fminnmp_advsimd_pair.xml
+--- FMINNMV_asimdall_only_H       fminnmv_advsimd.xml
+--- FMINNMV_asimdall_only_SD      fminnmv_advsimd.xml
+--- FMINP_asisdpair_only_H        fminp_advsimd_pair.xml
+--- FMINP_asisdpair_only_SD       fminp_advsimd_pair.xml
+--- FMINV_asimdall_only_H         fminv_advsimd.xml
+--- FMINV_asimdall_only_SD        fminv_advsimd.xml
+--- SADDLV_asimdall_only          saddlv_advsimd.xml
+--- SMAXV_asimdall_only           smaxv_advsimd.xml
+--- SMINV_asimdall_only           sminv_advsimd.xml
+--- UADDLV_asimdall_only          uaddlv_advsimd.xml
+--- UMAXV_asimdall_only           umaxv_advsimd.xml
+--- UMINV_asimdall_only           uminv_advsimd.xml
 
-type Logical_058 = '[]
-type Binary_058  = '[]
+type Logical_58 = '[]
+type Binary_58  = '[]
 
-decode_058 :: Fn Logical_058 a -> FnW Binary_058 (Decode a)
-decode_058 f = return f
+decode_58 :: Fn Logical_58 a -> FnW Binary_58 (Decode a)
+decode_58 f = return f
 
-encode_058 :: FnW Binary_058 a -> Fn Logical_058 (Encode a)
-encode_058 f = return f
+encode_58 :: FnW Binary_58 a -> Fn Logical_58 (Encode a)
+encode_58 f = return f
 
-parse_058 :: Fn Logical_058 a -> Parser a
-parse_058 f = do
+parse_58 :: Fn Logical_58 a -> Parser a
+parse_58 f = do
     return $ f
 
-show_058 :: Fn Logical_058 ShowS
-show_058 = id
+show_58 :: Fn Logical_58 ShowS
+show_58 = id
 
 
--- '  <Vb><d>, <Va><n>'
--- FCVTXN_asisdmisc_N  fcvtxn_advsimd.xml
--- SQXTN_asisdmisc_N   sqxtn_advsimd.xml
--- SQXTUN_asisdmisc_N  sqxtun_advsimd.xml
--- UQXTN_asisdmisc_N   uqxtn_advsimd.xml
+--- 59: '  <Vb><d>, <Va><n>'
+--- FCVTXN_asisdmisc_N            fcvtxn_advsimd.xml
+--- SQXTN_asisdmisc_N             sqxtn_advsimd.xml
+--- SQXTUN_asisdmisc_N            sqxtun_advsimd.xml
+--- UQXTN_asisdmisc_N             uqxtn_advsimd.xml
 
-type Logical_059 = '[]
-type Binary_059  = '[]
+type Logical_59 = '[]
+type Binary_59  = '[]
 
-decode_059 :: Fn Logical_059 a -> FnW Binary_059 (Decode a)
-decode_059 f = return f
+decode_59 :: Fn Logical_59 a -> FnW Binary_59 (Decode a)
+decode_59 f = return f
 
-encode_059 :: FnW Binary_059 a -> Fn Logical_059 (Encode a)
-encode_059 f = return f
+encode_59 :: FnW Binary_59 a -> Fn Logical_59 (Encode a)
+encode_59 f = return f
 
-parse_059 :: Fn Logical_059 a -> Parser a
-parse_059 f = do
+parse_59 :: Fn Logical_59 a -> Parser a
+parse_59 f = do
     return $ f
 
-show_059 :: Fn Logical_059 ShowS
-show_059 = id
+show_59 :: Fn Logical_59 ShowS
+show_59 = id
 
 
--- '  <Vd>.2D, <Vn>.2D'
--- SHA512SU0_VV2_cryptosha512_2sha512su0_advsimd.xml
+--- 60: '  <Vd>.2D, <Vn>.2D'
+--- SHA512SU0_VV2_cryptosha512_2  sha512su0_advsimd.xml
 
-type Logical_060 = '[]
-type Binary_060  = '[]
+type Logical_60 = '[]
+type Binary_60  = '[]
 
-decode_060 :: Fn Logical_060 a -> FnW Binary_060 (Decode a)
-decode_060 f = return f
+decode_60 :: Fn Logical_60 a -> FnW Binary_60 (Decode a)
+decode_60 f = return f
 
-encode_060 :: FnW Binary_060 a -> Fn Logical_060 (Encode a)
-encode_060 f = return f
+encode_60 :: FnW Binary_60 a -> Fn Logical_60 (Encode a)
+encode_60 f = return f
 
-parse_060 :: Fn Logical_060 a -> Parser a
-parse_060 f = do
+parse_60 :: Fn Logical_60 a -> Parser a
+parse_60 f = do
     return $ f
 
-show_060 :: Fn Logical_060 ShowS
-show_060 = id
+show_60 :: Fn Logical_60 ShowS
+show_60 = id
 
 
--- '  <Vd>.4S, <Vn>.4S'
--- SHA1SU1_VV_cryptosha2sha1su1_advsimd.xml
--- SHA256SU0_VV_cryptosha2sha256su0_advsimd.xml
--- SM4E_VV4_cryptosha512_2sm4e_advsimd.xml
+--- 61: '  <Vd>.4S, <Vn>.4S'
+--- SHA1SU1_VV_cryptosha2         sha1su1_advsimd.xml
+--- SHA256SU0_VV_cryptosha2       sha256su0_advsimd.xml
+--- SM4E_VV4_cryptosha512_2       sm4e_advsimd.xml
 
-type Logical_061 = '[]
-type Binary_061  = '[]
+type Logical_61 = '[]
+type Binary_61  = '[]
 
-decode_061 :: Fn Logical_061 a -> FnW Binary_061 (Decode a)
-decode_061 f = return f
+decode_61 :: Fn Logical_61 a -> FnW Binary_61 (Decode a)
+decode_61 f = return f
 
-encode_061 :: FnW Binary_061 a -> Fn Logical_061 (Encode a)
-encode_061 f = return f
+encode_61 :: FnW Binary_61 a -> Fn Logical_61 (Encode a)
+encode_61 f = return f
 
-parse_061 :: Fn Logical_061 a -> Parser a
-parse_061 f = do
+parse_61 :: Fn Logical_61 a -> Parser a
+parse_61 f = do
     return $ f
 
-show_061 :: Fn Logical_061 ShowS
-show_061 = id
+show_61 :: Fn Logical_61 ShowS
+show_61 = id
 
 
--- '  <Vd>.<T>, #<imm>'
--- FMOV_asimdimm_H_h   fmov_advsimd.xml
--- FMOV_asimdimm_S_s   fmov_advsimd.xml
+--- 62: '  <Vd>.<T>, #<imm>'
+--- FMOV_asimdimm_H_h             fmov_advsimd.xml
+--- FMOV_asimdimm_S_s             fmov_advsimd.xml
 
-type Logical_062 = '[]
-type Binary_062  = '[]
+type Logical_62 = '[]
+type Binary_62  = '[]
 
-decode_062 :: Fn Logical_062 a -> FnW Binary_062 (Decode a)
-decode_062 f = return f
+decode_62 :: Fn Logical_62 a -> FnW Binary_62 (Decode a)
+decode_62 f = return f
 
-encode_062 :: FnW Binary_062 a -> Fn Logical_062 (Encode a)
-encode_062 f = return f
+encode_62 :: FnW Binary_62 a -> Fn Logical_62 (Encode a)
+encode_62 f = return f
 
-parse_062 :: Fn Logical_062 a -> Parser a
-parse_062 f = do
+parse_62 :: Fn Logical_62 a -> Parser a
+parse_62 f = do
     return $ f
 
-show_062 :: Fn Logical_062 ShowS
-show_062 = id
+show_62 :: Fn Logical_62 ShowS
+show_62 = id
 
 
--- '  <Vd>.<T>, <R><n>'
--- DUP_asimdins_DR_r   dup_advsimd_gen.xml
+--- 63: '  <Vd>.<T>, <R><n>'
+--- DUP_asimdins_DR_r             dup_advsimd_gen.xml
 
-type Logical_063 = '[]
-type Binary_063  = '[]
+type Logical_63 = '[]
+type Binary_63  = '[]
 
-decode_063 :: Fn Logical_063 a -> FnW Binary_063 (Decode a)
-decode_063 f = return f
+decode_63 :: Fn Logical_63 a -> FnW Binary_63 (Decode a)
+decode_63 f = return f
 
-encode_063 :: FnW Binary_063 a -> Fn Logical_063 (Encode a)
-encode_063 f = return f
+encode_63 :: FnW Binary_63 a -> Fn Logical_63 (Encode a)
+encode_63 f = return f
 
-parse_063 :: Fn Logical_063 a -> Parser a
-parse_063 f = do
+parse_63 :: Fn Logical_63 a -> Parser a
+parse_63 f = do
     return $ f
 
-show_063 :: Fn Logical_063 ShowS
-show_063 = id
+show_63 :: Fn Logical_63 ShowS
+show_63 = id
 
 
--- '  <Wd>, <Wn>, <Wm>'
--- ADC_32_addsub_carry adc.xml
--- ADCS_32_addsub_carryadcs.xml
--- ASRV_32_dp_2src     asrv.xml
--- CRC32B_32C_dp_2src  crc32.xml
--- CRC32H_32C_dp_2src  crc32.xml
--- CRC32W_32C_dp_2src  crc32.xml
--- CRC32CB_32C_dp_2src crc32c.xml
--- CRC32CH_32C_dp_2src crc32c.xml
--- CRC32CW_32C_dp_2src crc32c.xml
--- LSLV_32_dp_2src     lslv.xml
--- LSRV_32_dp_2src     lsrv.xml
--- RORV_32_dp_2src     rorv.xml
--- SBC_32_addsub_carry sbc.xml
--- SBCS_32_addsub_carrysbcs.xml
--- SDIV_32_dp_2src     sdiv.xml
--- UDIV_32_dp_2src     udiv.xml
+--- 64: '  <Wd>, <Wn>, <Wm>'
+--- ADC_32_addsub_carry           adc.xml
+--- ADCS_32_addsub_carry          adcs.xml
+--- ASRV_32_dp_2src               asrv.xml
+--- CRC32B_32C_dp_2src            crc32.xml
+--- CRC32H_32C_dp_2src            crc32.xml
+--- CRC32W_32C_dp_2src            crc32.xml
+--- CRC32CB_32C_dp_2src           crc32c.xml
+--- CRC32CH_32C_dp_2src           crc32c.xml
+--- CRC32CW_32C_dp_2src           crc32c.xml
+--- LSLV_32_dp_2src               lslv.xml
+--- LSRV_32_dp_2src               lsrv.xml
+--- RORV_32_dp_2src               rorv.xml
+--- SBC_32_addsub_carry           sbc.xml
+--- SBCS_32_addsub_carry          sbcs.xml
+--- SDIV_32_dp_2src               sdiv.xml
+--- UDIV_32_dp_2src               udiv.xml
 
-type Logical_064 = '[]
-type Binary_064  = '[]
+type Logical_64 = '[]
+type Binary_64  = '[]
 
-decode_064 :: Fn Logical_064 a -> FnW Binary_064 (Decode a)
-decode_064 f = return f
+decode_64 :: Fn Logical_64 a -> FnW Binary_64 (Decode a)
+decode_64 f = return f
 
-encode_064 :: FnW Binary_064 a -> Fn Logical_064 (Encode a)
-encode_064 f = return f
+encode_64 :: FnW Binary_64 a -> Fn Logical_64 (Encode a)
+encode_64 f = return f
 
-parse_064 :: Fn Logical_064 a -> Parser a
-parse_064 f = do
+parse_64 :: Fn Logical_64 a -> Parser a
+parse_64 f = do
     return $ f
 
-show_064 :: Fn Logical_064 ShowS
-show_064 = id
+show_64 :: Fn Logical_64 ShowS
+show_64 = id
 
 
--- '  <Wd>, <Wn>, <Xm>'
--- CRC32X_64C_dp_2src  crc32.xml
--- CRC32CX_64C_dp_2src crc32c.xml
+--- 65: '  <Wd>, <Wn>, <Xm>'
+--- CRC32X_64C_dp_2src            crc32.xml
+--- CRC32CX_64C_dp_2src           crc32c.xml
 
-type Logical_065 = '[]
-type Binary_065  = '[]
+type Logical_65 = '[]
+type Binary_65  = '[]
 
-decode_065 :: Fn Logical_065 a -> FnW Binary_065 (Decode a)
-decode_065 f = return f
+decode_65 :: Fn Logical_65 a -> FnW Binary_65 (Decode a)
+decode_65 f = return f
 
-encode_065 :: FnW Binary_065 a -> Fn Logical_065 (Encode a)
-encode_065 f = return f
+encode_65 :: FnW Binary_65 a -> Fn Logical_65 (Encode a)
+encode_65 f = return f
 
-parse_065 :: Fn Logical_065 a -> Parser a
-parse_065 f = do
+parse_65 :: Fn Logical_65 a -> Parser a
+parse_65 f = do
     return $ f
 
-show_065 :: Fn Logical_065 ShowS
-show_065 = id
+show_65 :: Fn Logical_65 ShowS
+show_65 = id
 
 
--- '  <Xd>, <Xn>, <Xm>'
--- ADC_64_addsub_carry adc.xml
--- ADCS_64_addsub_carryadcs.xml
--- ASRV_64_dp_2src     asrv.xml
--- LSLV_64_dp_2src     lslv.xml
--- LSRV_64_dp_2src     lsrv.xml
--- RORV_64_dp_2src     rorv.xml
--- SBC_64_addsub_carry sbc.xml
--- SBCS_64_addsub_carrysbcs.xml
--- SDIV_64_dp_2src     sdiv.xml
--- SMULH_64_dp_3src    smulh.xml
--- UDIV_64_dp_2src     udiv.xml
--- UMULH_64_dp_3src    umulh.xml
+--- 66: '  <Xd>, <Xn>, <Xm>'
+--- ADC_64_addsub_carry           adc.xml
+--- ADCS_64_addsub_carry          adcs.xml
+--- ASRV_64_dp_2src               asrv.xml
+--- LSLV_64_dp_2src               lslv.xml
+--- LSRV_64_dp_2src               lsrv.xml
+--- RORV_64_dp_2src               rorv.xml
+--- SBC_64_addsub_carry           sbc.xml
+--- SBCS_64_addsub_carry          sbcs.xml
+--- SDIV_64_dp_2src               sdiv.xml
+--- SMULH_64_dp_3src              smulh.xml
+--- UDIV_64_dp_2src               udiv.xml
+--- UMULH_64_dp_3src              umulh.xml
 
-type Logical_066 = '[]
-type Binary_066  = '[]
+type Logical_66 = '[]
+type Binary_66  = '[]
 
-decode_066 :: Fn Logical_066 a -> FnW Binary_066 (Decode a)
-decode_066 f = return f
+decode_66 :: Fn Logical_66 a -> FnW Binary_66 (Decode a)
+decode_66 f = return f
 
-encode_066 :: FnW Binary_066 a -> Fn Logical_066 (Encode a)
-encode_066 f = return f
+encode_66 :: FnW Binary_66 a -> Fn Logical_66 (Encode a)
+encode_66 f = return f
 
-parse_066 :: Fn Logical_066 a -> Parser a
-parse_066 f = do
+parse_66 :: Fn Logical_66 a -> Parser a
+parse_66 f = do
     return $ f
 
-show_066 :: Fn Logical_066 ShowS
-show_066 = id
+show_66 :: Fn Logical_66 ShowS
+show_66 = id
 
 
--- '  {<option>|#<imm>}'
--- ISB_BI_system       isb.xml
+--- 67: '  {<option>|#<imm>}'
+--- ISB_BI_system                 isb.xml
 
-type Logical_067 = '[]
-type Binary_067  = '[]
+type Logical_67 = '[]
+type Binary_67  = '[]
 
-decode_067 :: Fn Logical_067 a -> FnW Binary_067 (Decode a)
-decode_067 f = return f
+decode_67 :: Fn Logical_67 a -> FnW Binary_67 (Decode a)
+decode_67 f = return f
 
-encode_067 :: FnW Binary_067 a -> Fn Logical_067 (Encode a)
-encode_067 f = return f
+encode_67 :: FnW Binary_67 a -> Fn Logical_67 (Encode a)
+encode_67 f = return f
 
-parse_067 :: Fn Logical_067 a -> Parser a
-parse_067 f = do
+parse_67 :: Fn Logical_67 a -> Parser a
+parse_67 f = do
     return $ f
 
-show_067 :: Fn Logical_067 ShowS
-show_067 = id
+show_67 :: Fn Logical_67 ShowS
+show_67 = id
 
 
--- '  <V><d>, <V><n>, #0'
--- CMEQ_asisdmisc_Z    cmeq_advsimd_zero.xml
--- CMGE_asisdmisc_Z    cmge_advsimd_zero.xml
--- CMGT_asisdmisc_Z    cmgt_advsimd_zero.xml
--- CMLE_asisdmisc_Z    cmle_advsimd.xml
--- CMLT_asisdmisc_Z    cmlt_advsimd.xml
+--- 68: '  <V><d>, <V><n>, #0'
+--- CMEQ_asisdmisc_Z              cmeq_advsimd_zero.xml
+--- CMGE_asisdmisc_Z              cmge_advsimd_zero.xml
+--- CMGT_asisdmisc_Z              cmgt_advsimd_zero.xml
+--- CMLE_asisdmisc_Z              cmle_advsimd.xml
+--- CMLT_asisdmisc_Z              cmlt_advsimd.xml
 
-type Logical_068 = '[]
-type Binary_068  = '[]
+type Logical_68 = '[]
+type Binary_68  = '[]
 
-decode_068 :: Fn Logical_068 a -> FnW Binary_068 (Decode a)
-decode_068 f = return f
+decode_68 :: Fn Logical_68 a -> FnW Binary_68 (Decode a)
+decode_68 f = return f
 
-encode_068 :: FnW Binary_068 a -> Fn Logical_068 (Encode a)
-encode_068 f = return f
+encode_68 :: FnW Binary_68 a -> Fn Logical_68 (Encode a)
+encode_68 f = return f
 
-parse_068 :: Fn Logical_068 a -> Parser a
-parse_068 f = do
+parse_68 :: Fn Logical_68 a -> Parser a
+parse_68 f = do
     return $ f
 
-show_068 :: Fn Logical_068 ShowS
-show_068 = id
+show_68 :: Fn Logical_68 ShowS
+show_68 = id
 
 
--- '  <Vd>.16B, <Vn>.16B'
--- AESD_B_cryptoaes    aesd_advsimd.xml
--- AESE_B_cryptoaes    aese_advsimd.xml
--- AESIMC_B_cryptoaes  aesimc_advsimd.xml
--- AESMC_B_cryptoaes   aesmc_advsimd.xml
+--- 69: '  <Vd>.16B, <Vn>.16B'
+--- AESD_B_cryptoaes              aesd_advsimd.xml
+--- AESE_B_cryptoaes              aese_advsimd.xml
+--- AESIMC_B_cryptoaes            aesimc_advsimd.xml
+--- AESMC_B_cryptoaes             aesmc_advsimd.xml
 
-type Logical_069 = '[]
-type Binary_069  = '[]
+type Logical_69 = '[]
+type Binary_69  = '[]
 
-decode_069 :: Fn Logical_069 a -> FnW Binary_069 (Decode a)
-decode_069 f = return f
+decode_69 :: Fn Logical_69 a -> FnW Binary_69 (Decode a)
+decode_69 f = return f
 
-encode_069 :: FnW Binary_069 a -> Fn Logical_069 (Encode a)
-encode_069 f = return f
+encode_69 :: FnW Binary_69 a -> Fn Logical_69 (Encode a)
+encode_69 f = return f
 
-parse_069 :: Fn Logical_069 a -> Parser a
-parse_069 f = do
+parse_69 :: Fn Logical_69 a -> Parser a
+parse_69 f = do
     return $ f
 
-show_069 :: Fn Logical_069 ShowS
-show_069 = id
+show_69 :: Fn Logical_69 ShowS
+show_69 = id
 
 
--- '  <Vd>.<T>, <Vn>.<T>'
--- ABS_asimdmisc_R     abs_advsimd.xml
--- CLS_asimdmisc_R     cls_advsimd.xml
--- CLZ_asimdmisc_R     clz_advsimd.xml
--- CNT_asimdmisc_R     cnt_advsimd.xml
--- FABS_asimdmiscfp16_Rfabs_advsimd.xml
--- FABS_asimdmisc_R    fabs_advsimd.xml
--- FCVTAS_asimdmiscfp16_Rfcvtas_advsimd.xml
--- FCVTAS_asimdmisc_R  fcvtas_advsimd.xml
--- FCVTAU_asimdmiscfp16_Rfcvtau_advsimd.xml
--- FCVTAU_asimdmisc_R  fcvtau_advsimd.xml
--- FCVTMS_asimdmiscfp16_Rfcvtms_advsimd.xml
--- FCVTMS_asimdmisc_R  fcvtms_advsimd.xml
--- FCVTMU_asimdmiscfp16_Rfcvtmu_advsimd.xml
--- FCVTMU_asimdmisc_R  fcvtmu_advsimd.xml
--- FCVTNS_asimdmiscfp16_Rfcvtns_advsimd.xml
--- FCVTNS_asimdmisc_R  fcvtns_advsimd.xml
--- FCVTNU_asimdmiscfp16_Rfcvtnu_advsimd.xml
--- FCVTNU_asimdmisc_R  fcvtnu_advsimd.xml
--- FCVTPS_asimdmiscfp16_Rfcvtps_advsimd.xml
--- FCVTPS_asimdmisc_R  fcvtps_advsimd.xml
--- FCVTPU_asimdmiscfp16_Rfcvtpu_advsimd.xml
--- FCVTPU_asimdmisc_R  fcvtpu_advsimd.xml
--- FCVTZS_asimdmiscfp16_Rfcvtzs_advsimd_int.xml
--- FCVTZS_asimdmisc_R  fcvtzs_advsimd_int.xml
--- FCVTZU_asimdmiscfp16_Rfcvtzu_advsimd_int.xml
--- FCVTZU_asimdmisc_R  fcvtzu_advsimd_int.xml
--- FNEG_asimdmiscfp16_Rfneg_advsimd.xml
--- FNEG_asimdmisc_R    fneg_advsimd.xml
--- FRECPE_asimdmiscfp16_Rfrecpe_advsimd.xml
--- FRECPE_asimdmisc_R  frecpe_advsimd.xml
--- FRINTA_asimdmiscfp16_Rfrinta_advsimd.xml
--- FRINTA_asimdmisc_R  frinta_advsimd.xml
--- FRINTI_asimdmiscfp16_Rfrinti_advsimd.xml
--- FRINTI_asimdmisc_R  frinti_advsimd.xml
--- FRINTM_asimdmiscfp16_Rfrintm_advsimd.xml
--- FRINTM_asimdmisc_R  frintm_advsimd.xml
--- FRINTN_asimdmiscfp16_Rfrintn_advsimd.xml
--- FRINTN_asimdmisc_R  frintn_advsimd.xml
--- FRINTP_asimdmiscfp16_Rfrintp_advsimd.xml
--- FRINTP_asimdmisc_R  frintp_advsimd.xml
--- FRINTX_asimdmiscfp16_Rfrintx_advsimd.xml
--- FRINTX_asimdmisc_R  frintx_advsimd.xml
--- FRINTZ_asimdmiscfp16_Rfrintz_advsimd.xml
--- FRINTZ_asimdmisc_R  frintz_advsimd.xml
--- FRSQRTE_asimdmiscfp16_Rfrsqrte_advsimd.xml
--- FRSQRTE_asimdmisc_R frsqrte_advsimd.xml
--- FSQRT_asimdmiscfp16_Rfsqrt_advsimd.xml
--- FSQRT_asimdmisc_R   fsqrt_advsimd.xml
--- NEG_asimdmisc_R     neg_advsimd.xml
--- NOT_asimdmisc_R     not_advsimd.xml
--- RBIT_asimdmisc_R    rbit_advsimd.xml
--- REV16_asimdmisc_R   rev16_advsimd.xml
--- REV32_asimdmisc_R   rev32_advsimd.xml
--- REV64_asimdmisc_R   rev64_advsimd.xml
--- SCVTF_asimdmiscfp16_Rscvtf_advsimd_int.xml
--- SCVTF_asimdmisc_R   scvtf_advsimd_int.xml
--- SQABS_asimdmisc_R   sqabs_advsimd.xml
--- SQNEG_asimdmisc_R   sqneg_advsimd.xml
--- SUQADD_asimdmisc_R  suqadd_advsimd.xml
--- UCVTF_asimdmiscfp16_Rucvtf_advsimd_int.xml
--- UCVTF_asimdmisc_R   ucvtf_advsimd_int.xml
--- URECPE_asimdmisc_R  urecpe_advsimd.xml
--- URSQRTE_asimdmisc_R ursqrte_advsimd.xml
--- USQADD_asimdmisc_R  usqadd_advsimd.xml
+--- 70: '  <Vd>.<T>, <Vn>.<T>'
+--- ABS_asimdmisc_R               abs_advsimd.xml
+--- CLS_asimdmisc_R               cls_advsimd.xml
+--- CLZ_asimdmisc_R               clz_advsimd.xml
+--- CNT_asimdmisc_R               cnt_advsimd.xml
+--- FABS_asimdmiscfp16_R          fabs_advsimd.xml
+--- FABS_asimdmisc_R              fabs_advsimd.xml
+--- FCVTAS_asimdmiscfp16_R        fcvtas_advsimd.xml
+--- FCVTAS_asimdmisc_R            fcvtas_advsimd.xml
+--- FCVTAU_asimdmiscfp16_R        fcvtau_advsimd.xml
+--- FCVTAU_asimdmisc_R            fcvtau_advsimd.xml
+--- FCVTMS_asimdmiscfp16_R        fcvtms_advsimd.xml
+--- FCVTMS_asimdmisc_R            fcvtms_advsimd.xml
+--- FCVTMU_asimdmiscfp16_R        fcvtmu_advsimd.xml
+--- FCVTMU_asimdmisc_R            fcvtmu_advsimd.xml
+--- FCVTNS_asimdmiscfp16_R        fcvtns_advsimd.xml
+--- FCVTNS_asimdmisc_R            fcvtns_advsimd.xml
+--- FCVTNU_asimdmiscfp16_R        fcvtnu_advsimd.xml
+--- FCVTNU_asimdmisc_R            fcvtnu_advsimd.xml
+--- FCVTPS_asimdmiscfp16_R        fcvtps_advsimd.xml
+--- FCVTPS_asimdmisc_R            fcvtps_advsimd.xml
+--- FCVTPU_asimdmiscfp16_R        fcvtpu_advsimd.xml
+--- FCVTPU_asimdmisc_R            fcvtpu_advsimd.xml
+--- FCVTZS_asimdmiscfp16_R        fcvtzs_advsimd_int.xml
+--- FCVTZS_asimdmisc_R            fcvtzs_advsimd_int.xml
+--- FCVTZU_asimdmiscfp16_R        fcvtzu_advsimd_int.xml
+--- FCVTZU_asimdmisc_R            fcvtzu_advsimd_int.xml
+--- FNEG_asimdmiscfp16_R          fneg_advsimd.xml
+--- FNEG_asimdmisc_R              fneg_advsimd.xml
+--- FRECPE_asimdmiscfp16_R        frecpe_advsimd.xml
+--- FRECPE_asimdmisc_R            frecpe_advsimd.xml
+--- FRINTA_asimdmiscfp16_R        frinta_advsimd.xml
+--- FRINTA_asimdmisc_R            frinta_advsimd.xml
+--- FRINTI_asimdmiscfp16_R        frinti_advsimd.xml
+--- FRINTI_asimdmisc_R            frinti_advsimd.xml
+--- FRINTM_asimdmiscfp16_R        frintm_advsimd.xml
+--- FRINTM_asimdmisc_R            frintm_advsimd.xml
+--- FRINTN_asimdmiscfp16_R        frintn_advsimd.xml
+--- FRINTN_asimdmisc_R            frintn_advsimd.xml
+--- FRINTP_asimdmiscfp16_R        frintp_advsimd.xml
+--- FRINTP_asimdmisc_R            frintp_advsimd.xml
+--- FRINTX_asimdmiscfp16_R        frintx_advsimd.xml
+--- FRINTX_asimdmisc_R            frintx_advsimd.xml
+--- FRINTZ_asimdmiscfp16_R        frintz_advsimd.xml
+--- FRINTZ_asimdmisc_R            frintz_advsimd.xml
+--- FRSQRTE_asimdmiscfp16_R       frsqrte_advsimd.xml
+--- FRSQRTE_asimdmisc_R           frsqrte_advsimd.xml
+--- FSQRT_asimdmiscfp16_R         fsqrt_advsimd.xml
+--- FSQRT_asimdmisc_R             fsqrt_advsimd.xml
+--- NEG_asimdmisc_R               neg_advsimd.xml
+--- NOT_asimdmisc_R               not_advsimd.xml
+--- RBIT_asimdmisc_R              rbit_advsimd.xml
+--- REV16_asimdmisc_R             rev16_advsimd.xml
+--- REV32_asimdmisc_R             rev32_advsimd.xml
+--- REV64_asimdmisc_R             rev64_advsimd.xml
+--- SCVTF_asimdmiscfp16_R         scvtf_advsimd_int.xml
+--- SCVTF_asimdmisc_R             scvtf_advsimd_int.xml
+--- SQABS_asimdmisc_R             sqabs_advsimd.xml
+--- SQNEG_asimdmisc_R             sqneg_advsimd.xml
+--- SUQADD_asimdmisc_R            suqadd_advsimd.xml
+--- UCVTF_asimdmiscfp16_R         ucvtf_advsimd_int.xml
+--- UCVTF_asimdmisc_R             ucvtf_advsimd_int.xml
+--- URECPE_asimdmisc_R            urecpe_advsimd.xml
+--- URSQRTE_asimdmisc_R           ursqrte_advsimd.xml
+--- USQADD_asimdmisc_R            usqadd_advsimd.xml
 
-type Logical_070 = '[]
-type Binary_070  = '[]
+type Logical_70 = '[]
+type Binary_70  = '[]
 
-decode_070 :: Fn Logical_070 a -> FnW Binary_070 (Decode a)
-decode_070 f = return f
+decode_70 :: Fn Logical_70 a -> FnW Binary_70 (Decode a)
+decode_70 f = return f
 
-encode_070 :: FnW Binary_070 a -> Fn Logical_070 (Encode a)
-encode_070 f = return f
+encode_70 :: FnW Binary_70 a -> Fn Logical_70 (Encode a)
+encode_70 f = return f
 
-parse_070 :: Fn Logical_070 a -> Parser a
-parse_070 f = do
+parse_70 :: Fn Logical_70 a -> Parser a
+parse_70 f = do
     return $ f
 
-show_070 :: Fn Logical_070 ShowS
-show_070 = id
+show_70 :: Fn Logical_70 ShowS
+show_70 = id
 
 
--- '  <Wd>, <Wn>, #<imm>'
--- ANDS_32S_log_imm    ands_log_imm.xml
+--- 71: '  <Wd>, <Wn>, #<imm>'
+--- ANDS_32S_log_imm              ands_log_imm.xml
 
-type Logical_071 = '[]
-type Binary_071  = '[]
+type Logical_71 = '[]
+type Binary_71  = '[]
 
-decode_071 :: Fn Logical_071 a -> FnW Binary_071 (Decode a)
-decode_071 f = return f
+decode_71 :: Fn Logical_71 a -> FnW Binary_71 (Decode a)
+decode_71 f = return f
 
-encode_071 :: FnW Binary_071 a -> Fn Logical_071 (Encode a)
-encode_071 f = return f
+encode_71 :: FnW Binary_71 a -> Fn Logical_71 (Encode a)
+encode_71 f = return f
 
-parse_071 :: Fn Logical_071 a -> Parser a
-parse_071 f = do
+parse_71 :: Fn Logical_71 a -> Parser a
+parse_71 f = do
     return $ f
 
-show_071 :: Fn Logical_071 ShowS
-show_071 = id
+show_71 :: Fn Logical_71 ShowS
+show_71 = id
 
 
--- '  <Xd>, <Xn>, #<imm>'
--- ANDS_64S_log_imm    ands_log_imm.xml
+--- 72: '  <Xd>, <Xn>, #<imm>'
+--- ANDS_64S_log_imm              ands_log_imm.xml
 
-type Logical_072 = '[]
-type Binary_072  = '[]
+type Logical_72 = '[]
+type Binary_72  = '[]
 
-decode_072 :: Fn Logical_072 a -> FnW Binary_072 (Decode a)
-decode_072 f = return f
+decode_72 :: Fn Logical_72 a -> FnW Binary_72 (Decode a)
+decode_72 f = return f
 
-encode_072 :: FnW Binary_072 a -> Fn Logical_072 (Encode a)
-encode_072 f = return f
+encode_72 :: FnW Binary_72 a -> Fn Logical_72 (Encode a)
+encode_72 f = return f
 
-parse_072 :: Fn Logical_072 a -> Parser a
-parse_072 f = do
+parse_72 :: Fn Logical_72 a -> Parser a
+parse_72 f = do
     return $ f
 
-show_072 :: Fn Logical_072 ShowS
-show_072 = id
+show_72 :: Fn Logical_72 ShowS
+show_72 = id
 
 
--- '  <Qd>, <Qn>, <Vm>.2D'
--- SHA512H_QQV_cryptosha512_3sha512h_advsimd.xml
--- SHA512H2_QQV_cryptosha512_3sha512h2_advsimd.xml
+--- 73: '  <Qd>, <Qn>, <Vm>.2D'
+--- SHA512H_QQV_cryptosha512_3    sha512h_advsimd.xml
+--- SHA512H2_QQV_cryptosha512_3   sha512h2_advsimd.xml
 
-type Logical_073 = '[]
-type Binary_073  = '[]
+type Logical_73 = '[]
+type Binary_73  = '[]
 
-decode_073 :: Fn Logical_073 a -> FnW Binary_073 (Decode a)
-decode_073 f = return f
+decode_73 :: Fn Logical_73 a -> FnW Binary_73 (Decode a)
+decode_73 f = return f
 
-encode_073 :: FnW Binary_073 a -> Fn Logical_073 (Encode a)
-encode_073 f = return f
+encode_73 :: FnW Binary_73 a -> Fn Logical_73 (Encode a)
+encode_73 f = return f
 
-parse_073 :: Fn Logical_073 a -> Parser a
-parse_073 f = do
+parse_73 :: Fn Logical_73 a -> Parser a
+parse_73 f = do
     return $ f
 
-show_073 :: Fn Logical_073 ShowS
-show_073 = id
+show_73 :: Fn Logical_73 ShowS
+show_73 = id
 
 
--- '  <Qd>, <Qn>, <Vm>.4S'
--- SHA256H_QQV_cryptosha3sha256h_advsimd.xml
--- SHA256H2_QQV_cryptosha3sha256h2_advsimd.xml
+--- 74: '  <Qd>, <Qn>, <Vm>.4S'
+--- SHA256H_QQV_cryptosha3        sha256h_advsimd.xml
+--- SHA256H2_QQV_cryptosha3       sha256h2_advsimd.xml
 
-type Logical_074 = '[]
-type Binary_074  = '[]
+type Logical_74 = '[]
+type Binary_74  = '[]
 
-decode_074 :: Fn Logical_074 a -> FnW Binary_074 (Decode a)
-decode_074 f = return f
+decode_74 :: Fn Logical_74 a -> FnW Binary_74 (Decode a)
+decode_74 f = return f
 
-encode_074 :: FnW Binary_074 a -> Fn Logical_074 (Encode a)
-encode_074 f = return f
+encode_74 :: FnW Binary_74 a -> Fn Logical_74 (Encode a)
+encode_74 f = return f
 
-parse_074 :: Fn Logical_074 a -> Parser a
-parse_074 f = do
+parse_74 :: Fn Logical_74 a -> Parser a
+parse_74 f = do
     return $ f
 
-show_074 :: Fn Logical_074 ShowS
-show_074 = id
+show_74 :: Fn Logical_74 ShowS
+show_74 = id
 
 
--- '  <Qd>, <Sn>, <Vm>.4S'
--- SHA1C_QSV_cryptosha3sha1c_advsimd.xml
--- SHA1M_QSV_cryptosha3sha1m_advsimd.xml
--- SHA1P_QSV_cryptosha3sha1p_advsimd.xml
+--- 75: '  <Qd>, <Sn>, <Vm>.4S'
+--- SHA1C_QSV_cryptosha3          sha1c_advsimd.xml
+--- SHA1M_QSV_cryptosha3          sha1m_advsimd.xml
+--- SHA1P_QSV_cryptosha3          sha1p_advsimd.xml
 
-type Logical_075 = '[]
-type Binary_075  = '[]
+type Logical_75 = '[]
+type Binary_75  = '[]
 
-decode_075 :: Fn Logical_075 a -> FnW Binary_075 (Decode a)
-decode_075 f = return f
+decode_75 :: Fn Logical_75 a -> FnW Binary_75 (Decode a)
+decode_75 f = return f
 
-encode_075 :: FnW Binary_075 a -> Fn Logical_075 (Encode a)
-encode_075 f = return f
+encode_75 :: FnW Binary_75 a -> Fn Logical_75 (Encode a)
+encode_75 f = return f
 
-parse_075 :: Fn Logical_075 a -> Parser a
-parse_075 f = do
+parse_75 :: Fn Logical_75 a -> Parser a
+parse_75 f = do
     return $ f
 
-show_075 :: Fn Logical_075 ShowS
-show_075 = id
+show_75 :: Fn Logical_75 ShowS
+show_75 = id
 
 
--- '  <Xd>, <Xn>, <Xm|SP>'
--- PACGA_64P_dp_2src   pacga.xml
+--- 76: '  <Xd>, <Xn>, <Xm|SP>'
+--- PACGA_64P_dp_2src             pacga.xml
 
-type Logical_076 = '[]
-type Binary_076  = '[]
+type Logical_76 = '[]
+type Binary_76  = '[]
 
-decode_076 :: Fn Logical_076 a -> FnW Binary_076 (Decode a)
-decode_076 f = return f
+decode_76 :: Fn Logical_76 a -> FnW Binary_76 (Decode a)
+decode_76 f = return f
 
-encode_076 :: FnW Binary_076 a -> Fn Logical_076 (Encode a)
-encode_076 f = return f
+encode_76 :: FnW Binary_76 a -> Fn Logical_76 (Encode a)
+encode_76 f = return f
 
-parse_076 :: Fn Logical_076 a -> Parser a
-parse_076 f = do
+parse_76 :: Fn Logical_76 a -> Parser a
+parse_76 f = do
     return $ f
 
-show_076 :: Fn Logical_076 ShowS
-show_076 = id
+show_76 :: Fn Logical_76 ShowS
+show_76 = id
 
 
--- '  <Dd>, <Wn>, #<fbits>'
--- SCVTF_D32_float2fix scvtf_float_fix.xml
--- UCVTF_D32_float2fix ucvtf_float_fix.xml
+--- 77: '  <Dd>, <Wn>, #<fbits>'
+--- SCVTF_D32_float2fix           scvtf_float_fix.xml
+--- UCVTF_D32_float2fix           ucvtf_float_fix.xml
 
-type Logical_077 = '[]
-type Binary_077  = '[]
+type Logical_77 = '[]
+type Binary_77  = '[]
 
-decode_077 :: Fn Logical_077 a -> FnW Binary_077 (Decode a)
-decode_077 f = return f
+decode_77 :: Fn Logical_77 a -> FnW Binary_77 (Decode a)
+decode_77 f = return f
 
-encode_077 :: FnW Binary_077 a -> Fn Logical_077 (Encode a)
-encode_077 f = return f
+encode_77 :: FnW Binary_77 a -> Fn Logical_77 (Encode a)
+encode_77 f = return f
 
-parse_077 :: Fn Logical_077 a -> Parser a
-parse_077 f = do
+parse_77 :: Fn Logical_77 a -> Parser a
+parse_77 f = do
     return $ f
 
-show_077 :: Fn Logical_077 ShowS
-show_077 = id
+show_77 :: Fn Logical_77 ShowS
+show_77 = id
 
 
--- '  <Dd>, <Xn>, #<fbits>'
--- SCVTF_D64_float2fix scvtf_float_fix.xml
--- UCVTF_D64_float2fix ucvtf_float_fix.xml
+--- 78: '  <Dd>, <Xn>, #<fbits>'
+--- SCVTF_D64_float2fix           scvtf_float_fix.xml
+--- UCVTF_D64_float2fix           ucvtf_float_fix.xml
 
-type Logical_078 = '[]
-type Binary_078  = '[]
+type Logical_78 = '[]
+type Binary_78  = '[]
 
-decode_078 :: Fn Logical_078 a -> FnW Binary_078 (Decode a)
-decode_078 f = return f
+decode_78 :: Fn Logical_78 a -> FnW Binary_78 (Decode a)
+decode_78 f = return f
 
-encode_078 :: FnW Binary_078 a -> Fn Logical_078 (Encode a)
-encode_078 f = return f
+encode_78 :: FnW Binary_78 a -> Fn Logical_78 (Encode a)
+encode_78 f = return f
 
-parse_078 :: Fn Logical_078 a -> Parser a
-parse_078 f = do
+parse_78 :: Fn Logical_78 a -> Parser a
+parse_78 f = do
     return $ f
 
-show_078 :: Fn Logical_078 ShowS
-show_078 = id
+show_78 :: Fn Logical_78 ShowS
+show_78 = id
 
 
--- '  <Hd>, <Wn>, #<fbits>'
--- SCVTF_H32_float2fix scvtf_float_fix.xml
--- UCVTF_H32_float2fix ucvtf_float_fix.xml
+--- 79: '  <Hd>, <Wn>, #<fbits>'
+--- SCVTF_H32_float2fix           scvtf_float_fix.xml
+--- UCVTF_H32_float2fix           ucvtf_float_fix.xml
 
-type Logical_079 = '[]
-type Binary_079  = '[]
+type Logical_79 = '[]
+type Binary_79  = '[]
 
-decode_079 :: Fn Logical_079 a -> FnW Binary_079 (Decode a)
-decode_079 f = return f
+decode_79 :: Fn Logical_79 a -> FnW Binary_79 (Decode a)
+decode_79 f = return f
 
-encode_079 :: FnW Binary_079 a -> Fn Logical_079 (Encode a)
-encode_079 f = return f
+encode_79 :: FnW Binary_79 a -> Fn Logical_79 (Encode a)
+encode_79 f = return f
 
-parse_079 :: Fn Logical_079 a -> Parser a
-parse_079 f = do
+parse_79 :: Fn Logical_79 a -> Parser a
+parse_79 f = do
     return $ f
 
-show_079 :: Fn Logical_079 ShowS
-show_079 = id
+show_79 :: Fn Logical_79 ShowS
+show_79 = id
 
 
--- '  <Hd>, <Xn>, #<fbits>'
--- SCVTF_H64_float2fix scvtf_float_fix.xml
--- UCVTF_H64_float2fix ucvtf_float_fix.xml
+--- 80: '  <Hd>, <Xn>, #<fbits>'
+--- SCVTF_H64_float2fix           scvtf_float_fix.xml
+--- UCVTF_H64_float2fix           ucvtf_float_fix.xml
 
-type Logical_080 = '[]
-type Binary_080  = '[]
+type Logical_80 = '[]
+type Binary_80  = '[]
 
-decode_080 :: Fn Logical_080 a -> FnW Binary_080 (Decode a)
-decode_080 f = return f
+decode_80 :: Fn Logical_80 a -> FnW Binary_80 (Decode a)
+decode_80 f = return f
 
-encode_080 :: FnW Binary_080 a -> Fn Logical_080 (Encode a)
-encode_080 f = return f
+encode_80 :: FnW Binary_80 a -> Fn Logical_80 (Encode a)
+encode_80 f = return f
 
-parse_080 :: Fn Logical_080 a -> Parser a
-parse_080 f = do
+parse_80 :: Fn Logical_80 a -> Parser a
+parse_80 f = do
     return $ f
 
-show_080 :: Fn Logical_080 ShowS
-show_080 = id
+show_80 :: Fn Logical_80 ShowS
+show_80 = id
 
 
--- '  <Sd>, <Wn>, #<fbits>'
--- SCVTF_S32_float2fix scvtf_float_fix.xml
--- UCVTF_S32_float2fix ucvtf_float_fix.xml
+--- 81: '  <Sd>, <Wn>, #<fbits>'
+--- SCVTF_S32_float2fix           scvtf_float_fix.xml
+--- UCVTF_S32_float2fix           ucvtf_float_fix.xml
 
-type Logical_081 = '[]
-type Binary_081  = '[]
+type Logical_81 = '[]
+type Binary_81  = '[]
 
-decode_081 :: Fn Logical_081 a -> FnW Binary_081 (Decode a)
-decode_081 f = return f
+decode_81 :: Fn Logical_81 a -> FnW Binary_81 (Decode a)
+decode_81 f = return f
 
-encode_081 :: FnW Binary_081 a -> Fn Logical_081 (Encode a)
-encode_081 f = return f
+encode_81 :: FnW Binary_81 a -> Fn Logical_81 (Encode a)
+encode_81 f = return f
 
-parse_081 :: Fn Logical_081 a -> Parser a
-parse_081 f = do
+parse_81 :: Fn Logical_81 a -> Parser a
+parse_81 f = do
     return $ f
 
-show_081 :: Fn Logical_081 ShowS
-show_081 = id
+show_81 :: Fn Logical_81 ShowS
+show_81 = id
 
 
--- '  <Sd>, <Xn>, #<fbits>'
--- SCVTF_S64_float2fix scvtf_float_fix.xml
--- UCVTF_S64_float2fix ucvtf_float_fix.xml
+--- 82: '  <Sd>, <Xn>, #<fbits>'
+--- SCVTF_S64_float2fix           scvtf_float_fix.xml
+--- UCVTF_S64_float2fix           ucvtf_float_fix.xml
 
-type Logical_082 = '[]
-type Binary_082  = '[]
+type Logical_82 = '[]
+type Binary_82  = '[]
 
-decode_082 :: Fn Logical_082 a -> FnW Binary_082 (Decode a)
-decode_082 f = return f
+decode_82 :: Fn Logical_82 a -> FnW Binary_82 (Decode a)
+decode_82 f = return f
 
-encode_082 :: FnW Binary_082 a -> Fn Logical_082 (Encode a)
-encode_082 f = return f
+encode_82 :: FnW Binary_82 a -> Fn Logical_82 (Encode a)
+encode_82 f = return f
 
-parse_082 :: Fn Logical_082 a -> Parser a
-parse_082 f = do
+parse_82 :: Fn Logical_82 a -> Parser a
+parse_82 f = do
     return $ f
 
-show_082 :: Fn Logical_082 ShowS
-show_082 = id
+show_82 :: Fn Logical_82 ShowS
+show_82 = id
 
 
--- '  <V><d>, <V><n>, #0.0'
--- FCMEQ_asisdmisc_FZ  fcmeq_advsimd_zero.xml
--- FCMGE_asisdmisc_FZ  fcmge_advsimd_zero.xml
--- FCMGT_asisdmisc_FZ  fcmgt_advsimd_zero.xml
--- FCMLE_asisdmisc_FZ  fcmle_advsimd.xml
--- FCMLT_asisdmisc_FZ  fcmlt_advsimd.xml
+--- 83: '  <V><d>, <V><n>, #0.0'
+--- FCMEQ_asisdmisc_FZ            fcmeq_advsimd_zero.xml
+--- FCMGE_asisdmisc_FZ            fcmge_advsimd_zero.xml
+--- FCMGT_asisdmisc_FZ            fcmgt_advsimd_zero.xml
+--- FCMLE_asisdmisc_FZ            fcmle_advsimd.xml
+--- FCMLT_asisdmisc_FZ            fcmlt_advsimd.xml
 
-type Logical_083 = '[]
-type Binary_083  = '[]
+type Logical_83 = '[]
+type Binary_83  = '[]
 
-decode_083 :: Fn Logical_083 a -> FnW Binary_083 (Decode a)
-decode_083 f = return f
+decode_83 :: Fn Logical_83 a -> FnW Binary_83 (Decode a)
+decode_83 f = return f
 
-encode_083 :: FnW Binary_083 a -> Fn Logical_083 (Encode a)
-encode_083 f = return f
+encode_83 :: FnW Binary_83 a -> Fn Logical_83 (Encode a)
+encode_83 f = return f
 
-parse_083 :: Fn Logical_083 a -> Parser a
-parse_083 f = do
+parse_83 :: Fn Logical_83 a -> Parser a
+parse_83 f = do
     return $ f
 
-show_083 :: Fn Logical_083 ShowS
-show_083 = id
+show_83 :: Fn Logical_83 ShowS
+show_83 = id
 
 
--- '  <Vd>.<Ta>, <Vn>.<Tb>'
--- SADALP_asimdmisc_P  sadalp_advsimd.xml
--- SADDLP_asimdmisc_P  saddlp_advsimd.xml
--- UADALP_asimdmisc_P  uadalp_advsimd.xml
--- UADDLP_asimdmisc_P  uaddlp_advsimd.xml
+--- 84: '  <Vd>.<Ta>, <Vn>.<Tb>'
+--- SADALP_asimdmisc_P            sadalp_advsimd.xml
+--- SADDLP_asimdmisc_P            saddlp_advsimd.xml
+--- UADALP_asimdmisc_P            uadalp_advsimd.xml
+--- UADDLP_asimdmisc_P            uaddlp_advsimd.xml
 
-type Logical_084 = '[]
-type Binary_084  = '[]
+type Logical_84 = '[]
+type Binary_84  = '[]
 
-decode_084 :: Fn Logical_084 a -> FnW Binary_084 (Decode a)
-decode_084 f = return f
+decode_84 :: Fn Logical_84 a -> FnW Binary_84 (Decode a)
+decode_84 f = return f
 
-encode_084 :: FnW Binary_084 a -> Fn Logical_084 (Encode a)
-encode_084 f = return f
+encode_84 :: FnW Binary_84 a -> Fn Logical_84 (Encode a)
+encode_84 f = return f
 
-parse_084 :: Fn Logical_084 a -> Parser a
-parse_084 f = do
+parse_84 :: Fn Logical_84 a -> Parser a
+parse_84 f = do
     return $ f
 
-show_084 :: Fn Logical_084 ShowS
-show_084 = id
+show_84 :: Fn Logical_84 ShowS
+show_84 = id
 
 
--- '  <Wd>, <Dn>, #<fbits>'
--- FCVTZS_32D_float2fixfcvtzs_float_fix.xml
--- FCVTZU_32D_float2fixfcvtzu_float_fix.xml
+--- 85: '  <Wd>, <Dn>, #<fbits>'
+--- FCVTZS_32D_float2fix          fcvtzs_float_fix.xml
+--- FCVTZU_32D_float2fix          fcvtzu_float_fix.xml
 
-type Logical_085 = '[]
-type Binary_085  = '[]
+type Logical_85 = '[]
+type Binary_85  = '[]
 
-decode_085 :: Fn Logical_085 a -> FnW Binary_085 (Decode a)
-decode_085 f = return f
+decode_85 :: Fn Logical_85 a -> FnW Binary_85 (Decode a)
+decode_85 f = return f
 
-encode_085 :: FnW Binary_085 a -> Fn Logical_085 (Encode a)
-encode_085 f = return f
+encode_85 :: FnW Binary_85 a -> Fn Logical_85 (Encode a)
+encode_85 f = return f
 
-parse_085 :: Fn Logical_085 a -> Parser a
-parse_085 f = do
+parse_85 :: Fn Logical_85 a -> Parser a
+parse_85 f = do
     return $ f
 
-show_085 :: Fn Logical_085 ShowS
-show_085 = id
+show_85 :: Fn Logical_85 ShowS
+show_85 = id
 
 
--- '  <Wd>, <Hn>, #<fbits>'
--- FCVTZS_32H_float2fixfcvtzs_float_fix.xml
--- FCVTZU_32H_float2fixfcvtzu_float_fix.xml
+--- 86: '  <Wd>, <Hn>, #<fbits>'
+--- FCVTZS_32H_float2fix          fcvtzs_float_fix.xml
+--- FCVTZU_32H_float2fix          fcvtzu_float_fix.xml
 
-type Logical_086 = '[]
-type Binary_086  = '[]
+type Logical_86 = '[]
+type Binary_86  = '[]
 
-decode_086 :: Fn Logical_086 a -> FnW Binary_086 (Decode a)
-decode_086 f = return f
+decode_86 :: Fn Logical_86 a -> FnW Binary_86 (Decode a)
+decode_86 f = return f
 
-encode_086 :: FnW Binary_086 a -> Fn Logical_086 (Encode a)
-encode_086 f = return f
+encode_86 :: FnW Binary_86 a -> Fn Logical_86 (Encode a)
+encode_86 f = return f
 
-parse_086 :: Fn Logical_086 a -> Parser a
-parse_086 f = do
+parse_86 :: Fn Logical_86 a -> Parser a
+parse_86 f = do
     return $ f
 
-show_086 :: Fn Logical_086 ShowS
-show_086 = id
+show_86 :: Fn Logical_86 ShowS
+show_86 = id
 
 
--- '  <Wd>, <Sn>, #<fbits>'
--- FCVTZS_32S_float2fixfcvtzs_float_fix.xml
--- FCVTZU_32S_float2fixfcvtzu_float_fix.xml
+--- 87: '  <Wd>, <Sn>, #<fbits>'
+--- FCVTZS_32S_float2fix          fcvtzs_float_fix.xml
+--- FCVTZU_32S_float2fix          fcvtzu_float_fix.xml
 
-type Logical_087 = '[]
-type Binary_087  = '[]
+type Logical_87 = '[]
+type Binary_87  = '[]
 
-decode_087 :: Fn Logical_087 a -> FnW Binary_087 (Decode a)
-decode_087 f = return f
+decode_87 :: Fn Logical_87 a -> FnW Binary_87 (Decode a)
+decode_87 f = return f
 
-encode_087 :: FnW Binary_087 a -> Fn Logical_087 (Encode a)
-encode_087 f = return f
+encode_87 :: FnW Binary_87 a -> Fn Logical_87 (Encode a)
+encode_87 f = return f
 
-parse_087 :: Fn Logical_087 a -> Parser a
-parse_087 f = do
+parse_87 :: Fn Logical_87 a -> Parser a
+parse_87 f = do
     return $ f
 
-show_087 :: Fn Logical_087 ShowS
-show_087 = id
+show_87 :: Fn Logical_87 ShowS
+show_87 = id
 
 
--- '  <Wt>, [<Xn|SP>{,#0}]'
--- LDAR_LR32_ldstexcl  ldar.xml
--- LDARB_LR32_ldstexcl ldarb.xml
--- LDARH_LR32_ldstexcl ldarh.xml
--- LDAXR_LR32_ldstexcl ldaxr.xml
--- LDAXRB_LR32_ldstexclldaxrb.xml
--- LDAXRH_LR32_ldstexclldaxrh.xml
--- LDLAR_LR32_ldstexcl ldlar.xml
--- LDLARB_LR32_ldstexclldlarb.xml
--- LDLARH_LR32_ldstexclldlarh.xml
--- LDXR_LR32_ldstexcl  ldxr.xml
--- LDXRB_LR32_ldstexcl ldxrb.xml
--- LDXRH_LR32_ldstexcl ldxrh.xml
--- STLLR_SL32_ldstexcl stllr.xml
--- STLLRB_SL32_ldstexclstllrb.xml
--- STLLRH_SL32_ldstexclstllrh.xml
--- STLR_SL32_ldstexcl  stlr.xml
--- STLRB_SL32_ldstexcl stlrb.xml
--- STLRH_SL32_ldstexcl stlrh.xml
+--- 88: '  <Wt>, [<Xn|SP>{,#0}]'
+--- LDAR_LR32_ldstexcl            ldar.xml
+--- LDARB_LR32_ldstexcl           ldarb.xml
+--- LDARH_LR32_ldstexcl           ldarh.xml
+--- LDAXR_LR32_ldstexcl           ldaxr.xml
+--- LDAXRB_LR32_ldstexcl          ldaxrb.xml
+--- LDAXRH_LR32_ldstexcl          ldaxrh.xml
+--- LDLAR_LR32_ldstexcl           ldlar.xml
+--- LDLARB_LR32_ldstexcl          ldlarb.xml
+--- LDLARH_LR32_ldstexcl          ldlarh.xml
+--- LDXR_LR32_ldstexcl            ldxr.xml
+--- LDXRB_LR32_ldstexcl           ldxrb.xml
+--- LDXRH_LR32_ldstexcl           ldxrh.xml
+--- STLLR_SL32_ldstexcl           stllr.xml
+--- STLLRB_SL32_ldstexcl          stllrb.xml
+--- STLLRH_SL32_ldstexcl          stllrh.xml
+--- STLR_SL32_ldstexcl            stlr.xml
+--- STLRB_SL32_ldstexcl           stlrb.xml
+--- STLRH_SL32_ldstexcl           stlrh.xml
 
-type Logical_088 = '[]
-type Binary_088  = '[]
+type Logical_88 = '[]
+type Binary_88  = '[]
 
-decode_088 :: Fn Logical_088 a -> FnW Binary_088 (Decode a)
-decode_088 f = return f
+decode_88 :: Fn Logical_88 a -> FnW Binary_88 (Decode a)
+decode_88 f = return f
 
-encode_088 :: FnW Binary_088 a -> Fn Logical_088 (Encode a)
-encode_088 f = return f
+encode_88 :: FnW Binary_88 a -> Fn Logical_88 (Encode a)
+encode_88 f = return f
 
-parse_088 :: Fn Logical_088 a -> Parser a
-parse_088 f = do
+parse_88 :: Fn Logical_88 a -> Parser a
+parse_88 f = do
     return $ f
 
-show_088 :: Fn Logical_088 ShowS
-show_088 = id
+show_88 :: Fn Logical_88 ShowS
+show_88 = id
 
 
--- '  <Xd>, <Dn>, #<fbits>'
--- FCVTZS_64D_float2fixfcvtzs_float_fix.xml
--- FCVTZU_64D_float2fixfcvtzu_float_fix.xml
+--- 89: '  <Xd>, <Dn>, #<fbits>'
+--- FCVTZS_64D_float2fix          fcvtzs_float_fix.xml
+--- FCVTZU_64D_float2fix          fcvtzu_float_fix.xml
 
-type Logical_089 = '[]
-type Binary_089  = '[]
+type Logical_89 = '[]
+type Binary_89  = '[]
 
-decode_089 :: Fn Logical_089 a -> FnW Binary_089 (Decode a)
-decode_089 f = return f
+decode_89 :: Fn Logical_89 a -> FnW Binary_89 (Decode a)
+decode_89 f = return f
 
-encode_089 :: FnW Binary_089 a -> Fn Logical_089 (Encode a)
-encode_089 f = return f
+encode_89 :: FnW Binary_89 a -> Fn Logical_89 (Encode a)
+encode_89 f = return f
 
-parse_089 :: Fn Logical_089 a -> Parser a
-parse_089 f = do
+parse_89 :: Fn Logical_89 a -> Parser a
+parse_89 f = do
     return $ f
 
-show_089 :: Fn Logical_089 ShowS
-show_089 = id
+show_89 :: Fn Logical_89 ShowS
+show_89 = id
 
 
--- '  <Xd>, <Hn>, #<fbits>'
--- FCVTZS_64H_float2fixfcvtzs_float_fix.xml
--- FCVTZU_64H_float2fixfcvtzu_float_fix.xml
+--- 90: '  <Xd>, <Hn>, #<fbits>'
+--- FCVTZS_64H_float2fix          fcvtzs_float_fix.xml
+--- FCVTZU_64H_float2fix          fcvtzu_float_fix.xml
 
-type Logical_090 = '[]
-type Binary_090  = '[]
+type Logical_90 = '[]
+type Binary_90  = '[]
 
-decode_090 :: Fn Logical_090 a -> FnW Binary_090 (Decode a)
-decode_090 f = return f
+decode_90 :: Fn Logical_90 a -> FnW Binary_90 (Decode a)
+decode_90 f = return f
 
-encode_090 :: FnW Binary_090 a -> Fn Logical_090 (Encode a)
-encode_090 f = return f
+encode_90 :: FnW Binary_90 a -> Fn Logical_90 (Encode a)
+encode_90 f = return f
 
-parse_090 :: Fn Logical_090 a -> Parser a
-parse_090 f = do
+parse_90 :: Fn Logical_90 a -> Parser a
+parse_90 f = do
     return $ f
 
-show_090 :: Fn Logical_090 ShowS
-show_090 = id
+show_90 :: Fn Logical_90 ShowS
+show_90 = id
 
 
--- '  <Xd>, <Sn>, #<fbits>'
--- FCVTZS_64S_float2fixfcvtzs_float_fix.xml
--- FCVTZU_64S_float2fixfcvtzu_float_fix.xml
+--- 91: '  <Xd>, <Sn>, #<fbits>'
+--- FCVTZS_64S_float2fix          fcvtzs_float_fix.xml
+--- FCVTZU_64S_float2fix          fcvtzu_float_fix.xml
 
-type Logical_091 = '[]
-type Binary_091  = '[]
+type Logical_91 = '[]
+type Binary_91  = '[]
 
-decode_091 :: Fn Logical_091 a -> FnW Binary_091 (Decode a)
-decode_091 f = return f
+decode_91 :: Fn Logical_91 a -> FnW Binary_91 (Decode a)
+decode_91 f = return f
 
-encode_091 :: FnW Binary_091 a -> Fn Logical_091 (Encode a)
-encode_091 f = return f
+encode_91 :: FnW Binary_91 a -> Fn Logical_91 (Encode a)
+encode_91 f = return f
 
-parse_091 :: Fn Logical_091 a -> Parser a
-parse_091 f = do
+parse_91 :: Fn Logical_91 a -> Parser a
+parse_91 f = do
     return $ f
 
-show_091 :: Fn Logical_091 ShowS
-show_091 = id
+show_91 :: Fn Logical_91 ShowS
+show_91 = id
 
 
--- '  <Xt>, [<Xn|SP>{,#0}]'
--- LDAR_LR64_ldstexcl  ldar.xml
--- LDAXR_LR64_ldstexcl ldaxr.xml
--- LDLAR_LR64_ldstexcl ldlar.xml
--- LDXR_LR64_ldstexcl  ldxr.xml
--- STLLR_SL64_ldstexcl stllr.xml
--- STLR_SL64_ldstexcl  stlr.xml
+--- 92: '  <Xt>, [<Xn|SP>{,#0}]'
+--- LDAR_LR64_ldstexcl            ldar.xml
+--- LDAXR_LR64_ldstexcl           ldaxr.xml
+--- LDLAR_LR64_ldstexcl           ldlar.xml
+--- LDXR_LR64_ldstexcl            ldxr.xml
+--- STLLR_SL64_ldstexcl           stllr.xml
+--- STLR_SL64_ldstexcl            stlr.xml
 
-type Logical_092 = '[]
-type Binary_092  = '[]
+type Logical_92 = '[]
+type Binary_92  = '[]
 
-decode_092 :: Fn Logical_092 a -> FnW Binary_092 (Decode a)
-decode_092 f = return f
+decode_92 :: Fn Logical_92 a -> FnW Binary_92 (Decode a)
+decode_92 f = return f
 
-encode_092 :: FnW Binary_092 a -> Fn Logical_092 (Encode a)
-encode_092 f = return f
+encode_92 :: FnW Binary_92 a -> Fn Logical_92 (Encode a)
+encode_92 f = return f
 
-parse_092 :: Fn Logical_092 a -> Parser a
-parse_092 f = do
+parse_92 :: Fn Logical_92 a -> Parser a
+parse_92 f = do
     return $ f
 
-show_092 :: Fn Logical_092 ShowS
-show_092 = id
+show_92 :: Fn Logical_92 ShowS
+show_92 = id
 
 
--- '  <Ws>, <Wt>, [<Xn|SP>]'
--- LDADD_32_memop      ldadd.xml
--- LDADDA_32_memop     ldadd.xml
--- LDADDAL_32_memop    ldadd.xml
--- LDADDL_32_memop     ldadd.xml
--- LDADDAB_32_memop    ldaddb.xml
--- LDADDALB_32_memop   ldaddb.xml
--- LDADDB_32_memop     ldaddb.xml
--- LDADDLB_32_memop    ldaddb.xml
--- LDADDAH_32_memop    ldaddh.xml
--- LDADDALH_32_memop   ldaddh.xml
--- LDADDH_32_memop     ldaddh.xml
--- LDADDLH_32_memop    ldaddh.xml
--- LDCLR_32_memop      ldclr.xml
--- LDCLRA_32_memop     ldclr.xml
--- LDCLRAL_32_memop    ldclr.xml
--- LDCLRL_32_memop     ldclr.xml
--- LDCLRAB_32_memop    ldclrb.xml
--- LDCLRALB_32_memop   ldclrb.xml
--- LDCLRB_32_memop     ldclrb.xml
--- LDCLRLB_32_memop    ldclrb.xml
--- LDCLRAH_32_memop    ldclrh.xml
--- LDCLRALH_32_memop   ldclrh.xml
--- LDCLRH_32_memop     ldclrh.xml
--- LDCLRLH_32_memop    ldclrh.xml
--- LDEOR_32_memop      ldeor.xml
--- LDEORA_32_memop     ldeor.xml
--- LDEORAL_32_memop    ldeor.xml
--- LDEORL_32_memop     ldeor.xml
--- LDEORAB_32_memop    ldeorb.xml
--- LDEORALB_32_memop   ldeorb.xml
--- LDEORB_32_memop     ldeorb.xml
--- LDEORLB_32_memop    ldeorb.xml
--- LDEORAH_32_memop    ldeorh.xml
--- LDEORALH_32_memop   ldeorh.xml
--- LDEORH_32_memop     ldeorh.xml
--- LDEORLH_32_memop    ldeorh.xml
--- LDSET_32_memop      ldset.xml
--- LDSETA_32_memop     ldset.xml
--- LDSETAL_32_memop    ldset.xml
--- LDSETL_32_memop     ldset.xml
--- LDSETAB_32_memop    ldsetb.xml
--- LDSETALB_32_memop   ldsetb.xml
--- LDSETB_32_memop     ldsetb.xml
--- LDSETLB_32_memop    ldsetb.xml
--- LDSETAH_32_memop    ldseth.xml
--- LDSETALH_32_memop   ldseth.xml
--- LDSETH_32_memop     ldseth.xml
--- LDSETLH_32_memop    ldseth.xml
--- LDSMAX_32_memop     ldsmax.xml
--- LDSMAXA_32_memop    ldsmax.xml
--- LDSMAXAL_32_memop   ldsmax.xml
--- LDSMAXL_32_memop    ldsmax.xml
--- LDSMAXAB_32_memop   ldsmaxb.xml
--- LDSMAXALB_32_memop  ldsmaxb.xml
--- LDSMAXB_32_memop    ldsmaxb.xml
--- LDSMAXLB_32_memop   ldsmaxb.xml
--- LDSMAXAH_32_memop   ldsmaxh.xml
--- LDSMAXALH_32_memop  ldsmaxh.xml
--- LDSMAXH_32_memop    ldsmaxh.xml
--- LDSMAXLH_32_memop   ldsmaxh.xml
--- LDSMIN_32_memop     ldsmin.xml
--- LDSMINA_32_memop    ldsmin.xml
--- LDSMINAL_32_memop   ldsmin.xml
--- LDSMINL_32_memop    ldsmin.xml
--- LDSMINAB_32_memop   ldsminb.xml
--- LDSMINALB_32_memop  ldsminb.xml
--- LDSMINB_32_memop    ldsminb.xml
--- LDSMINLB_32_memop   ldsminb.xml
--- LDSMINAH_32_memop   ldsminh.xml
--- LDSMINALH_32_memop  ldsminh.xml
--- LDSMINH_32_memop    ldsminh.xml
--- LDSMINLH_32_memop   ldsminh.xml
--- LDUMAX_32_memop     ldumax.xml
--- LDUMAXA_32_memop    ldumax.xml
--- LDUMAXAL_32_memop   ldumax.xml
--- LDUMAXL_32_memop    ldumax.xml
--- LDUMAXAB_32_memop   ldumaxb.xml
--- LDUMAXALB_32_memop  ldumaxb.xml
--- LDUMAXB_32_memop    ldumaxb.xml
--- LDUMAXLB_32_memop   ldumaxb.xml
--- LDUMAXAH_32_memop   ldumaxh.xml
--- LDUMAXALH_32_memop  ldumaxh.xml
--- LDUMAXH_32_memop    ldumaxh.xml
--- LDUMAXLH_32_memop   ldumaxh.xml
--- LDUMIN_32_memop     ldumin.xml
--- LDUMINA_32_memop    ldumin.xml
--- LDUMINAL_32_memop   ldumin.xml
--- LDUMINL_32_memop    ldumin.xml
--- LDUMINAB_32_memop   lduminb.xml
--- LDUMINALB_32_memop  lduminb.xml
--- LDUMINB_32_memop    lduminb.xml
--- LDUMINLB_32_memop   lduminb.xml
--- LDUMINAH_32_memop   lduminh.xml
--- LDUMINALH_32_memop  lduminh.xml
--- LDUMINH_32_memop    lduminh.xml
--- LDUMINLH_32_memop   lduminh.xml
--- SWP_32_memop        swp.xml
--- SWPA_32_memop       swp.xml
--- SWPAL_32_memop      swp.xml
--- SWPL_32_memop       swp.xml
--- SWPAB_32_memop      swpb.xml
--- SWPALB_32_memop     swpb.xml
--- SWPB_32_memop       swpb.xml
--- SWPLB_32_memop      swpb.xml
--- SWPAH_32_memop      swph.xml
--- SWPALH_32_memop     swph.xml
--- SWPH_32_memop       swph.xml
--- SWPLH_32_memop      swph.xml
+--- 93: '  <Ws>, <Wt>, [<Xn|SP>]'
+--- LDADD_32_memop                ldadd.xml
+--- LDADDA_32_memop               ldadd.xml
+--- LDADDAL_32_memop              ldadd.xml
+--- LDADDL_32_memop               ldadd.xml
+--- LDADDAB_32_memop              ldaddb.xml
+--- LDADDALB_32_memop             ldaddb.xml
+--- LDADDB_32_memop               ldaddb.xml
+--- LDADDLB_32_memop              ldaddb.xml
+--- LDADDAH_32_memop              ldaddh.xml
+--- LDADDALH_32_memop             ldaddh.xml
+--- LDADDH_32_memop               ldaddh.xml
+--- LDADDLH_32_memop              ldaddh.xml
+--- LDCLR_32_memop                ldclr.xml
+--- LDCLRA_32_memop               ldclr.xml
+--- LDCLRAL_32_memop              ldclr.xml
+--- LDCLRL_32_memop               ldclr.xml
+--- LDCLRAB_32_memop              ldclrb.xml
+--- LDCLRALB_32_memop             ldclrb.xml
+--- LDCLRB_32_memop               ldclrb.xml
+--- LDCLRLB_32_memop              ldclrb.xml
+--- LDCLRAH_32_memop              ldclrh.xml
+--- LDCLRALH_32_memop             ldclrh.xml
+--- LDCLRH_32_memop               ldclrh.xml
+--- LDCLRLH_32_memop              ldclrh.xml
+--- LDEOR_32_memop                ldeor.xml
+--- LDEORA_32_memop               ldeor.xml
+--- LDEORAL_32_memop              ldeor.xml
+--- LDEORL_32_memop               ldeor.xml
+--- LDEORAB_32_memop              ldeorb.xml
+--- LDEORALB_32_memop             ldeorb.xml
+--- LDEORB_32_memop               ldeorb.xml
+--- LDEORLB_32_memop              ldeorb.xml
+--- LDEORAH_32_memop              ldeorh.xml
+--- LDEORALH_32_memop             ldeorh.xml
+--- LDEORH_32_memop               ldeorh.xml
+--- LDEORLH_32_memop              ldeorh.xml
+--- LDSET_32_memop                ldset.xml
+--- LDSETA_32_memop               ldset.xml
+--- LDSETAL_32_memop              ldset.xml
+--- LDSETL_32_memop               ldset.xml
+--- LDSETAB_32_memop              ldsetb.xml
+--- LDSETALB_32_memop             ldsetb.xml
+--- LDSETB_32_memop               ldsetb.xml
+--- LDSETLB_32_memop              ldsetb.xml
+--- LDSETAH_32_memop              ldseth.xml
+--- LDSETALH_32_memop             ldseth.xml
+--- LDSETH_32_memop               ldseth.xml
+--- LDSETLH_32_memop              ldseth.xml
+--- LDSMAX_32_memop               ldsmax.xml
+--- LDSMAXA_32_memop              ldsmax.xml
+--- LDSMAXAL_32_memop             ldsmax.xml
+--- LDSMAXL_32_memop              ldsmax.xml
+--- LDSMAXAB_32_memop             ldsmaxb.xml
+--- LDSMAXALB_32_memop            ldsmaxb.xml
+--- LDSMAXB_32_memop              ldsmaxb.xml
+--- LDSMAXLB_32_memop             ldsmaxb.xml
+--- LDSMAXAH_32_memop             ldsmaxh.xml
+--- LDSMAXALH_32_memop            ldsmaxh.xml
+--- LDSMAXH_32_memop              ldsmaxh.xml
+--- LDSMAXLH_32_memop             ldsmaxh.xml
+--- LDSMIN_32_memop               ldsmin.xml
+--- LDSMINA_32_memop              ldsmin.xml
+--- LDSMINAL_32_memop             ldsmin.xml
+--- LDSMINL_32_memop              ldsmin.xml
+--- LDSMINAB_32_memop             ldsminb.xml
+--- LDSMINALB_32_memop            ldsminb.xml
+--- LDSMINB_32_memop              ldsminb.xml
+--- LDSMINLB_32_memop             ldsminb.xml
+--- LDSMINAH_32_memop             ldsminh.xml
+--- LDSMINALH_32_memop            ldsminh.xml
+--- LDSMINH_32_memop              ldsminh.xml
+--- LDSMINLH_32_memop             ldsminh.xml
+--- LDUMAX_32_memop               ldumax.xml
+--- LDUMAXA_32_memop              ldumax.xml
+--- LDUMAXAL_32_memop             ldumax.xml
+--- LDUMAXL_32_memop              ldumax.xml
+--- LDUMAXAB_32_memop             ldumaxb.xml
+--- LDUMAXALB_32_memop            ldumaxb.xml
+--- LDUMAXB_32_memop              ldumaxb.xml
+--- LDUMAXLB_32_memop             ldumaxb.xml
+--- LDUMAXAH_32_memop             ldumaxh.xml
+--- LDUMAXALH_32_memop            ldumaxh.xml
+--- LDUMAXH_32_memop              ldumaxh.xml
+--- LDUMAXLH_32_memop             ldumaxh.xml
+--- LDUMIN_32_memop               ldumin.xml
+--- LDUMINA_32_memop              ldumin.xml
+--- LDUMINAL_32_memop             ldumin.xml
+--- LDUMINL_32_memop              ldumin.xml
+--- LDUMINAB_32_memop             lduminb.xml
+--- LDUMINALB_32_memop            lduminb.xml
+--- LDUMINB_32_memop              lduminb.xml
+--- LDUMINLB_32_memop             lduminb.xml
+--- LDUMINAH_32_memop             lduminh.xml
+--- LDUMINALH_32_memop            lduminh.xml
+--- LDUMINH_32_memop              lduminh.xml
+--- LDUMINLH_32_memop             lduminh.xml
+--- SWP_32_memop                  swp.xml
+--- SWPA_32_memop                 swp.xml
+--- SWPAL_32_memop                swp.xml
+--- SWPL_32_memop                 swp.xml
+--- SWPAB_32_memop                swpb.xml
+--- SWPALB_32_memop               swpb.xml
+--- SWPB_32_memop                 swpb.xml
+--- SWPLB_32_memop                swpb.xml
+--- SWPAH_32_memop                swph.xml
+--- SWPALH_32_memop               swph.xml
+--- SWPH_32_memop                 swph.xml
+--- SWPLH_32_memop                swph.xml
 
-type Logical_093 = '[]
-type Binary_093  = '[]
+type Logical_93 = '[]
+type Binary_93  = '[]
 
-decode_093 :: Fn Logical_093 a -> FnW Binary_093 (Decode a)
-decode_093 f = return f
+decode_93 :: Fn Logical_93 a -> FnW Binary_93 (Decode a)
+decode_93 f = return f
 
-encode_093 :: FnW Binary_093 a -> Fn Logical_093 (Encode a)
-encode_093 f = return f
+encode_93 :: FnW Binary_93 a -> Fn Logical_93 (Encode a)
+encode_93 f = return f
 
-parse_093 :: Fn Logical_093 a -> Parser a
-parse_093 f = do
+parse_93 :: Fn Logical_93 a -> Parser a
+parse_93 f = do
     return $ f
 
-show_093 :: Fn Logical_093 ShowS
-show_093 = id
+show_93 :: Fn Logical_93 ShowS
+show_93 = id
 
 
--- '  <Wt>, [<Xn|SP> {,#0}]'
--- LDAPR_32L_memop     ldapr.xml
--- LDAPRB_32L_memop    ldaprb.xml
--- LDAPRH_32L_memop    ldaprh.xml
+--- 94: '  <Wt>, [<Xn|SP> {,#0}]'
+--- LDAPR_32L_memop               ldapr.xml
+--- LDAPRB_32L_memop              ldaprb.xml
+--- LDAPRH_32L_memop              ldaprh.xml
 
-type Logical_094 = '[]
-type Binary_094  = '[]
+type Logical_94 = '[]
+type Binary_94  = '[]
 
-decode_094 :: Fn Logical_094 a -> FnW Binary_094 (Decode a)
-decode_094 f = return f
+decode_94 :: Fn Logical_94 a -> FnW Binary_94 (Decode a)
+decode_94 f = return f
 
-encode_094 :: FnW Binary_094 a -> Fn Logical_094 (Encode a)
-encode_094 f = return f
+encode_94 :: FnW Binary_94 a -> Fn Logical_94 (Encode a)
+encode_94 f = return f
 
-parse_094 :: Fn Logical_094 a -> Parser a
-parse_094 f = do
+parse_94 :: Fn Logical_94 a -> Parser a
+parse_94 f = do
     return $ f
 
-show_094 :: Fn Logical_094 ShowS
-show_094 = id
+show_94 :: Fn Logical_94 ShowS
+show_94 = id
 
 
--- '  <Xd|SP>, <Xn>, #<imm>'
--- AND_64_log_imm      and_log_imm.xml
--- EOR_64_log_imm      eor_log_imm.xml
--- ORR_64_log_imm      orr_log_imm.xml
+--- 95: '  <Xd|SP>, <Xn>, #<imm>'
+--- AND_64_log_imm                and_log_imm.xml
+--- EOR_64_log_imm                eor_log_imm.xml
+--- ORR_64_log_imm                orr_log_imm.xml
 
-type Logical_095 = '[]
-type Binary_095  = '[]
+type Logical_95 = '[]
+type Binary_95  = '[]
 
-decode_095 :: Fn Logical_095 a -> FnW Binary_095 (Decode a)
-decode_095 f = return f
+decode_95 :: Fn Logical_95 a -> FnW Binary_95 (Decode a)
+decode_95 f = return f
 
-encode_095 :: FnW Binary_095 a -> Fn Logical_095 (Encode a)
-encode_095 f = return f
+encode_95 :: FnW Binary_95 a -> Fn Logical_95 (Encode a)
+encode_95 f = return f
 
-parse_095 :: Fn Logical_095 a -> Parser a
-parse_095 f = do
+parse_95 :: Fn Logical_95 a -> Parser a
+parse_95 f = do
     return $ f
 
-show_095 :: Fn Logical_095 ShowS
-show_095 = id
+show_95 :: Fn Logical_95 ShowS
+show_95 = id
 
 
--- '  <Xs>, <Xt>, [<Xn|SP>]'
--- LDADD_64_memop      ldadd.xml
--- LDADDA_64_memop     ldadd.xml
--- LDADDAL_64_memop    ldadd.xml
--- LDADDL_64_memop     ldadd.xml
--- LDCLR_64_memop      ldclr.xml
--- LDCLRA_64_memop     ldclr.xml
--- LDCLRAL_64_memop    ldclr.xml
--- LDCLRL_64_memop     ldclr.xml
--- LDEOR_64_memop      ldeor.xml
--- LDEORA_64_memop     ldeor.xml
--- LDEORAL_64_memop    ldeor.xml
--- LDEORL_64_memop     ldeor.xml
--- LDSET_64_memop      ldset.xml
--- LDSETA_64_memop     ldset.xml
--- LDSETAL_64_memop    ldset.xml
--- LDSETL_64_memop     ldset.xml
--- LDSMAX_64_memop     ldsmax.xml
--- LDSMAXA_64_memop    ldsmax.xml
--- LDSMAXAL_64_memop   ldsmax.xml
--- LDSMAXL_64_memop    ldsmax.xml
--- LDSMIN_64_memop     ldsmin.xml
--- LDSMINA_64_memop    ldsmin.xml
--- LDSMINAL_64_memop   ldsmin.xml
--- LDSMINL_64_memop    ldsmin.xml
--- LDUMAX_64_memop     ldumax.xml
--- LDUMAXA_64_memop    ldumax.xml
--- LDUMAXAL_64_memop   ldumax.xml
--- LDUMAXL_64_memop    ldumax.xml
--- LDUMIN_64_memop     ldumin.xml
--- LDUMINA_64_memop    ldumin.xml
--- LDUMINAL_64_memop   ldumin.xml
--- LDUMINL_64_memop    ldumin.xml
--- SWP_64_memop        swp.xml
--- SWPA_64_memop       swp.xml
--- SWPAL_64_memop      swp.xml
--- SWPL_64_memop       swp.xml
+--- 96: '  <Xs>, <Xt>, [<Xn|SP>]'
+--- LDADD_64_memop                ldadd.xml
+--- LDADDA_64_memop               ldadd.xml
+--- LDADDAL_64_memop              ldadd.xml
+--- LDADDL_64_memop               ldadd.xml
+--- LDCLR_64_memop                ldclr.xml
+--- LDCLRA_64_memop               ldclr.xml
+--- LDCLRAL_64_memop              ldclr.xml
+--- LDCLRL_64_memop               ldclr.xml
+--- LDEOR_64_memop                ldeor.xml
+--- LDEORA_64_memop               ldeor.xml
+--- LDEORAL_64_memop              ldeor.xml
+--- LDEORL_64_memop               ldeor.xml
+--- LDSET_64_memop                ldset.xml
+--- LDSETA_64_memop               ldset.xml
+--- LDSETAL_64_memop              ldset.xml
+--- LDSETL_64_memop               ldset.xml
+--- LDSMAX_64_memop               ldsmax.xml
+--- LDSMAXA_64_memop              ldsmax.xml
+--- LDSMAXAL_64_memop             ldsmax.xml
+--- LDSMAXL_64_memop              ldsmax.xml
+--- LDSMIN_64_memop               ldsmin.xml
+--- LDSMINA_64_memop              ldsmin.xml
+--- LDSMINAL_64_memop             ldsmin.xml
+--- LDSMINL_64_memop              ldsmin.xml
+--- LDUMAX_64_memop               ldumax.xml
+--- LDUMAXA_64_memop              ldumax.xml
+--- LDUMAXAL_64_memop             ldumax.xml
+--- LDUMAXL_64_memop              ldumax.xml
+--- LDUMIN_64_memop               ldumin.xml
+--- LDUMINA_64_memop              ldumin.xml
+--- LDUMINAL_64_memop             ldumin.xml
+--- LDUMINL_64_memop              ldumin.xml
+--- SWP_64_memop                  swp.xml
+--- SWPA_64_memop                 swp.xml
+--- SWPAL_64_memop                swp.xml
+--- SWPL_64_memop                 swp.xml
 
-type Logical_096 = '[]
-type Binary_096  = '[]
+type Logical_96 = '[]
+type Binary_96  = '[]
 
-decode_096 :: Fn Logical_096 a -> FnW Binary_096 (Decode a)
-decode_096 f = return f
+decode_96 :: Fn Logical_96 a -> FnW Binary_96 (Decode a)
+decode_96 f = return f
 
-encode_096 :: FnW Binary_096 a -> Fn Logical_096 (Encode a)
-encode_096 f = return f
+encode_96 :: FnW Binary_96 a -> Fn Logical_96 (Encode a)
+encode_96 f = return f
 
-parse_096 :: Fn Logical_096 a -> Parser a
-parse_096 f = do
+parse_96 :: Fn Logical_96 a -> Parser a
+parse_96 f = do
     return $ f
 
-show_096 :: Fn Logical_096 ShowS
-show_096 = id
+show_96 :: Fn Logical_96 ShowS
+show_96 = id
 
 
--- '  <Xt>, [<Xn|SP> {,#0}]'
--- LDAPR_64L_memop     ldapr.xml
+--- 97: '  <Xt>, [<Xn|SP> {,#0}]'
+--- LDAPR_64L_memop               ldapr.xml
 
-type Logical_097 = '[]
-type Binary_097  = '[]
+type Logical_97 = '[]
+type Binary_97  = '[]
 
-decode_097 :: Fn Logical_097 a -> FnW Binary_097 (Decode a)
-decode_097 f = return f
+decode_97 :: Fn Logical_97 a -> FnW Binary_97 (Decode a)
+decode_97 f = return f
 
-encode_097 :: FnW Binary_097 a -> Fn Logical_097 (Encode a)
-encode_097 f = return f
+encode_97 :: FnW Binary_97 a -> Fn Logical_97 (Encode a)
+encode_97 f = return f
 
-parse_097 :: Fn Logical_097 a -> Parser a
-parse_097 f = do
+parse_97 :: Fn Logical_97 a -> Parser a
+parse_97 f = do
     return $ f
 
-show_097 :: Fn Logical_097 ShowS
-show_097 = id
+show_97 :: Fn Logical_97 ShowS
+show_97 = id
 
 
--- '  <pstatefield>, #<imm>'
--- MSR_SI_system       msr_imm.xml
+--- 98: '  <pstatefield>, #<imm>'
+--- MSR_SI_system                 msr_imm.xml
 
-type Logical_098 = '[]
-type Binary_098  = '[]
+type Logical_98 = '[]
+type Binary_98  = '[]
 
-decode_098 :: Fn Logical_098 a -> FnW Binary_098 (Decode a)
-decode_098 f = return f
+decode_98 :: Fn Logical_98 a -> FnW Binary_98 (Decode a)
+decode_98 f = return f
 
-encode_098 :: FnW Binary_098 a -> Fn Logical_098 (Encode a)
-encode_098 f = return f
+encode_98 :: FnW Binary_98 a -> Fn Logical_98 (Encode a)
+encode_98 f = return f
 
-parse_098 :: Fn Logical_098 a -> Parser a
-parse_098 f = do
+parse_98 :: Fn Logical_98 a -> Parser a
+parse_98 f = do
     return $ f
 
-show_098 :: Fn Logical_098 ShowS
-show_098 = id
+show_98 :: Fn Logical_98 ShowS
+show_98 = id
 
 
--- '  <Dd>, <Dn>, <Dm>, <Da>'
--- FMADD_D_floatdp3    fmadd_float.xml
--- FMSUB_D_floatdp3    fmsub_float.xml
--- FNMADD_D_floatdp3   fnmadd_float.xml
--- FNMSUB_D_floatdp3   fnmsub_float.xml
+--- 99: '  <Dd>, <Dn>, <Dm>, <Da>'
+--- FMADD_D_floatdp3              fmadd_float.xml
+--- FMSUB_D_floatdp3              fmsub_float.xml
+--- FNMADD_D_floatdp3             fnmadd_float.xml
+--- FNMSUB_D_floatdp3             fnmsub_float.xml
 
-type Logical_099 = '[]
-type Binary_099  = '[]
+type Logical_99 = '[]
+type Binary_99  = '[]
 
-decode_099 :: Fn Logical_099 a -> FnW Binary_099 (Decode a)
-decode_099 f = return f
+decode_99 :: Fn Logical_99 a -> FnW Binary_99 (Decode a)
+decode_99 f = return f
 
-encode_099 :: FnW Binary_099 a -> Fn Logical_099 (Encode a)
-encode_099 f = return f
+encode_99 :: FnW Binary_99 a -> Fn Logical_99 (Encode a)
+encode_99 f = return f
 
-parse_099 :: Fn Logical_099 a -> Parser a
-parse_099 f = do
+parse_99 :: Fn Logical_99 a -> Parser a
+parse_99 f = do
     return $ f
 
-show_099 :: Fn Logical_099 ShowS
-show_099 = id
+show_99 :: Fn Logical_99 ShowS
+show_99 = id
 
 
--- '  <Hd>, <Hn>, <Hm>, <Ha>'
--- FMADD_H_floatdp3    fmadd_float.xml
--- FMSUB_H_floatdp3    fmsub_float.xml
--- FNMADD_H_floatdp3   fnmadd_float.xml
--- FNMSUB_H_floatdp3   fnmsub_float.xml
+--- 100: '  <Hd>, <Hn>, <Hm>, <Ha>'
+--- FMADD_H_floatdp3              fmadd_float.xml
+--- FMSUB_H_floatdp3              fmsub_float.xml
+--- FNMADD_H_floatdp3             fnmadd_float.xml
+--- FNMSUB_H_floatdp3             fnmsub_float.xml
 
 type Logical_100 = '[]
 type Binary_100  = '[]
@@ -2612,11 +2612,11 @@ show_100 :: Fn Logical_100 ShowS
 show_100 = id
 
 
--- '  <Sd>, <Sn>, <Sm>, <Sa>'
--- FMADD_S_floatdp3    fmadd_float.xml
--- FMSUB_S_floatdp3    fmsub_float.xml
--- FNMADD_S_floatdp3   fnmadd_float.xml
--- FNMSUB_S_floatdp3   fnmsub_float.xml
+--- 101: '  <Sd>, <Sn>, <Sm>, <Sa>'
+--- FMADD_S_floatdp3              fmadd_float.xml
+--- FMSUB_S_floatdp3              fmsub_float.xml
+--- FNMADD_S_floatdp3             fnmadd_float.xml
+--- FNMSUB_S_floatdp3             fnmsub_float.xml
 
 type Logical_101 = '[]
 type Binary_101  = '[]
@@ -2635,40 +2635,40 @@ show_101 :: Fn Logical_101 ShowS
 show_101 = id
 
 
--- '  <V><d>, <V><n>, <V><m>'
--- ADD_asisdsame_only  add_advsimd.xml
--- CMEQ_asisdsame_only cmeq_advsimd_reg.xml
--- CMGE_asisdsame_only cmge_advsimd_reg.xml
--- CMGT_asisdsame_only cmgt_advsimd_reg.xml
--- CMHI_asisdsame_only cmhi_advsimd.xml
--- CMHS_asisdsame_only cmhs_advsimd.xml
--- CMTST_asisdsame_onlycmtst_advsimd.xml
--- FABD_asisdsame_only fabd_advsimd.xml
--- FACGE_asisdsame_onlyfacge_advsimd.xml
--- FACGT_asisdsame_onlyfacgt_advsimd.xml
--- FCMEQ_asisdsame_onlyfcmeq_advsimd_reg.xml
--- FCMGE_asisdsame_onlyfcmge_advsimd_reg.xml
--- FCMGT_asisdsame_onlyfcmgt_advsimd_reg.xml
--- FMULX_asisdsame_onlyfmulx_advsimd_vec.xml
--- FRECPS_asisdsame_onlyfrecps_advsimd.xml
--- FRSQRTS_asisdsame_onlyfrsqrts_advsimd.xml
--- SQADD_asisdsame_onlysqadd_advsimd.xml
--- SQDMULH_asisdsame_onlysqdmulh_advsimd_vec.xml
--- SQRDMLAH_asisdsame2_onlysqrdmlah_advsimd_vec.xml
--- SQRDMLSH_asisdsame2_onlysqrdmlsh_advsimd_vec.xml
--- SQRDMULH_asisdsame_onlysqrdmulh_advsimd_vec.xml
--- SQRSHL_asisdsame_onlysqrshl_advsimd.xml
--- SQSHL_asisdsame_onlysqshl_advsimd_reg.xml
--- SQSUB_asisdsame_onlysqsub_advsimd.xml
--- SRSHL_asisdsame_onlysrshl_advsimd.xml
--- SSHL_asisdsame_only sshl_advsimd.xml
--- SUB_asisdsame_only  sub_advsimd.xml
--- UQADD_asisdsame_onlyuqadd_advsimd.xml
--- UQRSHL_asisdsame_onlyuqrshl_advsimd.xml
--- UQSHL_asisdsame_onlyuqshl_advsimd_reg.xml
--- UQSUB_asisdsame_onlyuqsub_advsimd.xml
--- URSHL_asisdsame_onlyurshl_advsimd.xml
--- USHL_asisdsame_only ushl_advsimd.xml
+--- 102: '  <V><d>, <V><n>, <V><m>'
+--- ADD_asisdsame_only            add_advsimd.xml
+--- CMEQ_asisdsame_only           cmeq_advsimd_reg.xml
+--- CMGE_asisdsame_only           cmge_advsimd_reg.xml
+--- CMGT_asisdsame_only           cmgt_advsimd_reg.xml
+--- CMHI_asisdsame_only           cmhi_advsimd.xml
+--- CMHS_asisdsame_only           cmhs_advsimd.xml
+--- CMTST_asisdsame_only          cmtst_advsimd.xml
+--- FABD_asisdsame_only           fabd_advsimd.xml
+--- FACGE_asisdsame_only          facge_advsimd.xml
+--- FACGT_asisdsame_only          facgt_advsimd.xml
+--- FCMEQ_asisdsame_only          fcmeq_advsimd_reg.xml
+--- FCMGE_asisdsame_only          fcmge_advsimd_reg.xml
+--- FCMGT_asisdsame_only          fcmgt_advsimd_reg.xml
+--- FMULX_asisdsame_only          fmulx_advsimd_vec.xml
+--- FRECPS_asisdsame_only         frecps_advsimd.xml
+--- FRSQRTS_asisdsame_only        frsqrts_advsimd.xml
+--- SQADD_asisdsame_only          sqadd_advsimd.xml
+--- SQDMULH_asisdsame_only        sqdmulh_advsimd_vec.xml
+--- SQRDMLAH_asisdsame2_only      sqrdmlah_advsimd_vec.xml
+--- SQRDMLSH_asisdsame2_only      sqrdmlsh_advsimd_vec.xml
+--- SQRDMULH_asisdsame_only       sqrdmulh_advsimd_vec.xml
+--- SQRSHL_asisdsame_only         sqrshl_advsimd.xml
+--- SQSHL_asisdsame_only          sqshl_advsimd_reg.xml
+--- SQSUB_asisdsame_only          sqsub_advsimd.xml
+--- SRSHL_asisdsame_only          srshl_advsimd.xml
+--- SSHL_asisdsame_only           sshl_advsimd.xml
+--- SUB_asisdsame_only            sub_advsimd.xml
+--- UQADD_asisdsame_only          uqadd_advsimd.xml
+--- UQRSHL_asisdsame_only         uqrshl_advsimd.xml
+--- UQSHL_asisdsame_only          uqshl_advsimd_reg.xml
+--- UQSUB_asisdsame_only          uqsub_advsimd.xml
+--- URSHL_asisdsame_only          urshl_advsimd.xml
+--- USHL_asisdsame_only           ushl_advsimd.xml
 
 type Logical_102 = '[]
 type Binary_102  = '[]
@@ -2687,12 +2687,12 @@ show_102 :: Fn Logical_102 ShowS
 show_102 = id
 
 
--- '  <Vd>.<T>, <Vn>.<T>, #0'
--- CMEQ_asimdmisc_Z    cmeq_advsimd_zero.xml
--- CMGE_asimdmisc_Z    cmge_advsimd_zero.xml
--- CMGT_asimdmisc_Z    cmgt_advsimd_zero.xml
--- CMLE_asimdmisc_Z    cmle_advsimd.xml
--- CMLT_asimdmisc_Z    cmlt_advsimd.xml
+--- 103: '  <Vd>.<T>, <Vn>.<T>, #0'
+--- CMEQ_asimdmisc_Z              cmeq_advsimd_zero.xml
+--- CMGE_asimdmisc_Z              cmge_advsimd_zero.xml
+--- CMGT_asimdmisc_Z              cmgt_advsimd_zero.xml
+--- CMLE_asimdmisc_Z              cmle_advsimd.xml
+--- CMLT_asimdmisc_Z              cmlt_advsimd.xml
 
 type Logical_103 = '[]
 type Binary_103  = '[]
@@ -2711,9 +2711,9 @@ show_103 :: Fn Logical_103 ShowS
 show_103 = id
 
 
--- '  <Wd>, <Wn>, <Wm>, <Wa>'
--- MADD_32A_dp_3src    madd.xml
--- MSUB_32A_dp_3src    msub.xml
+--- 104: '  <Wd>, <Wn>, <Wm>, <Wa>'
+--- MADD_32A_dp_3src              madd.xml
+--- MSUB_32A_dp_3src              msub.xml
 
 type Logical_104 = '[]
 type Binary_104  = '[]
@@ -2732,10 +2732,10 @@ show_104 :: Fn Logical_104 ShowS
 show_104 = id
 
 
--- '  <Wd|WSP>, <Wn>, #<imm>'
--- AND_32_log_imm      and_log_imm.xml
--- EOR_32_log_imm      eor_log_imm.xml
--- ORR_32_log_imm      orr_log_imm.xml
+--- 105: '  <Wd|WSP>, <Wn>, #<imm>'
+--- AND_32_log_imm                and_log_imm.xml
+--- EOR_32_log_imm                eor_log_imm.xml
+--- ORR_32_log_imm                orr_log_imm.xml
 
 type Logical_105 = '[]
 type Binary_105  = '[]
@@ -2754,11 +2754,11 @@ show_105 :: Fn Logical_105 ShowS
 show_105 = id
 
 
--- '  <Xd>, <Wn>, <Wm>, <Xa>'
--- SMADDL_64WA_dp_3src smaddl.xml
--- SMSUBL_64WA_dp_3src smsubl.xml
--- UMADDL_64WA_dp_3src umaddl.xml
--- UMSUBL_64WA_dp_3src umsubl.xml
+--- 106: '  <Xd>, <Wn>, <Wm>, <Xa>'
+--- SMADDL_64WA_dp_3src           smaddl.xml
+--- SMSUBL_64WA_dp_3src           smsubl.xml
+--- UMADDL_64WA_dp_3src           umaddl.xml
+--- UMSUBL_64WA_dp_3src           umsubl.xml
 
 type Logical_106 = '[]
 type Binary_106  = '[]
@@ -2777,9 +2777,9 @@ show_106 :: Fn Logical_106 ShowS
 show_106 = id
 
 
--- '  <Xd>, <Xn>, <Xm>, <Xa>'
--- MADD_64A_dp_3src    madd.xml
--- MSUB_64A_dp_3src    msub.xml
+--- 107: '  <Xd>, <Xn>, <Xm>, <Xa>'
+--- MADD_64A_dp_3src              madd.xml
+--- MSUB_64A_dp_3src              msub.xml
 
 type Logical_107 = '[]
 type Binary_107  = '[]
@@ -2798,9 +2798,9 @@ show_107 :: Fn Logical_107 ShowS
 show_107 = id
 
 
--- '  <R><t>, #<imm>, <label>'
--- TBNZ_only_testbranchtbnz.xml
--- TBZ_only_testbranch tbz.xml
+--- 108: '  <R><t>, #<imm>, <label>'
+--- TBNZ_only_testbranch          tbnz.xml
+--- TBZ_only_testbranch           tbz.xml
 
 type Logical_108 = '[]
 type Binary_108  = '[]
@@ -2819,10 +2819,10 @@ show_108 :: Fn Logical_108 ShowS
 show_108 = id
 
 
--- '  { <Vt>.<T> }, [<Xn|SP>]'
--- LD1_asisdlse_R1_1v  ld1_advsimd_mult.xml
--- LD1R_asisdlso_R1    ld1r_advsimd.xml
--- ST1_asisdlse_R1_1v  st1_advsimd_mult.xml
+--- 109: '  { <Vt>.<T> }, [<Xn|SP>]'
+--- LD1_asisdlse_R1_1v            ld1_advsimd_mult.xml
+--- LD1R_asisdlso_R1              ld1r_advsimd.xml
+--- ST1_asisdlse_R1_1v            st1_advsimd_mult.xml
 
 type Logical_109 = '[]
 type Binary_109  = '[]
@@ -2841,8 +2841,8 @@ show_109 :: Fn Logical_109 ShowS
 show_109 = id
 
 
--- '{2}  <Vd>.<Ta>, <Vn>.<Tb>'
--- FCVTL_asimdmisc_L   fcvtl_advsimd.xml
+--- 110: '{2}  <Vd>.<Ta>, <Vn>.<Tb>'
+--- FCVTL_asimdmisc_L             fcvtl_advsimd.xml
 
 type Logical_110 = '[]
 type Binary_110  = '[]
@@ -2861,13 +2861,13 @@ show_110 :: Fn Logical_110 ShowS
 show_110 = id
 
 
--- '{2}  <Vd>.<Tb>, <Vn>.<Ta>'
--- FCVTN_asimdmisc_N   fcvtn_advsimd.xml
--- FCVTXN_asimdmisc_N  fcvtxn_advsimd.xml
--- SQXTN_asimdmisc_N   sqxtn_advsimd.xml
--- SQXTUN_asimdmisc_N  sqxtun_advsimd.xml
--- UQXTN_asimdmisc_N   uqxtn_advsimd.xml
--- XTN_asimdmisc_N     xtn_advsimd.xml
+--- 111: '{2}  <Vd>.<Tb>, <Vn>.<Ta>'
+--- FCVTN_asimdmisc_N             fcvtn_advsimd.xml
+--- FCVTXN_asimdmisc_N            fcvtxn_advsimd.xml
+--- SQXTN_asimdmisc_N             sqxtn_advsimd.xml
+--- SQXTUN_asimdmisc_N            sqxtun_advsimd.xml
+--- UQXTN_asimdmisc_N             uqxtn_advsimd.xml
+--- XTN_asimdmisc_N               xtn_advsimd.xml
 
 type Logical_111 = '[]
 type Binary_111  = '[]
@@ -2886,9 +2886,9 @@ show_111 :: Fn Logical_111 ShowS
 show_111 = id
 
 
--- '  <Bt>, [<Xn|SP>], #<simm>'
--- LDR_B_ldst_immpost  ldr_imm_fpsimd.xml
--- STR_B_ldst_immpost  str_imm_fpsimd.xml
+--- 112: '  <Bt>, [<Xn|SP>], #<simm>'
+--- LDR_B_ldst_immpost            ldr_imm_fpsimd.xml
+--- STR_B_ldst_immpost            str_imm_fpsimd.xml
 
 type Logical_112 = '[]
 type Binary_112  = '[]
@@ -2907,8 +2907,8 @@ show_112 :: Fn Logical_112 ShowS
 show_112 = id
 
 
--- '  <Dd>, <Dn>, <Dm>, <cond>'
--- FCSEL_D_floatsel    fcsel_float.xml
+--- 113: '  <Dd>, <Dn>, <Dm>, <cond>'
+--- FCSEL_D_floatsel              fcsel_float.xml
 
 type Logical_113 = '[]
 type Binary_113  = '[]
@@ -2927,9 +2927,9 @@ show_113 :: Fn Logical_113 ShowS
 show_113 = id
 
 
--- '  <Dt>, [<Xn|SP>], #<simm>'
--- LDR_D_ldst_immpost  ldr_imm_fpsimd.xml
--- STR_D_ldst_immpost  str_imm_fpsimd.xml
+--- 114: '  <Dt>, [<Xn|SP>], #<simm>'
+--- LDR_D_ldst_immpost            ldr_imm_fpsimd.xml
+--- STR_D_ldst_immpost            str_imm_fpsimd.xml
 
 type Logical_114 = '[]
 type Binary_114  = '[]
@@ -2948,8 +2948,8 @@ show_114 :: Fn Logical_114 ShowS
 show_114 = id
 
 
--- '  <Hd>, <Hn>, <Hm>, <cond>'
--- FCSEL_H_floatsel    fcsel_float.xml
+--- 115: '  <Hd>, <Hn>, <Hm>, <cond>'
+--- FCSEL_H_floatsel              fcsel_float.xml
 
 type Logical_115 = '[]
 type Binary_115  = '[]
@@ -2968,9 +2968,9 @@ show_115 :: Fn Logical_115 ShowS
 show_115 = id
 
 
--- '  <Ht>, [<Xn|SP>], #<simm>'
--- LDR_H_ldst_immpost  ldr_imm_fpsimd.xml
--- STR_H_ldst_immpost  str_imm_fpsimd.xml
+--- 116: '  <Ht>, [<Xn|SP>], #<simm>'
+--- LDR_H_ldst_immpost            ldr_imm_fpsimd.xml
+--- STR_H_ldst_immpost            str_imm_fpsimd.xml
 
 type Logical_116 = '[]
 type Binary_116  = '[]
@@ -2989,9 +2989,9 @@ show_116 :: Fn Logical_116 ShowS
 show_116 = id
 
 
--- '  <Qt>, [<Xn|SP>], #<simm>'
--- LDR_Q_ldst_immpost  ldr_imm_fpsimd.xml
--- STR_Q_ldst_immpost  str_imm_fpsimd.xml
+--- 117: '  <Qt>, [<Xn|SP>], #<simm>'
+--- LDR_Q_ldst_immpost            ldr_imm_fpsimd.xml
+--- STR_Q_ldst_immpost            str_imm_fpsimd.xml
 
 type Logical_117 = '[]
 type Binary_117  = '[]
@@ -3010,8 +3010,8 @@ show_117 :: Fn Logical_117 ShowS
 show_117 = id
 
 
--- '  <Sd>, <Sn>, <Sm>, <cond>'
--- FCSEL_S_floatsel    fcsel_float.xml
+--- 118: '  <Sd>, <Sn>, <Sm>, <cond>'
+--- FCSEL_S_floatsel              fcsel_float.xml
 
 type Logical_118 = '[]
 type Binary_118  = '[]
@@ -3030,9 +3030,9 @@ show_118 :: Fn Logical_118 ShowS
 show_118 = id
 
 
--- '  <St>, [<Xn|SP>], #<simm>'
--- LDR_S_ldst_immpost  ldr_imm_fpsimd.xml
--- STR_S_ldst_immpost  str_imm_fpsimd.xml
+--- 119: '  <St>, [<Xn|SP>], #<simm>'
+--- LDR_S_ldst_immpost            ldr_imm_fpsimd.xml
+--- STR_S_ldst_immpost            str_imm_fpsimd.xml
 
 type Logical_119 = '[]
 type Binary_119  = '[]
@@ -3051,11 +3051,11 @@ show_119 :: Fn Logical_119 ShowS
 show_119 = id
 
 
--- '  <V><d>, <V><n>, #<fbits>'
--- FCVTZS_asisdshf_C   fcvtzs_advsimd_fix.xml
--- FCVTZU_asisdshf_C   fcvtzu_advsimd_fix.xml
--- SCVTF_asisdshf_C    scvtf_advsimd_fix.xml
--- UCVTF_asisdshf_C    ucvtf_advsimd_fix.xml
+--- 120: '  <V><d>, <V><n>, #<fbits>'
+--- FCVTZS_asisdshf_C             fcvtzs_advsimd_fix.xml
+--- FCVTZU_asisdshf_C             fcvtzu_advsimd_fix.xml
+--- SCVTF_asisdshf_C              scvtf_advsimd_fix.xml
+--- UCVTF_asisdshf_C              ucvtf_advsimd_fix.xml
 
 type Logical_120 = '[]
 type Binary_120  = '[]
@@ -3074,21 +3074,21 @@ show_120 :: Fn Logical_120 ShowS
 show_120 = id
 
 
--- '  <V><d>, <V><n>, #<shift>'
--- SHL_asisdshf_R      shl_advsimd.xml
--- SLI_asisdshf_R      sli_advsimd.xml
--- SQSHL_asisdshf_R    sqshl_advsimd_imm.xml
--- SQSHLU_asisdshf_R   sqshlu_advsimd.xml
--- SRI_asisdshf_R      sri_advsimd.xml
--- SRSHR_asisdshf_R    srshr_advsimd.xml
--- SRSRA_asisdshf_R    srsra_advsimd.xml
--- SSHR_asisdshf_R     sshr_advsimd.xml
--- SSRA_asisdshf_R     ssra_advsimd.xml
--- UQSHL_asisdshf_R    uqshl_advsimd_imm.xml
--- URSHR_asisdshf_R    urshr_advsimd.xml
--- URSRA_asisdshf_R    ursra_advsimd.xml
--- USHR_asisdshf_R     ushr_advsimd.xml
--- USRA_asisdshf_R     usra_advsimd.xml
+--- 121: '  <V><d>, <V><n>, #<shift>'
+--- SHL_asisdshf_R                shl_advsimd.xml
+--- SLI_asisdshf_R                sli_advsimd.xml
+--- SQSHL_asisdshf_R              sqshl_advsimd_imm.xml
+--- SQSHLU_asisdshf_R             sqshlu_advsimd.xml
+--- SRI_asisdshf_R                sri_advsimd.xml
+--- SRSHR_asisdshf_R              srshr_advsimd.xml
+--- SRSRA_asisdshf_R              srsra_advsimd.xml
+--- SSHR_asisdshf_R               sshr_advsimd.xml
+--- SSRA_asisdshf_R               ssra_advsimd.xml
+--- UQSHL_asisdshf_R              uqshl_advsimd_imm.xml
+--- URSHR_asisdshf_R              urshr_advsimd.xml
+--- URSRA_asisdshf_R              ursra_advsimd.xml
+--- USHR_asisdshf_R               ushr_advsimd.xml
+--- USRA_asisdshf_R               usra_advsimd.xml
 
 type Logical_121 = '[]
 type Binary_121  = '[]
@@ -3107,17 +3107,17 @@ show_121 :: Fn Logical_121 ShowS
 show_121 = id
 
 
--- '  <Vd>.<T>, <Vn>.<T>, #0.0'
--- FCMEQ_asimdmiscfp16_FZfcmeq_advsimd_zero.xml
--- FCMEQ_asimdmisc_FZ  fcmeq_advsimd_zero.xml
--- FCMGE_asimdmiscfp16_FZfcmge_advsimd_zero.xml
--- FCMGE_asimdmisc_FZ  fcmge_advsimd_zero.xml
--- FCMGT_asimdmiscfp16_FZfcmgt_advsimd_zero.xml
--- FCMGT_asimdmisc_FZ  fcmgt_advsimd_zero.xml
--- FCMLE_asimdmiscfp16_FZfcmle_advsimd.xml
--- FCMLE_asimdmisc_FZ  fcmle_advsimd.xml
--- FCMLT_asimdmiscfp16_FZfcmlt_advsimd.xml
--- FCMLT_asimdmisc_FZ  fcmlt_advsimd.xml
+--- 122: '  <Vd>.<T>, <Vn>.<T>, #0.0'
+--- FCMEQ_asimdmiscfp16_FZ        fcmeq_advsimd_zero.xml
+--- FCMEQ_asimdmisc_FZ            fcmeq_advsimd_zero.xml
+--- FCMGE_asimdmiscfp16_FZ        fcmge_advsimd_zero.xml
+--- FCMGE_asimdmisc_FZ            fcmge_advsimd_zero.xml
+--- FCMGT_asimdmiscfp16_FZ        fcmgt_advsimd_zero.xml
+--- FCMGT_asimdmisc_FZ            fcmgt_advsimd_zero.xml
+--- FCMLE_asimdmiscfp16_FZ        fcmle_advsimd.xml
+--- FCMLE_asimdmisc_FZ            fcmle_advsimd.xml
+--- FCMLT_asimdmiscfp16_FZ        fcmlt_advsimd.xml
+--- FCMLT_asimdmisc_FZ            fcmlt_advsimd.xml
 
 type Logical_122 = '[]
 type Binary_122  = '[]
@@ -3136,9 +3136,9 @@ show_122 :: Fn Logical_122 ShowS
 show_122 = id
 
 
--- '  <Wd>, <Vn>.<Ts>[<index>]'
--- SMOV_asimdins_W_w   smov_advsimd.xml
--- UMOV_asimdins_W_w   umov_advsimd.xml
+--- 123: '  <Wd>, <Vn>.<Ts>[<index>]'
+--- SMOV_asimdins_W_w             smov_advsimd.xml
+--- UMOV_asimdins_W_w             umov_advsimd.xml
 
 type Logical_123 = '[]
 type Binary_123  = '[]
@@ -3157,8 +3157,8 @@ show_123 :: Fn Logical_123 ShowS
 show_123 = id
 
 
--- '  <Wd>, <Wn>, <Wm>, #<lsb>'
--- EXTR_32_extract     extr.xml
+--- 124: '  <Wd>, <Wn>, <Wm>, #<lsb>'
+--- EXTR_32_extract               extr.xml
 
 type Logical_124 = '[]
 type Binary_124  = '[]
@@ -3177,11 +3177,11 @@ show_124 :: Fn Logical_124 ShowS
 show_124 = id
 
 
--- '  <Wd>, <Wn>, <Wm>, <cond>'
--- CSEL_32_condsel     csel.xml
--- CSINC_32_condsel    csinc.xml
--- CSINV_32_condsel    csinv.xml
--- CSNEG_32_condsel    csneg.xml
+--- 125: '  <Wd>, <Wn>, <Wm>, <cond>'
+--- CSEL_32_condsel               csel.xml
+--- CSINC_32_condsel              csinc.xml
+--- CSINV_32_condsel              csinv.xml
+--- CSNEG_32_condsel              csneg.xml
 
 type Logical_125 = '[]
 type Binary_125  = '[]
@@ -3200,15 +3200,15 @@ show_125 :: Fn Logical_125 ShowS
 show_125 = id
 
 
--- '  <Wt>, [<Xn|SP>], #<simm>'
--- LDR_32_ldst_immpost ldr_imm_gen.xml
--- LDRB_32_ldst_immpostldrb_imm.xml
--- LDRH_32_ldst_immpostldrh_imm.xml
--- LDRSB_32_ldst_immpostldrsb_imm.xml
--- LDRSH_32_ldst_immpostldrsh_imm.xml
--- STR_32_ldst_immpost str_imm_gen.xml
--- STRB_32_ldst_immpoststrb_imm.xml
--- STRH_32_ldst_immpoststrh_imm.xml
+--- 126: '  <Wt>, [<Xn|SP>], #<simm>'
+--- LDR_32_ldst_immpost           ldr_imm_gen.xml
+--- LDRB_32_ldst_immpost          ldrb_imm.xml
+--- LDRH_32_ldst_immpost          ldrh_imm.xml
+--- LDRSB_32_ldst_immpost         ldrsb_imm.xml
+--- LDRSH_32_ldst_immpost         ldrsh_imm.xml
+--- STR_32_ldst_immpost           str_imm_gen.xml
+--- STRB_32_ldst_immpost          strb_imm.xml
+--- STRH_32_ldst_immpost          strh_imm.xml
 
 type Logical_126 = '[]
 type Binary_126  = '[]
@@ -3227,9 +3227,9 @@ show_126 :: Fn Logical_126 ShowS
 show_126 = id
 
 
--- '  <Xd>, <Vn>.<Ts>[<index>]'
--- SMOV_asimdins_X_x   smov_advsimd.xml
--- UMOV_asimdins_X_x   umov_advsimd.xml
+--- 127: '  <Xd>, <Vn>.<Ts>[<index>]'
+--- SMOV_asimdins_X_x             smov_advsimd.xml
+--- UMOV_asimdins_X_x             umov_advsimd.xml
 
 type Logical_127 = '[]
 type Binary_127  = '[]
@@ -3248,8 +3248,8 @@ show_127 :: Fn Logical_127 ShowS
 show_127 = id
 
 
--- '  <Xd>, <Xn>, <Xm>, #<lsb>'
--- EXTR_64_extract     extr.xml
+--- 128: '  <Xd>, <Xn>, <Xm>, #<lsb>'
+--- EXTR_64_extract               extr.xml
 
 type Logical_128 = '[]
 type Binary_128  = '[]
@@ -3268,11 +3268,11 @@ show_128 :: Fn Logical_128 ShowS
 show_128 = id
 
 
--- '  <Xd>, <Xn>, <Xm>, <cond>'
--- CSEL_64_condsel     csel.xml
--- CSINC_64_condsel    csinc.xml
--- CSINV_64_condsel    csinv.xml
--- CSNEG_64_condsel    csneg.xml
+--- 129: '  <Xd>, <Xn>, <Xm>, <cond>'
+--- CSEL_64_condsel               csel.xml
+--- CSINC_64_condsel              csinc.xml
+--- CSINV_64_condsel              csinv.xml
+--- CSNEG_64_condsel              csneg.xml
 
 type Logical_129 = '[]
 type Binary_129  = '[]
@@ -3291,12 +3291,12 @@ show_129 :: Fn Logical_129 ShowS
 show_129 = id
 
 
--- '  <Xt>, [<Xn|SP>], #<simm>'
--- LDR_64_ldst_immpost ldr_imm_gen.xml
--- LDRSB_64_ldst_immpostldrsb_imm.xml
--- LDRSH_64_ldst_immpostldrsh_imm.xml
--- LDRSW_64_ldst_immpostldrsw_imm.xml
--- STR_64_ldst_immpost str_imm_gen.xml
+--- 130: '  <Xt>, [<Xn|SP>], #<simm>'
+--- LDR_64_ldst_immpost           ldr_imm_gen.xml
+--- LDRSB_64_ldst_immpost         ldrsb_imm.xml
+--- LDRSH_64_ldst_immpost         ldrsh_imm.xml
+--- LDRSW_64_ldst_immpost         ldrsw_imm.xml
+--- STR_64_ldst_immpost           str_imm_gen.xml
 
 type Logical_130 = '[]
 type Binary_130  = '[]
@@ -3315,9 +3315,9 @@ show_130 :: Fn Logical_130 ShowS
 show_130 = id
 
 
--- '  <Bt>, [<Xn|SP>, #<simm>]!'
--- LDR_B_ldst_immpre   ldr_imm_fpsimd.xml
--- STR_B_ldst_immpre   str_imm_fpsimd.xml
+--- 131: '  <Bt>, [<Xn|SP>, #<simm>]!'
+--- LDR_B_ldst_immpre             ldr_imm_fpsimd.xml
+--- STR_B_ldst_immpre             str_imm_fpsimd.xml
 
 type Logical_131 = '[]
 type Binary_131  = '[]
@@ -3336,9 +3336,9 @@ show_131 :: Fn Logical_131 ShowS
 show_131 = id
 
 
--- '  <Dt>, [<Xn|SP>, #<simm>]!'
--- LDR_D_ldst_immpre   ldr_imm_fpsimd.xml
--- STR_D_ldst_immpre   str_imm_fpsimd.xml
+--- 132: '  <Dt>, [<Xn|SP>, #<simm>]!'
+--- LDR_D_ldst_immpre             ldr_imm_fpsimd.xml
+--- STR_D_ldst_immpre             str_imm_fpsimd.xml
 
 type Logical_132 = '[]
 type Binary_132  = '[]
@@ -3357,9 +3357,9 @@ show_132 :: Fn Logical_132 ShowS
 show_132 = id
 
 
--- '  <Ht>, [<Xn|SP>, #<simm>]!'
--- LDR_H_ldst_immpre   ldr_imm_fpsimd.xml
--- STR_H_ldst_immpre   str_imm_fpsimd.xml
+--- 133: '  <Ht>, [<Xn|SP>, #<simm>]!'
+--- LDR_H_ldst_immpre             ldr_imm_fpsimd.xml
+--- STR_H_ldst_immpre             str_imm_fpsimd.xml
 
 type Logical_133 = '[]
 type Binary_133  = '[]
@@ -3378,9 +3378,9 @@ show_133 :: Fn Logical_133 ShowS
 show_133 = id
 
 
--- '  <Qt>, [<Xn|SP>, #<simm>]!'
--- LDR_Q_ldst_immpre   ldr_imm_fpsimd.xml
--- STR_Q_ldst_immpre   str_imm_fpsimd.xml
+--- 134: '  <Qt>, [<Xn|SP>, #<simm>]!'
+--- LDR_Q_ldst_immpre             ldr_imm_fpsimd.xml
+--- STR_Q_ldst_immpre             str_imm_fpsimd.xml
 
 type Logical_134 = '[]
 type Binary_134  = '[]
@@ -3399,9 +3399,9 @@ show_134 :: Fn Logical_134 ShowS
 show_134 = id
 
 
--- '  <St>, [<Xn|SP>, #<simm>]!'
--- LDR_S_ldst_immpre   ldr_imm_fpsimd.xml
--- STR_S_ldst_immpre   str_imm_fpsimd.xml
+--- 135: '  <St>, [<Xn|SP>, #<simm>]!'
+--- LDR_S_ldst_immpre             ldr_imm_fpsimd.xml
+--- STR_S_ldst_immpre             str_imm_fpsimd.xml
 
 type Logical_135 = '[]
 type Binary_135  = '[]
@@ -3420,8 +3420,8 @@ show_135 :: Fn Logical_135 ShowS
 show_135 = id
 
 
--- '  <V><d>, <Vn>.<T>[<index>]'
--- DUP_asisdone_only   dup_advsimd_elt.xml
+--- 136: '  <V><d>, <Vn>.<T>[<index>]'
+--- DUP_asisdone_only             dup_advsimd_elt.xml
 
 type Logical_136 = '[]
 type Binary_136  = '[]
@@ -3440,10 +3440,10 @@ show_136 :: Fn Logical_136 ShowS
 show_136 = id
 
 
--- '  <Va><d>, <Vb><n>, <Vb><m>'
--- SQDMLAL_asisddiff_onlysqdmlal_advsimd_vec.xml
--- SQDMLSL_asisddiff_onlysqdmlsl_advsimd_vec.xml
--- SQDMULL_asisddiff_onlysqdmull_advsimd_vec.xml
+--- 137: '  <Va><d>, <Vb><n>, <Vb><m>'
+--- SQDMLAL_asisddiff_only        sqdmlal_advsimd_vec.xml
+--- SQDMLSL_asisddiff_only        sqdmlsl_advsimd_vec.xml
+--- SQDMULL_asisddiff_only        sqdmull_advsimd_vec.xml
 
 type Logical_137 = '[]
 type Binary_137  = '[]
@@ -3462,9 +3462,9 @@ show_137 :: Fn Logical_137 ShowS
 show_137 = id
 
 
--- '  <Vd>.2D, <Vn>.2D, <Vm>.2D'
--- RAX1_VVV2_cryptosha512_3rax1_advsimd.xml
--- SHA512SU1_VVV2_cryptosha512_3sha512su1_advsimd.xml
+--- 138: '  <Vd>.2D, <Vn>.2D, <Vm>.2D'
+--- RAX1_VVV2_cryptosha512_3      rax1_advsimd.xml
+--- SHA512SU1_VVV2_cryptosha512_3 sha512su1_advsimd.xml
 
 type Logical_138 = '[]
 type Binary_138  = '[]
@@ -3483,12 +3483,12 @@ show_138 :: Fn Logical_138 ShowS
 show_138 = id
 
 
--- '  <Vd>.4S, <Vn>.4S, <Vm>.4S'
--- SHA1SU0_VVV_cryptosha3sha1su0_advsimd.xml
--- SHA256SU1_VVV_cryptosha3sha256su1_advsimd.xml
--- SM3PARTW1_VVV4_cryptosha512_3sm3partw1_advsimd.xml
--- SM3PARTW2_VVV4_cryptosha512_3sm3partw2_advsimd.xml
--- SM4EKEY_VVV4_cryptosha512_3sm4ekey_advsimd.xml
+--- 139: '  <Vd>.4S, <Vn>.4S, <Vm>.4S'
+--- SHA1SU0_VVV_cryptosha3        sha1su0_advsimd.xml
+--- SHA256SU1_VVV_cryptosha3      sha256su1_advsimd.xml
+--- SM3PARTW1_VVV4_cryptosha512_3 sm3partw1_advsimd.xml
+--- SM3PARTW2_VVV4_cryptosha512_3 sm3partw2_advsimd.xml
+--- SM4EKEY_VVV4_cryptosha512_3   sm4ekey_advsimd.xml
 
 type Logical_139 = '[]
 type Binary_139  = '[]
@@ -3507,15 +3507,15 @@ show_139 :: Fn Logical_139 ShowS
 show_139 = id
 
 
--- '  <Wt>, [<Xn|SP>, #<simm>]!'
--- LDR_32_ldst_immpre  ldr_imm_gen.xml
--- LDRB_32_ldst_immpre ldrb_imm.xml
--- LDRH_32_ldst_immpre ldrh_imm.xml
--- LDRSB_32_ldst_immpreldrsb_imm.xml
--- LDRSH_32_ldst_immpreldrsh_imm.xml
--- STR_32_ldst_immpre  str_imm_gen.xml
--- STRB_32_ldst_immpre strb_imm.xml
--- STRH_32_ldst_immpre strh_imm.xml
+--- 140: '  <Wt>, [<Xn|SP>, #<simm>]!'
+--- LDR_32_ldst_immpre            ldr_imm_gen.xml
+--- LDRB_32_ldst_immpre           ldrb_imm.xml
+--- LDRH_32_ldst_immpre           ldrh_imm.xml
+--- LDRSB_32_ldst_immpre          ldrsb_imm.xml
+--- LDRSH_32_ldst_immpre          ldrsh_imm.xml
+--- STR_32_ldst_immpre            str_imm_gen.xml
+--- STRB_32_ldst_immpre           strb_imm.xml
+--- STRH_32_ldst_immpre           strh_imm.xml
 
 type Logical_140 = '[]
 type Binary_140  = '[]
@@ -3534,12 +3534,12 @@ show_140 :: Fn Logical_140 ShowS
 show_140 = id
 
 
--- '  <Xt>, [<Xn|SP>, #<simm>]!'
--- LDR_64_ldst_immpre  ldr_imm_gen.xml
--- LDRSB_64_ldst_immpreldrsb_imm.xml
--- LDRSH_64_ldst_immpreldrsh_imm.xml
--- LDRSW_64_ldst_immpreldrsw_imm.xml
--- STR_64_ldst_immpre  str_imm_gen.xml
+--- 141: '  <Xt>, [<Xn|SP>, #<simm>]!'
+--- LDR_64_ldst_immpre            ldr_imm_gen.xml
+--- LDRSB_64_ldst_immpre          ldrsb_imm.xml
+--- LDRSH_64_ldst_immpre          ldrsh_imm.xml
+--- LDRSW_64_ldst_immpre          ldrsw_imm.xml
+--- STR_64_ldst_immpre            str_imm_gen.xml
 
 type Logical_141 = '[]
 type Binary_141  = '[]
@@ -3558,8 +3558,8 @@ show_141 :: Fn Logical_141 ShowS
 show_141 = id
 
 
--- '  (<prfop>|#<imm5>), <label>'
--- PRFM_P_loadlit      prfm_lit.xml
+--- 142: '  (<prfop>|#<imm5>), <label>'
+--- PRFM_P_loadlit                prfm_lit.xml
 
 type Logical_142 = '[]
 type Binary_142  = '[]
@@ -3578,9 +3578,9 @@ show_142 :: Fn Logical_142 ShowS
 show_142 = id
 
 
--- '  <Bt>, [<Xn|SP>{, #<pimm>}]'
--- LDR_B_ldst_pos      ldr_imm_fpsimd.xml
--- STR_B_ldst_pos      str_imm_fpsimd.xml
+--- 143: '  <Bt>, [<Xn|SP>{, #<pimm>}]'
+--- LDR_B_ldst_pos                ldr_imm_fpsimd.xml
+--- STR_B_ldst_pos                str_imm_fpsimd.xml
 
 type Logical_143 = '[]
 type Binary_143  = '[]
@@ -3599,9 +3599,9 @@ show_143 :: Fn Logical_143 ShowS
 show_143 = id
 
 
--- '  <Bt>, [<Xn|SP>{, #<simm>}]'
--- LDUR_B_ldst_unscaledldur_fpsimd.xml
--- STUR_B_ldst_unscaledstur_fpsimd.xml
+--- 144: '  <Bt>, [<Xn|SP>{, #<simm>}]'
+--- LDUR_B_ldst_unscaled          ldur_fpsimd.xml
+--- STUR_B_ldst_unscaled          stur_fpsimd.xml
 
 type Logical_144 = '[]
 type Binary_144  = '[]
@@ -3620,9 +3620,9 @@ show_144 :: Fn Logical_144 ShowS
 show_144 = id
 
 
--- '  <Dt>, [<Xn|SP>{, #<pimm>}]'
--- LDR_D_ldst_pos      ldr_imm_fpsimd.xml
--- STR_D_ldst_pos      str_imm_fpsimd.xml
+--- 145: '  <Dt>, [<Xn|SP>{, #<pimm>}]'
+--- LDR_D_ldst_pos                ldr_imm_fpsimd.xml
+--- STR_D_ldst_pos                str_imm_fpsimd.xml
 
 type Logical_145 = '[]
 type Binary_145  = '[]
@@ -3641,9 +3641,9 @@ show_145 :: Fn Logical_145 ShowS
 show_145 = id
 
 
--- '  <Dt>, [<Xn|SP>{, #<simm>}]'
--- LDUR_D_ldst_unscaledldur_fpsimd.xml
--- STUR_D_ldst_unscaledstur_fpsimd.xml
+--- 146: '  <Dt>, [<Xn|SP>{, #<simm>}]'
+--- LDUR_D_ldst_unscaled          ldur_fpsimd.xml
+--- STUR_D_ldst_unscaled          stur_fpsimd.xml
 
 type Logical_146 = '[]
 type Binary_146  = '[]
@@ -3662,9 +3662,9 @@ show_146 :: Fn Logical_146 ShowS
 show_146 = id
 
 
--- '  <Ht>, [<Xn|SP>{, #<pimm>}]'
--- LDR_H_ldst_pos      ldr_imm_fpsimd.xml
--- STR_H_ldst_pos      str_imm_fpsimd.xml
+--- 147: '  <Ht>, [<Xn|SP>{, #<pimm>}]'
+--- LDR_H_ldst_pos                ldr_imm_fpsimd.xml
+--- STR_H_ldst_pos                str_imm_fpsimd.xml
 
 type Logical_147 = '[]
 type Binary_147  = '[]
@@ -3683,9 +3683,9 @@ show_147 :: Fn Logical_147 ShowS
 show_147 = id
 
 
--- '  <Ht>, [<Xn|SP>{, #<simm>}]'
--- LDUR_H_ldst_unscaledldur_fpsimd.xml
--- STUR_H_ldst_unscaledstur_fpsimd.xml
+--- 148: '  <Ht>, [<Xn|SP>{, #<simm>}]'
+--- LDUR_H_ldst_unscaled          ldur_fpsimd.xml
+--- STUR_H_ldst_unscaled          stur_fpsimd.xml
 
 type Logical_148 = '[]
 type Binary_148  = '[]
@@ -3704,9 +3704,9 @@ show_148 :: Fn Logical_148 ShowS
 show_148 = id
 
 
--- '  <Qt>, [<Xn|SP>{, #<pimm>}]'
--- LDR_Q_ldst_pos      ldr_imm_fpsimd.xml
--- STR_Q_ldst_pos      str_imm_fpsimd.xml
+--- 149: '  <Qt>, [<Xn|SP>{, #<pimm>}]'
+--- LDR_Q_ldst_pos                ldr_imm_fpsimd.xml
+--- STR_Q_ldst_pos                str_imm_fpsimd.xml
 
 type Logical_149 = '[]
 type Binary_149  = '[]
@@ -3725,9 +3725,9 @@ show_149 :: Fn Logical_149 ShowS
 show_149 = id
 
 
--- '  <Qt>, [<Xn|SP>{, #<simm>}]'
--- LDUR_Q_ldst_unscaledldur_fpsimd.xml
--- STUR_Q_ldst_unscaledstur_fpsimd.xml
+--- 150: '  <Qt>, [<Xn|SP>{, #<simm>}]'
+--- LDUR_Q_ldst_unscaled          ldur_fpsimd.xml
+--- STUR_Q_ldst_unscaled          stur_fpsimd.xml
 
 type Logical_150 = '[]
 type Binary_150  = '[]
@@ -3746,9 +3746,9 @@ show_150 :: Fn Logical_150 ShowS
 show_150 = id
 
 
--- '  <St>, [<Xn|SP>{, #<pimm>}]'
--- LDR_S_ldst_pos      ldr_imm_fpsimd.xml
--- STR_S_ldst_pos      str_imm_fpsimd.xml
+--- 151: '  <St>, [<Xn|SP>{, #<pimm>}]'
+--- LDR_S_ldst_pos                ldr_imm_fpsimd.xml
+--- STR_S_ldst_pos                str_imm_fpsimd.xml
 
 type Logical_151 = '[]
 type Binary_151  = '[]
@@ -3767,9 +3767,9 @@ show_151 :: Fn Logical_151 ShowS
 show_151 = id
 
 
--- '  <St>, [<Xn|SP>{, #<simm>}]'
--- LDUR_S_ldst_unscaledldur_fpsimd.xml
--- STUR_S_ldst_unscaledstur_fpsimd.xml
+--- 152: '  <St>, [<Xn|SP>{, #<simm>}]'
+--- LDUR_S_ldst_unscaled          ldur_fpsimd.xml
+--- STUR_S_ldst_unscaled          stur_fpsimd.xml
 
 type Logical_152 = '[]
 type Binary_152  = '[]
@@ -3788,13 +3788,13 @@ show_152 :: Fn Logical_152 ShowS
 show_152 = id
 
 
--- '  <Vb><d>, <Va><n>, #<shift>'
--- SQRSHRN_asisdshf_N  sqrshrn_advsimd.xml
--- SQRSHRUN_asisdshf_N sqrshrun_advsimd.xml
--- SQSHRN_asisdshf_N   sqshrn_advsimd.xml
--- SQSHRUN_asisdshf_N  sqshrun_advsimd.xml
--- UQRSHRN_asisdshf_N  uqrshrn_advsimd.xml
--- UQSHRN_asisdshf_N   uqshrn_advsimd.xml
+--- 153: '  <Vb><d>, <Va><n>, #<shift>'
+--- SQRSHRN_asisdshf_N            sqrshrn_advsimd.xml
+--- SQRSHRUN_asisdshf_N           sqrshrun_advsimd.xml
+--- SQSHRN_asisdshf_N             sqshrn_advsimd.xml
+--- SQSHRUN_asisdshf_N            sqshrun_advsimd.xml
+--- UQRSHRN_asisdshf_N            uqrshrn_advsimd.xml
+--- UQSHRN_asisdshf_N             uqshrn_advsimd.xml
 
 type Logical_153 = '[]
 type Binary_153  = '[]
@@ -3813,8 +3813,8 @@ show_153 :: Fn Logical_153 ShowS
 show_153 = id
 
 
--- '  <Vd>.<Ts>[<index>], <R><n>'
--- INS_asimdins_IR_r   ins_advsimd_gen.xml
+--- 154: '  <Vd>.<Ts>[<index>], <R><n>'
+--- INS_asimdins_IR_r             ins_advsimd_gen.xml
 
 type Logical_154 = '[]
 type Binary_154  = '[]
@@ -3833,25 +3833,25 @@ show_154 :: Fn Logical_154 ShowS
 show_154 = id
 
 
--- '  <Ws>, <Wt>, [<Xn|SP>{,#0}]'
--- CAS_C32_ldstexcl    cas.xml
--- CASA_C32_ldstexcl   cas.xml
--- CASAL_C32_ldstexcl  cas.xml
--- CASL_C32_ldstexcl   cas.xml
--- CASAB_C32_ldstexcl  casb.xml
--- CASALB_C32_ldstexcl casb.xml
--- CASB_C32_ldstexcl   casb.xml
--- CASLB_C32_ldstexcl  casb.xml
--- CASAH_C32_ldstexcl  cash.xml
--- CASALH_C32_ldstexcl cash.xml
--- CASH_C32_ldstexcl   cash.xml
--- CASLH_C32_ldstexcl  cash.xml
--- STLXR_SR32_ldstexcl stlxr.xml
--- STLXRB_SR32_ldstexclstlxrb.xml
--- STLXRH_SR32_ldstexclstlxrh.xml
--- STXR_SR32_ldstexcl  stxr.xml
--- STXRB_SR32_ldstexcl stxrb.xml
--- STXRH_SR32_ldstexcl stxrh.xml
+--- 155: '  <Ws>, <Wt>, [<Xn|SP>{,#0}]'
+--- CAS_C32_ldstexcl              cas.xml
+--- CASA_C32_ldstexcl             cas.xml
+--- CASAL_C32_ldstexcl            cas.xml
+--- CASL_C32_ldstexcl             cas.xml
+--- CASAB_C32_ldstexcl            casb.xml
+--- CASALB_C32_ldstexcl           casb.xml
+--- CASB_C32_ldstexcl             casb.xml
+--- CASLB_C32_ldstexcl            casb.xml
+--- CASAH_C32_ldstexcl            cash.xml
+--- CASALH_C32_ldstexcl           cash.xml
+--- CASH_C32_ldstexcl             cash.xml
+--- CASLH_C32_ldstexcl            cash.xml
+--- STLXR_SR32_ldstexcl           stlxr.xml
+--- STLXRB_SR32_ldstexcl          stlxrb.xml
+--- STLXRH_SR32_ldstexcl          stlxrh.xml
+--- STXR_SR32_ldstexcl            stxr.xml
+--- STXRB_SR32_ldstexcl           stxrb.xml
+--- STXRH_SR32_ldstexcl           stxrh.xml
 
 type Logical_155 = '[]
 type Binary_155  = '[]
@@ -3870,9 +3870,9 @@ show_155 :: Fn Logical_155 ShowS
 show_155 = id
 
 
--- '  <Ws>, <Xt>, [<Xn|SP>{,#0}]'
--- STLXR_SR64_ldstexcl stlxr.xml
--- STXR_SR64_ldstexcl  stxr.xml
+--- 156: '  <Ws>, <Xt>, [<Xn|SP>{,#0}]'
+--- STLXR_SR64_ldstexcl           stlxr.xml
+--- STXR_SR64_ldstexcl            stxr.xml
 
 type Logical_156 = '[]
 type Binary_156  = '[]
@@ -3891,15 +3891,15 @@ show_156 :: Fn Logical_156 ShowS
 show_156 = id
 
 
--- '  <Wt>, [<Xn|SP>{, #<pimm>}]'
--- LDR_32_ldst_pos     ldr_imm_gen.xml
--- LDRB_32_ldst_pos    ldrb_imm.xml
--- LDRH_32_ldst_pos    ldrh_imm.xml
--- LDRSB_32_ldst_pos   ldrsb_imm.xml
--- LDRSH_32_ldst_pos   ldrsh_imm.xml
--- STR_32_ldst_pos     str_imm_gen.xml
--- STRB_32_ldst_pos    strb_imm.xml
--- STRH_32_ldst_pos    strh_imm.xml
+--- 157: '  <Wt>, [<Xn|SP>{, #<pimm>}]'
+--- LDR_32_ldst_pos               ldr_imm_gen.xml
+--- LDRB_32_ldst_pos              ldrb_imm.xml
+--- LDRH_32_ldst_pos              ldrh_imm.xml
+--- LDRSB_32_ldst_pos             ldrsb_imm.xml
+--- LDRSH_32_ldst_pos             ldrsh_imm.xml
+--- STR_32_ldst_pos               str_imm_gen.xml
+--- STRB_32_ldst_pos              strb_imm.xml
+--- STRH_32_ldst_pos              strh_imm.xml
 
 type Logical_157 = '[]
 type Binary_157  = '[]
@@ -3918,23 +3918,23 @@ show_157 :: Fn Logical_157 ShowS
 show_157 = id
 
 
--- '  <Wt>, [<Xn|SP>{, #<simm>}]'
--- LDTR_32_ldst_unpriv ldtr.xml
--- LDTRB_32_ldst_unprivldtrb.xml
--- LDTRH_32_ldst_unprivldtrh.xml
--- LDTRSB_32_ldst_unprivldtrsb.xml
--- LDTRSH_32_ldst_unprivldtrsh.xml
--- LDUR_32_ldst_unscaledldur_gen.xml
--- LDURB_32_ldst_unscaledldurb.xml
--- LDURH_32_ldst_unscaledldurh.xml
--- LDURSB_32_ldst_unscaledldursb.xml
--- LDURSH_32_ldst_unscaledldursh.xml
--- STTR_32_ldst_unpriv sttr.xml
--- STTRB_32_ldst_unprivsttrb.xml
--- STTRH_32_ldst_unprivsttrh.xml
--- STUR_32_ldst_unscaledstur_gen.xml
--- STURB_32_ldst_unscaledsturb.xml
--- STURH_32_ldst_unscaledsturh.xml
+--- 158: '  <Wt>, [<Xn|SP>{, #<simm>}]'
+--- LDTR_32_ldst_unpriv           ldtr.xml
+--- LDTRB_32_ldst_unpriv          ldtrb.xml
+--- LDTRH_32_ldst_unpriv          ldtrh.xml
+--- LDTRSB_32_ldst_unpriv         ldtrsb.xml
+--- LDTRSH_32_ldst_unpriv         ldtrsh.xml
+--- LDUR_32_ldst_unscaled         ldur_gen.xml
+--- LDURB_32_ldst_unscaled        ldurb.xml
+--- LDURH_32_ldst_unscaled        ldurh.xml
+--- LDURSB_32_ldst_unscaled       ldursb.xml
+--- LDURSH_32_ldst_unscaled       ldursh.xml
+--- STTR_32_ldst_unpriv           sttr.xml
+--- STTRB_32_ldst_unpriv          sttrb.xml
+--- STTRH_32_ldst_unpriv          sttrh.xml
+--- STUR_32_ldst_unscaled         stur_gen.xml
+--- STURB_32_ldst_unscaled        sturb.xml
+--- STURH_32_ldst_unscaled        sturh.xml
 
 type Logical_158 = '[]
 type Binary_158  = '[]
@@ -3953,11 +3953,11 @@ show_158 :: Fn Logical_158 ShowS
 show_158 = id
 
 
--- '  <Xs>, <Xt>, [<Xn|SP>{,#0}]'
--- CAS_C64_ldstexcl    cas.xml
--- CASA_C64_ldstexcl   cas.xml
--- CASAL_C64_ldstexcl  cas.xml
--- CASL_C64_ldstexcl   cas.xml
+--- 159: '  <Xs>, <Xt>, [<Xn|SP>{,#0}]'
+--- CAS_C64_ldstexcl              cas.xml
+--- CASA_C64_ldstexcl             cas.xml
+--- CASAL_C64_ldstexcl            cas.xml
+--- CASL_C64_ldstexcl             cas.xml
 
 type Logical_159 = '[]
 type Binary_159  = '[]
@@ -3976,12 +3976,12 @@ show_159 :: Fn Logical_159 ShowS
 show_159 = id
 
 
--- '  <Xt>, [<Xn|SP>{, #<pimm>}]'
--- LDR_64_ldst_pos     ldr_imm_gen.xml
--- LDRSB_64_ldst_pos   ldrsb_imm.xml
--- LDRSH_64_ldst_pos   ldrsh_imm.xml
--- LDRSW_64_ldst_pos   ldrsw_imm.xml
--- STR_64_ldst_pos     str_imm_gen.xml
+--- 160: '  <Xt>, [<Xn|SP>{, #<pimm>}]'
+--- LDR_64_ldst_pos               ldr_imm_gen.xml
+--- LDRSB_64_ldst_pos             ldrsb_imm.xml
+--- LDRSH_64_ldst_pos             ldrsh_imm.xml
+--- LDRSW_64_ldst_pos             ldrsw_imm.xml
+--- STR_64_ldst_pos               str_imm_gen.xml
 
 type Logical_160 = '[]
 type Binary_160  = '[]
@@ -4000,19 +4000,19 @@ show_160 :: Fn Logical_160 ShowS
 show_160 = id
 
 
--- '  <Xt>, [<Xn|SP>{, #<simm>}]'
--- LDRAA_64_ldst_pac   ldra.xml
--- LDRAB_64_ldst_pac   ldra.xml
--- LDTR_64_ldst_unpriv ldtr.xml
--- LDTRSB_64_ldst_unprivldtrsb.xml
--- LDTRSH_64_ldst_unprivldtrsh.xml
--- LDTRSW_64_ldst_unprivldtrsw.xml
--- LDUR_64_ldst_unscaledldur_gen.xml
--- LDURSB_64_ldst_unscaledldursb.xml
--- LDURSH_64_ldst_unscaledldursh.xml
--- LDURSW_64_ldst_unscaledldursw.xml
--- STTR_64_ldst_unpriv sttr.xml
--- STUR_64_ldst_unscaledstur_gen.xml
+--- 161: '  <Xt>, [<Xn|SP>{, #<simm>}]'
+--- LDRAA_64_ldst_pac             ldra.xml
+--- LDRAB_64_ldst_pac             ldra.xml
+--- LDTR_64_ldst_unpriv           ldtr.xml
+--- LDTRSB_64_ldst_unpriv         ldtrsb.xml
+--- LDTRSH_64_ldst_unpriv         ldtrsh.xml
+--- LDTRSW_64_ldst_unpriv         ldtrsw.xml
+--- LDUR_64_ldst_unscaled         ldur_gen.xml
+--- LDURSB_64_ldst_unscaled       ldursb.xml
+--- LDURSH_64_ldst_unscaled       ldursh.xml
+--- LDURSW_64_ldst_unscaled       ldursw.xml
+--- STTR_64_ldst_unpriv           sttr.xml
+--- STUR_64_ldst_unscaled         stur_gen.xml
 
 type Logical_161 = '[]
 type Binary_161  = '[]
@@ -4031,9 +4031,9 @@ show_161 :: Fn Logical_161 ShowS
 show_161 = id
 
 
--- '  <Dn>, <Dm>, #<nzcv>, <cond>'
--- FCCMP_D_floatccmp   fccmp_float.xml
--- FCCMPE_D_floatccmp  fccmpe_float.xml
+--- 162: '  <Dn>, <Dm>, #<nzcv>, <cond>'
+--- FCCMP_D_floatccmp             fccmp_float.xml
+--- FCCMPE_D_floatccmp            fccmpe_float.xml
 
 type Logical_162 = '[]
 type Binary_162  = '[]
@@ -4052,11 +4052,11 @@ show_162 :: Fn Logical_162 ShowS
 show_162 = id
 
 
--- '  <Hd>, <Hn>, <Vm>.H[<index>]'
--- FMLA_asisdelem_RH_H fmla_advsimd_elt.xml
--- FMLS_asisdelem_RH_H fmls_advsimd_elt.xml
--- FMUL_asisdelem_RH_H fmul_advsimd_elt.xml
--- FMULX_asisdelem_RH_Hfmulx_advsimd_elt.xml
+--- 163: '  <Hd>, <Hn>, <Vm>.H[<index>]'
+--- FMLA_asisdelem_RH_H           fmla_advsimd_elt.xml
+--- FMLS_asisdelem_RH_H           fmls_advsimd_elt.xml
+--- FMUL_asisdelem_RH_H           fmul_advsimd_elt.xml
+--- FMULX_asisdelem_RH_H          fmulx_advsimd_elt.xml
 
 type Logical_163 = '[]
 type Binary_163  = '[]
@@ -4075,9 +4075,9 @@ show_163 :: Fn Logical_163 ShowS
 show_163 = id
 
 
--- '  <Hn>, <Hm>, #<nzcv>, <cond>'
--- FCCMP_H_floatccmp   fccmp_float.xml
--- FCCMPE_H_floatccmp  fccmpe_float.xml
+--- 164: '  <Hn>, <Hm>, #<nzcv>, <cond>'
+--- FCCMP_H_floatccmp             fccmp_float.xml
+--- FCCMPE_H_floatccmp            fccmpe_float.xml
 
 type Logical_164 = '[]
 type Binary_164  = '[]
@@ -4096,9 +4096,9 @@ show_164 :: Fn Logical_164 ShowS
 show_164 = id
 
 
--- '  <Sn>, <Sm>, #<nzcv>, <cond>'
--- FCCMP_S_floatccmp   fccmp_float.xml
--- FCCMPE_S_floatccmp  fccmpe_float.xml
+--- 165: '  <Sn>, <Sm>, #<nzcv>, <cond>'
+--- FCCMP_S_floatccmp             fccmp_float.xml
+--- FCCMPE_S_floatccmp            fccmpe_float.xml
 
 type Logical_165 = '[]
 type Binary_165  = '[]
@@ -4117,8 +4117,8 @@ show_165 :: Fn Logical_165 ShowS
 show_165 = id
 
 
--- '  <Vd>.<T>, #<imm8>{, LSL #0}'
--- MOVI_asimdimm_N_b   movi_advsimd.xml
+--- 166: '  <Vd>.<T>, #<imm8>{, LSL #0}'
+--- MOVI_asimdimm_N_b             movi_advsimd.xml
 
 type Logical_166 = '[]
 type Binary_166  = '[]
@@ -4137,9 +4137,9 @@ show_166 :: Fn Logical_166 ShowS
 show_166 = id
 
 
--- '  <Wn>, <Wm>, #<nzcv>, <cond>'
--- CCMN_32_condcmp_reg ccmn_reg.xml
--- CCMP_32_condcmp_reg ccmp_reg.xml
+--- 167: '  <Wn>, <Wm>, #<nzcv>, <cond>'
+--- CCMN_32_condcmp_reg           ccmn_reg.xml
+--- CCMP_32_condcmp_reg           ccmp_reg.xml
 
 type Logical_167 = '[]
 type Binary_167  = '[]
@@ -4158,9 +4158,9 @@ show_167 :: Fn Logical_167 ShowS
 show_167 = id
 
 
--- '  <Xn>, <Xm>, #<nzcv>, <cond>'
--- CCMN_64_condcmp_reg ccmn_reg.xml
--- CCMP_64_condcmp_reg ccmp_reg.xml
+--- 168: '  <Xn>, <Xm>, #<nzcv>, <cond>'
+--- CCMN_64_condcmp_reg           ccmn_reg.xml
+--- CCMP_64_condcmp_reg           ccmp_reg.xml
 
 type Logical_168 = '[]
 type Binary_168  = '[]
@@ -4179,9 +4179,9 @@ show_168 :: Fn Logical_168 ShowS
 show_168 = id
 
 
--- '  <Xt>, [<Xn|SP>{, #<simm>}]!'
--- LDRAA_64W_ldst_pac  ldra.xml
--- LDRAB_64W_ldst_pac  ldra.xml
+--- 169: '  <Xt>, [<Xn|SP>{, #<simm>}]!'
+--- LDRAA_64W_ldst_pac            ldra.xml
+--- LDRAB_64W_ldst_pac            ldra.xml
 
 type Logical_169 = '[]
 type Binary_169  = '[]
@@ -4200,11 +4200,11 @@ show_169 :: Fn Logical_169 ShowS
 show_169 = id
 
 
--- '  <Vd>.<T>, <Vn>.<T>, #<fbits>'
--- FCVTZS_asimdshf_C   fcvtzs_advsimd_fix.xml
--- FCVTZU_asimdshf_C   fcvtzu_advsimd_fix.xml
--- SCVTF_asimdshf_C    scvtf_advsimd_fix.xml
--- UCVTF_asimdshf_C    ucvtf_advsimd_fix.xml
+--- 170: '  <Vd>.<T>, <Vn>.<T>, #<fbits>'
+--- FCVTZS_asimdshf_C             fcvtzs_advsimd_fix.xml
+--- FCVTZU_asimdshf_C             fcvtzu_advsimd_fix.xml
+--- SCVTF_asimdshf_C              scvtf_advsimd_fix.xml
+--- UCVTF_asimdshf_C              ucvtf_advsimd_fix.xml
 
 type Logical_170 = '[]
 type Binary_170  = '[]
@@ -4223,21 +4223,21 @@ show_170 :: Fn Logical_170 ShowS
 show_170 = id
 
 
--- '  <Vd>.<T>, <Vn>.<T>, #<shift>'
--- SHL_asimdshf_R      shl_advsimd.xml
--- SLI_asimdshf_R      sli_advsimd.xml
--- SQSHL_asimdshf_R    sqshl_advsimd_imm.xml
--- SQSHLU_asimdshf_R   sqshlu_advsimd.xml
--- SRI_asimdshf_R      sri_advsimd.xml
--- SRSHR_asimdshf_R    srshr_advsimd.xml
--- SRSRA_asimdshf_R    srsra_advsimd.xml
--- SSHR_asimdshf_R     sshr_advsimd.xml
--- SSRA_asimdshf_R     ssra_advsimd.xml
--- UQSHL_asimdshf_R    uqshl_advsimd_imm.xml
--- URSHR_asimdshf_R    urshr_advsimd.xml
--- URSRA_asimdshf_R    ursra_advsimd.xml
--- USHR_asimdshf_R     ushr_advsimd.xml
--- USRA_asimdshf_R     usra_advsimd.xml
+--- 171: '  <Vd>.<T>, <Vn>.<T>, #<shift>'
+--- SHL_asimdshf_R                shl_advsimd.xml
+--- SLI_asimdshf_R                sli_advsimd.xml
+--- SQSHL_asimdshf_R              sqshl_advsimd_imm.xml
+--- SQSHLU_asimdshf_R             sqshlu_advsimd.xml
+--- SRI_asimdshf_R                sri_advsimd.xml
+--- SRSHR_asimdshf_R              srshr_advsimd.xml
+--- SRSRA_asimdshf_R              srsra_advsimd.xml
+--- SSHR_asimdshf_R               sshr_advsimd.xml
+--- SSRA_asimdshf_R               ssra_advsimd.xml
+--- UQSHL_asimdshf_R              uqshl_advsimd_imm.xml
+--- URSHR_asimdshf_R              urshr_advsimd.xml
+--- URSRA_asimdshf_R              ursra_advsimd.xml
+--- USHR_asimdshf_R               ushr_advsimd.xml
+--- USRA_asimdshf_R               usra_advsimd.xml
 
 type Logical_171 = '[]
 type Binary_171  = '[]
@@ -4256,116 +4256,116 @@ show_171 :: Fn Logical_171 ShowS
 show_171 = id
 
 
--- '  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>'
--- ADD_asimdsame_only  add_advsimd.xml
--- ADDP_asimdsame_only addp_advsimd_vec.xml
--- AND_asimdsame_only  and_advsimd.xml
--- BIC_asimdsame_only  bic_advsimd_reg.xml
--- BIF_asimdsame_only  bif_advsimd.xml
--- BIT_asimdsame_only  bit_advsimd.xml
--- BSL_asimdsame_only  bsl_advsimd.xml
--- CMEQ_asimdsame_only cmeq_advsimd_reg.xml
--- CMGE_asimdsame_only cmge_advsimd_reg.xml
--- CMGT_asimdsame_only cmgt_advsimd_reg.xml
--- CMHI_asimdsame_only cmhi_advsimd.xml
--- CMHS_asimdsame_only cmhs_advsimd.xml
--- CMTST_asimdsame_onlycmtst_advsimd.xml
--- EOR_asimdsame_only  eor_advsimd.xml
--- FABD_asimdsamefp16_onlyfabd_advsimd.xml
--- FABD_asimdsame_only fabd_advsimd.xml
--- FACGE_asimdsamefp16_onlyfacge_advsimd.xml
--- FACGE_asimdsame_onlyfacge_advsimd.xml
--- FACGT_asimdsamefp16_onlyfacgt_advsimd.xml
--- FACGT_asimdsame_onlyfacgt_advsimd.xml
--- FADD_asimdsamefp16_onlyfadd_advsimd.xml
--- FADD_asimdsame_only fadd_advsimd.xml
--- FADDP_asimdsamefp16_onlyfaddp_advsimd_vec.xml
--- FADDP_asimdsame_onlyfaddp_advsimd_vec.xml
--- FCMEQ_asimdsamefp16_onlyfcmeq_advsimd_reg.xml
--- FCMEQ_asimdsame_onlyfcmeq_advsimd_reg.xml
--- FCMGE_asimdsamefp16_onlyfcmge_advsimd_reg.xml
--- FCMGE_asimdsame_onlyfcmge_advsimd_reg.xml
--- FCMGT_asimdsamefp16_onlyfcmgt_advsimd_reg.xml
--- FCMGT_asimdsame_onlyfcmgt_advsimd_reg.xml
--- FDIV_asimdsamefp16_onlyfdiv_advsimd.xml
--- FDIV_asimdsame_only fdiv_advsimd.xml
--- FMAX_asimdsamefp16_onlyfmax_advsimd.xml
--- FMAX_asimdsame_only fmax_advsimd.xml
--- FMAXNM_asimdsamefp16_onlyfmaxnm_advsimd.xml
--- FMAXNM_asimdsame_onlyfmaxnm_advsimd.xml
--- FMAXNMP_asimdsamefp16_onlyfmaxnmp_advsimd_vec.xml
--- FMAXNMP_asimdsame_onlyfmaxnmp_advsimd_vec.xml
--- FMAXP_asimdsamefp16_onlyfmaxp_advsimd_vec.xml
--- FMAXP_asimdsame_onlyfmaxp_advsimd_vec.xml
--- FMIN_asimdsamefp16_onlyfmin_advsimd.xml
--- FMIN_asimdsame_only fmin_advsimd.xml
--- FMINNM_asimdsamefp16_onlyfminnm_advsimd.xml
--- FMINNM_asimdsame_onlyfminnm_advsimd.xml
--- FMINNMP_asimdsamefp16_onlyfminnmp_advsimd_vec.xml
--- FMINNMP_asimdsame_onlyfminnmp_advsimd_vec.xml
--- FMINP_asimdsamefp16_onlyfminp_advsimd_vec.xml
--- FMINP_asimdsame_onlyfminp_advsimd_vec.xml
--- FMLA_asimdsamefp16_onlyfmla_advsimd_vec.xml
--- FMLA_asimdsame_only fmla_advsimd_vec.xml
--- FMLS_asimdsamefp16_onlyfmls_advsimd_vec.xml
--- FMLS_asimdsame_only fmls_advsimd_vec.xml
--- FMUL_asimdsamefp16_onlyfmul_advsimd_vec.xml
--- FMUL_asimdsame_only fmul_advsimd_vec.xml
--- FMULX_asimdsamefp16_onlyfmulx_advsimd_vec.xml
--- FMULX_asimdsame_onlyfmulx_advsimd_vec.xml
--- FRECPS_asimdsamefp16_onlyfrecps_advsimd.xml
--- FRECPS_asimdsame_onlyfrecps_advsimd.xml
--- FRSQRTS_asimdsamefp16_onlyfrsqrts_advsimd.xml
--- FRSQRTS_asimdsame_onlyfrsqrts_advsimd.xml
--- FSUB_asimdsamefp16_onlyfsub_advsimd.xml
--- FSUB_asimdsame_only fsub_advsimd.xml
--- MLA_asimdsame_only  mla_advsimd_vec.xml
--- MLS_asimdsame_only  mls_advsimd_vec.xml
--- MUL_asimdsame_only  mul_advsimd_vec.xml
--- ORN_asimdsame_only  orn_advsimd.xml
--- ORR_asimdsame_only  orr_advsimd_reg.xml
--- PMUL_asimdsame_only pmul_advsimd.xml
--- SABA_asimdsame_only saba_advsimd.xml
--- SABD_asimdsame_only sabd_advsimd.xml
--- SHADD_asimdsame_onlyshadd_advsimd.xml
--- SHSUB_asimdsame_onlyshsub_advsimd.xml
--- SMAX_asimdsame_only smax_advsimd.xml
--- SMAXP_asimdsame_onlysmaxp_advsimd.xml
--- SMIN_asimdsame_only smin_advsimd.xml
--- SMINP_asimdsame_onlysminp_advsimd.xml
--- SQADD_asimdsame_onlysqadd_advsimd.xml
--- SQDMULH_asimdsame_onlysqdmulh_advsimd_vec.xml
--- SQRDMLAH_asimdsame2_onlysqrdmlah_advsimd_vec.xml
--- SQRDMLSH_asimdsame2_onlysqrdmlsh_advsimd_vec.xml
--- SQRDMULH_asimdsame_onlysqrdmulh_advsimd_vec.xml
--- SQRSHL_asimdsame_onlysqrshl_advsimd.xml
--- SQSHL_asimdsame_onlysqshl_advsimd_reg.xml
--- SQSUB_asimdsame_onlysqsub_advsimd.xml
--- SRHADD_asimdsame_onlysrhadd_advsimd.xml
--- SRSHL_asimdsame_onlysrshl_advsimd.xml
--- SSHL_asimdsame_only sshl_advsimd.xml
--- SUB_asimdsame_only  sub_advsimd.xml
--- TRN1_asimdperm_only trn1_advsimd.xml
--- TRN2_asimdperm_only trn2_advsimd.xml
--- UABA_asimdsame_only uaba_advsimd.xml
--- UABD_asimdsame_only uabd_advsimd.xml
--- UHADD_asimdsame_onlyuhadd_advsimd.xml
--- UHSUB_asimdsame_onlyuhsub_advsimd.xml
--- UMAX_asimdsame_only umax_advsimd.xml
--- UMAXP_asimdsame_onlyumaxp_advsimd.xml
--- UMIN_asimdsame_only umin_advsimd.xml
--- UMINP_asimdsame_onlyuminp_advsimd.xml
--- UQADD_asimdsame_onlyuqadd_advsimd.xml
--- UQRSHL_asimdsame_onlyuqrshl_advsimd.xml
--- UQSHL_asimdsame_onlyuqshl_advsimd_reg.xml
--- UQSUB_asimdsame_onlyuqsub_advsimd.xml
--- URHADD_asimdsame_onlyurhadd_advsimd.xml
--- URSHL_asimdsame_onlyurshl_advsimd.xml
--- USHL_asimdsame_only ushl_advsimd.xml
--- UZP1_asimdperm_only uzp1_advsimd.xml
--- UZP2_asimdperm_only uzp2_advsimd.xml
--- ZIP1_asimdperm_only zip1_advsimd.xml
--- ZIP2_asimdperm_only zip2_advsimd.xml
+--- 172: '  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>'
+--- ADD_asimdsame_only            add_advsimd.xml
+--- ADDP_asimdsame_only           addp_advsimd_vec.xml
+--- AND_asimdsame_only            and_advsimd.xml
+--- BIC_asimdsame_only            bic_advsimd_reg.xml
+--- BIF_asimdsame_only            bif_advsimd.xml
+--- BIT_asimdsame_only            bit_advsimd.xml
+--- BSL_asimdsame_only            bsl_advsimd.xml
+--- CMEQ_asimdsame_only           cmeq_advsimd_reg.xml
+--- CMGE_asimdsame_only           cmge_advsimd_reg.xml
+--- CMGT_asimdsame_only           cmgt_advsimd_reg.xml
+--- CMHI_asimdsame_only           cmhi_advsimd.xml
+--- CMHS_asimdsame_only           cmhs_advsimd.xml
+--- CMTST_asimdsame_only          cmtst_advsimd.xml
+--- EOR_asimdsame_only            eor_advsimd.xml
+--- FABD_asimdsamefp16_only       fabd_advsimd.xml
+--- FABD_asimdsame_only           fabd_advsimd.xml
+--- FACGE_asimdsamefp16_only      facge_advsimd.xml
+--- FACGE_asimdsame_only          facge_advsimd.xml
+--- FACGT_asimdsamefp16_only      facgt_advsimd.xml
+--- FACGT_asimdsame_only          facgt_advsimd.xml
+--- FADD_asimdsamefp16_only       fadd_advsimd.xml
+--- FADD_asimdsame_only           fadd_advsimd.xml
+--- FADDP_asimdsamefp16_only      faddp_advsimd_vec.xml
+--- FADDP_asimdsame_only          faddp_advsimd_vec.xml
+--- FCMEQ_asimdsamefp16_only      fcmeq_advsimd_reg.xml
+--- FCMEQ_asimdsame_only          fcmeq_advsimd_reg.xml
+--- FCMGE_asimdsamefp16_only      fcmge_advsimd_reg.xml
+--- FCMGE_asimdsame_only          fcmge_advsimd_reg.xml
+--- FCMGT_asimdsamefp16_only      fcmgt_advsimd_reg.xml
+--- FCMGT_asimdsame_only          fcmgt_advsimd_reg.xml
+--- FDIV_asimdsamefp16_only       fdiv_advsimd.xml
+--- FDIV_asimdsame_only           fdiv_advsimd.xml
+--- FMAX_asimdsamefp16_only       fmax_advsimd.xml
+--- FMAX_asimdsame_only           fmax_advsimd.xml
+--- FMAXNM_asimdsamefp16_only     fmaxnm_advsimd.xml
+--- FMAXNM_asimdsame_only         fmaxnm_advsimd.xml
+--- FMAXNMP_asimdsamefp16_only    fmaxnmp_advsimd_vec.xml
+--- FMAXNMP_asimdsame_only        fmaxnmp_advsimd_vec.xml
+--- FMAXP_asimdsamefp16_only      fmaxp_advsimd_vec.xml
+--- FMAXP_asimdsame_only          fmaxp_advsimd_vec.xml
+--- FMIN_asimdsamefp16_only       fmin_advsimd.xml
+--- FMIN_asimdsame_only           fmin_advsimd.xml
+--- FMINNM_asimdsamefp16_only     fminnm_advsimd.xml
+--- FMINNM_asimdsame_only         fminnm_advsimd.xml
+--- FMINNMP_asimdsamefp16_only    fminnmp_advsimd_vec.xml
+--- FMINNMP_asimdsame_only        fminnmp_advsimd_vec.xml
+--- FMINP_asimdsamefp16_only      fminp_advsimd_vec.xml
+--- FMINP_asimdsame_only          fminp_advsimd_vec.xml
+--- FMLA_asimdsamefp16_only       fmla_advsimd_vec.xml
+--- FMLA_asimdsame_only           fmla_advsimd_vec.xml
+--- FMLS_asimdsamefp16_only       fmls_advsimd_vec.xml
+--- FMLS_asimdsame_only           fmls_advsimd_vec.xml
+--- FMUL_asimdsamefp16_only       fmul_advsimd_vec.xml
+--- FMUL_asimdsame_only           fmul_advsimd_vec.xml
+--- FMULX_asimdsamefp16_only      fmulx_advsimd_vec.xml
+--- FMULX_asimdsame_only          fmulx_advsimd_vec.xml
+--- FRECPS_asimdsamefp16_only     frecps_advsimd.xml
+--- FRECPS_asimdsame_only         frecps_advsimd.xml
+--- FRSQRTS_asimdsamefp16_only    frsqrts_advsimd.xml
+--- FRSQRTS_asimdsame_only        frsqrts_advsimd.xml
+--- FSUB_asimdsamefp16_only       fsub_advsimd.xml
+--- FSUB_asimdsame_only           fsub_advsimd.xml
+--- MLA_asimdsame_only            mla_advsimd_vec.xml
+--- MLS_asimdsame_only            mls_advsimd_vec.xml
+--- MUL_asimdsame_only            mul_advsimd_vec.xml
+--- ORN_asimdsame_only            orn_advsimd.xml
+--- ORR_asimdsame_only            orr_advsimd_reg.xml
+--- PMUL_asimdsame_only           pmul_advsimd.xml
+--- SABA_asimdsame_only           saba_advsimd.xml
+--- SABD_asimdsame_only           sabd_advsimd.xml
+--- SHADD_asimdsame_only          shadd_advsimd.xml
+--- SHSUB_asimdsame_only          shsub_advsimd.xml
+--- SMAX_asimdsame_only           smax_advsimd.xml
+--- SMAXP_asimdsame_only          smaxp_advsimd.xml
+--- SMIN_asimdsame_only           smin_advsimd.xml
+--- SMINP_asimdsame_only          sminp_advsimd.xml
+--- SQADD_asimdsame_only          sqadd_advsimd.xml
+--- SQDMULH_asimdsame_only        sqdmulh_advsimd_vec.xml
+--- SQRDMLAH_asimdsame2_only      sqrdmlah_advsimd_vec.xml
+--- SQRDMLSH_asimdsame2_only      sqrdmlsh_advsimd_vec.xml
+--- SQRDMULH_asimdsame_only       sqrdmulh_advsimd_vec.xml
+--- SQRSHL_asimdsame_only         sqrshl_advsimd.xml
+--- SQSHL_asimdsame_only          sqshl_advsimd_reg.xml
+--- SQSUB_asimdsame_only          sqsub_advsimd.xml
+--- SRHADD_asimdsame_only         srhadd_advsimd.xml
+--- SRSHL_asimdsame_only          srshl_advsimd.xml
+--- SSHL_asimdsame_only           sshl_advsimd.xml
+--- SUB_asimdsame_only            sub_advsimd.xml
+--- TRN1_asimdperm_only           trn1_advsimd.xml
+--- TRN2_asimdperm_only           trn2_advsimd.xml
+--- UABA_asimdsame_only           uaba_advsimd.xml
+--- UABD_asimdsame_only           uabd_advsimd.xml
+--- UHADD_asimdsame_only          uhadd_advsimd.xml
+--- UHSUB_asimdsame_only          uhsub_advsimd.xml
+--- UMAX_asimdsame_only           umax_advsimd.xml
+--- UMAXP_asimdsame_only          umaxp_advsimd.xml
+--- UMIN_asimdsame_only           umin_advsimd.xml
+--- UMINP_asimdsame_only          uminp_advsimd.xml
+--- UQADD_asimdsame_only          uqadd_advsimd.xml
+--- UQRSHL_asimdsame_only         uqrshl_advsimd.xml
+--- UQSHL_asimdsame_only          uqshl_advsimd_reg.xml
+--- UQSUB_asimdsame_only          uqsub_advsimd.xml
+--- URHADD_asimdsame_only         urhadd_advsimd.xml
+--- URSHL_asimdsame_only          urshl_advsimd.xml
+--- USHL_asimdsame_only           ushl_advsimd.xml
+--- UZP1_asimdperm_only           uzp1_advsimd.xml
+--- UZP2_asimdperm_only           uzp2_advsimd.xml
+--- ZIP1_asimdperm_only           zip1_advsimd.xml
+--- ZIP2_asimdperm_only           zip2_advsimd.xml
 
 type Logical_172 = '[]
 type Binary_172  = '[]
@@ -4384,8 +4384,8 @@ show_172 :: Fn Logical_172 ShowS
 show_172 = id
 
 
--- '  <Vd>.<T>, <Vn>.<Ts>[<index>]'
--- DUP_asimdins_DV_v   dup_advsimd_elt.xml
+--- 173: '  <Vd>.<T>, <Vn>.<Ts>[<index>]'
+--- DUP_asimdins_DV_v             dup_advsimd_elt.xml
 
 type Logical_173 = '[]
 type Binary_173  = '[]
@@ -4404,10 +4404,10 @@ show_173 :: Fn Logical_173 ShowS
 show_173 = id
 
 
--- '  <Wd>, #<imm>{, LSL #<shift>}'
--- MOVK_32_movewide    movk.xml
--- MOVN_32_movewide    movn.xml
--- MOVZ_32_movewide    movz.xml
+--- 174: '  <Wd>, #<imm>{, LSL #<shift>}'
+--- MOVK_32_movewide              movk.xml
+--- MOVN_32_movewide              movn.xml
+--- MOVZ_32_movewide              movz.xml
 
 type Logical_174 = '[]
 type Binary_174  = '[]
@@ -4426,10 +4426,10 @@ show_174 :: Fn Logical_174 ShowS
 show_174 = id
 
 
--- '  <Wd>, <Wn>, #<immr>, #<imms>'
--- BFM_32M_bitfield    bfm.xml
--- SBFM_32M_bitfield   sbfm.xml
--- UBFM_32M_bitfield   ubfm.xml
+--- 175: '  <Wd>, <Wn>, #<immr>, #<imms>'
+--- BFM_32M_bitfield              bfm.xml
+--- SBFM_32M_bitfield             sbfm.xml
+--- UBFM_32M_bitfield             ubfm.xml
 
 type Logical_175 = '[]
 type Binary_175  = '[]
@@ -4448,9 +4448,9 @@ show_175 :: Fn Logical_175 ShowS
 show_175 = id
 
 
--- '  <Wt1>, <Wt2>, [<Xn|SP>{,#0}]'
--- LDAXP_LP32_ldstexcl ldaxp.xml
--- LDXP_LP32_ldstexcl  ldxp.xml
+--- 176: '  <Wt1>, <Wt2>, [<Xn|SP>{,#0}]'
+--- LDAXP_LP32_ldstexcl           ldaxp.xml
+--- LDXP_LP32_ldstexcl            ldxp.xml
 
 type Logical_176 = '[]
 type Binary_176  = '[]
@@ -4469,10 +4469,10 @@ show_176 :: Fn Logical_176 ShowS
 show_176 = id
 
 
--- '  <Xd>, #<imm>{, LSL #<shift>}'
--- MOVK_64_movewide    movk.xml
--- MOVN_64_movewide    movn.xml
--- MOVZ_64_movewide    movz.xml
+--- 177: '  <Xd>, #<imm>{, LSL #<shift>}'
+--- MOVK_64_movewide              movk.xml
+--- MOVN_64_movewide              movn.xml
+--- MOVZ_64_movewide              movz.xml
 
 type Logical_177 = '[]
 type Binary_177  = '[]
@@ -4491,10 +4491,10 @@ show_177 :: Fn Logical_177 ShowS
 show_177 = id
 
 
--- '  <Xd>, <Xn>, #<immr>, #<imms>'
--- BFM_64M_bitfield    bfm.xml
--- SBFM_64M_bitfield   sbfm.xml
--- UBFM_64M_bitfield   ubfm.xml
+--- 178: '  <Xd>, <Xn>, #<immr>, #<imms>'
+--- BFM_64M_bitfield              bfm.xml
+--- SBFM_64M_bitfield             sbfm.xml
+--- UBFM_64M_bitfield             ubfm.xml
 
 type Logical_178 = '[]
 type Binary_178  = '[]
@@ -4513,9 +4513,9 @@ show_178 :: Fn Logical_178 ShowS
 show_178 = id
 
 
--- '  <Xt1>, <Xt2>, [<Xn|SP>{,#0}]'
--- LDAXP_LP64_ldstexcl ldaxp.xml
--- LDXP_LP64_ldstexcl  ldxp.xml
+--- 179: '  <Xt1>, <Xt2>, [<Xn|SP>{,#0}]'
+--- LDAXP_LP64_ldstexcl           ldaxp.xml
+--- LDXP_LP64_ldstexcl            ldxp.xml
 
 type Logical_179 = '[]
 type Binary_179  = '[]
@@ -4534,9 +4534,9 @@ show_179 :: Fn Logical_179 ShowS
 show_179 = id
 
 
--- '  <Wn>, #<imm>, #<nzcv>, <cond>'
--- CCMN_32_condcmp_imm ccmn_imm.xml
--- CCMP_32_condcmp_imm ccmp_imm.xml
+--- 180: '  <Wn>, #<imm>, #<nzcv>, <cond>'
+--- CCMN_32_condcmp_imm           ccmn_imm.xml
+--- CCMP_32_condcmp_imm           ccmp_imm.xml
 
 type Logical_180 = '[]
 type Binary_180  = '[]
@@ -4555,9 +4555,9 @@ show_180 :: Fn Logical_180 ShowS
 show_180 = id
 
 
--- '  <Xn>, #<imm>, #<nzcv>, <cond>'
--- CCMN_64_condcmp_imm ccmn_imm.xml
--- CCMP_64_condcmp_imm ccmp_imm.xml
+--- 181: '  <Xn>, #<imm>, #<nzcv>, <cond>'
+--- CCMN_64_condcmp_imm           ccmn_imm.xml
+--- CCMP_64_condcmp_imm           ccmp_imm.xml
 
 type Logical_181 = '[]
 type Binary_181  = '[]
@@ -4576,10 +4576,10 @@ show_181 :: Fn Logical_181 ShowS
 show_181 = id
 
 
--- '  { <Vt>.<T> }, [<Xn|SP>], <Xm>'
--- LD1_asisdlsep_R1_r1 ld1_advsimd_mult.xml
--- LD1R_asisdlsop_RX1_rld1r_advsimd.xml
--- ST1_asisdlsep_R1_r1 st1_advsimd_mult.xml
+--- 182: '  { <Vt>.<T> }, [<Xn|SP>], <Xm>'
+--- LD1_asisdlsep_R1_r1           ld1_advsimd_mult.xml
+--- LD1R_asisdlsop_RX1_r          ld1r_advsimd.xml
+--- ST1_asisdlsep_R1_r1           st1_advsimd_mult.xml
 
 type Logical_182 = '[]
 type Binary_182  = '[]
@@ -4598,8 +4598,8 @@ show_182 :: Fn Logical_182 ShowS
 show_182 = id
 
 
--- '  <Vd>.S, <Vn>.S, <Vm>.S[<imm2>]'
--- SM3TT2B_VVV_crypto3_imm2sm3tt2b_advsimd.xml
+--- 183: '  <Vd>.S, <Vn>.S, <Vm>.S[<imm2>]'
+--- SM3TT2B_VVV_crypto3_imm2      sm3tt2b_advsimd.xml
 
 type Logical_183 = '[]
 type Binary_183  = '[]
@@ -4618,10 +4618,10 @@ show_183 :: Fn Logical_183 ShowS
 show_183 = id
 
 
--- '  { <Vt>.<T> }, [<Xn|SP>], <imm>'
--- LD1_asisdlsep_I1_i1 ld1_advsimd_mult.xml
--- LD1R_asisdlsop_R1_i ld1r_advsimd.xml
--- ST1_asisdlsep_I1_i1 st1_advsimd_mult.xml
+--- 184: '  { <Vt>.<T> }, [<Xn|SP>], <imm>'
+--- LD1_asisdlsep_I1_i1           ld1_advsimd_mult.xml
+--- LD1R_asisdlsop_R1_i           ld1r_advsimd.xml
+--- ST1_asisdlsep_I1_i1           st1_advsimd_mult.xml
 
 type Logical_184 = '[]
 type Binary_184  = '[]
@@ -4640,9 +4640,9 @@ show_184 :: Fn Logical_184 ShowS
 show_184 = id
 
 
--- '  { <Vt>.B }[<index>], [<Xn|SP>]'
--- LD1_asisdlso_B1_1b  ld1_advsimd_sngl.xml
--- ST1_asisdlso_B1_1b  st1_advsimd_sngl.xml
+--- 185: '  { <Vt>.B }[<index>], [<Xn|SP>]'
+--- LD1_asisdlso_B1_1b            ld1_advsimd_sngl.xml
+--- ST1_asisdlso_B1_1b            st1_advsimd_sngl.xml
 
 type Logical_185 = '[]
 type Binary_185  = '[]
@@ -4661,9 +4661,9 @@ show_185 :: Fn Logical_185 ShowS
 show_185 = id
 
 
--- '  { <Vt>.D }[<index>], [<Xn|SP>]'
--- LD1_asisdlso_D1_1d  ld1_advsimd_sngl.xml
--- ST1_asisdlso_D1_1d  st1_advsimd_sngl.xml
+--- 186: '  { <Vt>.D }[<index>], [<Xn|SP>]'
+--- LD1_asisdlso_D1_1d            ld1_advsimd_sngl.xml
+--- ST1_asisdlso_D1_1d            st1_advsimd_sngl.xml
 
 type Logical_186 = '[]
 type Binary_186  = '[]
@@ -4682,9 +4682,9 @@ show_186 :: Fn Logical_186 ShowS
 show_186 = id
 
 
--- '  { <Vt>.H }[<index>], [<Xn|SP>]'
--- LD1_asisdlso_H1_1h  ld1_advsimd_sngl.xml
--- ST1_asisdlso_H1_1h  st1_advsimd_sngl.xml
+--- 187: '  { <Vt>.H }[<index>], [<Xn|SP>]'
+--- LD1_asisdlso_H1_1h            ld1_advsimd_sngl.xml
+--- ST1_asisdlso_H1_1h            st1_advsimd_sngl.xml
 
 type Logical_187 = '[]
 type Binary_187  = '[]
@@ -4703,9 +4703,9 @@ show_187 :: Fn Logical_187 ShowS
 show_187 = id
 
 
--- '  { <Vt>.S }[<index>], [<Xn|SP>]'
--- LD1_asisdlso_S1_1s  ld1_advsimd_sngl.xml
--- ST1_asisdlso_S1_1s  st1_advsimd_sngl.xml
+--- 188: '  { <Vt>.S }[<index>], [<Xn|SP>]'
+--- LD1_asisdlso_S1_1s            ld1_advsimd_sngl.xml
+--- ST1_asisdlso_S1_1s            st1_advsimd_sngl.xml
 
 type Logical_188 = '[]
 type Binary_188  = '[]
@@ -4724,9 +4724,9 @@ show_188 :: Fn Logical_188 ShowS
 show_188 = id
 
 
--- '  <Dt1>, <Dt2>, [<Xn|SP>], #<imm>'
--- LDP_D_ldstpair_post ldp_fpsimd.xml
--- STP_D_ldstpair_post stp_fpsimd.xml
+--- 189: '  <Dt1>, <Dt2>, [<Xn|SP>], #<imm>'
+--- LDP_D_ldstpair_post           ldp_fpsimd.xml
+--- STP_D_ldstpair_post           stp_fpsimd.xml
 
 type Logical_189 = '[]
 type Binary_189  = '[]
@@ -4745,9 +4745,9 @@ show_189 :: Fn Logical_189 ShowS
 show_189 = id
 
 
--- '  <Qt1>, <Qt2>, [<Xn|SP>], #<imm>'
--- LDP_Q_ldstpair_post ldp_fpsimd.xml
--- STP_Q_ldstpair_post stp_fpsimd.xml
+--- 190: '  <Qt1>, <Qt2>, [<Xn|SP>], #<imm>'
+--- LDP_Q_ldstpair_post           ldp_fpsimd.xml
+--- STP_Q_ldstpair_post           stp_fpsimd.xml
 
 type Logical_190 = '[]
 type Binary_190  = '[]
@@ -4766,9 +4766,9 @@ show_190 :: Fn Logical_190 ShowS
 show_190 = id
 
 
--- '  <St1>, <St2>, [<Xn|SP>], #<imm>'
--- LDP_S_ldstpair_post ldp_fpsimd.xml
--- STP_S_ldstpair_post stp_fpsimd.xml
+--- 191: '  <St1>, <St2>, [<Xn|SP>], #<imm>'
+--- LDP_S_ldstpair_post           ldp_fpsimd.xml
+--- STP_S_ldstpair_post           stp_fpsimd.xml
 
 type Logical_191 = '[]
 type Binary_191  = '[]
@@ -4787,9 +4787,9 @@ show_191 :: Fn Logical_191 ShowS
 show_191 = id
 
 
--- '  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.<Tb>'
--- SDOT_asimdsame2_D   sdot_advsimd_vec.xml
--- UDOT_asimdsame2_D   udot_advsimd_vec.xml
+--- 192: '  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.<Tb>'
+--- SDOT_asimdsame2_D             sdot_advsimd_vec.xml
+--- UDOT_asimdsame2_D             udot_advsimd_vec.xml
 
 type Logical_192 = '[]
 type Binary_192  = '[]
@@ -4808,9 +4808,9 @@ show_192 :: Fn Logical_192 ShowS
 show_192 = id
 
 
--- '  <Wt1>, <Wt2>, [<Xn|SP>], #<imm>'
--- LDP_32_ldstpair_postldp_gen.xml
--- STP_32_ldstpair_poststp_gen.xml
+--- 193: '  <Wt1>, <Wt2>, [<Xn|SP>], #<imm>'
+--- LDP_32_ldstpair_post          ldp_gen.xml
+--- STP_32_ldstpair_post          stp_gen.xml
 
 type Logical_193 = '[]
 type Binary_193  = '[]
@@ -4829,10 +4829,10 @@ show_193 :: Fn Logical_193 ShowS
 show_193 = id
 
 
--- '  <Xt1>, <Xt2>, [<Xn|SP>], #<imm>'
--- LDP_64_ldstpair_postldp_gen.xml
--- LDPSW_64_ldstpair_postldpsw.xml
--- STP_64_ldstpair_poststp_gen.xml
+--- 194: '  <Xt1>, <Xt2>, [<Xn|SP>], #<imm>'
+--- LDP_64_ldstpair_post          ldp_gen.xml
+--- LDPSW_64_ldstpair_post        ldpsw.xml
+--- STP_64_ldstpair_post          stp_gen.xml
 
 type Logical_194 = '[]
 type Binary_194  = '[]
@@ -4851,9 +4851,9 @@ show_194 :: Fn Logical_194 ShowS
 show_194 = id
 
 
--- '  <Dt1>, <Dt2>, [<Xn|SP>, #<imm>]!'
--- LDP_D_ldstpair_pre  ldp_fpsimd.xml
--- STP_D_ldstpair_pre  stp_fpsimd.xml
+--- 195: '  <Dt1>, <Dt2>, [<Xn|SP>, #<imm>]!'
+--- LDP_D_ldstpair_pre            ldp_fpsimd.xml
+--- STP_D_ldstpair_pre            stp_fpsimd.xml
 
 type Logical_195 = '[]
 type Binary_195  = '[]
@@ -4872,9 +4872,9 @@ show_195 :: Fn Logical_195 ShowS
 show_195 = id
 
 
--- '  <Qt1>, <Qt2>, [<Xn|SP>, #<imm>]!'
--- LDP_Q_ldstpair_pre  ldp_fpsimd.xml
--- STP_Q_ldstpair_pre  stp_fpsimd.xml
+--- 196: '  <Qt1>, <Qt2>, [<Xn|SP>, #<imm>]!'
+--- LDP_Q_ldstpair_pre            ldp_fpsimd.xml
+--- STP_Q_ldstpair_pre            stp_fpsimd.xml
 
 type Logical_196 = '[]
 type Binary_196  = '[]
@@ -4893,9 +4893,9 @@ show_196 :: Fn Logical_196 ShowS
 show_196 = id
 
 
--- '  <St1>, <St2>, [<Xn|SP>, #<imm>]!'
--- LDP_S_ldstpair_pre  ldp_fpsimd.xml
--- STP_S_ldstpair_pre  stp_fpsimd.xml
+--- 197: '  <St1>, <St2>, [<Xn|SP>, #<imm>]!'
+--- LDP_S_ldstpair_pre            ldp_fpsimd.xml
+--- STP_S_ldstpair_pre            stp_fpsimd.xml
 
 type Logical_197 = '[]
 type Binary_197  = '[]
@@ -4914,10 +4914,10 @@ show_197 :: Fn Logical_197 ShowS
 show_197 = id
 
 
--- '  <Vd>.4S, <Vn>.4S, <Vm>.S[<imm2>]'
--- SM3TT1A_VVV4_crypto3_imm2sm3tt1a_advsimd.xml
--- SM3TT1B_VVV4_crypto3_imm2sm3tt1b_advsimd.xml
--- SM3TT2A_VVV4_crypto3_imm2sm3tt2a_advsimd.xml
+--- 198: '  <Vd>.4S, <Vn>.4S, <Vm>.S[<imm2>]'
+--- SM3TT1A_VVV4_crypto3_imm2     sm3tt1a_advsimd.xml
+--- SM3TT1B_VVV4_crypto3_imm2     sm3tt1b_advsimd.xml
+--- SM3TT2A_VVV4_crypto3_imm2     sm3tt2a_advsimd.xml
 
 type Logical_198 = '[]
 type Binary_198  = '[]
@@ -4936,9 +4936,9 @@ show_198 :: Fn Logical_198 ShowS
 show_198 = id
 
 
--- '  <Vd>.<T>, #<imm8>, MSL #<amount>'
--- MOVI_asimdimm_M_sm  movi_advsimd.xml
--- MVNI_asimdimm_M_sm  mvni_advsimd.xml
+--- 199: '  <Vd>.<T>, #<imm8>, MSL #<amount>'
+--- MOVI_asimdimm_M_sm            movi_advsimd.xml
+--- MVNI_asimdimm_M_sm            mvni_advsimd.xml
 
 type Logical_199 = '[]
 type Binary_199  = '[]
@@ -4957,9 +4957,9 @@ show_199 :: Fn Logical_199 ShowS
 show_199 = id
 
 
--- '  <Wt1>, <Wt2>, [<Xn|SP>, #<imm>]!'
--- LDP_32_ldstpair_pre ldp_gen.xml
--- STP_32_ldstpair_pre stp_gen.xml
+--- 200: '  <Wt1>, <Wt2>, [<Xn|SP>, #<imm>]!'
+--- LDP_32_ldstpair_pre           ldp_gen.xml
+--- STP_32_ldstpair_pre           stp_gen.xml
 
 type Logical_200 = '[]
 type Binary_200  = '[]
@@ -4978,9 +4978,9 @@ show_200 :: Fn Logical_200 ShowS
 show_200 = id
 
 
--- '  <Xd>, <Xn|SP>, #<imm>{, <shift>}'
--- ADDS_64S_addsub_imm adds_addsub_imm.xml
--- SUBS_64S_addsub_imm subs_addsub_imm.xml
+--- 201: '  <Xd>, <Xn|SP>, #<imm>{, <shift>}'
+--- ADDS_64S_addsub_imm           adds_addsub_imm.xml
+--- SUBS_64S_addsub_imm           subs_addsub_imm.xml
 
 type Logical_201 = '[]
 type Binary_201  = '[]
@@ -4999,10 +4999,10 @@ show_201 :: Fn Logical_201 ShowS
 show_201 = id
 
 
--- '  <Xt1>, <Xt2>, [<Xn|SP>, #<imm>]!'
--- LDP_64_ldstpair_pre ldp_gen.xml
--- LDPSW_64_ldstpair_preldpsw.xml
--- STP_64_ldstpair_pre stp_gen.xml
+--- 202: '  <Xt1>, <Xt2>, [<Xn|SP>, #<imm>]!'
+--- LDP_64_ldstpair_pre           ldp_gen.xml
+--- LDPSW_64_ldstpair_pre         ldpsw.xml
+--- STP_64_ldstpair_pre           stp_gen.xml
 
 type Logical_202 = '[]
 type Binary_202  = '[]
@@ -5021,8 +5021,8 @@ show_202 :: Fn Logical_202 ShowS
 show_202 = id
 
 
--- '  <Xt>, #<op1>, <Cn>, <Cm>, #<op2>'
--- SYSL_RC_system      sysl.xml
+--- 203: '  <Xt>, #<op1>, <Cn>, <Cm>, #<op2>'
+--- SYSL_RC_system                sysl.xml
 
 type Logical_203 = '[]
 type Binary_203  = '[]
@@ -5041,11 +5041,11 @@ show_203 :: Fn Logical_203 ShowS
 show_203 = id
 
 
--- '  <Dt1>, <Dt2>, [<Xn|SP>{, #<imm>}]'
--- LDNP_D_ldstnapair_offsldnp_fpsimd.xml
--- LDP_D_ldstpair_off  ldp_fpsimd.xml
--- STNP_D_ldstnapair_offsstnp_fpsimd.xml
--- STP_D_ldstpair_off  stp_fpsimd.xml
+--- 204: '  <Dt1>, <Dt2>, [<Xn|SP>{, #<imm>}]'
+--- LDNP_D_ldstnapair_offs        ldnp_fpsimd.xml
+--- LDP_D_ldstpair_off            ldp_fpsimd.xml
+--- STNP_D_ldstnapair_offs        stnp_fpsimd.xml
+--- STP_D_ldstpair_off            stp_fpsimd.xml
 
 type Logical_204 = '[]
 type Binary_204  = '[]
@@ -5064,11 +5064,11 @@ show_204 :: Fn Logical_204 ShowS
 show_204 = id
 
 
--- '  <Qt1>, <Qt2>, [<Xn|SP>{, #<imm>}]'
--- LDNP_Q_ldstnapair_offsldnp_fpsimd.xml
--- LDP_Q_ldstpair_off  ldp_fpsimd.xml
--- STNP_Q_ldstnapair_offsstnp_fpsimd.xml
--- STP_Q_ldstpair_off  stp_fpsimd.xml
+--- 205: '  <Qt1>, <Qt2>, [<Xn|SP>{, #<imm>}]'
+--- LDNP_Q_ldstnapair_offs        ldnp_fpsimd.xml
+--- LDP_Q_ldstpair_off            ldp_fpsimd.xml
+--- STNP_Q_ldstnapair_offs        stnp_fpsimd.xml
+--- STP_Q_ldstpair_off            stp_fpsimd.xml
 
 type Logical_205 = '[]
 type Binary_205  = '[]
@@ -5087,11 +5087,11 @@ show_205 :: Fn Logical_205 ShowS
 show_205 = id
 
 
--- '  <St1>, <St2>, [<Xn|SP>{, #<imm>}]'
--- LDNP_S_ldstnapair_offsldnp_fpsimd.xml
--- LDP_S_ldstpair_off  ldp_fpsimd.xml
--- STNP_S_ldstnapair_offsstnp_fpsimd.xml
--- STP_S_ldstpair_off  stp_fpsimd.xml
+--- 206: '  <St1>, <St2>, [<Xn|SP>{, #<imm>}]'
+--- LDNP_S_ldstnapair_offs        ldnp_fpsimd.xml
+--- LDP_S_ldstpair_off            ldp_fpsimd.xml
+--- STNP_S_ldstnapair_offs        stnp_fpsimd.xml
+--- STP_S_ldstpair_off            stp_fpsimd.xml
 
 type Logical_206 = '[]
 type Binary_206  = '[]
@@ -5110,9 +5110,9 @@ show_206 :: Fn Logical_206 ShowS
 show_206 = id
 
 
--- '  <Wd>, <Wn|WSP>, #<imm>{, <shift>}'
--- ADDS_32S_addsub_imm adds_addsub_imm.xml
--- SUBS_32S_addsub_imm subs_addsub_imm.xml
+--- 207: '  <Wd>, <Wn|WSP>, #<imm>{, <shift>}'
+--- ADDS_32S_addsub_imm           adds_addsub_imm.xml
+--- SUBS_32S_addsub_imm           subs_addsub_imm.xml
 
 type Logical_207 = '[]
 type Binary_207  = '[]
@@ -5131,11 +5131,11 @@ show_207 :: Fn Logical_207 ShowS
 show_207 = id
 
 
--- '  <Wt1>, <Wt2>, [<Xn|SP>{, #<imm>}]'
--- LDNP_32_ldstnapair_offsldnp_gen.xml
--- LDP_32_ldstpair_off ldp_gen.xml
--- STNP_32_ldstnapair_offsstnp_gen.xml
--- STP_32_ldstpair_off stp_gen.xml
+--- 208: '  <Wt1>, <Wt2>, [<Xn|SP>{, #<imm>}]'
+--- LDNP_32_ldstnapair_offs       ldnp_gen.xml
+--- LDP_32_ldstpair_off           ldp_gen.xml
+--- STNP_32_ldstnapair_offs       stnp_gen.xml
+--- STP_32_ldstpair_off           stp_gen.xml
 
 type Logical_208 = '[]
 type Binary_208  = '[]
@@ -5154,12 +5154,12 @@ show_208 :: Fn Logical_208 ShowS
 show_208 = id
 
 
--- '  <Xt1>, <Xt2>, [<Xn|SP>{, #<imm>}]'
--- LDNP_64_ldstnapair_offsldnp_gen.xml
--- LDP_64_ldstpair_off ldp_gen.xml
--- LDPSW_64_ldstpair_offldpsw.xml
--- STNP_64_ldstnapair_offsstnp_gen.xml
--- STP_64_ldstpair_off stp_gen.xml
+--- 209: '  <Xt1>, <Xt2>, [<Xn|SP>{, #<imm>}]'
+--- LDNP_64_ldstnapair_offs       ldnp_gen.xml
+--- LDP_64_ldstpair_off           ldp_gen.xml
+--- LDPSW_64_ldstpair_off         ldpsw.xml
+--- STNP_64_ldstnapair_offs       stnp_gen.xml
+--- STP_64_ldstpair_off           stp_gen.xml
 
 type Logical_209 = '[]
 type Binary_209  = '[]
@@ -5178,10 +5178,10 @@ show_209 :: Fn Logical_209 ShowS
 show_209 = id
 
 
--- '{2}  <Vd>.<Ta>, <Vn>.<Tb>, #<shift>'
--- SHLL_asimdmisc_S    shll_advsimd.xml
--- SSHLL_asimdshf_L    sshll_advsimd.xml
--- USHLL_asimdshf_L    ushll_advsimd.xml
+--- 210: '{2}  <Vd>.<Ta>, <Vn>.<Tb>, #<shift>'
+--- SHLL_asimdmisc_S              shll_advsimd.xml
+--- SSHLL_asimdshf_L              sshll_advsimd.xml
+--- USHLL_asimdshf_L              ushll_advsimd.xml
 
 type Logical_210 = '[]
 type Binary_210  = '[]
@@ -5200,15 +5200,15 @@ show_210 :: Fn Logical_210 ShowS
 show_210 = id
 
 
--- '{2}  <Vd>.<Tb>, <Vn>.<Ta>, #<shift>'
--- RSHRN_asimdshf_N    rshrn_advsimd.xml
--- SHRN_asimdshf_N     shrn_advsimd.xml
--- SQRSHRN_asimdshf_N  sqrshrn_advsimd.xml
--- SQRSHRUN_asimdshf_N sqrshrun_advsimd.xml
--- SQSHRN_asimdshf_N   sqshrn_advsimd.xml
--- SQSHRUN_asimdshf_N  sqshrun_advsimd.xml
--- UQRSHRN_asimdshf_N  uqrshrn_advsimd.xml
--- UQSHRN_asimdshf_N   uqshrn_advsimd.xml
+--- 211: '{2}  <Vd>.<Tb>, <Vn>.<Ta>, #<shift>'
+--- RSHRN_asimdshf_N              rshrn_advsimd.xml
+--- SHRN_asimdshf_N               shrn_advsimd.xml
+--- SQRSHRN_asimdshf_N            sqrshrn_advsimd.xml
+--- SQRSHRUN_asimdshf_N           sqrshrun_advsimd.xml
+--- SQSHRN_asimdshf_N             sqshrn_advsimd.xml
+--- SQSHRUN_asimdshf_N            sqshrun_advsimd.xml
+--- UQRSHRN_asimdshf_N            uqrshrn_advsimd.xml
+--- UQSHRN_asimdshf_N             uqshrn_advsimd.xml
 
 type Logical_211 = '[]
 type Binary_211  = '[]
@@ -5227,8 +5227,8 @@ show_211 :: Fn Logical_211 ShowS
 show_211 = id
 
 
--- '  #<op1>, <Cn>, <Cm>, #<op2>{, <Xt>}'
--- SYS_CR_system       sys.xml
+--- 212: '  #<op1>, <Cn>, <Cm>, #<op2>{, <Xt>}'
+--- SYS_CR_system                 sys.xml
 
 type Logical_212 = '[]
 type Binary_212  = '[]
@@ -5247,15 +5247,15 @@ show_212 :: Fn Logical_212 ShowS
 show_212 = id
 
 
--- '  <V><d>, <V><n>, <Vm>.<Ts>[<index>]'
--- FMLA_asisdelem_R_SD fmla_advsimd_elt.xml
--- FMLS_asisdelem_R_SD fmls_advsimd_elt.xml
--- FMUL_asisdelem_R_SD fmul_advsimd_elt.xml
--- FMULX_asisdelem_R_SDfmulx_advsimd_elt.xml
--- SQDMULH_asisdelem_R sqdmulh_advsimd_elt.xml
--- SQRDMLAH_asisdelem_Rsqrdmlah_advsimd_elt.xml
--- SQRDMLSH_asisdelem_Rsqrdmlsh_advsimd_elt.xml
--- SQRDMULH_asisdelem_Rsqrdmulh_advsimd_elt.xml
+--- 213: '  <V><d>, <V><n>, <Vm>.<Ts>[<index>]'
+--- FMLA_asisdelem_R_SD           fmla_advsimd_elt.xml
+--- FMLS_asisdelem_R_SD           fmls_advsimd_elt.xml
+--- FMUL_asisdelem_R_SD           fmul_advsimd_elt.xml
+--- FMULX_asisdelem_R_SD          fmulx_advsimd_elt.xml
+--- SQDMULH_asisdelem_R           sqdmulh_advsimd_elt.xml
+--- SQRDMLAH_asisdelem_R          sqrdmlah_advsimd_elt.xml
+--- SQRDMLSH_asisdelem_R          sqrdmlsh_advsimd_elt.xml
+--- SQRDMULH_asisdelem_R          sqrdmulh_advsimd_elt.xml
 
 type Logical_213 = '[]
 type Binary_213  = '[]
@@ -5274,8 +5274,8 @@ show_213 :: Fn Logical_213 ShowS
 show_213 = id
 
 
--- '  <Vd>.2D, <Vn>.2D, <Vm>.2D, #<imm6>'
--- XAR_VVV2_crypto3_imm6xar_advsimd.xml
+--- 214: '  <Vd>.2D, <Vn>.2D, <Vm>.2D, #<imm6>'
+--- XAR_VVV2_crypto3_imm6         xar_advsimd.xml
 
 type Logical_214 = '[]
 type Binary_214  = '[]
@@ -5294,8 +5294,8 @@ show_214 :: Fn Logical_214 ShowS
 show_214 = id
 
 
--- '  <Vd>.4S, <Vn>.4S, <Vm>.4S, <Va>.4S'
--- SM3SS1_VVV4_crypto4 sm3ss1_advsimd.xml
+--- 215: '  <Vd>.4S, <Vn>.4S, <Vm>.4S, <Va>.4S'
+--- SM3SS1_VVV4_crypto4           sm3ss1_advsimd.xml
 
 type Logical_215 = '[]
 type Binary_215  = '[]
@@ -5314,15 +5314,15 @@ show_215 :: Fn Logical_215 ShowS
 show_215 = id
 
 
--- '  <Vd>.<T>, #<imm8>{, LSL #<amount>}'
--- BIC_asimdimm_L_hl   bic_advsimd_imm.xml
--- BIC_asimdimm_L_sl   bic_advsimd_imm.xml
--- MOVI_asimdimm_L_hl  movi_advsimd.xml
--- MOVI_asimdimm_L_sl  movi_advsimd.xml
--- MVNI_asimdimm_L_hl  mvni_advsimd.xml
--- MVNI_asimdimm_L_sl  mvni_advsimd.xml
--- ORR_asimdimm_L_hl   orr_advsimd_imm.xml
--- ORR_asimdimm_L_sl   orr_advsimd_imm.xml
+--- 216: '  <Vd>.<T>, #<imm8>{, LSL #<amount>}'
+--- BIC_asimdimm_L_hl             bic_advsimd_imm.xml
+--- BIC_asimdimm_L_sl             bic_advsimd_imm.xml
+--- MOVI_asimdimm_L_hl            movi_advsimd.xml
+--- MOVI_asimdimm_L_sl            movi_advsimd.xml
+--- MVNI_asimdimm_L_hl            mvni_advsimd.xml
+--- MVNI_asimdimm_L_sl            mvni_advsimd.xml
+--- ORR_asimdimm_L_hl             orr_advsimd_imm.xml
+--- ORR_asimdimm_L_sl             orr_advsimd_imm.xml
 
 type Logical_216 = '[]
 type Binary_216  = '[]
@@ -5341,9 +5341,9 @@ show_216 :: Fn Logical_216 ShowS
 show_216 = id
 
 
--- '  <Vd>.<Ta>, { <Vn>.16B }, <Vm>.<Ta>'
--- TBL_asimdtbl_L1_1   tbl_advsimd.xml
--- TBX_asimdtbl_L1_1   tbx_advsimd.xml
+--- 217: '  <Vd>.<Ta>, { <Vn>.16B }, <Vm>.<Ta>'
+--- TBL_asimdtbl_L1_1             tbl_advsimd.xml
+--- TBX_asimdtbl_L1_1             tbx_advsimd.xml
 
 type Logical_217 = '[]
 type Binary_217  = '[]
@@ -5362,9 +5362,9 @@ show_217 :: Fn Logical_217 ShowS
 show_217 = id
 
 
--- '  <Ws>, <Wt1>, <Wt2>, [<Xn|SP>{,#0}]'
--- STLXP_SP32_ldstexcl stlxp.xml
--- STXP_SP32_ldstexcl  stxp.xml
+--- 218: '  <Ws>, <Wt1>, <Wt2>, [<Xn|SP>{,#0}]'
+--- STLXP_SP32_ldstexcl           stlxp.xml
+--- STXP_SP32_ldstexcl            stxp.xml
 
 type Logical_218 = '[]
 type Binary_218  = '[]
@@ -5383,9 +5383,9 @@ show_218 :: Fn Logical_218 ShowS
 show_218 = id
 
 
--- '  <Ws>, <Xt1>, <Xt2>, [<Xn|SP>{,#0}]'
--- STLXP_SP64_ldstexcl stlxp.xml
--- STXP_SP64_ldstexcl  stxp.xml
+--- 219: '  <Ws>, <Xt1>, <Xt2>, [<Xn|SP>{,#0}]'
+--- STLXP_SP64_ldstexcl           stlxp.xml
+--- STXP_SP64_ldstexcl            stxp.xml
 
 type Logical_219 = '[]
 type Binary_219  = '[]
@@ -5404,12 +5404,12 @@ show_219 :: Fn Logical_219 ShowS
 show_219 = id
 
 
--- '  { <Vt>.<T>, <Vt2>.<T> }, [<Xn|SP>]'
--- LD1_asisdlse_R2_2v  ld1_advsimd_mult.xml
--- LD2_asisdlse_R2     ld2_advsimd_mult.xml
--- LD2R_asisdlso_R2    ld2r_advsimd.xml
--- ST1_asisdlse_R2_2v  st1_advsimd_mult.xml
--- ST2_asisdlse_R2     st2_advsimd_mult.xml
+--- 220: '  { <Vt>.<T>, <Vt2>.<T> }, [<Xn|SP>]'
+--- LD1_asisdlse_R2_2v            ld1_advsimd_mult.xml
+--- LD2_asisdlse_R2               ld2_advsimd_mult.xml
+--- LD2R_asisdlso_R2              ld2r_advsimd.xml
+--- ST1_asisdlse_R2_2v            st1_advsimd_mult.xml
+--- ST2_asisdlse_R2               st2_advsimd_mult.xml
 
 type Logical_220 = '[]
 type Binary_220  = '[]
@@ -5428,9 +5428,9 @@ show_220 :: Fn Logical_220 ShowS
 show_220 = id
 
 
--- '  { <Vt>.B }[<index>], [<Xn|SP>], #1'
--- LD1_asisdlsop_B1_i1bld1_advsimd_sngl.xml
--- ST1_asisdlsop_B1_i1bst1_advsimd_sngl.xml
+--- 221: '  { <Vt>.B }[<index>], [<Xn|SP>], #1'
+--- LD1_asisdlsop_B1_i1b          ld1_advsimd_sngl.xml
+--- ST1_asisdlsop_B1_i1b          st1_advsimd_sngl.xml
 
 type Logical_221 = '[]
 type Binary_221  = '[]
@@ -5449,9 +5449,9 @@ show_221 :: Fn Logical_221 ShowS
 show_221 = id
 
 
--- '  { <Vt>.D }[<index>], [<Xn|SP>], #8'
--- LD1_asisdlsop_D1_i1dld1_advsimd_sngl.xml
--- ST1_asisdlsop_D1_i1dst1_advsimd_sngl.xml
+--- 222: '  { <Vt>.D }[<index>], [<Xn|SP>], #8'
+--- LD1_asisdlsop_D1_i1d          ld1_advsimd_sngl.xml
+--- ST1_asisdlsop_D1_i1d          st1_advsimd_sngl.xml
 
 type Logical_222 = '[]
 type Binary_222  = '[]
@@ -5470,9 +5470,9 @@ show_222 :: Fn Logical_222 ShowS
 show_222 = id
 
 
--- '  { <Vt>.H }[<index>], [<Xn|SP>], #2'
--- LD1_asisdlsop_H1_i1hld1_advsimd_sngl.xml
--- ST1_asisdlsop_H1_i1hst1_advsimd_sngl.xml
+--- 223: '  { <Vt>.H }[<index>], [<Xn|SP>], #2'
+--- LD1_asisdlsop_H1_i1h          ld1_advsimd_sngl.xml
+--- ST1_asisdlsop_H1_i1h          st1_advsimd_sngl.xml
 
 type Logical_223 = '[]
 type Binary_223  = '[]
@@ -5491,9 +5491,9 @@ show_223 :: Fn Logical_223 ShowS
 show_223 = id
 
 
--- '  { <Vt>.S }[<index>], [<Xn|SP>], #4'
--- LD1_asisdlsop_S1_i1sld1_advsimd_sngl.xml
--- ST1_asisdlsop_S1_i1sst1_advsimd_sngl.xml
+--- 224: '  { <Vt>.S }[<index>], [<Xn|SP>], #4'
+--- LD1_asisdlsop_S1_i1s          ld1_advsimd_sngl.xml
+--- ST1_asisdlsop_S1_i1s          st1_advsimd_sngl.xml
 
 type Logical_224 = '[]
 type Binary_224  = '[]
@@ -5512,11 +5512,11 @@ show_224 :: Fn Logical_224 ShowS
 show_224 = id
 
 
--- '{2}  <Vd>.<Ta>, <Vn>.<Ta>, <Vm>.<Tb>'
--- SADDW_asimddiff_W   saddw_advsimd.xml
--- SSUBW_asimddiff_W   ssubw_advsimd.xml
--- UADDW_asimddiff_W   uaddw_advsimd.xml
--- USUBW_asimddiff_W   usubw_advsimd.xml
+--- 225: '{2}  <Vd>.<Ta>, <Vn>.<Ta>, <Vm>.<Tb>'
+--- SADDW_asimddiff_W             saddw_advsimd.xml
+--- SSUBW_asimddiff_W             ssubw_advsimd.xml
+--- UADDW_asimddiff_W             uaddw_advsimd.xml
+--- USUBW_asimddiff_W             usubw_advsimd.xml
 
 type Logical_225 = '[]
 type Binary_225  = '[]
@@ -5535,25 +5535,25 @@ show_225 :: Fn Logical_225 ShowS
 show_225 = id
 
 
--- '{2}  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.<Tb>'
--- PMULL_asimddiff_L   pmull_advsimd.xml
--- SABAL_asimddiff_L   sabal_advsimd.xml
--- SABDL_asimddiff_L   sabdl_advsimd.xml
--- SADDL_asimddiff_L   saddl_advsimd.xml
--- SMLAL_asimddiff_L   smlal_advsimd_vec.xml
--- SMLSL_asimddiff_L   smlsl_advsimd_vec.xml
--- SMULL_asimddiff_L   smull_advsimd_vec.xml
--- SQDMLAL_asimddiff_L sqdmlal_advsimd_vec.xml
--- SQDMLSL_asimddiff_L sqdmlsl_advsimd_vec.xml
--- SQDMULL_asimddiff_L sqdmull_advsimd_vec.xml
--- SSUBL_asimddiff_L   ssubl_advsimd.xml
--- UABAL_asimddiff_L   uabal_advsimd.xml
--- UABDL_asimddiff_L   uabdl_advsimd.xml
--- UADDL_asimddiff_L   uaddl_advsimd.xml
--- UMLAL_asimddiff_L   umlal_advsimd_vec.xml
--- UMLSL_asimddiff_L   umlsl_advsimd_vec.xml
--- UMULL_asimddiff_L   umull_advsimd_vec.xml
--- USUBL_asimddiff_L   usubl_advsimd.xml
+--- 226: '{2}  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.<Tb>'
+--- PMULL_asimddiff_L             pmull_advsimd.xml
+--- SABAL_asimddiff_L             sabal_advsimd.xml
+--- SABDL_asimddiff_L             sabdl_advsimd.xml
+--- SADDL_asimddiff_L             saddl_advsimd.xml
+--- SMLAL_asimddiff_L             smlal_advsimd_vec.xml
+--- SMLSL_asimddiff_L             smlsl_advsimd_vec.xml
+--- SMULL_asimddiff_L             smull_advsimd_vec.xml
+--- SQDMLAL_asimddiff_L           sqdmlal_advsimd_vec.xml
+--- SQDMLSL_asimddiff_L           sqdmlsl_advsimd_vec.xml
+--- SQDMULL_asimddiff_L           sqdmull_advsimd_vec.xml
+--- SSUBL_asimddiff_L             ssubl_advsimd.xml
+--- UABAL_asimddiff_L             uabal_advsimd.xml
+--- UABDL_asimddiff_L             uabdl_advsimd.xml
+--- UADDL_asimddiff_L             uaddl_advsimd.xml
+--- UMLAL_asimddiff_L             umlal_advsimd_vec.xml
+--- UMLSL_asimddiff_L             umlsl_advsimd_vec.xml
+--- UMULL_asimddiff_L             umull_advsimd_vec.xml
+--- USUBL_asimddiff_L             usubl_advsimd.xml
 
 type Logical_226 = '[]
 type Binary_226  = '[]
@@ -5572,11 +5572,11 @@ show_226 :: Fn Logical_226 ShowS
 show_226 = id
 
 
--- '{2}  <Vd>.<Tb>, <Vn>.<Ta>, <Vm>.<Ta>'
--- ADDHN_asimddiff_N   addhn_advsimd.xml
--- RADDHN_asimddiff_N  raddhn_advsimd.xml
--- RSUBHN_asimddiff_N  rsubhn_advsimd.xml
--- SUBHN_asimddiff_N   subhn_advsimd.xml
+--- 227: '{2}  <Vd>.<Tb>, <Vn>.<Ta>, <Vm>.<Ta>'
+--- ADDHN_asimddiff_N             addhn_advsimd.xml
+--- RADDHN_asimddiff_N            raddhn_advsimd.xml
+--- RSUBHN_asimddiff_N            rsubhn_advsimd.xml
+--- SUBHN_asimddiff_N             subhn_advsimd.xml
 
 type Logical_227 = '[]
 type Binary_227  = '[]
@@ -5595,11 +5595,11 @@ show_227 :: Fn Logical_227 ShowS
 show_227 = id
 
 
--- '  <Vd>.<T>, <Vn>.<T>, <Vm>.H[<index>]'
--- FMLA_asimdelem_RH_H fmla_advsimd_elt.xml
--- FMLS_asimdelem_RH_H fmls_advsimd_elt.xml
--- FMUL_asimdelem_RH_H fmul_advsimd_elt.xml
--- FMULX_asimdelem_RH_Hfmulx_advsimd_elt.xml
+--- 228: '  <Vd>.<T>, <Vn>.<T>, <Vm>.H[<index>]'
+--- FMLA_asimdelem_RH_H           fmla_advsimd_elt.xml
+--- FMLS_asimdelem_RH_H           fmls_advsimd_elt.xml
+--- FMUL_asimdelem_RH_H           fmul_advsimd_elt.xml
+--- FMULX_asimdelem_RH_H          fmulx_advsimd_elt.xml
 
 type Logical_228 = '[]
 type Binary_228  = '[]
@@ -5618,9 +5618,9 @@ show_228 :: Fn Logical_228 ShowS
 show_228 = id
 
 
--- '  <Xd|SP>, <Xn|SP>, #<imm>{, <shift>}'
--- ADD_64_addsub_imm   add_addsub_imm.xml
--- SUB_64_addsub_imm   sub_addsub_imm.xml
+--- 229: '  <Xd|SP>, <Xn|SP>, #<imm>{, <shift>}'
+--- ADD_64_addsub_imm             add_addsub_imm.xml
+--- SUB_64_addsub_imm             sub_addsub_imm.xml
 
 type Logical_229 = '[]
 type Binary_229  = '[]
@@ -5639,10 +5639,10 @@ show_229 :: Fn Logical_229 ShowS
 show_229 = id
 
 
--- '  <Va><d>, <Vb><n>, <Vm>.<Ts>[<index>]'
--- SQDMLAL_asisdelem_L sqdmlal_advsimd_elt.xml
--- SQDMLSL_asisdelem_L sqdmlsl_advsimd_elt.xml
--- SQDMULL_asisdelem_L sqdmull_advsimd_elt.xml
+--- 230: '  <Va><d>, <Vb><n>, <Vm>.<Ts>[<index>]'
+--- SQDMLAL_asisdelem_L           sqdmlal_advsimd_elt.xml
+--- SQDMLSL_asisdelem_L           sqdmlsl_advsimd_elt.xml
+--- SQDMULL_asisdelem_L           sqdmull_advsimd_elt.xml
 
 type Logical_230 = '[]
 type Binary_230  = '[]
@@ -5661,9 +5661,9 @@ show_230 :: Fn Logical_230 ShowS
 show_230 = id
 
 
--- '  { <Vt>.B }[<index>], [<Xn|SP>], <Xm>'
--- LD1_asisdlsop_BX1_r1bld1_advsimd_sngl.xml
--- ST1_asisdlsop_BX1_r1bst1_advsimd_sngl.xml
+--- 231: '  { <Vt>.B }[<index>], [<Xn|SP>], <Xm>'
+--- LD1_asisdlsop_BX1_r1b         ld1_advsimd_sngl.xml
+--- ST1_asisdlsop_BX1_r1b         st1_advsimd_sngl.xml
 
 type Logical_231 = '[]
 type Binary_231  = '[]
@@ -5682,9 +5682,9 @@ show_231 :: Fn Logical_231 ShowS
 show_231 = id
 
 
--- '  { <Vt>.D }[<index>], [<Xn|SP>], <Xm>'
--- LD1_asisdlsop_DX1_r1dld1_advsimd_sngl.xml
--- ST1_asisdlsop_DX1_r1dst1_advsimd_sngl.xml
+--- 232: '  { <Vt>.D }[<index>], [<Xn|SP>], <Xm>'
+--- LD1_asisdlsop_DX1_r1d         ld1_advsimd_sngl.xml
+--- ST1_asisdlsop_DX1_r1d         st1_advsimd_sngl.xml
 
 type Logical_232 = '[]
 type Binary_232  = '[]
@@ -5703,9 +5703,9 @@ show_232 :: Fn Logical_232 ShowS
 show_232 = id
 
 
--- '  { <Vt>.H }[<index>], [<Xn|SP>], <Xm>'
--- LD1_asisdlsop_HX1_r1hld1_advsimd_sngl.xml
--- ST1_asisdlsop_HX1_r1hst1_advsimd_sngl.xml
+--- 233: '  { <Vt>.H }[<index>], [<Xn|SP>], <Xm>'
+--- LD1_asisdlsop_HX1_r1h         ld1_advsimd_sngl.xml
+--- ST1_asisdlsop_HX1_r1h         st1_advsimd_sngl.xml
 
 type Logical_233 = '[]
 type Binary_233  = '[]
@@ -5724,9 +5724,9 @@ show_233 :: Fn Logical_233 ShowS
 show_233 = id
 
 
--- '  { <Vt>.S }[<index>], [<Xn|SP>], <Xm>'
--- LD1_asisdlsop_SX1_r1sld1_advsimd_sngl.xml
--- ST1_asisdlsop_SX1_r1sst1_advsimd_sngl.xml
+--- 234: '  { <Vt>.S }[<index>], [<Xn|SP>], <Xm>'
+--- LD1_asisdlsop_SX1_r1s         ld1_advsimd_sngl.xml
+--- ST1_asisdlsop_SX1_r1s         st1_advsimd_sngl.xml
 
 type Logical_234 = '[]
 type Binary_234  = '[]
@@ -5745,9 +5745,9 @@ show_234 :: Fn Logical_234 ShowS
 show_234 = id
 
 
--- '  <Bt>, [<Xn|SP>, <Xm>{, LSL <amount>}]'
--- LDR_BL_ldst_regoff  ldr_reg_fpsimd.xml
--- STR_BL_ldst_regoff  str_reg_fpsimd.xml
+--- 235: '  <Bt>, [<Xn|SP>, <Xm>{, LSL <amount>}]'
+--- LDR_BL_ldst_regoff            ldr_reg_fpsimd.xml
+--- STR_BL_ldst_regoff            str_reg_fpsimd.xml
 
 type Logical_235 = '[]
 type Binary_235  = '[]
@@ -5766,19 +5766,19 @@ show_235 :: Fn Logical_235 ShowS
 show_235 = id
 
 
--- '  <Wd>, <Wn>, <Wm>{, <shift> #<amount>}'
--- ADD_32_addsub_shift add_addsub_shift.xml
--- ADDS_32_addsub_shiftadds_addsub_shift.xml
--- AND_32_log_shift    and_log_shift.xml
--- ANDS_32_log_shift   ands_log_shift.xml
--- BIC_32_log_shift    bic_log_shift.xml
--- BICS_32_log_shift   bics.xml
--- EON_32_log_shift    eon.xml
--- EOR_32_log_shift    eor_log_shift.xml
--- ORN_32_log_shift    orn_log_shift.xml
--- ORR_32_log_shift    orr_log_shift.xml
--- SUB_32_addsub_shift sub_addsub_shift.xml
--- SUBS_32_addsub_shiftsubs_addsub_shift.xml
+--- 236: '  <Wd>, <Wn>, <Wm>{, <shift> #<amount>}'
+--- ADD_32_addsub_shift           add_addsub_shift.xml
+--- ADDS_32_addsub_shift          adds_addsub_shift.xml
+--- AND_32_log_shift              and_log_shift.xml
+--- ANDS_32_log_shift             ands_log_shift.xml
+--- BIC_32_log_shift              bic_log_shift.xml
+--- BICS_32_log_shift             bics.xml
+--- EON_32_log_shift              eon.xml
+--- EOR_32_log_shift              eor_log_shift.xml
+--- ORN_32_log_shift              orn_log_shift.xml
+--- ORR_32_log_shift              orr_log_shift.xml
+--- SUB_32_addsub_shift           sub_addsub_shift.xml
+--- SUBS_32_addsub_shift          subs_addsub_shift.xml
 
 type Logical_236 = '[]
 type Binary_236  = '[]
@@ -5797,9 +5797,9 @@ show_236 :: Fn Logical_236 ShowS
 show_236 = id
 
 
--- '  <Wd|WSP>, <Wn|WSP>, #<imm>{, <shift>}'
--- ADD_32_addsub_imm   add_addsub_imm.xml
--- SUB_32_addsub_imm   sub_addsub_imm.xml
+--- 237: '  <Wd|WSP>, <Wn|WSP>, #<imm>{, <shift>}'
+--- ADD_32_addsub_imm             add_addsub_imm.xml
+--- SUB_32_addsub_imm             sub_addsub_imm.xml
 
 type Logical_237 = '[]
 type Binary_237  = '[]
@@ -5818,10 +5818,10 @@ show_237 :: Fn Logical_237 ShowS
 show_237 = id
 
 
--- '  <Wt>, [<Xn|SP>, <Xm>{, LSL <amount>}]'
--- LDRB_32BL_ldst_regoffldrb_reg.xml
--- LDRSB_32BL_ldst_regoffldrsb_reg.xml
--- STRB_32BL_ldst_regoffstrb_reg.xml
+--- 238: '  <Wt>, [<Xn|SP>, <Xm>{, LSL <amount>}]'
+--- LDRB_32BL_ldst_regoff         ldrb_reg.xml
+--- LDRSB_32BL_ldst_regoff        ldrsb_reg.xml
+--- STRB_32BL_ldst_regoff         strb_reg.xml
 
 type Logical_238 = '[]
 type Binary_238  = '[]
@@ -5840,19 +5840,19 @@ show_238 :: Fn Logical_238 ShowS
 show_238 = id
 
 
--- '  <Xd>, <Xn>, <Xm>{, <shift> #<amount>}'
--- ADD_64_addsub_shift add_addsub_shift.xml
--- ADDS_64_addsub_shiftadds_addsub_shift.xml
--- AND_64_log_shift    and_log_shift.xml
--- ANDS_64_log_shift   ands_log_shift.xml
--- BIC_64_log_shift    bic_log_shift.xml
--- BICS_64_log_shift   bics.xml
--- EON_64_log_shift    eon.xml
--- EOR_64_log_shift    eor_log_shift.xml
--- ORN_64_log_shift    orn_log_shift.xml
--- ORR_64_log_shift    orr_log_shift.xml
--- SUB_64_addsub_shift sub_addsub_shift.xml
--- SUBS_64_addsub_shiftsubs_addsub_shift.xml
+--- 239: '  <Xd>, <Xn>, <Xm>{, <shift> #<amount>}'
+--- ADD_64_addsub_shift           add_addsub_shift.xml
+--- ADDS_64_addsub_shift          adds_addsub_shift.xml
+--- AND_64_log_shift              and_log_shift.xml
+--- ANDS_64_log_shift             ands_log_shift.xml
+--- BIC_64_log_shift              bic_log_shift.xml
+--- BICS_64_log_shift             bics.xml
+--- EON_64_log_shift              eon.xml
+--- EOR_64_log_shift              eor_log_shift.xml
+--- ORN_64_log_shift              orn_log_shift.xml
+--- ORR_64_log_shift              orr_log_shift.xml
+--- SUB_64_addsub_shift           sub_addsub_shift.xml
+--- SUBS_64_addsub_shift          subs_addsub_shift.xml
 
 type Logical_239 = '[]
 type Binary_239  = '[]
@@ -5871,8 +5871,8 @@ show_239 :: Fn Logical_239 ShowS
 show_239 = id
 
 
--- '  <Xt>, [<Xn|SP>, <Xm>{, LSL <amount>}]'
--- LDRSB_64BL_ldst_regoffldrsb_reg.xml
+--- 240: '  <Xt>, [<Xn|SP>, <Xm>{, LSL <amount>}]'
+--- LDRSB_64BL_ldst_regoff        ldrsb_reg.xml
 
 type Logical_240 = '[]
 type Binary_240  = '[]
@@ -5891,9 +5891,9 @@ show_240 :: Fn Logical_240 ShowS
 show_240 = id
 
 
--- '  <Vd>.16B, <Vn>.16B, <Vm>.16B, <Va>.16B'
--- BCAX_VVV16_crypto4  bcax_advsimd.xml
--- EOR3_VVV16_crypto4  eor3_advsimd.xml
+--- 241: '  <Vd>.16B, <Vn>.16B, <Vm>.16B, <Va>.16B'
+--- BCAX_VVV16_crypto4            bcax_advsimd.xml
+--- EOR3_VVV16_crypto4            eor3_advsimd.xml
 
 type Logical_241 = '[]
 type Binary_241  = '[]
@@ -5912,8 +5912,8 @@ show_241 :: Fn Logical_241 ShowS
 show_241 = id
 
 
--- '  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>, #<index>'
--- EXT_asimdext_only   ext_advsimd.xml
+--- 242: '  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>, #<index>'
+--- EXT_asimdext_only             ext_advsimd.xml
 
 type Logical_242 = '[]
 type Binary_242  = '[]
@@ -5932,18 +5932,18 @@ show_242 :: Fn Logical_242 ShowS
 show_242 = id
 
 
--- '  <Vd>.<T>, <Vn>.<T>, <Vm>.<Ts>[<index>]'
--- FMLA_asimdelem_R_SD fmla_advsimd_elt.xml
--- FMLS_asimdelem_R_SD fmls_advsimd_elt.xml
--- FMUL_asimdelem_R_SD fmul_advsimd_elt.xml
--- FMULX_asimdelem_R_SDfmulx_advsimd_elt.xml
--- MLA_asimdelem_R     mla_advsimd_elt.xml
--- MLS_asimdelem_R     mls_advsimd_elt.xml
--- MUL_asimdelem_R     mul_advsimd_elt.xml
--- SQDMULH_asimdelem_R sqdmulh_advsimd_elt.xml
--- SQRDMLAH_asimdelem_Rsqrdmlah_advsimd_elt.xml
--- SQRDMLSH_asimdelem_Rsqrdmlsh_advsimd_elt.xml
--- SQRDMULH_asimdelem_Rsqrdmulh_advsimd_elt.xml
+--- 243: '  <Vd>.<T>, <Vn>.<T>, <Vm>.<Ts>[<index>]'
+--- FMLA_asimdelem_R_SD           fmla_advsimd_elt.xml
+--- FMLS_asimdelem_R_SD           fmls_advsimd_elt.xml
+--- FMUL_asimdelem_R_SD           fmul_advsimd_elt.xml
+--- FMULX_asimdelem_R_SD          fmulx_advsimd_elt.xml
+--- MLA_asimdelem_R               mla_advsimd_elt.xml
+--- MLS_asimdelem_R               mls_advsimd_elt.xml
+--- MUL_asimdelem_R               mul_advsimd_elt.xml
+--- SQDMULH_asimdelem_R           sqdmulh_advsimd_elt.xml
+--- SQRDMLAH_asimdelem_R          sqrdmlah_advsimd_elt.xml
+--- SQRDMLSH_asimdelem_R          sqrdmlsh_advsimd_elt.xml
+--- SQRDMULH_asimdelem_R          sqrdmulh_advsimd_elt.xml
 
 type Logical_243 = '[]
 type Binary_243  = '[]
@@ -5962,9 +5962,9 @@ show_243 :: Fn Logical_243 ShowS
 show_243 = id
 
 
--- '  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.4B[<index>]'
--- SDOT_asimdelem_D    sdot_advsimd_elt.xml
--- UDOT_asimdelem_D    udot_advsimd_elt.xml
+--- 244: '  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.4B[<index>]'
+--- SDOT_asimdelem_D              sdot_advsimd_elt.xml
+--- UDOT_asimdelem_D              udot_advsimd_elt.xml
 
 type Logical_244 = '[]
 type Binary_244  = '[]
@@ -5983,8 +5983,8 @@ show_244 :: Fn Logical_244 ShowS
 show_244 = id
 
 
--- ' (<prfop>|#<imm5>), [<Xn|SP>{, #<simm>}]'
--- PRFUM_P_ldst_unscaledprfum.xml
+--- 245: ' (<prfop>|#<imm5>), [<Xn|SP>{, #<simm>}]'
+--- PRFUM_P_ldst_unscaled         prfum.xml
 
 type Logical_245 = '[]
 type Binary_245  = '[]
@@ -6003,8 +6003,8 @@ show_245 :: Fn Logical_245 ShowS
 show_245 = id
 
 
--- '  (<prfop>|#<imm5>), [<Xn|SP>{, #<pimm>}]'
--- PRFM_P_ldst_pos     prfm_imm.xml
+--- 246: '  (<prfop>|#<imm5>), [<Xn|SP>{, #<pimm>}]'
+--- PRFM_P_ldst_pos               prfm_imm.xml
 
 type Logical_246 = '[]
 type Binary_246  = '[]
@@ -6023,9 +6023,9 @@ show_246 :: Fn Logical_246 ShowS
 show_246 = id
 
 
--- '  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>, #<rotate>'
--- FCADD_asimdsame2_C  fcadd_advsimd_vec.xml
--- FCMLA_asimdsame2_C  fcmla_advsimd_vec.xml
+--- 247: '  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>, #<rotate>'
+--- FCADD_asimdsame2_C            fcadd_advsimd_vec.xml
+--- FCMLA_asimdsame2_C            fcmla_advsimd_vec.xml
 
 type Logical_247 = '[]
 type Binary_247  = '[]
@@ -6044,9 +6044,9 @@ show_247 :: Fn Logical_247 ShowS
 show_247 = id
 
 
--- '  { <Vt>.B, <Vt2>.B }[<index>], [<Xn|SP>]'
--- LD2_asisdlso_B2_2b  ld2_advsimd_sngl.xml
--- ST2_asisdlso_B2_2b  st2_advsimd_sngl.xml
+--- 248: '  { <Vt>.B, <Vt2>.B }[<index>], [<Xn|SP>]'
+--- LD2_asisdlso_B2_2b            ld2_advsimd_sngl.xml
+--- ST2_asisdlso_B2_2b            st2_advsimd_sngl.xml
 
 type Logical_248 = '[]
 type Binary_248  = '[]
@@ -6065,9 +6065,9 @@ show_248 :: Fn Logical_248 ShowS
 show_248 = id
 
 
--- '  { <Vt>.D, <Vt2>.D }[<index>], [<Xn|SP>]'
--- LD2_asisdlso_D2_2d  ld2_advsimd_sngl.xml
--- ST2_asisdlso_D2_2d  st2_advsimd_sngl.xml
+--- 249: '  { <Vt>.D, <Vt2>.D }[<index>], [<Xn|SP>]'
+--- LD2_asisdlso_D2_2d            ld2_advsimd_sngl.xml
+--- ST2_asisdlso_D2_2d            st2_advsimd_sngl.xml
 
 type Logical_249 = '[]
 type Binary_249  = '[]
@@ -6086,9 +6086,9 @@ show_249 :: Fn Logical_249 ShowS
 show_249 = id
 
 
--- '  { <Vt>.H, <Vt2>.H }[<index>], [<Xn|SP>]'
--- LD2_asisdlso_H2_2h  ld2_advsimd_sngl.xml
--- ST2_asisdlso_H2_2h  st2_advsimd_sngl.xml
+--- 250: '  { <Vt>.H, <Vt2>.H }[<index>], [<Xn|SP>]'
+--- LD2_asisdlso_H2_2h            ld2_advsimd_sngl.xml
+--- ST2_asisdlso_H2_2h            st2_advsimd_sngl.xml
 
 type Logical_250 = '[]
 type Binary_250  = '[]
@@ -6107,9 +6107,9 @@ show_250 :: Fn Logical_250 ShowS
 show_250 = id
 
 
--- '  { <Vt>.S, <Vt2>.S }[<index>], [<Xn|SP>]'
--- LD2_asisdlso_S2_2s  ld2_advsimd_sngl.xml
--- ST2_asisdlso_S2_2s  st2_advsimd_sngl.xml
+--- 251: '  { <Vt>.S, <Vt2>.S }[<index>], [<Xn|SP>]'
+--- LD2_asisdlso_S2_2s            ld2_advsimd_sngl.xml
+--- ST2_asisdlso_S2_2s            st2_advsimd_sngl.xml
 
 type Logical_251 = '[]
 type Binary_251  = '[]
@@ -6128,8 +6128,8 @@ show_251 :: Fn Logical_251 ShowS
 show_251 = id
 
 
--- '  <Vd>.<Ts>[<index1>], <Vn>.<Ts>[<index2>]'
--- INS_asimdins_IV_v   ins_advsimd_elt.xml
+--- 252: '  <Vd>.<Ts>[<index1>], <Vn>.<Ts>[<index2>]'
+--- INS_asimdins_IV_v             ins_advsimd_elt.xml
 
 type Logical_252 = '[]
 type Binary_252  = '[]
@@ -6148,12 +6148,12 @@ show_252 :: Fn Logical_252 ShowS
 show_252 = id
 
 
--- '  { <Vt>.<T>, <Vt2>.<T> }, [<Xn|SP>], <Xm>'
--- LD1_asisdlsep_R2_r2 ld1_advsimd_mult.xml
--- LD2_asisdlsep_R2_r  ld2_advsimd_mult.xml
--- LD2R_asisdlsop_RX2_rld2r_advsimd.xml
--- ST1_asisdlsep_R2_r2 st1_advsimd_mult.xml
--- ST2_asisdlsep_R2_r  st2_advsimd_mult.xml
+--- 253: '  { <Vt>.<T>, <Vt2>.<T> }, [<Xn|SP>], <Xm>'
+--- LD1_asisdlsep_R2_r2           ld1_advsimd_mult.xml
+--- LD2_asisdlsep_R2_r            ld2_advsimd_mult.xml
+--- LD2R_asisdlsop_RX2_r          ld2r_advsimd.xml
+--- ST1_asisdlsep_R2_r2           st1_advsimd_mult.xml
+--- ST2_asisdlsep_R2_r            st2_advsimd_mult.xml
 
 type Logical_253 = '[]
 type Binary_253  = '[]
@@ -6172,12 +6172,12 @@ show_253 :: Fn Logical_253 ShowS
 show_253 = id
 
 
--- '  { <Vt>.<T>, <Vt2>.<T> }, [<Xn|SP>], <imm>'
--- LD1_asisdlsep_I2_i2 ld1_advsimd_mult.xml
--- LD2_asisdlsep_I2_i  ld2_advsimd_mult.xml
--- LD2R_asisdlsop_R2_i ld2r_advsimd.xml
--- ST1_asisdlsep_I2_i2 st1_advsimd_mult.xml
--- ST2_asisdlsep_I2_i  st2_advsimd_mult.xml
+--- 254: '  { <Vt>.<T>, <Vt2>.<T> }, [<Xn|SP>], <imm>'
+--- LD1_asisdlsep_I2_i2           ld1_advsimd_mult.xml
+--- LD2_asisdlsep_I2_i            ld2_advsimd_mult.xml
+--- LD2R_asisdlsop_R2_i           ld2r_advsimd.xml
+--- ST1_asisdlsep_I2_i2           st1_advsimd_mult.xml
+--- ST2_asisdlsep_I2_i            st2_advsimd_mult.xml
 
 type Logical_254 = '[]
 type Binary_254  = '[]
@@ -6196,9 +6196,9 @@ show_254 :: Fn Logical_254 ShowS
 show_254 = id
 
 
--- '  { <Vt>.B, <Vt2>.B }[<index>], [<Xn|SP>], #2'
--- LD2_asisdlsop_B2_i2bld2_advsimd_sngl.xml
--- ST2_asisdlsop_B2_i2bst2_advsimd_sngl.xml
+--- 255: '  { <Vt>.B, <Vt2>.B }[<index>], [<Xn|SP>], #2'
+--- LD2_asisdlsop_B2_i2b          ld2_advsimd_sngl.xml
+--- ST2_asisdlsop_B2_i2b          st2_advsimd_sngl.xml
 
 type Logical_255 = '[]
 type Binary_255  = '[]
@@ -6217,9 +6217,9 @@ show_255 :: Fn Logical_255 ShowS
 show_255 = id
 
 
--- '  { <Vt>.H, <Vt2>.H }[<index>], [<Xn|SP>], #4'
--- LD2_asisdlsop_H2_i2hld2_advsimd_sngl.xml
--- ST2_asisdlsop_H2_i2hst2_advsimd_sngl.xml
+--- 256: '  { <Vt>.H, <Vt2>.H }[<index>], [<Xn|SP>], #4'
+--- LD2_asisdlsop_H2_i2h          ld2_advsimd_sngl.xml
+--- ST2_asisdlsop_H2_i2h          st2_advsimd_sngl.xml
 
 type Logical_256 = '[]
 type Binary_256  = '[]
@@ -6238,9 +6238,9 @@ show_256 :: Fn Logical_256 ShowS
 show_256 = id
 
 
--- '  { <Vt>.S, <Vt2>.S }[<index>], [<Xn|SP>], #8'
--- LD2_asisdlsop_S2_i2sld2_advsimd_sngl.xml
--- ST2_asisdlsop_S2_i2sst2_advsimd_sngl.xml
+--- 257: '  { <Vt>.S, <Vt2>.S }[<index>], [<Xn|SP>], #8'
+--- LD2_asisdlsop_S2_i2s          ld2_advsimd_sngl.xml
+--- ST2_asisdlsop_S2_i2s          st2_advsimd_sngl.xml
 
 type Logical_257 = '[]
 type Binary_257  = '[]
@@ -6259,16 +6259,16 @@ show_257 :: Fn Logical_257 ShowS
 show_257 = id
 
 
--- '{2}  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.<Ts>[<index>]'
--- SMLAL_asimdelem_L   smlal_advsimd_elt.xml
--- SMLSL_asimdelem_L   smlsl_advsimd_elt.xml
--- SMULL_asimdelem_L   smull_advsimd_elt.xml
--- SQDMLAL_asimdelem_L sqdmlal_advsimd_elt.xml
--- SQDMLSL_asimdelem_L sqdmlsl_advsimd_elt.xml
--- SQDMULL_asimdelem_L sqdmull_advsimd_elt.xml
--- UMLAL_asimdelem_L   umlal_advsimd_elt.xml
--- UMLSL_asimdelem_L   umlsl_advsimd_elt.xml
--- UMULL_asimdelem_L   umull_advsimd_elt.xml
+--- 258: '{2}  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.<Ts>[<index>]'
+--- SMLAL_asimdelem_L             smlal_advsimd_elt.xml
+--- SMLSL_asimdelem_L             smlsl_advsimd_elt.xml
+--- SMULL_asimdelem_L             smull_advsimd_elt.xml
+--- SQDMLAL_asimdelem_L           sqdmlal_advsimd_elt.xml
+--- SQDMLSL_asimdelem_L           sqdmlsl_advsimd_elt.xml
+--- SQDMULL_asimdelem_L           sqdmull_advsimd_elt.xml
+--- UMLAL_asimdelem_L             umlal_advsimd_elt.xml
+--- UMLSL_asimdelem_L             umlsl_advsimd_elt.xml
+--- UMULL_asimdelem_L             umull_advsimd_elt.xml
 
 type Logical_258 = '[]
 type Binary_258  = '[]
@@ -6287,9 +6287,9 @@ show_258 :: Fn Logical_258 ShowS
 show_258 = id
 
 
--- '  <Wd>, <Wn|WSP>, <Wm>{, <extend> {#<amount>}}'
--- ADDS_32S_addsub_ext adds_addsub_ext.xml
--- SUBS_32S_addsub_ext subs_addsub_ext.xml
+--- 259: '  <Wd>, <Wn|WSP>, <Wm>{, <extend> {#<amount>}}'
+--- ADDS_32S_addsub_ext           adds_addsub_ext.xml
+--- SUBS_32S_addsub_ext           subs_addsub_ext.xml
 
 type Logical_259 = '[]
 type Binary_259  = '[]
@@ -6308,9 +6308,9 @@ show_259 :: Fn Logical_259 ShowS
 show_259 = id
 
 
--- '  { <Vt>.D, <Vt2>.D }[<index>], [<Xn|SP>], #16'
--- LD2_asisdlsop_D2_i2dld2_advsimd_sngl.xml
--- ST2_asisdlsop_D2_i2dst2_advsimd_sngl.xml
+--- 260: '  { <Vt>.D, <Vt2>.D }[<index>], [<Xn|SP>], #16'
+--- LD2_asisdlsop_D2_i2d          ld2_advsimd_sngl.xml
+--- ST2_asisdlsop_D2_i2d          st2_advsimd_sngl.xml
 
 type Logical_260 = '[]
 type Binary_260  = '[]
@@ -6329,9 +6329,9 @@ show_260 :: Fn Logical_260 ShowS
 show_260 = id
 
 
--- '  <Xd>, <Xn|SP>, <R><m>{, <extend> {#<amount>}}'
--- ADDS_64S_addsub_ext adds_addsub_ext.xml
--- SUBS_64S_addsub_ext subs_addsub_ext.xml
+--- 261: '  <Xd>, <Xn|SP>, <R><m>{, <extend> {#<amount>}}'
+--- ADDS_64S_addsub_ext           adds_addsub_ext.xml
+--- SUBS_64S_addsub_ext           subs_addsub_ext.xml
 
 type Logical_261 = '[]
 type Binary_261  = '[]
@@ -6350,12 +6350,12 @@ show_261 :: Fn Logical_261 ShowS
 show_261 = id
 
 
--- '  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T> }, [<Xn|SP>]'
--- LD1_asisdlse_R3_3v  ld1_advsimd_mult.xml
--- LD3_asisdlse_R3     ld3_advsimd_mult.xml
--- LD3R_asisdlso_R3    ld3r_advsimd.xml
--- ST1_asisdlse_R3_3v  st1_advsimd_mult.xml
--- ST3_asisdlse_R3     st3_advsimd_mult.xml
+--- 262: '  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T> }, [<Xn|SP>]'
+--- LD1_asisdlse_R3_3v            ld1_advsimd_mult.xml
+--- LD3_asisdlse_R3               ld3_advsimd_mult.xml
+--- LD3R_asisdlso_R3              ld3r_advsimd.xml
+--- ST1_asisdlse_R3_3v            st1_advsimd_mult.xml
+--- ST3_asisdlse_R3               st3_advsimd_mult.xml
 
 type Logical_262 = '[]
 type Binary_262  = '[]
@@ -6374,9 +6374,9 @@ show_262 :: Fn Logical_262 ShowS
 show_262 = id
 
 
--- '  { <Vt>.B, <Vt2>.B }[<index>], [<Xn|SP>], <Xm>'
--- LD2_asisdlsop_BX2_r2bld2_advsimd_sngl.xml
--- ST2_asisdlsop_BX2_r2bst2_advsimd_sngl.xml
+--- 263: '  { <Vt>.B, <Vt2>.B }[<index>], [<Xn|SP>], <Xm>'
+--- LD2_asisdlsop_BX2_r2b         ld2_advsimd_sngl.xml
+--- ST2_asisdlsop_BX2_r2b         st2_advsimd_sngl.xml
 
 type Logical_263 = '[]
 type Binary_263  = '[]
@@ -6395,9 +6395,9 @@ show_263 :: Fn Logical_263 ShowS
 show_263 = id
 
 
--- '  { <Vt>.D, <Vt2>.D }[<index>], [<Xn|SP>], <Xm>'
--- LD2_asisdlsop_DX2_r2dld2_advsimd_sngl.xml
--- ST2_asisdlsop_DX2_r2dst2_advsimd_sngl.xml
+--- 264: '  { <Vt>.D, <Vt2>.D }[<index>], [<Xn|SP>], <Xm>'
+--- LD2_asisdlsop_DX2_r2d         ld2_advsimd_sngl.xml
+--- ST2_asisdlsop_DX2_r2d         st2_advsimd_sngl.xml
 
 type Logical_264 = '[]
 type Binary_264  = '[]
@@ -6416,9 +6416,9 @@ show_264 :: Fn Logical_264 ShowS
 show_264 = id
 
 
--- '  { <Vt>.H, <Vt2>.H }[<index>], [<Xn|SP>], <Xm>'
--- LD2_asisdlsop_HX2_r2hld2_advsimd_sngl.xml
--- ST2_asisdlsop_HX2_r2hst2_advsimd_sngl.xml
+--- 265: '  { <Vt>.H, <Vt2>.H }[<index>], [<Xn|SP>], <Xm>'
+--- LD2_asisdlsop_HX2_r2h         ld2_advsimd_sngl.xml
+--- ST2_asisdlsop_HX2_r2h         st2_advsimd_sngl.xml
 
 type Logical_265 = '[]
 type Binary_265  = '[]
@@ -6437,9 +6437,9 @@ show_265 :: Fn Logical_265 ShowS
 show_265 = id
 
 
--- '  { <Vt>.S, <Vt2>.S }[<index>], [<Xn|SP>], <Xm>'
--- LD2_asisdlsop_SX2_r2sld2_advsimd_sngl.xml
--- ST2_asisdlsop_SX2_r2sst2_advsimd_sngl.xml
+--- 266: '  { <Vt>.S, <Vt2>.S }[<index>], [<Xn|SP>], <Xm>'
+--- LD2_asisdlsop_SX2_r2s         ld2_advsimd_sngl.xml
+--- ST2_asisdlsop_SX2_r2s         st2_advsimd_sngl.xml
 
 type Logical_266 = '[]
 type Binary_266  = '[]
@@ -6458,9 +6458,9 @@ show_266 :: Fn Logical_266 ShowS
 show_266 = id
 
 
--- '  <Vd>.<Ta>, { <Vn>.16B, <Vn+1>.16B }, <Vm>.<Ta>'
--- TBL_asimdtbl_L2_2   tbl_advsimd.xml
--- TBX_asimdtbl_L2_2   tbx_advsimd.xml
+--- 267: '  <Vd>.<Ta>, { <Vn>.16B, <Vn+1>.16B }, <Vm>.<Ta>'
+--- TBL_asimdtbl_L2_2             tbl_advsimd.xml
+--- TBX_asimdtbl_L2_2             tbx_advsimd.xml
 
 type Logical_267 = '[]
 type Binary_267  = '[]
@@ -6479,11 +6479,11 @@ show_267 :: Fn Logical_267 ShowS
 show_267 = id
 
 
--- '  <Ws>, <W(s+1)>, <Wt>, <W(t+1)>, [<Xn|SP>{,#0}]'
--- CASP_CP32_ldstexcl  casp.xml
--- CASPA_CP32_ldstexcl casp.xml
--- CASPAL_CP32_ldstexclcasp.xml
--- CASPL_CP32_ldstexcl casp.xml
+--- 268: '  <Ws>, <W(s+1)>, <Wt>, <W(t+1)>, [<Xn|SP>{,#0}]'
+--- CASP_CP32_ldstexcl            casp.xml
+--- CASPA_CP32_ldstexcl           casp.xml
+--- CASPAL_CP32_ldstexcl          casp.xml
+--- CASPL_CP32_ldstexcl           casp.xml
 
 type Logical_268 = '[]
 type Binary_268  = '[]
@@ -6502,11 +6502,11 @@ show_268 :: Fn Logical_268 ShowS
 show_268 = id
 
 
--- '  <Xs>, <X(s+1)>, <Xt>, <X(t+1)>, [<Xn|SP>{,#0}]'
--- CASP_CP64_ldstexcl  casp.xml
--- CASPA_CP64_ldstexcl casp.xml
--- CASPAL_CP64_ldstexclcasp.xml
--- CASPL_CP64_ldstexcl casp.xml
+--- 269: '  <Xs>, <X(s+1)>, <Xt>, <X(t+1)>, [<Xn|SP>{,#0}]'
+--- CASP_CP64_ldstexcl            casp.xml
+--- CASPA_CP64_ldstexcl           casp.xml
+--- CASPAL_CP64_ldstexcl          casp.xml
+--- CASPL_CP64_ldstexcl           casp.xml
 
 type Logical_269 = '[]
 type Binary_269  = '[]
@@ -6525,8 +6525,8 @@ show_269 :: Fn Logical_269 ShowS
 show_269 = id
 
 
--- '  (<systemreg>|S<op0>_<op1>_<Cn>_<Cm>_<op2>), <Xt>'
--- MSR_SR_system       msr_reg.xml
+--- 270: '  (<systemreg>|S<op0>_<op1>_<Cn>_<Cm>_<op2>), <Xt>'
+--- MSR_SR_system                 msr_reg.xml
 
 type Logical_270 = '[]
 type Binary_270  = '[]
@@ -6545,9 +6545,9 @@ show_270 :: Fn Logical_270 ShowS
 show_270 = id
 
 
--- '  <Wd|WSP>, <Wn|WSP>, <Wm>{, <extend> {#<amount>}}'
--- ADD_32_addsub_ext   add_addsub_ext.xml
--- SUB_32_addsub_ext   sub_addsub_ext.xml
+--- 271: '  <Wd|WSP>, <Wn|WSP>, <Wm>{, <extend> {#<amount>}}'
+--- ADD_32_addsub_ext             add_addsub_ext.xml
+--- SUB_32_addsub_ext             sub_addsub_ext.xml
 
 type Logical_271 = '[]
 type Binary_271  = '[]
@@ -6566,9 +6566,9 @@ show_271 :: Fn Logical_271 ShowS
 show_271 = id
 
 
--- '  <Xd|SP>, <Xn|SP>, <R><m>{, <extend> {#<amount>}}'
--- ADD_64_addsub_ext   add_addsub_ext.xml
--- SUB_64_addsub_ext   sub_addsub_ext.xml
+--- 272: '  <Xd|SP>, <Xn|SP>, <R><m>{, <extend> {#<amount>}}'
+--- ADD_64_addsub_ext             add_addsub_ext.xml
+--- SUB_64_addsub_ext             sub_addsub_ext.xml
 
 type Logical_272 = '[]
 type Binary_272  = '[]
@@ -6587,8 +6587,8 @@ show_272 :: Fn Logical_272 ShowS
 show_272 = id
 
 
--- '  <Xt>, (<systemreg>|S<op0>_<op1>_<Cn>_<Cm>_<op2>)'
--- MRS_RS_system       mrs.xml
+--- 273: '  <Xt>, (<systemreg>|S<op0>_<op1>_<Cn>_<Cm>_<op2>)'
+--- MRS_RS_system                 mrs.xml
 
 type Logical_273 = '[]
 type Binary_273  = '[]
@@ -6607,9 +6607,9 @@ show_273 :: Fn Logical_273 ShowS
 show_273 = id
 
 
--- '  { <Vt>.B, <Vt2>.B, <Vt3>.B }[<index>], [<Xn|SP>]'
--- LD3_asisdlso_B3_3b  ld3_advsimd_sngl.xml
--- ST3_asisdlso_B3_3b  st3_advsimd_sngl.xml
+--- 274: '  { <Vt>.B, <Vt2>.B, <Vt3>.B }[<index>], [<Xn|SP>]'
+--- LD3_asisdlso_B3_3b            ld3_advsimd_sngl.xml
+--- ST3_asisdlso_B3_3b            st3_advsimd_sngl.xml
 
 type Logical_274 = '[]
 type Binary_274  = '[]
@@ -6628,9 +6628,9 @@ show_274 :: Fn Logical_274 ShowS
 show_274 = id
 
 
--- '  { <Vt>.D, <Vt2>.D, <Vt3>.D }[<index>], [<Xn|SP>]'
--- LD3_asisdlso_D3_3d  ld3_advsimd_sngl.xml
--- ST3_asisdlso_D3_3d  st3_advsimd_sngl.xml
+--- 275: '  { <Vt>.D, <Vt2>.D, <Vt3>.D }[<index>], [<Xn|SP>]'
+--- LD3_asisdlso_D3_3d            ld3_advsimd_sngl.xml
+--- ST3_asisdlso_D3_3d            st3_advsimd_sngl.xml
 
 type Logical_275 = '[]
 type Binary_275  = '[]
@@ -6649,9 +6649,9 @@ show_275 :: Fn Logical_275 ShowS
 show_275 = id
 
 
--- '  { <Vt>.H, <Vt2>.H, <Vt3>.H }[<index>], [<Xn|SP>]'
--- LD3_asisdlso_H3_3h  ld3_advsimd_sngl.xml
--- ST3_asisdlso_H3_3h  st3_advsimd_sngl.xml
+--- 276: '  { <Vt>.H, <Vt2>.H, <Vt3>.H }[<index>], [<Xn|SP>]'
+--- LD3_asisdlso_H3_3h            ld3_advsimd_sngl.xml
+--- ST3_asisdlso_H3_3h            st3_advsimd_sngl.xml
 
 type Logical_276 = '[]
 type Binary_276  = '[]
@@ -6670,9 +6670,9 @@ show_276 :: Fn Logical_276 ShowS
 show_276 = id
 
 
--- '  { <Vt>.S, <Vt2>.S, <Vt3>.S }[<index>], [<Xn|SP>]'
--- LD3_asisdlso_S3_3s  ld3_advsimd_sngl.xml
--- ST3_asisdlso_S3_3s  st3_advsimd_sngl.xml
+--- 277: '  { <Vt>.S, <Vt2>.S, <Vt3>.S }[<index>], [<Xn|SP>]'
+--- LD3_asisdlso_S3_3s            ld3_advsimd_sngl.xml
+--- ST3_asisdlso_S3_3s            st3_advsimd_sngl.xml
 
 type Logical_277 = '[]
 type Binary_277  = '[]
@@ -6691,9 +6691,9 @@ show_277 :: Fn Logical_277 ShowS
 show_277 = id
 
 
--- '  <Bt>, [<Xn|SP>, (<Wm>|<Xm>), <extend> {<amount>}]'
--- LDR_B_ldst_regoff   ldr_reg_fpsimd.xml
--- STR_B_ldst_regoff   str_reg_fpsimd.xml
+--- 278: '  <Bt>, [<Xn|SP>, (<Wm>|<Xm>), <extend> {<amount>}]'
+--- LDR_B_ldst_regoff             ldr_reg_fpsimd.xml
+--- STR_B_ldst_regoff             str_reg_fpsimd.xml
 
 type Logical_278 = '[]
 type Binary_278  = '[]
@@ -6712,9 +6712,9 @@ show_278 :: Fn Logical_278 ShowS
 show_278 = id
 
 
--- '  <Vd>.<T>, <Vn>.<T>, <Vm>.<Ts>[<index>], #<rotate>'
--- FCMLA_asimdelem_C_H fcmla_advsimd_elt.xml
--- FCMLA_asimdelem_C_S fcmla_advsimd_elt.xml
+--- 279: '  <Vd>.<T>, <Vn>.<T>, <Vm>.<Ts>[<index>], #<rotate>'
+--- FCMLA_asimdelem_C_H           fcmla_advsimd_elt.xml
+--- FCMLA_asimdelem_C_S           fcmla_advsimd_elt.xml
 
 type Logical_279 = '[]
 type Binary_279  = '[]
@@ -6733,10 +6733,10 @@ show_279 :: Fn Logical_279 ShowS
 show_279 = id
 
 
--- '  <Wt>, [<Xn|SP>, (<Wm>|<Xm>), <extend> {<amount>}]'
--- LDRB_32B_ldst_regoffldrb_reg.xml
--- LDRSB_32B_ldst_regoffldrsb_reg.xml
--- STRB_32B_ldst_regoffstrb_reg.xml
+--- 280: '  <Wt>, [<Xn|SP>, (<Wm>|<Xm>), <extend> {<amount>}]'
+--- LDRB_32B_ldst_regoff          ldrb_reg.xml
+--- LDRSB_32B_ldst_regoff         ldrsb_reg.xml
+--- STRB_32B_ldst_regoff          strb_reg.xml
 
 type Logical_280 = '[]
 type Binary_280  = '[]
@@ -6755,8 +6755,8 @@ show_280 :: Fn Logical_280 ShowS
 show_280 = id
 
 
--- '  <Xt>, [<Xn|SP>, (<Wm>|<Xm>), <extend> {<amount>}]'
--- LDRSB_64B_ldst_regoffldrsb_reg.xml
+--- 281: '  <Xt>, [<Xn|SP>, (<Wm>|<Xm>), <extend> {<amount>}]'
+--- LDRSB_64B_ldst_regoff         ldrsb_reg.xml
 
 type Logical_281 = '[]
 type Binary_281  = '[]
@@ -6775,9 +6775,9 @@ show_281 :: Fn Logical_281 ShowS
 show_281 = id
 
 
--- '  <Dt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]'
--- LDR_D_ldst_regoff   ldr_reg_fpsimd.xml
--- STR_D_ldst_regoff   str_reg_fpsimd.xml
+--- 282: '  <Dt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]'
+--- LDR_D_ldst_regoff             ldr_reg_fpsimd.xml
+--- STR_D_ldst_regoff             str_reg_fpsimd.xml
 
 type Logical_282 = '[]
 type Binary_282  = '[]
@@ -6796,9 +6796,9 @@ show_282 :: Fn Logical_282 ShowS
 show_282 = id
 
 
--- '  <Ht>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]'
--- LDR_H_ldst_regoff   ldr_reg_fpsimd.xml
--- STR_H_ldst_regoff   str_reg_fpsimd.xml
+--- 283: '  <Ht>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]'
+--- LDR_H_ldst_regoff             ldr_reg_fpsimd.xml
+--- STR_H_ldst_regoff             str_reg_fpsimd.xml
 
 type Logical_283 = '[]
 type Binary_283  = '[]
@@ -6817,9 +6817,9 @@ show_283 :: Fn Logical_283 ShowS
 show_283 = id
 
 
--- '  <Qt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]'
--- LDR_Q_ldst_regoff   ldr_reg_fpsimd.xml
--- STR_Q_ldst_regoff   str_reg_fpsimd.xml
+--- 284: '  <Qt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]'
+--- LDR_Q_ldst_regoff             ldr_reg_fpsimd.xml
+--- STR_Q_ldst_regoff             str_reg_fpsimd.xml
 
 type Logical_284 = '[]
 type Binary_284  = '[]
@@ -6838,9 +6838,9 @@ show_284 :: Fn Logical_284 ShowS
 show_284 = id
 
 
--- '  <St>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]'
--- LDR_S_ldst_regoff   ldr_reg_fpsimd.xml
--- STR_S_ldst_regoff   str_reg_fpsimd.xml
+--- 285: '  <St>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]'
+--- LDR_S_ldst_regoff             ldr_reg_fpsimd.xml
+--- STR_S_ldst_regoff             str_reg_fpsimd.xml
 
 type Logical_285 = '[]
 type Binary_285  = '[]
@@ -6859,12 +6859,12 @@ show_285 :: Fn Logical_285 ShowS
 show_285 = id
 
 
--- '  <Wt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]'
--- LDR_32_ldst_regoff  ldr_reg_gen.xml
--- LDRH_32_ldst_regoff ldrh_reg.xml
--- LDRSH_32_ldst_regoffldrsh_reg.xml
--- STR_32_ldst_regoff  str_reg_gen.xml
--- STRH_32_ldst_regoff strh_reg.xml
+--- 286: '  <Wt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]'
+--- LDR_32_ldst_regoff            ldr_reg_gen.xml
+--- LDRH_32_ldst_regoff           ldrh_reg.xml
+--- LDRSH_32_ldst_regoff          ldrsh_reg.xml
+--- STR_32_ldst_regoff            str_reg_gen.xml
+--- STRH_32_ldst_regoff           strh_reg.xml
 
 type Logical_286 = '[]
 type Binary_286  = '[]
@@ -6883,11 +6883,11 @@ show_286 :: Fn Logical_286 ShowS
 show_286 = id
 
 
--- '  <Xt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]'
--- LDR_64_ldst_regoff  ldr_reg_gen.xml
--- LDRSH_64_ldst_regoffldrsh_reg.xml
--- LDRSW_64_ldst_regoffldrsw_reg.xml
--- STR_64_ldst_regoff  str_reg_gen.xml
+--- 287: '  <Xt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]'
+--- LDR_64_ldst_regoff            ldr_reg_gen.xml
+--- LDRSH_64_ldst_regoff          ldrsh_reg.xml
+--- LDRSW_64_ldst_regoff          ldrsw_reg.xml
+--- STR_64_ldst_regoff            str_reg_gen.xml
 
 type Logical_287 = '[]
 type Binary_287  = '[]
@@ -6906,12 +6906,12 @@ show_287 :: Fn Logical_287 ShowS
 show_287 = id
 
 
--- '  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T> }, [<Xn|SP>], <Xm>'
--- LD1_asisdlsep_R3_r3 ld1_advsimd_mult.xml
--- LD3_asisdlsep_R3_r  ld3_advsimd_mult.xml
--- LD3R_asisdlsop_RX3_rld3r_advsimd.xml
--- ST1_asisdlsep_R3_r3 st1_advsimd_mult.xml
--- ST3_asisdlsep_R3_r  st3_advsimd_mult.xml
+--- 288: '  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T> }, [<Xn|SP>], <Xm>'
+--- LD1_asisdlsep_R3_r3           ld1_advsimd_mult.xml
+--- LD3_asisdlsep_R3_r            ld3_advsimd_mult.xml
+--- LD3R_asisdlsop_RX3_r          ld3r_advsimd.xml
+--- ST1_asisdlsep_R3_r3           st1_advsimd_mult.xml
+--- ST3_asisdlsep_R3_r            st3_advsimd_mult.xml
 
 type Logical_288 = '[]
 type Binary_288  = '[]
@@ -6930,12 +6930,12 @@ show_288 :: Fn Logical_288 ShowS
 show_288 = id
 
 
--- '  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T> }, [<Xn|SP>], <imm>'
--- LD1_asisdlsep_I3_i3 ld1_advsimd_mult.xml
--- LD3_asisdlsep_I3_i  ld3_advsimd_mult.xml
--- LD3R_asisdlsop_R3_i ld3r_advsimd.xml
--- ST1_asisdlsep_I3_i3 st1_advsimd_mult.xml
--- ST3_asisdlsep_I3_i  st3_advsimd_mult.xml
+--- 289: '  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T> }, [<Xn|SP>], <imm>'
+--- LD1_asisdlsep_I3_i3           ld1_advsimd_mult.xml
+--- LD3_asisdlsep_I3_i            ld3_advsimd_mult.xml
+--- LD3R_asisdlsop_R3_i           ld3r_advsimd.xml
+--- ST1_asisdlsep_I3_i3           st1_advsimd_mult.xml
+--- ST3_asisdlsep_I3_i            st3_advsimd_mult.xml
 
 type Logical_289 = '[]
 type Binary_289  = '[]
@@ -6954,9 +6954,9 @@ show_289 :: Fn Logical_289 ShowS
 show_289 = id
 
 
--- '  { <Vt>.B, <Vt2>.B, <Vt3>.B }[<index>], [<Xn|SP>], #3'
--- LD3_asisdlsop_B3_i3bld3_advsimd_sngl.xml
--- ST3_asisdlsop_B3_i3bst3_advsimd_sngl.xml
+--- 290: '  { <Vt>.B, <Vt2>.B, <Vt3>.B }[<index>], [<Xn|SP>], #3'
+--- LD3_asisdlsop_B3_i3b          ld3_advsimd_sngl.xml
+--- ST3_asisdlsop_B3_i3b          st3_advsimd_sngl.xml
 
 type Logical_290 = '[]
 type Binary_290  = '[]
@@ -6975,9 +6975,9 @@ show_290 :: Fn Logical_290 ShowS
 show_290 = id
 
 
--- '  { <Vt>.H, <Vt2>.H, <Vt3>.H }[<index>], [<Xn|SP>], #6'
--- LD3_asisdlsop_H3_i3hld3_advsimd_sngl.xml
--- ST3_asisdlsop_H3_i3hst3_advsimd_sngl.xml
+--- 291: '  { <Vt>.H, <Vt2>.H, <Vt3>.H }[<index>], [<Xn|SP>], #6'
+--- LD3_asisdlsop_H3_i3h          ld3_advsimd_sngl.xml
+--- ST3_asisdlsop_H3_i3h          st3_advsimd_sngl.xml
 
 type Logical_291 = '[]
 type Binary_291  = '[]
@@ -6996,9 +6996,9 @@ show_291 :: Fn Logical_291 ShowS
 show_291 = id
 
 
--- '  { <Vt>.D, <Vt2>.D, <Vt3>.D }[<index>], [<Xn|SP>], #24'
--- LD3_asisdlsop_D3_i3dld3_advsimd_sngl.xml
--- ST3_asisdlsop_D3_i3dst3_advsimd_sngl.xml
+--- 292: '  { <Vt>.D, <Vt2>.D, <Vt3>.D }[<index>], [<Xn|SP>], #24'
+--- LD3_asisdlsop_D3_i3d          ld3_advsimd_sngl.xml
+--- ST3_asisdlsop_D3_i3d          st3_advsimd_sngl.xml
 
 type Logical_292 = '[]
 type Binary_292  = '[]
@@ -7017,9 +7017,9 @@ show_292 :: Fn Logical_292 ShowS
 show_292 = id
 
 
--- '  { <Vt>.S, <Vt2>.S, <Vt3>.S }[<index>], [<Xn|SP>], #12'
--- LD3_asisdlsop_S3_i3sld3_advsimd_sngl.xml
--- ST3_asisdlsop_S3_i3sst3_advsimd_sngl.xml
+--- 293: '  { <Vt>.S, <Vt2>.S, <Vt3>.S }[<index>], [<Xn|SP>], #12'
+--- LD3_asisdlsop_S3_i3s          ld3_advsimd_sngl.xml
+--- ST3_asisdlsop_S3_i3s          st3_advsimd_sngl.xml
 
 type Logical_293 = '[]
 type Binary_293  = '[]
@@ -7038,9 +7038,9 @@ show_293 :: Fn Logical_293 ShowS
 show_293 = id
 
 
--- '  { <Vt>.B, <Vt2>.B, <Vt3>.B }[<index>], [<Xn|SP>], <Xm>'
--- LD3_asisdlsop_BX3_r3bld3_advsimd_sngl.xml
--- ST3_asisdlsop_BX3_r3bst3_advsimd_sngl.xml
+--- 294: '  { <Vt>.B, <Vt2>.B, <Vt3>.B }[<index>], [<Xn|SP>], <Xm>'
+--- LD3_asisdlsop_BX3_r3b         ld3_advsimd_sngl.xml
+--- ST3_asisdlsop_BX3_r3b         st3_advsimd_sngl.xml
 
 type Logical_294 = '[]
 type Binary_294  = '[]
@@ -7059,9 +7059,9 @@ show_294 :: Fn Logical_294 ShowS
 show_294 = id
 
 
--- '  { <Vt>.D, <Vt2>.D, <Vt3>.D }[<index>], [<Xn|SP>], <Xm>'
--- LD3_asisdlsop_DX3_r3dld3_advsimd_sngl.xml
--- ST3_asisdlsop_DX3_r3dst3_advsimd_sngl.xml
+--- 295: '  { <Vt>.D, <Vt2>.D, <Vt3>.D }[<index>], [<Xn|SP>], <Xm>'
+--- LD3_asisdlsop_DX3_r3d         ld3_advsimd_sngl.xml
+--- ST3_asisdlsop_DX3_r3d         st3_advsimd_sngl.xml
 
 type Logical_295 = '[]
 type Binary_295  = '[]
@@ -7080,9 +7080,9 @@ show_295 :: Fn Logical_295 ShowS
 show_295 = id
 
 
--- '  { <Vt>.H, <Vt2>.H, <Vt3>.H }[<index>], [<Xn|SP>], <Xm>'
--- LD3_asisdlsop_HX3_r3hld3_advsimd_sngl.xml
--- ST3_asisdlsop_HX3_r3hst3_advsimd_sngl.xml
+--- 296: '  { <Vt>.H, <Vt2>.H, <Vt3>.H }[<index>], [<Xn|SP>], <Xm>'
+--- LD3_asisdlsop_HX3_r3h         ld3_advsimd_sngl.xml
+--- ST3_asisdlsop_HX3_r3h         st3_advsimd_sngl.xml
 
 type Logical_296 = '[]
 type Binary_296  = '[]
@@ -7101,9 +7101,9 @@ show_296 :: Fn Logical_296 ShowS
 show_296 = id
 
 
--- '  { <Vt>.S, <Vt2>.S, <Vt3>.S }[<index>], [<Xn|SP>], <Xm>'
--- LD3_asisdlsop_SX3_r3sld3_advsimd_sngl.xml
--- ST3_asisdlsop_SX3_r3sst3_advsimd_sngl.xml
+--- 297: '  { <Vt>.S, <Vt2>.S, <Vt3>.S }[<index>], [<Xn|SP>], <Xm>'
+--- LD3_asisdlsop_SX3_r3s         ld3_advsimd_sngl.xml
+--- ST3_asisdlsop_SX3_r3s         st3_advsimd_sngl.xml
 
 type Logical_297 = '[]
 type Binary_297  = '[]
@@ -7122,12 +7122,12 @@ show_297 :: Fn Logical_297 ShowS
 show_297 = id
 
 
--- '  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T>, <Vt4>.<T> }, [<Xn|SP>]'
--- LD1_asisdlse_R4_4v  ld1_advsimd_mult.xml
--- LD4_asisdlse_R4     ld4_advsimd_mult.xml
--- LD4R_asisdlso_R4    ld4r_advsimd.xml
--- ST1_asisdlse_R4_4v  st1_advsimd_mult.xml
--- ST4_asisdlse_R4     st4_advsimd_mult.xml
+--- 298: '  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T>, <Vt4>.<T> }, [<Xn|SP>]'
+--- LD1_asisdlse_R4_4v            ld1_advsimd_mult.xml
+--- LD4_asisdlse_R4               ld4_advsimd_mult.xml
+--- LD4R_asisdlso_R4              ld4r_advsimd.xml
+--- ST1_asisdlse_R4_4v            st1_advsimd_mult.xml
+--- ST4_asisdlse_R4               st4_advsimd_mult.xml
 
 type Logical_298 = '[]
 type Binary_298  = '[]
@@ -7146,9 +7146,9 @@ show_298 :: Fn Logical_298 ShowS
 show_298 = id
 
 
--- '  { <Vt>.B, <Vt2>.B, <Vt3>.B, <Vt4>.B }[<index>], [<Xn|SP>]'
--- LD4_asisdlso_B4_4b  ld4_advsimd_sngl.xml
--- ST4_asisdlso_B4_4b  st4_advsimd_sngl.xml
+--- 299: '  { <Vt>.B, <Vt2>.B, <Vt3>.B, <Vt4>.B }[<index>], [<Xn|SP>]'
+--- LD4_asisdlso_B4_4b            ld4_advsimd_sngl.xml
+--- ST4_asisdlso_B4_4b            st4_advsimd_sngl.xml
 
 type Logical_299 = '[]
 type Binary_299  = '[]
@@ -7167,9 +7167,9 @@ show_299 :: Fn Logical_299 ShowS
 show_299 = id
 
 
--- '  { <Vt>.D, <Vt2>.D, <Vt3>.D, <Vt4>.D }[<index>], [<Xn|SP>]'
--- LD4_asisdlso_D4_4d  ld4_advsimd_sngl.xml
--- ST4_asisdlso_D4_4d  st4_advsimd_sngl.xml
+--- 300: '  { <Vt>.D, <Vt2>.D, <Vt3>.D, <Vt4>.D }[<index>], [<Xn|SP>]'
+--- LD4_asisdlso_D4_4d            ld4_advsimd_sngl.xml
+--- ST4_asisdlso_D4_4d            st4_advsimd_sngl.xml
 
 type Logical_300 = '[]
 type Binary_300  = '[]
@@ -7188,9 +7188,9 @@ show_300 :: Fn Logical_300 ShowS
 show_300 = id
 
 
--- '  { <Vt>.H, <Vt2>.H, <Vt3>.H, <Vt4>.H }[<index>], [<Xn|SP>]'
--- LD4_asisdlso_H4_4h  ld4_advsimd_sngl.xml
--- ST4_asisdlso_H4_4h  st4_advsimd_sngl.xml
+--- 301: '  { <Vt>.H, <Vt2>.H, <Vt3>.H, <Vt4>.H }[<index>], [<Xn|SP>]'
+--- LD4_asisdlso_H4_4h            ld4_advsimd_sngl.xml
+--- ST4_asisdlso_H4_4h            st4_advsimd_sngl.xml
 
 type Logical_301 = '[]
 type Binary_301  = '[]
@@ -7209,9 +7209,9 @@ show_301 :: Fn Logical_301 ShowS
 show_301 = id
 
 
--- '  { <Vt>.S, <Vt2>.S, <Vt3>.S, <Vt4>.S }[<index>], [<Xn|SP>]'
--- LD4_asisdlso_S4_4s  ld4_advsimd_sngl.xml
--- ST4_asisdlso_S4_4s  st4_advsimd_sngl.xml
+--- 302: '  { <Vt>.S, <Vt2>.S, <Vt3>.S, <Vt4>.S }[<index>], [<Xn|SP>]'
+--- LD4_asisdlso_S4_4s            ld4_advsimd_sngl.xml
+--- ST4_asisdlso_S4_4s            st4_advsimd_sngl.xml
 
 type Logical_302 = '[]
 type Binary_302  = '[]
@@ -7230,9 +7230,9 @@ show_302 :: Fn Logical_302 ShowS
 show_302 = id
 
 
--- '  <Vd>.<Ta>, { <Vn>.16B, <Vn+1>.16B, <Vn+2>.16B }, <Vm>.<Ta>'
--- TBL_asimdtbl_L3_3   tbl_advsimd.xml
--- TBX_asimdtbl_L3_3   tbx_advsimd.xml
+--- 303: '  <Vd>.<Ta>, { <Vn>.16B, <Vn+1>.16B, <Vn+2>.16B }, <Vm>.<Ta>'
+--- TBL_asimdtbl_L3_3             tbl_advsimd.xml
+--- TBX_asimdtbl_L3_3             tbx_advsimd.xml
 
 type Logical_303 = '[]
 type Binary_303  = '[]
@@ -7251,9 +7251,9 @@ show_303 :: Fn Logical_303 ShowS
 show_303 = id
 
 
--- '  { <Vt>.B, <Vt2>.B, <Vt3>.B, <Vt4>.B }[<index>], [<Xn|SP>], #4'
--- LD4_asisdlsop_B4_i4bld4_advsimd_sngl.xml
--- ST4_asisdlsop_B4_i4bst4_advsimd_sngl.xml
+--- 304: '  { <Vt>.B, <Vt2>.B, <Vt3>.B, <Vt4>.B }[<index>], [<Xn|SP>], #4'
+--- LD4_asisdlsop_B4_i4b          ld4_advsimd_sngl.xml
+--- ST4_asisdlsop_B4_i4b          st4_advsimd_sngl.xml
 
 type Logical_304 = '[]
 type Binary_304  = '[]
@@ -7272,9 +7272,9 @@ show_304 :: Fn Logical_304 ShowS
 show_304 = id
 
 
--- '  { <Vt>.H, <Vt2>.H, <Vt3>.H, <Vt4>.H }[<index>], [<Xn|SP>], #8'
--- LD4_asisdlsop_H4_i4hld4_advsimd_sngl.xml
--- ST4_asisdlsop_H4_i4hst4_advsimd_sngl.xml
+--- 305: '  { <Vt>.H, <Vt2>.H, <Vt3>.H, <Vt4>.H }[<index>], [<Xn|SP>], #8'
+--- LD4_asisdlsop_H4_i4h          ld4_advsimd_sngl.xml
+--- ST4_asisdlsop_H4_i4h          st4_advsimd_sngl.xml
 
 type Logical_305 = '[]
 type Binary_305  = '[]
@@ -7293,12 +7293,12 @@ show_305 :: Fn Logical_305 ShowS
 show_305 = id
 
 
--- '  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T>, <Vt4>.<T> }, [<Xn|SP>], <Xm>'
--- LD1_asisdlsep_R4_r4 ld1_advsimd_mult.xml
--- LD4_asisdlsep_R4_r  ld4_advsimd_mult.xml
--- LD4R_asisdlsop_RX4_rld4r_advsimd.xml
--- ST1_asisdlsep_R4_r4 st1_advsimd_mult.xml
--- ST4_asisdlsep_R4_r  st4_advsimd_mult.xml
+--- 306: '  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T>, <Vt4>.<T> }, [<Xn|SP>], <Xm>'
+--- LD1_asisdlsep_R4_r4           ld1_advsimd_mult.xml
+--- LD4_asisdlsep_R4_r            ld4_advsimd_mult.xml
+--- LD4R_asisdlsop_RX4_r          ld4r_advsimd.xml
+--- ST1_asisdlsep_R4_r4           st1_advsimd_mult.xml
+--- ST4_asisdlsep_R4_r            st4_advsimd_mult.xml
 
 type Logical_306 = '[]
 type Binary_306  = '[]
@@ -7317,9 +7317,9 @@ show_306 :: Fn Logical_306 ShowS
 show_306 = id
 
 
--- '  { <Vt>.D, <Vt2>.D, <Vt3>.D, <Vt4>.D }[<index>], [<Xn|SP>], #32'
--- LD4_asisdlsop_D4_i4dld4_advsimd_sngl.xml
--- ST4_asisdlsop_D4_i4dst4_advsimd_sngl.xml
+--- 307: '  { <Vt>.D, <Vt2>.D, <Vt3>.D, <Vt4>.D }[<index>], [<Xn|SP>], #32'
+--- LD4_asisdlsop_D4_i4d          ld4_advsimd_sngl.xml
+--- ST4_asisdlsop_D4_i4d          st4_advsimd_sngl.xml
 
 type Logical_307 = '[]
 type Binary_307  = '[]
@@ -7338,9 +7338,9 @@ show_307 :: Fn Logical_307 ShowS
 show_307 = id
 
 
--- '  { <Vt>.S, <Vt2>.S, <Vt3>.S, <Vt4>.S }[<index>], [<Xn|SP>], #16'
--- LD4_asisdlsop_S4_i4sld4_advsimd_sngl.xml
--- ST4_asisdlsop_S4_i4sst4_advsimd_sngl.xml
+--- 308: '  { <Vt>.S, <Vt2>.S, <Vt3>.S, <Vt4>.S }[<index>], [<Xn|SP>], #16'
+--- LD4_asisdlsop_S4_i4s          ld4_advsimd_sngl.xml
+--- ST4_asisdlsop_S4_i4s          st4_advsimd_sngl.xml
 
 type Logical_308 = '[]
 type Binary_308  = '[]
@@ -7359,12 +7359,12 @@ show_308 :: Fn Logical_308 ShowS
 show_308 = id
 
 
--- '  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T>, <Vt4>.<T> }, [<Xn|SP>], <imm>'
--- LD1_asisdlsep_I4_i4 ld1_advsimd_mult.xml
--- LD4_asisdlsep_I4_i  ld4_advsimd_mult.xml
--- LD4R_asisdlsop_R4_i ld4r_advsimd.xml
--- ST1_asisdlsep_I4_i4 st1_advsimd_mult.xml
--- ST4_asisdlsep_I4_i  st4_advsimd_mult.xml
+--- 309: '  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T>, <Vt4>.<T> }, [<Xn|SP>], <imm>'
+--- LD1_asisdlsep_I4_i4           ld1_advsimd_mult.xml
+--- LD4_asisdlsep_I4_i            ld4_advsimd_mult.xml
+--- LD4R_asisdlsop_R4_i           ld4r_advsimd.xml
+--- ST1_asisdlsep_I4_i4           st1_advsimd_mult.xml
+--- ST4_asisdlsep_I4_i            st4_advsimd_mult.xml
 
 type Logical_309 = '[]
 type Binary_309  = '[]
@@ -7383,9 +7383,9 @@ show_309 :: Fn Logical_309 ShowS
 show_309 = id
 
 
--- '  { <Vt>.B, <Vt2>.B, <Vt3>.B, <Vt4>.B }[<index>], [<Xn|SP>], <Xm>'
--- LD4_asisdlsop_BX4_r4bld4_advsimd_sngl.xml
--- ST4_asisdlsop_BX4_r4bst4_advsimd_sngl.xml
+--- 310: '  { <Vt>.B, <Vt2>.B, <Vt3>.B, <Vt4>.B }[<index>], [<Xn|SP>], <Xm>'
+--- LD4_asisdlsop_BX4_r4b         ld4_advsimd_sngl.xml
+--- ST4_asisdlsop_BX4_r4b         st4_advsimd_sngl.xml
 
 type Logical_310 = '[]
 type Binary_310  = '[]
@@ -7404,9 +7404,9 @@ show_310 :: Fn Logical_310 ShowS
 show_310 = id
 
 
--- '  { <Vt>.D, <Vt2>.D, <Vt3>.D, <Vt4>.D }[<index>], [<Xn|SP>], <Xm>'
--- LD4_asisdlsop_DX4_r4dld4_advsimd_sngl.xml
--- ST4_asisdlsop_DX4_r4dst4_advsimd_sngl.xml
+--- 311: '  { <Vt>.D, <Vt2>.D, <Vt3>.D, <Vt4>.D }[<index>], [<Xn|SP>], <Xm>'
+--- LD4_asisdlsop_DX4_r4d         ld4_advsimd_sngl.xml
+--- ST4_asisdlsop_DX4_r4d         st4_advsimd_sngl.xml
 
 type Logical_311 = '[]
 type Binary_311  = '[]
@@ -7425,9 +7425,9 @@ show_311 :: Fn Logical_311 ShowS
 show_311 = id
 
 
--- '  { <Vt>.H, <Vt2>.H, <Vt3>.H, <Vt4>.H }[<index>], [<Xn|SP>], <Xm>'
--- LD4_asisdlsop_HX4_r4hld4_advsimd_sngl.xml
--- ST4_asisdlsop_HX4_r4hst4_advsimd_sngl.xml
+--- 312: '  { <Vt>.H, <Vt2>.H, <Vt3>.H, <Vt4>.H }[<index>], [<Xn|SP>], <Xm>'
+--- LD4_asisdlsop_HX4_r4h         ld4_advsimd_sngl.xml
+--- ST4_asisdlsop_HX4_r4h         st4_advsimd_sngl.xml
 
 type Logical_312 = '[]
 type Binary_312  = '[]
@@ -7446,9 +7446,9 @@ show_312 :: Fn Logical_312 ShowS
 show_312 = id
 
 
--- '  { <Vt>.S, <Vt2>.S, <Vt3>.S, <Vt4>.S }[<index>], [<Xn|SP>], <Xm>'
--- LD4_asisdlsop_SX4_r4sld4_advsimd_sngl.xml
--- ST4_asisdlsop_SX4_r4sst4_advsimd_sngl.xml
+--- 313: '  { <Vt>.S, <Vt2>.S, <Vt3>.S, <Vt4>.S }[<index>], [<Xn|SP>], <Xm>'
+--- LD4_asisdlsop_SX4_r4s         ld4_advsimd_sngl.xml
+--- ST4_asisdlsop_SX4_r4s         st4_advsimd_sngl.xml
 
 type Logical_313 = '[]
 type Binary_313  = '[]
@@ -7467,8 +7467,8 @@ show_313 :: Fn Logical_313 ShowS
 show_313 = id
 
 
--- '  (<prfop>|#<imm5>), [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]'
--- PRFM_P_ldst_regoff  prfm_reg.xml
+--- 314: '  (<prfop>|#<imm5>), [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]'
+--- PRFM_P_ldst_regoff            prfm_reg.xml
 
 type Logical_314 = '[]
 type Binary_314  = '[]
@@ -7487,9 +7487,9 @@ show_314 :: Fn Logical_314 ShowS
 show_314 = id
 
 
--- '  <Vd>.<Ta>, { <Vn>.16B, <Vn+1>.16B, <Vn+2>.16B, <Vn+3>.16B }, <Vm>.<Ta>'
--- TBL_asimdtbl_L4_4   tbl_advsimd.xml
--- TBX_asimdtbl_L4_4   tbx_advsimd.xml
+--- 315: '  <Vd>.<Ta>, { <Vn>.16B, <Vn+1>.16B, <Vn+2>.16B, <Vn+3>.16B }, <Vm>.<Ta>'
+--- TBL_asimdtbl_L4_4             tbl_advsimd.xml
+--- TBX_asimdtbl_L4_4             tbx_advsimd.xml
 
 type Logical_315 = '[]
 type Binary_315  = '[]

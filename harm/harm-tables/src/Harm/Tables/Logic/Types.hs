@@ -1,7 +1,5 @@
 {-# LANGUAGE KindSignatures #-}
 {-# LANGUAGE DataKinds #-}
-{-# LANGUAGE PolyKinds #-}
-{-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE TypeOperators #-}
 {-# LANGUAGE TypeFamilies #-}
 
@@ -10,7 +8,7 @@ module Harm.Tables.Logic.Types
     , FnW
     ) where
 
-import Harm.Tables.Types
+import Harm.Types
 import GHC.TypeLits
 
 type family Fn (args :: [*]) (r :: *) :: *
