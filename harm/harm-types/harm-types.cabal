@@ -11,6 +11,10 @@ library
   default-language:   Haskell2010
 
   exposed-modules:    Harm.Types
+                    , Harm.Types.W
+                    , Harm.Types.Operands
+                    , Harm.Types.Pattern
 
   build-depends:      base >=4.8 && <5
+                    , ghc-prim
                     , deepseq

@@ -1,4 +1,4 @@
-{ mkDerivation, attoparsec, base, bytestring, cereal, elf
+{ mkDerivation, arm-mras, attoparsec, base, bytestring, cereal, elf
 , harm-tables, harm-types, stdenv, text
 }:
 mkDerivation {
@@ -6,7 +6,8 @@ mkDerivation {
   version = "0.1";
   src = ./.;
   libraryHaskellDepends = [
-    attoparsec base bytestring cereal elf harm-tables harm-types text
+    arm-mras attoparsec base bytestring cereal elf harm-tables
+    harm-types text
   ];
   license = stdenv.lib.licenses.mit;
 }

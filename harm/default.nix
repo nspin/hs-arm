@@ -5,7 +5,7 @@ with myLib;
 rec {
 
   harm = haskellPackages.callPackage ./harm {
-    inherit harm-types harm-tables;
+    inherit harm-types harm-tables arm-mras;
   };
 
   harm-types = haskellPackages.callPackage ./harm-types {};
@@ -17,8 +17,9 @@ rec {
   harm-tables-src = mergeFrom ./harm-tables [ "harm-tables.cabal" "src" ] (stdenv.mkDerivation {
     name = "harm-tables-src";
     gen = harm-tables-gen;
+    logic = ./harm-tables/src/Harm/Tables/Logic.hs;
     builder = builtins.toFile "builder.sh" ''
-      $gen/bin/gen-harm-tables $out
+      $gen/bin/gen-harm-tables $out < $logic
     '';
   });
 

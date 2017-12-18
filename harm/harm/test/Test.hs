@@ -12,6 +12,6 @@ main = do
     (start, t) <- elfText busybox
     forM_ (zip [start, start + 4..] t) $ \(offset, w) -> do
         putStrLn $ hex offset ++ "  " ++
-            case encodingOf w of
+            case decode w of
                 Nothing -> hex w
-                Just enc -> show enc
+                Just insn -> showAsm insn
