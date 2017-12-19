@@ -1,2 +1,3 @@
 gen
 test/nix-results
+!nix-results/**/gen
