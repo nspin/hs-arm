@@ -12,3 +12,4 @@ root="$here/../nix-results"
 mkdir -p "$root"
 
 go_rw arm-mras.arm-mras-values-src
+go_rw harm.harm-tables-src
