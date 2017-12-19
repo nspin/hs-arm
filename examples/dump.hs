@@ -9,6 +9,6 @@ main = do
     (start, t) <- elfText "../test/nix-results/test.busybox/busybox"
     forM_ (zip [start, start + 4..] t) $ \(offset, w) -> do
         putStrLn $ hex offset ++ "  " ++
-            case encodingOf w of
+            case decode w of
                 Nothing -> hex w
-                Just enc -> show enc
+                Just insn -> show insn

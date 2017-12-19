@@ -83,7 +83,7 @@ instance KnownNat n => FiniteBits (W n) where
     finiteBitSize = const $ natValInt' (proxy# :: Proxy# n)
 
 toW :: forall n. KnownNat n => Word32 -> W n
-toW w = W $ w `mod` shiftL 0xffffffff (natValInt' (proxy# :: Proxy# n))
+toW w = W $ w .&. complement (shiftL 0xffffffff (natValInt' (proxy# :: Proxy# n)))
 
 lift :: KnownNat n => (Word32 -> Word32 -> Word32) -> W n -> W n -> W n
 lift op = ((.).(.)) toW (op `on` unW)
