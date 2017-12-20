@@ -10,7 +10,7 @@ This code generation process is complex, but [nix](https://nixos.org/nix/) makes
 
 - **`asl`**: Library for parsing and interpreting ARM ASL (Architecture Specification Language).
 - **`harm`**:
-    - **`harm-types`**: Types describing ARM operands.
+    - **`harm-types`**: Types describing ARM instructions and operands.
     - **`harm-tables-gen`**: Program whose input is the MRAS and a Haskell file containing logic written in an EDSL describing the (dis)assembly and parsing of each instruction encoding, and whose output is the tables needed to (dis)assemble and parse ARM code and assembly.
     - **`harm-tables`**: The output of `harm-tables-gen`.
     - **`harm`**: An interface to `harm-tables`, along with various other analysis utilities.
@@ -24,7 +24,7 @@ This code generation process is complex, but [nix](https://nixos.org/nix/) makes
 
 # Example
 
-Print mnemonic and identifier of every instruction in an object file:
+Decode instructions from an object file:
 
 ```haskell
 import Harm
@@ -36,21 +36,21 @@ main = do
     (start, t) <- elfText "test/nix-results/test.busybox/busybox"
     forM_ (zip [start, start + 4..] t) $ \(offset, w) -> do
         putStrLn $ hex offset ++ "  " ++
-            case encodingOf w of
+            case decode w of
                 Nothing -> hex w
-                Just enc -> show enc
+                Just insn -> show insn
 ```
 ```
-0000000000400200  SUB SUB_64_addsub_imm
-0000000000400204  SUBS SUBS_32S_addsub_imm
-0000000000400208  CSINC CSINC_32_condsel
-000000000040020c  ANDS ANDS_32_log_shift
-0000000000400210  STP STP_64_ldstpair_pre
-0000000000400214  ADD ADD_64_addsub_imm
-0000000000400218  STP STP_64_ldstpair_off
-000000000040021c  ADRP ADRP_only_pcreladdr
-0000000000400220  ADD ADD_64_addsub_imm
-0000000000400224  LDR LDR_64_ldst_pos
+0000000000400200  SUB (SUB_64_addsub_imm SP SP 1600 Nothing)
+0000000000400204  SUBS (SUBS_32S_addsub_imm WZR W0 1 Nothing)
+0000000000400208  CSINC (CSINC_32_condsel W0 WZR WZR LE)
+000000000040020c  ANDS (ANDS_32_log_shift WZR W1 W0 Nothing)
+0000000000400210  STP (STP_64_ldstpair_pre X29 X30 SP (-48))
+0000000000400214  ADD (ADD_64_addsub_imm X29 SP 0)
+0000000000400218  STP (STP_64_ldstpair_off X19 X20 SP 16)
+000000000040021c  ADRP (ADRP_only_pcreladdr X19 5824512)
+0000000000400220  ADD (ADD_64_addsub_imm X3 X19 3424)
+0000000000400224  LDR (LDR_64_ldst_pos X4 X3)
 ...
 ```
 
