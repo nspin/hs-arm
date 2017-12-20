@@ -2,7 +2,8 @@
 
 Arm has released a [MRAS (machine-readable architecture specification) for ARMv8.3-A](https://developer.arm.com/products/architecture/a-profile/exploration-tools) to the public.
 
-This repository contains an in-progress library for (dis)assembling and analyzing ARMv8.3-A code, in-progress implementation of ARM ASL (architecture specification language) and collection of Haskell libraries programs whose ultimate output is a set of Haskell expressions containing the information in the MRAS.
+This repository contains an in-progress library for (dis)assembling and analyzing ARMv8.3-A code, part of which is generated from the MRAS.
+This repository also contains an in-progress implementation of ARM ASL (architecture specification language).
 
 ## Structure
 
@@ -22,7 +23,7 @@ This code generation process is complex, but [nix](https://nixos.org/nix/) makes
     - **`arm-mras-values`**: Library containing expressions of the types found in `types`. Includes the output of `values-gen`.
     - **`arm-mras`**: Library exporting modules from `arm-mras-types` and `arm-mras-values`, along with some useful functions for using the specification.
 
-# Example
+# Examples
 
 Decode instructions from an object file:
 
@@ -30,15 +31,13 @@ Decode instructions from an object file:
 import Harm
 import Harm.Extra
 import Control.Monad
+import Data.Maybe
 
 main :: IO ()
 main = do
-    (start, t) <- elfText "test/nix-results/test.busybox/busybox"
-    forM_ (zip [start, start + 4..] t) $ \(offset, w) -> do
-        putStrLn $ hex offset ++ "  " ++
-            case decode w of
-                Nothing -> hex w
-                Just insn -> show insn
+    (start, text) <- elfText "test/nix-results/test.busybox/busybox"
+    forM_ (zip [start, start + 4..] text) $ \(offset, w) ->
+        putStrLn $ hex offset ++ "  " ++ maybe (hex w) show (decode w)
 ```
 ```
 0000000000400200  SUB (SUB_64_addsub_imm SP SP 1600 Nothing)
