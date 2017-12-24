@@ -52,8 +52,8 @@ parse_0 :: Fn Logical_0 a -> Parser a
 parse_0 f = do
     return $ f
 
-show_0 :: Fn Logical_0 ShowS
-show_0 = id
+show_0 :: Fn Logical_0 (String, ShowS)
+show_0 = simple $ id
 
 
 --- 1: '  <Xd>'
@@ -81,8 +81,8 @@ parse_1 :: Fn Logical_1 a -> Parser a
 parse_1 f = do
     return $ f
 
-show_1 :: Fn Logical_1 ShowS
-show_1 = id
+show_1 :: Fn Logical_1 (String, ShowS)
+show_1 = simple $ id
 
 
 --- 2: '  <Xn>'
@@ -106,8 +106,8 @@ parse_2 :: Fn Logical_2 a -> Parser a
 parse_2 f = do
     return $ f
 
-show_2 :: Fn Logical_2 ShowS
-show_2 = id
+show_2 :: Fn Logical_2 (String, ShowS)
+show_2 = simple $ id
 
 
 --- 3: ' CSYNC'
@@ -126,8 +126,8 @@ parse_3 :: Fn Logical_3 a -> Parser a
 parse_3 f = do
     return $ f
 
-show_3 :: Fn Logical_3 ShowS
-show_3 = id
+show_3 :: Fn Logical_3 (String, ShowS)
+show_3 = simple $ id
 
 
 --- 4: '  #<imm>'
@@ -153,8 +153,8 @@ parse_4 :: Fn Logical_4 a -> Parser a
 parse_4 f = do
     return $ f
 
-show_4 :: Fn Logical_4 ShowS
-show_4 = id
+show_4 :: Fn Logical_4 (String, ShowS)
+show_4 = simple $ id
 
 
 --- 5: '  {<Xn>}'
@@ -173,8 +173,8 @@ parse_5 :: Fn Logical_5 a -> Parser a
 parse_5 f = do
     return $ f
 
-show_5 :: Fn Logical_5 ShowS
-show_5 = id
+show_5 :: Fn Logical_5 (String, ShowS)
+show_5 = simple $ id
 
 
 --- 6: '  <label>'
@@ -194,8 +194,8 @@ parse_6 :: Fn Logical_6 a -> Parser a
 parse_6 f = do
     return $ f
 
-show_6 :: Fn Logical_6 ShowS
-show_6 = id
+show_6 :: Fn Logical_6 (String, ShowS)
+show_6 = simple $ id
 
 
 --- 7: '  {#<imm>}'
@@ -217,8 +217,8 @@ parse_7 :: Fn Logical_7 a -> Parser a
 parse_7 f = do
     return $ f
 
-show_7 :: Fn Logical_7 ShowS
-show_7 = id
+show_7 :: Fn Logical_7 (String, ShowS)
+show_7 = simple $ id
 
 
 --- 8: '  <Dd>, <Dn>'
@@ -247,8 +247,8 @@ parse_8 :: Fn Logical_8 a -> Parser a
 parse_8 f = do
     return $ f
 
-show_8 :: Fn Logical_8 ShowS
-show_8 = id
+show_8 :: Fn Logical_8 (String, ShowS)
+show_8 = simple $ id
 
 
 --- 9: '  <Dd>, <Hn>'
@@ -267,8 +267,8 @@ parse_9 :: Fn Logical_9 a -> Parser a
 parse_9 f = do
     return $ f
 
-show_9 :: Fn Logical_9 ShowS
-show_9 = id
+show_9 :: Fn Logical_9 (String, ShowS)
+show_9 = simple $ id
 
 
 --- 10: '  <Dd>, <Sn>'
@@ -287,8 +287,8 @@ parse_10 :: Fn Logical_10 a -> Parser a
 parse_10 f = do
     return $ f
 
-show_10 :: Fn Logical_10 ShowS
-show_10 = id
+show_10 :: Fn Logical_10 (String, ShowS)
+show_10 = simple $ id
 
 
 --- 11: '  <Dd>, <Wn>'
@@ -308,8 +308,8 @@ parse_11 :: Fn Logical_11 a -> Parser a
 parse_11 f = do
     return $ f
 
-show_11 :: Fn Logical_11 ShowS
-show_11 = id
+show_11 :: Fn Logical_11 (String, ShowS)
+show_11 = simple $ id
 
 
 --- 12: '  <Dd>, <Xn>'
@@ -330,8 +330,8 @@ parse_12 :: Fn Logical_12 a -> Parser a
 parse_12 f = do
     return $ f
 
-show_12 :: Fn Logical_12 ShowS
-show_12 = id
+show_12 :: Fn Logical_12 (String, ShowS)
+show_12 = simple $ id
 
 
 --- 13: '  <Dn>, #0.0'
@@ -351,8 +351,8 @@ parse_13 :: Fn Logical_13 a -> Parser a
 parse_13 f = do
     return $ f
 
-show_13 :: Fn Logical_13 ShowS
-show_13 = id
+show_13 :: Fn Logical_13 (String, ShowS)
+show_13 = simple $ id
 
 
 --- 14: '  <Dn>, <Dm>'
@@ -372,8 +372,8 @@ parse_14 :: Fn Logical_14 a -> Parser a
 parse_14 f = do
     return $ f
 
-show_14 :: Fn Logical_14 ShowS
-show_14 = id
+show_14 :: Fn Logical_14 (String, ShowS)
+show_14 = simple $ id
 
 
 --- 15: '  <Hd>, <Dn>'
@@ -392,8 +392,8 @@ parse_15 :: Fn Logical_15 a -> Parser a
 parse_15 f = do
     return $ f
 
-show_15 :: Fn Logical_15 ShowS
-show_15 = id
+show_15 :: Fn Logical_15 (String, ShowS)
+show_15 = simple $ id
 
 
 --- 16: '  <Hd>, <Hn>'
@@ -437,8 +437,8 @@ parse_16 :: Fn Logical_16 a -> Parser a
 parse_16 f = do
     return $ f
 
-show_16 :: Fn Logical_16 ShowS
-show_16 = id
+show_16 :: Fn Logical_16 (String, ShowS)
+show_16 = simple $ id
 
 
 --- 17: '  <Hd>, <Sn>'
@@ -457,8 +457,8 @@ parse_17 :: Fn Logical_17 a -> Parser a
 parse_17 f = do
     return $ f
 
-show_17 :: Fn Logical_17 ShowS
-show_17 = id
+show_17 :: Fn Logical_17 (String, ShowS)
+show_17 = simple $ id
 
 
 --- 18: '  <Hd>, <Wn>'
@@ -479,8 +479,8 @@ parse_18 :: Fn Logical_18 a -> Parser a
 parse_18 f = do
     return $ f
 
-show_18 :: Fn Logical_18 ShowS
-show_18 = id
+show_18 :: Fn Logical_18 (String, ShowS)
+show_18 = simple $ id
 
 
 --- 19: '  <Hd>, <Xn>'
@@ -501,8 +501,8 @@ parse_19 :: Fn Logical_19 a -> Parser a
 parse_19 f = do
     return $ f
 
-show_19 :: Fn Logical_19 ShowS
-show_19 = id
+show_19 :: Fn Logical_19 (String, ShowS)
+show_19 = simple $ id
 
 
 --- 20: '  <Hn>, #0.0'
@@ -522,8 +522,8 @@ parse_20 :: Fn Logical_20 a -> Parser a
 parse_20 f = do
     return $ f
 
-show_20 :: Fn Logical_20 ShowS
-show_20 = id
+show_20 :: Fn Logical_20 (String, ShowS)
+show_20 = simple $ id
 
 
 --- 21: '  <Hn>, <Hm>'
@@ -543,8 +543,8 @@ parse_21 :: Fn Logical_21 a -> Parser a
 parse_21 f = do
     return $ f
 
-show_21 :: Fn Logical_21 ShowS
-show_21 = id
+show_21 :: Fn Logical_21 (String, ShowS)
+show_21 = simple $ id
 
 
 --- 22: '  <Sd>, <Dn>'
@@ -563,8 +563,8 @@ parse_22 :: Fn Logical_22 a -> Parser a
 parse_22 f = do
     return $ f
 
-show_22 :: Fn Logical_22 ShowS
-show_22 = id
+show_22 :: Fn Logical_22 (String, ShowS)
+show_22 = simple $ id
 
 
 --- 23: '  <Sd>, <Hn>'
@@ -583,8 +583,8 @@ parse_23 :: Fn Logical_23 a -> Parser a
 parse_23 f = do
     return $ f
 
-show_23 :: Fn Logical_23 ShowS
-show_23 = id
+show_23 :: Fn Logical_23 (String, ShowS)
+show_23 = simple $ id
 
 
 --- 24: '  <Sd>, <Sn>'
@@ -614,8 +614,8 @@ parse_24 :: Fn Logical_24 a -> Parser a
 parse_24 f = do
     return $ f
 
-show_24 :: Fn Logical_24 ShowS
-show_24 = id
+show_24 :: Fn Logical_24 (String, ShowS)
+show_24 = simple $ id
 
 
 --- 25: '  <Sd>, <Wn>'
@@ -636,8 +636,8 @@ parse_25 :: Fn Logical_25 a -> Parser a
 parse_25 f = do
     return $ f
 
-show_25 :: Fn Logical_25 ShowS
-show_25 = id
+show_25 :: Fn Logical_25 (String, ShowS)
+show_25 = simple $ id
 
 
 --- 26: '  <Sd>, <Xn>'
@@ -657,8 +657,8 @@ parse_26 :: Fn Logical_26 a -> Parser a
 parse_26 f = do
     return $ f
 
-show_26 :: Fn Logical_26 ShowS
-show_26 = id
+show_26 :: Fn Logical_26 (String, ShowS)
+show_26 = simple $ id
 
 
 --- 27: '  <Sn>, #0.0'
@@ -678,8 +678,8 @@ parse_27 :: Fn Logical_27 a -> Parser a
 parse_27 f = do
     return $ f
 
-show_27 :: Fn Logical_27 ShowS
-show_27 = id
+show_27 :: Fn Logical_27 (String, ShowS)
+show_27 = simple $ id
 
 
 --- 28: '  <Sn>, <Sm>'
@@ -699,8 +699,8 @@ parse_28 :: Fn Logical_28 a -> Parser a
 parse_28 f = do
     return $ f
 
-show_28 :: Fn Logical_28 ShowS
-show_28 = id
+show_28 :: Fn Logical_28 (String, ShowS)
+show_28 = simple $ id
 
 
 --- 29: '  <Wd>, <Dn>'
@@ -729,8 +729,8 @@ parse_29 :: Fn Logical_29 a -> Parser a
 parse_29 f = do
     return $ f
 
-show_29 :: Fn Logical_29 ShowS
-show_29 = id
+show_29 :: Fn Logical_29 (String, ShowS)
+show_29 = simple $ id
 
 
 --- 30: '  <Wd>, <Hn>'
@@ -759,8 +759,8 @@ parse_30 :: Fn Logical_30 a -> Parser a
 parse_30 f = do
     return $ f
 
-show_30 :: Fn Logical_30 ShowS
-show_30 = id
+show_30 :: Fn Logical_30 (String, ShowS)
+show_30 = simple $ id
 
 
 --- 31: '  <Wd>, <Sn>'
@@ -789,8 +789,8 @@ parse_31 :: Fn Logical_31 a -> Parser a
 parse_31 f = do
     return $ f
 
-show_31 :: Fn Logical_31 ShowS
-show_31 = id
+show_31 :: Fn Logical_31 (String, ShowS)
+show_31 = simple $ id
 
 
 --- 32: '  <Wd>, <Wn>'
@@ -813,8 +813,8 @@ parse_32 :: Fn Logical_32 a -> Parser a
 parse_32 f = do
     return $ f
 
-show_32 :: Fn Logical_32 ShowS
-show_32 = id
+show_32 :: Fn Logical_32 (String, ShowS)
+show_32 = simple $ id
 
 
 --- 33: '  <Xd>, <Dn>'
@@ -843,8 +843,8 @@ parse_33 :: Fn Logical_33 a -> Parser a
 parse_33 f = do
     return $ f
 
-show_33 :: Fn Logical_33 ShowS
-show_33 = id
+show_33 :: Fn Logical_33 (String, ShowS)
+show_33 = simple $ id
 
 
 --- 34: '  <Xd>, <Hn>'
@@ -873,8 +873,8 @@ parse_34 :: Fn Logical_34 a -> Parser a
 parse_34 f = do
     return $ f
 
-show_34 :: Fn Logical_34 ShowS
-show_34 = id
+show_34 :: Fn Logical_34 (String, ShowS)
+show_34 = simple $ id
 
 
 --- 35: '  <Xd>, <Sn>'
@@ -902,8 +902,8 @@ parse_35 :: Fn Logical_35 a -> Parser a
 parse_35 f = do
     return $ f
 
-show_35 :: Fn Logical_35 ShowS
-show_35 = id
+show_35 :: Fn Logical_35 (String, ShowS)
+show_35 = simple $ id
 
 
 --- 36: '  <Xd>, <Xn>'
@@ -927,8 +927,8 @@ parse_36 :: Fn Logical_36 a -> Parser a
 parse_36 f = do
     return $ f
 
-show_36 :: Fn Logical_36 ShowS
-show_36 = id
+show_36 :: Fn Logical_36 (String, ShowS)
+show_36 = simple $ id
 
 
 --- 37: '  <Dd>, #<imm>'
@@ -948,8 +948,8 @@ parse_37 :: Fn Logical_37 a -> Parser a
 parse_37 f = do
     return $ f
 
-show_37 :: Fn Logical_37 ShowS
-show_37 = id
+show_37 :: Fn Logical_37 (String, ShowS)
+show_37 = simple $ id
 
 
 --- 38: '  <Hd>, #<imm>'
@@ -968,8 +968,8 @@ parse_38 :: Fn Logical_38 a -> Parser a
 parse_38 f = do
     return $ f
 
-show_38 :: Fn Logical_38 ShowS
-show_38 = id
+show_38 :: Fn Logical_38 (String, ShowS)
+show_38 = simple $ id
 
 
 --- 39: '  <Sd>, #<imm>'
@@ -988,8 +988,8 @@ parse_39 :: Fn Logical_39 a -> Parser a
 parse_39 f = do
     return $ f
 
-show_39 :: Fn Logical_39 ShowS
-show_39 = id
+show_39 :: Fn Logical_39 (String, ShowS)
+show_39 = simple $ id
 
 
 --- 40: '  <Dt>, <label>'
@@ -1008,8 +1008,8 @@ parse_40 :: Fn Logical_40 a -> Parser a
 parse_40 f = do
     return $ f
 
-show_40 :: Fn Logical_40 ShowS
-show_40 = id
+show_40 :: Fn Logical_40 (String, ShowS)
+show_40 = simple $ id
 
 
 --- 41: '  <Qt>, <label>'
@@ -1028,8 +1028,8 @@ parse_41 :: Fn Logical_41 a -> Parser a
 parse_41 f = do
     return $ f
 
-show_41 :: Fn Logical_41 ShowS
-show_41 = id
+show_41 :: Fn Logical_41 (String, ShowS)
+show_41 = simple $ id
 
 
 --- 42: '  <St>, <label>'
@@ -1048,8 +1048,8 @@ parse_42 :: Fn Logical_42 a -> Parser a
 parse_42 f = do
     return $ f
 
-show_42 :: Fn Logical_42 ShowS
-show_42 = id
+show_42 :: Fn Logical_42 (String, ShowS)
+show_42 = simple $ id
 
 
 --- 43: '  <Wt>, <label>'
@@ -1070,8 +1070,8 @@ parse_43 :: Fn Logical_43 a -> Parser a
 parse_43 f = do
     return $ f
 
-show_43 :: Fn Logical_43 ShowS
-show_43 = id
+show_43 :: Fn Logical_43 (String, ShowS)
+show_43 = simple $ id
 
 
 --- 44: '  <Xd>, <Xn|SP>'
@@ -1097,8 +1097,8 @@ parse_44 :: Fn Logical_44 a -> Parser a
 parse_44 f = do
     return $ f
 
-show_44 :: Fn Logical_44 ShowS
-show_44 = id
+show_44 :: Fn Logical_44 (String, ShowS)
+show_44 = simple $ id
 
 
 --- 45: '  <Xd>, <label>'
@@ -1118,8 +1118,8 @@ parse_45 :: Fn Logical_45 a -> Parser a
 parse_45 f = do
     return $ f
 
-show_45 :: Fn Logical_45 ShowS
-show_45 = id
+show_45 :: Fn Logical_45 (String, ShowS)
+show_45 = simple $ id
 
 
 --- 46: '  <Xn>, <Xm|SP>'
@@ -1141,8 +1141,8 @@ parse_46 :: Fn Logical_46 a -> Parser a
 parse_46 f = do
     return $ f
 
-show_46 :: Fn Logical_46 ShowS
-show_46 = id
+show_46 :: Fn Logical_46 (String, ShowS)
+show_46 = simple $ id
 
 
 --- 47: '  <Xt>, <label>'
@@ -1164,8 +1164,8 @@ parse_47 :: Fn Logical_47 a -> Parser a
 parse_47 f = do
     return $ f
 
-show_47 :: Fn Logical_47 ShowS
-show_47 = id
+show_47 :: Fn Logical_47 (String, ShowS)
+show_47 = simple $ id
 
 
 --- 48: '  <V><d>, <V><n>'
@@ -1204,8 +1204,8 @@ parse_48 :: Fn Logical_48 a -> Parser a
 parse_48 f = do
     return $ f
 
-show_48 :: Fn Logical_48 ShowS
-show_48 = id
+show_48 :: Fn Logical_48 (String, ShowS)
+show_48 = simple $ id
 
 
 --- 49: '.<cond>  <label>'
@@ -1224,8 +1224,8 @@ parse_49 :: Fn Logical_49 a -> Parser a
 parse_49 f = do
     return $ f
 
-show_49 :: Fn Logical_49 ShowS
-show_49 = id
+show_49 :: Fn Logical_49 (String, ShowS)
+show_49 = simple $ id
 
 
 --- 50: '  <Vd>.2D, #<imm>'
@@ -1245,8 +1245,8 @@ parse_50 :: Fn Logical_50 a -> Parser a
 parse_50 f = do
     return $ f
 
-show_50 :: Fn Logical_50 ShowS
-show_50 = id
+show_50 :: Fn Logical_50 (String, ShowS)
+show_50 = simple $ id
 
 
 --- 51: '  <Vd>.D[1], <Xn>'
@@ -1265,8 +1265,8 @@ parse_51 :: Fn Logical_51 a -> Parser a
 parse_51 f = do
     return $ f
 
-show_51 :: Fn Logical_51 ShowS
-show_51 = id
+show_51 :: Fn Logical_51 (String, ShowS)
+show_51 = simple $ id
 
 
 --- 52: '  <Xd>, <Vn>.D[1]'
@@ -1285,8 +1285,8 @@ parse_52 :: Fn Logical_52 a -> Parser a
 parse_52 f = do
     return $ f
 
-show_52 :: Fn Logical_52 ShowS
-show_52 = id
+show_52 :: Fn Logical_52 (String, ShowS)
+show_52 = simple $ id
 
 
 --- 53: '  <option>|#<imm>'
@@ -1306,8 +1306,8 @@ parse_53 :: Fn Logical_53 a -> Parser a
 parse_53 f = do
     return $ f
 
-show_53 :: Fn Logical_53 ShowS
-show_53 = id
+show_53 :: Fn Logical_53 (String, ShowS)
+show_53 = simple $ id
 
 
 --- 54: '  <Dd>, <Dn>, <Dm>'
@@ -1334,8 +1334,8 @@ parse_54 :: Fn Logical_54 a -> Parser a
 parse_54 f = do
     return $ f
 
-show_54 :: Fn Logical_54 ShowS
-show_54 = id
+show_54 :: Fn Logical_54 (String, ShowS)
+show_54 = simple $ id
 
 
 --- 55: '  <Hd>, <Hn>, #0.0'
@@ -1358,8 +1358,8 @@ parse_55 :: Fn Logical_55 a -> Parser a
 parse_55 f = do
     return $ f
 
-show_55 :: Fn Logical_55 ShowS
-show_55 = id
+show_55 :: Fn Logical_55 (String, ShowS)
+show_55 = simple $ id
 
 
 --- 56: '  <Hd>, <Hn>, <Hm>'
@@ -1395,8 +1395,8 @@ parse_56 :: Fn Logical_56 a -> Parser a
 parse_56 f = do
     return $ f
 
-show_56 :: Fn Logical_56 ShowS
-show_56 = id
+show_56 :: Fn Logical_56 (String, ShowS)
+show_56 = simple $ id
 
 
 --- 57: '  <Sd>, <Sn>, <Sm>'
@@ -1423,8 +1423,8 @@ parse_57 :: Fn Logical_57 a -> Parser a
 parse_57 f = do
     return $ f
 
-show_57 :: Fn Logical_57 ShowS
-show_57 = id
+show_57 :: Fn Logical_57 (String, ShowS)
+show_57 = simple $ id
 
 
 --- 58: '  <V><d>, <Vn>.<T>'
@@ -1468,8 +1468,8 @@ parse_58 :: Fn Logical_58 a -> Parser a
 parse_58 f = do
     return $ f
 
-show_58 :: Fn Logical_58 ShowS
-show_58 = id
+show_58 :: Fn Logical_58 (String, ShowS)
+show_58 = simple $ id
 
 
 --- 59: '  <Vb><d>, <Va><n>'
@@ -1491,8 +1491,8 @@ parse_59 :: Fn Logical_59 a -> Parser a
 parse_59 f = do
     return $ f
 
-show_59 :: Fn Logical_59 ShowS
-show_59 = id
+show_59 :: Fn Logical_59 (String, ShowS)
+show_59 = simple $ id
 
 
 --- 60: '  <Vd>.2D, <Vn>.2D'
@@ -1511,8 +1511,8 @@ parse_60 :: Fn Logical_60 a -> Parser a
 parse_60 f = do
     return $ f
 
-show_60 :: Fn Logical_60 ShowS
-show_60 = id
+show_60 :: Fn Logical_60 (String, ShowS)
+show_60 = simple $ id
 
 
 --- 61: '  <Vd>.4S, <Vn>.4S'
@@ -1533,8 +1533,8 @@ parse_61 :: Fn Logical_61 a -> Parser a
 parse_61 f = do
     return $ f
 
-show_61 :: Fn Logical_61 ShowS
-show_61 = id
+show_61 :: Fn Logical_61 (String, ShowS)
+show_61 = simple $ id
 
 
 --- 62: '  <Vd>.<T>, #<imm>'
@@ -1554,8 +1554,8 @@ parse_62 :: Fn Logical_62 a -> Parser a
 parse_62 f = do
     return $ f
 
-show_62 :: Fn Logical_62 ShowS
-show_62 = id
+show_62 :: Fn Logical_62 (String, ShowS)
+show_62 = simple $ id
 
 
 --- 63: '  <Vd>.<T>, <R><n>'
@@ -1574,8 +1574,8 @@ parse_63 :: Fn Logical_63 a -> Parser a
 parse_63 f = do
     return $ f
 
-show_63 :: Fn Logical_63 ShowS
-show_63 = id
+show_63 :: Fn Logical_63 (String, ShowS)
+show_63 = simple $ id
 
 
 --- 64: '  <Wd>, <Wn>, <Wm>'
@@ -1609,8 +1609,8 @@ parse_64 :: Fn Logical_64 a -> Parser a
 parse_64 f = do
     return $ f
 
-show_64 :: Fn Logical_64 ShowS
-show_64 = id
+show_64 :: Fn Logical_64 (String, ShowS)
+show_64 = simple $ id
 
 
 --- 65: '  <Wd>, <Wn>, <Xm>'
@@ -1630,8 +1630,8 @@ parse_65 :: Fn Logical_65 a -> Parser a
 parse_65 f = do
     return $ f
 
-show_65 :: Fn Logical_65 ShowS
-show_65 = id
+show_65 :: Fn Logical_65 (String, ShowS)
+show_65 = simple $ id
 
 
 --- 66: '  <Xd>, <Xn>, <Xm>'
@@ -1661,8 +1661,8 @@ parse_66 :: Fn Logical_66 a -> Parser a
 parse_66 f = do
     return $ f
 
-show_66 :: Fn Logical_66 ShowS
-show_66 = id
+show_66 :: Fn Logical_66 (String, ShowS)
+show_66 = simple $ id
 
 
 --- 67: '  {<option>|#<imm>}'
@@ -1681,8 +1681,8 @@ parse_67 :: Fn Logical_67 a -> Parser a
 parse_67 f = do
     return $ f
 
-show_67 :: Fn Logical_67 ShowS
-show_67 = id
+show_67 :: Fn Logical_67 (String, ShowS)
+show_67 = simple $ id
 
 
 --- 68: '  <V><d>, <V><n>, #0'
@@ -1705,8 +1705,8 @@ parse_68 :: Fn Logical_68 a -> Parser a
 parse_68 f = do
     return $ f
 
-show_68 :: Fn Logical_68 ShowS
-show_68 = id
+show_68 :: Fn Logical_68 (String, ShowS)
+show_68 = simple $ id
 
 
 --- 69: '  <Vd>.16B, <Vn>.16B'
@@ -1728,8 +1728,8 @@ parse_69 :: Fn Logical_69 a -> Parser a
 parse_69 f = do
     return $ f
 
-show_69 :: Fn Logical_69 ShowS
-show_69 = id
+show_69 :: Fn Logical_69 (String, ShowS)
+show_69 = simple $ id
 
 
 --- 70: '  <Vd>.<T>, <Vn>.<T>'
@@ -1811,8 +1811,8 @@ parse_70 :: Fn Logical_70 a -> Parser a
 parse_70 f = do
     return $ f
 
-show_70 :: Fn Logical_70 ShowS
-show_70 = id
+show_70 :: Fn Logical_70 (String, ShowS)
+show_70 = simple $ id
 
 
 --- 71: '  <Wd>, <Wn>, #<imm>'
@@ -1831,8 +1831,8 @@ parse_71 :: Fn Logical_71 a -> Parser a
 parse_71 f = do
     return $ f
 
-show_71 :: Fn Logical_71 ShowS
-show_71 = id
+show_71 :: Fn Logical_71 (String, ShowS)
+show_71 = simple $ id
 
 
 --- 72: '  <Xd>, <Xn>, #<imm>'
@@ -1851,8 +1851,8 @@ parse_72 :: Fn Logical_72 a -> Parser a
 parse_72 f = do
     return $ f
 
-show_72 :: Fn Logical_72 ShowS
-show_72 = id
+show_72 :: Fn Logical_72 (String, ShowS)
+show_72 = simple $ id
 
 
 --- 73: '  <Qd>, <Qn>, <Vm>.2D'
@@ -1872,8 +1872,8 @@ parse_73 :: Fn Logical_73 a -> Parser a
 parse_73 f = do
     return $ f
 
-show_73 :: Fn Logical_73 ShowS
-show_73 = id
+show_73 :: Fn Logical_73 (String, ShowS)
+show_73 = simple $ id
 
 
 --- 74: '  <Qd>, <Qn>, <Vm>.4S'
@@ -1893,8 +1893,8 @@ parse_74 :: Fn Logical_74 a -> Parser a
 parse_74 f = do
     return $ f
 
-show_74 :: Fn Logical_74 ShowS
-show_74 = id
+show_74 :: Fn Logical_74 (String, ShowS)
+show_74 = simple $ id
 
 
 --- 75: '  <Qd>, <Sn>, <Vm>.4S'
@@ -1915,8 +1915,8 @@ parse_75 :: Fn Logical_75 a -> Parser a
 parse_75 f = do
     return $ f
 
-show_75 :: Fn Logical_75 ShowS
-show_75 = id
+show_75 :: Fn Logical_75 (String, ShowS)
+show_75 = simple $ id
 
 
 --- 76: '  <Xd>, <Xn>, <Xm|SP>'
@@ -1935,8 +1935,8 @@ parse_76 :: Fn Logical_76 a -> Parser a
 parse_76 f = do
     return $ f
 
-show_76 :: Fn Logical_76 ShowS
-show_76 = id
+show_76 :: Fn Logical_76 (String, ShowS)
+show_76 = simple $ id
 
 
 --- 77: '  <Dd>, <Wn>, #<fbits>'
@@ -1956,8 +1956,8 @@ parse_77 :: Fn Logical_77 a -> Parser a
 parse_77 f = do
     return $ f
 
-show_77 :: Fn Logical_77 ShowS
-show_77 = id
+show_77 :: Fn Logical_77 (String, ShowS)
+show_77 = simple $ id
 
 
 --- 78: '  <Dd>, <Xn>, #<fbits>'
@@ -1977,8 +1977,8 @@ parse_78 :: Fn Logical_78 a -> Parser a
 parse_78 f = do
     return $ f
 
-show_78 :: Fn Logical_78 ShowS
-show_78 = id
+show_78 :: Fn Logical_78 (String, ShowS)
+show_78 = simple $ id
 
 
 --- 79: '  <Hd>, <Wn>, #<fbits>'
@@ -1998,8 +1998,8 @@ parse_79 :: Fn Logical_79 a -> Parser a
 parse_79 f = do
     return $ f
 
-show_79 :: Fn Logical_79 ShowS
-show_79 = id
+show_79 :: Fn Logical_79 (String, ShowS)
+show_79 = simple $ id
 
 
 --- 80: '  <Hd>, <Xn>, #<fbits>'
@@ -2019,8 +2019,8 @@ parse_80 :: Fn Logical_80 a -> Parser a
 parse_80 f = do
     return $ f
 
-show_80 :: Fn Logical_80 ShowS
-show_80 = id
+show_80 :: Fn Logical_80 (String, ShowS)
+show_80 = simple $ id
 
 
 --- 81: '  <Sd>, <Wn>, #<fbits>'
@@ -2040,8 +2040,8 @@ parse_81 :: Fn Logical_81 a -> Parser a
 parse_81 f = do
     return $ f
 
-show_81 :: Fn Logical_81 ShowS
-show_81 = id
+show_81 :: Fn Logical_81 (String, ShowS)
+show_81 = simple $ id
 
 
 --- 82: '  <Sd>, <Xn>, #<fbits>'
@@ -2061,8 +2061,8 @@ parse_82 :: Fn Logical_82 a -> Parser a
 parse_82 f = do
     return $ f
 
-show_82 :: Fn Logical_82 ShowS
-show_82 = id
+show_82 :: Fn Logical_82 (String, ShowS)
+show_82 = simple $ id
 
 
 --- 83: '  <V><d>, <V><n>, #0.0'
@@ -2085,8 +2085,8 @@ parse_83 :: Fn Logical_83 a -> Parser a
 parse_83 f = do
     return $ f
 
-show_83 :: Fn Logical_83 ShowS
-show_83 = id
+show_83 :: Fn Logical_83 (String, ShowS)
+show_83 = simple $ id
 
 
 --- 84: '  <Vd>.<Ta>, <Vn>.<Tb>'
@@ -2108,8 +2108,8 @@ parse_84 :: Fn Logical_84 a -> Parser a
 parse_84 f = do
     return $ f
 
-show_84 :: Fn Logical_84 ShowS
-show_84 = id
+show_84 :: Fn Logical_84 (String, ShowS)
+show_84 = simple $ id
 
 
 --- 85: '  <Wd>, <Dn>, #<fbits>'
@@ -2129,8 +2129,8 @@ parse_85 :: Fn Logical_85 a -> Parser a
 parse_85 f = do
     return $ f
 
-show_85 :: Fn Logical_85 ShowS
-show_85 = id
+show_85 :: Fn Logical_85 (String, ShowS)
+show_85 = simple $ id
 
 
 --- 86: '  <Wd>, <Hn>, #<fbits>'
@@ -2150,8 +2150,8 @@ parse_86 :: Fn Logical_86 a -> Parser a
 parse_86 f = do
     return $ f
 
-show_86 :: Fn Logical_86 ShowS
-show_86 = id
+show_86 :: Fn Logical_86 (String, ShowS)
+show_86 = simple $ id
 
 
 --- 87: '  <Wd>, <Sn>, #<fbits>'
@@ -2171,8 +2171,8 @@ parse_87 :: Fn Logical_87 a -> Parser a
 parse_87 f = do
     return $ f
 
-show_87 :: Fn Logical_87 ShowS
-show_87 = id
+show_87 :: Fn Logical_87 (String, ShowS)
+show_87 = simple $ id
 
 
 --- 88: '  <Wt>, [<Xn|SP>{,#0}]'
@@ -2208,8 +2208,8 @@ parse_88 :: Fn Logical_88 a -> Parser a
 parse_88 f = do
     return $ f
 
-show_88 :: Fn Logical_88 ShowS
-show_88 = id
+show_88 :: Fn Logical_88 (String, ShowS)
+show_88 = simple $ id
 
 
 --- 89: '  <Xd>, <Dn>, #<fbits>'
@@ -2229,8 +2229,8 @@ parse_89 :: Fn Logical_89 a -> Parser a
 parse_89 f = do
     return $ f
 
-show_89 :: Fn Logical_89 ShowS
-show_89 = id
+show_89 :: Fn Logical_89 (String, ShowS)
+show_89 = simple $ id
 
 
 --- 90: '  <Xd>, <Hn>, #<fbits>'
@@ -2250,8 +2250,8 @@ parse_90 :: Fn Logical_90 a -> Parser a
 parse_90 f = do
     return $ f
 
-show_90 :: Fn Logical_90 ShowS
-show_90 = id
+show_90 :: Fn Logical_90 (String, ShowS)
+show_90 = simple $ id
 
 
 --- 91: '  <Xd>, <Sn>, #<fbits>'
@@ -2271,8 +2271,8 @@ parse_91 :: Fn Logical_91 a -> Parser a
 parse_91 f = do
     return $ f
 
-show_91 :: Fn Logical_91 ShowS
-show_91 = id
+show_91 :: Fn Logical_91 (String, ShowS)
+show_91 = simple $ id
 
 
 --- 92: '  <Xt>, [<Xn|SP>{,#0}]'
@@ -2296,8 +2296,8 @@ parse_92 :: Fn Logical_92 a -> Parser a
 parse_92 f = do
     return $ f
 
-show_92 :: Fn Logical_92 ShowS
-show_92 = id
+show_92 :: Fn Logical_92 (String, ShowS)
+show_92 = simple $ id
 
 
 --- 93: '  <Ws>, <Wt>, [<Xn|SP>]'
@@ -2423,8 +2423,8 @@ parse_93 :: Fn Logical_93 a -> Parser a
 parse_93 f = do
     return $ f
 
-show_93 :: Fn Logical_93 ShowS
-show_93 = id
+show_93 :: Fn Logical_93 (String, ShowS)
+show_93 = simple $ id
 
 
 --- 94: '  <Wt>, [<Xn|SP> {,#0}]'
@@ -2445,8 +2445,8 @@ parse_94 :: Fn Logical_94 a -> Parser a
 parse_94 f = do
     return $ f
 
-show_94 :: Fn Logical_94 ShowS
-show_94 = id
+show_94 :: Fn Logical_94 (String, ShowS)
+show_94 = simple $ id
 
 
 --- 95: '  <Xd|SP>, <Xn>, #<imm>'
@@ -2467,8 +2467,8 @@ parse_95 :: Fn Logical_95 a -> Parser a
 parse_95 f = do
     return $ f
 
-show_95 :: Fn Logical_95 ShowS
-show_95 = id
+show_95 :: Fn Logical_95 (String, ShowS)
+show_95 = simple $ id
 
 
 --- 96: '  <Xs>, <Xt>, [<Xn|SP>]'
@@ -2522,8 +2522,8 @@ parse_96 :: Fn Logical_96 a -> Parser a
 parse_96 f = do
     return $ f
 
-show_96 :: Fn Logical_96 ShowS
-show_96 = id
+show_96 :: Fn Logical_96 (String, ShowS)
+show_96 = simple $ id
 
 
 --- 97: '  <Xt>, [<Xn|SP> {,#0}]'
@@ -2542,8 +2542,8 @@ parse_97 :: Fn Logical_97 a -> Parser a
 parse_97 f = do
     return $ f
 
-show_97 :: Fn Logical_97 ShowS
-show_97 = id
+show_97 :: Fn Logical_97 (String, ShowS)
+show_97 = simple $ id
 
 
 --- 98: '  <pstatefield>, #<imm>'
@@ -2562,8 +2562,8 @@ parse_98 :: Fn Logical_98 a -> Parser a
 parse_98 f = do
     return $ f
 
-show_98 :: Fn Logical_98 ShowS
-show_98 = id
+show_98 :: Fn Logical_98 (String, ShowS)
+show_98 = simple $ id
 
 
 --- 99: '  <Dd>, <Dn>, <Dm>, <Da>'
@@ -2585,8 +2585,8 @@ parse_99 :: Fn Logical_99 a -> Parser a
 parse_99 f = do
     return $ f
 
-show_99 :: Fn Logical_99 ShowS
-show_99 = id
+show_99 :: Fn Logical_99 (String, ShowS)
+show_99 = simple $ id
 
 
 --- 100: '  <Hd>, <Hn>, <Hm>, <Ha>'
@@ -2608,8 +2608,8 @@ parse_100 :: Fn Logical_100 a -> Parser a
 parse_100 f = do
     return $ f
 
-show_100 :: Fn Logical_100 ShowS
-show_100 = id
+show_100 :: Fn Logical_100 (String, ShowS)
+show_100 = simple $ id
 
 
 --- 101: '  <Sd>, <Sn>, <Sm>, <Sa>'
@@ -2631,8 +2631,8 @@ parse_101 :: Fn Logical_101 a -> Parser a
 parse_101 f = do
     return $ f
 
-show_101 :: Fn Logical_101 ShowS
-show_101 = id
+show_101 :: Fn Logical_101 (String, ShowS)
+show_101 = simple $ id
 
 
 --- 102: '  <V><d>, <V><n>, <V><m>'
@@ -2683,8 +2683,8 @@ parse_102 :: Fn Logical_102 a -> Parser a
 parse_102 f = do
     return $ f
 
-show_102 :: Fn Logical_102 ShowS
-show_102 = id
+show_102 :: Fn Logical_102 (String, ShowS)
+show_102 = simple $ id
 
 
 --- 103: '  <Vd>.<T>, <Vn>.<T>, #0'
@@ -2707,8 +2707,8 @@ parse_103 :: Fn Logical_103 a -> Parser a
 parse_103 f = do
     return $ f
 
-show_103 :: Fn Logical_103 ShowS
-show_103 = id
+show_103 :: Fn Logical_103 (String, ShowS)
+show_103 = simple $ id
 
 
 --- 104: '  <Wd>, <Wn>, <Wm>, <Wa>'
@@ -2728,8 +2728,8 @@ parse_104 :: Fn Logical_104 a -> Parser a
 parse_104 f = do
     return $ f
 
-show_104 :: Fn Logical_104 ShowS
-show_104 = id
+show_104 :: Fn Logical_104 (String, ShowS)
+show_104 = simple $ id
 
 
 --- 105: '  <Wd|WSP>, <Wn>, #<imm>'
@@ -2750,8 +2750,8 @@ parse_105 :: Fn Logical_105 a -> Parser a
 parse_105 f = do
     return $ f
 
-show_105 :: Fn Logical_105 ShowS
-show_105 = id
+show_105 :: Fn Logical_105 (String, ShowS)
+show_105 = simple $ id
 
 
 --- 106: '  <Xd>, <Wn>, <Wm>, <Xa>'
@@ -2773,8 +2773,8 @@ parse_106 :: Fn Logical_106 a -> Parser a
 parse_106 f = do
     return $ f
 
-show_106 :: Fn Logical_106 ShowS
-show_106 = id
+show_106 :: Fn Logical_106 (String, ShowS)
+show_106 = simple $ id
 
 
 --- 107: '  <Xd>, <Xn>, <Xm>, <Xa>'
@@ -2794,8 +2794,8 @@ parse_107 :: Fn Logical_107 a -> Parser a
 parse_107 f = do
     return $ f
 
-show_107 :: Fn Logical_107 ShowS
-show_107 = id
+show_107 :: Fn Logical_107 (String, ShowS)
+show_107 = simple $ id
 
 
 --- 108: '  <R><t>, #<imm>, <label>'
@@ -2815,8 +2815,8 @@ parse_108 :: Fn Logical_108 a -> Parser a
 parse_108 f = do
     return $ f
 
-show_108 :: Fn Logical_108 ShowS
-show_108 = id
+show_108 :: Fn Logical_108 (String, ShowS)
+show_108 = simple $ id
 
 
 --- 109: '  { <Vt>.<T> }, [<Xn|SP>]'
@@ -2837,8 +2837,8 @@ parse_109 :: Fn Logical_109 a -> Parser a
 parse_109 f = do
     return $ f
 
-show_109 :: Fn Logical_109 ShowS
-show_109 = id
+show_109 :: Fn Logical_109 (String, ShowS)
+show_109 = simple $ id
 
 
 --- 110: '{2}  <Vd>.<Ta>, <Vn>.<Tb>'
@@ -2857,8 +2857,8 @@ parse_110 :: Fn Logical_110 a -> Parser a
 parse_110 f = do
     return $ f
 
-show_110 :: Fn Logical_110 ShowS
-show_110 = id
+show_110 :: Fn Logical_110 (String, ShowS)
+show_110 = simple $ id
 
 
 --- 111: '{2}  <Vd>.<Tb>, <Vn>.<Ta>'
@@ -2882,8 +2882,8 @@ parse_111 :: Fn Logical_111 a -> Parser a
 parse_111 f = do
     return $ f
 
-show_111 :: Fn Logical_111 ShowS
-show_111 = id
+show_111 :: Fn Logical_111 (String, ShowS)
+show_111 = simple $ id
 
 
 --- 112: '  <Bt>, [<Xn|SP>], #<simm>'
@@ -2903,8 +2903,8 @@ parse_112 :: Fn Logical_112 a -> Parser a
 parse_112 f = do
     return $ f
 
-show_112 :: Fn Logical_112 ShowS
-show_112 = id
+show_112 :: Fn Logical_112 (String, ShowS)
+show_112 = simple $ id
 
 
 --- 113: '  <Dd>, <Dn>, <Dm>, <cond>'
@@ -2923,8 +2923,8 @@ parse_113 :: Fn Logical_113 a -> Parser a
 parse_113 f = do
     return $ f
 
-show_113 :: Fn Logical_113 ShowS
-show_113 = id
+show_113 :: Fn Logical_113 (String, ShowS)
+show_113 = simple $ id
 
 
 --- 114: '  <Dt>, [<Xn|SP>], #<simm>'
@@ -2944,8 +2944,8 @@ parse_114 :: Fn Logical_114 a -> Parser a
 parse_114 f = do
     return $ f
 
-show_114 :: Fn Logical_114 ShowS
-show_114 = id
+show_114 :: Fn Logical_114 (String, ShowS)
+show_114 = simple $ id
 
 
 --- 115: '  <Hd>, <Hn>, <Hm>, <cond>'
@@ -2964,8 +2964,8 @@ parse_115 :: Fn Logical_115 a -> Parser a
 parse_115 f = do
     return $ f
 
-show_115 :: Fn Logical_115 ShowS
-show_115 = id
+show_115 :: Fn Logical_115 (String, ShowS)
+show_115 = simple $ id
 
 
 --- 116: '  <Ht>, [<Xn|SP>], #<simm>'
@@ -2985,8 +2985,8 @@ parse_116 :: Fn Logical_116 a -> Parser a
 parse_116 f = do
     return $ f
 
-show_116 :: Fn Logical_116 ShowS
-show_116 = id
+show_116 :: Fn Logical_116 (String, ShowS)
+show_116 = simple $ id
 
 
 --- 117: '  <Qt>, [<Xn|SP>], #<simm>'
@@ -3006,8 +3006,8 @@ parse_117 :: Fn Logical_117 a -> Parser a
 parse_117 f = do
     return $ f
 
-show_117 :: Fn Logical_117 ShowS
-show_117 = id
+show_117 :: Fn Logical_117 (String, ShowS)
+show_117 = simple $ id
 
 
 --- 118: '  <Sd>, <Sn>, <Sm>, <cond>'
@@ -3026,8 +3026,8 @@ parse_118 :: Fn Logical_118 a -> Parser a
 parse_118 f = do
     return $ f
 
-show_118 :: Fn Logical_118 ShowS
-show_118 = id
+show_118 :: Fn Logical_118 (String, ShowS)
+show_118 = simple $ id
 
 
 --- 119: '  <St>, [<Xn|SP>], #<simm>'
@@ -3047,8 +3047,8 @@ parse_119 :: Fn Logical_119 a -> Parser a
 parse_119 f = do
     return $ f
 
-show_119 :: Fn Logical_119 ShowS
-show_119 = id
+show_119 :: Fn Logical_119 (String, ShowS)
+show_119 = simple $ id
 
 
 --- 120: '  <V><d>, <V><n>, #<fbits>'
@@ -3070,8 +3070,8 @@ parse_120 :: Fn Logical_120 a -> Parser a
 parse_120 f = do
     return $ f
 
-show_120 :: Fn Logical_120 ShowS
-show_120 = id
+show_120 :: Fn Logical_120 (String, ShowS)
+show_120 = simple $ id
 
 
 --- 121: '  <V><d>, <V><n>, #<shift>'
@@ -3103,8 +3103,8 @@ parse_121 :: Fn Logical_121 a -> Parser a
 parse_121 f = do
     return $ f
 
-show_121 :: Fn Logical_121 ShowS
-show_121 = id
+show_121 :: Fn Logical_121 (String, ShowS)
+show_121 = simple $ id
 
 
 --- 122: '  <Vd>.<T>, <Vn>.<T>, #0.0'
@@ -3132,8 +3132,8 @@ parse_122 :: Fn Logical_122 a -> Parser a
 parse_122 f = do
     return $ f
 
-show_122 :: Fn Logical_122 ShowS
-show_122 = id
+show_122 :: Fn Logical_122 (String, ShowS)
+show_122 = simple $ id
 
 
 --- 123: '  <Wd>, <Vn>.<Ts>[<index>]'
@@ -3153,8 +3153,8 @@ parse_123 :: Fn Logical_123 a -> Parser a
 parse_123 f = do
     return $ f
 
-show_123 :: Fn Logical_123 ShowS
-show_123 = id
+show_123 :: Fn Logical_123 (String, ShowS)
+show_123 = simple $ id
 
 
 --- 124: '  <Wd>, <Wn>, <Wm>, #<lsb>'
@@ -3173,8 +3173,8 @@ parse_124 :: Fn Logical_124 a -> Parser a
 parse_124 f = do
     return $ f
 
-show_124 :: Fn Logical_124 ShowS
-show_124 = id
+show_124 :: Fn Logical_124 (String, ShowS)
+show_124 = simple $ id
 
 
 --- 125: '  <Wd>, <Wn>, <Wm>, <cond>'
@@ -3196,8 +3196,8 @@ parse_125 :: Fn Logical_125 a -> Parser a
 parse_125 f = do
     return $ f
 
-show_125 :: Fn Logical_125 ShowS
-show_125 = id
+show_125 :: Fn Logical_125 (String, ShowS)
+show_125 = simple $ id
 
 
 --- 126: '  <Wt>, [<Xn|SP>], #<simm>'
@@ -3223,8 +3223,8 @@ parse_126 :: Fn Logical_126 a -> Parser a
 parse_126 f = do
     return $ f
 
-show_126 :: Fn Logical_126 ShowS
-show_126 = id
+show_126 :: Fn Logical_126 (String, ShowS)
+show_126 = simple $ id
 
 
 --- 127: '  <Xd>, <Vn>.<Ts>[<index>]'
@@ -3244,8 +3244,8 @@ parse_127 :: Fn Logical_127 a -> Parser a
 parse_127 f = do
     return $ f
 
-show_127 :: Fn Logical_127 ShowS
-show_127 = id
+show_127 :: Fn Logical_127 (String, ShowS)
+show_127 = simple $ id
 
 
 --- 128: '  <Xd>, <Xn>, <Xm>, #<lsb>'
@@ -3264,8 +3264,8 @@ parse_128 :: Fn Logical_128 a -> Parser a
 parse_128 f = do
     return $ f
 
-show_128 :: Fn Logical_128 ShowS
-show_128 = id
+show_128 :: Fn Logical_128 (String, ShowS)
+show_128 = simple $ id
 
 
 --- 129: '  <Xd>, <Xn>, <Xm>, <cond>'
@@ -3287,8 +3287,8 @@ parse_129 :: Fn Logical_129 a -> Parser a
 parse_129 f = do
     return $ f
 
-show_129 :: Fn Logical_129 ShowS
-show_129 = id
+show_129 :: Fn Logical_129 (String, ShowS)
+show_129 = simple $ id
 
 
 --- 130: '  <Xt>, [<Xn|SP>], #<simm>'
@@ -3311,8 +3311,8 @@ parse_130 :: Fn Logical_130 a -> Parser a
 parse_130 f = do
     return $ f
 
-show_130 :: Fn Logical_130 ShowS
-show_130 = id
+show_130 :: Fn Logical_130 (String, ShowS)
+show_130 = simple $ id
 
 
 --- 131: '  <Bt>, [<Xn|SP>, #<simm>]!'
@@ -3332,8 +3332,8 @@ parse_131 :: Fn Logical_131 a -> Parser a
 parse_131 f = do
     return $ f
 
-show_131 :: Fn Logical_131 ShowS
-show_131 = id
+show_131 :: Fn Logical_131 (String, ShowS)
+show_131 = simple $ id
 
 
 --- 132: '  <Dt>, [<Xn|SP>, #<simm>]!'
@@ -3353,8 +3353,8 @@ parse_132 :: Fn Logical_132 a -> Parser a
 parse_132 f = do
     return $ f
 
-show_132 :: Fn Logical_132 ShowS
-show_132 = id
+show_132 :: Fn Logical_132 (String, ShowS)
+show_132 = simple $ id
 
 
 --- 133: '  <Ht>, [<Xn|SP>, #<simm>]!'
@@ -3374,8 +3374,8 @@ parse_133 :: Fn Logical_133 a -> Parser a
 parse_133 f = do
     return $ f
 
-show_133 :: Fn Logical_133 ShowS
-show_133 = id
+show_133 :: Fn Logical_133 (String, ShowS)
+show_133 = simple $ id
 
 
 --- 134: '  <Qt>, [<Xn|SP>, #<simm>]!'
@@ -3395,8 +3395,8 @@ parse_134 :: Fn Logical_134 a -> Parser a
 parse_134 f = do
     return $ f
 
-show_134 :: Fn Logical_134 ShowS
-show_134 = id
+show_134 :: Fn Logical_134 (String, ShowS)
+show_134 = simple $ id
 
 
 --- 135: '  <St>, [<Xn|SP>, #<simm>]!'
@@ -3416,8 +3416,8 @@ parse_135 :: Fn Logical_135 a -> Parser a
 parse_135 f = do
     return $ f
 
-show_135 :: Fn Logical_135 ShowS
-show_135 = id
+show_135 :: Fn Logical_135 (String, ShowS)
+show_135 = simple $ id
 
 
 --- 136: '  <V><d>, <Vn>.<T>[<index>]'
@@ -3436,8 +3436,8 @@ parse_136 :: Fn Logical_136 a -> Parser a
 parse_136 f = do
     return $ f
 
-show_136 :: Fn Logical_136 ShowS
-show_136 = id
+show_136 :: Fn Logical_136 (String, ShowS)
+show_136 = simple $ id
 
 
 --- 137: '  <Va><d>, <Vb><n>, <Vb><m>'
@@ -3458,8 +3458,8 @@ parse_137 :: Fn Logical_137 a -> Parser a
 parse_137 f = do
     return $ f
 
-show_137 :: Fn Logical_137 ShowS
-show_137 = id
+show_137 :: Fn Logical_137 (String, ShowS)
+show_137 = simple $ id
 
 
 --- 138: '  <Vd>.2D, <Vn>.2D, <Vm>.2D'
@@ -3479,8 +3479,8 @@ parse_138 :: Fn Logical_138 a -> Parser a
 parse_138 f = do
     return $ f
 
-show_138 :: Fn Logical_138 ShowS
-show_138 = id
+show_138 :: Fn Logical_138 (String, ShowS)
+show_138 = simple $ id
 
 
 --- 139: '  <Vd>.4S, <Vn>.4S, <Vm>.4S'
@@ -3503,8 +3503,8 @@ parse_139 :: Fn Logical_139 a -> Parser a
 parse_139 f = do
     return $ f
 
-show_139 :: Fn Logical_139 ShowS
-show_139 = id
+show_139 :: Fn Logical_139 (String, ShowS)
+show_139 = simple $ id
 
 
 --- 140: '  <Wt>, [<Xn|SP>, #<simm>]!'
@@ -3530,8 +3530,8 @@ parse_140 :: Fn Logical_140 a -> Parser a
 parse_140 f = do
     return $ f
 
-show_140 :: Fn Logical_140 ShowS
-show_140 = id
+show_140 :: Fn Logical_140 (String, ShowS)
+show_140 = simple $ id
 
 
 --- 141: '  <Xt>, [<Xn|SP>, #<simm>]!'
@@ -3554,8 +3554,8 @@ parse_141 :: Fn Logical_141 a -> Parser a
 parse_141 f = do
     return $ f
 
-show_141 :: Fn Logical_141 ShowS
-show_141 = id
+show_141 :: Fn Logical_141 (String, ShowS)
+show_141 = simple $ id
 
 
 --- 142: '  (<prfop>|#<imm5>), <label>'
@@ -3574,8 +3574,8 @@ parse_142 :: Fn Logical_142 a -> Parser a
 parse_142 f = do
     return $ f
 
-show_142 :: Fn Logical_142 ShowS
-show_142 = id
+show_142 :: Fn Logical_142 (String, ShowS)
+show_142 = simple $ id
 
 
 --- 143: '  <Bt>, [<Xn|SP>{, #<pimm>}]'
@@ -3595,8 +3595,8 @@ parse_143 :: Fn Logical_143 a -> Parser a
 parse_143 f = do
     return $ f
 
-show_143 :: Fn Logical_143 ShowS
-show_143 = id
+show_143 :: Fn Logical_143 (String, ShowS)
+show_143 = simple $ id
 
 
 --- 144: '  <Bt>, [<Xn|SP>{, #<simm>}]'
@@ -3616,8 +3616,8 @@ parse_144 :: Fn Logical_144 a -> Parser a
 parse_144 f = do
     return $ f
 
-show_144 :: Fn Logical_144 ShowS
-show_144 = id
+show_144 :: Fn Logical_144 (String, ShowS)
+show_144 = simple $ id
 
 
 --- 145: '  <Dt>, [<Xn|SP>{, #<pimm>}]'
@@ -3637,8 +3637,8 @@ parse_145 :: Fn Logical_145 a -> Parser a
 parse_145 f = do
     return $ f
 
-show_145 :: Fn Logical_145 ShowS
-show_145 = id
+show_145 :: Fn Logical_145 (String, ShowS)
+show_145 = simple $ id
 
 
 --- 146: '  <Dt>, [<Xn|SP>{, #<simm>}]'
@@ -3658,8 +3658,8 @@ parse_146 :: Fn Logical_146 a -> Parser a
 parse_146 f = do
     return $ f
 
-show_146 :: Fn Logical_146 ShowS
-show_146 = id
+show_146 :: Fn Logical_146 (String, ShowS)
+show_146 = simple $ id
 
 
 --- 147: '  <Ht>, [<Xn|SP>{, #<pimm>}]'
@@ -3679,8 +3679,8 @@ parse_147 :: Fn Logical_147 a -> Parser a
 parse_147 f = do
     return $ f
 
-show_147 :: Fn Logical_147 ShowS
-show_147 = id
+show_147 :: Fn Logical_147 (String, ShowS)
+show_147 = simple $ id
 
 
 --- 148: '  <Ht>, [<Xn|SP>{, #<simm>}]'
@@ -3700,8 +3700,8 @@ parse_148 :: Fn Logical_148 a -> Parser a
 parse_148 f = do
     return $ f
 
-show_148 :: Fn Logical_148 ShowS
-show_148 = id
+show_148 :: Fn Logical_148 (String, ShowS)
+show_148 = simple $ id
 
 
 --- 149: '  <Qt>, [<Xn|SP>{, #<pimm>}]'
@@ -3721,8 +3721,8 @@ parse_149 :: Fn Logical_149 a -> Parser a
 parse_149 f = do
     return $ f
 
-show_149 :: Fn Logical_149 ShowS
-show_149 = id
+show_149 :: Fn Logical_149 (String, ShowS)
+show_149 = simple $ id
 
 
 --- 150: '  <Qt>, [<Xn|SP>{, #<simm>}]'
@@ -3742,8 +3742,8 @@ parse_150 :: Fn Logical_150 a -> Parser a
 parse_150 f = do
     return $ f
 
-show_150 :: Fn Logical_150 ShowS
-show_150 = id
+show_150 :: Fn Logical_150 (String, ShowS)
+show_150 = simple $ id
 
 
 --- 151: '  <St>, [<Xn|SP>{, #<pimm>}]'
@@ -3763,8 +3763,8 @@ parse_151 :: Fn Logical_151 a -> Parser a
 parse_151 f = do
     return $ f
 
-show_151 :: Fn Logical_151 ShowS
-show_151 = id
+show_151 :: Fn Logical_151 (String, ShowS)
+show_151 = simple $ id
 
 
 --- 152: '  <St>, [<Xn|SP>{, #<simm>}]'
@@ -3784,8 +3784,8 @@ parse_152 :: Fn Logical_152 a -> Parser a
 parse_152 f = do
     return $ f
 
-show_152 :: Fn Logical_152 ShowS
-show_152 = id
+show_152 :: Fn Logical_152 (String, ShowS)
+show_152 = simple $ id
 
 
 --- 153: '  <Vb><d>, <Va><n>, #<shift>'
@@ -3809,8 +3809,8 @@ parse_153 :: Fn Logical_153 a -> Parser a
 parse_153 f = do
     return $ f
 
-show_153 :: Fn Logical_153 ShowS
-show_153 = id
+show_153 :: Fn Logical_153 (String, ShowS)
+show_153 = simple $ id
 
 
 --- 154: '  <Vd>.<Ts>[<index>], <R><n>'
@@ -3829,8 +3829,8 @@ parse_154 :: Fn Logical_154 a -> Parser a
 parse_154 f = do
     return $ f
 
-show_154 :: Fn Logical_154 ShowS
-show_154 = id
+show_154 :: Fn Logical_154 (String, ShowS)
+show_154 = simple $ id
 
 
 --- 155: '  <Ws>, <Wt>, [<Xn|SP>{,#0}]'
@@ -3866,8 +3866,8 @@ parse_155 :: Fn Logical_155 a -> Parser a
 parse_155 f = do
     return $ f
 
-show_155 :: Fn Logical_155 ShowS
-show_155 = id
+show_155 :: Fn Logical_155 (String, ShowS)
+show_155 = simple $ id
 
 
 --- 156: '  <Ws>, <Xt>, [<Xn|SP>{,#0}]'
@@ -3887,8 +3887,8 @@ parse_156 :: Fn Logical_156 a -> Parser a
 parse_156 f = do
     return $ f
 
-show_156 :: Fn Logical_156 ShowS
-show_156 = id
+show_156 :: Fn Logical_156 (String, ShowS)
+show_156 = simple $ id
 
 
 --- 157: '  <Wt>, [<Xn|SP>{, #<pimm>}]'
@@ -3914,8 +3914,8 @@ parse_157 :: Fn Logical_157 a -> Parser a
 parse_157 f = do
     return $ f
 
-show_157 :: Fn Logical_157 ShowS
-show_157 = id
+show_157 :: Fn Logical_157 (String, ShowS)
+show_157 = simple $ id
 
 
 --- 158: '  <Wt>, [<Xn|SP>{, #<simm>}]'
@@ -3949,8 +3949,8 @@ parse_158 :: Fn Logical_158 a -> Parser a
 parse_158 f = do
     return $ f
 
-show_158 :: Fn Logical_158 ShowS
-show_158 = id
+show_158 :: Fn Logical_158 (String, ShowS)
+show_158 = simple $ id
 
 
 --- 159: '  <Xs>, <Xt>, [<Xn|SP>{,#0}]'
@@ -3972,8 +3972,8 @@ parse_159 :: Fn Logical_159 a -> Parser a
 parse_159 f = do
     return $ f
 
-show_159 :: Fn Logical_159 ShowS
-show_159 = id
+show_159 :: Fn Logical_159 (String, ShowS)
+show_159 = simple $ id
 
 
 --- 160: '  <Xt>, [<Xn|SP>{, #<pimm>}]'
@@ -3996,8 +3996,8 @@ parse_160 :: Fn Logical_160 a -> Parser a
 parse_160 f = do
     return $ f
 
-show_160 :: Fn Logical_160 ShowS
-show_160 = id
+show_160 :: Fn Logical_160 (String, ShowS)
+show_160 = simple $ id
 
 
 --- 161: '  <Xt>, [<Xn|SP>{, #<simm>}]'
@@ -4027,8 +4027,8 @@ parse_161 :: Fn Logical_161 a -> Parser a
 parse_161 f = do
     return $ f
 
-show_161 :: Fn Logical_161 ShowS
-show_161 = id
+show_161 :: Fn Logical_161 (String, ShowS)
+show_161 = simple $ id
 
 
 --- 162: '  <Dn>, <Dm>, #<nzcv>, <cond>'
@@ -4048,8 +4048,8 @@ parse_162 :: Fn Logical_162 a -> Parser a
 parse_162 f = do
     return $ f
 
-show_162 :: Fn Logical_162 ShowS
-show_162 = id
+show_162 :: Fn Logical_162 (String, ShowS)
+show_162 = simple $ id
 
 
 --- 163: '  <Hd>, <Hn>, <Vm>.H[<index>]'
@@ -4071,8 +4071,8 @@ parse_163 :: Fn Logical_163 a -> Parser a
 parse_163 f = do
     return $ f
 
-show_163 :: Fn Logical_163 ShowS
-show_163 = id
+show_163 :: Fn Logical_163 (String, ShowS)
+show_163 = simple $ id
 
 
 --- 164: '  <Hn>, <Hm>, #<nzcv>, <cond>'
@@ -4092,8 +4092,8 @@ parse_164 :: Fn Logical_164 a -> Parser a
 parse_164 f = do
     return $ f
 
-show_164 :: Fn Logical_164 ShowS
-show_164 = id
+show_164 :: Fn Logical_164 (String, ShowS)
+show_164 = simple $ id
 
 
 --- 165: '  <Sn>, <Sm>, #<nzcv>, <cond>'
@@ -4113,8 +4113,8 @@ parse_165 :: Fn Logical_165 a -> Parser a
 parse_165 f = do
     return $ f
 
-show_165 :: Fn Logical_165 ShowS
-show_165 = id
+show_165 :: Fn Logical_165 (String, ShowS)
+show_165 = simple $ id
 
 
 --- 166: '  <Vd>.<T>, #<imm8>{, LSL #0}'
@@ -4133,8 +4133,8 @@ parse_166 :: Fn Logical_166 a -> Parser a
 parse_166 f = do
     return $ f
 
-show_166 :: Fn Logical_166 ShowS
-show_166 = id
+show_166 :: Fn Logical_166 (String, ShowS)
+show_166 = simple $ id
 
 
 --- 167: '  <Wn>, <Wm>, #<nzcv>, <cond>'
@@ -4154,8 +4154,8 @@ parse_167 :: Fn Logical_167 a -> Parser a
 parse_167 f = do
     return $ f
 
-show_167 :: Fn Logical_167 ShowS
-show_167 = id
+show_167 :: Fn Logical_167 (String, ShowS)
+show_167 = simple $ id
 
 
 --- 168: '  <Xn>, <Xm>, #<nzcv>, <cond>'
@@ -4175,8 +4175,8 @@ parse_168 :: Fn Logical_168 a -> Parser a
 parse_168 f = do
     return $ f
 
-show_168 :: Fn Logical_168 ShowS
-show_168 = id
+show_168 :: Fn Logical_168 (String, ShowS)
+show_168 = simple $ id
 
 
 --- 169: '  <Xt>, [<Xn|SP>{, #<simm>}]!'
@@ -4196,8 +4196,8 @@ parse_169 :: Fn Logical_169 a -> Parser a
 parse_169 f = do
     return $ f
 
-show_169 :: Fn Logical_169 ShowS
-show_169 = id
+show_169 :: Fn Logical_169 (String, ShowS)
+show_169 = simple $ id
 
 
 --- 170: '  <Vd>.<T>, <Vn>.<T>, #<fbits>'
@@ -4219,8 +4219,8 @@ parse_170 :: Fn Logical_170 a -> Parser a
 parse_170 f = do
     return $ f
 
-show_170 :: Fn Logical_170 ShowS
-show_170 = id
+show_170 :: Fn Logical_170 (String, ShowS)
+show_170 = simple $ id
 
 
 --- 171: '  <Vd>.<T>, <Vn>.<T>, #<shift>'
@@ -4252,8 +4252,8 @@ parse_171 :: Fn Logical_171 a -> Parser a
 parse_171 f = do
     return $ f
 
-show_171 :: Fn Logical_171 ShowS
-show_171 = id
+show_171 :: Fn Logical_171 (String, ShowS)
+show_171 = simple $ id
 
 
 --- 172: '  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>'
@@ -4380,8 +4380,8 @@ parse_172 :: Fn Logical_172 a -> Parser a
 parse_172 f = do
     return $ f
 
-show_172 :: Fn Logical_172 ShowS
-show_172 = id
+show_172 :: Fn Logical_172 (String, ShowS)
+show_172 = simple $ id
 
 
 --- 173: '  <Vd>.<T>, <Vn>.<Ts>[<index>]'
@@ -4400,8 +4400,8 @@ parse_173 :: Fn Logical_173 a -> Parser a
 parse_173 f = do
     return $ f
 
-show_173 :: Fn Logical_173 ShowS
-show_173 = id
+show_173 :: Fn Logical_173 (String, ShowS)
+show_173 = simple $ id
 
 
 --- 174: '  <Wd>, #<imm>{, LSL #<shift>}'
@@ -4422,8 +4422,8 @@ parse_174 :: Fn Logical_174 a -> Parser a
 parse_174 f = do
     return $ f
 
-show_174 :: Fn Logical_174 ShowS
-show_174 = id
+show_174 :: Fn Logical_174 (String, ShowS)
+show_174 = simple $ id
 
 
 --- 175: '  <Wd>, <Wn>, #<immr>, #<imms>'
@@ -4444,8 +4444,8 @@ parse_175 :: Fn Logical_175 a -> Parser a
 parse_175 f = do
     return $ f
 
-show_175 :: Fn Logical_175 ShowS
-show_175 = id
+show_175 :: Fn Logical_175 (String, ShowS)
+show_175 = simple $ id
 
 
 --- 176: '  <Wt1>, <Wt2>, [<Xn|SP>{,#0}]'
@@ -4465,8 +4465,8 @@ parse_176 :: Fn Logical_176 a -> Parser a
 parse_176 f = do
     return $ f
 
-show_176 :: Fn Logical_176 ShowS
-show_176 = id
+show_176 :: Fn Logical_176 (String, ShowS)
+show_176 = simple $ id
 
 
 --- 177: '  <Xd>, #<imm>{, LSL #<shift>}'
@@ -4487,8 +4487,8 @@ parse_177 :: Fn Logical_177 a -> Parser a
 parse_177 f = do
     return $ f
 
-show_177 :: Fn Logical_177 ShowS
-show_177 = id
+show_177 :: Fn Logical_177 (String, ShowS)
+show_177 = simple $ id
 
 
 --- 178: '  <Xd>, <Xn>, #<immr>, #<imms>'
@@ -4509,8 +4509,8 @@ parse_178 :: Fn Logical_178 a -> Parser a
 parse_178 f = do
     return $ f
 
-show_178 :: Fn Logical_178 ShowS
-show_178 = id
+show_178 :: Fn Logical_178 (String, ShowS)
+show_178 = simple $ id
 
 
 --- 179: '  <Xt1>, <Xt2>, [<Xn|SP>{,#0}]'
@@ -4530,8 +4530,8 @@ parse_179 :: Fn Logical_179 a -> Parser a
 parse_179 f = do
     return $ f
 
-show_179 :: Fn Logical_179 ShowS
-show_179 = id
+show_179 :: Fn Logical_179 (String, ShowS)
+show_179 = simple $ id
 
 
 --- 180: '  <Wn>, #<imm>, #<nzcv>, <cond>'
@@ -4551,8 +4551,8 @@ parse_180 :: Fn Logical_180 a -> Parser a
 parse_180 f = do
     return $ f
 
-show_180 :: Fn Logical_180 ShowS
-show_180 = id
+show_180 :: Fn Logical_180 (String, ShowS)
+show_180 = simple $ id
 
 
 --- 181: '  <Xn>, #<imm>, #<nzcv>, <cond>'
@@ -4572,8 +4572,8 @@ parse_181 :: Fn Logical_181 a -> Parser a
 parse_181 f = do
     return $ f
 
-show_181 :: Fn Logical_181 ShowS
-show_181 = id
+show_181 :: Fn Logical_181 (String, ShowS)
+show_181 = simple $ id
 
 
 --- 182: '  { <Vt>.<T> }, [<Xn|SP>], <Xm>'
@@ -4594,8 +4594,8 @@ parse_182 :: Fn Logical_182 a -> Parser a
 parse_182 f = do
     return $ f
 
-show_182 :: Fn Logical_182 ShowS
-show_182 = id
+show_182 :: Fn Logical_182 (String, ShowS)
+show_182 = simple $ id
 
 
 --- 183: '  <Vd>.S, <Vn>.S, <Vm>.S[<imm2>]'
@@ -4614,8 +4614,8 @@ parse_183 :: Fn Logical_183 a -> Parser a
 parse_183 f = do
     return $ f
 
-show_183 :: Fn Logical_183 ShowS
-show_183 = id
+show_183 :: Fn Logical_183 (String, ShowS)
+show_183 = simple $ id
 
 
 --- 184: '  { <Vt>.<T> }, [<Xn|SP>], <imm>'
@@ -4636,8 +4636,8 @@ parse_184 :: Fn Logical_184 a -> Parser a
 parse_184 f = do
     return $ f
 
-show_184 :: Fn Logical_184 ShowS
-show_184 = id
+show_184 :: Fn Logical_184 (String, ShowS)
+show_184 = simple $ id
 
 
 --- 185: '  { <Vt>.B }[<index>], [<Xn|SP>]'
@@ -4657,8 +4657,8 @@ parse_185 :: Fn Logical_185 a -> Parser a
 parse_185 f = do
     return $ f
 
-show_185 :: Fn Logical_185 ShowS
-show_185 = id
+show_185 :: Fn Logical_185 (String, ShowS)
+show_185 = simple $ id
 
 
 --- 186: '  { <Vt>.D }[<index>], [<Xn|SP>]'
@@ -4678,8 +4678,8 @@ parse_186 :: Fn Logical_186 a -> Parser a
 parse_186 f = do
     return $ f
 
-show_186 :: Fn Logical_186 ShowS
-show_186 = id
+show_186 :: Fn Logical_186 (String, ShowS)
+show_186 = simple $ id
 
 
 --- 187: '  { <Vt>.H }[<index>], [<Xn|SP>]'
@@ -4699,8 +4699,8 @@ parse_187 :: Fn Logical_187 a -> Parser a
 parse_187 f = do
     return $ f
 
-show_187 :: Fn Logical_187 ShowS
-show_187 = id
+show_187 :: Fn Logical_187 (String, ShowS)
+show_187 = simple $ id
 
 
 --- 188: '  { <Vt>.S }[<index>], [<Xn|SP>]'
@@ -4720,8 +4720,8 @@ parse_188 :: Fn Logical_188 a -> Parser a
 parse_188 f = do
     return $ f
 
-show_188 :: Fn Logical_188 ShowS
-show_188 = id
+show_188 :: Fn Logical_188 (String, ShowS)
+show_188 = simple $ id
 
 
 --- 189: '  <Dt1>, <Dt2>, [<Xn|SP>], #<imm>'
@@ -4741,8 +4741,8 @@ parse_189 :: Fn Logical_189 a -> Parser a
 parse_189 f = do
     return $ f
 
-show_189 :: Fn Logical_189 ShowS
-show_189 = id
+show_189 :: Fn Logical_189 (String, ShowS)
+show_189 = simple $ id
 
 
 --- 190: '  <Qt1>, <Qt2>, [<Xn|SP>], #<imm>'
@@ -4762,8 +4762,8 @@ parse_190 :: Fn Logical_190 a -> Parser a
 parse_190 f = do
     return $ f
 
-show_190 :: Fn Logical_190 ShowS
-show_190 = id
+show_190 :: Fn Logical_190 (String, ShowS)
+show_190 = simple $ id
 
 
 --- 191: '  <St1>, <St2>, [<Xn|SP>], #<imm>'
@@ -4783,8 +4783,8 @@ parse_191 :: Fn Logical_191 a -> Parser a
 parse_191 f = do
     return $ f
 
-show_191 :: Fn Logical_191 ShowS
-show_191 = id
+show_191 :: Fn Logical_191 (String, ShowS)
+show_191 = simple $ id
 
 
 --- 192: '  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.<Tb>'
@@ -4804,8 +4804,8 @@ parse_192 :: Fn Logical_192 a -> Parser a
 parse_192 f = do
     return $ f
 
-show_192 :: Fn Logical_192 ShowS
-show_192 = id
+show_192 :: Fn Logical_192 (String, ShowS)
+show_192 = simple $ id
 
 
 --- 193: '  <Wt1>, <Wt2>, [<Xn|SP>], #<imm>'
@@ -4825,8 +4825,8 @@ parse_193 :: Fn Logical_193 a -> Parser a
 parse_193 f = do
     return $ f
 
-show_193 :: Fn Logical_193 ShowS
-show_193 = id
+show_193 :: Fn Logical_193 (String, ShowS)
+show_193 = simple $ id
 
 
 --- 194: '  <Xt1>, <Xt2>, [<Xn|SP>], #<imm>'
@@ -4847,8 +4847,8 @@ parse_194 :: Fn Logical_194 a -> Parser a
 parse_194 f = do
     return $ f
 
-show_194 :: Fn Logical_194 ShowS
-show_194 = id
+show_194 :: Fn Logical_194 (String, ShowS)
+show_194 = simple $ id
 
 
 --- 195: '  <Dt1>, <Dt2>, [<Xn|SP>, #<imm>]!'
@@ -4868,8 +4868,8 @@ parse_195 :: Fn Logical_195 a -> Parser a
 parse_195 f = do
     return $ f
 
-show_195 :: Fn Logical_195 ShowS
-show_195 = id
+show_195 :: Fn Logical_195 (String, ShowS)
+show_195 = simple $ id
 
 
 --- 196: '  <Qt1>, <Qt2>, [<Xn|SP>, #<imm>]!'
@@ -4889,8 +4889,8 @@ parse_196 :: Fn Logical_196 a -> Parser a
 parse_196 f = do
     return $ f
 
-show_196 :: Fn Logical_196 ShowS
-show_196 = id
+show_196 :: Fn Logical_196 (String, ShowS)
+show_196 = simple $ id
 
 
 --- 197: '  <St1>, <St2>, [<Xn|SP>, #<imm>]!'
@@ -4910,8 +4910,8 @@ parse_197 :: Fn Logical_197 a -> Parser a
 parse_197 f = do
     return $ f
 
-show_197 :: Fn Logical_197 ShowS
-show_197 = id
+show_197 :: Fn Logical_197 (String, ShowS)
+show_197 = simple $ id
 
 
 --- 198: '  <Vd>.4S, <Vn>.4S, <Vm>.S[<imm2>]'
@@ -4932,8 +4932,8 @@ parse_198 :: Fn Logical_198 a -> Parser a
 parse_198 f = do
     return $ f
 
-show_198 :: Fn Logical_198 ShowS
-show_198 = id
+show_198 :: Fn Logical_198 (String, ShowS)
+show_198 = simple $ id
 
 
 --- 199: '  <Vd>.<T>, #<imm8>, MSL #<amount>'
@@ -4953,8 +4953,8 @@ parse_199 :: Fn Logical_199 a -> Parser a
 parse_199 f = do
     return $ f
 
-show_199 :: Fn Logical_199 ShowS
-show_199 = id
+show_199 :: Fn Logical_199 (String, ShowS)
+show_199 = simple $ id
 
 
 --- 200: '  <Wt1>, <Wt2>, [<Xn|SP>, #<imm>]!'
@@ -4974,8 +4974,8 @@ parse_200 :: Fn Logical_200 a -> Parser a
 parse_200 f = do
     return $ f
 
-show_200 :: Fn Logical_200 ShowS
-show_200 = id
+show_200 :: Fn Logical_200 (String, ShowS)
+show_200 = simple $ id
 
 
 --- 201: '  <Xd>, <Xn|SP>, #<imm>{, <shift>}'
@@ -4995,8 +4995,8 @@ parse_201 :: Fn Logical_201 a -> Parser a
 parse_201 f = do
     return $ f
 
-show_201 :: Fn Logical_201 ShowS
-show_201 = id
+show_201 :: Fn Logical_201 (String, ShowS)
+show_201 = simple $ id
 
 
 --- 202: '  <Xt1>, <Xt2>, [<Xn|SP>, #<imm>]!'
@@ -5017,8 +5017,8 @@ parse_202 :: Fn Logical_202 a -> Parser a
 parse_202 f = do
     return $ f
 
-show_202 :: Fn Logical_202 ShowS
-show_202 = id
+show_202 :: Fn Logical_202 (String, ShowS)
+show_202 = simple $ id
 
 
 --- 203: '  <Xt>, #<op1>, <Cn>, <Cm>, #<op2>'
@@ -5037,8 +5037,8 @@ parse_203 :: Fn Logical_203 a -> Parser a
 parse_203 f = do
     return $ f
 
-show_203 :: Fn Logical_203 ShowS
-show_203 = id
+show_203 :: Fn Logical_203 (String, ShowS)
+show_203 = simple $ id
 
 
 --- 204: '  <Dt1>, <Dt2>, [<Xn|SP>{, #<imm>}]'
@@ -5060,8 +5060,8 @@ parse_204 :: Fn Logical_204 a -> Parser a
 parse_204 f = do
     return $ f
 
-show_204 :: Fn Logical_204 ShowS
-show_204 = id
+show_204 :: Fn Logical_204 (String, ShowS)
+show_204 = simple $ id
 
 
 --- 205: '  <Qt1>, <Qt2>, [<Xn|SP>{, #<imm>}]'
@@ -5083,8 +5083,8 @@ parse_205 :: Fn Logical_205 a -> Parser a
 parse_205 f = do
     return $ f
 
-show_205 :: Fn Logical_205 ShowS
-show_205 = id
+show_205 :: Fn Logical_205 (String, ShowS)
+show_205 = simple $ id
 
 
 --- 206: '  <St1>, <St2>, [<Xn|SP>{, #<imm>}]'
@@ -5106,8 +5106,8 @@ parse_206 :: Fn Logical_206 a -> Parser a
 parse_206 f = do
     return $ f
 
-show_206 :: Fn Logical_206 ShowS
-show_206 = id
+show_206 :: Fn Logical_206 (String, ShowS)
+show_206 = simple $ id
 
 
 --- 207: '  <Wd>, <Wn|WSP>, #<imm>{, <shift>}'
@@ -5127,8 +5127,8 @@ parse_207 :: Fn Logical_207 a -> Parser a
 parse_207 f = do
     return $ f
 
-show_207 :: Fn Logical_207 ShowS
-show_207 = id
+show_207 :: Fn Logical_207 (String, ShowS)
+show_207 = simple $ id
 
 
 --- 208: '  <Wt1>, <Wt2>, [<Xn|SP>{, #<imm>}]'
@@ -5150,8 +5150,8 @@ parse_208 :: Fn Logical_208 a -> Parser a
 parse_208 f = do
     return $ f
 
-show_208 :: Fn Logical_208 ShowS
-show_208 = id
+show_208 :: Fn Logical_208 (String, ShowS)
+show_208 = simple $ id
 
 
 --- 209: '  <Xt1>, <Xt2>, [<Xn|SP>{, #<imm>}]'
@@ -5174,8 +5174,8 @@ parse_209 :: Fn Logical_209 a -> Parser a
 parse_209 f = do
     return $ f
 
-show_209 :: Fn Logical_209 ShowS
-show_209 = id
+show_209 :: Fn Logical_209 (String, ShowS)
+show_209 = simple $ id
 
 
 --- 210: '{2}  <Vd>.<Ta>, <Vn>.<Tb>, #<shift>'
@@ -5196,8 +5196,8 @@ parse_210 :: Fn Logical_210 a -> Parser a
 parse_210 f = do
     return $ f
 
-show_210 :: Fn Logical_210 ShowS
-show_210 = id
+show_210 :: Fn Logical_210 (String, ShowS)
+show_210 = simple $ id
 
 
 --- 211: '{2}  <Vd>.<Tb>, <Vn>.<Ta>, #<shift>'
@@ -5223,8 +5223,8 @@ parse_211 :: Fn Logical_211 a -> Parser a
 parse_211 f = do
     return $ f
 
-show_211 :: Fn Logical_211 ShowS
-show_211 = id
+show_211 :: Fn Logical_211 (String, ShowS)
+show_211 = simple $ id
 
 
 --- 212: '  #<op1>, <Cn>, <Cm>, #<op2>{, <Xt>}'
@@ -5243,8 +5243,8 @@ parse_212 :: Fn Logical_212 a -> Parser a
 parse_212 f = do
     return $ f
 
-show_212 :: Fn Logical_212 ShowS
-show_212 = id
+show_212 :: Fn Logical_212 (String, ShowS)
+show_212 = simple $ id
 
 
 --- 213: '  <V><d>, <V><n>, <Vm>.<Ts>[<index>]'
@@ -5270,8 +5270,8 @@ parse_213 :: Fn Logical_213 a -> Parser a
 parse_213 f = do
     return $ f
 
-show_213 :: Fn Logical_213 ShowS
-show_213 = id
+show_213 :: Fn Logical_213 (String, ShowS)
+show_213 = simple $ id
 
 
 --- 214: '  <Vd>.2D, <Vn>.2D, <Vm>.2D, #<imm6>'
@@ -5290,8 +5290,8 @@ parse_214 :: Fn Logical_214 a -> Parser a
 parse_214 f = do
     return $ f
 
-show_214 :: Fn Logical_214 ShowS
-show_214 = id
+show_214 :: Fn Logical_214 (String, ShowS)
+show_214 = simple $ id
 
 
 --- 215: '  <Vd>.4S, <Vn>.4S, <Vm>.4S, <Va>.4S'
@@ -5310,8 +5310,8 @@ parse_215 :: Fn Logical_215 a -> Parser a
 parse_215 f = do
     return $ f
 
-show_215 :: Fn Logical_215 ShowS
-show_215 = id
+show_215 :: Fn Logical_215 (String, ShowS)
+show_215 = simple $ id
 
 
 --- 216: '  <Vd>.<T>, #<imm8>{, LSL #<amount>}'
@@ -5337,8 +5337,8 @@ parse_216 :: Fn Logical_216 a -> Parser a
 parse_216 f = do
     return $ f
 
-show_216 :: Fn Logical_216 ShowS
-show_216 = id
+show_216 :: Fn Logical_216 (String, ShowS)
+show_216 = simple $ id
 
 
 --- 217: '  <Vd>.<Ta>, { <Vn>.16B }, <Vm>.<Ta>'
@@ -5358,8 +5358,8 @@ parse_217 :: Fn Logical_217 a -> Parser a
 parse_217 f = do
     return $ f
 
-show_217 :: Fn Logical_217 ShowS
-show_217 = id
+show_217 :: Fn Logical_217 (String, ShowS)
+show_217 = simple $ id
 
 
 --- 218: '  <Ws>, <Wt1>, <Wt2>, [<Xn|SP>{,#0}]'
@@ -5379,8 +5379,8 @@ parse_218 :: Fn Logical_218 a -> Parser a
 parse_218 f = do
     return $ f
 
-show_218 :: Fn Logical_218 ShowS
-show_218 = id
+show_218 :: Fn Logical_218 (String, ShowS)
+show_218 = simple $ id
 
 
 --- 219: '  <Ws>, <Xt1>, <Xt2>, [<Xn|SP>{,#0}]'
@@ -5400,8 +5400,8 @@ parse_219 :: Fn Logical_219 a -> Parser a
 parse_219 f = do
     return $ f
 
-show_219 :: Fn Logical_219 ShowS
-show_219 = id
+show_219 :: Fn Logical_219 (String, ShowS)
+show_219 = simple $ id
 
 
 --- 220: '  { <Vt>.<T>, <Vt2>.<T> }, [<Xn|SP>]'
@@ -5424,8 +5424,8 @@ parse_220 :: Fn Logical_220 a -> Parser a
 parse_220 f = do
     return $ f
 
-show_220 :: Fn Logical_220 ShowS
-show_220 = id
+show_220 :: Fn Logical_220 (String, ShowS)
+show_220 = simple $ id
 
 
 --- 221: '  { <Vt>.B }[<index>], [<Xn|SP>], #1'
@@ -5445,8 +5445,8 @@ parse_221 :: Fn Logical_221 a -> Parser a
 parse_221 f = do
     return $ f
 
-show_221 :: Fn Logical_221 ShowS
-show_221 = id
+show_221 :: Fn Logical_221 (String, ShowS)
+show_221 = simple $ id
 
 
 --- 222: '  { <Vt>.D }[<index>], [<Xn|SP>], #8'
@@ -5466,8 +5466,8 @@ parse_222 :: Fn Logical_222 a -> Parser a
 parse_222 f = do
     return $ f
 
-show_222 :: Fn Logical_222 ShowS
-show_222 = id
+show_222 :: Fn Logical_222 (String, ShowS)
+show_222 = simple $ id
 
 
 --- 223: '  { <Vt>.H }[<index>], [<Xn|SP>], #2'
@@ -5487,8 +5487,8 @@ parse_223 :: Fn Logical_223 a -> Parser a
 parse_223 f = do
     return $ f
 
-show_223 :: Fn Logical_223 ShowS
-show_223 = id
+show_223 :: Fn Logical_223 (String, ShowS)
+show_223 = simple $ id
 
 
 --- 224: '  { <Vt>.S }[<index>], [<Xn|SP>], #4'
@@ -5508,8 +5508,8 @@ parse_224 :: Fn Logical_224 a -> Parser a
 parse_224 f = do
     return $ f
 
-show_224 :: Fn Logical_224 ShowS
-show_224 = id
+show_224 :: Fn Logical_224 (String, ShowS)
+show_224 = simple $ id
 
 
 --- 225: '{2}  <Vd>.<Ta>, <Vn>.<Ta>, <Vm>.<Tb>'
@@ -5531,8 +5531,8 @@ parse_225 :: Fn Logical_225 a -> Parser a
 parse_225 f = do
     return $ f
 
-show_225 :: Fn Logical_225 ShowS
-show_225 = id
+show_225 :: Fn Logical_225 (String, ShowS)
+show_225 = simple $ id
 
 
 --- 226: '{2}  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.<Tb>'
@@ -5568,8 +5568,8 @@ parse_226 :: Fn Logical_226 a -> Parser a
 parse_226 f = do
     return $ f
 
-show_226 :: Fn Logical_226 ShowS
-show_226 = id
+show_226 :: Fn Logical_226 (String, ShowS)
+show_226 = simple $ id
 
 
 --- 227: '{2}  <Vd>.<Tb>, <Vn>.<Ta>, <Vm>.<Ta>'
@@ -5591,8 +5591,8 @@ parse_227 :: Fn Logical_227 a -> Parser a
 parse_227 f = do
     return $ f
 
-show_227 :: Fn Logical_227 ShowS
-show_227 = id
+show_227 :: Fn Logical_227 (String, ShowS)
+show_227 = simple $ id
 
 
 --- 228: '  <Vd>.<T>, <Vn>.<T>, <Vm>.H[<index>]'
@@ -5614,8 +5614,8 @@ parse_228 :: Fn Logical_228 a -> Parser a
 parse_228 f = do
     return $ f
 
-show_228 :: Fn Logical_228 ShowS
-show_228 = id
+show_228 :: Fn Logical_228 (String, ShowS)
+show_228 = simple $ id
 
 
 --- 229: '  <Xd|SP>, <Xn|SP>, #<imm>{, <shift>}'
@@ -5635,8 +5635,8 @@ parse_229 :: Fn Logical_229 a -> Parser a
 parse_229 f = do
     return $ f
 
-show_229 :: Fn Logical_229 ShowS
-show_229 = id
+show_229 :: Fn Logical_229 (String, ShowS)
+show_229 = simple $ id
 
 
 --- 230: '  <Va><d>, <Vb><n>, <Vm>.<Ts>[<index>]'
@@ -5657,8 +5657,8 @@ parse_230 :: Fn Logical_230 a -> Parser a
 parse_230 f = do
     return $ f
 
-show_230 :: Fn Logical_230 ShowS
-show_230 = id
+show_230 :: Fn Logical_230 (String, ShowS)
+show_230 = simple $ id
 
 
 --- 231: '  { <Vt>.B }[<index>], [<Xn|SP>], <Xm>'
@@ -5678,8 +5678,8 @@ parse_231 :: Fn Logical_231 a -> Parser a
 parse_231 f = do
     return $ f
 
-show_231 :: Fn Logical_231 ShowS
-show_231 = id
+show_231 :: Fn Logical_231 (String, ShowS)
+show_231 = simple $ id
 
 
 --- 232: '  { <Vt>.D }[<index>], [<Xn|SP>], <Xm>'
@@ -5699,8 +5699,8 @@ parse_232 :: Fn Logical_232 a -> Parser a
 parse_232 f = do
     return $ f
 
-show_232 :: Fn Logical_232 ShowS
-show_232 = id
+show_232 :: Fn Logical_232 (String, ShowS)
+show_232 = simple $ id
 
 
 --- 233: '  { <Vt>.H }[<index>], [<Xn|SP>], <Xm>'
@@ -5720,8 +5720,8 @@ parse_233 :: Fn Logical_233 a -> Parser a
 parse_233 f = do
     return $ f
 
-show_233 :: Fn Logical_233 ShowS
-show_233 = id
+show_233 :: Fn Logical_233 (String, ShowS)
+show_233 = simple $ id
 
 
 --- 234: '  { <Vt>.S }[<index>], [<Xn|SP>], <Xm>'
@@ -5741,8 +5741,8 @@ parse_234 :: Fn Logical_234 a -> Parser a
 parse_234 f = do
     return $ f
 
-show_234 :: Fn Logical_234 ShowS
-show_234 = id
+show_234 :: Fn Logical_234 (String, ShowS)
+show_234 = simple $ id
 
 
 --- 235: '  <Bt>, [<Xn|SP>, <Xm>{, LSL <amount>}]'
@@ -5762,8 +5762,8 @@ parse_235 :: Fn Logical_235 a -> Parser a
 parse_235 f = do
     return $ f
 
-show_235 :: Fn Logical_235 ShowS
-show_235 = id
+show_235 :: Fn Logical_235 (String, ShowS)
+show_235 = simple $ id
 
 
 --- 236: '  <Wd>, <Wn>, <Wm>{, <shift> #<amount>}'
@@ -5793,8 +5793,8 @@ parse_236 :: Fn Logical_236 a -> Parser a
 parse_236 f = do
     return $ f
 
-show_236 :: Fn Logical_236 ShowS
-show_236 = id
+show_236 :: Fn Logical_236 (String, ShowS)
+show_236 = simple $ id
 
 
 --- 237: '  <Wd|WSP>, <Wn|WSP>, #<imm>{, <shift>}'
@@ -5814,8 +5814,8 @@ parse_237 :: Fn Logical_237 a -> Parser a
 parse_237 f = do
     return $ f
 
-show_237 :: Fn Logical_237 ShowS
-show_237 = id
+show_237 :: Fn Logical_237 (String, ShowS)
+show_237 = simple $ id
 
 
 --- 238: '  <Wt>, [<Xn|SP>, <Xm>{, LSL <amount>}]'
@@ -5836,8 +5836,8 @@ parse_238 :: Fn Logical_238 a -> Parser a
 parse_238 f = do
     return $ f
 
-show_238 :: Fn Logical_238 ShowS
-show_238 = id
+show_238 :: Fn Logical_238 (String, ShowS)
+show_238 = simple $ id
 
 
 --- 239: '  <Xd>, <Xn>, <Xm>{, <shift> #<amount>}'
@@ -5867,8 +5867,8 @@ parse_239 :: Fn Logical_239 a -> Parser a
 parse_239 f = do
     return $ f
 
-show_239 :: Fn Logical_239 ShowS
-show_239 = id
+show_239 :: Fn Logical_239 (String, ShowS)
+show_239 = simple $ id
 
 
 --- 240: '  <Xt>, [<Xn|SP>, <Xm>{, LSL <amount>}]'
@@ -5887,8 +5887,8 @@ parse_240 :: Fn Logical_240 a -> Parser a
 parse_240 f = do
     return $ f
 
-show_240 :: Fn Logical_240 ShowS
-show_240 = id
+show_240 :: Fn Logical_240 (String, ShowS)
+show_240 = simple $ id
 
 
 --- 241: '  <Vd>.16B, <Vn>.16B, <Vm>.16B, <Va>.16B'
@@ -5908,8 +5908,8 @@ parse_241 :: Fn Logical_241 a -> Parser a
 parse_241 f = do
     return $ f
 
-show_241 :: Fn Logical_241 ShowS
-show_241 = id
+show_241 :: Fn Logical_241 (String, ShowS)
+show_241 = simple $ id
 
 
 --- 242: '  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>, #<index>'
@@ -5928,8 +5928,8 @@ parse_242 :: Fn Logical_242 a -> Parser a
 parse_242 f = do
     return $ f
 
-show_242 :: Fn Logical_242 ShowS
-show_242 = id
+show_242 :: Fn Logical_242 (String, ShowS)
+show_242 = simple $ id
 
 
 --- 243: '  <Vd>.<T>, <Vn>.<T>, <Vm>.<Ts>[<index>]'
@@ -5958,8 +5958,8 @@ parse_243 :: Fn Logical_243 a -> Parser a
 parse_243 f = do
     return $ f
 
-show_243 :: Fn Logical_243 ShowS
-show_243 = id
+show_243 :: Fn Logical_243 (String, ShowS)
+show_243 = simple $ id
 
 
 --- 244: '  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.4B[<index>]'
@@ -5979,8 +5979,8 @@ parse_244 :: Fn Logical_244 a -> Parser a
 parse_244 f = do
     return $ f
 
-show_244 :: Fn Logical_244 ShowS
-show_244 = id
+show_244 :: Fn Logical_244 (String, ShowS)
+show_244 = simple $ id
 
 
 --- 245: ' (<prfop>|#<imm5>), [<Xn|SP>{, #<simm>}]'
@@ -5999,8 +5999,8 @@ parse_245 :: Fn Logical_245 a -> Parser a
 parse_245 f = do
     return $ f
 
-show_245 :: Fn Logical_245 ShowS
-show_245 = id
+show_245 :: Fn Logical_245 (String, ShowS)
+show_245 = simple $ id
 
 
 --- 246: '  (<prfop>|#<imm5>), [<Xn|SP>{, #<pimm>}]'
@@ -6019,8 +6019,8 @@ parse_246 :: Fn Logical_246 a -> Parser a
 parse_246 f = do
     return $ f
 
-show_246 :: Fn Logical_246 ShowS
-show_246 = id
+show_246 :: Fn Logical_246 (String, ShowS)
+show_246 = simple $ id
 
 
 --- 247: '  <Vd>.<T>, <Vn>.<T>, <Vm>.<T>, #<rotate>'
@@ -6040,8 +6040,8 @@ parse_247 :: Fn Logical_247 a -> Parser a
 parse_247 f = do
     return $ f
 
-show_247 :: Fn Logical_247 ShowS
-show_247 = id
+show_247 :: Fn Logical_247 (String, ShowS)
+show_247 = simple $ id
 
 
 --- 248: '  { <Vt>.B, <Vt2>.B }[<index>], [<Xn|SP>]'
@@ -6061,8 +6061,8 @@ parse_248 :: Fn Logical_248 a -> Parser a
 parse_248 f = do
     return $ f
 
-show_248 :: Fn Logical_248 ShowS
-show_248 = id
+show_248 :: Fn Logical_248 (String, ShowS)
+show_248 = simple $ id
 
 
 --- 249: '  { <Vt>.D, <Vt2>.D }[<index>], [<Xn|SP>]'
@@ -6082,8 +6082,8 @@ parse_249 :: Fn Logical_249 a -> Parser a
 parse_249 f = do
     return $ f
 
-show_249 :: Fn Logical_249 ShowS
-show_249 = id
+show_249 :: Fn Logical_249 (String, ShowS)
+show_249 = simple $ id
 
 
 --- 250: '  { <Vt>.H, <Vt2>.H }[<index>], [<Xn|SP>]'
@@ -6103,8 +6103,8 @@ parse_250 :: Fn Logical_250 a -> Parser a
 parse_250 f = do
     return $ f
 
-show_250 :: Fn Logical_250 ShowS
-show_250 = id
+show_250 :: Fn Logical_250 (String, ShowS)
+show_250 = simple $ id
 
 
 --- 251: '  { <Vt>.S, <Vt2>.S }[<index>], [<Xn|SP>]'
@@ -6124,8 +6124,8 @@ parse_251 :: Fn Logical_251 a -> Parser a
 parse_251 f = do
     return $ f
 
-show_251 :: Fn Logical_251 ShowS
-show_251 = id
+show_251 :: Fn Logical_251 (String, ShowS)
+show_251 = simple $ id
 
 
 --- 252: '  <Vd>.<Ts>[<index1>], <Vn>.<Ts>[<index2>]'
@@ -6144,8 +6144,8 @@ parse_252 :: Fn Logical_252 a -> Parser a
 parse_252 f = do
     return $ f
 
-show_252 :: Fn Logical_252 ShowS
-show_252 = id
+show_252 :: Fn Logical_252 (String, ShowS)
+show_252 = simple $ id
 
 
 --- 253: '  { <Vt>.<T>, <Vt2>.<T> }, [<Xn|SP>], <Xm>'
@@ -6168,8 +6168,8 @@ parse_253 :: Fn Logical_253 a -> Parser a
 parse_253 f = do
     return $ f
 
-show_253 :: Fn Logical_253 ShowS
-show_253 = id
+show_253 :: Fn Logical_253 (String, ShowS)
+show_253 = simple $ id
 
 
 --- 254: '  { <Vt>.<T>, <Vt2>.<T> }, [<Xn|SP>], <imm>'
@@ -6192,8 +6192,8 @@ parse_254 :: Fn Logical_254 a -> Parser a
 parse_254 f = do
     return $ f
 
-show_254 :: Fn Logical_254 ShowS
-show_254 = id
+show_254 :: Fn Logical_254 (String, ShowS)
+show_254 = simple $ id
 
 
 --- 255: '  { <Vt>.B, <Vt2>.B }[<index>], [<Xn|SP>], #2'
@@ -6213,8 +6213,8 @@ parse_255 :: Fn Logical_255 a -> Parser a
 parse_255 f = do
     return $ f
 
-show_255 :: Fn Logical_255 ShowS
-show_255 = id
+show_255 :: Fn Logical_255 (String, ShowS)
+show_255 = simple $ id
 
 
 --- 256: '  { <Vt>.H, <Vt2>.H }[<index>], [<Xn|SP>], #4'
@@ -6234,8 +6234,8 @@ parse_256 :: Fn Logical_256 a -> Parser a
 parse_256 f = do
     return $ f
 
-show_256 :: Fn Logical_256 ShowS
-show_256 = id
+show_256 :: Fn Logical_256 (String, ShowS)
+show_256 = simple $ id
 
 
 --- 257: '  { <Vt>.S, <Vt2>.S }[<index>], [<Xn|SP>], #8'
@@ -6255,8 +6255,8 @@ parse_257 :: Fn Logical_257 a -> Parser a
 parse_257 f = do
     return $ f
 
-show_257 :: Fn Logical_257 ShowS
-show_257 = id
+show_257 :: Fn Logical_257 (String, ShowS)
+show_257 = simple $ id
 
 
 --- 258: '{2}  <Vd>.<Ta>, <Vn>.<Tb>, <Vm>.<Ts>[<index>]'
@@ -6283,8 +6283,8 @@ parse_258 :: Fn Logical_258 a -> Parser a
 parse_258 f = do
     return $ f
 
-show_258 :: Fn Logical_258 ShowS
-show_258 = id
+show_258 :: Fn Logical_258 (String, ShowS)
+show_258 = simple $ id
 
 
 --- 259: '  <Wd>, <Wn|WSP>, <Wm>{, <extend> {#<amount>}}'
@@ -6304,8 +6304,8 @@ parse_259 :: Fn Logical_259 a -> Parser a
 parse_259 f = do
     return $ f
 
-show_259 :: Fn Logical_259 ShowS
-show_259 = id
+show_259 :: Fn Logical_259 (String, ShowS)
+show_259 = simple $ id
 
 
 --- 260: '  { <Vt>.D, <Vt2>.D }[<index>], [<Xn|SP>], #16'
@@ -6325,8 +6325,8 @@ parse_260 :: Fn Logical_260 a -> Parser a
 parse_260 f = do
     return $ f
 
-show_260 :: Fn Logical_260 ShowS
-show_260 = id
+show_260 :: Fn Logical_260 (String, ShowS)
+show_260 = simple $ id
 
 
 --- 261: '  <Xd>, <Xn|SP>, <R><m>{, <extend> {#<amount>}}'
@@ -6346,8 +6346,8 @@ parse_261 :: Fn Logical_261 a -> Parser a
 parse_261 f = do
     return $ f
 
-show_261 :: Fn Logical_261 ShowS
-show_261 = id
+show_261 :: Fn Logical_261 (String, ShowS)
+show_261 = simple $ id
 
 
 --- 262: '  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T> }, [<Xn|SP>]'
@@ -6370,8 +6370,8 @@ parse_262 :: Fn Logical_262 a -> Parser a
 parse_262 f = do
     return $ f
 
-show_262 :: Fn Logical_262 ShowS
-show_262 = id
+show_262 :: Fn Logical_262 (String, ShowS)
+show_262 = simple $ id
 
 
 --- 263: '  { <Vt>.B, <Vt2>.B }[<index>], [<Xn|SP>], <Xm>'
@@ -6391,8 +6391,8 @@ parse_263 :: Fn Logical_263 a -> Parser a
 parse_263 f = do
     return $ f
 
-show_263 :: Fn Logical_263 ShowS
-show_263 = id
+show_263 :: Fn Logical_263 (String, ShowS)
+show_263 = simple $ id
 
 
 --- 264: '  { <Vt>.D, <Vt2>.D }[<index>], [<Xn|SP>], <Xm>'
@@ -6412,8 +6412,8 @@ parse_264 :: Fn Logical_264 a -> Parser a
 parse_264 f = do
     return $ f
 
-show_264 :: Fn Logical_264 ShowS
-show_264 = id
+show_264 :: Fn Logical_264 (String, ShowS)
+show_264 = simple $ id
 
 
 --- 265: '  { <Vt>.H, <Vt2>.H }[<index>], [<Xn|SP>], <Xm>'
@@ -6433,8 +6433,8 @@ parse_265 :: Fn Logical_265 a -> Parser a
 parse_265 f = do
     return $ f
 
-show_265 :: Fn Logical_265 ShowS
-show_265 = id
+show_265 :: Fn Logical_265 (String, ShowS)
+show_265 = simple $ id
 
 
 --- 266: '  { <Vt>.S, <Vt2>.S }[<index>], [<Xn|SP>], <Xm>'
@@ -6454,8 +6454,8 @@ parse_266 :: Fn Logical_266 a -> Parser a
 parse_266 f = do
     return $ f
 
-show_266 :: Fn Logical_266 ShowS
-show_266 = id
+show_266 :: Fn Logical_266 (String, ShowS)
+show_266 = simple $ id
 
 
 --- 267: '  <Vd>.<Ta>, { <Vn>.16B, <Vn+1>.16B }, <Vm>.<Ta>'
@@ -6475,8 +6475,8 @@ parse_267 :: Fn Logical_267 a -> Parser a
 parse_267 f = do
     return $ f
 
-show_267 :: Fn Logical_267 ShowS
-show_267 = id
+show_267 :: Fn Logical_267 (String, ShowS)
+show_267 = simple $ id
 
 
 --- 268: '  <Ws>, <W(s+1)>, <Wt>, <W(t+1)>, [<Xn|SP>{,#0}]'
@@ -6498,8 +6498,8 @@ parse_268 :: Fn Logical_268 a -> Parser a
 parse_268 f = do
     return $ f
 
-show_268 :: Fn Logical_268 ShowS
-show_268 = id
+show_268 :: Fn Logical_268 (String, ShowS)
+show_268 = simple $ id
 
 
 --- 269: '  <Xs>, <X(s+1)>, <Xt>, <X(t+1)>, [<Xn|SP>{,#0}]'
@@ -6521,8 +6521,8 @@ parse_269 :: Fn Logical_269 a -> Parser a
 parse_269 f = do
     return $ f
 
-show_269 :: Fn Logical_269 ShowS
-show_269 = id
+show_269 :: Fn Logical_269 (String, ShowS)
+show_269 = simple $ id
 
 
 --- 270: '  (<systemreg>|S<op0>_<op1>_<Cn>_<Cm>_<op2>), <Xt>'
@@ -6541,8 +6541,8 @@ parse_270 :: Fn Logical_270 a -> Parser a
 parse_270 f = do
     return $ f
 
-show_270 :: Fn Logical_270 ShowS
-show_270 = id
+show_270 :: Fn Logical_270 (String, ShowS)
+show_270 = simple $ id
 
 
 --- 271: '  <Wd|WSP>, <Wn|WSP>, <Wm>{, <extend> {#<amount>}}'
@@ -6562,8 +6562,8 @@ parse_271 :: Fn Logical_271 a -> Parser a
 parse_271 f = do
     return $ f
 
-show_271 :: Fn Logical_271 ShowS
-show_271 = id
+show_271 :: Fn Logical_271 (String, ShowS)
+show_271 = simple $ id
 
 
 --- 272: '  <Xd|SP>, <Xn|SP>, <R><m>{, <extend> {#<amount>}}'
@@ -6583,8 +6583,8 @@ parse_272 :: Fn Logical_272 a -> Parser a
 parse_272 f = do
     return $ f
 
-show_272 :: Fn Logical_272 ShowS
-show_272 = id
+show_272 :: Fn Logical_272 (String, ShowS)
+show_272 = simple $ id
 
 
 --- 273: '  <Xt>, (<systemreg>|S<op0>_<op1>_<Cn>_<Cm>_<op2>)'
@@ -6603,8 +6603,8 @@ parse_273 :: Fn Logical_273 a -> Parser a
 parse_273 f = do
     return $ f
 
-show_273 :: Fn Logical_273 ShowS
-show_273 = id
+show_273 :: Fn Logical_273 (String, ShowS)
+show_273 = simple $ id
 
 
 --- 274: '  { <Vt>.B, <Vt2>.B, <Vt3>.B }[<index>], [<Xn|SP>]'
@@ -6624,8 +6624,8 @@ parse_274 :: Fn Logical_274 a -> Parser a
 parse_274 f = do
     return $ f
 
-show_274 :: Fn Logical_274 ShowS
-show_274 = id
+show_274 :: Fn Logical_274 (String, ShowS)
+show_274 = simple $ id
 
 
 --- 275: '  { <Vt>.D, <Vt2>.D, <Vt3>.D }[<index>], [<Xn|SP>]'
@@ -6645,8 +6645,8 @@ parse_275 :: Fn Logical_275 a -> Parser a
 parse_275 f = do
     return $ f
 
-show_275 :: Fn Logical_275 ShowS
-show_275 = id
+show_275 :: Fn Logical_275 (String, ShowS)
+show_275 = simple $ id
 
 
 --- 276: '  { <Vt>.H, <Vt2>.H, <Vt3>.H }[<index>], [<Xn|SP>]'
@@ -6666,8 +6666,8 @@ parse_276 :: Fn Logical_276 a -> Parser a
 parse_276 f = do
     return $ f
 
-show_276 :: Fn Logical_276 ShowS
-show_276 = id
+show_276 :: Fn Logical_276 (String, ShowS)
+show_276 = simple $ id
 
 
 --- 277: '  { <Vt>.S, <Vt2>.S, <Vt3>.S }[<index>], [<Xn|SP>]'
@@ -6687,8 +6687,8 @@ parse_277 :: Fn Logical_277 a -> Parser a
 parse_277 f = do
     return $ f
 
-show_277 :: Fn Logical_277 ShowS
-show_277 = id
+show_277 :: Fn Logical_277 (String, ShowS)
+show_277 = simple $ id
 
 
 --- 278: '  <Bt>, [<Xn|SP>, (<Wm>|<Xm>), <extend> {<amount>}]'
@@ -6708,8 +6708,8 @@ parse_278 :: Fn Logical_278 a -> Parser a
 parse_278 f = do
     return $ f
 
-show_278 :: Fn Logical_278 ShowS
-show_278 = id
+show_278 :: Fn Logical_278 (String, ShowS)
+show_278 = simple $ id
 
 
 --- 279: '  <Vd>.<T>, <Vn>.<T>, <Vm>.<Ts>[<index>], #<rotate>'
@@ -6729,8 +6729,8 @@ parse_279 :: Fn Logical_279 a -> Parser a
 parse_279 f = do
     return $ f
 
-show_279 :: Fn Logical_279 ShowS
-show_279 = id
+show_279 :: Fn Logical_279 (String, ShowS)
+show_279 = simple $ id
 
 
 --- 280: '  <Wt>, [<Xn|SP>, (<Wm>|<Xm>), <extend> {<amount>}]'
@@ -6751,8 +6751,8 @@ parse_280 :: Fn Logical_280 a -> Parser a
 parse_280 f = do
     return $ f
 
-show_280 :: Fn Logical_280 ShowS
-show_280 = id
+show_280 :: Fn Logical_280 (String, ShowS)
+show_280 = simple $ id
 
 
 --- 281: '  <Xt>, [<Xn|SP>, (<Wm>|<Xm>), <extend> {<amount>}]'
@@ -6771,8 +6771,8 @@ parse_281 :: Fn Logical_281 a -> Parser a
 parse_281 f = do
     return $ f
 
-show_281 :: Fn Logical_281 ShowS
-show_281 = id
+show_281 :: Fn Logical_281 (String, ShowS)
+show_281 = simple $ id
 
 
 --- 282: '  <Dt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]'
@@ -6792,8 +6792,8 @@ parse_282 :: Fn Logical_282 a -> Parser a
 parse_282 f = do
     return $ f
 
-show_282 :: Fn Logical_282 ShowS
-show_282 = id
+show_282 :: Fn Logical_282 (String, ShowS)
+show_282 = simple $ id
 
 
 --- 283: '  <Ht>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]'
@@ -6813,8 +6813,8 @@ parse_283 :: Fn Logical_283 a -> Parser a
 parse_283 f = do
     return $ f
 
-show_283 :: Fn Logical_283 ShowS
-show_283 = id
+show_283 :: Fn Logical_283 (String, ShowS)
+show_283 = simple $ id
 
 
 --- 284: '  <Qt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]'
@@ -6834,8 +6834,8 @@ parse_284 :: Fn Logical_284 a -> Parser a
 parse_284 f = do
     return $ f
 
-show_284 :: Fn Logical_284 ShowS
-show_284 = id
+show_284 :: Fn Logical_284 (String, ShowS)
+show_284 = simple $ id
 
 
 --- 285: '  <St>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]'
@@ -6855,8 +6855,8 @@ parse_285 :: Fn Logical_285 a -> Parser a
 parse_285 f = do
     return $ f
 
-show_285 :: Fn Logical_285 ShowS
-show_285 = id
+show_285 :: Fn Logical_285 (String, ShowS)
+show_285 = simple $ id
 
 
 --- 286: '  <Wt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]'
@@ -6879,8 +6879,8 @@ parse_286 :: Fn Logical_286 a -> Parser a
 parse_286 f = do
     return $ f
 
-show_286 :: Fn Logical_286 ShowS
-show_286 = id
+show_286 :: Fn Logical_286 (String, ShowS)
+show_286 = simple $ id
 
 
 --- 287: '  <Xt>, [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]'
@@ -6902,8 +6902,8 @@ parse_287 :: Fn Logical_287 a -> Parser a
 parse_287 f = do
     return $ f
 
-show_287 :: Fn Logical_287 ShowS
-show_287 = id
+show_287 :: Fn Logical_287 (String, ShowS)
+show_287 = simple $ id
 
 
 --- 288: '  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T> }, [<Xn|SP>], <Xm>'
@@ -6926,8 +6926,8 @@ parse_288 :: Fn Logical_288 a -> Parser a
 parse_288 f = do
     return $ f
 
-show_288 :: Fn Logical_288 ShowS
-show_288 = id
+show_288 :: Fn Logical_288 (String, ShowS)
+show_288 = simple $ id
 
 
 --- 289: '  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T> }, [<Xn|SP>], <imm>'
@@ -6950,8 +6950,8 @@ parse_289 :: Fn Logical_289 a -> Parser a
 parse_289 f = do
     return $ f
 
-show_289 :: Fn Logical_289 ShowS
-show_289 = id
+show_289 :: Fn Logical_289 (String, ShowS)
+show_289 = simple $ id
 
 
 --- 290: '  { <Vt>.B, <Vt2>.B, <Vt3>.B }[<index>], [<Xn|SP>], #3'
@@ -6971,8 +6971,8 @@ parse_290 :: Fn Logical_290 a -> Parser a
 parse_290 f = do
     return $ f
 
-show_290 :: Fn Logical_290 ShowS
-show_290 = id
+show_290 :: Fn Logical_290 (String, ShowS)
+show_290 = simple $ id
 
 
 --- 291: '  { <Vt>.H, <Vt2>.H, <Vt3>.H }[<index>], [<Xn|SP>], #6'
@@ -6992,8 +6992,8 @@ parse_291 :: Fn Logical_291 a -> Parser a
 parse_291 f = do
     return $ f
 
-show_291 :: Fn Logical_291 ShowS
-show_291 = id
+show_291 :: Fn Logical_291 (String, ShowS)
+show_291 = simple $ id
 
 
 --- 292: '  { <Vt>.D, <Vt2>.D, <Vt3>.D }[<index>], [<Xn|SP>], #24'
@@ -7013,8 +7013,8 @@ parse_292 :: Fn Logical_292 a -> Parser a
 parse_292 f = do
     return $ f
 
-show_292 :: Fn Logical_292 ShowS
-show_292 = id
+show_292 :: Fn Logical_292 (String, ShowS)
+show_292 = simple $ id
 
 
 --- 293: '  { <Vt>.S, <Vt2>.S, <Vt3>.S }[<index>], [<Xn|SP>], #12'
@@ -7034,8 +7034,8 @@ parse_293 :: Fn Logical_293 a -> Parser a
 parse_293 f = do
     return $ f
 
-show_293 :: Fn Logical_293 ShowS
-show_293 = id
+show_293 :: Fn Logical_293 (String, ShowS)
+show_293 = simple $ id
 
 
 --- 294: '  { <Vt>.B, <Vt2>.B, <Vt3>.B }[<index>], [<Xn|SP>], <Xm>'
@@ -7055,8 +7055,8 @@ parse_294 :: Fn Logical_294 a -> Parser a
 parse_294 f = do
     return $ f
 
-show_294 :: Fn Logical_294 ShowS
-show_294 = id
+show_294 :: Fn Logical_294 (String, ShowS)
+show_294 = simple $ id
 
 
 --- 295: '  { <Vt>.D, <Vt2>.D, <Vt3>.D }[<index>], [<Xn|SP>], <Xm>'
@@ -7076,8 +7076,8 @@ parse_295 :: Fn Logical_295 a -> Parser a
 parse_295 f = do
     return $ f
 
-show_295 :: Fn Logical_295 ShowS
-show_295 = id
+show_295 :: Fn Logical_295 (String, ShowS)
+show_295 = simple $ id
 
 
 --- 296: '  { <Vt>.H, <Vt2>.H, <Vt3>.H }[<index>], [<Xn|SP>], <Xm>'
@@ -7097,8 +7097,8 @@ parse_296 :: Fn Logical_296 a -> Parser a
 parse_296 f = do
     return $ f
 
-show_296 :: Fn Logical_296 ShowS
-show_296 = id
+show_296 :: Fn Logical_296 (String, ShowS)
+show_296 = simple $ id
 
 
 --- 297: '  { <Vt>.S, <Vt2>.S, <Vt3>.S }[<index>], [<Xn|SP>], <Xm>'
@@ -7118,8 +7118,8 @@ parse_297 :: Fn Logical_297 a -> Parser a
 parse_297 f = do
     return $ f
 
-show_297 :: Fn Logical_297 ShowS
-show_297 = id
+show_297 :: Fn Logical_297 (String, ShowS)
+show_297 = simple $ id
 
 
 --- 298: '  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T>, <Vt4>.<T> }, [<Xn|SP>]'
@@ -7142,8 +7142,8 @@ parse_298 :: Fn Logical_298 a -> Parser a
 parse_298 f = do
     return $ f
 
-show_298 :: Fn Logical_298 ShowS
-show_298 = id
+show_298 :: Fn Logical_298 (String, ShowS)
+show_298 = simple $ id
 
 
 --- 299: '  { <Vt>.B, <Vt2>.B, <Vt3>.B, <Vt4>.B }[<index>], [<Xn|SP>]'
@@ -7163,8 +7163,8 @@ parse_299 :: Fn Logical_299 a -> Parser a
 parse_299 f = do
     return $ f
 
-show_299 :: Fn Logical_299 ShowS
-show_299 = id
+show_299 :: Fn Logical_299 (String, ShowS)
+show_299 = simple $ id
 
 
 --- 300: '  { <Vt>.D, <Vt2>.D, <Vt3>.D, <Vt4>.D }[<index>], [<Xn|SP>]'
@@ -7184,8 +7184,8 @@ parse_300 :: Fn Logical_300 a -> Parser a
 parse_300 f = do
     return $ f
 
-show_300 :: Fn Logical_300 ShowS
-show_300 = id
+show_300 :: Fn Logical_300 (String, ShowS)
+show_300 = simple $ id
 
 
 --- 301: '  { <Vt>.H, <Vt2>.H, <Vt3>.H, <Vt4>.H }[<index>], [<Xn|SP>]'
@@ -7205,8 +7205,8 @@ parse_301 :: Fn Logical_301 a -> Parser a
 parse_301 f = do
     return $ f
 
-show_301 :: Fn Logical_301 ShowS
-show_301 = id
+show_301 :: Fn Logical_301 (String, ShowS)
+show_301 = simple $ id
 
 
 --- 302: '  { <Vt>.S, <Vt2>.S, <Vt3>.S, <Vt4>.S }[<index>], [<Xn|SP>]'
@@ -7226,8 +7226,8 @@ parse_302 :: Fn Logical_302 a -> Parser a
 parse_302 f = do
     return $ f
 
-show_302 :: Fn Logical_302 ShowS
-show_302 = id
+show_302 :: Fn Logical_302 (String, ShowS)
+show_302 = simple $ id
 
 
 --- 303: '  <Vd>.<Ta>, { <Vn>.16B, <Vn+1>.16B, <Vn+2>.16B }, <Vm>.<Ta>'
@@ -7247,8 +7247,8 @@ parse_303 :: Fn Logical_303 a -> Parser a
 parse_303 f = do
     return $ f
 
-show_303 :: Fn Logical_303 ShowS
-show_303 = id
+show_303 :: Fn Logical_303 (String, ShowS)
+show_303 = simple $ id
 
 
 --- 304: '  { <Vt>.B, <Vt2>.B, <Vt3>.B, <Vt4>.B }[<index>], [<Xn|SP>], #4'
@@ -7268,8 +7268,8 @@ parse_304 :: Fn Logical_304 a -> Parser a
 parse_304 f = do
     return $ f
 
-show_304 :: Fn Logical_304 ShowS
-show_304 = id
+show_304 :: Fn Logical_304 (String, ShowS)
+show_304 = simple $ id
 
 
 --- 305: '  { <Vt>.H, <Vt2>.H, <Vt3>.H, <Vt4>.H }[<index>], [<Xn|SP>], #8'
@@ -7289,8 +7289,8 @@ parse_305 :: Fn Logical_305 a -> Parser a
 parse_305 f = do
     return $ f
 
-show_305 :: Fn Logical_305 ShowS
-show_305 = id
+show_305 :: Fn Logical_305 (String, ShowS)
+show_305 = simple $ id
 
 
 --- 306: '  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T>, <Vt4>.<T> }, [<Xn|SP>], <Xm>'
@@ -7313,8 +7313,8 @@ parse_306 :: Fn Logical_306 a -> Parser a
 parse_306 f = do
     return $ f
 
-show_306 :: Fn Logical_306 ShowS
-show_306 = id
+show_306 :: Fn Logical_306 (String, ShowS)
+show_306 = simple $ id
 
 
 --- 307: '  { <Vt>.D, <Vt2>.D, <Vt3>.D, <Vt4>.D }[<index>], [<Xn|SP>], #32'
@@ -7334,8 +7334,8 @@ parse_307 :: Fn Logical_307 a -> Parser a
 parse_307 f = do
     return $ f
 
-show_307 :: Fn Logical_307 ShowS
-show_307 = id
+show_307 :: Fn Logical_307 (String, ShowS)
+show_307 = simple $ id
 
 
 --- 308: '  { <Vt>.S, <Vt2>.S, <Vt3>.S, <Vt4>.S }[<index>], [<Xn|SP>], #16'
@@ -7355,8 +7355,8 @@ parse_308 :: Fn Logical_308 a -> Parser a
 parse_308 f = do
     return $ f
 
-show_308 :: Fn Logical_308 ShowS
-show_308 = id
+show_308 :: Fn Logical_308 (String, ShowS)
+show_308 = simple $ id
 
 
 --- 309: '  { <Vt>.<T>, <Vt2>.<T>, <Vt3>.<T>, <Vt4>.<T> }, [<Xn|SP>], <imm>'
@@ -7379,8 +7379,8 @@ parse_309 :: Fn Logical_309 a -> Parser a
 parse_309 f = do
     return $ f
 
-show_309 :: Fn Logical_309 ShowS
-show_309 = id
+show_309 :: Fn Logical_309 (String, ShowS)
+show_309 = simple $ id
 
 
 --- 310: '  { <Vt>.B, <Vt2>.B, <Vt3>.B, <Vt4>.B }[<index>], [<Xn|SP>], <Xm>'
@@ -7400,8 +7400,8 @@ parse_310 :: Fn Logical_310 a -> Parser a
 parse_310 f = do
     return $ f
 
-show_310 :: Fn Logical_310 ShowS
-show_310 = id
+show_310 :: Fn Logical_310 (String, ShowS)
+show_310 = simple $ id
 
 
 --- 311: '  { <Vt>.D, <Vt2>.D, <Vt3>.D, <Vt4>.D }[<index>], [<Xn|SP>], <Xm>'
@@ -7421,8 +7421,8 @@ parse_311 :: Fn Logical_311 a -> Parser a
 parse_311 f = do
     return $ f
 
-show_311 :: Fn Logical_311 ShowS
-show_311 = id
+show_311 :: Fn Logical_311 (String, ShowS)
+show_311 = simple $ id
 
 
 --- 312: '  { <Vt>.H, <Vt2>.H, <Vt3>.H, <Vt4>.H }[<index>], [<Xn|SP>], <Xm>'
@@ -7442,8 +7442,8 @@ parse_312 :: Fn Logical_312 a -> Parser a
 parse_312 f = do
     return $ f
 
-show_312 :: Fn Logical_312 ShowS
-show_312 = id
+show_312 :: Fn Logical_312 (String, ShowS)
+show_312 = simple $ id
 
 
 --- 313: '  { <Vt>.S, <Vt2>.S, <Vt3>.S, <Vt4>.S }[<index>], [<Xn|SP>], <Xm>'
@@ -7463,8 +7463,8 @@ parse_313 :: Fn Logical_313 a -> Parser a
 parse_313 f = do
     return $ f
 
-show_313 :: Fn Logical_313 ShowS
-show_313 = id
+show_313 :: Fn Logical_313 (String, ShowS)
+show_313 = simple $ id
 
 
 --- 314: '  (<prfop>|#<imm5>), [<Xn|SP>, (<Wm>|<Xm>){, <extend> {<amount>}}]'
@@ -7483,8 +7483,8 @@ parse_314 :: Fn Logical_314 a -> Parser a
 parse_314 f = do
     return $ f
 
-show_314 :: Fn Logical_314 ShowS
-show_314 = id
+show_314 :: Fn Logical_314 (String, ShowS)
+show_314 = simple $ id
 
 
 --- 315: '  <Vd>.<Ta>, { <Vn>.16B, <Vn+1>.16B, <Vn+2>.16B, <Vn+3>.16B }, <Vm>.<Ta>'
@@ -7504,7 +7504,7 @@ parse_315 :: Fn Logical_315 a -> Parser a
 parse_315 f = do
     return $ f
 
-show_315 :: Fn Logical_315 ShowS
-show_315 = id
+show_315 :: Fn Logical_315 (String, ShowS)
+show_315 = simple $ id
 
 
