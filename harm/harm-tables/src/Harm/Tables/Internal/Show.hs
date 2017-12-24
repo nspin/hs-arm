@@ -1,4 +1,4 @@
-module Harm.Tables.Show.Internal
+module Harm.Tables.Internal.Show
     ( withMnem
     ) where
 

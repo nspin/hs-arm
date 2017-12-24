@@ -36,31 +36,30 @@ generate hin outDir = do
         ]
     out modDecode "Decode"
         [ "Harm.Types"
+        , "Harm.Types.Pattern"
         , "Harm.Tables.Gen.Insn"
         , "Harm.Tables.Logic"
-        , "Harm.Tables.Logic.Binary"
-        , "Harm.Types.Pattern"
+        , "Harm.Tables.Internal.Decode"
         , "Data.Word"
         ]
     out modEncode "Encode"
         [ "Harm.Tables.Gen.Insn"
         , "Harm.Tables.Logic"
-        , "Harm.Tables.Logic.Binary"
         , "Harm.Tables.Logic.Types"
+        , "Harm.Tables.Internal.Encode"
         , "Data.Bits"
         , "Data.Word"
         ]
     out modParse "Parse"
         [ "Harm.Tables.Gen.Insn"
         , "Harm.Tables.Logic"
-        , "Harm.Tables.Logic.Asm"
         , "Data.Word"
         , "Data.Attoparsec.ByteString.Char8"
         ]
     out modShow "Show"
         [ "Harm.Tables.Gen.Insn"
         , "Harm.Tables.Logic"
-        , "Harm.Tables.Show.Internal"
+        , "Harm.Tables.Internal.Show"
         ]
   where
     basePath = outDir </> "gen" </> "Harm" </> "Tables" </> "Gen"

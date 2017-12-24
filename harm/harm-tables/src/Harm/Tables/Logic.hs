@@ -5,9 +5,9 @@
 module Harm.Tables.Logic where
 
 import Harm.Types
-import Harm.Tables.Logic.Types
 import Harm.Tables.Logic.Asm
 import Harm.Tables.Logic.Binary
+import Harm.Tables.Logic.Types
 
 import Data.Attoparsec.ByteString.Char8
 
@@ -7506,5 +7506,3 @@ parse_315 f = do
 
 show_315 :: Fn Logical_315 (String, ShowS)
 show_315 = simple $ id
-
-
