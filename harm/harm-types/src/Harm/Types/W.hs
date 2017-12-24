@@ -19,6 +19,7 @@ module Harm.Types.W
     ( W(..)
     , toW
     , slice
+    , unslice
     , (.:)
     , split
     , split3
@@ -95,6 +96,10 @@ natValInt' p = fromInteger $ natVal' p
 -- | Take a slice of a @'Word32'@, given the low bit.
 slice :: KnownNat n => Word32 -> Int -> W n
 slice w = toW . shiftR w
+
+-- | Frame a slice back into a @'Word32'@, given the low bit.
+unslice :: KnownNat n => W n -> Int -> Word32
+unslice (W w) = shiftL w
 
 infixr 6 .:
 

@@ -2,8 +2,8 @@ module Harm.Tables
     ( module Harm.Tables.Gen.Insn
     , decodeTable
     , encode
-    , parseAsm
-    , showsAsm
+    , parseTable
+    , showAsm
     ) where
 
 import Harm.Tables.Gen.Insn

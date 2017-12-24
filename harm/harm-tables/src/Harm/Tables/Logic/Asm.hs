@@ -12,6 +12,8 @@ import Data.Proxy
 import Control.Applicative
 import Data.Functor
 
+simple :: ShowS -> (String, ShowS)
+simple = (,) ""
 
 class IsAsm a where
     asm :: a -> ShowS

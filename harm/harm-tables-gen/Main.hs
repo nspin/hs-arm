@@ -5,7 +5,6 @@ import ReadLogic
 
 import ARM.MRAS
 
-import Data.Char
 import Language.Haskell.Exts
 import System.Environment
 import System.Exit
@@ -47,6 +46,8 @@ generate hin outDir = do
         [ "Harm.Tables.Gen.Insn"
         , "Harm.Tables.Logic"
         , "Harm.Tables.Logic.Binary"
+        , "Harm.Tables.Logic.Types"
+        , "Data.Bits"
         , "Data.Word"
         ]
     out modParse "Parse"
@@ -58,6 +59,8 @@ generate hin outDir = do
         ]
     out modShow "Show"
         [ "Harm.Tables.Gen.Insn"
+        , "Harm.Tables.Logic"
+        , "Harm.Tables.Show.Internal"
         ]
   where
     basePath = outDir </> "gen" </> "Harm" </> "Tables" </> "Gen"
@@ -72,10 +75,10 @@ modInsn logic = [ty] ++ tys ++ fns
           ]
     h = TyCon () . UnQual () . Ident ()
     fns = concat
-        [ [ TypeSig () [Ident () name]
+        [ [ TypeSig () [Ident () (lower eid)]
                 (foldr (TyFun ()) (TyCon () (UnQual () (Ident () "Insn"))) ts)
           , FunBind ()
-                [ Match () (Ident () name)
+                [ Match () (Ident () (lower eid))
                     [ PVar () (Ident () ('x':show i)) | i <- [1..length ts] ]
                     (UnGuardedRhs ()
                         (App ()
@@ -86,7 +89,7 @@ modInsn logic = [ty] ++ tys ++ fns
                     Nothing
                 ]
           ]
-        | (name, ts, mnem, eid) <- littleFns logic
+        | (mnem, eid, ts) <- littleFns logic
         ]
 
 modDecode :: Logic -> [Decl ()]
@@ -111,7 +114,9 @@ modDecode l = [sig, val] ++ fns
     elems =
         [ Tuple () Boxed
             [ () <$ fromParseResult (parseExp (show patt))
-            , App () (Var () (UnQual () (Ident () ("decode_inner_" ++ gid)))) (Con () (UnQual () (Ident () (map toLower eid))))
+            , App ()
+                (Var () (UnQual () (Ident () ("decode_inner_" ++ gid))))
+                (Con () (UnQual () (Ident () (lower eid))))
             ]
         | (patt, gid, eid) <- decodeTable l
         ]
@@ -133,19 +138,18 @@ modDecode l = [sig, val] ++ fns
                     ]
                     (UnGuardedRhs ()
                         (foldl (App ()) 
-                            -- (Con () (UnQual () (Ident () "f")))
                             (App ()
                                 (Var () (UnQual () (Ident () ("decode_" ++ gid))))
-                                exp)
+                                (Var () (UnQual () (Ident () "f"))))
                             exps))
                     Nothing
                 ]
           ]
-        | (gid, tys, exp, exps) <- decodeFns l
+        | (gid, tys, exps) <- decodeFns l
         ]
 
 modEncode :: Logic -> [Decl ()]
-modEncode logic = [sig, val]
+modEncode logic = [sig, val] ++ fns
   where
     sig = TypeSig () [Ident () "encode"]
         (TyFun ()
@@ -156,32 +160,78 @@ modEncode logic = [sig, val]
     val = FunBind ()
         [ Match () (Ident () "encode") [PVar () (Ident () "insn")]
             (UnGuardedRhs ()
-                (App ()
-                    (Var () (UnQual () (Ident () "return")))
-                    (Lit () (Int () 0 "0"))))
+                (Case ()
+                    (Var () (UnQual () (Ident () "insn")))
+                    [ Alt ()
+                        (PApp ()
+                            (UnQual () (Ident () mnem))
+                            [PApp ()
+                                (UnQual () (Ident () eid))
+                                [ PVar () (Ident () ('x':show i)) | i <- [1..nargs] ]])
+                        (UnGuardedRhs ()
+                            (foldl
+                                (App ())
+                                (App ()
+                                    (Var () (UnQual () (Ident () ("encode_" ++ gid))))
+                                    (App ()
+                                        (Var () (UnQual () (Ident () ("encode_inner_" ++ gid))))
+                                        (Lit () (Int () (toInteger spec) (show spec)))))
+                                [ Var () (UnQual () (Ident () ('x':show i))) | i <- [1..nargs] ]))
+                        Nothing
+                    | (mnem, eid, nargs, gid, spec) <- encodeFn logic
+                    ]))
             Nothing
+        ]
+    fns = concat
+        [ [ TypeSig () [Ident () ("encode_inner_" ++ gid)]
+                (TyFun ()
+                    (TyCon () (UnQual () (Ident () "Word32")))
+                    (TyApp ()
+                        (TyApp ()
+                            (TyCon () (UnQual () (Ident () "FnW")))
+                            (TyCon () (UnQual () (Ident () ("Binary_" ++ gid)))))
+                        (TyCon () (UnQual () (Ident () "Word32")))))
+          , FunBind ()
+                [ Match () (Ident () ("encode_inner_" ++ gid))
+                    ( PVar () (Ident () "w")
+                    : [ PVar () (Ident () ('x':show i)) | i <- [1..nargs] ]
+                    )
+                    (UnGuardedRhs () body)
+                    Nothing
+                ]
+          ]
+        | (gid, nargs, body) <- encodeFns logic
         ]
 
 modParse :: Logic -> [Decl ()]
 modParse logic = [sig, val]
   where
-    sig = TypeSig () [Ident () "parseAsm"]
-        (TyApp ()
-            (TyCon () (UnQual () (Ident () "Parser")))
-            (TyCon () (UnQual () (Ident () "Insn"))))
+    sig = TypeSig () [Ident () "parseTable"]
+        (TyList () (TyTuple () Boxed
+            [ TyCon () (UnQual () (Ident () "String"))
+            , (TyApp ()
+                (TyCon () (UnQual () (Ident () "Parser")))
+                (TyCon () (UnQual () (Ident () "Insn"))))
+            ]))
     val = FunBind ()
-        [ Match () (Ident () "parseAsm") []
-            (UnGuardedRhs ()
-                (App ()
-                    (Var () (UnQual () (Ident () "fail")))
-                    (Lit () (String () "not yet implemented" "not yet implemented"))))
+        [ Match () (Ident () "parseTable") []
+            (UnGuardedRhs () (List () elems))
             Nothing
+        ]
+    elems =
+        [ Tuple () Boxed
+            [ (Lit () (String () mnem mnem))
+            , App ()
+                (Var () (UnQual () (Ident () ("parse_" ++ gid))))
+                (Var () (UnQual () (Ident () (lower eid))))
+            ]
+        | (mnem, eid, gid) <- parseTable logic
         ]
 
 modShow :: Logic -> [Decl ()]
 modShow logic = [sig, val]
   where
-    sig = TypeSig () [Ident () "showsAsm"]
+    sig = TypeSig () [Ident () "showAsm"]
         (TyFun ()
             (TyCon () (UnQual () (Ident () "Insn")))
             (TyTuple () Boxed
@@ -189,9 +239,28 @@ modShow logic = [sig, val]
                 , TyCon () (UnQual () (Ident () "ShowS"))
                 ]))
     val = FunBind ()
-        [ Match () (Ident () "showsAsm") [PVar () (Ident () "insn")]
+        [ Match () (Ident () "showAsm") [PVar () (Ident () "insn")]
             (UnGuardedRhs ()
-                (Tuple () Boxed [Lit () (String () "NOP" "NOP"), Var () (UnQual () (Ident () "id"))]))
+                (Case ()
+                    (Var () (UnQual () (Ident () "insn")))
+                    [ Alt ()
+                        (PApp ()
+                            (UnQual () (Ident () mnem))
+                            [PApp ()
+                                (UnQual () (Ident () eid))
+                                [ PVar () (Ident () ('x':show i)) | i <- [1..nargs] ]])
+                        (UnGuardedRhs ()
+                            (App ()
+                                (App ()
+                                    (Var () (UnQual () (Ident () "withMnem")))
+                                    (Lit () (String () (lower mnem) (lower mnem))))
+                                (foldl
+                                    (App ())
+                                    (Var () (UnQual () (Ident () ("show_" ++ gid))))
+                                    [ Var () (UnQual () (Ident () ('x':show i))) | i <- [1..nargs] ])))
+                        Nothing
+                    | (mnem, eid, nargs, gid, _) <- encodeFn logic
+                    ]))
             Nothing
         ]
 

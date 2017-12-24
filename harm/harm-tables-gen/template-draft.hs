@@ -4,7 +4,7 @@
 
 module Harm.Tables.Logic where
 
-import Harm.Tables.Types
+import Harm.Types
 import Harm.Tables.Logic.Types
 import Harm.Tables.Logic.Asm
 import Harm.Tables.Logic.Binary

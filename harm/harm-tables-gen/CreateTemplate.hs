@@ -32,8 +32,8 @@ writeTemplate h = hPutStr h . ($ "") . concats $ zipWith f [0..] encodingGroups
         . f ["encode", " f = return f\n"]
         . f ["parse", " :: Fn Logical", " a -> Parser a"]
         . f ["parse", " f = do\n    return $ f\n"]
-        . f ["show", " :: Fn Logical", " ShowS"]
-        . f ["show", " = id"]
+        . f ["show", " :: Fn Logical", " (String, ShowS)"]
+        . f ["show", " = simple $ id"]
         . showString "\n\n"
       where
         f segs = (. showChar '\n') $ case reverse segs of

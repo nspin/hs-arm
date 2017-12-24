@@ -7,6 +7,7 @@ module MnemGroups
     , EncodingIdSuffix
     , insnsGrouped
     , insnsFlat
+    , mkeid
     ) where
 
 import Harm.Types.Pattern
@@ -44,6 +45,9 @@ fromClass Class{..} = map f _class_encodings
         patt = compile (map _block_spec (bindDiagram _class_diagram _encoding_diagram))
         (mnem, tplt) = splitMnem _encoding_template
         Just (_:rest) = stripPrefix mnem _encoding_id
+
+mkeid :: Mnemonic -> EncodingIdSuffix -> EncodingId
+mkeid m s = m ++ "_" ++ s
 
 splitMnem :: String -> (String, String)
 splitMnem = span (not . flip elem (" .{" :: String))
