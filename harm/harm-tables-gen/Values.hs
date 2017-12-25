@@ -118,9 +118,12 @@ lookupEid logic eid = (gid, tplt, tys, fs)
     Just (_, gid, tplt, tys, fs) = find ((== eid) . view _1) (eidAssocs logic)
 
 eidAssocs :: Logic -> [(EncodingId, GroupId, Template, [Type ()], [DiagramField])]
-eidAssocs l = concatMap f l
-  where
-    f (gid, tplt, eids, tys, fs) = [ (eid, gid, tplt, tys, fs) | eid <- eids ]
+eidAssocs logic = concat
+  [ [ (eid, gid, tplt, tys, fs)
+    | eid <- eids
+    ]
+  | (gid, tplt, eids, tys, fs) <- logic
+  ]
 
 lower :: EncodingId -> String
 lower = map toLower

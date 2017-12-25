@@ -27,45 +27,22 @@ generate :: Handle -> FilePath -> IO ()
 generate hin outDir = do
     createDirectoryIfMissing True basePath
     logic <- readLogic hin
-    let out builder name deps = writeFile (pathOf name) . prettyPrint $
-            Module () (Just head) exts (map basicImport deps) (builder logic)
+    let out builder name = writeFile (pathOf name) . prettyPrint $
+            Module () (Just head) exts
+                [basicImport ("Harm.Tables.Internal." ++ name)]
+                (builder logic)
               where
                 head = ModuleHead () (ModuleName () ("Harm.Tables.Gen." ++ name)) Nothing Nothing
                 exts = [LanguagePragma () (map (Ident ()) ["DataKinds"])]
     out modInsn "Insn"
-        [ "Harm.Types"
-        ]
     out modDecode "Decode"
-        [ "Harm.Types"
-        , "Harm.Types.Pattern"
-        , "Harm.Tables.Gen.Insn"
-        , "Harm.Tables.Logic"
-        , "Harm.Tables.Internal.Decode"
-        , "Data.Word"
-        ]
     out modEncode "Encode"
-        [ "Harm.Types"
-        , "Harm.Tables.Gen.Insn"
-        , "Harm.Tables.Logic"
-        , "Harm.Tables.Logic.Types"
-        , "Harm.Tables.Internal.Encode"
-        , "Data.Bits"
-        , "Data.Word"
-        ]
     out modParse "Parse"
-        [ "Harm.Tables.Gen.Insn"
-        , "Harm.Tables.Logic"
-        , "Data.Word"
-        , "Data.Attoparsec.ByteString.Char8"
-        ]
     out modShow "Show"
-        [ "Harm.Tables.Gen.Insn"
-        , "Harm.Tables.Logic"
-        , "Harm.Tables.Internal.Show"
-        ]
   where
     basePath = outDir </> "gen" </> "Harm" </> "Tables" </> "Gen"
     pathOf name = basePath </> name <.> ".hs"
+
 
 modInsn :: Logic -> [Decl ()]
 modInsn logic = [ty] ++ tys ++ fns
@@ -94,7 +71,7 @@ modInsn logic = [ty] ++ tys ++ fns
         ]
 
 modDecode :: Logic -> [Decl ()]
-modDecode l = [sig, val] ++ fns
+modDecode logic = [sig, val] ++ fns
   where
     sig = TypeSig () [Ident () "decodeTable"]
         (TyList ()
@@ -119,7 +96,7 @@ modDecode l = [sig, val] ++ fns
                 (Var () (UnQual () (Ident () ("decode_inner_" ++ gid))))
                 (Con () (UnQual () (Ident () (lower eid))))
             ]
-        | (patt, gid, eid) <- decodeTable l
+        | (patt, gid, eid) <- decodeTable logic
         ]
     fns = concat
         [ [ TypeSig () [Ident () ("decode_inner_" ++ gid)]
@@ -146,7 +123,7 @@ modDecode l = [sig, val] ++ fns
                     Nothing
                 ]
           ]
-        | (gid, tys, exps) <- decodeFns l
+        | (gid, tys, exps) <- decodeFns logic
         ]
 
 modEncode :: Logic -> [Decl ()]
@@ -264,6 +241,7 @@ modShow logic = [sig, val]
                     ]))
             Nothing
         ]
+
 
 basicImport :: String -> ImportDecl ()
 basicImport name = ImportDecl

@@ -8,7 +8,7 @@ main :: IO ()
 main = do
     (start, t) <- elfText "../test/nix-results/test.busybox/busybox"
     forM_ (zip [start, start + 4..] t) $ \(offset, w) -> do
-        putStrLn $ hex offset ++ "  " ++
+        putStrLn $ hex offset ++ "   " ++ hex w ++ "   " ++
             case decode w of
-                Nothing -> hex w
+                Nothing -> ".inst   " ++ hex w
                 Just insn -> showAsmAt 8 insn ""
