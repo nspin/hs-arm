@@ -11,4 +11,4 @@ main = do
         putStrLn $ hex offset ++ "  " ++
             case decode w of
                 Nothing -> hex w
-                Just insn -> show insn
+                Just insn -> showAsmAt 8 insn ""

@@ -5622,22 +5622,28 @@ show_228 = simple $ id
 --- ADD_64_addsub_imm             add_addsub_imm.xml
 --- SUB_64_addsub_imm             sub_addsub_imm.xml
 
-type Logical_229 = '[]
-type Binary_229  = '[]
+type Logical_229 = '[XnOrSP, XnOrSP, W 12, Bool]
+type Binary_229  = '[2, 12, 5, 5]
 
 decode_229 :: Fn Logical_229 a -> FnW Binary_229 (Decode a)
-decode_229 f = return f
+decode_229 f shift imm12 rn rd = f <$> dec rd <*> dec rn <*> return imm12 <*> decLSL12 shift
 
 encode_229 :: FnW Binary_229 a -> Fn Logical_229 (Encode a)
-encode_229 f = return f
+encode_229 f xd xn imm shift = f (encLSL12 shift) imm <$> enc xn <*> enc xd
 
 parse_229 :: Fn Logical_229 a -> Parser a
 parse_229 f = do
-    return $ f
+    ws
+    xd <- msa
+    sep
+    xn <- msa
+    sep
+    imm <- msaimm
+    shift <- msaLSL12
+    return $ f xd xn imm shift
 
 show_229 :: Fn Logical_229 (String, ShowS)
-show_229 = simple $ id
-
+show_229 xd xn imm shift = simple $ asm xd <. asm xn <. asmimm imm . asmLSL12 shift
 
 --- 230: '  <Va><d>, <Vb><n>, <Vm>.<Ts>[<index>]'
 --- SQDMLAL_asisdelem_L           sqdmlal_advsimd_elt.xml

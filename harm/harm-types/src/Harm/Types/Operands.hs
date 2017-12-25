@@ -38,15 +38,15 @@ toSigned = Signed
 
 
 newtype Rn = Rn { unRn :: W 5 }
-    deriving (Eq, Num)
+    deriving (Eq, Show, Read, Num)
 newtype Xn = Xn { unXn :: Rn }
-    deriving (Eq, Num)
+    deriving (Eq, Show, Read, Num)
 newtype Wn = Wn { unWn :: Rn }
-    deriving (Eq, Num)
+    deriving (Eq, Show, Read, Num)
 newtype XnOrSP = XnOrSP { unXnOrSP :: Rn }
-    deriving (Eq, Num)
+    deriving (Eq, Show, Read, Num)
 newtype WnOrSP = WnOrSP { unWnOrSP :: Rn }
-    deriving (Eq, Num)
+    deriving (Eq, Show, Read, Num)
 
 
 data ArrSpec = ArrSpec ArrHalfWhole ArrWidth deriving (Eq, Show, Read)

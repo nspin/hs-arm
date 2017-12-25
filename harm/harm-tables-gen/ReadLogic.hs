@@ -12,15 +12,17 @@ import MnemGroups
 
 import ARM.MRAS
 
+import Prelude hiding (takeWhile, hGetContents)
 import Control.Applicative
 import Control.Monad
 import Data.Attoparsec.ByteString.Char8
-import Data.List
+import Data.Char
+import Data.List hiding (takeWhile)
 import Language.Haskell.Exts
 import System.Exit
-import System.IO
+import System.IO hiding (hGetContents)
 import Text.Show
-import qualified Data.ByteString.Char8 as C
+import Data.ByteString.Char8 (unpack, hGetContents)
 
 import Debug.Trace
 
@@ -36,14 +38,14 @@ resolveName eids name = if all (== field) fields then Just field else Nothing
   where
     field:fields =
         [ let Just (_, _, _, fields') = find (\(m, s, _, _) -> mkeid m s == eid) insnsFlat
-              field':_ = flip filter fields' $ \(DiagramField width lo name') -> name' == name
+              field':_ = flip filter fields' $ \(DiagramField width lo name') -> map toLower name' == map toLower name
             in field'
         | eid <- eids
         ]
 
 readLogic :: Handle -> IO Logic
 readLogic h = do
-    content <- C.hGetContents h
+    content <- hGetContents h
     case parseOnly parseLogic content of
         Left err -> error err
         Right r -> forM r $ \(gid, tplt, eids, tys, fns) -> do
@@ -57,17 +59,31 @@ readLogic h = do
 parseLogic :: Parser [(GroupId, Template, [EncodingId], [Type ()], [FieldName])]
 parseLogic = [] <$ endOfInput <|> go <|> (anyChar *> parseLogic)
   where
-    skipLine = skipWhile ((&&) <$> (/= '\n') <*> (/= '\r')) <* endOfLine
+    takeLine = takeWhile ((&&) <$> (/= '\n') <*> (/= '\r')) <* endOfLine
     go = do
         "--- "
-        gid <- C.unpack <$> takeTill (== ':') <* ": '"
-        tplt <- C.unpack <$> takeTill (== '\'') <* "'\n"
+        gid <- unpack <$> takeTill (== ':') <* ": '"
+        tplt <- unpack <$> takeTill (== '\'') <* "'\n"
         eids <- many $ do
             "--- "
-            C.unpack <$> takeTill (== ' ') <* skipLine
-        manyTill anyChar "= '["
-        innerTy <- manyTill anyChar "]\n"
-        let TyTuple _ _ (_:_:tys) = (() <$) . fromParseResult . parseType $ "((),()" ++ (if null innerTy then "" else ",") ++ innerTy ++ ")" -- lol
+            unpack <$> takeTill (== ' ') <* takeLine
+        takeLine
+        line <- unpack <$> takeLine
+        tys <- case parseDeclWithMode withDataKinds line of
+            ParseFailed loc str -> fail $ formatFailure loc str
+            ParseOk (TypeDecl _ (DHead _ (Ident _ name)) (TyPromoted _ (PromotedList _ _ tys)))
+                | "Logical_" `isPrefixOf` name -> return (map (() <$) tys)
+            _ -> fail $ "bad logical type declaration: " ++ line
         manyTill anyChar $ "\ndecode_" *> decimal *> " f "
         fields <- manyTill anyChar " " `manyTill` "="
         (:) (gid, tplt, eids, tys, fields) <$> parseLogic
+
+withDataKinds :: ParseMode
+withDataKinds = defaultParseMode
+    { extensions = [EnableExtension DataKinds]
+    }
+
+formatFailure :: SrcLoc -> String -> String
+formatFailure loc str =
+    "Parse failed at [" ++ srcFilename loc ++ "] (" ++ show (srcLine loc) ++ ":"
+        ++ show (srcColumn loc) ++ "): " ++ str

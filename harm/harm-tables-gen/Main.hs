@@ -28,9 +28,10 @@ generate hin outDir = do
     createDirectoryIfMissing True basePath
     logic <- readLogic hin
     let out builder name deps = writeFile (pathOf name) . prettyPrint $
-            Module () (Just head) [] (map basicImport deps) (builder logic)
+            Module () (Just head) exts (map basicImport deps) (builder logic)
               where
                 head = ModuleHead () (ModuleName () ("Harm.Tables.Gen." ++ name)) Nothing Nothing
+                exts = [LanguagePragma () (map (Ident ()) ["DataKinds"])]
     out modInsn "Insn"
         [ "Harm.Types"
         ]
@@ -43,7 +44,8 @@ generate hin outDir = do
         , "Data.Word"
         ]
     out modEncode "Encode"
-        [ "Harm.Tables.Gen.Insn"
+        [ "Harm.Types"
+        , "Harm.Tables.Gen.Insn"
         , "Harm.Tables.Logic"
         , "Harm.Tables.Logic.Types"
         , "Harm.Tables.Internal.Encode"
