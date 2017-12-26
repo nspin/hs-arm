@@ -1060,20 +1060,21 @@ show_44 = simple $ id
 --- ADR_only_pcreladdr            adr.xml
 --- ADRP_only_pcreladdr           adrp.xml
 
-type Logical_45 = '[]
-type Binary_45  = '[]
+type Logical_45 = '[Xn, I 21]
+type Binary_45  = '[5, 19, 2]
 
 decode_45 :: Fn Logical_45 a -> FnW Binary_45 (Decode a)
-decode_45 f = return f
+decode_45 f rd immhi immlo = f <$> dec rd <*> dec (immhi .: immlo)
 
 encode_45 :: FnW Binary_45 a -> Fn Logical_45 (Encode a)
-encode_45 f = return f
+encode_45 f xn label = split (viewW label) $ \immhi immlo ->
+    f <$> enc xn <*> enc immhi <*> enc immlo
 
 parse_45 :: Fn Logical_45 a -> Parser a
-parse_45 f = ws >> return f
+parse_45 f = ws >> f <$> msa <+> (viewI <$> msahex)
 
 show_45 :: Fn Logical_45 (String, ShowS)
-show_45 = simple $ id
+show_45 xn label = simple $ asm xn .> asmhex (viewW label)
 
 
 --- 46: '  <Xn>, <Xm|SP>'
@@ -3823,20 +3824,20 @@ show_159 = simple $ id
 --- LDRSW_64_ldst_pos             ldrsw_imm.xml
 --- STR_64_ldst_pos               str_imm_gen.xml
 
-type Logical_160 = '[]
-type Binary_160  = '[]
+type Logical_160 = '[Xn, XnSP, W 12]
+type Binary_160  = '[5, 5, 12]
 
 decode_160 :: Fn Logical_160 a -> FnW Binary_160 (Decode a)
-decode_160 f = return f
+decode_160 f rt rn imm12 = f <$> dec rt <*> dec rn <*> dec imm12
 
 encode_160 :: FnW Binary_160 a -> Fn Logical_160 (Encode a)
-encode_160 f = return f
+encode_160 f xt xn imm = f <$> enc xt <*> enc xn <*> enc imm
 
 parse_160 :: Fn Logical_160 a -> Parser a
-parse_160 f = ws >> return f
+parse_160 f = ws >> uncurry <$> (f <$> msa) <+> msaOffset64p
 
 show_160 :: Fn Logical_160 (String, ShowS)
-show_160 = simple $ id
+show_160 xt xn imm = simple $ asm xt .> asmOffset64p xn imm
 
 
 --- 161: '  <Xt>, [<Xn|SP>{, #<simm>}]'
@@ -4810,35 +4811,20 @@ show_201 xd xn imm shift = simple $ asm xd .> asm xn .> asm imm . asm shift
 --- LDPSW_64_ldstpair_pre         ldpsw.xml
 --- STP_64_ldstpair_pre           stp_gen.xml
 
-type Logical_202 = '[]
-type Binary_202  = '[]
+type Logical_202 = '[Xn, Xn, XnSP, I 7]
+type Binary_202  = '[5, 5, 5, 7]
 
 decode_202 :: Fn Logical_202 a -> FnW Binary_202 (Decode a)
-decode_202 f = return f
+decode_202 f rt rt2 rn imm7 = f <$> dec rt <*> dec rt2 <*> dec rn <*> dec imm7
 
 encode_202 :: FnW Binary_202 a -> Fn Logical_202 (Encode a)
-encode_202 f = return f
+encode_202 f xt1 xt2 xn imm = f <$> enc xt1 <*> enc xt2 <*> enc xn <*> enc imm
 
 parse_202 :: Fn Logical_202 a -> Parser a
-parse_202 f = ws >> return f
+parse_202 f = ws >> uncurry <$> (f <$> msa <+> msa) <+> msaPreIndex64
 
 show_202 :: Fn Logical_202 (String, ShowS)
-show_202 = simple $ id
-
--- type Logical_202 = '[Xn, Xn, XnSP, I 7]
--- type Binary_202  = '[5, 5, 5, 7]
-
--- decode_202 :: Fn Logical_202 a -> FnW Binary_202 (Decode a)
--- decode_202 f rt rt2 rn imm7 = f <$> dec rt <*> dec rt2 <*> dec rn <*> dec imm7
-
--- encode_202 :: FnW Binary_202 a -> Fn Logical_202 (Encode a)
--- encode_202 f xt1 xt2 xn imm = f <$> enc xt1 <*> enc xt2 <*> enc xn <*> enc imm
-
--- parse_202 :: Fn Logical_202 a -> Parser a
--- parse_202 f = ws >> f
-
--- show_202 :: Fn Logical_202 (String, ShowS)
--- show_202 = simple $ id
+show_202 xt1 xt2 xn imm = simple $ asm xt1 .> asm xt2 .> asmPreIndex64 xn imm
 
 
 --- 203: '  <Xt>, #<op1>, <Cn>, <Cm>, #<op2>'
@@ -4983,20 +4969,20 @@ show_208 = simple $ id
 --- STNP_64_ldstnapair_offs       stnp_gen.xml
 --- STP_64_ldstpair_off           stp_gen.xml
 
-type Logical_209 = '[]
-type Binary_209  = '[]
+type Logical_209 = '[Xn, Xn, XnSP, I 7]
+type Binary_209  = '[5, 5, 5, 7]
 
 decode_209 :: Fn Logical_209 a -> FnW Binary_209 (Decode a)
-decode_209 f = return f
+decode_209 f rt rt2 rn imm7 = f <$> dec rt <*> dec rt2 <*> dec rn <*> dec imm7
 
 encode_209 :: FnW Binary_209 a -> Fn Logical_209 (Encode a)
-encode_209 f = return f
+encode_209 f xt1 xt2 xn imm = f <$> enc xt1 <*> enc xt2 <*> enc xn <*> enc imm
 
 parse_209 :: Fn Logical_209 a -> Parser a
-parse_209 f = ws >> return f
+parse_209 f = ws >> uncurry <$> (f <$> msa <+> msa) <+> msaOffset64
 
 show_209 :: Fn Logical_209 (String, ShowS)
-show_209 = simple $ id
+show_209 xt1 xt2 xn imm = simple $ asm xt1 .> asm xt2 .> asmOffset64 xn imm
 
 
 --- 210: '{2}  <Vd>.<Ta>, <Vn>.<Tb>, #<shift>'
@@ -5594,7 +5580,7 @@ decode_236 f rd rn rm shift imm6 = f
 encode_236 :: FnW Binary_236 a -> Fn Logical_236 (Encode a)
 encode_236 f wd wn wm (Shift32 ty amnt) = f
     <$> enc wd <*> enc wn <*> enc wm
-    <*> enc ty <*> enc (pad amnt)
+    <*> enc ty <*> enc (slide amnt)
 
 parse_236 :: Fn Logical_236 a -> Parser a
 parse_236 f = ws >> f <$> msa <+> msa <+> msa <*> msa

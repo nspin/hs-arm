@@ -100,7 +100,7 @@ instance IsBinary 2 ShiftType where
 decShift32 :: W 2 -> W 6 -> Decode Shift32
 decShift32 shift imm6 = Shift32 <$> dec shift <*> amount
   where
-    amount = if imm6 > 31 then decErr else return (pad imm6)
+    amount = if imm6 > 31 then decErr else return (slide imm6)
 
 decShift64 :: W 2 -> W 6 -> Decode Shift64
 decShift64 shift imm6 = Shift64 <$> dec shift <*> dec imm6

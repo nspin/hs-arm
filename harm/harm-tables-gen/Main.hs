@@ -45,7 +45,7 @@ generate hin outDir = do
 
 
 modInsn :: Logic -> [Decl ()]
-modInsn logic = [ty] ++ tys ++ fns
+modInsn logic = [ty] ++ tys ++ fns ++ [eidFnSig, eidFnVal]
   where
     ty = buildType "Insn" [ (mnem, [h mnem]) | mnem <- bigTy ] ["Eq", "Read", "Show"]
     tys = [ buildType mnem [ (eid, tys) | (eid, tys) <- encs ] ["Eq", "Read", "Show"]
@@ -68,6 +68,28 @@ modInsn logic = [ty] ++ tys ++ fns
                 ]
           ]
         | (mnem, eid, ts) <- littleFns logic
+        ]
+    eidFnSig = TypeSig () [Ident () "encodingId"]
+        (TyFun ()
+            (TyCon () (UnQual () (Ident () "Insn")))
+            (TyCon () (UnQual () (Ident () "String"))))
+    eidFnVal = FunBind ()
+        [ Match () (Ident () "encodingId") [PVar () (Ident () "insn")]
+            (UnGuardedRhs ()
+                (Case ()
+                    (Var () (UnQual () (Ident () "insn")))
+                    [ Alt ()
+                        (PApp ()
+                            (UnQual () (Ident () mnem))
+                            [PApp ()
+                                (UnQual () (Ident () eid))
+                                (replicate nargs (PWildCard ()))])
+                        (UnGuardedRhs ()
+                            (Lit () (String () eid eid)))
+                        Nothing
+                    | (mnem, eid, nargs, _, _) <- encodeFn logic
+                    ]))
+            Nothing
         ]
 
 modDecode :: Logic -> [Decl ()]

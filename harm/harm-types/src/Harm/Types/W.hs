@@ -20,7 +20,7 @@ module Harm.Types.W
     , toW
     , slice
     , unslice
-    , pad
+    , slide
     , (.:)
     , split
     , split3
@@ -106,8 +106,8 @@ slice w = toW . shiftR w
 unslice :: KnownNat n => W n -> Int -> Word32
 unslice (W w) = shiftL w
 
-pad :: (KnownNat n, KnownNat m) => W n -> W m
-pad = fromIntegral
+slide :: (KnownNat n, KnownNat m) => W n -> W m
+slide w = slice (unslice w 0) 0
 
 infixr 6 .:
 

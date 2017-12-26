@@ -1,6 +1,15 @@
+{-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE TypeSynonymInstances #-}
 
-module Harm.Extra where
+module Harm.Extra
+    ( elfText
+    , hex
+    , padRight
+    , padLeft
+    , display
+    , putLn
+    ) where
 
 import Harm
 
@@ -9,10 +18,12 @@ import Control.Monad
 import Data.Bits
 import Data.Bool
 import Data.Char
-import Data.Elf
 import Data.Maybe
-import Data.Serialize.Get
+import Data.String
 import Data.Word
+
+import Data.Elf
+import Data.Serialize.Get
 import qualified Data.ByteString as B
 
 -- | Given a path to an ELF file, return the offset of the `.text` section and
@@ -45,11 +56,27 @@ getAllOf g = go
   where
     go = (:) <$> g <*> go <|> (isEmpty >>= bool (fail "leftover input") (return []))
 
-hex :: forall a. (Integral a, FiniteBits a) => a -> String
-hex = reverse
+hex :: forall a. (Integral a, FiniteBits a) => a -> ShowS
+hex = foldr (flip (.)) id
     . take (finiteBitSize (undefined :: a) `div` 4)
-    . map (intToDigit . fromIntegral . (.&. 0xf))
+    . map (showChar . intToDigit . fromIntegral . (.&. 0xf))
     . iterate (flip shiftR 4)
 
+padRight :: Int -> ShowS -> ShowS
+padRight width lefts = showString left . showString (replicate (width - length left) ' ')
+  where
+    left = lefts ""
+
+padLeft :: Int -> ShowS -> ShowS
+padLeft width rights = showString (replicate (width - length right) ' ') . showString right
+  where
+    right = rights ""
+
 display :: [Word32] -> IO ()
-display = mapM_ (putStrLn . hex)
+display = mapM_ (putLn . hex)
+
+putLn :: ShowS -> IO ()
+putLn s = putStrLn $ s ""
+
+instance IsString ShowS where
+    fromString = showString

@@ -78,9 +78,9 @@ instance KnownNat n => FiniteBits (I n) where
     finiteBitSize = const $ natValInt' (proxy# :: Proxy# n)
 
 toI :: forall n. KnownNat n => Int32 -> I n
-toI i = I $ (shiftR (shiftL i width) width)
+toI i = I $ (shiftR (shiftL i amnt) amnt)
   where
-    width = natValInt' (proxy# :: Proxy# n)
+    amnt = 32 - natValInt' (proxy# :: Proxy# n)
 
 lift :: KnownNat n => (Int32 -> Int32 -> Int32) -> I n -> I n -> I n
 lift op = ((.).(.)) toI (op `on` unI)

@@ -28,28 +28,33 @@ This code generation process is complex, but [nix](https://nixos.org/nix/) makes
 Decode instructions from an object file:
 
 ```haskell
+{-# LANGUAGE OverloadedStrings #-}
+
 import Harm
 import Harm.Extra
 import Control.Monad
-import Data.Maybe
 
 main :: IO ()
 main = do
-    (start, text) <- elfText "test/nix-results/test.busybox/busybox"
-    forM_ (zip [start, start + 4..] text) $ \(offset, w) ->
-        putStrLn $ hex offset ++ "  " ++ maybe (hex w) show (decode w)
+    (start, words) <- elfText "../test/nix-results/test.busybox/busybox"
+    forM_ (zip [start, start + 4..] words) $ \(offset, w) ->
+        putLn $ hex offset . "  " . hex w . "  " .
+            case decode w of
+                Nothing -> ".inst  " . hex w
+                Just insn -> padRight 30 (showAsmAt 7 insn)
+                    . showString (encodingId insn)
 ```
 ```
-0000000000400200  SUB (SUB_64_addsub_imm SP SP 1600 Nothing)
-0000000000400204  SUBS (SUBS_32S_addsub_imm WZR W0 1 Nothing)
-0000000000400208  CSINC (CSINC_32_condsel W0 WZR WZR LE)
-000000000040020c  ANDS (ANDS_32_log_shift WZR W1 W0 Nothing)
-0000000000400210  STP (STP_64_ldstpair_pre X29 X30 SP (-48))
-0000000000400214  ADD (ADD_64_addsub_imm X29 SP 0)
-0000000000400218  STP (STP_64_ldstpair_off X19 X20 SP 16)
-000000000040021c  ADRP (ADRP_only_pcreladdr X19 5824512)
-0000000000400220  ADD (ADD_64_addsub_imm X3 X19 3424)
-0000000000400224  LDR (LDR_64_ldst_pos X4 X3)
+0000000000400200  d11843ff  sub    sp, sp, #0x610         SUB_64_addsub_imm
+0000000000400204  7100041f  subs   wzr, w0, #0x001        SUBS_32S_addsub_imm
+0000000000400208  1a9fd7e0  csinc  w0, wzr, wzr, le       CSINC_32_condsel
+000000000040020c  6a00003f  ands   wzr, w1, w0            ANDS_32_log_shift
+0000000000400210  a9bd7bfd  stp    x29, x30, [sp, #-48]!  STP_64_ldstpair_pre
+0000000000400214  910003fd  add    x29, sp, #0x000        ADD_64_addsub_imm
+0000000000400218  a90153f3  stp    x19, x20, [sp, #16]    STP_64_ldstpair_off
+000000000040021c  d0000c73  adrp   x19, 0x00018e          ADRP_only_pcreladdr
+0000000000400220  91358263  add    x3, x19, #0xd60        ADD_64_addsub_imm
+0000000000400224  f9400064  ldr    x4, [x3]               LDR_64_ldst_pos
 ...
 ```
 

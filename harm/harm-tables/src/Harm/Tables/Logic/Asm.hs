@@ -1,6 +1,7 @@
+{-# LANGUAGE DataKinds #-}
+{-# LANGUAGE MagicHash #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE ScopedTypeVariables #-}
-{-# LANGUAGE MagicHash #-}
 
 module Harm.Tables.Logic.Asm where
 
@@ -172,6 +173,53 @@ msashex = do
   where
     width = natVal' (proxy# :: Proxy# n)
 
+asmmul :: KnownNat n => Integer -> W n -> ShowS
+asmmul m i = showChar '#' . shows (m * (toInteger i))
+
+msamul :: forall n. KnownNat n => Integer -> Parser (W n)
+msamul m = do
+    n' <- decimal
+    case quotRem n' m of
+        (n, 0) ->
+            if toInteger (minBound :: W n) <= n && n <= toInteger (maxBound :: W n)
+            then return . W $ fromInteger n
+            else fail $ "literal '" ++ show n' ++ "' out of range"
+        _ -> fail $ "literal '" ++ show n' ++ "' not multiple of " ++ show m
+  where
+    width = natVal' (proxy# :: Proxy# n)
+
+asmsmul :: KnownNat n => Integer -> I n -> ShowS
+asmsmul m i = showChar '#' . shows (m * (toInteger i))
+
+msasmul :: forall n. KnownNat n => Integer -> Parser (I n)
+msasmul m = do
+    n' <- signed decimal
+    case quotRem n' m of
+        (n, 0) ->
+            if toInteger (minBound :: I n) <= n && n <= toInteger (maxBound :: I n)
+            then return . I $ fromInteger n
+            else fail $ "literal '" ++ show n' ++ "' out of range"
+        _ -> fail $ "literal '" ++ show n' ++ "' not multiple of " ++ show m
+  where
+    width = natVal' (proxy# :: Proxy# n)
+
+asmPreIndex64 :: XnSP -> I 7 -> ShowS
+asmPreIndex64 xn imm = showChar '[' . asm xn . showString ", " . asmsmul 8 imm . showString "]!"
+
+msaPreIndex64 :: Parser (XnSP, I 7)
+msaPreIndex64 = "[" *> ((,) <$> msa <+> msasmul 8) <* "]!"
+
+asmOffset64 :: XnSP -> I 7 -> ShowS
+asmOffset64 xn imm = showChar '[' . asm xn . (if imm == 0 then id else showString ", " . asmsmul 8 imm) . showString "]"
+
+msaOffset64 :: Parser (XnSP, I 7)
+msaOffset64 = "[" *> ((,) <$> msa <*> (sep *> msasmul 8 <|> return 0)) <* "]"
+
+asmOffset64p :: XnSP -> W 12 -> ShowS
+asmOffset64p xn imm = showChar '[' . asm xn . (if imm == 0 then id else showString ", " . asmmul 8 imm) . showString "]"
+
+msaOffset64p :: Parser (XnSP, W 12)
+msaOffset64p = "[" *> ((,) <$> msa <*> (sep *> msamul 8 <|> return 0)) <* "]"
 
 isWs :: Char -> Bool
 isWs c = c == ' ' || c == '\t'
