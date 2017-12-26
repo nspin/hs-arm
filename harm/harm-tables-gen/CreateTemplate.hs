@@ -31,7 +31,7 @@ writeTemplate h = hPutStr h . ($ "") . concats $ zipWith f [0..] encodingGroups
         . f ["encode", " :: FnW Binary", " a -> Fn Logical", " (Encode a)"]
         . f ["encode", " f = return f\n"]
         . f ["parse", " :: Fn Logical", " a -> Parser a"]
-        . f ["parse", " f = do\n    return $ f\n"]
+        . f ["parse", " f = ws >> return f\n"]
         . f ["show", " :: Fn Logical", " (String, ShowS)"]
         . f ["show", " = simple $ id"]
         . showString "\n\n"

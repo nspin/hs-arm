@@ -39,7 +39,7 @@ import GHC.TypeLits
 -- Generating Haskell code for each width would result faster code.
 
 newtype W (n :: Nat) = W { unW :: Word32 }
-    deriving (Eq, Ord)
+    deriving (Eq, Ord, Enum, Real)
 
 instance Show (W n) where
     showsPrec p = showsPrec p . unW
@@ -51,7 +51,7 @@ instance KnownNat n => Read (W n) where
 
 instance KnownNat n => Bounded (W n) where
     minBound = 0
-    maxBound = W . shiftL 1 $ natValInt' (proxy# :: Proxy# n) - 1
+    maxBound = W $ shiftL 1 (natValInt' (proxy# :: Proxy# n)) - 1
 
 instance KnownNat n => Num (W n) where
     fromInteger = toW . fromInteger
@@ -61,6 +61,10 @@ instance KnownNat n => Num (W n) where
     signum 0 = 0
     signum _ = 1
     negate = toW . negate . unW
+
+instance KnownNat n => Integral (W n) where
+    quotRem (W n) (W d) = let (q, r) = quotRem n d in (toW q, toW r)
+    toInteger = toInteger . unW
 
 instance KnownNat n => Bits (W n) where
         (.&.) = lift (.&.)

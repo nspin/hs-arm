@@ -9,12 +9,8 @@ module Harm.Tables.Logic.Types
     , FnW
     ) where
 
-import Harm.Types
-import Harm.Tables.Logic.Asm
-import Harm.Tables.Logic.Binary
-import Data.Attoparsec.ByteString.Char8
+import Harm.Types.W
 import GHC.TypeLits
-
 
 type family Fn (args :: [*]) (r :: *) :: *
 type instance Fn '[] r = r

@@ -12,6 +12,7 @@ library
 
   exposed-modules:    Harm.Types
                     , Harm.Types.W
+                    , Harm.Types.I
                     , Harm.Types.Operands
                     , Harm.Types.Pattern
 

@@ -12,12 +12,15 @@ module Harm.Types.Operands
     , Wn(..)
     , XnOrSP(..)
     , WnOrSP(..)
-    , Hint(..)
-    , Half(..)
+
     , Cond(..)
+    , Half(..)
+
+    , Hint(..)
     ) where
 
 import Harm.Types.W
+import Harm.Types.I
 
 import Data.Bits
 import Data.Function
@@ -25,16 +28,6 @@ import Data.Proxy
 import Data.Word
 import GHC.Prim
 import GHC.TypeLits
-
-
-newtype Signed (n :: Nat) = Signed { unSigned :: W n }
-    deriving Eq
-
-instance Show (Signed n) where
-    showsPrec p = showsPrec p . unSigned
-
-toSigned :: W n -> Signed n
-toSigned = Signed
 
 
 newtype Rn = Rn { unRn :: W 5 }
@@ -47,6 +40,16 @@ newtype XnOrSP = XnOrSP { unXnOrSP :: Rn }
     deriving (Eq, Show, Read, Num)
 newtype WnOrSP = WnOrSP { unWnOrSP :: Rn }
     deriving (Eq, Show, Read, Num)
+
+
+data Cond
+    = EQ | NE | CS | CC
+    | MI | PL | VS | VC
+    | HI | LS | GE | LT
+    | GT | LE | AL
+    deriving (Eq, Show, Read, Enum)
+
+data Half = Upper | Lower deriving (Eq, Show, Read)
 
 
 data ArrSpec = ArrSpec ArrHalfWhole ArrWidth deriving (Eq, Show, Read)
@@ -66,25 +69,6 @@ data Shift64 = Shift64 ShiftType Amount64 deriving (Eq, Show, Read)
 newtype BitWidth = BitWidth { unBitWidth :: Integer } deriving (Eq, Show, Read)
 
 
-data Half = Upper | Lower deriving (Eq, Show, Read)
-
-data Cond
-    = EQ
-    | NE
-    | CS
-    | CC
-    | MI
-    | PL
-    | VS
-    | VC
-    | HI
-    | LS
-    | GE
-    | LT
-    | GT
-    | LE
-    | AL
-    deriving (Eq, Show, Read, Enum)
 
 data NZCV = NZCV Bool Bool Bool Bool
 

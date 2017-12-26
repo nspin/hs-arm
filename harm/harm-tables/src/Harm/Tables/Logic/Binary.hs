@@ -10,18 +10,31 @@ import Harm.Types
 
 import GHC.TypeLits
 
+
 type Decode = Maybe
 type Encode = Either String
 
-errDec :: Decode a
-errDec = Nothing
+decErr :: Decode a
+decErr = Nothing
 
-errEnc :: String -> Encode a
-errEnc = Left
+reserved :: Decode a
+reserved = decErr
+
+encErr :: String -> Encode a
+encErr = Left
+
 
 class IsBinary (n :: Nat) a | a -> n where
     dec :: W n -> Decode a
     enc :: a -> Encode (W n)
+
+instance IsBinary n (W n) where
+    dec = return
+    enc = return
+
+instance KnownNat n => IsBinary n (I n) where
+    dec = return . viewI
+    enc = return . viewW
 
 instance IsBinary 5 Rn where
     dec = return . Rn
@@ -57,14 +70,17 @@ instance IsBinary 7 Hint where
         HintSEVL  -> 5
         HintUnk w -> w
 
+
 decLSL12 :: W 2 -> Decode Bool
 decLSL12 0 = return False
 decLSL12 1 = return True
-decLSL12 2 = errDec
+decLSL12 2 = reserved
 
-encLSL12 :: Bool -> W 2
-encLSL12 False = 0
-encLSL12 True = 1
+encLSL12 :: Bool -> Encode (W 2)
+encLSL12 False = return 0
+encLSL12 True = return 1
+
+
 
 toHalf :: W 1 -> Half
 toHalf 0 = Lower
