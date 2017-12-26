@@ -13,5 +13,4 @@ main = do
         putLn $ hex offset . "  " . hex w . "  " .
             case decode w of
                 Nothing -> ".inst  " . hex w
-                Just insn -> padRight 30 (showAsmAt 7 insn)
-                    . showString (encodingId insn)
+                Just insn -> padRight 30 (showAsmAt 7 insn) . showString (encodingId insn)

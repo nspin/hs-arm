@@ -13,8 +13,8 @@ This code generation process is complex, but [nix](https://nixos.org/nix/) makes
 - **`harm`**:
     - **`harm-types`**: Types describing ARM instructions and operands.
     - **`harm-tables-gen`**: Program whose input is the MRAS and a Haskell file containing logic written in an EDSL describing the (dis)assembly and parsing of each instruction encoding, and whose output is the tables needed to (dis)assemble and parse ARM code and assembly.
-    - **`harm-tables`**: The output of `harm-tables-gen`.
-    - **`harm`**: An interface to `harm-tables`, along with various other analysis utilities.
+    - **`harm-tables`**: The output of `harm-tables-gen`, and some manual decoding/encoding logic (in-progress).
+    - **`harm`**: An interface to `harm-tables`, along with various other analysis utilities (in-progress).
 - **`arm-mras`**:
     - **`arm-mras-dtd-gen-utils`**: Program whose input is the MRAS, and whose output is a Haskell library containing types corresponding to the types found in the MRAS DTD's.
     - **`arm-mras-types`**: Library containing types for describing the information contained in the MRAS.
@@ -41,8 +41,7 @@ main = do
         putLn $ hex offset . "  " . hex w . "  " .
             case decode w of
                 Nothing -> ".inst  " . hex w
-                Just insn -> padRight 30 (showAsmAt 7 insn)
-                    . showString (encodingId insn)
+                Just insn -> padRight 30 (showAsmAt 7 insn) . showString (encodingId insn)
 ```
 ```
 0000000000400200  d11843ff  sub    sp, sp, #0x610         SUB_64_addsub_imm
