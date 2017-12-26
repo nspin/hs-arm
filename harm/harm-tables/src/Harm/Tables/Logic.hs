@@ -1,16 +1,3 @@
-{-# LANGUAGE DataKinds #-}
-{-# LANGUAGE KindSignatures #-}
-{-# LANGUAGE PolyKinds #-}
-
-module Harm.Tables.Logic where
-
-import Harm.Types
-import Harm.Tables.Logic.Asm
-import Harm.Tables.Logic.Binary
-import Harm.Tables.Logic.Types
-
-import Data.Attoparsec.ByteString.Char8
-
 --- 0: ''
 --- AUTIA1716_HI_system           autia.xml
 --- AUTIASP_HI_system             autia.xml
@@ -49,8 +36,7 @@ encode_0 :: FnW Binary_0 a -> Fn Logical_0 (Encode a)
 encode_0 f = return f
 
 parse_0 :: Fn Logical_0 a -> Parser a
-parse_0 f = do
-    return $ f
+parse_0 f = ws >> return f
 
 show_0 :: Fn Logical_0 (String, ShowS)
 show_0 = simple $ id
@@ -78,8 +64,7 @@ encode_1 :: FnW Binary_1 a -> Fn Logical_1 (Encode a)
 encode_1 f = return f
 
 parse_1 :: Fn Logical_1 a -> Parser a
-parse_1 f = do
-    return $ f
+parse_1 f = ws >> return f
 
 show_1 :: Fn Logical_1 (String, ShowS)
 show_1 = simple $ id
@@ -103,8 +88,7 @@ encode_2 :: FnW Binary_2 a -> Fn Logical_2 (Encode a)
 encode_2 f = return f
 
 parse_2 :: Fn Logical_2 a -> Parser a
-parse_2 f = do
-    return $ f
+parse_2 f = ws >> return f
 
 show_2 :: Fn Logical_2 (String, ShowS)
 show_2 = simple $ id
@@ -123,8 +107,7 @@ encode_3 :: FnW Binary_3 a -> Fn Logical_3 (Encode a)
 encode_3 f = return f
 
 parse_3 :: Fn Logical_3 a -> Parser a
-parse_3 f = do
-    return $ f
+parse_3 f = ws >> return f
 
 show_3 :: Fn Logical_3 (String, ShowS)
 show_3 = simple $ id
@@ -150,8 +133,7 @@ encode_4 :: FnW Binary_4 a -> Fn Logical_4 (Encode a)
 encode_4 f = return f
 
 parse_4 :: Fn Logical_4 a -> Parser a
-parse_4 f = do
-    return $ f
+parse_4 f = ws >> return f
 
 show_4 :: Fn Logical_4 (String, ShowS)
 show_4 = simple $ id
@@ -170,8 +152,7 @@ encode_5 :: FnW Binary_5 a -> Fn Logical_5 (Encode a)
 encode_5 f = return f
 
 parse_5 :: Fn Logical_5 a -> Parser a
-parse_5 f = do
-    return $ f
+parse_5 f = ws >> return f
 
 show_5 :: Fn Logical_5 (String, ShowS)
 show_5 = simple $ id
@@ -191,8 +172,7 @@ encode_6 :: FnW Binary_6 a -> Fn Logical_6 (Encode a)
 encode_6 f = return f
 
 parse_6 :: Fn Logical_6 a -> Parser a
-parse_6 f = do
-    return $ f
+parse_6 f = ws >> return f
 
 show_6 :: Fn Logical_6 (String, ShowS)
 show_6 = simple $ id
@@ -214,8 +194,7 @@ encode_7 :: FnW Binary_7 a -> Fn Logical_7 (Encode a)
 encode_7 f = return f
 
 parse_7 :: Fn Logical_7 a -> Parser a
-parse_7 f = do
-    return $ f
+parse_7 f = ws >> return f
 
 show_7 :: Fn Logical_7 (String, ShowS)
 show_7 = simple $ id
@@ -244,8 +223,7 @@ encode_8 :: FnW Binary_8 a -> Fn Logical_8 (Encode a)
 encode_8 f = return f
 
 parse_8 :: Fn Logical_8 a -> Parser a
-parse_8 f = do
-    return $ f
+parse_8 f = ws >> return f
 
 show_8 :: Fn Logical_8 (String, ShowS)
 show_8 = simple $ id
@@ -264,8 +242,7 @@ encode_9 :: FnW Binary_9 a -> Fn Logical_9 (Encode a)
 encode_9 f = return f
 
 parse_9 :: Fn Logical_9 a -> Parser a
-parse_9 f = do
-    return $ f
+parse_9 f = ws >> return f
 
 show_9 :: Fn Logical_9 (String, ShowS)
 show_9 = simple $ id
@@ -284,8 +261,7 @@ encode_10 :: FnW Binary_10 a -> Fn Logical_10 (Encode a)
 encode_10 f = return f
 
 parse_10 :: Fn Logical_10 a -> Parser a
-parse_10 f = do
-    return $ f
+parse_10 f = ws >> return f
 
 show_10 :: Fn Logical_10 (String, ShowS)
 show_10 = simple $ id
@@ -305,8 +281,7 @@ encode_11 :: FnW Binary_11 a -> Fn Logical_11 (Encode a)
 encode_11 f = return f
 
 parse_11 :: Fn Logical_11 a -> Parser a
-parse_11 f = do
-    return $ f
+parse_11 f = ws >> return f
 
 show_11 :: Fn Logical_11 (String, ShowS)
 show_11 = simple $ id
@@ -327,8 +302,7 @@ encode_12 :: FnW Binary_12 a -> Fn Logical_12 (Encode a)
 encode_12 f = return f
 
 parse_12 :: Fn Logical_12 a -> Parser a
-parse_12 f = do
-    return $ f
+parse_12 f = ws >> return f
 
 show_12 :: Fn Logical_12 (String, ShowS)
 show_12 = simple $ id
@@ -348,8 +322,7 @@ encode_13 :: FnW Binary_13 a -> Fn Logical_13 (Encode a)
 encode_13 f = return f
 
 parse_13 :: Fn Logical_13 a -> Parser a
-parse_13 f = do
-    return $ f
+parse_13 f = ws >> return f
 
 show_13 :: Fn Logical_13 (String, ShowS)
 show_13 = simple $ id
@@ -369,8 +342,7 @@ encode_14 :: FnW Binary_14 a -> Fn Logical_14 (Encode a)
 encode_14 f = return f
 
 parse_14 :: Fn Logical_14 a -> Parser a
-parse_14 f = do
-    return $ f
+parse_14 f = ws >> return f
 
 show_14 :: Fn Logical_14 (String, ShowS)
 show_14 = simple $ id
@@ -389,8 +361,7 @@ encode_15 :: FnW Binary_15 a -> Fn Logical_15 (Encode a)
 encode_15 f = return f
 
 parse_15 :: Fn Logical_15 a -> Parser a
-parse_15 f = do
-    return $ f
+parse_15 f = ws >> return f
 
 show_15 :: Fn Logical_15 (String, ShowS)
 show_15 = simple $ id
@@ -434,8 +405,7 @@ encode_16 :: FnW Binary_16 a -> Fn Logical_16 (Encode a)
 encode_16 f = return f
 
 parse_16 :: Fn Logical_16 a -> Parser a
-parse_16 f = do
-    return $ f
+parse_16 f = ws >> return f
 
 show_16 :: Fn Logical_16 (String, ShowS)
 show_16 = simple $ id
@@ -454,8 +424,7 @@ encode_17 :: FnW Binary_17 a -> Fn Logical_17 (Encode a)
 encode_17 f = return f
 
 parse_17 :: Fn Logical_17 a -> Parser a
-parse_17 f = do
-    return $ f
+parse_17 f = ws >> return f
 
 show_17 :: Fn Logical_17 (String, ShowS)
 show_17 = simple $ id
@@ -476,8 +445,7 @@ encode_18 :: FnW Binary_18 a -> Fn Logical_18 (Encode a)
 encode_18 f = return f
 
 parse_18 :: Fn Logical_18 a -> Parser a
-parse_18 f = do
-    return $ f
+parse_18 f = ws >> return f
 
 show_18 :: Fn Logical_18 (String, ShowS)
 show_18 = simple $ id
@@ -498,8 +466,7 @@ encode_19 :: FnW Binary_19 a -> Fn Logical_19 (Encode a)
 encode_19 f = return f
 
 parse_19 :: Fn Logical_19 a -> Parser a
-parse_19 f = do
-    return $ f
+parse_19 f = ws >> return f
 
 show_19 :: Fn Logical_19 (String, ShowS)
 show_19 = simple $ id
@@ -519,8 +486,7 @@ encode_20 :: FnW Binary_20 a -> Fn Logical_20 (Encode a)
 encode_20 f = return f
 
 parse_20 :: Fn Logical_20 a -> Parser a
-parse_20 f = do
-    return $ f
+parse_20 f = ws >> return f
 
 show_20 :: Fn Logical_20 (String, ShowS)
 show_20 = simple $ id
@@ -540,8 +506,7 @@ encode_21 :: FnW Binary_21 a -> Fn Logical_21 (Encode a)
 encode_21 f = return f
 
 parse_21 :: Fn Logical_21 a -> Parser a
-parse_21 f = do
-    return $ f
+parse_21 f = ws >> return f
 
 show_21 :: Fn Logical_21 (String, ShowS)
 show_21 = simple $ id
@@ -560,8 +525,7 @@ encode_22 :: FnW Binary_22 a -> Fn Logical_22 (Encode a)
 encode_22 f = return f
 
 parse_22 :: Fn Logical_22 a -> Parser a
-parse_22 f = do
-    return $ f
+parse_22 f = ws >> return f
 
 show_22 :: Fn Logical_22 (String, ShowS)
 show_22 = simple $ id
@@ -580,8 +544,7 @@ encode_23 :: FnW Binary_23 a -> Fn Logical_23 (Encode a)
 encode_23 f = return f
 
 parse_23 :: Fn Logical_23 a -> Parser a
-parse_23 f = do
-    return $ f
+parse_23 f = ws >> return f
 
 show_23 :: Fn Logical_23 (String, ShowS)
 show_23 = simple $ id
@@ -611,8 +574,7 @@ encode_24 :: FnW Binary_24 a -> Fn Logical_24 (Encode a)
 encode_24 f = return f
 
 parse_24 :: Fn Logical_24 a -> Parser a
-parse_24 f = do
-    return $ f
+parse_24 f = ws >> return f
 
 show_24 :: Fn Logical_24 (String, ShowS)
 show_24 = simple $ id
@@ -633,8 +595,7 @@ encode_25 :: FnW Binary_25 a -> Fn Logical_25 (Encode a)
 encode_25 f = return f
 
 parse_25 :: Fn Logical_25 a -> Parser a
-parse_25 f = do
-    return $ f
+parse_25 f = ws >> return f
 
 show_25 :: Fn Logical_25 (String, ShowS)
 show_25 = simple $ id
@@ -654,8 +615,7 @@ encode_26 :: FnW Binary_26 a -> Fn Logical_26 (Encode a)
 encode_26 f = return f
 
 parse_26 :: Fn Logical_26 a -> Parser a
-parse_26 f = do
-    return $ f
+parse_26 f = ws >> return f
 
 show_26 :: Fn Logical_26 (String, ShowS)
 show_26 = simple $ id
@@ -675,8 +635,7 @@ encode_27 :: FnW Binary_27 a -> Fn Logical_27 (Encode a)
 encode_27 f = return f
 
 parse_27 :: Fn Logical_27 a -> Parser a
-parse_27 f = do
-    return $ f
+parse_27 f = ws >> return f
 
 show_27 :: Fn Logical_27 (String, ShowS)
 show_27 = simple $ id
@@ -696,8 +655,7 @@ encode_28 :: FnW Binary_28 a -> Fn Logical_28 (Encode a)
 encode_28 f = return f
 
 parse_28 :: Fn Logical_28 a -> Parser a
-parse_28 f = do
-    return $ f
+parse_28 f = ws >> return f
 
 show_28 :: Fn Logical_28 (String, ShowS)
 show_28 = simple $ id
@@ -726,8 +684,7 @@ encode_29 :: FnW Binary_29 a -> Fn Logical_29 (Encode a)
 encode_29 f = return f
 
 parse_29 :: Fn Logical_29 a -> Parser a
-parse_29 f = do
-    return $ f
+parse_29 f = ws >> return f
 
 show_29 :: Fn Logical_29 (String, ShowS)
 show_29 = simple $ id
@@ -756,8 +713,7 @@ encode_30 :: FnW Binary_30 a -> Fn Logical_30 (Encode a)
 encode_30 f = return f
 
 parse_30 :: Fn Logical_30 a -> Parser a
-parse_30 f = do
-    return $ f
+parse_30 f = ws >> return f
 
 show_30 :: Fn Logical_30 (String, ShowS)
 show_30 = simple $ id
@@ -786,8 +742,7 @@ encode_31 :: FnW Binary_31 a -> Fn Logical_31 (Encode a)
 encode_31 f = return f
 
 parse_31 :: Fn Logical_31 a -> Parser a
-parse_31 f = do
-    return $ f
+parse_31 f = ws >> return f
 
 show_31 :: Fn Logical_31 (String, ShowS)
 show_31 = simple $ id
@@ -810,8 +765,7 @@ encode_32 :: FnW Binary_32 a -> Fn Logical_32 (Encode a)
 encode_32 f = return f
 
 parse_32 :: Fn Logical_32 a -> Parser a
-parse_32 f = do
-    return $ f
+parse_32 f = ws >> return f
 
 show_32 :: Fn Logical_32 (String, ShowS)
 show_32 = simple $ id
@@ -840,8 +794,7 @@ encode_33 :: FnW Binary_33 a -> Fn Logical_33 (Encode a)
 encode_33 f = return f
 
 parse_33 :: Fn Logical_33 a -> Parser a
-parse_33 f = do
-    return $ f
+parse_33 f = ws >> return f
 
 show_33 :: Fn Logical_33 (String, ShowS)
 show_33 = simple $ id
@@ -870,8 +823,7 @@ encode_34 :: FnW Binary_34 a -> Fn Logical_34 (Encode a)
 encode_34 f = return f
 
 parse_34 :: Fn Logical_34 a -> Parser a
-parse_34 f = do
-    return $ f
+parse_34 f = ws >> return f
 
 show_34 :: Fn Logical_34 (String, ShowS)
 show_34 = simple $ id
@@ -899,8 +851,7 @@ encode_35 :: FnW Binary_35 a -> Fn Logical_35 (Encode a)
 encode_35 f = return f
 
 parse_35 :: Fn Logical_35 a -> Parser a
-parse_35 f = do
-    return $ f
+parse_35 f = ws >> return f
 
 show_35 :: Fn Logical_35 (String, ShowS)
 show_35 = simple $ id
@@ -924,8 +875,7 @@ encode_36 :: FnW Binary_36 a -> Fn Logical_36 (Encode a)
 encode_36 f = return f
 
 parse_36 :: Fn Logical_36 a -> Parser a
-parse_36 f = do
-    return $ f
+parse_36 f = ws >> return f
 
 show_36 :: Fn Logical_36 (String, ShowS)
 show_36 = simple $ id
@@ -945,8 +895,7 @@ encode_37 :: FnW Binary_37 a -> Fn Logical_37 (Encode a)
 encode_37 f = return f
 
 parse_37 :: Fn Logical_37 a -> Parser a
-parse_37 f = do
-    return $ f
+parse_37 f = ws >> return f
 
 show_37 :: Fn Logical_37 (String, ShowS)
 show_37 = simple $ id
@@ -965,8 +914,7 @@ encode_38 :: FnW Binary_38 a -> Fn Logical_38 (Encode a)
 encode_38 f = return f
 
 parse_38 :: Fn Logical_38 a -> Parser a
-parse_38 f = do
-    return $ f
+parse_38 f = ws >> return f
 
 show_38 :: Fn Logical_38 (String, ShowS)
 show_38 = simple $ id
@@ -985,8 +933,7 @@ encode_39 :: FnW Binary_39 a -> Fn Logical_39 (Encode a)
 encode_39 f = return f
 
 parse_39 :: Fn Logical_39 a -> Parser a
-parse_39 f = do
-    return $ f
+parse_39 f = ws >> return f
 
 show_39 :: Fn Logical_39 (String, ShowS)
 show_39 = simple $ id
@@ -1005,8 +952,7 @@ encode_40 :: FnW Binary_40 a -> Fn Logical_40 (Encode a)
 encode_40 f = return f
 
 parse_40 :: Fn Logical_40 a -> Parser a
-parse_40 f = do
-    return $ f
+parse_40 f = ws >> return f
 
 show_40 :: Fn Logical_40 (String, ShowS)
 show_40 = simple $ id
@@ -1025,8 +971,7 @@ encode_41 :: FnW Binary_41 a -> Fn Logical_41 (Encode a)
 encode_41 f = return f
 
 parse_41 :: Fn Logical_41 a -> Parser a
-parse_41 f = do
-    return $ f
+parse_41 f = ws >> return f
 
 show_41 :: Fn Logical_41 (String, ShowS)
 show_41 = simple $ id
@@ -1045,8 +990,7 @@ encode_42 :: FnW Binary_42 a -> Fn Logical_42 (Encode a)
 encode_42 f = return f
 
 parse_42 :: Fn Logical_42 a -> Parser a
-parse_42 f = do
-    return $ f
+parse_42 f = ws >> return f
 
 show_42 :: Fn Logical_42 (String, ShowS)
 show_42 = simple $ id
@@ -1067,8 +1011,7 @@ encode_43 :: FnW Binary_43 a -> Fn Logical_43 (Encode a)
 encode_43 f = return f
 
 parse_43 :: Fn Logical_43 a -> Parser a
-parse_43 f = do
-    return $ f
+parse_43 f = ws >> return f
 
 show_43 :: Fn Logical_43 (String, ShowS)
 show_43 = simple $ id
@@ -1094,8 +1037,7 @@ encode_44 :: FnW Binary_44 a -> Fn Logical_44 (Encode a)
 encode_44 f = return f
 
 parse_44 :: Fn Logical_44 a -> Parser a
-parse_44 f = do
-    return $ f
+parse_44 f = ws >> return f
 
 show_44 :: Fn Logical_44 (String, ShowS)
 show_44 = simple $ id
@@ -1115,8 +1057,7 @@ encode_45 :: FnW Binary_45 a -> Fn Logical_45 (Encode a)
 encode_45 f = return f
 
 parse_45 :: Fn Logical_45 a -> Parser a
-parse_45 f = do
-    return $ f
+parse_45 f = ws >> return f
 
 show_45 :: Fn Logical_45 (String, ShowS)
 show_45 = simple $ id
@@ -1138,8 +1079,7 @@ encode_46 :: FnW Binary_46 a -> Fn Logical_46 (Encode a)
 encode_46 f = return f
 
 parse_46 :: Fn Logical_46 a -> Parser a
-parse_46 f = do
-    return $ f
+parse_46 f = ws >> return f
 
 show_46 :: Fn Logical_46 (String, ShowS)
 show_46 = simple $ id
@@ -1161,8 +1101,7 @@ encode_47 :: FnW Binary_47 a -> Fn Logical_47 (Encode a)
 encode_47 f = return f
 
 parse_47 :: Fn Logical_47 a -> Parser a
-parse_47 f = do
-    return $ f
+parse_47 f = ws >> return f
 
 show_47 :: Fn Logical_47 (String, ShowS)
 show_47 = simple $ id
@@ -1201,8 +1140,7 @@ encode_48 :: FnW Binary_48 a -> Fn Logical_48 (Encode a)
 encode_48 f = return f
 
 parse_48 :: Fn Logical_48 a -> Parser a
-parse_48 f = do
-    return $ f
+parse_48 f = ws >> return f
 
 show_48 :: Fn Logical_48 (String, ShowS)
 show_48 = simple $ id
@@ -1221,8 +1159,7 @@ encode_49 :: FnW Binary_49 a -> Fn Logical_49 (Encode a)
 encode_49 f = return f
 
 parse_49 :: Fn Logical_49 a -> Parser a
-parse_49 f = do
-    return $ f
+parse_49 f = ws >> return f
 
 show_49 :: Fn Logical_49 (String, ShowS)
 show_49 = simple $ id
@@ -1242,8 +1179,7 @@ encode_50 :: FnW Binary_50 a -> Fn Logical_50 (Encode a)
 encode_50 f = return f
 
 parse_50 :: Fn Logical_50 a -> Parser a
-parse_50 f = do
-    return $ f
+parse_50 f = ws >> return f
 
 show_50 :: Fn Logical_50 (String, ShowS)
 show_50 = simple $ id
@@ -1262,8 +1198,7 @@ encode_51 :: FnW Binary_51 a -> Fn Logical_51 (Encode a)
 encode_51 f = return f
 
 parse_51 :: Fn Logical_51 a -> Parser a
-parse_51 f = do
-    return $ f
+parse_51 f = ws >> return f
 
 show_51 :: Fn Logical_51 (String, ShowS)
 show_51 = simple $ id
@@ -1282,8 +1217,7 @@ encode_52 :: FnW Binary_52 a -> Fn Logical_52 (Encode a)
 encode_52 f = return f
 
 parse_52 :: Fn Logical_52 a -> Parser a
-parse_52 f = do
-    return $ f
+parse_52 f = ws >> return f
 
 show_52 :: Fn Logical_52 (String, ShowS)
 show_52 = simple $ id
@@ -1303,8 +1237,7 @@ encode_53 :: FnW Binary_53 a -> Fn Logical_53 (Encode a)
 encode_53 f = return f
 
 parse_53 :: Fn Logical_53 a -> Parser a
-parse_53 f = do
-    return $ f
+parse_53 f = ws >> return f
 
 show_53 :: Fn Logical_53 (String, ShowS)
 show_53 = simple $ id
@@ -1331,8 +1264,7 @@ encode_54 :: FnW Binary_54 a -> Fn Logical_54 (Encode a)
 encode_54 f = return f
 
 parse_54 :: Fn Logical_54 a -> Parser a
-parse_54 f = do
-    return $ f
+parse_54 f = ws >> return f
 
 show_54 :: Fn Logical_54 (String, ShowS)
 show_54 = simple $ id
@@ -1355,8 +1287,7 @@ encode_55 :: FnW Binary_55 a -> Fn Logical_55 (Encode a)
 encode_55 f = return f
 
 parse_55 :: Fn Logical_55 a -> Parser a
-parse_55 f = do
-    return $ f
+parse_55 f = ws >> return f
 
 show_55 :: Fn Logical_55 (String, ShowS)
 show_55 = simple $ id
@@ -1392,8 +1323,7 @@ encode_56 :: FnW Binary_56 a -> Fn Logical_56 (Encode a)
 encode_56 f = return f
 
 parse_56 :: Fn Logical_56 a -> Parser a
-parse_56 f = do
-    return $ f
+parse_56 f = ws >> return f
 
 show_56 :: Fn Logical_56 (String, ShowS)
 show_56 = simple $ id
@@ -1420,8 +1350,7 @@ encode_57 :: FnW Binary_57 a -> Fn Logical_57 (Encode a)
 encode_57 f = return f
 
 parse_57 :: Fn Logical_57 a -> Parser a
-parse_57 f = do
-    return $ f
+parse_57 f = ws >> return f
 
 show_57 :: Fn Logical_57 (String, ShowS)
 show_57 = simple $ id
@@ -1465,8 +1394,7 @@ encode_58 :: FnW Binary_58 a -> Fn Logical_58 (Encode a)
 encode_58 f = return f
 
 parse_58 :: Fn Logical_58 a -> Parser a
-parse_58 f = do
-    return $ f
+parse_58 f = ws >> return f
 
 show_58 :: Fn Logical_58 (String, ShowS)
 show_58 = simple $ id
@@ -1488,8 +1416,7 @@ encode_59 :: FnW Binary_59 a -> Fn Logical_59 (Encode a)
 encode_59 f = return f
 
 parse_59 :: Fn Logical_59 a -> Parser a
-parse_59 f = do
-    return $ f
+parse_59 f = ws >> return f
 
 show_59 :: Fn Logical_59 (String, ShowS)
 show_59 = simple $ id
@@ -1508,8 +1435,7 @@ encode_60 :: FnW Binary_60 a -> Fn Logical_60 (Encode a)
 encode_60 f = return f
 
 parse_60 :: Fn Logical_60 a -> Parser a
-parse_60 f = do
-    return $ f
+parse_60 f = ws >> return f
 
 show_60 :: Fn Logical_60 (String, ShowS)
 show_60 = simple $ id
@@ -1530,8 +1456,7 @@ encode_61 :: FnW Binary_61 a -> Fn Logical_61 (Encode a)
 encode_61 f = return f
 
 parse_61 :: Fn Logical_61 a -> Parser a
-parse_61 f = do
-    return $ f
+parse_61 f = ws >> return f
 
 show_61 :: Fn Logical_61 (String, ShowS)
 show_61 = simple $ id
@@ -1551,8 +1476,7 @@ encode_62 :: FnW Binary_62 a -> Fn Logical_62 (Encode a)
 encode_62 f = return f
 
 parse_62 :: Fn Logical_62 a -> Parser a
-parse_62 f = do
-    return $ f
+parse_62 f = ws >> return f
 
 show_62 :: Fn Logical_62 (String, ShowS)
 show_62 = simple $ id
@@ -1571,8 +1495,7 @@ encode_63 :: FnW Binary_63 a -> Fn Logical_63 (Encode a)
 encode_63 f = return f
 
 parse_63 :: Fn Logical_63 a -> Parser a
-parse_63 f = do
-    return $ f
+parse_63 f = ws >> return f
 
 show_63 :: Fn Logical_63 (String, ShowS)
 show_63 = simple $ id
@@ -1606,8 +1529,7 @@ encode_64 :: FnW Binary_64 a -> Fn Logical_64 (Encode a)
 encode_64 f = return f
 
 parse_64 :: Fn Logical_64 a -> Parser a
-parse_64 f = do
-    return $ f
+parse_64 f = ws >> return f
 
 show_64 :: Fn Logical_64 (String, ShowS)
 show_64 = simple $ id
@@ -1627,8 +1549,7 @@ encode_65 :: FnW Binary_65 a -> Fn Logical_65 (Encode a)
 encode_65 f = return f
 
 parse_65 :: Fn Logical_65 a -> Parser a
-parse_65 f = do
-    return $ f
+parse_65 f = ws >> return f
 
 show_65 :: Fn Logical_65 (String, ShowS)
 show_65 = simple $ id
@@ -1658,8 +1579,7 @@ encode_66 :: FnW Binary_66 a -> Fn Logical_66 (Encode a)
 encode_66 f = return f
 
 parse_66 :: Fn Logical_66 a -> Parser a
-parse_66 f = do
-    return $ f
+parse_66 f = ws >> return f
 
 show_66 :: Fn Logical_66 (String, ShowS)
 show_66 = simple $ id
@@ -1678,8 +1598,7 @@ encode_67 :: FnW Binary_67 a -> Fn Logical_67 (Encode a)
 encode_67 f = return f
 
 parse_67 :: Fn Logical_67 a -> Parser a
-parse_67 f = do
-    return $ f
+parse_67 f = ws >> return f
 
 show_67 :: Fn Logical_67 (String, ShowS)
 show_67 = simple $ id
@@ -1702,8 +1621,7 @@ encode_68 :: FnW Binary_68 a -> Fn Logical_68 (Encode a)
 encode_68 f = return f
 
 parse_68 :: Fn Logical_68 a -> Parser a
-parse_68 f = do
-    return $ f
+parse_68 f = ws >> return f
 
 show_68 :: Fn Logical_68 (String, ShowS)
 show_68 = simple $ id
@@ -1725,8 +1643,7 @@ encode_69 :: FnW Binary_69 a -> Fn Logical_69 (Encode a)
 encode_69 f = return f
 
 parse_69 :: Fn Logical_69 a -> Parser a
-parse_69 f = do
-    return $ f
+parse_69 f = ws >> return f
 
 show_69 :: Fn Logical_69 (String, ShowS)
 show_69 = simple $ id
@@ -1808,8 +1725,7 @@ encode_70 :: FnW Binary_70 a -> Fn Logical_70 (Encode a)
 encode_70 f = return f
 
 parse_70 :: Fn Logical_70 a -> Parser a
-parse_70 f = do
-    return $ f
+parse_70 f = ws >> return f
 
 show_70 :: Fn Logical_70 (String, ShowS)
 show_70 = simple $ id
@@ -1828,8 +1744,7 @@ encode_71 :: FnW Binary_71 a -> Fn Logical_71 (Encode a)
 encode_71 f = return f
 
 parse_71 :: Fn Logical_71 a -> Parser a
-parse_71 f = do
-    return $ f
+parse_71 f = ws >> return f
 
 show_71 :: Fn Logical_71 (String, ShowS)
 show_71 = simple $ id
@@ -1848,8 +1763,7 @@ encode_72 :: FnW Binary_72 a -> Fn Logical_72 (Encode a)
 encode_72 f = return f
 
 parse_72 :: Fn Logical_72 a -> Parser a
-parse_72 f = do
-    return $ f
+parse_72 f = ws >> return f
 
 show_72 :: Fn Logical_72 (String, ShowS)
 show_72 = simple $ id
@@ -1869,8 +1783,7 @@ encode_73 :: FnW Binary_73 a -> Fn Logical_73 (Encode a)
 encode_73 f = return f
 
 parse_73 :: Fn Logical_73 a -> Parser a
-parse_73 f = do
-    return $ f
+parse_73 f = ws >> return f
 
 show_73 :: Fn Logical_73 (String, ShowS)
 show_73 = simple $ id
@@ -1890,8 +1803,7 @@ encode_74 :: FnW Binary_74 a -> Fn Logical_74 (Encode a)
 encode_74 f = return f
 
 parse_74 :: Fn Logical_74 a -> Parser a
-parse_74 f = do
-    return $ f
+parse_74 f = ws >> return f
 
 show_74 :: Fn Logical_74 (String, ShowS)
 show_74 = simple $ id
@@ -1912,8 +1824,7 @@ encode_75 :: FnW Binary_75 a -> Fn Logical_75 (Encode a)
 encode_75 f = return f
 
 parse_75 :: Fn Logical_75 a -> Parser a
-parse_75 f = do
-    return $ f
+parse_75 f = ws >> return f
 
 show_75 :: Fn Logical_75 (String, ShowS)
 show_75 = simple $ id
@@ -1932,8 +1843,7 @@ encode_76 :: FnW Binary_76 a -> Fn Logical_76 (Encode a)
 encode_76 f = return f
 
 parse_76 :: Fn Logical_76 a -> Parser a
-parse_76 f = do
-    return $ f
+parse_76 f = ws >> return f
 
 show_76 :: Fn Logical_76 (String, ShowS)
 show_76 = simple $ id
@@ -1953,8 +1863,7 @@ encode_77 :: FnW Binary_77 a -> Fn Logical_77 (Encode a)
 encode_77 f = return f
 
 parse_77 :: Fn Logical_77 a -> Parser a
-parse_77 f = do
-    return $ f
+parse_77 f = ws >> return f
 
 show_77 :: Fn Logical_77 (String, ShowS)
 show_77 = simple $ id
@@ -1974,8 +1883,7 @@ encode_78 :: FnW Binary_78 a -> Fn Logical_78 (Encode a)
 encode_78 f = return f
 
 parse_78 :: Fn Logical_78 a -> Parser a
-parse_78 f = do
-    return $ f
+parse_78 f = ws >> return f
 
 show_78 :: Fn Logical_78 (String, ShowS)
 show_78 = simple $ id
@@ -1995,8 +1903,7 @@ encode_79 :: FnW Binary_79 a -> Fn Logical_79 (Encode a)
 encode_79 f = return f
 
 parse_79 :: Fn Logical_79 a -> Parser a
-parse_79 f = do
-    return $ f
+parse_79 f = ws >> return f
 
 show_79 :: Fn Logical_79 (String, ShowS)
 show_79 = simple $ id
@@ -2016,8 +1923,7 @@ encode_80 :: FnW Binary_80 a -> Fn Logical_80 (Encode a)
 encode_80 f = return f
 
 parse_80 :: Fn Logical_80 a -> Parser a
-parse_80 f = do
-    return $ f
+parse_80 f = ws >> return f
 
 show_80 :: Fn Logical_80 (String, ShowS)
 show_80 = simple $ id
@@ -2037,8 +1943,7 @@ encode_81 :: FnW Binary_81 a -> Fn Logical_81 (Encode a)
 encode_81 f = return f
 
 parse_81 :: Fn Logical_81 a -> Parser a
-parse_81 f = do
-    return $ f
+parse_81 f = ws >> return f
 
 show_81 :: Fn Logical_81 (String, ShowS)
 show_81 = simple $ id
@@ -2058,8 +1963,7 @@ encode_82 :: FnW Binary_82 a -> Fn Logical_82 (Encode a)
 encode_82 f = return f
 
 parse_82 :: Fn Logical_82 a -> Parser a
-parse_82 f = do
-    return $ f
+parse_82 f = ws >> return f
 
 show_82 :: Fn Logical_82 (String, ShowS)
 show_82 = simple $ id
@@ -2082,8 +1986,7 @@ encode_83 :: FnW Binary_83 a -> Fn Logical_83 (Encode a)
 encode_83 f = return f
 
 parse_83 :: Fn Logical_83 a -> Parser a
-parse_83 f = do
-    return $ f
+parse_83 f = ws >> return f
 
 show_83 :: Fn Logical_83 (String, ShowS)
 show_83 = simple $ id
@@ -2105,8 +2008,7 @@ encode_84 :: FnW Binary_84 a -> Fn Logical_84 (Encode a)
 encode_84 f = return f
 
 parse_84 :: Fn Logical_84 a -> Parser a
-parse_84 f = do
-    return $ f
+parse_84 f = ws >> return f
 
 show_84 :: Fn Logical_84 (String, ShowS)
 show_84 = simple $ id
@@ -2126,8 +2028,7 @@ encode_85 :: FnW Binary_85 a -> Fn Logical_85 (Encode a)
 encode_85 f = return f
 
 parse_85 :: Fn Logical_85 a -> Parser a
-parse_85 f = do
-    return $ f
+parse_85 f = ws >> return f
 
 show_85 :: Fn Logical_85 (String, ShowS)
 show_85 = simple $ id
@@ -2147,8 +2048,7 @@ encode_86 :: FnW Binary_86 a -> Fn Logical_86 (Encode a)
 encode_86 f = return f
 
 parse_86 :: Fn Logical_86 a -> Parser a
-parse_86 f = do
-    return $ f
+parse_86 f = ws >> return f
 
 show_86 :: Fn Logical_86 (String, ShowS)
 show_86 = simple $ id
@@ -2168,8 +2068,7 @@ encode_87 :: FnW Binary_87 a -> Fn Logical_87 (Encode a)
 encode_87 f = return f
 
 parse_87 :: Fn Logical_87 a -> Parser a
-parse_87 f = do
-    return $ f
+parse_87 f = ws >> return f
 
 show_87 :: Fn Logical_87 (String, ShowS)
 show_87 = simple $ id
@@ -2205,8 +2104,7 @@ encode_88 :: FnW Binary_88 a -> Fn Logical_88 (Encode a)
 encode_88 f = return f
 
 parse_88 :: Fn Logical_88 a -> Parser a
-parse_88 f = do
-    return $ f
+parse_88 f = ws >> return f
 
 show_88 :: Fn Logical_88 (String, ShowS)
 show_88 = simple $ id
@@ -2226,8 +2124,7 @@ encode_89 :: FnW Binary_89 a -> Fn Logical_89 (Encode a)
 encode_89 f = return f
 
 parse_89 :: Fn Logical_89 a -> Parser a
-parse_89 f = do
-    return $ f
+parse_89 f = ws >> return f
 
 show_89 :: Fn Logical_89 (String, ShowS)
 show_89 = simple $ id
@@ -2247,8 +2144,7 @@ encode_90 :: FnW Binary_90 a -> Fn Logical_90 (Encode a)
 encode_90 f = return f
 
 parse_90 :: Fn Logical_90 a -> Parser a
-parse_90 f = do
-    return $ f
+parse_90 f = ws >> return f
 
 show_90 :: Fn Logical_90 (String, ShowS)
 show_90 = simple $ id
@@ -2268,8 +2164,7 @@ encode_91 :: FnW Binary_91 a -> Fn Logical_91 (Encode a)
 encode_91 f = return f
 
 parse_91 :: Fn Logical_91 a -> Parser a
-parse_91 f = do
-    return $ f
+parse_91 f = ws >> return f
 
 show_91 :: Fn Logical_91 (String, ShowS)
 show_91 = simple $ id
@@ -2293,8 +2188,7 @@ encode_92 :: FnW Binary_92 a -> Fn Logical_92 (Encode a)
 encode_92 f = return f
 
 parse_92 :: Fn Logical_92 a -> Parser a
-parse_92 f = do
-    return $ f
+parse_92 f = ws >> return f
 
 show_92 :: Fn Logical_92 (String, ShowS)
 show_92 = simple $ id
@@ -2420,8 +2314,7 @@ encode_93 :: FnW Binary_93 a -> Fn Logical_93 (Encode a)
 encode_93 f = return f
 
 parse_93 :: Fn Logical_93 a -> Parser a
-parse_93 f = do
-    return $ f
+parse_93 f = ws >> return f
 
 show_93 :: Fn Logical_93 (String, ShowS)
 show_93 = simple $ id
@@ -2442,8 +2335,7 @@ encode_94 :: FnW Binary_94 a -> Fn Logical_94 (Encode a)
 encode_94 f = return f
 
 parse_94 :: Fn Logical_94 a -> Parser a
-parse_94 f = do
-    return $ f
+parse_94 f = ws >> return f
 
 show_94 :: Fn Logical_94 (String, ShowS)
 show_94 = simple $ id
@@ -2464,8 +2356,7 @@ encode_95 :: FnW Binary_95 a -> Fn Logical_95 (Encode a)
 encode_95 f = return f
 
 parse_95 :: Fn Logical_95 a -> Parser a
-parse_95 f = do
-    return $ f
+parse_95 f = ws >> return f
 
 show_95 :: Fn Logical_95 (String, ShowS)
 show_95 = simple $ id
@@ -2519,8 +2410,7 @@ encode_96 :: FnW Binary_96 a -> Fn Logical_96 (Encode a)
 encode_96 f = return f
 
 parse_96 :: Fn Logical_96 a -> Parser a
-parse_96 f = do
-    return $ f
+parse_96 f = ws >> return f
 
 show_96 :: Fn Logical_96 (String, ShowS)
 show_96 = simple $ id
@@ -2539,8 +2429,7 @@ encode_97 :: FnW Binary_97 a -> Fn Logical_97 (Encode a)
 encode_97 f = return f
 
 parse_97 :: Fn Logical_97 a -> Parser a
-parse_97 f = do
-    return $ f
+parse_97 f = ws >> return f
 
 show_97 :: Fn Logical_97 (String, ShowS)
 show_97 = simple $ id
@@ -2559,8 +2448,7 @@ encode_98 :: FnW Binary_98 a -> Fn Logical_98 (Encode a)
 encode_98 f = return f
 
 parse_98 :: Fn Logical_98 a -> Parser a
-parse_98 f = do
-    return $ f
+parse_98 f = ws >> return f
 
 show_98 :: Fn Logical_98 (String, ShowS)
 show_98 = simple $ id
@@ -2582,8 +2470,7 @@ encode_99 :: FnW Binary_99 a -> Fn Logical_99 (Encode a)
 encode_99 f = return f
 
 parse_99 :: Fn Logical_99 a -> Parser a
-parse_99 f = do
-    return $ f
+parse_99 f = ws >> return f
 
 show_99 :: Fn Logical_99 (String, ShowS)
 show_99 = simple $ id
@@ -2605,8 +2492,7 @@ encode_100 :: FnW Binary_100 a -> Fn Logical_100 (Encode a)
 encode_100 f = return f
 
 parse_100 :: Fn Logical_100 a -> Parser a
-parse_100 f = do
-    return $ f
+parse_100 f = ws >> return f
 
 show_100 :: Fn Logical_100 (String, ShowS)
 show_100 = simple $ id
@@ -2628,8 +2514,7 @@ encode_101 :: FnW Binary_101 a -> Fn Logical_101 (Encode a)
 encode_101 f = return f
 
 parse_101 :: Fn Logical_101 a -> Parser a
-parse_101 f = do
-    return $ f
+parse_101 f = ws >> return f
 
 show_101 :: Fn Logical_101 (String, ShowS)
 show_101 = simple $ id
@@ -2680,8 +2565,7 @@ encode_102 :: FnW Binary_102 a -> Fn Logical_102 (Encode a)
 encode_102 f = return f
 
 parse_102 :: Fn Logical_102 a -> Parser a
-parse_102 f = do
-    return $ f
+parse_102 f = ws >> return f
 
 show_102 :: Fn Logical_102 (String, ShowS)
 show_102 = simple $ id
@@ -2704,8 +2588,7 @@ encode_103 :: FnW Binary_103 a -> Fn Logical_103 (Encode a)
 encode_103 f = return f
 
 parse_103 :: Fn Logical_103 a -> Parser a
-parse_103 f = do
-    return $ f
+parse_103 f = ws >> return f
 
 show_103 :: Fn Logical_103 (String, ShowS)
 show_103 = simple $ id
@@ -2725,8 +2608,7 @@ encode_104 :: FnW Binary_104 a -> Fn Logical_104 (Encode a)
 encode_104 f = return f
 
 parse_104 :: Fn Logical_104 a -> Parser a
-parse_104 f = do
-    return $ f
+parse_104 f = ws >> return f
 
 show_104 :: Fn Logical_104 (String, ShowS)
 show_104 = simple $ id
@@ -2747,8 +2629,7 @@ encode_105 :: FnW Binary_105 a -> Fn Logical_105 (Encode a)
 encode_105 f = return f
 
 parse_105 :: Fn Logical_105 a -> Parser a
-parse_105 f = do
-    return $ f
+parse_105 f = ws >> return f
 
 show_105 :: Fn Logical_105 (String, ShowS)
 show_105 = simple $ id
@@ -2770,8 +2651,7 @@ encode_106 :: FnW Binary_106 a -> Fn Logical_106 (Encode a)
 encode_106 f = return f
 
 parse_106 :: Fn Logical_106 a -> Parser a
-parse_106 f = do
-    return $ f
+parse_106 f = ws >> return f
 
 show_106 :: Fn Logical_106 (String, ShowS)
 show_106 = simple $ id
@@ -2791,8 +2671,7 @@ encode_107 :: FnW Binary_107 a -> Fn Logical_107 (Encode a)
 encode_107 f = return f
 
 parse_107 :: Fn Logical_107 a -> Parser a
-parse_107 f = do
-    return $ f
+parse_107 f = ws >> return f
 
 show_107 :: Fn Logical_107 (String, ShowS)
 show_107 = simple $ id
@@ -2812,8 +2691,7 @@ encode_108 :: FnW Binary_108 a -> Fn Logical_108 (Encode a)
 encode_108 f = return f
 
 parse_108 :: Fn Logical_108 a -> Parser a
-parse_108 f = do
-    return $ f
+parse_108 f = ws >> return f
 
 show_108 :: Fn Logical_108 (String, ShowS)
 show_108 = simple $ id
@@ -2834,8 +2712,7 @@ encode_109 :: FnW Binary_109 a -> Fn Logical_109 (Encode a)
 encode_109 f = return f
 
 parse_109 :: Fn Logical_109 a -> Parser a
-parse_109 f = do
-    return $ f
+parse_109 f = ws >> return f
 
 show_109 :: Fn Logical_109 (String, ShowS)
 show_109 = simple $ id
@@ -2854,8 +2731,7 @@ encode_110 :: FnW Binary_110 a -> Fn Logical_110 (Encode a)
 encode_110 f = return f
 
 parse_110 :: Fn Logical_110 a -> Parser a
-parse_110 f = do
-    return $ f
+parse_110 f = ws >> return f
 
 show_110 :: Fn Logical_110 (String, ShowS)
 show_110 = simple $ id
@@ -2879,8 +2755,7 @@ encode_111 :: FnW Binary_111 a -> Fn Logical_111 (Encode a)
 encode_111 f = return f
 
 parse_111 :: Fn Logical_111 a -> Parser a
-parse_111 f = do
-    return $ f
+parse_111 f = ws >> return f
 
 show_111 :: Fn Logical_111 (String, ShowS)
 show_111 = simple $ id
@@ -2900,8 +2775,7 @@ encode_112 :: FnW Binary_112 a -> Fn Logical_112 (Encode a)
 encode_112 f = return f
 
 parse_112 :: Fn Logical_112 a -> Parser a
-parse_112 f = do
-    return $ f
+parse_112 f = ws >> return f
 
 show_112 :: Fn Logical_112 (String, ShowS)
 show_112 = simple $ id
@@ -2920,8 +2794,7 @@ encode_113 :: FnW Binary_113 a -> Fn Logical_113 (Encode a)
 encode_113 f = return f
 
 parse_113 :: Fn Logical_113 a -> Parser a
-parse_113 f = do
-    return $ f
+parse_113 f = ws >> return f
 
 show_113 :: Fn Logical_113 (String, ShowS)
 show_113 = simple $ id
@@ -2941,8 +2814,7 @@ encode_114 :: FnW Binary_114 a -> Fn Logical_114 (Encode a)
 encode_114 f = return f
 
 parse_114 :: Fn Logical_114 a -> Parser a
-parse_114 f = do
-    return $ f
+parse_114 f = ws >> return f
 
 show_114 :: Fn Logical_114 (String, ShowS)
 show_114 = simple $ id
@@ -2961,8 +2833,7 @@ encode_115 :: FnW Binary_115 a -> Fn Logical_115 (Encode a)
 encode_115 f = return f
 
 parse_115 :: Fn Logical_115 a -> Parser a
-parse_115 f = do
-    return $ f
+parse_115 f = ws >> return f
 
 show_115 :: Fn Logical_115 (String, ShowS)
 show_115 = simple $ id
@@ -2982,8 +2853,7 @@ encode_116 :: FnW Binary_116 a -> Fn Logical_116 (Encode a)
 encode_116 f = return f
 
 parse_116 :: Fn Logical_116 a -> Parser a
-parse_116 f = do
-    return $ f
+parse_116 f = ws >> return f
 
 show_116 :: Fn Logical_116 (String, ShowS)
 show_116 = simple $ id
@@ -3003,8 +2873,7 @@ encode_117 :: FnW Binary_117 a -> Fn Logical_117 (Encode a)
 encode_117 f = return f
 
 parse_117 :: Fn Logical_117 a -> Parser a
-parse_117 f = do
-    return $ f
+parse_117 f = ws >> return f
 
 show_117 :: Fn Logical_117 (String, ShowS)
 show_117 = simple $ id
@@ -3023,8 +2892,7 @@ encode_118 :: FnW Binary_118 a -> Fn Logical_118 (Encode a)
 encode_118 f = return f
 
 parse_118 :: Fn Logical_118 a -> Parser a
-parse_118 f = do
-    return $ f
+parse_118 f = ws >> return f
 
 show_118 :: Fn Logical_118 (String, ShowS)
 show_118 = simple $ id
@@ -3044,8 +2912,7 @@ encode_119 :: FnW Binary_119 a -> Fn Logical_119 (Encode a)
 encode_119 f = return f
 
 parse_119 :: Fn Logical_119 a -> Parser a
-parse_119 f = do
-    return $ f
+parse_119 f = ws >> return f
 
 show_119 :: Fn Logical_119 (String, ShowS)
 show_119 = simple $ id
@@ -3067,8 +2934,7 @@ encode_120 :: FnW Binary_120 a -> Fn Logical_120 (Encode a)
 encode_120 f = return f
 
 parse_120 :: Fn Logical_120 a -> Parser a
-parse_120 f = do
-    return $ f
+parse_120 f = ws >> return f
 
 show_120 :: Fn Logical_120 (String, ShowS)
 show_120 = simple $ id
@@ -3100,8 +2966,7 @@ encode_121 :: FnW Binary_121 a -> Fn Logical_121 (Encode a)
 encode_121 f = return f
 
 parse_121 :: Fn Logical_121 a -> Parser a
-parse_121 f = do
-    return $ f
+parse_121 f = ws >> return f
 
 show_121 :: Fn Logical_121 (String, ShowS)
 show_121 = simple $ id
@@ -3129,8 +2994,7 @@ encode_122 :: FnW Binary_122 a -> Fn Logical_122 (Encode a)
 encode_122 f = return f
 
 parse_122 :: Fn Logical_122 a -> Parser a
-parse_122 f = do
-    return $ f
+parse_122 f = ws >> return f
 
 show_122 :: Fn Logical_122 (String, ShowS)
 show_122 = simple $ id
@@ -3150,8 +3014,7 @@ encode_123 :: FnW Binary_123 a -> Fn Logical_123 (Encode a)
 encode_123 f = return f
 
 parse_123 :: Fn Logical_123 a -> Parser a
-parse_123 f = do
-    return $ f
+parse_123 f = ws >> return f
 
 show_123 :: Fn Logical_123 (String, ShowS)
 show_123 = simple $ id
@@ -3170,8 +3033,7 @@ encode_124 :: FnW Binary_124 a -> Fn Logical_124 (Encode a)
 encode_124 f = return f
 
 parse_124 :: Fn Logical_124 a -> Parser a
-parse_124 f = do
-    return $ f
+parse_124 f = ws >> return f
 
 show_124 :: Fn Logical_124 (String, ShowS)
 show_124 = simple $ id
@@ -3193,8 +3055,7 @@ encode_125 :: FnW Binary_125 a -> Fn Logical_125 (Encode a)
 encode_125 f = return f
 
 parse_125 :: Fn Logical_125 a -> Parser a
-parse_125 f = do
-    return $ f
+parse_125 f = ws >> return f
 
 show_125 :: Fn Logical_125 (String, ShowS)
 show_125 = simple $ id
@@ -3220,8 +3081,7 @@ encode_126 :: FnW Binary_126 a -> Fn Logical_126 (Encode a)
 encode_126 f = return f
 
 parse_126 :: Fn Logical_126 a -> Parser a
-parse_126 f = do
-    return $ f
+parse_126 f = ws >> return f
 
 show_126 :: Fn Logical_126 (String, ShowS)
 show_126 = simple $ id
@@ -3241,8 +3101,7 @@ encode_127 :: FnW Binary_127 a -> Fn Logical_127 (Encode a)
 encode_127 f = return f
 
 parse_127 :: Fn Logical_127 a -> Parser a
-parse_127 f = do
-    return $ f
+parse_127 f = ws >> return f
 
 show_127 :: Fn Logical_127 (String, ShowS)
 show_127 = simple $ id
@@ -3261,8 +3120,7 @@ encode_128 :: FnW Binary_128 a -> Fn Logical_128 (Encode a)
 encode_128 f = return f
 
 parse_128 :: Fn Logical_128 a -> Parser a
-parse_128 f = do
-    return $ f
+parse_128 f = ws >> return f
 
 show_128 :: Fn Logical_128 (String, ShowS)
 show_128 = simple $ id
@@ -3284,8 +3142,7 @@ encode_129 :: FnW Binary_129 a -> Fn Logical_129 (Encode a)
 encode_129 f = return f
 
 parse_129 :: Fn Logical_129 a -> Parser a
-parse_129 f = do
-    return $ f
+parse_129 f = ws >> return f
 
 show_129 :: Fn Logical_129 (String, ShowS)
 show_129 = simple $ id
@@ -3308,8 +3165,7 @@ encode_130 :: FnW Binary_130 a -> Fn Logical_130 (Encode a)
 encode_130 f = return f
 
 parse_130 :: Fn Logical_130 a -> Parser a
-parse_130 f = do
-    return $ f
+parse_130 f = ws >> return f
 
 show_130 :: Fn Logical_130 (String, ShowS)
 show_130 = simple $ id
@@ -3329,8 +3185,7 @@ encode_131 :: FnW Binary_131 a -> Fn Logical_131 (Encode a)
 encode_131 f = return f
 
 parse_131 :: Fn Logical_131 a -> Parser a
-parse_131 f = do
-    return $ f
+parse_131 f = ws >> return f
 
 show_131 :: Fn Logical_131 (String, ShowS)
 show_131 = simple $ id
@@ -3350,8 +3205,7 @@ encode_132 :: FnW Binary_132 a -> Fn Logical_132 (Encode a)
 encode_132 f = return f
 
 parse_132 :: Fn Logical_132 a -> Parser a
-parse_132 f = do
-    return $ f
+parse_132 f = ws >> return f
 
 show_132 :: Fn Logical_132 (String, ShowS)
 show_132 = simple $ id
@@ -3371,8 +3225,7 @@ encode_133 :: FnW Binary_133 a -> Fn Logical_133 (Encode a)
 encode_133 f = return f
 
 parse_133 :: Fn Logical_133 a -> Parser a
-parse_133 f = do
-    return $ f
+parse_133 f = ws >> return f
 
 show_133 :: Fn Logical_133 (String, ShowS)
 show_133 = simple $ id
@@ -3392,8 +3245,7 @@ encode_134 :: FnW Binary_134 a -> Fn Logical_134 (Encode a)
 encode_134 f = return f
 
 parse_134 :: Fn Logical_134 a -> Parser a
-parse_134 f = do
-    return $ f
+parse_134 f = ws >> return f
 
 show_134 :: Fn Logical_134 (String, ShowS)
 show_134 = simple $ id
@@ -3413,8 +3265,7 @@ encode_135 :: FnW Binary_135 a -> Fn Logical_135 (Encode a)
 encode_135 f = return f
 
 parse_135 :: Fn Logical_135 a -> Parser a
-parse_135 f = do
-    return $ f
+parse_135 f = ws >> return f
 
 show_135 :: Fn Logical_135 (String, ShowS)
 show_135 = simple $ id
@@ -3433,8 +3284,7 @@ encode_136 :: FnW Binary_136 a -> Fn Logical_136 (Encode a)
 encode_136 f = return f
 
 parse_136 :: Fn Logical_136 a -> Parser a
-parse_136 f = do
-    return $ f
+parse_136 f = ws >> return f
 
 show_136 :: Fn Logical_136 (String, ShowS)
 show_136 = simple $ id
@@ -3455,8 +3305,7 @@ encode_137 :: FnW Binary_137 a -> Fn Logical_137 (Encode a)
 encode_137 f = return f
 
 parse_137 :: Fn Logical_137 a -> Parser a
-parse_137 f = do
-    return $ f
+parse_137 f = ws >> return f
 
 show_137 :: Fn Logical_137 (String, ShowS)
 show_137 = simple $ id
@@ -3476,8 +3325,7 @@ encode_138 :: FnW Binary_138 a -> Fn Logical_138 (Encode a)
 encode_138 f = return f
 
 parse_138 :: Fn Logical_138 a -> Parser a
-parse_138 f = do
-    return $ f
+parse_138 f = ws >> return f
 
 show_138 :: Fn Logical_138 (String, ShowS)
 show_138 = simple $ id
@@ -3500,8 +3348,7 @@ encode_139 :: FnW Binary_139 a -> Fn Logical_139 (Encode a)
 encode_139 f = return f
 
 parse_139 :: Fn Logical_139 a -> Parser a
-parse_139 f = do
-    return $ f
+parse_139 f = ws >> return f
 
 show_139 :: Fn Logical_139 (String, ShowS)
 show_139 = simple $ id
@@ -3527,8 +3374,7 @@ encode_140 :: FnW Binary_140 a -> Fn Logical_140 (Encode a)
 encode_140 f = return f
 
 parse_140 :: Fn Logical_140 a -> Parser a
-parse_140 f = do
-    return $ f
+parse_140 f = ws >> return f
 
 show_140 :: Fn Logical_140 (String, ShowS)
 show_140 = simple $ id
@@ -3551,8 +3397,7 @@ encode_141 :: FnW Binary_141 a -> Fn Logical_141 (Encode a)
 encode_141 f = return f
 
 parse_141 :: Fn Logical_141 a -> Parser a
-parse_141 f = do
-    return $ f
+parse_141 f = ws >> return f
 
 show_141 :: Fn Logical_141 (String, ShowS)
 show_141 = simple $ id
@@ -3571,8 +3416,7 @@ encode_142 :: FnW Binary_142 a -> Fn Logical_142 (Encode a)
 encode_142 f = return f
 
 parse_142 :: Fn Logical_142 a -> Parser a
-parse_142 f = do
-    return $ f
+parse_142 f = ws >> return f
 
 show_142 :: Fn Logical_142 (String, ShowS)
 show_142 = simple $ id
@@ -3592,8 +3436,7 @@ encode_143 :: FnW Binary_143 a -> Fn Logical_143 (Encode a)
 encode_143 f = return f
 
 parse_143 :: Fn Logical_143 a -> Parser a
-parse_143 f = do
-    return $ f
+parse_143 f = ws >> return f
 
 show_143 :: Fn Logical_143 (String, ShowS)
 show_143 = simple $ id
@@ -3613,8 +3456,7 @@ encode_144 :: FnW Binary_144 a -> Fn Logical_144 (Encode a)
 encode_144 f = return f
 
 parse_144 :: Fn Logical_144 a -> Parser a
-parse_144 f = do
-    return $ f
+parse_144 f = ws >> return f
 
 show_144 :: Fn Logical_144 (String, ShowS)
 show_144 = simple $ id
@@ -3634,8 +3476,7 @@ encode_145 :: FnW Binary_145 a -> Fn Logical_145 (Encode a)
 encode_145 f = return f
 
 parse_145 :: Fn Logical_145 a -> Parser a
-parse_145 f = do
-    return $ f
+parse_145 f = ws >> return f
 
 show_145 :: Fn Logical_145 (String, ShowS)
 show_145 = simple $ id
@@ -3655,8 +3496,7 @@ encode_146 :: FnW Binary_146 a -> Fn Logical_146 (Encode a)
 encode_146 f = return f
 
 parse_146 :: Fn Logical_146 a -> Parser a
-parse_146 f = do
-    return $ f
+parse_146 f = ws >> return f
 
 show_146 :: Fn Logical_146 (String, ShowS)
 show_146 = simple $ id
@@ -3676,8 +3516,7 @@ encode_147 :: FnW Binary_147 a -> Fn Logical_147 (Encode a)
 encode_147 f = return f
 
 parse_147 :: Fn Logical_147 a -> Parser a
-parse_147 f = do
-    return $ f
+parse_147 f = ws >> return f
 
 show_147 :: Fn Logical_147 (String, ShowS)
 show_147 = simple $ id
@@ -3697,8 +3536,7 @@ encode_148 :: FnW Binary_148 a -> Fn Logical_148 (Encode a)
 encode_148 f = return f
 
 parse_148 :: Fn Logical_148 a -> Parser a
-parse_148 f = do
-    return $ f
+parse_148 f = ws >> return f
 
 show_148 :: Fn Logical_148 (String, ShowS)
 show_148 = simple $ id
@@ -3718,8 +3556,7 @@ encode_149 :: FnW Binary_149 a -> Fn Logical_149 (Encode a)
 encode_149 f = return f
 
 parse_149 :: Fn Logical_149 a -> Parser a
-parse_149 f = do
-    return $ f
+parse_149 f = ws >> return f
 
 show_149 :: Fn Logical_149 (String, ShowS)
 show_149 = simple $ id
@@ -3739,8 +3576,7 @@ encode_150 :: FnW Binary_150 a -> Fn Logical_150 (Encode a)
 encode_150 f = return f
 
 parse_150 :: Fn Logical_150 a -> Parser a
-parse_150 f = do
-    return $ f
+parse_150 f = ws >> return f
 
 show_150 :: Fn Logical_150 (String, ShowS)
 show_150 = simple $ id
@@ -3760,8 +3596,7 @@ encode_151 :: FnW Binary_151 a -> Fn Logical_151 (Encode a)
 encode_151 f = return f
 
 parse_151 :: Fn Logical_151 a -> Parser a
-parse_151 f = do
-    return $ f
+parse_151 f = ws >> return f
 
 show_151 :: Fn Logical_151 (String, ShowS)
 show_151 = simple $ id
@@ -3781,8 +3616,7 @@ encode_152 :: FnW Binary_152 a -> Fn Logical_152 (Encode a)
 encode_152 f = return f
 
 parse_152 :: Fn Logical_152 a -> Parser a
-parse_152 f = do
-    return $ f
+parse_152 f = ws >> return f
 
 show_152 :: Fn Logical_152 (String, ShowS)
 show_152 = simple $ id
@@ -3806,8 +3640,7 @@ encode_153 :: FnW Binary_153 a -> Fn Logical_153 (Encode a)
 encode_153 f = return f
 
 parse_153 :: Fn Logical_153 a -> Parser a
-parse_153 f = do
-    return $ f
+parse_153 f = ws >> return f
 
 show_153 :: Fn Logical_153 (String, ShowS)
 show_153 = simple $ id
@@ -3826,8 +3659,7 @@ encode_154 :: FnW Binary_154 a -> Fn Logical_154 (Encode a)
 encode_154 f = return f
 
 parse_154 :: Fn Logical_154 a -> Parser a
-parse_154 f = do
-    return $ f
+parse_154 f = ws >> return f
 
 show_154 :: Fn Logical_154 (String, ShowS)
 show_154 = simple $ id
@@ -3863,8 +3695,7 @@ encode_155 :: FnW Binary_155 a -> Fn Logical_155 (Encode a)
 encode_155 f = return f
 
 parse_155 :: Fn Logical_155 a -> Parser a
-parse_155 f = do
-    return $ f
+parse_155 f = ws >> return f
 
 show_155 :: Fn Logical_155 (String, ShowS)
 show_155 = simple $ id
@@ -3884,8 +3715,7 @@ encode_156 :: FnW Binary_156 a -> Fn Logical_156 (Encode a)
 encode_156 f = return f
 
 parse_156 :: Fn Logical_156 a -> Parser a
-parse_156 f = do
-    return $ f
+parse_156 f = ws >> return f
 
 show_156 :: Fn Logical_156 (String, ShowS)
 show_156 = simple $ id
@@ -3911,8 +3741,7 @@ encode_157 :: FnW Binary_157 a -> Fn Logical_157 (Encode a)
 encode_157 f = return f
 
 parse_157 :: Fn Logical_157 a -> Parser a
-parse_157 f = do
-    return $ f
+parse_157 f = ws >> return f
 
 show_157 :: Fn Logical_157 (String, ShowS)
 show_157 = simple $ id
@@ -3946,8 +3775,7 @@ encode_158 :: FnW Binary_158 a -> Fn Logical_158 (Encode a)
 encode_158 f = return f
 
 parse_158 :: Fn Logical_158 a -> Parser a
-parse_158 f = do
-    return $ f
+parse_158 f = ws >> return f
 
 show_158 :: Fn Logical_158 (String, ShowS)
 show_158 = simple $ id
@@ -3969,8 +3797,7 @@ encode_159 :: FnW Binary_159 a -> Fn Logical_159 (Encode a)
 encode_159 f = return f
 
 parse_159 :: Fn Logical_159 a -> Parser a
-parse_159 f = do
-    return $ f
+parse_159 f = ws >> return f
 
 show_159 :: Fn Logical_159 (String, ShowS)
 show_159 = simple $ id
@@ -3993,8 +3820,7 @@ encode_160 :: FnW Binary_160 a -> Fn Logical_160 (Encode a)
 encode_160 f = return f
 
 parse_160 :: Fn Logical_160 a -> Parser a
-parse_160 f = do
-    return $ f
+parse_160 f = ws >> return f
 
 show_160 :: Fn Logical_160 (String, ShowS)
 show_160 = simple $ id
@@ -4024,8 +3850,7 @@ encode_161 :: FnW Binary_161 a -> Fn Logical_161 (Encode a)
 encode_161 f = return f
 
 parse_161 :: Fn Logical_161 a -> Parser a
-parse_161 f = do
-    return $ f
+parse_161 f = ws >> return f
 
 show_161 :: Fn Logical_161 (String, ShowS)
 show_161 = simple $ id
@@ -4045,8 +3870,7 @@ encode_162 :: FnW Binary_162 a -> Fn Logical_162 (Encode a)
 encode_162 f = return f
 
 parse_162 :: Fn Logical_162 a -> Parser a
-parse_162 f = do
-    return $ f
+parse_162 f = ws >> return f
 
 show_162 :: Fn Logical_162 (String, ShowS)
 show_162 = simple $ id
@@ -4068,8 +3892,7 @@ encode_163 :: FnW Binary_163 a -> Fn Logical_163 (Encode a)
 encode_163 f = return f
 
 parse_163 :: Fn Logical_163 a -> Parser a
-parse_163 f = do
-    return $ f
+parse_163 f = ws >> return f
 
 show_163 :: Fn Logical_163 (String, ShowS)
 show_163 = simple $ id
@@ -4089,8 +3912,7 @@ encode_164 :: FnW Binary_164 a -> Fn Logical_164 (Encode a)
 encode_164 f = return f
 
 parse_164 :: Fn Logical_164 a -> Parser a
-parse_164 f = do
-    return $ f
+parse_164 f = ws >> return f
 
 show_164 :: Fn Logical_164 (String, ShowS)
 show_164 = simple $ id
@@ -4110,8 +3932,7 @@ encode_165 :: FnW Binary_165 a -> Fn Logical_165 (Encode a)
 encode_165 f = return f
 
 parse_165 :: Fn Logical_165 a -> Parser a
-parse_165 f = do
-    return $ f
+parse_165 f = ws >> return f
 
 show_165 :: Fn Logical_165 (String, ShowS)
 show_165 = simple $ id
@@ -4130,8 +3951,7 @@ encode_166 :: FnW Binary_166 a -> Fn Logical_166 (Encode a)
 encode_166 f = return f
 
 parse_166 :: Fn Logical_166 a -> Parser a
-parse_166 f = do
-    return $ f
+parse_166 f = ws >> return f
 
 show_166 :: Fn Logical_166 (String, ShowS)
 show_166 = simple $ id
@@ -4151,8 +3971,7 @@ encode_167 :: FnW Binary_167 a -> Fn Logical_167 (Encode a)
 encode_167 f = return f
 
 parse_167 :: Fn Logical_167 a -> Parser a
-parse_167 f = do
-    return $ f
+parse_167 f = ws >> return f
 
 show_167 :: Fn Logical_167 (String, ShowS)
 show_167 = simple $ id
@@ -4172,8 +3991,7 @@ encode_168 :: FnW Binary_168 a -> Fn Logical_168 (Encode a)
 encode_168 f = return f
 
 parse_168 :: Fn Logical_168 a -> Parser a
-parse_168 f = do
-    return $ f
+parse_168 f = ws >> return f
 
 show_168 :: Fn Logical_168 (String, ShowS)
 show_168 = simple $ id
@@ -4193,8 +4011,7 @@ encode_169 :: FnW Binary_169 a -> Fn Logical_169 (Encode a)
 encode_169 f = return f
 
 parse_169 :: Fn Logical_169 a -> Parser a
-parse_169 f = do
-    return $ f
+parse_169 f = ws >> return f
 
 show_169 :: Fn Logical_169 (String, ShowS)
 show_169 = simple $ id
@@ -4216,8 +4033,7 @@ encode_170 :: FnW Binary_170 a -> Fn Logical_170 (Encode a)
 encode_170 f = return f
 
 parse_170 :: Fn Logical_170 a -> Parser a
-parse_170 f = do
-    return $ f
+parse_170 f = ws >> return f
 
 show_170 :: Fn Logical_170 (String, ShowS)
 show_170 = simple $ id
@@ -4249,8 +4065,7 @@ encode_171 :: FnW Binary_171 a -> Fn Logical_171 (Encode a)
 encode_171 f = return f
 
 parse_171 :: Fn Logical_171 a -> Parser a
-parse_171 f = do
-    return $ f
+parse_171 f = ws >> return f
 
 show_171 :: Fn Logical_171 (String, ShowS)
 show_171 = simple $ id
@@ -4377,8 +4192,7 @@ encode_172 :: FnW Binary_172 a -> Fn Logical_172 (Encode a)
 encode_172 f = return f
 
 parse_172 :: Fn Logical_172 a -> Parser a
-parse_172 f = do
-    return $ f
+parse_172 f = ws >> return f
 
 show_172 :: Fn Logical_172 (String, ShowS)
 show_172 = simple $ id
@@ -4397,8 +4211,7 @@ encode_173 :: FnW Binary_173 a -> Fn Logical_173 (Encode a)
 encode_173 f = return f
 
 parse_173 :: Fn Logical_173 a -> Parser a
-parse_173 f = do
-    return $ f
+parse_173 f = ws >> return f
 
 show_173 :: Fn Logical_173 (String, ShowS)
 show_173 = simple $ id
@@ -4419,8 +4232,7 @@ encode_174 :: FnW Binary_174 a -> Fn Logical_174 (Encode a)
 encode_174 f = return f
 
 parse_174 :: Fn Logical_174 a -> Parser a
-parse_174 f = do
-    return $ f
+parse_174 f = ws >> return f
 
 show_174 :: Fn Logical_174 (String, ShowS)
 show_174 = simple $ id
@@ -4441,8 +4253,7 @@ encode_175 :: FnW Binary_175 a -> Fn Logical_175 (Encode a)
 encode_175 f = return f
 
 parse_175 :: Fn Logical_175 a -> Parser a
-parse_175 f = do
-    return $ f
+parse_175 f = ws >> return f
 
 show_175 :: Fn Logical_175 (String, ShowS)
 show_175 = simple $ id
@@ -4462,8 +4273,7 @@ encode_176 :: FnW Binary_176 a -> Fn Logical_176 (Encode a)
 encode_176 f = return f
 
 parse_176 :: Fn Logical_176 a -> Parser a
-parse_176 f = do
-    return $ f
+parse_176 f = ws >> return f
 
 show_176 :: Fn Logical_176 (String, ShowS)
 show_176 = simple $ id
@@ -4484,8 +4294,7 @@ encode_177 :: FnW Binary_177 a -> Fn Logical_177 (Encode a)
 encode_177 f = return f
 
 parse_177 :: Fn Logical_177 a -> Parser a
-parse_177 f = do
-    return $ f
+parse_177 f = ws >> return f
 
 show_177 :: Fn Logical_177 (String, ShowS)
 show_177 = simple $ id
@@ -4506,8 +4315,7 @@ encode_178 :: FnW Binary_178 a -> Fn Logical_178 (Encode a)
 encode_178 f = return f
 
 parse_178 :: Fn Logical_178 a -> Parser a
-parse_178 f = do
-    return $ f
+parse_178 f = ws >> return f
 
 show_178 :: Fn Logical_178 (String, ShowS)
 show_178 = simple $ id
@@ -4527,8 +4335,7 @@ encode_179 :: FnW Binary_179 a -> Fn Logical_179 (Encode a)
 encode_179 f = return f
 
 parse_179 :: Fn Logical_179 a -> Parser a
-parse_179 f = do
-    return $ f
+parse_179 f = ws >> return f
 
 show_179 :: Fn Logical_179 (String, ShowS)
 show_179 = simple $ id
@@ -4548,8 +4355,7 @@ encode_180 :: FnW Binary_180 a -> Fn Logical_180 (Encode a)
 encode_180 f = return f
 
 parse_180 :: Fn Logical_180 a -> Parser a
-parse_180 f = do
-    return $ f
+parse_180 f = ws >> return f
 
 show_180 :: Fn Logical_180 (String, ShowS)
 show_180 = simple $ id
@@ -4569,8 +4375,7 @@ encode_181 :: FnW Binary_181 a -> Fn Logical_181 (Encode a)
 encode_181 f = return f
 
 parse_181 :: Fn Logical_181 a -> Parser a
-parse_181 f = do
-    return $ f
+parse_181 f = ws >> return f
 
 show_181 :: Fn Logical_181 (String, ShowS)
 show_181 = simple $ id
@@ -4591,8 +4396,7 @@ encode_182 :: FnW Binary_182 a -> Fn Logical_182 (Encode a)
 encode_182 f = return f
 
 parse_182 :: Fn Logical_182 a -> Parser a
-parse_182 f = do
-    return $ f
+parse_182 f = ws >> return f
 
 show_182 :: Fn Logical_182 (String, ShowS)
 show_182 = simple $ id
@@ -4611,8 +4415,7 @@ encode_183 :: FnW Binary_183 a -> Fn Logical_183 (Encode a)
 encode_183 f = return f
 
 parse_183 :: Fn Logical_183 a -> Parser a
-parse_183 f = do
-    return $ f
+parse_183 f = ws >> return f
 
 show_183 :: Fn Logical_183 (String, ShowS)
 show_183 = simple $ id
@@ -4633,8 +4436,7 @@ encode_184 :: FnW Binary_184 a -> Fn Logical_184 (Encode a)
 encode_184 f = return f
 
 parse_184 :: Fn Logical_184 a -> Parser a
-parse_184 f = do
-    return $ f
+parse_184 f = ws >> return f
 
 show_184 :: Fn Logical_184 (String, ShowS)
 show_184 = simple $ id
@@ -4654,8 +4456,7 @@ encode_185 :: FnW Binary_185 a -> Fn Logical_185 (Encode a)
 encode_185 f = return f
 
 parse_185 :: Fn Logical_185 a -> Parser a
-parse_185 f = do
-    return $ f
+parse_185 f = ws >> return f
 
 show_185 :: Fn Logical_185 (String, ShowS)
 show_185 = simple $ id
@@ -4675,8 +4476,7 @@ encode_186 :: FnW Binary_186 a -> Fn Logical_186 (Encode a)
 encode_186 f = return f
 
 parse_186 :: Fn Logical_186 a -> Parser a
-parse_186 f = do
-    return $ f
+parse_186 f = ws >> return f
 
 show_186 :: Fn Logical_186 (String, ShowS)
 show_186 = simple $ id
@@ -4696,8 +4496,7 @@ encode_187 :: FnW Binary_187 a -> Fn Logical_187 (Encode a)
 encode_187 f = return f
 
 parse_187 :: Fn Logical_187 a -> Parser a
-parse_187 f = do
-    return $ f
+parse_187 f = ws >> return f
 
 show_187 :: Fn Logical_187 (String, ShowS)
 show_187 = simple $ id
@@ -4717,8 +4516,7 @@ encode_188 :: FnW Binary_188 a -> Fn Logical_188 (Encode a)
 encode_188 f = return f
 
 parse_188 :: Fn Logical_188 a -> Parser a
-parse_188 f = do
-    return $ f
+parse_188 f = ws >> return f
 
 show_188 :: Fn Logical_188 (String, ShowS)
 show_188 = simple $ id
@@ -4738,8 +4536,7 @@ encode_189 :: FnW Binary_189 a -> Fn Logical_189 (Encode a)
 encode_189 f = return f
 
 parse_189 :: Fn Logical_189 a -> Parser a
-parse_189 f = do
-    return $ f
+parse_189 f = ws >> return f
 
 show_189 :: Fn Logical_189 (String, ShowS)
 show_189 = simple $ id
@@ -4759,8 +4556,7 @@ encode_190 :: FnW Binary_190 a -> Fn Logical_190 (Encode a)
 encode_190 f = return f
 
 parse_190 :: Fn Logical_190 a -> Parser a
-parse_190 f = do
-    return $ f
+parse_190 f = ws >> return f
 
 show_190 :: Fn Logical_190 (String, ShowS)
 show_190 = simple $ id
@@ -4780,8 +4576,7 @@ encode_191 :: FnW Binary_191 a -> Fn Logical_191 (Encode a)
 encode_191 f = return f
 
 parse_191 :: Fn Logical_191 a -> Parser a
-parse_191 f = do
-    return $ f
+parse_191 f = ws >> return f
 
 show_191 :: Fn Logical_191 (String, ShowS)
 show_191 = simple $ id
@@ -4801,8 +4596,7 @@ encode_192 :: FnW Binary_192 a -> Fn Logical_192 (Encode a)
 encode_192 f = return f
 
 parse_192 :: Fn Logical_192 a -> Parser a
-parse_192 f = do
-    return $ f
+parse_192 f = ws >> return f
 
 show_192 :: Fn Logical_192 (String, ShowS)
 show_192 = simple $ id
@@ -4822,8 +4616,7 @@ encode_193 :: FnW Binary_193 a -> Fn Logical_193 (Encode a)
 encode_193 f = return f
 
 parse_193 :: Fn Logical_193 a -> Parser a
-parse_193 f = do
-    return $ f
+parse_193 f = ws >> return f
 
 show_193 :: Fn Logical_193 (String, ShowS)
 show_193 = simple $ id
@@ -4844,8 +4637,7 @@ encode_194 :: FnW Binary_194 a -> Fn Logical_194 (Encode a)
 encode_194 f = return f
 
 parse_194 :: Fn Logical_194 a -> Parser a
-parse_194 f = do
-    return $ f
+parse_194 f = ws >> return f
 
 show_194 :: Fn Logical_194 (String, ShowS)
 show_194 = simple $ id
@@ -4865,8 +4657,7 @@ encode_195 :: FnW Binary_195 a -> Fn Logical_195 (Encode a)
 encode_195 f = return f
 
 parse_195 :: Fn Logical_195 a -> Parser a
-parse_195 f = do
-    return $ f
+parse_195 f = ws >> return f
 
 show_195 :: Fn Logical_195 (String, ShowS)
 show_195 = simple $ id
@@ -4886,8 +4677,7 @@ encode_196 :: FnW Binary_196 a -> Fn Logical_196 (Encode a)
 encode_196 f = return f
 
 parse_196 :: Fn Logical_196 a -> Parser a
-parse_196 f = do
-    return $ f
+parse_196 f = ws >> return f
 
 show_196 :: Fn Logical_196 (String, ShowS)
 show_196 = simple $ id
@@ -4907,8 +4697,7 @@ encode_197 :: FnW Binary_197 a -> Fn Logical_197 (Encode a)
 encode_197 f = return f
 
 parse_197 :: Fn Logical_197 a -> Parser a
-parse_197 f = do
-    return $ f
+parse_197 f = ws >> return f
 
 show_197 :: Fn Logical_197 (String, ShowS)
 show_197 = simple $ id
@@ -4929,8 +4718,7 @@ encode_198 :: FnW Binary_198 a -> Fn Logical_198 (Encode a)
 encode_198 f = return f
 
 parse_198 :: Fn Logical_198 a -> Parser a
-parse_198 f = do
-    return $ f
+parse_198 f = ws >> return f
 
 show_198 :: Fn Logical_198 (String, ShowS)
 show_198 = simple $ id
@@ -4950,8 +4738,7 @@ encode_199 :: FnW Binary_199 a -> Fn Logical_199 (Encode a)
 encode_199 f = return f
 
 parse_199 :: Fn Logical_199 a -> Parser a
-parse_199 f = do
-    return $ f
+parse_199 f = ws >> return f
 
 show_199 :: Fn Logical_199 (String, ShowS)
 show_199 = simple $ id
@@ -4971,8 +4758,7 @@ encode_200 :: FnW Binary_200 a -> Fn Logical_200 (Encode a)
 encode_200 f = return f
 
 parse_200 :: Fn Logical_200 a -> Parser a
-parse_200 f = do
-    return $ f
+parse_200 f = ws >> return f
 
 show_200 :: Fn Logical_200 (String, ShowS)
 show_200 = simple $ id
@@ -4992,8 +4778,7 @@ encode_201 :: FnW Binary_201 a -> Fn Logical_201 (Encode a)
 encode_201 f = return f
 
 parse_201 :: Fn Logical_201 a -> Parser a
-parse_201 f = do
-    return $ f
+parse_201 f = ws >> return f
 
 show_201 :: Fn Logical_201 (String, ShowS)
 show_201 = simple $ id
@@ -5014,8 +4799,7 @@ encode_202 :: FnW Binary_202 a -> Fn Logical_202 (Encode a)
 encode_202 f = return f
 
 parse_202 :: Fn Logical_202 a -> Parser a
-parse_202 f = do
-    return $ f
+parse_202 f = ws >> return f
 
 show_202 :: Fn Logical_202 (String, ShowS)
 show_202 = simple $ id
@@ -5034,8 +4818,7 @@ encode_203 :: FnW Binary_203 a -> Fn Logical_203 (Encode a)
 encode_203 f = return f
 
 parse_203 :: Fn Logical_203 a -> Parser a
-parse_203 f = do
-    return $ f
+parse_203 f = ws >> return f
 
 show_203 :: Fn Logical_203 (String, ShowS)
 show_203 = simple $ id
@@ -5057,8 +4840,7 @@ encode_204 :: FnW Binary_204 a -> Fn Logical_204 (Encode a)
 encode_204 f = return f
 
 parse_204 :: Fn Logical_204 a -> Parser a
-parse_204 f = do
-    return $ f
+parse_204 f = ws >> return f
 
 show_204 :: Fn Logical_204 (String, ShowS)
 show_204 = simple $ id
@@ -5080,8 +4862,7 @@ encode_205 :: FnW Binary_205 a -> Fn Logical_205 (Encode a)
 encode_205 f = return f
 
 parse_205 :: Fn Logical_205 a -> Parser a
-parse_205 f = do
-    return $ f
+parse_205 f = ws >> return f
 
 show_205 :: Fn Logical_205 (String, ShowS)
 show_205 = simple $ id
@@ -5103,8 +4884,7 @@ encode_206 :: FnW Binary_206 a -> Fn Logical_206 (Encode a)
 encode_206 f = return f
 
 parse_206 :: Fn Logical_206 a -> Parser a
-parse_206 f = do
-    return $ f
+parse_206 f = ws >> return f
 
 show_206 :: Fn Logical_206 (String, ShowS)
 show_206 = simple $ id
@@ -5124,8 +4904,7 @@ encode_207 :: FnW Binary_207 a -> Fn Logical_207 (Encode a)
 encode_207 f = return f
 
 parse_207 :: Fn Logical_207 a -> Parser a
-parse_207 f = do
-    return $ f
+parse_207 f = ws >> return f
 
 show_207 :: Fn Logical_207 (String, ShowS)
 show_207 = simple $ id
@@ -5147,8 +4926,7 @@ encode_208 :: FnW Binary_208 a -> Fn Logical_208 (Encode a)
 encode_208 f = return f
 
 parse_208 :: Fn Logical_208 a -> Parser a
-parse_208 f = do
-    return $ f
+parse_208 f = ws >> return f
 
 show_208 :: Fn Logical_208 (String, ShowS)
 show_208 = simple $ id
@@ -5171,8 +4949,7 @@ encode_209 :: FnW Binary_209 a -> Fn Logical_209 (Encode a)
 encode_209 f = return f
 
 parse_209 :: Fn Logical_209 a -> Parser a
-parse_209 f = do
-    return $ f
+parse_209 f = ws >> return f
 
 show_209 :: Fn Logical_209 (String, ShowS)
 show_209 = simple $ id
@@ -5193,8 +4970,7 @@ encode_210 :: FnW Binary_210 a -> Fn Logical_210 (Encode a)
 encode_210 f = return f
 
 parse_210 :: Fn Logical_210 a -> Parser a
-parse_210 f = do
-    return $ f
+parse_210 f = ws >> return f
 
 show_210 :: Fn Logical_210 (String, ShowS)
 show_210 = simple $ id
@@ -5220,8 +4996,7 @@ encode_211 :: FnW Binary_211 a -> Fn Logical_211 (Encode a)
 encode_211 f = return f
 
 parse_211 :: Fn Logical_211 a -> Parser a
-parse_211 f = do
-    return $ f
+parse_211 f = ws >> return f
 
 show_211 :: Fn Logical_211 (String, ShowS)
 show_211 = simple $ id
@@ -5240,8 +5015,7 @@ encode_212 :: FnW Binary_212 a -> Fn Logical_212 (Encode a)
 encode_212 f = return f
 
 parse_212 :: Fn Logical_212 a -> Parser a
-parse_212 f = do
-    return $ f
+parse_212 f = ws >> return f
 
 show_212 :: Fn Logical_212 (String, ShowS)
 show_212 = simple $ id
@@ -5267,8 +5041,7 @@ encode_213 :: FnW Binary_213 a -> Fn Logical_213 (Encode a)
 encode_213 f = return f
 
 parse_213 :: Fn Logical_213 a -> Parser a
-parse_213 f = do
-    return $ f
+parse_213 f = ws >> return f
 
 show_213 :: Fn Logical_213 (String, ShowS)
 show_213 = simple $ id
@@ -5287,8 +5060,7 @@ encode_214 :: FnW Binary_214 a -> Fn Logical_214 (Encode a)
 encode_214 f = return f
 
 parse_214 :: Fn Logical_214 a -> Parser a
-parse_214 f = do
-    return $ f
+parse_214 f = ws >> return f
 
 show_214 :: Fn Logical_214 (String, ShowS)
 show_214 = simple $ id
@@ -5307,8 +5079,7 @@ encode_215 :: FnW Binary_215 a -> Fn Logical_215 (Encode a)
 encode_215 f = return f
 
 parse_215 :: Fn Logical_215 a -> Parser a
-parse_215 f = do
-    return $ f
+parse_215 f = ws >> return f
 
 show_215 :: Fn Logical_215 (String, ShowS)
 show_215 = simple $ id
@@ -5334,8 +5105,7 @@ encode_216 :: FnW Binary_216 a -> Fn Logical_216 (Encode a)
 encode_216 f = return f
 
 parse_216 :: Fn Logical_216 a -> Parser a
-parse_216 f = do
-    return $ f
+parse_216 f = ws >> return f
 
 show_216 :: Fn Logical_216 (String, ShowS)
 show_216 = simple $ id
@@ -5355,8 +5125,7 @@ encode_217 :: FnW Binary_217 a -> Fn Logical_217 (Encode a)
 encode_217 f = return f
 
 parse_217 :: Fn Logical_217 a -> Parser a
-parse_217 f = do
-    return $ f
+parse_217 f = ws >> return f
 
 show_217 :: Fn Logical_217 (String, ShowS)
 show_217 = simple $ id
@@ -5376,8 +5145,7 @@ encode_218 :: FnW Binary_218 a -> Fn Logical_218 (Encode a)
 encode_218 f = return f
 
 parse_218 :: Fn Logical_218 a -> Parser a
-parse_218 f = do
-    return $ f
+parse_218 f = ws >> return f
 
 show_218 :: Fn Logical_218 (String, ShowS)
 show_218 = simple $ id
@@ -5397,8 +5165,7 @@ encode_219 :: FnW Binary_219 a -> Fn Logical_219 (Encode a)
 encode_219 f = return f
 
 parse_219 :: Fn Logical_219 a -> Parser a
-parse_219 f = do
-    return $ f
+parse_219 f = ws >> return f
 
 show_219 :: Fn Logical_219 (String, ShowS)
 show_219 = simple $ id
@@ -5421,8 +5188,7 @@ encode_220 :: FnW Binary_220 a -> Fn Logical_220 (Encode a)
 encode_220 f = return f
 
 parse_220 :: Fn Logical_220 a -> Parser a
-parse_220 f = do
-    return $ f
+parse_220 f = ws >> return f
 
 show_220 :: Fn Logical_220 (String, ShowS)
 show_220 = simple $ id
@@ -5442,8 +5208,7 @@ encode_221 :: FnW Binary_221 a -> Fn Logical_221 (Encode a)
 encode_221 f = return f
 
 parse_221 :: Fn Logical_221 a -> Parser a
-parse_221 f = do
-    return $ f
+parse_221 f = ws >> return f
 
 show_221 :: Fn Logical_221 (String, ShowS)
 show_221 = simple $ id
@@ -5463,8 +5228,7 @@ encode_222 :: FnW Binary_222 a -> Fn Logical_222 (Encode a)
 encode_222 f = return f
 
 parse_222 :: Fn Logical_222 a -> Parser a
-parse_222 f = do
-    return $ f
+parse_222 f = ws >> return f
 
 show_222 :: Fn Logical_222 (String, ShowS)
 show_222 = simple $ id
@@ -5484,8 +5248,7 @@ encode_223 :: FnW Binary_223 a -> Fn Logical_223 (Encode a)
 encode_223 f = return f
 
 parse_223 :: Fn Logical_223 a -> Parser a
-parse_223 f = do
-    return $ f
+parse_223 f = ws >> return f
 
 show_223 :: Fn Logical_223 (String, ShowS)
 show_223 = simple $ id
@@ -5505,8 +5268,7 @@ encode_224 :: FnW Binary_224 a -> Fn Logical_224 (Encode a)
 encode_224 f = return f
 
 parse_224 :: Fn Logical_224 a -> Parser a
-parse_224 f = do
-    return $ f
+parse_224 f = ws >> return f
 
 show_224 :: Fn Logical_224 (String, ShowS)
 show_224 = simple $ id
@@ -5528,8 +5290,7 @@ encode_225 :: FnW Binary_225 a -> Fn Logical_225 (Encode a)
 encode_225 f = return f
 
 parse_225 :: Fn Logical_225 a -> Parser a
-parse_225 f = do
-    return $ f
+parse_225 f = ws >> return f
 
 show_225 :: Fn Logical_225 (String, ShowS)
 show_225 = simple $ id
@@ -5565,8 +5326,7 @@ encode_226 :: FnW Binary_226 a -> Fn Logical_226 (Encode a)
 encode_226 f = return f
 
 parse_226 :: Fn Logical_226 a -> Parser a
-parse_226 f = do
-    return $ f
+parse_226 f = ws >> return f
 
 show_226 :: Fn Logical_226 (String, ShowS)
 show_226 = simple $ id
@@ -5588,8 +5348,7 @@ encode_227 :: FnW Binary_227 a -> Fn Logical_227 (Encode a)
 encode_227 f = return f
 
 parse_227 :: Fn Logical_227 a -> Parser a
-parse_227 f = do
-    return $ f
+parse_227 f = ws >> return f
 
 show_227 :: Fn Logical_227 (String, ShowS)
 show_227 = simple $ id
@@ -5611,8 +5370,7 @@ encode_228 :: FnW Binary_228 a -> Fn Logical_228 (Encode a)
 encode_228 f = return f
 
 parse_228 :: Fn Logical_228 a -> Parser a
-parse_228 f = do
-    return $ f
+parse_228 f = ws >> return f
 
 show_228 :: Fn Logical_228 (String, ShowS)
 show_228 = simple $ id
@@ -5622,28 +5380,20 @@ show_228 = simple $ id
 --- ADD_64_addsub_imm             add_addsub_imm.xml
 --- SUB_64_addsub_imm             sub_addsub_imm.xml
 
-type Logical_229 = '[XnOrSP, XnOrSP, W 12, Bool]
-type Binary_229  = '[2, 12, 5, 5]
+type Logical_229 = '[]
+type Binary_229  = '[]
 
 decode_229 :: Fn Logical_229 a -> FnW Binary_229 (Decode a)
-decode_229 f shift imm12 rn rd = f
-    <$> dec rd
-    <*> dec rn
-    <*> dec imm12
-    <*> decLSL12 shift
+decode_229 f = return f
 
 encode_229 :: FnW Binary_229 a -> Fn Logical_229 (Encode a)
-encode_229 f xd xn imm shift = f
-    <$> encLSL12 shift
-    <*> enc imm
-    <*> enc xn
-    <*> enc xd
+encode_229 f = return f
 
 parse_229 :: Fn Logical_229 a -> Parser a
-parse_229 f = ws >> f <$> msa <+> msa <+> msa <*> msaLSL12
+parse_229 f = ws >> return f
 
 show_229 :: Fn Logical_229 (String, ShowS)
-show_229 xd xn imm shift = simple $ asm xd .> asm xn .> asm imm . asmLSL12 shift
+show_229 = simple $ id
 
 
 --- 230: '  <Va><d>, <Vb><n>, <Vm>.<Ts>[<index>]'
@@ -5661,8 +5411,7 @@ encode_230 :: FnW Binary_230 a -> Fn Logical_230 (Encode a)
 encode_230 f = return f
 
 parse_230 :: Fn Logical_230 a -> Parser a
-parse_230 f = do
-    return $ f
+parse_230 f = ws >> return f
 
 show_230 :: Fn Logical_230 (String, ShowS)
 show_230 = simple $ id
@@ -5682,8 +5431,7 @@ encode_231 :: FnW Binary_231 a -> Fn Logical_231 (Encode a)
 encode_231 f = return f
 
 parse_231 :: Fn Logical_231 a -> Parser a
-parse_231 f = do
-    return $ f
+parse_231 f = ws >> return f
 
 show_231 :: Fn Logical_231 (String, ShowS)
 show_231 = simple $ id
@@ -5703,8 +5451,7 @@ encode_232 :: FnW Binary_232 a -> Fn Logical_232 (Encode a)
 encode_232 f = return f
 
 parse_232 :: Fn Logical_232 a -> Parser a
-parse_232 f = do
-    return $ f
+parse_232 f = ws >> return f
 
 show_232 :: Fn Logical_232 (String, ShowS)
 show_232 = simple $ id
@@ -5724,8 +5471,7 @@ encode_233 :: FnW Binary_233 a -> Fn Logical_233 (Encode a)
 encode_233 f = return f
 
 parse_233 :: Fn Logical_233 a -> Parser a
-parse_233 f = do
-    return $ f
+parse_233 f = ws >> return f
 
 show_233 :: Fn Logical_233 (String, ShowS)
 show_233 = simple $ id
@@ -5745,8 +5491,7 @@ encode_234 :: FnW Binary_234 a -> Fn Logical_234 (Encode a)
 encode_234 f = return f
 
 parse_234 :: Fn Logical_234 a -> Parser a
-parse_234 f = do
-    return $ f
+parse_234 f = ws >> return f
 
 show_234 :: Fn Logical_234 (String, ShowS)
 show_234 = simple $ id
@@ -5766,8 +5511,7 @@ encode_235 :: FnW Binary_235 a -> Fn Logical_235 (Encode a)
 encode_235 f = return f
 
 parse_235 :: Fn Logical_235 a -> Parser a
-parse_235 f = do
-    return $ f
+parse_235 f = ws >> return f
 
 show_235 :: Fn Logical_235 (String, ShowS)
 show_235 = simple $ id
@@ -5797,8 +5541,7 @@ encode_236 :: FnW Binary_236 a -> Fn Logical_236 (Encode a)
 encode_236 f = return f
 
 parse_236 :: Fn Logical_236 a -> Parser a
-parse_236 f = do
-    return $ f
+parse_236 f = ws >> return f
 
 show_236 :: Fn Logical_236 (String, ShowS)
 show_236 = simple $ id
@@ -5818,8 +5561,7 @@ encode_237 :: FnW Binary_237 a -> Fn Logical_237 (Encode a)
 encode_237 f = return f
 
 parse_237 :: Fn Logical_237 a -> Parser a
-parse_237 f = do
-    return $ f
+parse_237 f = ws >> return f
 
 show_237 :: Fn Logical_237 (String, ShowS)
 show_237 = simple $ id
@@ -5840,8 +5582,7 @@ encode_238 :: FnW Binary_238 a -> Fn Logical_238 (Encode a)
 encode_238 f = return f
 
 parse_238 :: Fn Logical_238 a -> Parser a
-parse_238 f = do
-    return $ f
+parse_238 f = ws >> return f
 
 show_238 :: Fn Logical_238 (String, ShowS)
 show_238 = simple $ id
@@ -5871,8 +5612,7 @@ encode_239 :: FnW Binary_239 a -> Fn Logical_239 (Encode a)
 encode_239 f = return f
 
 parse_239 :: Fn Logical_239 a -> Parser a
-parse_239 f = do
-    return $ f
+parse_239 f = ws >> return f
 
 show_239 :: Fn Logical_239 (String, ShowS)
 show_239 = simple $ id
@@ -5891,8 +5631,7 @@ encode_240 :: FnW Binary_240 a -> Fn Logical_240 (Encode a)
 encode_240 f = return f
 
 parse_240 :: Fn Logical_240 a -> Parser a
-parse_240 f = do
-    return $ f
+parse_240 f = ws >> return f
 
 show_240 :: Fn Logical_240 (String, ShowS)
 show_240 = simple $ id
@@ -5912,8 +5651,7 @@ encode_241 :: FnW Binary_241 a -> Fn Logical_241 (Encode a)
 encode_241 f = return f
 
 parse_241 :: Fn Logical_241 a -> Parser a
-parse_241 f = do
-    return $ f
+parse_241 f = ws >> return f
 
 show_241 :: Fn Logical_241 (String, ShowS)
 show_241 = simple $ id
@@ -5932,8 +5670,7 @@ encode_242 :: FnW Binary_242 a -> Fn Logical_242 (Encode a)
 encode_242 f = return f
 
 parse_242 :: Fn Logical_242 a -> Parser a
-parse_242 f = do
-    return $ f
+parse_242 f = ws >> return f
 
 show_242 :: Fn Logical_242 (String, ShowS)
 show_242 = simple $ id
@@ -5962,8 +5699,7 @@ encode_243 :: FnW Binary_243 a -> Fn Logical_243 (Encode a)
 encode_243 f = return f
 
 parse_243 :: Fn Logical_243 a -> Parser a
-parse_243 f = do
-    return $ f
+parse_243 f = ws >> return f
 
 show_243 :: Fn Logical_243 (String, ShowS)
 show_243 = simple $ id
@@ -5983,8 +5719,7 @@ encode_244 :: FnW Binary_244 a -> Fn Logical_244 (Encode a)
 encode_244 f = return f
 
 parse_244 :: Fn Logical_244 a -> Parser a
-parse_244 f = do
-    return $ f
+parse_244 f = ws >> return f
 
 show_244 :: Fn Logical_244 (String, ShowS)
 show_244 = simple $ id
@@ -6003,8 +5738,7 @@ encode_245 :: FnW Binary_245 a -> Fn Logical_245 (Encode a)
 encode_245 f = return f
 
 parse_245 :: Fn Logical_245 a -> Parser a
-parse_245 f = do
-    return $ f
+parse_245 f = ws >> return f
 
 show_245 :: Fn Logical_245 (String, ShowS)
 show_245 = simple $ id
@@ -6023,8 +5757,7 @@ encode_246 :: FnW Binary_246 a -> Fn Logical_246 (Encode a)
 encode_246 f = return f
 
 parse_246 :: Fn Logical_246 a -> Parser a
-parse_246 f = do
-    return $ f
+parse_246 f = ws >> return f
 
 show_246 :: Fn Logical_246 (String, ShowS)
 show_246 = simple $ id
@@ -6044,8 +5777,7 @@ encode_247 :: FnW Binary_247 a -> Fn Logical_247 (Encode a)
 encode_247 f = return f
 
 parse_247 :: Fn Logical_247 a -> Parser a
-parse_247 f = do
-    return $ f
+parse_247 f = ws >> return f
 
 show_247 :: Fn Logical_247 (String, ShowS)
 show_247 = simple $ id
@@ -6065,8 +5797,7 @@ encode_248 :: FnW Binary_248 a -> Fn Logical_248 (Encode a)
 encode_248 f = return f
 
 parse_248 :: Fn Logical_248 a -> Parser a
-parse_248 f = do
-    return $ f
+parse_248 f = ws >> return f
 
 show_248 :: Fn Logical_248 (String, ShowS)
 show_248 = simple $ id
@@ -6086,8 +5817,7 @@ encode_249 :: FnW Binary_249 a -> Fn Logical_249 (Encode a)
 encode_249 f = return f
 
 parse_249 :: Fn Logical_249 a -> Parser a
-parse_249 f = do
-    return $ f
+parse_249 f = ws >> return f
 
 show_249 :: Fn Logical_249 (String, ShowS)
 show_249 = simple $ id
@@ -6107,8 +5837,7 @@ encode_250 :: FnW Binary_250 a -> Fn Logical_250 (Encode a)
 encode_250 f = return f
 
 parse_250 :: Fn Logical_250 a -> Parser a
-parse_250 f = do
-    return $ f
+parse_250 f = ws >> return f
 
 show_250 :: Fn Logical_250 (String, ShowS)
 show_250 = simple $ id
@@ -6128,8 +5857,7 @@ encode_251 :: FnW Binary_251 a -> Fn Logical_251 (Encode a)
 encode_251 f = return f
 
 parse_251 :: Fn Logical_251 a -> Parser a
-parse_251 f = do
-    return $ f
+parse_251 f = ws >> return f
 
 show_251 :: Fn Logical_251 (String, ShowS)
 show_251 = simple $ id
@@ -6148,8 +5876,7 @@ encode_252 :: FnW Binary_252 a -> Fn Logical_252 (Encode a)
 encode_252 f = return f
 
 parse_252 :: Fn Logical_252 a -> Parser a
-parse_252 f = do
-    return $ f
+parse_252 f = ws >> return f
 
 show_252 :: Fn Logical_252 (String, ShowS)
 show_252 = simple $ id
@@ -6172,8 +5899,7 @@ encode_253 :: FnW Binary_253 a -> Fn Logical_253 (Encode a)
 encode_253 f = return f
 
 parse_253 :: Fn Logical_253 a -> Parser a
-parse_253 f = do
-    return $ f
+parse_253 f = ws >> return f
 
 show_253 :: Fn Logical_253 (String, ShowS)
 show_253 = simple $ id
@@ -6196,8 +5922,7 @@ encode_254 :: FnW Binary_254 a -> Fn Logical_254 (Encode a)
 encode_254 f = return f
 
 parse_254 :: Fn Logical_254 a -> Parser a
-parse_254 f = do
-    return $ f
+parse_254 f = ws >> return f
 
 show_254 :: Fn Logical_254 (String, ShowS)
 show_254 = simple $ id
@@ -6217,8 +5942,7 @@ encode_255 :: FnW Binary_255 a -> Fn Logical_255 (Encode a)
 encode_255 f = return f
 
 parse_255 :: Fn Logical_255 a -> Parser a
-parse_255 f = do
-    return $ f
+parse_255 f = ws >> return f
 
 show_255 :: Fn Logical_255 (String, ShowS)
 show_255 = simple $ id
@@ -6238,8 +5962,7 @@ encode_256 :: FnW Binary_256 a -> Fn Logical_256 (Encode a)
 encode_256 f = return f
 
 parse_256 :: Fn Logical_256 a -> Parser a
-parse_256 f = do
-    return $ f
+parse_256 f = ws >> return f
 
 show_256 :: Fn Logical_256 (String, ShowS)
 show_256 = simple $ id
@@ -6259,8 +5982,7 @@ encode_257 :: FnW Binary_257 a -> Fn Logical_257 (Encode a)
 encode_257 f = return f
 
 parse_257 :: Fn Logical_257 a -> Parser a
-parse_257 f = do
-    return $ f
+parse_257 f = ws >> return f
 
 show_257 :: Fn Logical_257 (String, ShowS)
 show_257 = simple $ id
@@ -6287,8 +6009,7 @@ encode_258 :: FnW Binary_258 a -> Fn Logical_258 (Encode a)
 encode_258 f = return f
 
 parse_258 :: Fn Logical_258 a -> Parser a
-parse_258 f = do
-    return $ f
+parse_258 f = ws >> return f
 
 show_258 :: Fn Logical_258 (String, ShowS)
 show_258 = simple $ id
@@ -6308,8 +6029,7 @@ encode_259 :: FnW Binary_259 a -> Fn Logical_259 (Encode a)
 encode_259 f = return f
 
 parse_259 :: Fn Logical_259 a -> Parser a
-parse_259 f = do
-    return $ f
+parse_259 f = ws >> return f
 
 show_259 :: Fn Logical_259 (String, ShowS)
 show_259 = simple $ id
@@ -6329,8 +6049,7 @@ encode_260 :: FnW Binary_260 a -> Fn Logical_260 (Encode a)
 encode_260 f = return f
 
 parse_260 :: Fn Logical_260 a -> Parser a
-parse_260 f = do
-    return $ f
+parse_260 f = ws >> return f
 
 show_260 :: Fn Logical_260 (String, ShowS)
 show_260 = simple $ id
@@ -6350,8 +6069,7 @@ encode_261 :: FnW Binary_261 a -> Fn Logical_261 (Encode a)
 encode_261 f = return f
 
 parse_261 :: Fn Logical_261 a -> Parser a
-parse_261 f = do
-    return $ f
+parse_261 f = ws >> return f
 
 show_261 :: Fn Logical_261 (String, ShowS)
 show_261 = simple $ id
@@ -6374,8 +6092,7 @@ encode_262 :: FnW Binary_262 a -> Fn Logical_262 (Encode a)
 encode_262 f = return f
 
 parse_262 :: Fn Logical_262 a -> Parser a
-parse_262 f = do
-    return $ f
+parse_262 f = ws >> return f
 
 show_262 :: Fn Logical_262 (String, ShowS)
 show_262 = simple $ id
@@ -6395,8 +6112,7 @@ encode_263 :: FnW Binary_263 a -> Fn Logical_263 (Encode a)
 encode_263 f = return f
 
 parse_263 :: Fn Logical_263 a -> Parser a
-parse_263 f = do
-    return $ f
+parse_263 f = ws >> return f
 
 show_263 :: Fn Logical_263 (String, ShowS)
 show_263 = simple $ id
@@ -6416,8 +6132,7 @@ encode_264 :: FnW Binary_264 a -> Fn Logical_264 (Encode a)
 encode_264 f = return f
 
 parse_264 :: Fn Logical_264 a -> Parser a
-parse_264 f = do
-    return $ f
+parse_264 f = ws >> return f
 
 show_264 :: Fn Logical_264 (String, ShowS)
 show_264 = simple $ id
@@ -6437,8 +6152,7 @@ encode_265 :: FnW Binary_265 a -> Fn Logical_265 (Encode a)
 encode_265 f = return f
 
 parse_265 :: Fn Logical_265 a -> Parser a
-parse_265 f = do
-    return $ f
+parse_265 f = ws >> return f
 
 show_265 :: Fn Logical_265 (String, ShowS)
 show_265 = simple $ id
@@ -6458,8 +6172,7 @@ encode_266 :: FnW Binary_266 a -> Fn Logical_266 (Encode a)
 encode_266 f = return f
 
 parse_266 :: Fn Logical_266 a -> Parser a
-parse_266 f = do
-    return $ f
+parse_266 f = ws >> return f
 
 show_266 :: Fn Logical_266 (String, ShowS)
 show_266 = simple $ id
@@ -6479,8 +6192,7 @@ encode_267 :: FnW Binary_267 a -> Fn Logical_267 (Encode a)
 encode_267 f = return f
 
 parse_267 :: Fn Logical_267 a -> Parser a
-parse_267 f = do
-    return $ f
+parse_267 f = ws >> return f
 
 show_267 :: Fn Logical_267 (String, ShowS)
 show_267 = simple $ id
@@ -6502,8 +6214,7 @@ encode_268 :: FnW Binary_268 a -> Fn Logical_268 (Encode a)
 encode_268 f = return f
 
 parse_268 :: Fn Logical_268 a -> Parser a
-parse_268 f = do
-    return $ f
+parse_268 f = ws >> return f
 
 show_268 :: Fn Logical_268 (String, ShowS)
 show_268 = simple $ id
@@ -6525,8 +6236,7 @@ encode_269 :: FnW Binary_269 a -> Fn Logical_269 (Encode a)
 encode_269 f = return f
 
 parse_269 :: Fn Logical_269 a -> Parser a
-parse_269 f = do
-    return $ f
+parse_269 f = ws >> return f
 
 show_269 :: Fn Logical_269 (String, ShowS)
 show_269 = simple $ id
@@ -6545,8 +6255,7 @@ encode_270 :: FnW Binary_270 a -> Fn Logical_270 (Encode a)
 encode_270 f = return f
 
 parse_270 :: Fn Logical_270 a -> Parser a
-parse_270 f = do
-    return $ f
+parse_270 f = ws >> return f
 
 show_270 :: Fn Logical_270 (String, ShowS)
 show_270 = simple $ id
@@ -6566,8 +6275,7 @@ encode_271 :: FnW Binary_271 a -> Fn Logical_271 (Encode a)
 encode_271 f = return f
 
 parse_271 :: Fn Logical_271 a -> Parser a
-parse_271 f = do
-    return $ f
+parse_271 f = ws >> return f
 
 show_271 :: Fn Logical_271 (String, ShowS)
 show_271 = simple $ id
@@ -6587,8 +6295,7 @@ encode_272 :: FnW Binary_272 a -> Fn Logical_272 (Encode a)
 encode_272 f = return f
 
 parse_272 :: Fn Logical_272 a -> Parser a
-parse_272 f = do
-    return $ f
+parse_272 f = ws >> return f
 
 show_272 :: Fn Logical_272 (String, ShowS)
 show_272 = simple $ id
@@ -6607,8 +6314,7 @@ encode_273 :: FnW Binary_273 a -> Fn Logical_273 (Encode a)
 encode_273 f = return f
 
 parse_273 :: Fn Logical_273 a -> Parser a
-parse_273 f = do
-    return $ f
+parse_273 f = ws >> return f
 
 show_273 :: Fn Logical_273 (String, ShowS)
 show_273 = simple $ id
@@ -6628,8 +6334,7 @@ encode_274 :: FnW Binary_274 a -> Fn Logical_274 (Encode a)
 encode_274 f = return f
 
 parse_274 :: Fn Logical_274 a -> Parser a
-parse_274 f = do
-    return $ f
+parse_274 f = ws >> return f
 
 show_274 :: Fn Logical_274 (String, ShowS)
 show_274 = simple $ id
@@ -6649,8 +6354,7 @@ encode_275 :: FnW Binary_275 a -> Fn Logical_275 (Encode a)
 encode_275 f = return f
 
 parse_275 :: Fn Logical_275 a -> Parser a
-parse_275 f = do
-    return $ f
+parse_275 f = ws >> return f
 
 show_275 :: Fn Logical_275 (String, ShowS)
 show_275 = simple $ id
@@ -6670,8 +6374,7 @@ encode_276 :: FnW Binary_276 a -> Fn Logical_276 (Encode a)
 encode_276 f = return f
 
 parse_276 :: Fn Logical_276 a -> Parser a
-parse_276 f = do
-    return $ f
+parse_276 f = ws >> return f
 
 show_276 :: Fn Logical_276 (String, ShowS)
 show_276 = simple $ id
@@ -6691,8 +6394,7 @@ encode_277 :: FnW Binary_277 a -> Fn Logical_277 (Encode a)
 encode_277 f = return f
 
 parse_277 :: Fn Logical_277 a -> Parser a
-parse_277 f = do
-    return $ f
+parse_277 f = ws >> return f
 
 show_277 :: Fn Logical_277 (String, ShowS)
 show_277 = simple $ id
@@ -6712,8 +6414,7 @@ encode_278 :: FnW Binary_278 a -> Fn Logical_278 (Encode a)
 encode_278 f = return f
 
 parse_278 :: Fn Logical_278 a -> Parser a
-parse_278 f = do
-    return $ f
+parse_278 f = ws >> return f
 
 show_278 :: Fn Logical_278 (String, ShowS)
 show_278 = simple $ id
@@ -6733,8 +6434,7 @@ encode_279 :: FnW Binary_279 a -> Fn Logical_279 (Encode a)
 encode_279 f = return f
 
 parse_279 :: Fn Logical_279 a -> Parser a
-parse_279 f = do
-    return $ f
+parse_279 f = ws >> return f
 
 show_279 :: Fn Logical_279 (String, ShowS)
 show_279 = simple $ id
@@ -6755,8 +6455,7 @@ encode_280 :: FnW Binary_280 a -> Fn Logical_280 (Encode a)
 encode_280 f = return f
 
 parse_280 :: Fn Logical_280 a -> Parser a
-parse_280 f = do
-    return $ f
+parse_280 f = ws >> return f
 
 show_280 :: Fn Logical_280 (String, ShowS)
 show_280 = simple $ id
@@ -6775,8 +6474,7 @@ encode_281 :: FnW Binary_281 a -> Fn Logical_281 (Encode a)
 encode_281 f = return f
 
 parse_281 :: Fn Logical_281 a -> Parser a
-parse_281 f = do
-    return $ f
+parse_281 f = ws >> return f
 
 show_281 :: Fn Logical_281 (String, ShowS)
 show_281 = simple $ id
@@ -6796,8 +6494,7 @@ encode_282 :: FnW Binary_282 a -> Fn Logical_282 (Encode a)
 encode_282 f = return f
 
 parse_282 :: Fn Logical_282 a -> Parser a
-parse_282 f = do
-    return $ f
+parse_282 f = ws >> return f
 
 show_282 :: Fn Logical_282 (String, ShowS)
 show_282 = simple $ id
@@ -6817,8 +6514,7 @@ encode_283 :: FnW Binary_283 a -> Fn Logical_283 (Encode a)
 encode_283 f = return f
 
 parse_283 :: Fn Logical_283 a -> Parser a
-parse_283 f = do
-    return $ f
+parse_283 f = ws >> return f
 
 show_283 :: Fn Logical_283 (String, ShowS)
 show_283 = simple $ id
@@ -6838,8 +6534,7 @@ encode_284 :: FnW Binary_284 a -> Fn Logical_284 (Encode a)
 encode_284 f = return f
 
 parse_284 :: Fn Logical_284 a -> Parser a
-parse_284 f = do
-    return $ f
+parse_284 f = ws >> return f
 
 show_284 :: Fn Logical_284 (String, ShowS)
 show_284 = simple $ id
@@ -6859,8 +6554,7 @@ encode_285 :: FnW Binary_285 a -> Fn Logical_285 (Encode a)
 encode_285 f = return f
 
 parse_285 :: Fn Logical_285 a -> Parser a
-parse_285 f = do
-    return $ f
+parse_285 f = ws >> return f
 
 show_285 :: Fn Logical_285 (String, ShowS)
 show_285 = simple $ id
@@ -6883,8 +6577,7 @@ encode_286 :: FnW Binary_286 a -> Fn Logical_286 (Encode a)
 encode_286 f = return f
 
 parse_286 :: Fn Logical_286 a -> Parser a
-parse_286 f = do
-    return $ f
+parse_286 f = ws >> return f
 
 show_286 :: Fn Logical_286 (String, ShowS)
 show_286 = simple $ id
@@ -6906,8 +6599,7 @@ encode_287 :: FnW Binary_287 a -> Fn Logical_287 (Encode a)
 encode_287 f = return f
 
 parse_287 :: Fn Logical_287 a -> Parser a
-parse_287 f = do
-    return $ f
+parse_287 f = ws >> return f
 
 show_287 :: Fn Logical_287 (String, ShowS)
 show_287 = simple $ id
@@ -6930,8 +6622,7 @@ encode_288 :: FnW Binary_288 a -> Fn Logical_288 (Encode a)
 encode_288 f = return f
 
 parse_288 :: Fn Logical_288 a -> Parser a
-parse_288 f = do
-    return $ f
+parse_288 f = ws >> return f
 
 show_288 :: Fn Logical_288 (String, ShowS)
 show_288 = simple $ id
@@ -6954,8 +6645,7 @@ encode_289 :: FnW Binary_289 a -> Fn Logical_289 (Encode a)
 encode_289 f = return f
 
 parse_289 :: Fn Logical_289 a -> Parser a
-parse_289 f = do
-    return $ f
+parse_289 f = ws >> return f
 
 show_289 :: Fn Logical_289 (String, ShowS)
 show_289 = simple $ id
@@ -6975,8 +6665,7 @@ encode_290 :: FnW Binary_290 a -> Fn Logical_290 (Encode a)
 encode_290 f = return f
 
 parse_290 :: Fn Logical_290 a -> Parser a
-parse_290 f = do
-    return $ f
+parse_290 f = ws >> return f
 
 show_290 :: Fn Logical_290 (String, ShowS)
 show_290 = simple $ id
@@ -6996,8 +6685,7 @@ encode_291 :: FnW Binary_291 a -> Fn Logical_291 (Encode a)
 encode_291 f = return f
 
 parse_291 :: Fn Logical_291 a -> Parser a
-parse_291 f = do
-    return $ f
+parse_291 f = ws >> return f
 
 show_291 :: Fn Logical_291 (String, ShowS)
 show_291 = simple $ id
@@ -7017,8 +6705,7 @@ encode_292 :: FnW Binary_292 a -> Fn Logical_292 (Encode a)
 encode_292 f = return f
 
 parse_292 :: Fn Logical_292 a -> Parser a
-parse_292 f = do
-    return $ f
+parse_292 f = ws >> return f
 
 show_292 :: Fn Logical_292 (String, ShowS)
 show_292 = simple $ id
@@ -7038,8 +6725,7 @@ encode_293 :: FnW Binary_293 a -> Fn Logical_293 (Encode a)
 encode_293 f = return f
 
 parse_293 :: Fn Logical_293 a -> Parser a
-parse_293 f = do
-    return $ f
+parse_293 f = ws >> return f
 
 show_293 :: Fn Logical_293 (String, ShowS)
 show_293 = simple $ id
@@ -7059,8 +6745,7 @@ encode_294 :: FnW Binary_294 a -> Fn Logical_294 (Encode a)
 encode_294 f = return f
 
 parse_294 :: Fn Logical_294 a -> Parser a
-parse_294 f = do
-    return $ f
+parse_294 f = ws >> return f
 
 show_294 :: Fn Logical_294 (String, ShowS)
 show_294 = simple $ id
@@ -7080,8 +6765,7 @@ encode_295 :: FnW Binary_295 a -> Fn Logical_295 (Encode a)
 encode_295 f = return f
 
 parse_295 :: Fn Logical_295 a -> Parser a
-parse_295 f = do
-    return $ f
+parse_295 f = ws >> return f
 
 show_295 :: Fn Logical_295 (String, ShowS)
 show_295 = simple $ id
@@ -7101,8 +6785,7 @@ encode_296 :: FnW Binary_296 a -> Fn Logical_296 (Encode a)
 encode_296 f = return f
 
 parse_296 :: Fn Logical_296 a -> Parser a
-parse_296 f = do
-    return $ f
+parse_296 f = ws >> return f
 
 show_296 :: Fn Logical_296 (String, ShowS)
 show_296 = simple $ id
@@ -7122,8 +6805,7 @@ encode_297 :: FnW Binary_297 a -> Fn Logical_297 (Encode a)
 encode_297 f = return f
 
 parse_297 :: Fn Logical_297 a -> Parser a
-parse_297 f = do
-    return $ f
+parse_297 f = ws >> return f
 
 show_297 :: Fn Logical_297 (String, ShowS)
 show_297 = simple $ id
@@ -7146,8 +6828,7 @@ encode_298 :: FnW Binary_298 a -> Fn Logical_298 (Encode a)
 encode_298 f = return f
 
 parse_298 :: Fn Logical_298 a -> Parser a
-parse_298 f = do
-    return $ f
+parse_298 f = ws >> return f
 
 show_298 :: Fn Logical_298 (String, ShowS)
 show_298 = simple $ id
@@ -7167,8 +6848,7 @@ encode_299 :: FnW Binary_299 a -> Fn Logical_299 (Encode a)
 encode_299 f = return f
 
 parse_299 :: Fn Logical_299 a -> Parser a
-parse_299 f = do
-    return $ f
+parse_299 f = ws >> return f
 
 show_299 :: Fn Logical_299 (String, ShowS)
 show_299 = simple $ id
@@ -7188,8 +6868,7 @@ encode_300 :: FnW Binary_300 a -> Fn Logical_300 (Encode a)
 encode_300 f = return f
 
 parse_300 :: Fn Logical_300 a -> Parser a
-parse_300 f = do
-    return $ f
+parse_300 f = ws >> return f
 
 show_300 :: Fn Logical_300 (String, ShowS)
 show_300 = simple $ id
@@ -7209,8 +6888,7 @@ encode_301 :: FnW Binary_301 a -> Fn Logical_301 (Encode a)
 encode_301 f = return f
 
 parse_301 :: Fn Logical_301 a -> Parser a
-parse_301 f = do
-    return $ f
+parse_301 f = ws >> return f
 
 show_301 :: Fn Logical_301 (String, ShowS)
 show_301 = simple $ id
@@ -7230,8 +6908,7 @@ encode_302 :: FnW Binary_302 a -> Fn Logical_302 (Encode a)
 encode_302 f = return f
 
 parse_302 :: Fn Logical_302 a -> Parser a
-parse_302 f = do
-    return $ f
+parse_302 f = ws >> return f
 
 show_302 :: Fn Logical_302 (String, ShowS)
 show_302 = simple $ id
@@ -7251,8 +6928,7 @@ encode_303 :: FnW Binary_303 a -> Fn Logical_303 (Encode a)
 encode_303 f = return f
 
 parse_303 :: Fn Logical_303 a -> Parser a
-parse_303 f = do
-    return $ f
+parse_303 f = ws >> return f
 
 show_303 :: Fn Logical_303 (String, ShowS)
 show_303 = simple $ id
@@ -7272,8 +6948,7 @@ encode_304 :: FnW Binary_304 a -> Fn Logical_304 (Encode a)
 encode_304 f = return f
 
 parse_304 :: Fn Logical_304 a -> Parser a
-parse_304 f = do
-    return $ f
+parse_304 f = ws >> return f
 
 show_304 :: Fn Logical_304 (String, ShowS)
 show_304 = simple $ id
@@ -7293,8 +6968,7 @@ encode_305 :: FnW Binary_305 a -> Fn Logical_305 (Encode a)
 encode_305 f = return f
 
 parse_305 :: Fn Logical_305 a -> Parser a
-parse_305 f = do
-    return $ f
+parse_305 f = ws >> return f
 
 show_305 :: Fn Logical_305 (String, ShowS)
 show_305 = simple $ id
@@ -7317,8 +6991,7 @@ encode_306 :: FnW Binary_306 a -> Fn Logical_306 (Encode a)
 encode_306 f = return f
 
 parse_306 :: Fn Logical_306 a -> Parser a
-parse_306 f = do
-    return $ f
+parse_306 f = ws >> return f
 
 show_306 :: Fn Logical_306 (String, ShowS)
 show_306 = simple $ id
@@ -7338,8 +7011,7 @@ encode_307 :: FnW Binary_307 a -> Fn Logical_307 (Encode a)
 encode_307 f = return f
 
 parse_307 :: Fn Logical_307 a -> Parser a
-parse_307 f = do
-    return $ f
+parse_307 f = ws >> return f
 
 show_307 :: Fn Logical_307 (String, ShowS)
 show_307 = simple $ id
@@ -7359,8 +7031,7 @@ encode_308 :: FnW Binary_308 a -> Fn Logical_308 (Encode a)
 encode_308 f = return f
 
 parse_308 :: Fn Logical_308 a -> Parser a
-parse_308 f = do
-    return $ f
+parse_308 f = ws >> return f
 
 show_308 :: Fn Logical_308 (String, ShowS)
 show_308 = simple $ id
@@ -7383,8 +7054,7 @@ encode_309 :: FnW Binary_309 a -> Fn Logical_309 (Encode a)
 encode_309 f = return f
 
 parse_309 :: Fn Logical_309 a -> Parser a
-parse_309 f = do
-    return $ f
+parse_309 f = ws >> return f
 
 show_309 :: Fn Logical_309 (String, ShowS)
 show_309 = simple $ id
@@ -7404,8 +7074,7 @@ encode_310 :: FnW Binary_310 a -> Fn Logical_310 (Encode a)
 encode_310 f = return f
 
 parse_310 :: Fn Logical_310 a -> Parser a
-parse_310 f = do
-    return $ f
+parse_310 f = ws >> return f
 
 show_310 :: Fn Logical_310 (String, ShowS)
 show_310 = simple $ id
@@ -7425,8 +7094,7 @@ encode_311 :: FnW Binary_311 a -> Fn Logical_311 (Encode a)
 encode_311 f = return f
 
 parse_311 :: Fn Logical_311 a -> Parser a
-parse_311 f = do
-    return $ f
+parse_311 f = ws >> return f
 
 show_311 :: Fn Logical_311 (String, ShowS)
 show_311 = simple $ id
@@ -7446,8 +7114,7 @@ encode_312 :: FnW Binary_312 a -> Fn Logical_312 (Encode a)
 encode_312 f = return f
 
 parse_312 :: Fn Logical_312 a -> Parser a
-parse_312 f = do
-    return $ f
+parse_312 f = ws >> return f
 
 show_312 :: Fn Logical_312 (String, ShowS)
 show_312 = simple $ id
@@ -7467,8 +7134,7 @@ encode_313 :: FnW Binary_313 a -> Fn Logical_313 (Encode a)
 encode_313 f = return f
 
 parse_313 :: Fn Logical_313 a -> Parser a
-parse_313 f = do
-    return $ f
+parse_313 f = ws >> return f
 
 show_313 :: Fn Logical_313 (String, ShowS)
 show_313 = simple $ id
@@ -7487,8 +7153,7 @@ encode_314 :: FnW Binary_314 a -> Fn Logical_314 (Encode a)
 encode_314 f = return f
 
 parse_314 :: Fn Logical_314 a -> Parser a
-parse_314 f = do
-    return $ f
+parse_314 f = ws >> return f
 
 show_314 :: Fn Logical_314 (String, ShowS)
 show_314 = simple $ id
@@ -7508,8 +7173,9 @@ encode_315 :: FnW Binary_315 a -> Fn Logical_315 (Encode a)
 encode_315 f = return f
 
 parse_315 :: Fn Logical_315 a -> Parser a
-parse_315 f = do
-    return $ f
+parse_315 f = ws >> return f
 
 show_315 :: Fn Logical_315 (String, ShowS)
 show_315 = simple $ id
+
+
