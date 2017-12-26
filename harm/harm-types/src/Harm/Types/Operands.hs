@@ -10,11 +10,17 @@ module Harm.Types.Operands
     ( Rn(..)
     , Xn(..)
     , Wn(..)
-    , XnOrSP(..)
-    , WnOrSP(..)
+    , XnSP(..)
+    , WnSP(..)
+
+    , LSL_12(..)
 
     , Cond(..)
     , Half(..)
+
+    , Shift32(..)
+    , Shift64(..)
+    , ShiftType(..)
 
     , Hint(..)
     ) where
@@ -36,11 +42,13 @@ newtype Xn = Xn { unXn :: Rn }
     deriving (Eq, Show, Read, Num)
 newtype Wn = Wn { unWn :: Rn }
     deriving (Eq, Show, Read, Num)
-newtype XnOrSP = XnOrSP { unXnOrSP :: Rn }
+newtype XnSP = XnSP { unXnSP :: Rn }
     deriving (Eq, Show, Read, Num)
-newtype WnOrSP = WnOrSP { unWnOrSP :: Rn }
+newtype WnSP = WnSP { unWnSP :: Rn }
     deriving (Eq, Show, Read, Num)
 
+data LSL_12 = LSL_0 | LSL_12
+    deriving (Eq, Show, Read)
 
 data Cond
     = EQ | NE | CS | CC
@@ -51,6 +59,10 @@ data Cond
 
 data Half = Upper | Lower deriving (Eq, Show, Read)
 
+data ShiftType = LSL | LSR | ASR | ROR deriving (Eq, Show, Read, Enum)
+data Shift32 = Shift32 ShiftType (W 5) deriving (Eq, Show, Read)
+data Shift64 = Shift64 ShiftType (W 6) deriving (Eq, Show, Read)
+
 
 data ArrSpec = ArrSpec ArrHalfWhole ArrWidth deriving (Eq, Show, Read)
 data ArrHalfWhole = Half | Whole deriving (Eq, Show, Read)
@@ -59,15 +71,8 @@ data ArrWidth = ArrB | ArrH | ArrS | ArrD deriving (Eq, Show, Read)
 data GPRWidth = GPRWidthW | GPRWidthX deriving (Eq, Show, Read)
 data FPRWidth = FPRWidthB | FPRWidthH | FPRWidthS | FPRWidthD deriving (Eq, Show, Read)
 
-data ShiftType = LSL | LSR | ASR | ROR deriving (Eq, Show, Read)
-data Amount32 = Amount32 deriving (Eq, Show, Read)
-data Amount64 = Amount64 deriving (Eq, Show, Read)
-data Shift32 = Shift32 ShiftType Amount32 deriving (Eq, Show, Read)
-data Shift64 = Shift64 ShiftType Amount64 deriving (Eq, Show, Read)
-
 
 newtype BitWidth = BitWidth { unBitWidth :: Integer } deriving (Eq, Show, Read)
-
 
 
 data NZCV = NZCV Bool Bool Bool Bool

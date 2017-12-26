@@ -20,6 +20,7 @@ module Harm.Types.W
     , toW
     , slice
     , unslice
+    , pad
     , (.:)
     , split
     , split3
@@ -104,6 +105,9 @@ slice w = toW . shiftR w
 -- | Frame a slice back into a @'Word32'@, given the low bit.
 unslice :: KnownNat n => W n -> Int -> Word32
 unslice (W w) = shiftL w
+
+pad :: (KnownNat n, KnownNat m) => W n -> W m
+pad = fromIntegral
 
 infixr 6 .:
 

@@ -6,7 +6,7 @@ module Harm.Tables.Logic.Asm where
 
 import Harm.Types
 
-import Prelude hiding (takeWhile)
+import Prelude hiding (takeWhile, EQ, LT, GT)
 import GHC.Prim
 import GHC.TypeLits
 import Data.Attoparsec.ByteString.Char8 hiding (Number(..), take)
@@ -34,10 +34,20 @@ instance IsAsm Xn where
     asm (Xn (Rn w)) = showChar 'x' . shows w
     msa = "xzr" $> 31 <|> "x" *> (Xn . Rn <$> msadec)
 
-instance IsAsm XnOrSP where
+instance IsAsm Wn where
+    asm 31 = showString "wzr"
+    asm (Wn (Rn w)) = showChar 'w' . shows w
+    msa = "wzr" $> 31 <|> "w" *> (Wn . Rn <$> msadec)
+
+instance IsAsm XnSP where
     asm 31 = showString "sp"
-    asm (XnOrSP (Rn w)) = showChar 'x' . shows w
-    msa = "sp" $> 31 <|> "x" *> (XnOrSP . Rn <$> msadec)
+    asm (XnSP (Rn w)) = showChar 'x' . shows w
+    msa = "sp" $> 31 <|> "x" *> (XnSP . Rn <$> msadec)
+
+instance IsAsm WnSP where
+    asm 31 = showString "wsp"
+    asm (WnSP (Rn w)) = showChar 'w' . shows w
+    msa = "wsp" $> 31 <|> "w" *> (WnSP . Rn <$> msadec)
 
 instance KnownNat n => IsAsm (W n) where
     asm w = showChar '#' . asmhex w
@@ -47,6 +57,71 @@ instance KnownNat n => IsAsm (I n) where
     asm i = showChar '#' . shows i
     msa = char '#' *> (msasdec <|> msashex)
 
+instance IsAsm Half where
+    asm Upper = showChar '2'
+    asm Lower = id
+    msa = maybe Lower (const Upper) <$> optional (char '2')
+
+instance IsAsm Cond where
+    asm cond = showString (map toLower (show cond))
+    msa =  EQ <$ stringCI "EQ"
+       <|> NE <$ stringCI "NE"
+       <|> CS <$ stringCI "CS"
+       <|> CC <$ stringCI "CC"
+       <|> MI <$ stringCI "MI"
+       <|> PL <$ stringCI "PL"
+       <|> VS <$ stringCI "VS"
+       <|> VC <$ stringCI "VC"
+       <|> HI <$ stringCI "HI"
+       <|> LS <$ stringCI "LS"
+       <|> GE <$ stringCI "GE"
+       <|> LT <$ stringCI "LT"
+       <|> GT <$ stringCI "GT"
+       <|> LE <$ stringCI "LE"
+       <|> AL <$ stringCI "AL"
+
+instance IsAsm LSL_12 where
+    asm LSL_0 = id
+    asm LSL_12 = showString ", LSL #12"
+    msa = option LSL_0 $ do
+        sep
+        "LSL"
+        ws
+        "#"
+        LSL_0 <$ "0" <|> LSL_12 <$ "12"
+
+instance IsAsm Shift32 where
+    asm (Shift32 LSL 0) = id
+    asm (Shift32 ty amnt) = showString ", " . asmShiftType ty . showString " #" . shows amnt
+    msa = option (Shift32 LSL 0) $ do
+        sep
+        ty <- msaShiftType
+        ws
+        amnt <- msa
+        return (Shift32 ty amnt)
+
+instance IsAsm Shift64 where
+    asm (Shift64 LSL 0) = id
+    asm (Shift64 ty amnt) = showString ", " . asmShiftType ty . showString " #" . shows amnt
+    msa = option (Shift64 LSL 0) $ do
+        sep
+        ty <- msaShiftType
+        ws
+        amnt <- msa
+        return (Shift64 ty amnt)
+
+asmShiftType :: ShiftType -> ShowS
+asmShiftType st = showString $ case st of
+    LSL -> "LSL"
+    LSR -> "LSR"
+    ASR -> "ASR"
+    ROR -> "ROR"
+
+msaShiftType :: Parser ShiftType
+msaShiftType =  LSL <$ stringCI "LSL"
+            <|> LSR <$ stringCI "LSR"
+            <|> ASR <$ stringCI "ASR"
+            <|> ROR <$ stringCI "ROR"
 
 asmhex :: forall n. KnownNat n => W n -> ShowS
 asmhex (W w) = foldr (flip (.)) (showString "0x")
@@ -114,16 +189,3 @@ a <+> b = a <*> (sep *> b)
 infixr 8 .>
 (.>) :: ShowS -> ShowS -> ShowS
 a .> b = a . showString ", " . b
-
-
-msaLSL12 :: Parser Bool
-msaLSL12 = option False $ do
-    sep
-    "LSL"
-    ws
-    "#"
-    False <$ "0" <|> True <$ "12"
-
-asmLSL12 :: Bool -> ShowS
-asmLSL12 False = id
-asmLSL12 True = showString ", LSL #12"

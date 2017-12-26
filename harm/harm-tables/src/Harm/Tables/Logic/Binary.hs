@@ -44,13 +44,29 @@ instance IsBinary 5 Xn where
     dec w = Xn <$> dec w
     enc = enc . unXn
 
-instance IsBinary 5 XnOrSP where
-    dec w = XnOrSP <$> dec w
-    enc = enc . unXnOrSP
+instance IsBinary 5 XnSP where
+    dec w = XnSP <$> dec w
+    enc = enc . unXnSP
 
 instance IsBinary 5 Wn where
     dec w = Wn <$> dec w
     enc = enc . unWn
+
+instance IsBinary 5 WnSP where
+    dec w = WnSP <$> dec w
+    enc = enc . unWnSP
+
+instance IsBinary 1 Half where
+    dec w = return $ case w of
+        0 -> Lower
+        1 -> Upper
+    enc h = return $ case h of
+        Lower -> 0
+        Upper -> 1
+
+instance IsBinary 4 Cond where
+    dec w = if w < 15 then return (toEnum (fromIntegral w)) else reserved
+    enc = return . fromIntegral . fromEnum
 
 instance IsBinary 7 Hint where
     dec w = return $ case w of
@@ -70,17 +86,24 @@ instance IsBinary 7 Hint where
         HintSEVL  -> 5
         HintUnk w -> w
 
+instance IsBinary 2 LSL_12 where
+    dec 0 = return LSL_0
+    dec 1 = return LSL_12
+    dec 2 = reserved
+    enc LSL_0 = return 0
+    enc LSL_12 = return 1
 
-decLSL12 :: W 2 -> Decode Bool
-decLSL12 0 = return False
-decLSL12 1 = return True
-decLSL12 2 = reserved
+instance IsBinary 2 ShiftType where
+    dec = return . toEnum . fromIntegral
+    enc = return . fromIntegral . fromEnum
 
-encLSL12 :: Bool -> Encode (W 2)
-encLSL12 False = return 0
-encLSL12 True = return 1
+decShift32 :: W 2 -> W 6 -> Decode Shift32
+decShift32 shift imm6 = Shift32 <$> dec shift <*> amount
+  where
+    amount = if imm6 > 31 then decErr else return (pad imm6)
 
-
+decShift64 :: W 2 -> W 6 -> Decode Shift64
+decShift64 shift imm6 = Shift64 <$> dec shift <*> dec imm6
 
 toHalf :: W 1 -> Half
 toHalf 0 = Lower

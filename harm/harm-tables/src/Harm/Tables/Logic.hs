@@ -1,3 +1,16 @@
+{-# LANGUAGE DataKinds #-}
+{-# LANGUAGE KindSignatures #-}
+{-# LANGUAGE PolyKinds #-}
+
+module Harm.Tables.Logic where
+
+import Harm.Types
+import Harm.Tables.Logic.Asm
+import Harm.Tables.Logic.Binary
+import Harm.Tables.Logic.Types
+
+import Data.Attoparsec.ByteString.Char8
+
 --- 0: ''
 --- AUTIA1716_HI_system           autia.xml
 --- AUTIASP_HI_system             autia.xml
@@ -3045,20 +3058,20 @@ show_124 = simple $ id
 --- CSINV_32_condsel              csinv.xml
 --- CSNEG_32_condsel              csneg.xml
 
-type Logical_125 = '[]
-type Binary_125  = '[]
+type Logical_125 = '[Wn, Wn, Wn, Cond]
+type Binary_125  = '[5, 5, 5, 4]
 
 decode_125 :: Fn Logical_125 a -> FnW Binary_125 (Decode a)
-decode_125 f = return f
+decode_125 f rd rn rm cond = f <$> dec rd <*> dec rn <*> dec rm <*> dec cond
 
 encode_125 :: FnW Binary_125 a -> Fn Logical_125 (Encode a)
-encode_125 f = return f
+encode_125 f wd wn wm cond = f <$> enc wd <*> enc wn <*> enc wm <*> enc cond
 
 parse_125 :: Fn Logical_125 a -> Parser a
-parse_125 f = ws >> return f
+parse_125 f = ws >> f <$> msa <*> msa <*> msa <*> msa
 
 show_125 :: Fn Logical_125 (String, ShowS)
-show_125 = simple $ id
+show_125 wd wn wm cond = simple $ asm wd .> asm wn .> asm wm .> asm cond
 
 
 --- 126: '  <Wt>, [<Xn|SP>], #<simm>'
@@ -4768,20 +4781,28 @@ show_200 = simple $ id
 --- ADDS_64S_addsub_imm           adds_addsub_imm.xml
 --- SUBS_64S_addsub_imm           subs_addsub_imm.xml
 
-type Logical_201 = '[]
-type Binary_201  = '[]
+type Logical_201 = '[Xn, XnSP, W 12, LSL_12]
+type Binary_201  = '[5, 5, 12, 2]
 
 decode_201 :: Fn Logical_201 a -> FnW Binary_201 (Decode a)
-decode_201 f = return f
+decode_201 f rd rn imm12 shift = f
+    <$> dec rd
+    <*> dec rn
+    <*> dec imm12
+    <*> dec shift
 
 encode_201 :: FnW Binary_201 a -> Fn Logical_201 (Encode a)
-encode_201 f = return f
+encode_201 f xd xn imm shift = f
+    <$> enc xd
+    <*> enc xn
+    <*> enc imm
+    <*> enc shift
 
 parse_201 :: Fn Logical_201 a -> Parser a
-parse_201 f = ws >> return f
+parse_201 f = ws >> f <$> msa <+> msa <+> msa <*> msa
 
 show_201 :: Fn Logical_201 (String, ShowS)
-show_201 = simple $ id
+show_201 xd xn imm shift = simple $ asm xd .> asm xn .> asm imm . asm shift
 
 
 --- 202: '  <Xt1>, <Xt2>, [<Xn|SP>, #<imm>]!'
@@ -4803,6 +4824,21 @@ parse_202 f = ws >> return f
 
 show_202 :: Fn Logical_202 (String, ShowS)
 show_202 = simple $ id
+
+-- type Logical_202 = '[Xn, Xn, XnSP, I 7]
+-- type Binary_202  = '[5, 5, 5, 7]
+
+-- decode_202 :: Fn Logical_202 a -> FnW Binary_202 (Decode a)
+-- decode_202 f rt rt2 rn imm7 = f <$> dec rt <*> dec rt2 <*> dec rn <*> dec imm7
+
+-- encode_202 :: FnW Binary_202 a -> Fn Logical_202 (Encode a)
+-- encode_202 f xt1 xt2 xn imm = f <$> enc xt1 <*> enc xt2 <*> enc xn <*> enc imm
+
+-- parse_202 :: Fn Logical_202 a -> Parser a
+-- parse_202 f = ws >> f
+
+-- show_202 :: Fn Logical_202 (String, ShowS)
+-- show_202 = simple $ id
 
 
 --- 203: '  <Xt>, #<op1>, <Cn>, <Cm>, #<op2>'
@@ -4894,20 +4930,28 @@ show_206 = simple $ id
 --- ADDS_32S_addsub_imm           adds_addsub_imm.xml
 --- SUBS_32S_addsub_imm           subs_addsub_imm.xml
 
-type Logical_207 = '[]
-type Binary_207  = '[]
+type Logical_207 = '[Wn, WnSP, W 12, LSL_12]
+type Binary_207  = '[5, 5, 12, 2]
 
 decode_207 :: Fn Logical_207 a -> FnW Binary_207 (Decode a)
-decode_207 f = return f
+decode_207 f rd rn imm12 shift = f
+    <$> dec rd
+    <*> dec rn
+    <*> dec imm12
+    <*> dec shift
 
 encode_207 :: FnW Binary_207 a -> Fn Logical_207 (Encode a)
-encode_207 f = return f
+encode_207 f wd wn imm shift = f
+    <$> enc wd
+    <*> enc wn
+    <*> enc imm
+    <*> enc shift
 
 parse_207 :: Fn Logical_207 a -> Parser a
-parse_207 f = ws >> return f
+parse_207 f = ws >> f <$> msa <+> msa <+> msa <*> msa
 
 show_207 :: Fn Logical_207 (String, ShowS)
-show_207 = simple $ id
+show_207 wd wn imm shift = simple $ asm wd .> asm wn .> asm imm . asm shift
 
 
 --- 208: '  <Wt1>, <Wt2>, [<Xn|SP>{, #<imm>}]'
@@ -5380,20 +5424,28 @@ show_228 = simple $ id
 --- ADD_64_addsub_imm             add_addsub_imm.xml
 --- SUB_64_addsub_imm             sub_addsub_imm.xml
 
-type Logical_229 = '[]
-type Binary_229  = '[]
+type Logical_229 = '[XnSP, XnSP, W 12, LSL_12]
+type Binary_229  = '[5, 5, 12, 2]
 
 decode_229 :: Fn Logical_229 a -> FnW Binary_229 (Decode a)
-decode_229 f = return f
+decode_229 f rd rn imm12 shift = f
+    <$> dec rd
+    <*> dec rn
+    <*> dec imm12
+    <*> dec shift
 
 encode_229 :: FnW Binary_229 a -> Fn Logical_229 (Encode a)
-encode_229 f = return f
+encode_229 f xd xn imm shift = f
+    <$> enc xd
+    <*> enc xn
+    <*> enc imm
+    <*> enc shift
 
 parse_229 :: Fn Logical_229 a -> Parser a
-parse_229 f = ws >> return f
+parse_229 f = ws >> f <$> msa <+> msa <+> msa <*> msa
 
 show_229 :: Fn Logical_229 (String, ShowS)
-show_229 = simple $ id
+show_229 xd xn imm shift = simple $ asm xd .> asm xn .> asm imm . asm shift
 
 
 --- 230: '  <Va><d>, <Vb><n>, <Vm>.<Ts>[<index>]'
@@ -5531,20 +5583,24 @@ show_235 = simple $ id
 --- SUB_32_addsub_shift           sub_addsub_shift.xml
 --- SUBS_32_addsub_shift          subs_addsub_shift.xml
 
-type Logical_236 = '[]
-type Binary_236  = '[]
+type Logical_236 = '[Wn, Wn, Wn, Shift32]
+type Binary_236  = '[5, 5, 5, 2, 6]
 
 decode_236 :: Fn Logical_236 a -> FnW Binary_236 (Decode a)
-decode_236 f = return f
+decode_236 f rd rn rm shift imm6 = f
+    <$> dec rd <*> dec rn <*> dec rm
+    <*> decShift32 shift imm6
 
 encode_236 :: FnW Binary_236 a -> Fn Logical_236 (Encode a)
-encode_236 f = return f
+encode_236 f wd wn wm (Shift32 ty amnt) = f
+    <$> enc wd <*> enc wn <*> enc wm
+    <*> enc ty <*> enc (pad amnt)
 
 parse_236 :: Fn Logical_236 a -> Parser a
-parse_236 f = ws >> return f
+parse_236 f = ws >> f <$> msa <+> msa <+> msa <*> msa
 
 show_236 :: Fn Logical_236 (String, ShowS)
-show_236 = simple $ id
+show_236 wd wn wm sh = simple $ asm wd .> asm wn .> asm wm . asm sh
 
 
 --- 237: '  <Wd|WSP>, <Wn|WSP>, #<imm>{, <shift>}'
