@@ -323,10 +323,10 @@ encode_B12 f xn label = split (viewW label) $ \immhi immlo ->
     f <$> enc xn <*> enc immhi <*> enc immlo
 
 parse_B12 :: Fn Logical_B12 a -> Parser a
-parse_B12 f = ws >> f <$> prs <+> (viewI <$> prshex)
+parse_B12 f = ws >> f <$> prs <+> prs
 
 show_B12 :: Fn Logical_B12 (String, String)
-show_B12 xn label = simple $ asm xn +> asmhex (viewW label)
+show_B12 xn label = simple $ asm xn +> asmshex label
 
 
 --- B13: '  <Xn>, <Xm|SP>'

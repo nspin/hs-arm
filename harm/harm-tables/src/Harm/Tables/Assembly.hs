@@ -31,7 +31,7 @@ instance IsAssembly Rn where
 
 instance IsAssembly Xn where
     asm 31 = "xzr"
-    asm (Xn (Rn w)) = 'r' : show w
+    asm (Xn (Rn w)) = 'x' : show w
     prs = "xzr" $> 31 <|> "x" *> (Xn . Rn <$> prsdec)
 
 instance IsAssembly Wn where
@@ -128,6 +128,16 @@ asmhex (W w) = "0x" ++ reverse
     (take ndigits
         (map (intToDigit . fromIntegral . (.&. 0xf))
             (iterate (flip shiftR 4) w)))
+  where
+    ndigits = fromInteger $ case natVal' (proxy# :: Proxy# n) `quotRem` 4 of
+        (d, 0) -> d
+        (d, _) -> d + 1
+
+asmshex :: forall n. KnownNat n => I n -> String
+asmshex (I i) = (if i < 0 then "-" else "") ++ "0x" ++ reverse
+    (take ndigits
+        (map (intToDigit . fromIntegral . (.&. 0xf))
+            (iterate (flip shiftR 4) (abs i))))
   where
     ndigits = fromInteger $ case natVal' (proxy# :: Proxy# n) `quotRem` 4 of
         (d, 0) -> d
