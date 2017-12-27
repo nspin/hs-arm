@@ -3,8 +3,8 @@ module Harm.Core
     , decode
     , encode
     , parseAsm
-    , showAsm
-    , showAsmAt
+    , toAsm
+    , toAsmCol
     ) where
 
 import qualified Harm.Tables as T
@@ -16,7 +16,6 @@ import Data.ByteString.Char8 (pack)
 import Data.Foldable
 import Data.List
 import Data.Word
-import Text.Show
 
 decode :: Word32 -> Maybe Insn
 decode w = do
@@ -32,12 +31,12 @@ parseAsm = asum
     | (mnem, parser) <- T.parseTable
     ]
 
-showAsm :: Insn -> ShowS
-showAsm insn = showString mnem . showChar ' ' . operand
+toAsm :: Insn -> String
+toAsm insn = mnem ++ " " ++ operand ""
   where
     (mnem, operand) = T.showAsm insn
 
-showAsmAt :: Int -> Insn -> ShowS
-showAsmAt col insn = showString mnem . showString (replicate (col - length mnem) ' ') . operand
+toAsmCol :: Int -> Insn -> String
+toAsmCol col insn = mnem ++ replicate (col - length mnem) ' ' ++ operand ""
   where
     (mnem, operand) = T.showAsm insn

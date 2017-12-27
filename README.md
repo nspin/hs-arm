@@ -28,8 +28,6 @@ This code generation process is complex, but [nix](https://nixos.org/nix/) makes
 Decode instructions from an object file:
 
 ```haskell
-{-# LANGUAGE OverloadedStrings #-}
-
 import Harm
 import Harm.Extra
 import Control.Monad
@@ -37,11 +35,11 @@ import Control.Monad
 main :: IO ()
 main = do
     (start, words) <- elfText "../test/nix-results/test.busybox/busybox"
-    forM_ (zip [start, start + 4..] words) $ \(offset, w) ->
-        putLn $ hex offset . "  " . hex w . "  " .
-            case decode w of
-                Nothing -> ".inst  " . hex w
-                Just insn -> padRight 30 (showAsmAt 7 insn) . showString (encodingId insn)
+    forM_ (zip [start, start + 4..] words) $ \(offset, word) ->
+        putStrLn $ hex offset ++ "  " ++ hex word ++ "  " ++
+            case decode word of
+                Nothing -> ".inst  " ++ hex word
+                Just insn -> padRight 30 (toAsmCol 7 insn) ++ encodingId insn
 ```
 ```
 0000000000400200  d11843ff  sub    sp, sp, #0x610         SUB_64_addsub_imm

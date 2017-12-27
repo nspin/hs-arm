@@ -1,14 +1,11 @@
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE ScopedTypeVariables #-}
-{-# LANGUAGE TypeSynonymInstances #-}
 
 module Harm.Extra
     ( elfText
     , hex
     , padRight
     , padLeft
-    , display
-    , putLn
     ) where
 
 import Harm
@@ -19,7 +16,6 @@ import Data.Bits
 import Data.Bool
 import Data.Char
 import Data.Maybe
-import Data.String
 import Data.Word
 
 import Data.Elf
@@ -56,27 +52,14 @@ getAllOf g = go
   where
     go = (:) <$> g <*> go <|> (isEmpty >>= bool (fail "leftover input") (return []))
 
-hex :: forall a. (Integral a, FiniteBits a) => a -> ShowS
-hex = foldr (flip (.)) id
+hex :: forall a. (Integral a, FiniteBits a) => a -> String
+hex = reverse
     . take (finiteBitSize (undefined :: a) `div` 4)
-    . map (showChar . intToDigit . fromIntegral . (.&. 0xf))
+    . map (intToDigit . fromIntegral . (.&. 0xf))
     . iterate (flip shiftR 4)
 
-padRight :: Int -> ShowS -> ShowS
-padRight width lefts = showString left . showString (replicate (width - length left) ' ')
-  where
-    left = lefts ""
+padRight :: Int -> String -> String
+padRight width left = left ++ replicate (width - length left) ' '
 
-padLeft :: Int -> ShowS -> ShowS
-padLeft width rights = showString (replicate (width - length right) ' ') . showString right
-  where
-    right = rights ""
-
-display :: [Word32] -> IO ()
-display = mapM_ (putLn . hex)
-
-putLn :: ShowS -> IO ()
-putLn s = putStrLn $ s ""
-
-instance IsString ShowS where
-    fromString = showString
+padLeft :: Int -> String -> String
+padLeft width right = replicate (width - length right) ' ' ++ right
