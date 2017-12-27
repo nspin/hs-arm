@@ -18,6 +18,7 @@ import Control.Monad
 import Data.Attoparsec.ByteString.Char8
 import Data.Char
 import Data.List hiding (takeWhile)
+import Data.Traversable
 import Language.Haskell.Exts
 import System.Exit
 import System.IO hiding (hGetContents)
@@ -27,21 +28,22 @@ import Data.ByteString.Char8 (unpack, hGetContents)
 import Debug.Trace
 
 testReadLogic:: IO Logic
-testReadLogic = withFile "../harm-tables/src/Harm/Tables/Logic.hs" ReadMode readLogic
+testReadLogic = (++)
+    <$> withFile "../harm-tables/src/Harm/Tables/Logic/Base.hs" ReadMode readLogic
+    <*> withFile "../harm-tables/src/Harm/Tables/Logic/FpSimd.hs" ReadMode readLogic
 
 type Logic = [(GroupId, Template, [EncodingId], [Type ()], [DiagramField])]
 type GroupId = String
 type FieldName = String
 
 resolveName :: [EncodingId] -> FieldName -> Maybe DiagramField
-resolveName eids name = if all (== field) fields then Just field else Nothing
-  where
-    field:fields =
-        [ let Just (_, _, _, fields') = find (\(m, s, _, _) -> mkeid m s == eid) insnsFlat
-              field':_ = flip filter fields' $ \(DiagramField width lo name') -> map toLower name' == map toLower name
-            in field'
-        | eid <- eids
-        ]
+resolveName eids name = do
+    field:fields <- for eids $ \eid ->
+        let Just (_, _, _, fields') = find (\(m, s, _, _) -> mkeid m s == eid) insnsFlat
+        in case flip filter fields' $ \(DiagramField width lo name') -> map toLower name' == map toLower name of
+                field':_ -> Just field'
+                _ -> Nothing
+    if all (== field) fields then Just field else Nothing
 
 readLogic :: Handle -> IO Logic
 readLogic h = do
@@ -74,7 +76,7 @@ parseLogic = [] <$ endOfInput <|> go <|> (anyChar *> parseLogic)
             ParseOk (TypeDecl _ (DHead _ (Ident _ name)) (TyPromoted _ (PromotedList _ _ tys)))
                 | "Logical_" `isPrefixOf` name -> return (map (() <$) tys)
             _ -> fail $ "bad logical type declaration: " ++ line
-        manyTill anyChar $ "\ndecode_" *> decimal *> " f "
+        manyTill anyChar $ "\ndecode_" *> (unpack <$> takeTill (== ' ')) *> " f "
         fields <- manyTill anyChar " " `manyTill` "="
         (:) (gid, tplt, eids, tys, fields) <$> parseLogic
 

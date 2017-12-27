@@ -39,19 +39,19 @@ main = do
         putStrLn $ hex offset ++ "  " ++ hex word ++ "  " ++
             case decode word of
                 Nothing -> ".inst  " ++ hex word
-                Just insn -> padRight 30 (toAsmCol 7 insn) ++ encodingId insn
+                Just insn -> padRight 30 (showAsmCol 7 insn) ++ encodingId insn
 ```
 ```
 0000000000400200  d11843ff  sub    sp, sp, #0x610         SUB_64_addsub_imm
 0000000000400204  7100041f  subs   wzr, w0, #0x001        SUBS_32S_addsub_imm
 0000000000400208  1a9fd7e0  csinc  w0, wzr, wzr, le       CSINC_32_condsel
 000000000040020c  6a00003f  ands   wzr, w1, w0            ANDS_32_log_shift
-0000000000400210  a9bd7bfd  stp    x29, x30, [sp, #-48]!  STP_64_ldstpair_pre
+0000000000400210  a9bd7bfd  stp    r29, r30, [sp, #-48]!  STP_64_ldstpair_pre
 0000000000400214  910003fd  add    x29, sp, #0x000        ADD_64_addsub_imm
-0000000000400218  a90153f3  stp    x19, x20, [sp, #16]    STP_64_ldstpair_off
-000000000040021c  d0000c73  adrp   x19, 0x00018e          ADRP_only_pcreladdr
+0000000000400218  a90153f3  stp    r19, r20, [sp, #16]    STP_64_ldstpair_off
+000000000040021c  d0000c73  adrp   r19, 0x00018e          ADRP_only_pcreladdr
 0000000000400220  91358263  add    x3, x19, #0xd60        ADD_64_addsub_imm
-0000000000400224  f9400064  ldr    x4, [x3]               LDR_64_ldst_pos
+0000000000400224  f9400064  ldr    r4, [x3]               LDR_64_ldst_pos
 ...
 ```
 

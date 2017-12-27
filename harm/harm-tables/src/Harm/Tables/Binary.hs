@@ -4,7 +4,7 @@
 {-# LANGUAGE FunctionalDependencies #-}
 {-# LANGUAGE FlexibleInstances #-}
 
-module Harm.Tables.Logic.Binary where
+module Harm.Tables.Binary where
 
 import Harm.Types
 
@@ -104,10 +104,3 @@ decShift32 shift imm6 = Shift32 <$> dec shift <*> amount
 
 decShift64 :: W 2 -> W 6 -> Decode Shift64
 decShift64 shift imm6 = Shift64 <$> dec shift <*> dec imm6
-
-toHalf :: W 1 -> Half
-toHalf 0 = Lower
-toHalf 1 = Upper
-
-toCond :: W 4 -> Cond
-toCond = toEnum . fromIntegral . unW

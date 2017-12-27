@@ -3,8 +3,8 @@ module Harm.Core
     , decode
     , encode
     , parseAsm
-    , toAsm
-    , toAsmCol
+    , showAsm
+    , showAsmCol
     ) where
 
 import qualified Harm.Tables as T
@@ -31,12 +31,12 @@ parseAsm = asum
     | (mnem, parser) <- T.parseTable
     ]
 
-toAsm :: Insn -> String
-toAsm insn = mnem ++ " " ++ operand ""
+showAsm :: Insn -> String
+showAsm insn = mnem ++ " " ++ operand
   where
     (mnem, operand) = T.showAsm insn
 
-toAsmCol :: Int -> Insn -> String
-toAsmCol col insn = mnem ++ replicate (col - length mnem) ' ' ++ operand ""
+showAsmCol :: Int -> Insn -> String
+showAsmCol col insn = mnem ++ replicate (col - length mnem) ' ' ++ operand
   where
     (mnem, operand) = T.showAsm insn

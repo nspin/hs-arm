@@ -9,4 +9,4 @@ main = do
         putStrLn $ hex offset ++ "  " ++ hex word ++ "  " ++
             case decode word of
                 Nothing -> ".inst  " ++ hex word
-                Just insn -> padRight 30 (toAsmCol 7 insn) ++ encodingId insn
+                Just insn -> padRight 30 (showAsmCol 7 insn) ++ encodingId insn

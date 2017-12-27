@@ -6,27 +6,30 @@ import ReadLogic
 import ARM.MRAS
 
 import Language.Haskell.Exts
+import System.Directory
 import System.Environment
 import System.Exit
 import System.FilePath
 import System.IO
-import System.Directory
+
 
 main :: IO ()
 main = do
     args <- getArgs
     case args of
-        [outDir] -> generate stdin outDir
-        _ -> die $ "Usage: gen-harm-tables <outDir>"
+        [inDir, outDir] -> generate inDir outDir
+        _ -> die $ "Usage: gen-harm-tables <inDir> <outDir>"
 
 test :: IO ()
-test = withFile "../harm-tables/src/Harm/Tables/Logic.hs" ReadMode $ \h -> do
-    generate h "."
+test = generate "../harm-tables/src/Harm/Tables/Logic" "."
 
-generate :: Handle -> FilePath -> IO ()
-generate hin outDir = do
+
+generate :: FilePath -> FilePath -> IO ()
+generate inDir outDir = do
     createDirectoryIfMissing True basePath
-    logic <- readLogic hin
+    logic <- (++)
+        <$> withFile (inDir </> "Base.hs") ReadMode readLogic
+        <*> withFile (inDir </> "FpSimd.hs") ReadMode readLogic
     let out builder name = writeFile (pathOf name) . prettyPrint $
             Module () (Just head) exts
                 [basicImport ("Harm.Tables.Internal." ++ name)]
@@ -236,7 +239,7 @@ modShow logic = [sig, val]
             (TyCon () (UnQual () (Ident () "Insn")))
             (TyTuple () Boxed
                 [ TyCon () (UnQual () (Ident () "String"))
-                , TyCon () (UnQual () (Ident () "ShowS"))
+                , TyCon () (UnQual () (Ident () "String"))
                 ]))
     val = FunBind ()
         [ Match () (Ident () "showAsm") [PVar () (Ident () "insn")]

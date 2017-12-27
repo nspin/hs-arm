@@ -4,7 +4,7 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE UndecidableInstances #-}
 
-module Harm.Tables.Logic.Types
+module Harm.Tables.Types
     ( Fn
     , FnW
     ) where

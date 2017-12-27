@@ -18,10 +18,12 @@ library
                     , Harm.Tables.Gen.Parse
                     , Harm.Tables.Gen.Show
 
-                    , Harm.Tables.Logic
-                    , Harm.Tables.Logic.Binary
-                    , Harm.Tables.Logic.Asm
-                    , Harm.Tables.Logic.Types
+                    , Harm.Tables.Types
+                    , Harm.Tables.Binary
+                    , Harm.Tables.Assembly
+
+                    , Harm.Tables.Logic.Base
+                    , Harm.Tables.Logic.FpSimd
 
   build-depends:      base >=4.8 && <5
                     , harm-types

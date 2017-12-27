@@ -17,9 +17,9 @@ rec {
   harm-tables-src = mergeFrom ./harm-tables [ "harm-tables.cabal" "src" ] (stdenv.mkDerivation {
     name = "harm-tables-src";
     gen = harm-tables-gen;
-    logic = ./harm-tables/src/Harm/Tables/Logic.hs;
+    logic = ./harm-tables/src/Harm/Tables/Logic;
     builder = builtins.toFile "builder.sh" ''
-      $gen/bin/gen-harm-tables $out < $logic
+      $gen/bin/gen-harm-tables $logic $out
     '';
   });
 
