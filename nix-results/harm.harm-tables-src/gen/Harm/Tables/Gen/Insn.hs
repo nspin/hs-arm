@@ -1,5 +1,6 @@
+{-# LANGUAGE DataKinds #-}
 module Harm.Tables.Gen.Insn where
-import Harm.Types
+import Harm.Tables.Internal.Insn
 
 data Insn = ABS ABS
           | ADC ADC
@@ -606,14 +607,14 @@ data ADCS = ADCS_32_addsub_carry
 data ADD = ADD_32_addsub_ext
          | ADD_64_addsub_ext
          | ADD_32_addsub_imm
-         | ADD_64_addsub_imm
-         | ADD_32_addsub_shift
+         | ADD_64_addsub_imm XnSP XnSP (W 12) LSL_12
+         | ADD_32_addsub_shift Wn Wn Wn Shift32
          | ADD_64_addsub_shift
          | ADD_asisdsame_only
          | ADD_asimdsame_only
          deriving (Eq, Read, Show)
 
-data ADDHN = ADDHN_asimddiff_N Half
+data ADDHN = ADDHN_asimddiff_N
            deriving (Eq, Read, Show)
 
 data ADDP = ADDP_asisdpair_only
@@ -622,19 +623,19 @@ data ADDP = ADDP_asisdpair_only
 
 data ADDS = ADDS_32S_addsub_ext
           | ADDS_64S_addsub_ext
-          | ADDS_32S_addsub_imm
-          | ADDS_64S_addsub_imm
-          | ADDS_32_addsub_shift
+          | ADDS_32S_addsub_imm Wn WnSP (W 12) LSL_12
+          | ADDS_64S_addsub_imm Xn XnSP (W 12) LSL_12
+          | ADDS_32_addsub_shift Wn Wn Wn Shift32
           | ADDS_64_addsub_shift
           deriving (Eq, Read, Show)
 
 data ADDV = ADDV_asimdall_only
           deriving (Eq, Read, Show)
 
-data ADR = ADR_only_pcreladdr
+data ADR = ADR_only_pcreladdr Xn (I 21)
          deriving (Eq, Read, Show)
 
-data ADRP = ADRP_only_pcreladdr
+data ADRP = ADRP_only_pcreladdr Xn (I 21)
           deriving (Eq, Read, Show)
 
 data AESD = AESD_B_cryptoaes
@@ -651,14 +652,14 @@ data AESMC = AESMC_B_cryptoaes
 
 data AND = AND_32_log_imm
          | AND_64_log_imm
-         | AND_32_log_shift
+         | AND_32_log_shift Wn Wn Wn Shift32
          | AND_64_log_shift
          | AND_asimdsame_only
          deriving (Eq, Read, Show)
 
 data ANDS = ANDS_32S_log_imm
           | ANDS_64S_log_imm
-          | ANDS_32_log_shift
+          | ANDS_32_log_shift Wn Wn Wn Shift32
           | ANDS_64_log_shift
           deriving (Eq, Read, Show)
 
@@ -709,7 +710,7 @@ data AUTIZB = AUTIZB_64Z_dp_1src
             deriving (Eq, Read, Show)
 
 data B = B_only_branch_imm
-       | B_only_condbranch Cond
+       | B_only_condbranch
        deriving (Eq, Read, Show)
 
 data BCAX = BCAX_VVV16_crypto4
@@ -719,14 +720,14 @@ data BFM = BFM_32M_bitfield
          | BFM_64M_bitfield
          deriving (Eq, Read, Show)
 
-data BIC = BIC_32_log_shift
+data BIC = BIC_32_log_shift Wn Wn Wn Shift32
          | BIC_64_log_shift
          | BIC_asimdimm_L_hl
          | BIC_asimdimm_L_sl
          | BIC_asimdsame_only
          deriving (Eq, Read, Show)
 
-data BICS = BICS_32_log_shift
+data BICS = BICS_32_log_shift Wn Wn Wn Shift32
           | BICS_64_log_shift
           deriving (Eq, Read, Show)
 
@@ -929,19 +930,19 @@ data CRC32W = CRC32W_32C_dp_2src
 data CRC32X = CRC32X_64C_dp_2src
             deriving (Eq, Read, Show)
 
-data CSEL = CSEL_32_condsel
+data CSEL = CSEL_32_condsel Wn Wn Wn Cond
           | CSEL_64_condsel
           deriving (Eq, Read, Show)
 
-data CSINC = CSINC_32_condsel
+data CSINC = CSINC_32_condsel Wn Wn Wn Cond
            | CSINC_64_condsel
            deriving (Eq, Read, Show)
 
-data CSINV = CSINV_32_condsel
+data CSINV = CSINV_32_condsel Wn Wn Wn Cond
            | CSINV_64_condsel
            deriving (Eq, Read, Show)
 
-data CSNEG = CSNEG_32_condsel
+data CSNEG = CSNEG_32_condsel Wn Wn Wn Cond
            | CSNEG_64_condsel
            deriving (Eq, Read, Show)
 
@@ -968,13 +969,13 @@ data DUP = DUP_asisdone_only
          | DUP_asimdins_DR_r
          deriving (Eq, Read, Show)
 
-data EON = EON_32_log_shift
+data EON = EON_32_log_shift Wn Wn Wn Shift32
          | EON_64_log_shift
          deriving (Eq, Read, Show)
 
 data EOR = EOR_32_log_imm
          | EOR_64_log_imm
-         | EOR_32_log_shift
+         | EOR_32_log_shift Wn Wn Wn Shift32
          | EOR_64_log_shift
          | EOR_asimdsame_only
          deriving (Eq, Read, Show)
@@ -1152,7 +1153,7 @@ data FCVTAU = FCVTAU_32H_float2int
             | FCVTAU_asimdmisc_R
             deriving (Eq, Read, Show)
 
-data FCVTL = FCVTL_asimdmisc_L Half
+data FCVTL = FCVTL_asimdmisc_L
            deriving (Eq, Read, Show)
 
 data FCVTMS = FCVTMS_32H_float2int
@@ -1179,7 +1180,7 @@ data FCVTMU = FCVTMU_32H_float2int
             | FCVTMU_asimdmisc_R
             deriving (Eq, Read, Show)
 
-data FCVTN = FCVTN_asimdmisc_N Half
+data FCVTN = FCVTN_asimdmisc_N
            deriving (Eq, Read, Show)
 
 data FCVTNS = FCVTNS_32H_float2int
@@ -1231,7 +1232,7 @@ data FCVTPU = FCVTPU_32H_float2int
             deriving (Eq, Read, Show)
 
 data FCVTXN = FCVTXN_asisdmisc_N
-            | FCVTXN_asimdmisc_N Half
+            | FCVTXN_asimdmisc_N
             deriving (Eq, Read, Show)
 
 data FCVTZS = FCVTZS_32H_float2fix
@@ -1813,7 +1814,7 @@ data LDLARH = LDLARH_LR32_ldstexcl
             deriving (Eq, Read, Show)
 
 data LDNP = LDNP_32_ldstnapair_offs
-          | LDNP_64_ldstnapair_offs
+          | LDNP_64_ldstnapair_offs Xn Xn XnSP (I 7)
           | LDNP_S_ldstnapair_offs
           | LDNP_D_ldstnapair_offs
           | LDNP_Q_ldstnapair_offs
@@ -1822,9 +1823,9 @@ data LDNP = LDNP_32_ldstnapair_offs
 data LDP = LDP_32_ldstpair_post
          | LDP_64_ldstpair_post
          | LDP_32_ldstpair_pre
-         | LDP_64_ldstpair_pre
+         | LDP_64_ldstpair_pre Xn Xn XnSP (I 7)
          | LDP_32_ldstpair_off
-         | LDP_64_ldstpair_off
+         | LDP_64_ldstpair_off Xn Xn XnSP (I 7)
          | LDP_S_ldstpair_post
          | LDP_D_ldstpair_post
          | LDP_Q_ldstpair_post
@@ -1837,8 +1838,8 @@ data LDP = LDP_32_ldstpair_post
          deriving (Eq, Read, Show)
 
 data LDPSW = LDPSW_64_ldstpair_post
-           | LDPSW_64_ldstpair_pre
-           | LDPSW_64_ldstpair_off
+           | LDPSW_64_ldstpair_pre Xn Xn XnSP (I 7)
+           | LDPSW_64_ldstpair_off Xn Xn XnSP (I 7)
            deriving (Eq, Read, Show)
 
 data LDR = LDR_32_ldst_immpost
@@ -1846,7 +1847,7 @@ data LDR = LDR_32_ldst_immpost
          | LDR_32_ldst_immpre
          | LDR_64_ldst_immpre
          | LDR_32_ldst_pos
-         | LDR_64_ldst_pos
+         | LDR_64_ldst_pos Xn XnSP (W 12)
          | LDR_32_loadlit
          | LDR_64_loadlit
          | LDR_32_ldst_regoff
@@ -1903,7 +1904,7 @@ data LDRSB = LDRSB_32_ldst_immpost
            | LDRSB_32_ldst_immpre
            | LDRSB_64_ldst_immpre
            | LDRSB_32_ldst_pos
-           | LDRSB_64_ldst_pos
+           | LDRSB_64_ldst_pos Xn XnSP (W 12)
            | LDRSB_32B_ldst_regoff
            | LDRSB_32BL_ldst_regoff
            | LDRSB_64B_ldst_regoff
@@ -1915,14 +1916,14 @@ data LDRSH = LDRSH_32_ldst_immpost
            | LDRSH_32_ldst_immpre
            | LDRSH_64_ldst_immpre
            | LDRSH_32_ldst_pos
-           | LDRSH_64_ldst_pos
+           | LDRSH_64_ldst_pos Xn XnSP (W 12)
            | LDRSH_32_ldst_regoff
            | LDRSH_64_ldst_regoff
            deriving (Eq, Read, Show)
 
 data LDRSW = LDRSW_64_ldst_immpost
            | LDRSW_64_ldst_immpre
-           | LDRSW_64_ldst_pos
+           | LDRSW_64_ldst_pos Xn XnSP (W 12)
            | LDRSW_64_loadlit
            | LDRSW_64_ldst_regoff
            deriving (Eq, Read, Show)
@@ -2258,14 +2259,14 @@ data NOP = NOP_HI_system
 data NOT = NOT_asimdmisc_R
          deriving (Eq, Read, Show)
 
-data ORN = ORN_32_log_shift
+data ORN = ORN_32_log_shift Wn Wn Wn Shift32
          | ORN_64_log_shift
          | ORN_asimdsame_only
          deriving (Eq, Read, Show)
 
 data ORR = ORR_32_log_imm
          | ORR_64_log_imm
-         | ORR_32_log_shift
+         | ORR_32_log_shift Wn Wn Wn Shift32
          | ORR_64_log_shift
          | ORR_asimdimm_L_hl
          | ORR_asimdimm_L_sl
@@ -2320,7 +2321,7 @@ data PACIZB = PACIZB_64Z_dp_1src
 data PMUL = PMUL_asimdsame_only
           deriving (Eq, Read, Show)
 
-data PMULL = PMULL_asimddiff_L Half
+data PMULL = PMULL_asimddiff_L
            deriving (Eq, Read, Show)
 
 data PRFM = PRFM_P_ldst_pos
@@ -2334,7 +2335,7 @@ data PRFUM = PRFUM_P_ldst_unscaled
 data PSB = PSB_HC_system
          deriving (Eq, Read, Show)
 
-data RADDHN = RADDHN_asimddiff_N Half
+data RADDHN = RADDHN_asimddiff_N
             deriving (Eq, Read, Show)
 
 data RAX1 = RAX1_VVV2_cryptosha512_3
@@ -2374,28 +2375,28 @@ data RORV = RORV_32_dp_2src
           | RORV_64_dp_2src
           deriving (Eq, Read, Show)
 
-data RSHRN = RSHRN_asimdshf_N Half
+data RSHRN = RSHRN_asimdshf_N
            deriving (Eq, Read, Show)
 
-data RSUBHN = RSUBHN_asimddiff_N Half
+data RSUBHN = RSUBHN_asimddiff_N
             deriving (Eq, Read, Show)
 
 data SABA = SABA_asimdsame_only
           deriving (Eq, Read, Show)
 
-data SABAL = SABAL_asimddiff_L Half
+data SABAL = SABAL_asimddiff_L
            deriving (Eq, Read, Show)
 
 data SABD = SABD_asimdsame_only
           deriving (Eq, Read, Show)
 
-data SABDL = SABDL_asimddiff_L Half
+data SABDL = SABDL_asimddiff_L
            deriving (Eq, Read, Show)
 
 data SADALP = SADALP_asimdmisc_P
             deriving (Eq, Read, Show)
 
-data SADDL = SADDL_asimddiff_L Half
+data SADDL = SADDL_asimddiff_L
            deriving (Eq, Read, Show)
 
 data SADDLP = SADDLP_asimdmisc_P
@@ -2404,7 +2405,7 @@ data SADDLP = SADDLP_asimdmisc_P
 data SADDLV = SADDLV_asimdall_only
             deriving (Eq, Read, Show)
 
-data SADDW = SADDW_asimddiff_W Half
+data SADDW = SADDW_asimddiff_W
            deriving (Eq, Read, Show)
 
 data SBC = SBC_32_addsub_carry
@@ -2502,10 +2503,10 @@ data SHL = SHL_asisdshf_R
          | SHL_asimdshf_R
          deriving (Eq, Read, Show)
 
-data SHLL = SHLL_asimdmisc_S Half
+data SHLL = SHLL_asimdmisc_S
           deriving (Eq, Read, Show)
 
-data SHRN = SHRN_asimdshf_N Half
+data SHRN = SHRN_asimdshf_N
           deriving (Eq, Read, Show)
 
 data SHSUB = SHSUB_asimdsame_only
@@ -2566,12 +2567,12 @@ data SMINP = SMINP_asimdsame_only
 data SMINV = SMINV_asimdall_only
            deriving (Eq, Read, Show)
 
-data SMLAL = SMLAL_asimdelem_L Half
-           | SMLAL_asimddiff_L Half
+data SMLAL = SMLAL_asimdelem_L
+           | SMLAL_asimddiff_L
            deriving (Eq, Read, Show)
 
-data SMLSL = SMLSL_asimdelem_L Half
-           | SMLSL_asimddiff_L Half
+data SMLSL = SMLSL_asimdelem_L
+           | SMLSL_asimddiff_L
            deriving (Eq, Read, Show)
 
 data SMOV = SMOV_asimdins_W_w
@@ -2584,8 +2585,8 @@ data SMSUBL = SMSUBL_64WA_dp_3src
 data SMULH = SMULH_64_dp_3src
            deriving (Eq, Read, Show)
 
-data SMULL = SMULL_asimdelem_L Half
-           | SMULL_asimddiff_L Half
+data SMULL = SMULL_asimdelem_L
+           | SMULL_asimddiff_L
            deriving (Eq, Read, Show)
 
 data SQABS = SQABS_asisdmisc_R
@@ -2597,15 +2598,15 @@ data SQADD = SQADD_asisdsame_only
            deriving (Eq, Read, Show)
 
 data SQDMLAL = SQDMLAL_asisdelem_L
-             | SQDMLAL_asimdelem_L Half
+             | SQDMLAL_asimdelem_L
              | SQDMLAL_asisddiff_only
-             | SQDMLAL_asimddiff_L Half
+             | SQDMLAL_asimddiff_L
              deriving (Eq, Read, Show)
 
 data SQDMLSL = SQDMLSL_asisdelem_L
-             | SQDMLSL_asimdelem_L Half
+             | SQDMLSL_asimdelem_L
              | SQDMLSL_asisddiff_only
-             | SQDMLSL_asimddiff_L Half
+             | SQDMLSL_asimddiff_L
              deriving (Eq, Read, Show)
 
 data SQDMULH = SQDMULH_asisdelem_R
@@ -2615,9 +2616,9 @@ data SQDMULH = SQDMULH_asisdelem_R
              deriving (Eq, Read, Show)
 
 data SQDMULL = SQDMULL_asisdelem_L
-             | SQDMULL_asimdelem_L Half
+             | SQDMULL_asimdelem_L
              | SQDMULL_asisddiff_only
-             | SQDMULL_asimddiff_L Half
+             | SQDMULL_asimddiff_L
              deriving (Eq, Read, Show)
 
 data SQNEG = SQNEG_asisdmisc_R
@@ -2647,11 +2648,11 @@ data SQRSHL = SQRSHL_asisdsame_only
             deriving (Eq, Read, Show)
 
 data SQRSHRN = SQRSHRN_asisdshf_N
-             | SQRSHRN_asimdshf_N Half
+             | SQRSHRN_asimdshf_N
              deriving (Eq, Read, Show)
 
 data SQRSHRUN = SQRSHRUN_asisdshf_N
-              | SQRSHRUN_asimdshf_N Half
+              | SQRSHRUN_asimdshf_N
               deriving (Eq, Read, Show)
 
 data SQSHL = SQSHL_asisdshf_R
@@ -2665,11 +2666,11 @@ data SQSHLU = SQSHLU_asisdshf_R
             deriving (Eq, Read, Show)
 
 data SQSHRN = SQSHRN_asisdshf_N
-            | SQSHRN_asimdshf_N Half
+            | SQSHRN_asimdshf_N
             deriving (Eq, Read, Show)
 
 data SQSHRUN = SQSHRUN_asisdshf_N
-             | SQSHRUN_asimdshf_N Half
+             | SQSHRUN_asimdshf_N
              deriving (Eq, Read, Show)
 
 data SQSUB = SQSUB_asisdsame_only
@@ -2677,11 +2678,11 @@ data SQSUB = SQSUB_asisdsame_only
            deriving (Eq, Read, Show)
 
 data SQXTN = SQXTN_asisdmisc_N
-           | SQXTN_asimdmisc_N Half
+           | SQXTN_asimdmisc_N
            deriving (Eq, Read, Show)
 
 data SQXTUN = SQXTUN_asisdmisc_N
-            | SQXTUN_asimdmisc_N Half
+            | SQXTUN_asimdmisc_N
             deriving (Eq, Read, Show)
 
 data SRHADD = SRHADD_asimdsame_only
@@ -2707,7 +2708,7 @@ data SSHL = SSHL_asisdsame_only
           | SSHL_asimdsame_only
           deriving (Eq, Read, Show)
 
-data SSHLL = SSHLL_asimdshf_L Half
+data SSHLL = SSHLL_asimdshf_L
            deriving (Eq, Read, Show)
 
 data SSHR = SSHR_asisdshf_R
@@ -2718,10 +2719,10 @@ data SSRA = SSRA_asisdshf_R
           | SSRA_asimdshf_R
           deriving (Eq, Read, Show)
 
-data SSUBL = SSUBL_asimddiff_L Half
+data SSUBL = SSUBL_asimddiff_L
            deriving (Eq, Read, Show)
 
-data SSUBW = SSUBW_asimddiff_W Half
+data SSUBW = SSUBW_asimddiff_W
            deriving (Eq, Read, Show)
 
 data ST1 = ST1_asisdlse_R1_1v
@@ -2836,7 +2837,7 @@ data STLXRH = STLXRH_SR32_ldstexcl
             deriving (Eq, Read, Show)
 
 data STNP = STNP_32_ldstnapair_offs
-          | STNP_64_ldstnapair_offs
+          | STNP_64_ldstnapair_offs Xn Xn XnSP (I 7)
           | STNP_S_ldstnapair_offs
           | STNP_D_ldstnapair_offs
           | STNP_Q_ldstnapair_offs
@@ -2845,9 +2846,9 @@ data STNP = STNP_32_ldstnapair_offs
 data STP = STP_32_ldstpair_post
          | STP_64_ldstpair_post
          | STP_32_ldstpair_pre
-         | STP_64_ldstpair_pre
+         | STP_64_ldstpair_pre Xn Xn XnSP (I 7)
          | STP_32_ldstpair_off
-         | STP_64_ldstpair_off
+         | STP_64_ldstpair_off Xn Xn XnSP (I 7)
          | STP_S_ldstpair_post
          | STP_D_ldstpair_post
          | STP_Q_ldstpair_post
@@ -2864,7 +2865,7 @@ data STR = STR_32_ldst_immpost
          | STR_32_ldst_immpre
          | STR_64_ldst_immpre
          | STR_32_ldst_pos
-         | STR_64_ldst_pos
+         | STR_64_ldst_pos Xn XnSP (W 12)
          | STR_32_ldst_regoff
          | STR_64_ldst_regoff
          | STR_B_ldst_immpost
@@ -2945,21 +2946,21 @@ data STXRH = STXRH_SR32_ldstexcl
 data SUB = SUB_32_addsub_ext
          | SUB_64_addsub_ext
          | SUB_32_addsub_imm
-         | SUB_64_addsub_imm
-         | SUB_32_addsub_shift
+         | SUB_64_addsub_imm XnSP XnSP (W 12) LSL_12
+         | SUB_32_addsub_shift Wn Wn Wn Shift32
          | SUB_64_addsub_shift
          | SUB_asisdsame_only
          | SUB_asimdsame_only
          deriving (Eq, Read, Show)
 
-data SUBHN = SUBHN_asimddiff_N Half
+data SUBHN = SUBHN_asimddiff_N
            deriving (Eq, Read, Show)
 
 data SUBS = SUBS_32S_addsub_ext
           | SUBS_64S_addsub_ext
-          | SUBS_32S_addsub_imm
-          | SUBS_64S_addsub_imm
-          | SUBS_32_addsub_shift
+          | SUBS_32S_addsub_imm Wn WnSP (W 12) LSL_12
+          | SUBS_64S_addsub_imm Xn XnSP (W 12) LSL_12
+          | SUBS_32_addsub_shift Wn Wn Wn Shift32
           | SUBS_64_addsub_shift
           deriving (Eq, Read, Show)
 
@@ -3043,19 +3044,19 @@ data TRN2 = TRN2_asimdperm_only
 data UABA = UABA_asimdsame_only
           deriving (Eq, Read, Show)
 
-data UABAL = UABAL_asimddiff_L Half
+data UABAL = UABAL_asimddiff_L
            deriving (Eq, Read, Show)
 
 data UABD = UABD_asimdsame_only
           deriving (Eq, Read, Show)
 
-data UABDL = UABDL_asimddiff_L Half
+data UABDL = UABDL_asimddiff_L
            deriving (Eq, Read, Show)
 
 data UADALP = UADALP_asimdmisc_P
             deriving (Eq, Read, Show)
 
-data UADDL = UADDL_asimddiff_L Half
+data UADDL = UADDL_asimddiff_L
            deriving (Eq, Read, Show)
 
 data UADDLP = UADDLP_asimdmisc_P
@@ -3064,7 +3065,7 @@ data UADDLP = UADDLP_asimdmisc_P
 data UADDLV = UADDLV_asimdall_only
             deriving (Eq, Read, Show)
 
-data UADDW = UADDW_asimddiff_W Half
+data UADDW = UADDW_asimddiff_W
            deriving (Eq, Read, Show)
 
 data UBFM = UBFM_32M_bitfield
@@ -3126,12 +3127,12 @@ data UMINP = UMINP_asimdsame_only
 data UMINV = UMINV_asimdall_only
            deriving (Eq, Read, Show)
 
-data UMLAL = UMLAL_asimdelem_L Half
-           | UMLAL_asimddiff_L Half
+data UMLAL = UMLAL_asimdelem_L
+           | UMLAL_asimddiff_L
            deriving (Eq, Read, Show)
 
-data UMLSL = UMLSL_asimdelem_L Half
-           | UMLSL_asimddiff_L Half
+data UMLSL = UMLSL_asimdelem_L
+           | UMLSL_asimddiff_L
            deriving (Eq, Read, Show)
 
 data UMOV = UMOV_asimdins_W_w
@@ -3144,8 +3145,8 @@ data UMSUBL = UMSUBL_64WA_dp_3src
 data UMULH = UMULH_64_dp_3src
            deriving (Eq, Read, Show)
 
-data UMULL = UMULL_asimdelem_L Half
-           | UMULL_asimddiff_L Half
+data UMULL = UMULL_asimdelem_L
+           | UMULL_asimddiff_L
            deriving (Eq, Read, Show)
 
 data UQADD = UQADD_asisdsame_only
@@ -3157,7 +3158,7 @@ data UQRSHL = UQRSHL_asisdsame_only
             deriving (Eq, Read, Show)
 
 data UQRSHRN = UQRSHRN_asisdshf_N
-             | UQRSHRN_asimdshf_N Half
+             | UQRSHRN_asimdshf_N
              deriving (Eq, Read, Show)
 
 data UQSHL = UQSHL_asisdshf_R
@@ -3167,7 +3168,7 @@ data UQSHL = UQSHL_asisdshf_R
            deriving (Eq, Read, Show)
 
 data UQSHRN = UQSHRN_asisdshf_N
-            | UQSHRN_asimdshf_N Half
+            | UQSHRN_asimdshf_N
             deriving (Eq, Read, Show)
 
 data UQSUB = UQSUB_asisdsame_only
@@ -3175,7 +3176,7 @@ data UQSUB = UQSUB_asisdsame_only
            deriving (Eq, Read, Show)
 
 data UQXTN = UQXTN_asisdmisc_N
-           | UQXTN_asimdmisc_N Half
+           | UQXTN_asimdmisc_N
            deriving (Eq, Read, Show)
 
 data URECPE = URECPE_asimdmisc_R
@@ -3203,7 +3204,7 @@ data USHL = USHL_asisdsame_only
           | USHL_asimdsame_only
           deriving (Eq, Read, Show)
 
-data USHLL = USHLL_asimdshf_L Half
+data USHLL = USHLL_asimdshf_L
            deriving (Eq, Read, Show)
 
 data USHR = USHR_asisdshf_R
@@ -3218,10 +3219,10 @@ data USRA = USRA_asisdshf_R
           | USRA_asimdshf_R
           deriving (Eq, Read, Show)
 
-data USUBL = USUBL_asimddiff_L Half
+data USUBL = USUBL_asimddiff_L
            deriving (Eq, Read, Show)
 
-data USUBW = USUBW_asimddiff_W Half
+data USUBW = USUBW_asimddiff_W
            deriving (Eq, Read, Show)
 
 data UZP1 = UZP1_asimdperm_only
@@ -3248,7 +3249,7 @@ data XPACI = XPACI_64Z_dp_1src
 data XPACLRI = XPACLRI_HI_system
              deriving (Eq, Read, Show)
 
-data XTN = XTN_asimdmisc_N Half
+data XTN = XTN_asimdmisc_N
          deriving (Eq, Read, Show)
 
 data YIELD = YIELD_HI_system
@@ -3287,11 +3288,12 @@ add_64_addsub_ext = ADD ADD_64_addsub_ext
 add_32_addsub_imm :: Insn
 add_32_addsub_imm = ADD ADD_32_addsub_imm
 
-add_64_addsub_imm :: Insn
-add_64_addsub_imm = ADD ADD_64_addsub_imm
+add_64_addsub_imm :: XnSP -> XnSP -> W 12 -> LSL_12 -> Insn
+add_64_addsub_imm x1 x2 x3 x4 = ADD (ADD_64_addsub_imm x1 x2 x3 x4)
 
-add_32_addsub_shift :: Insn
-add_32_addsub_shift = ADD ADD_32_addsub_shift
+add_32_addsub_shift :: Wn -> Wn -> Wn -> Shift32 -> Insn
+add_32_addsub_shift x1 x2 x3 x4
+  = ADD (ADD_32_addsub_shift x1 x2 x3 x4)
 
 add_64_addsub_shift :: Insn
 add_64_addsub_shift = ADD ADD_64_addsub_shift
@@ -3302,8 +3304,8 @@ add_asisdsame_only = ADD ADD_asisdsame_only
 add_asimdsame_only :: Insn
 add_asimdsame_only = ADD ADD_asimdsame_only
 
-addhn_asimddiff_n :: Half -> Insn
-addhn_asimddiff_n x1 = ADDHN (ADDHN_asimddiff_N x1)
+addhn_asimddiff_n :: Insn
+addhn_asimddiff_n = ADDHN ADDHN_asimddiff_N
 
 addp_asisdpair_only :: Insn
 addp_asisdpair_only = ADDP ADDP_asisdpair_only
@@ -3317,14 +3319,17 @@ adds_32s_addsub_ext = ADDS ADDS_32S_addsub_ext
 adds_64s_addsub_ext :: Insn
 adds_64s_addsub_ext = ADDS ADDS_64S_addsub_ext
 
-adds_32s_addsub_imm :: Insn
-adds_32s_addsub_imm = ADDS ADDS_32S_addsub_imm
+adds_32s_addsub_imm :: Wn -> WnSP -> W 12 -> LSL_12 -> Insn
+adds_32s_addsub_imm x1 x2 x3 x4
+  = ADDS (ADDS_32S_addsub_imm x1 x2 x3 x4)
 
-adds_64s_addsub_imm :: Insn
-adds_64s_addsub_imm = ADDS ADDS_64S_addsub_imm
+adds_64s_addsub_imm :: Xn -> XnSP -> W 12 -> LSL_12 -> Insn
+adds_64s_addsub_imm x1 x2 x3 x4
+  = ADDS (ADDS_64S_addsub_imm x1 x2 x3 x4)
 
-adds_32_addsub_shift :: Insn
-adds_32_addsub_shift = ADDS ADDS_32_addsub_shift
+adds_32_addsub_shift :: Wn -> Wn -> Wn -> Shift32 -> Insn
+adds_32_addsub_shift x1 x2 x3 x4
+  = ADDS (ADDS_32_addsub_shift x1 x2 x3 x4)
 
 adds_64_addsub_shift :: Insn
 adds_64_addsub_shift = ADDS ADDS_64_addsub_shift
@@ -3332,11 +3337,11 @@ adds_64_addsub_shift = ADDS ADDS_64_addsub_shift
 addv_asimdall_only :: Insn
 addv_asimdall_only = ADDV ADDV_asimdall_only
 
-adr_only_pcreladdr :: Insn
-adr_only_pcreladdr = ADR ADR_only_pcreladdr
+adr_only_pcreladdr :: Xn -> I 21 -> Insn
+adr_only_pcreladdr x1 x2 = ADR (ADR_only_pcreladdr x1 x2)
 
-adrp_only_pcreladdr :: Insn
-adrp_only_pcreladdr = ADRP ADRP_only_pcreladdr
+adrp_only_pcreladdr :: Xn -> I 21 -> Insn
+adrp_only_pcreladdr x1 x2 = ADRP (ADRP_only_pcreladdr x1 x2)
 
 aesd_b_cryptoaes :: Insn
 aesd_b_cryptoaes = AESD AESD_B_cryptoaes
@@ -3356,8 +3361,8 @@ and_32_log_imm = AND AND_32_log_imm
 and_64_log_imm :: Insn
 and_64_log_imm = AND AND_64_log_imm
 
-and_32_log_shift :: Insn
-and_32_log_shift = AND AND_32_log_shift
+and_32_log_shift :: Wn -> Wn -> Wn -> Shift32 -> Insn
+and_32_log_shift x1 x2 x3 x4 = AND (AND_32_log_shift x1 x2 x3 x4)
 
 and_64_log_shift :: Insn
 and_64_log_shift = AND AND_64_log_shift
@@ -3371,8 +3376,9 @@ ands_32s_log_imm = ANDS ANDS_32S_log_imm
 ands_64s_log_imm :: Insn
 ands_64s_log_imm = ANDS ANDS_64S_log_imm
 
-ands_32_log_shift :: Insn
-ands_32_log_shift = ANDS ANDS_32_log_shift
+ands_32_log_shift :: Wn -> Wn -> Wn -> Shift32 -> Insn
+ands_32_log_shift x1 x2 x3 x4
+  = ANDS (ANDS_32_log_shift x1 x2 x3 x4)
 
 ands_64_log_shift :: Insn
 ands_64_log_shift = ANDS ANDS_64_log_shift
@@ -3428,8 +3434,8 @@ autizb_64z_dp_1src = AUTIZB AUTIZB_64Z_dp_1src
 b_only_branch_imm :: Insn
 b_only_branch_imm = B B_only_branch_imm
 
-b_only_condbranch :: Cond -> Insn
-b_only_condbranch x1 = B (B_only_condbranch x1)
+b_only_condbranch :: Insn
+b_only_condbranch = B B_only_condbranch
 
 bcax_vvv16_crypto4 :: Insn
 bcax_vvv16_crypto4 = BCAX BCAX_VVV16_crypto4
@@ -3440,8 +3446,8 @@ bfm_32m_bitfield = BFM BFM_32M_bitfield
 bfm_64m_bitfield :: Insn
 bfm_64m_bitfield = BFM BFM_64M_bitfield
 
-bic_32_log_shift :: Insn
-bic_32_log_shift = BIC BIC_32_log_shift
+bic_32_log_shift :: Wn -> Wn -> Wn -> Shift32 -> Insn
+bic_32_log_shift x1 x2 x3 x4 = BIC (BIC_32_log_shift x1 x2 x3 x4)
 
 bic_64_log_shift :: Insn
 bic_64_log_shift = BIC BIC_64_log_shift
@@ -3455,8 +3461,9 @@ bic_asimdimm_l_sl = BIC BIC_asimdimm_L_sl
 bic_asimdsame_only :: Insn
 bic_asimdsame_only = BIC BIC_asimdsame_only
 
-bics_32_log_shift :: Insn
-bics_32_log_shift = BICS BICS_32_log_shift
+bics_32_log_shift :: Wn -> Wn -> Wn -> Shift32 -> Insn
+bics_32_log_shift x1 x2 x3 x4
+  = BICS (BICS_32_log_shift x1 x2 x3 x4)
 
 bics_64_log_shift :: Insn
 bics_64_log_shift = BICS BICS_64_log_shift
@@ -3728,26 +3735,26 @@ crc32w_32c_dp_2src = CRC32W CRC32W_32C_dp_2src
 crc32x_64c_dp_2src :: Insn
 crc32x_64c_dp_2src = CRC32X CRC32X_64C_dp_2src
 
-csel_32_condsel :: Insn
-csel_32_condsel = CSEL CSEL_32_condsel
+csel_32_condsel :: Wn -> Wn -> Wn -> Cond -> Insn
+csel_32_condsel x1 x2 x3 x4 = CSEL (CSEL_32_condsel x1 x2 x3 x4)
 
 csel_64_condsel :: Insn
 csel_64_condsel = CSEL CSEL_64_condsel
 
-csinc_32_condsel :: Insn
-csinc_32_condsel = CSINC CSINC_32_condsel
+csinc_32_condsel :: Wn -> Wn -> Wn -> Cond -> Insn
+csinc_32_condsel x1 x2 x3 x4 = CSINC (CSINC_32_condsel x1 x2 x3 x4)
 
 csinc_64_condsel :: Insn
 csinc_64_condsel = CSINC CSINC_64_condsel
 
-csinv_32_condsel :: Insn
-csinv_32_condsel = CSINV CSINV_32_condsel
+csinv_32_condsel :: Wn -> Wn -> Wn -> Cond -> Insn
+csinv_32_condsel x1 x2 x3 x4 = CSINV (CSINV_32_condsel x1 x2 x3 x4)
 
 csinv_64_condsel :: Insn
 csinv_64_condsel = CSINV CSINV_64_condsel
 
-csneg_32_condsel :: Insn
-csneg_32_condsel = CSNEG CSNEG_32_condsel
+csneg_32_condsel :: Wn -> Wn -> Wn -> Cond -> Insn
+csneg_32_condsel x1 x2 x3 x4 = CSNEG (CSNEG_32_condsel x1 x2 x3 x4)
 
 csneg_64_condsel :: Insn
 csneg_64_condsel = CSNEG CSNEG_64_condsel
@@ -3779,8 +3786,8 @@ dup_asimdins_dv_v = DUP DUP_asimdins_DV_v
 dup_asimdins_dr_r :: Insn
 dup_asimdins_dr_r = DUP DUP_asimdins_DR_r
 
-eon_32_log_shift :: Insn
-eon_32_log_shift = EON EON_32_log_shift
+eon_32_log_shift :: Wn -> Wn -> Wn -> Shift32 -> Insn
+eon_32_log_shift x1 x2 x3 x4 = EON (EON_32_log_shift x1 x2 x3 x4)
 
 eon_64_log_shift :: Insn
 eon_64_log_shift = EON EON_64_log_shift
@@ -3791,8 +3798,8 @@ eor_32_log_imm = EOR EOR_32_log_imm
 eor_64_log_imm :: Insn
 eor_64_log_imm = EOR EOR_64_log_imm
 
-eor_32_log_shift :: Insn
-eor_32_log_shift = EOR EOR_32_log_shift
+eor_32_log_shift :: Wn -> Wn -> Wn -> Shift32 -> Insn
+eor_32_log_shift x1 x2 x3 x4 = EOR (EOR_32_log_shift x1 x2 x3 x4)
 
 eor_64_log_shift :: Insn
 eor_64_log_shift = EOR EOR_64_log_shift
@@ -4151,8 +4158,8 @@ fcvtau_asimdmiscfp16_r = FCVTAU FCVTAU_asimdmiscfp16_R
 fcvtau_asimdmisc_r :: Insn
 fcvtau_asimdmisc_r = FCVTAU FCVTAU_asimdmisc_R
 
-fcvtl_asimdmisc_l :: Half -> Insn
-fcvtl_asimdmisc_l x1 = FCVTL (FCVTL_asimdmisc_L x1)
+fcvtl_asimdmisc_l :: Insn
+fcvtl_asimdmisc_l = FCVTL FCVTL_asimdmisc_L
 
 fcvtms_32h_float2int :: Insn
 fcvtms_32h_float2int = FCVTMS FCVTMS_32H_float2int
@@ -4214,8 +4221,8 @@ fcvtmu_asimdmiscfp16_r = FCVTMU FCVTMU_asimdmiscfp16_R
 fcvtmu_asimdmisc_r :: Insn
 fcvtmu_asimdmisc_r = FCVTMU FCVTMU_asimdmisc_R
 
-fcvtn_asimdmisc_n :: Half -> Insn
-fcvtn_asimdmisc_n x1 = FCVTN (FCVTN_asimdmisc_N x1)
+fcvtn_asimdmisc_n :: Insn
+fcvtn_asimdmisc_n = FCVTN FCVTN_asimdmisc_N
 
 fcvtns_32h_float2int :: Insn
 fcvtns_32h_float2int = FCVTNS FCVTNS_32H_float2int
@@ -4340,8 +4347,8 @@ fcvtpu_asimdmisc_r = FCVTPU FCVTPU_asimdmisc_R
 fcvtxn_asisdmisc_n :: Insn
 fcvtxn_asisdmisc_n = FCVTXN FCVTXN_asisdmisc_N
 
-fcvtxn_asimdmisc_n :: Half -> Insn
-fcvtxn_asimdmisc_n x1 = FCVTXN (FCVTXN_asimdmisc_N x1)
+fcvtxn_asimdmisc_n :: Insn
+fcvtxn_asimdmisc_n = FCVTXN FCVTXN_asimdmisc_N
 
 fcvtzs_32h_float2fix :: Insn
 fcvtzs_32h_float2fix = FCVTZS FCVTZS_32H_float2fix
@@ -5462,8 +5469,9 @@ ldlarh_lr32_ldstexcl = LDLARH LDLARH_LR32_ldstexcl
 ldnp_32_ldstnapair_offs :: Insn
 ldnp_32_ldstnapair_offs = LDNP LDNP_32_ldstnapair_offs
 
-ldnp_64_ldstnapair_offs :: Insn
-ldnp_64_ldstnapair_offs = LDNP LDNP_64_ldstnapair_offs
+ldnp_64_ldstnapair_offs :: Xn -> Xn -> XnSP -> I 7 -> Insn
+ldnp_64_ldstnapair_offs x1 x2 x3 x4
+  = LDNP (LDNP_64_ldstnapair_offs x1 x2 x3 x4)
 
 ldnp_s_ldstnapair_offs :: Insn
 ldnp_s_ldstnapair_offs = LDNP LDNP_S_ldstnapair_offs
@@ -5483,14 +5491,16 @@ ldp_64_ldstpair_post = LDP LDP_64_ldstpair_post
 ldp_32_ldstpair_pre :: Insn
 ldp_32_ldstpair_pre = LDP LDP_32_ldstpair_pre
 
-ldp_64_ldstpair_pre :: Insn
-ldp_64_ldstpair_pre = LDP LDP_64_ldstpair_pre
+ldp_64_ldstpair_pre :: Xn -> Xn -> XnSP -> I 7 -> Insn
+ldp_64_ldstpair_pre x1 x2 x3 x4
+  = LDP (LDP_64_ldstpair_pre x1 x2 x3 x4)
 
 ldp_32_ldstpair_off :: Insn
 ldp_32_ldstpair_off = LDP LDP_32_ldstpair_off
 
-ldp_64_ldstpair_off :: Insn
-ldp_64_ldstpair_off = LDP LDP_64_ldstpair_off
+ldp_64_ldstpair_off :: Xn -> Xn -> XnSP -> I 7 -> Insn
+ldp_64_ldstpair_off x1 x2 x3 x4
+  = LDP (LDP_64_ldstpair_off x1 x2 x3 x4)
 
 ldp_s_ldstpair_post :: Insn
 ldp_s_ldstpair_post = LDP LDP_S_ldstpair_post
@@ -5522,11 +5532,13 @@ ldp_q_ldstpair_off = LDP LDP_Q_ldstpair_off
 ldpsw_64_ldstpair_post :: Insn
 ldpsw_64_ldstpair_post = LDPSW LDPSW_64_ldstpair_post
 
-ldpsw_64_ldstpair_pre :: Insn
-ldpsw_64_ldstpair_pre = LDPSW LDPSW_64_ldstpair_pre
+ldpsw_64_ldstpair_pre :: Xn -> Xn -> XnSP -> I 7 -> Insn
+ldpsw_64_ldstpair_pre x1 x2 x3 x4
+  = LDPSW (LDPSW_64_ldstpair_pre x1 x2 x3 x4)
 
-ldpsw_64_ldstpair_off :: Insn
-ldpsw_64_ldstpair_off = LDPSW LDPSW_64_ldstpair_off
+ldpsw_64_ldstpair_off :: Xn -> Xn -> XnSP -> I 7 -> Insn
+ldpsw_64_ldstpair_off x1 x2 x3 x4
+  = LDPSW (LDPSW_64_ldstpair_off x1 x2 x3 x4)
 
 ldr_32_ldst_immpost :: Insn
 ldr_32_ldst_immpost = LDR LDR_32_ldst_immpost
@@ -5543,8 +5555,8 @@ ldr_64_ldst_immpre = LDR LDR_64_ldst_immpre
 ldr_32_ldst_pos :: Insn
 ldr_32_ldst_pos = LDR LDR_32_ldst_pos
 
-ldr_64_ldst_pos :: Insn
-ldr_64_ldst_pos = LDR LDR_64_ldst_pos
+ldr_64_ldst_pos :: Xn -> XnSP -> W 12 -> Insn
+ldr_64_ldst_pos x1 x2 x3 = LDR (LDR_64_ldst_pos x1 x2 x3)
 
 ldr_32_loadlit :: Insn
 ldr_32_loadlit = LDR LDR_32_loadlit
@@ -5684,8 +5696,8 @@ ldrsb_64_ldst_immpre = LDRSB LDRSB_64_ldst_immpre
 ldrsb_32_ldst_pos :: Insn
 ldrsb_32_ldst_pos = LDRSB LDRSB_32_ldst_pos
 
-ldrsb_64_ldst_pos :: Insn
-ldrsb_64_ldst_pos = LDRSB LDRSB_64_ldst_pos
+ldrsb_64_ldst_pos :: Xn -> XnSP -> W 12 -> Insn
+ldrsb_64_ldst_pos x1 x2 x3 = LDRSB (LDRSB_64_ldst_pos x1 x2 x3)
 
 ldrsb_32b_ldst_regoff :: Insn
 ldrsb_32b_ldst_regoff = LDRSB LDRSB_32B_ldst_regoff
@@ -5714,8 +5726,8 @@ ldrsh_64_ldst_immpre = LDRSH LDRSH_64_ldst_immpre
 ldrsh_32_ldst_pos :: Insn
 ldrsh_32_ldst_pos = LDRSH LDRSH_32_ldst_pos
 
-ldrsh_64_ldst_pos :: Insn
-ldrsh_64_ldst_pos = LDRSH LDRSH_64_ldst_pos
+ldrsh_64_ldst_pos :: Xn -> XnSP -> W 12 -> Insn
+ldrsh_64_ldst_pos x1 x2 x3 = LDRSH (LDRSH_64_ldst_pos x1 x2 x3)
 
 ldrsh_32_ldst_regoff :: Insn
 ldrsh_32_ldst_regoff = LDRSH LDRSH_32_ldst_regoff
@@ -5729,8 +5741,8 @@ ldrsw_64_ldst_immpost = LDRSW LDRSW_64_ldst_immpost
 ldrsw_64_ldst_immpre :: Insn
 ldrsw_64_ldst_immpre = LDRSW LDRSW_64_ldst_immpre
 
-ldrsw_64_ldst_pos :: Insn
-ldrsw_64_ldst_pos = LDRSW LDRSW_64_ldst_pos
+ldrsw_64_ldst_pos :: Xn -> XnSP -> W 12 -> Insn
+ldrsw_64_ldst_pos x1 x2 x3 = LDRSW (LDRSW_64_ldst_pos x1 x2 x3)
 
 ldrsw_64_loadlit :: Insn
 ldrsw_64_loadlit = LDRSW LDRSW_64_loadlit
@@ -6173,8 +6185,8 @@ nop_hi_system = NOP NOP_HI_system
 not_asimdmisc_r :: Insn
 not_asimdmisc_r = NOT NOT_asimdmisc_R
 
-orn_32_log_shift :: Insn
-orn_32_log_shift = ORN ORN_32_log_shift
+orn_32_log_shift :: Wn -> Wn -> Wn -> Shift32 -> Insn
+orn_32_log_shift x1 x2 x3 x4 = ORN (ORN_32_log_shift x1 x2 x3 x4)
 
 orn_64_log_shift :: Insn
 orn_64_log_shift = ORN ORN_64_log_shift
@@ -6188,8 +6200,8 @@ orr_32_log_imm = ORR ORR_32_log_imm
 orr_64_log_imm :: Insn
 orr_64_log_imm = ORR ORR_64_log_imm
 
-orr_32_log_shift :: Insn
-orr_32_log_shift = ORR ORR_32_log_shift
+orr_32_log_shift :: Wn -> Wn -> Wn -> Shift32 -> Insn
+orr_32_log_shift x1 x2 x3 x4 = ORR (ORR_32_log_shift x1 x2 x3 x4)
 
 orr_64_log_shift :: Insn
 orr_64_log_shift = ORR ORR_64_log_shift
@@ -6251,8 +6263,8 @@ pacizb_64z_dp_1src = PACIZB PACIZB_64Z_dp_1src
 pmul_asimdsame_only :: Insn
 pmul_asimdsame_only = PMUL PMUL_asimdsame_only
 
-pmull_asimddiff_l :: Half -> Insn
-pmull_asimddiff_l x1 = PMULL (PMULL_asimddiff_L x1)
+pmull_asimddiff_l :: Insn
+pmull_asimddiff_l = PMULL PMULL_asimddiff_L
 
 prfm_p_ldst_pos :: Insn
 prfm_p_ldst_pos = PRFM PRFM_P_ldst_pos
@@ -6269,8 +6281,8 @@ prfum_p_ldst_unscaled = PRFUM PRFUM_P_ldst_unscaled
 psb_hc_system :: Insn
 psb_hc_system = PSB PSB_HC_system
 
-raddhn_asimddiff_n :: Half -> Insn
-raddhn_asimddiff_n x1 = RADDHN (RADDHN_asimddiff_N x1)
+raddhn_asimddiff_n :: Insn
+raddhn_asimddiff_n = RADDHN RADDHN_asimddiff_N
 
 rax1_vvv2_cryptosha512_3 :: Insn
 rax1_vvv2_cryptosha512_3 = RAX1 RAX1_VVV2_cryptosha512_3
@@ -6323,29 +6335,29 @@ rorv_32_dp_2src = RORV RORV_32_dp_2src
 rorv_64_dp_2src :: Insn
 rorv_64_dp_2src = RORV RORV_64_dp_2src
 
-rshrn_asimdshf_n :: Half -> Insn
-rshrn_asimdshf_n x1 = RSHRN (RSHRN_asimdshf_N x1)
+rshrn_asimdshf_n :: Insn
+rshrn_asimdshf_n = RSHRN RSHRN_asimdshf_N
 
-rsubhn_asimddiff_n :: Half -> Insn
-rsubhn_asimddiff_n x1 = RSUBHN (RSUBHN_asimddiff_N x1)
+rsubhn_asimddiff_n :: Insn
+rsubhn_asimddiff_n = RSUBHN RSUBHN_asimddiff_N
 
 saba_asimdsame_only :: Insn
 saba_asimdsame_only = SABA SABA_asimdsame_only
 
-sabal_asimddiff_l :: Half -> Insn
-sabal_asimddiff_l x1 = SABAL (SABAL_asimddiff_L x1)
+sabal_asimddiff_l :: Insn
+sabal_asimddiff_l = SABAL SABAL_asimddiff_L
 
 sabd_asimdsame_only :: Insn
 sabd_asimdsame_only = SABD SABD_asimdsame_only
 
-sabdl_asimddiff_l :: Half -> Insn
-sabdl_asimddiff_l x1 = SABDL (SABDL_asimddiff_L x1)
+sabdl_asimddiff_l :: Insn
+sabdl_asimddiff_l = SABDL SABDL_asimddiff_L
 
 sadalp_asimdmisc_p :: Insn
 sadalp_asimdmisc_p = SADALP SADALP_asimdmisc_P
 
-saddl_asimddiff_l :: Half -> Insn
-saddl_asimddiff_l x1 = SADDL (SADDL_asimddiff_L x1)
+saddl_asimddiff_l :: Insn
+saddl_asimddiff_l = SADDL SADDL_asimddiff_L
 
 saddlp_asimdmisc_p :: Insn
 saddlp_asimdmisc_p = SADDLP SADDLP_asimdmisc_P
@@ -6353,8 +6365,8 @@ saddlp_asimdmisc_p = SADDLP SADDLP_asimdmisc_P
 saddlv_asimdall_only :: Insn
 saddlv_asimdall_only = SADDLV SADDLV_asimdall_only
 
-saddw_asimddiff_w :: Half -> Insn
-saddw_asimddiff_w x1 = SADDW (SADDW_asimddiff_W x1)
+saddw_asimddiff_w :: Insn
+saddw_asimddiff_w = SADDW SADDW_asimddiff_W
 
 sbc_32_addsub_carry :: Insn
 sbc_32_addsub_carry = SBC SBC_32_addsub_carry
@@ -6499,11 +6511,11 @@ shl_asisdshf_r = SHL SHL_asisdshf_R
 shl_asimdshf_r :: Insn
 shl_asimdshf_r = SHL SHL_asimdshf_R
 
-shll_asimdmisc_s :: Half -> Insn
-shll_asimdmisc_s x1 = SHLL (SHLL_asimdmisc_S x1)
+shll_asimdmisc_s :: Insn
+shll_asimdmisc_s = SHLL SHLL_asimdmisc_S
 
-shrn_asimdshf_n :: Half -> Insn
-shrn_asimdshf_n x1 = SHRN (SHRN_asimdshf_N x1)
+shrn_asimdshf_n :: Insn
+shrn_asimdshf_n = SHRN SHRN_asimdshf_N
 
 shsub_asimdsame_only :: Insn
 shsub_asimdsame_only = SHSUB SHSUB_asimdsame_only
@@ -6567,17 +6579,17 @@ sminp_asimdsame_only = SMINP SMINP_asimdsame_only
 sminv_asimdall_only :: Insn
 sminv_asimdall_only = SMINV SMINV_asimdall_only
 
-smlal_asimdelem_l :: Half -> Insn
-smlal_asimdelem_l x1 = SMLAL (SMLAL_asimdelem_L x1)
+smlal_asimdelem_l :: Insn
+smlal_asimdelem_l = SMLAL SMLAL_asimdelem_L
 
-smlal_asimddiff_l :: Half -> Insn
-smlal_asimddiff_l x1 = SMLAL (SMLAL_asimddiff_L x1)
+smlal_asimddiff_l :: Insn
+smlal_asimddiff_l = SMLAL SMLAL_asimddiff_L
 
-smlsl_asimdelem_l :: Half -> Insn
-smlsl_asimdelem_l x1 = SMLSL (SMLSL_asimdelem_L x1)
+smlsl_asimdelem_l :: Insn
+smlsl_asimdelem_l = SMLSL SMLSL_asimdelem_L
 
-smlsl_asimddiff_l :: Half -> Insn
-smlsl_asimddiff_l x1 = SMLSL (SMLSL_asimddiff_L x1)
+smlsl_asimddiff_l :: Insn
+smlsl_asimddiff_l = SMLSL SMLSL_asimddiff_L
 
 smov_asimdins_w_w :: Insn
 smov_asimdins_w_w = SMOV SMOV_asimdins_W_w
@@ -6591,11 +6603,11 @@ smsubl_64wa_dp_3src = SMSUBL SMSUBL_64WA_dp_3src
 smulh_64_dp_3src :: Insn
 smulh_64_dp_3src = SMULH SMULH_64_dp_3src
 
-smull_asimdelem_l :: Half -> Insn
-smull_asimdelem_l x1 = SMULL (SMULL_asimdelem_L x1)
+smull_asimdelem_l :: Insn
+smull_asimdelem_l = SMULL SMULL_asimdelem_L
 
-smull_asimddiff_l :: Half -> Insn
-smull_asimddiff_l x1 = SMULL (SMULL_asimddiff_L x1)
+smull_asimddiff_l :: Insn
+smull_asimddiff_l = SMULL SMULL_asimddiff_L
 
 sqabs_asisdmisc_r :: Insn
 sqabs_asisdmisc_r = SQABS SQABS_asisdmisc_R
@@ -6612,26 +6624,26 @@ sqadd_asimdsame_only = SQADD SQADD_asimdsame_only
 sqdmlal_asisdelem_l :: Insn
 sqdmlal_asisdelem_l = SQDMLAL SQDMLAL_asisdelem_L
 
-sqdmlal_asimdelem_l :: Half -> Insn
-sqdmlal_asimdelem_l x1 = SQDMLAL (SQDMLAL_asimdelem_L x1)
+sqdmlal_asimdelem_l :: Insn
+sqdmlal_asimdelem_l = SQDMLAL SQDMLAL_asimdelem_L
 
 sqdmlal_asisddiff_only :: Insn
 sqdmlal_asisddiff_only = SQDMLAL SQDMLAL_asisddiff_only
 
-sqdmlal_asimddiff_l :: Half -> Insn
-sqdmlal_asimddiff_l x1 = SQDMLAL (SQDMLAL_asimddiff_L x1)
+sqdmlal_asimddiff_l :: Insn
+sqdmlal_asimddiff_l = SQDMLAL SQDMLAL_asimddiff_L
 
 sqdmlsl_asisdelem_l :: Insn
 sqdmlsl_asisdelem_l = SQDMLSL SQDMLSL_asisdelem_L
 
-sqdmlsl_asimdelem_l :: Half -> Insn
-sqdmlsl_asimdelem_l x1 = SQDMLSL (SQDMLSL_asimdelem_L x1)
+sqdmlsl_asimdelem_l :: Insn
+sqdmlsl_asimdelem_l = SQDMLSL SQDMLSL_asimdelem_L
 
 sqdmlsl_asisddiff_only :: Insn
 sqdmlsl_asisddiff_only = SQDMLSL SQDMLSL_asisddiff_only
 
-sqdmlsl_asimddiff_l :: Half -> Insn
-sqdmlsl_asimddiff_l x1 = SQDMLSL (SQDMLSL_asimddiff_L x1)
+sqdmlsl_asimddiff_l :: Insn
+sqdmlsl_asimddiff_l = SQDMLSL SQDMLSL_asimddiff_L
 
 sqdmulh_asisdelem_r :: Insn
 sqdmulh_asisdelem_r = SQDMULH SQDMULH_asisdelem_R
@@ -6648,14 +6660,14 @@ sqdmulh_asimdsame_only = SQDMULH SQDMULH_asimdsame_only
 sqdmull_asisdelem_l :: Insn
 sqdmull_asisdelem_l = SQDMULL SQDMULL_asisdelem_L
 
-sqdmull_asimdelem_l :: Half -> Insn
-sqdmull_asimdelem_l x1 = SQDMULL (SQDMULL_asimdelem_L x1)
+sqdmull_asimdelem_l :: Insn
+sqdmull_asimdelem_l = SQDMULL SQDMULL_asimdelem_L
 
 sqdmull_asisddiff_only :: Insn
 sqdmull_asisddiff_only = SQDMULL SQDMULL_asisddiff_only
 
-sqdmull_asimddiff_l :: Half -> Insn
-sqdmull_asimddiff_l x1 = SQDMULL (SQDMULL_asimddiff_L x1)
+sqdmull_asimddiff_l :: Insn
+sqdmull_asimddiff_l = SQDMULL SQDMULL_asimddiff_L
 
 sqneg_asisdmisc_r :: Insn
 sqneg_asisdmisc_r = SQNEG SQNEG_asisdmisc_R
@@ -6708,14 +6720,14 @@ sqrshl_asimdsame_only = SQRSHL SQRSHL_asimdsame_only
 sqrshrn_asisdshf_n :: Insn
 sqrshrn_asisdshf_n = SQRSHRN SQRSHRN_asisdshf_N
 
-sqrshrn_asimdshf_n :: Half -> Insn
-sqrshrn_asimdshf_n x1 = SQRSHRN (SQRSHRN_asimdshf_N x1)
+sqrshrn_asimdshf_n :: Insn
+sqrshrn_asimdshf_n = SQRSHRN SQRSHRN_asimdshf_N
 
 sqrshrun_asisdshf_n :: Insn
 sqrshrun_asisdshf_n = SQRSHRUN SQRSHRUN_asisdshf_N
 
-sqrshrun_asimdshf_n :: Half -> Insn
-sqrshrun_asimdshf_n x1 = SQRSHRUN (SQRSHRUN_asimdshf_N x1)
+sqrshrun_asimdshf_n :: Insn
+sqrshrun_asimdshf_n = SQRSHRUN SQRSHRUN_asimdshf_N
 
 sqshl_asisdshf_r :: Insn
 sqshl_asisdshf_r = SQSHL SQSHL_asisdshf_R
@@ -6738,14 +6750,14 @@ sqshlu_asimdshf_r = SQSHLU SQSHLU_asimdshf_R
 sqshrn_asisdshf_n :: Insn
 sqshrn_asisdshf_n = SQSHRN SQSHRN_asisdshf_N
 
-sqshrn_asimdshf_n :: Half -> Insn
-sqshrn_asimdshf_n x1 = SQSHRN (SQSHRN_asimdshf_N x1)
+sqshrn_asimdshf_n :: Insn
+sqshrn_asimdshf_n = SQSHRN SQSHRN_asimdshf_N
 
 sqshrun_asisdshf_n :: Insn
 sqshrun_asisdshf_n = SQSHRUN SQSHRUN_asisdshf_N
 
-sqshrun_asimdshf_n :: Half -> Insn
-sqshrun_asimdshf_n x1 = SQSHRUN (SQSHRUN_asimdshf_N x1)
+sqshrun_asimdshf_n :: Insn
+sqshrun_asimdshf_n = SQSHRUN SQSHRUN_asimdshf_N
 
 sqsub_asisdsame_only :: Insn
 sqsub_asisdsame_only = SQSUB SQSUB_asisdsame_only
@@ -6756,14 +6768,14 @@ sqsub_asimdsame_only = SQSUB SQSUB_asimdsame_only
 sqxtn_asisdmisc_n :: Insn
 sqxtn_asisdmisc_n = SQXTN SQXTN_asisdmisc_N
 
-sqxtn_asimdmisc_n :: Half -> Insn
-sqxtn_asimdmisc_n x1 = SQXTN (SQXTN_asimdmisc_N x1)
+sqxtn_asimdmisc_n :: Insn
+sqxtn_asimdmisc_n = SQXTN SQXTN_asimdmisc_N
 
 sqxtun_asisdmisc_n :: Insn
 sqxtun_asisdmisc_n = SQXTUN SQXTUN_asisdmisc_N
 
-sqxtun_asimdmisc_n :: Half -> Insn
-sqxtun_asimdmisc_n x1 = SQXTUN (SQXTUN_asimdmisc_N x1)
+sqxtun_asimdmisc_n :: Insn
+sqxtun_asimdmisc_n = SQXTUN SQXTUN_asimdmisc_N
 
 srhadd_asimdsame_only :: Insn
 srhadd_asimdsame_only = SRHADD SRHADD_asimdsame_only
@@ -6798,8 +6810,8 @@ sshl_asisdsame_only = SSHL SSHL_asisdsame_only
 sshl_asimdsame_only :: Insn
 sshl_asimdsame_only = SSHL SSHL_asimdsame_only
 
-sshll_asimdshf_l :: Half -> Insn
-sshll_asimdshf_l x1 = SSHLL (SSHLL_asimdshf_L x1)
+sshll_asimdshf_l :: Insn
+sshll_asimdshf_l = SSHLL SSHLL_asimdshf_L
 
 sshr_asisdshf_r :: Insn
 sshr_asisdshf_r = SSHR SSHR_asisdshf_R
@@ -6813,11 +6825,11 @@ ssra_asisdshf_r = SSRA SSRA_asisdshf_R
 ssra_asimdshf_r :: Insn
 ssra_asimdshf_r = SSRA SSRA_asimdshf_R
 
-ssubl_asimddiff_l :: Half -> Insn
-ssubl_asimddiff_l x1 = SSUBL (SSUBL_asimddiff_L x1)
+ssubl_asimddiff_l :: Insn
+ssubl_asimddiff_l = SSUBL SSUBL_asimddiff_L
 
-ssubw_asimddiff_w :: Half -> Insn
-ssubw_asimddiff_w x1 = SSUBW (SSUBW_asimddiff_W x1)
+ssubw_asimddiff_w :: Insn
+ssubw_asimddiff_w = SSUBW SSUBW_asimddiff_W
 
 st1_asisdlse_r1_1v :: Insn
 st1_asisdlse_r1_1v = ST1 ST1_asisdlse_R1_1v
@@ -7071,8 +7083,9 @@ stlxrh_sr32_ldstexcl = STLXRH STLXRH_SR32_ldstexcl
 stnp_32_ldstnapair_offs :: Insn
 stnp_32_ldstnapair_offs = STNP STNP_32_ldstnapair_offs
 
-stnp_64_ldstnapair_offs :: Insn
-stnp_64_ldstnapair_offs = STNP STNP_64_ldstnapair_offs
+stnp_64_ldstnapair_offs :: Xn -> Xn -> XnSP -> I 7 -> Insn
+stnp_64_ldstnapair_offs x1 x2 x3 x4
+  = STNP (STNP_64_ldstnapair_offs x1 x2 x3 x4)
 
 stnp_s_ldstnapair_offs :: Insn
 stnp_s_ldstnapair_offs = STNP STNP_S_ldstnapair_offs
@@ -7092,14 +7105,16 @@ stp_64_ldstpair_post = STP STP_64_ldstpair_post
 stp_32_ldstpair_pre :: Insn
 stp_32_ldstpair_pre = STP STP_32_ldstpair_pre
 
-stp_64_ldstpair_pre :: Insn
-stp_64_ldstpair_pre = STP STP_64_ldstpair_pre
+stp_64_ldstpair_pre :: Xn -> Xn -> XnSP -> I 7 -> Insn
+stp_64_ldstpair_pre x1 x2 x3 x4
+  = STP (STP_64_ldstpair_pre x1 x2 x3 x4)
 
 stp_32_ldstpair_off :: Insn
 stp_32_ldstpair_off = STP STP_32_ldstpair_off
 
-stp_64_ldstpair_off :: Insn
-stp_64_ldstpair_off = STP STP_64_ldstpair_off
+stp_64_ldstpair_off :: Xn -> Xn -> XnSP -> I 7 -> Insn
+stp_64_ldstpair_off x1 x2 x3 x4
+  = STP (STP_64_ldstpair_off x1 x2 x3 x4)
 
 stp_s_ldstpair_post :: Insn
 stp_s_ldstpair_post = STP STP_S_ldstpair_post
@@ -7143,8 +7158,8 @@ str_64_ldst_immpre = STR STR_64_ldst_immpre
 str_32_ldst_pos :: Insn
 str_32_ldst_pos = STR STR_32_ldst_pos
 
-str_64_ldst_pos :: Insn
-str_64_ldst_pos = STR STR_64_ldst_pos
+str_64_ldst_pos :: Xn -> XnSP -> W 12 -> Insn
+str_64_ldst_pos x1 x2 x3 = STR (STR_64_ldst_pos x1 x2 x3)
 
 str_32_ldst_regoff :: Insn
 str_32_ldst_regoff = STR STR_32_ldst_regoff
@@ -7308,11 +7323,12 @@ sub_64_addsub_ext = SUB SUB_64_addsub_ext
 sub_32_addsub_imm :: Insn
 sub_32_addsub_imm = SUB SUB_32_addsub_imm
 
-sub_64_addsub_imm :: Insn
-sub_64_addsub_imm = SUB SUB_64_addsub_imm
+sub_64_addsub_imm :: XnSP -> XnSP -> W 12 -> LSL_12 -> Insn
+sub_64_addsub_imm x1 x2 x3 x4 = SUB (SUB_64_addsub_imm x1 x2 x3 x4)
 
-sub_32_addsub_shift :: Insn
-sub_32_addsub_shift = SUB SUB_32_addsub_shift
+sub_32_addsub_shift :: Wn -> Wn -> Wn -> Shift32 -> Insn
+sub_32_addsub_shift x1 x2 x3 x4
+  = SUB (SUB_32_addsub_shift x1 x2 x3 x4)
 
 sub_64_addsub_shift :: Insn
 sub_64_addsub_shift = SUB SUB_64_addsub_shift
@@ -7323,8 +7339,8 @@ sub_asisdsame_only = SUB SUB_asisdsame_only
 sub_asimdsame_only :: Insn
 sub_asimdsame_only = SUB SUB_asimdsame_only
 
-subhn_asimddiff_n :: Half -> Insn
-subhn_asimddiff_n x1 = SUBHN (SUBHN_asimddiff_N x1)
+subhn_asimddiff_n :: Insn
+subhn_asimddiff_n = SUBHN SUBHN_asimddiff_N
 
 subs_32s_addsub_ext :: Insn
 subs_32s_addsub_ext = SUBS SUBS_32S_addsub_ext
@@ -7332,14 +7348,17 @@ subs_32s_addsub_ext = SUBS SUBS_32S_addsub_ext
 subs_64s_addsub_ext :: Insn
 subs_64s_addsub_ext = SUBS SUBS_64S_addsub_ext
 
-subs_32s_addsub_imm :: Insn
-subs_32s_addsub_imm = SUBS SUBS_32S_addsub_imm
+subs_32s_addsub_imm :: Wn -> WnSP -> W 12 -> LSL_12 -> Insn
+subs_32s_addsub_imm x1 x2 x3 x4
+  = SUBS (SUBS_32S_addsub_imm x1 x2 x3 x4)
 
-subs_64s_addsub_imm :: Insn
-subs_64s_addsub_imm = SUBS SUBS_64S_addsub_imm
+subs_64s_addsub_imm :: Xn -> XnSP -> W 12 -> LSL_12 -> Insn
+subs_64s_addsub_imm x1 x2 x3 x4
+  = SUBS (SUBS_64S_addsub_imm x1 x2 x3 x4)
 
-subs_32_addsub_shift :: Insn
-subs_32_addsub_shift = SUBS SUBS_32_addsub_shift
+subs_32_addsub_shift :: Wn -> Wn -> Wn -> Shift32 -> Insn
+subs_32_addsub_shift x1 x2 x3 x4
+  = SUBS (SUBS_32_addsub_shift x1 x2 x3 x4)
 
 subs_64_addsub_shift :: Insn
 subs_64_addsub_shift = SUBS SUBS_64_addsub_shift
@@ -7446,20 +7465,20 @@ trn2_asimdperm_only = TRN2 TRN2_asimdperm_only
 uaba_asimdsame_only :: Insn
 uaba_asimdsame_only = UABA UABA_asimdsame_only
 
-uabal_asimddiff_l :: Half -> Insn
-uabal_asimddiff_l x1 = UABAL (UABAL_asimddiff_L x1)
+uabal_asimddiff_l :: Insn
+uabal_asimddiff_l = UABAL UABAL_asimddiff_L
 
 uabd_asimdsame_only :: Insn
 uabd_asimdsame_only = UABD UABD_asimdsame_only
 
-uabdl_asimddiff_l :: Half -> Insn
-uabdl_asimddiff_l x1 = UABDL (UABDL_asimddiff_L x1)
+uabdl_asimddiff_l :: Insn
+uabdl_asimddiff_l = UABDL UABDL_asimddiff_L
 
 uadalp_asimdmisc_p :: Insn
 uadalp_asimdmisc_p = UADALP UADALP_asimdmisc_P
 
-uaddl_asimddiff_l :: Half -> Insn
-uaddl_asimddiff_l x1 = UADDL (UADDL_asimddiff_L x1)
+uaddl_asimddiff_l :: Insn
+uaddl_asimddiff_l = UADDL UADDL_asimddiff_L
 
 uaddlp_asimdmisc_p :: Insn
 uaddlp_asimdmisc_p = UADDLP UADDLP_asimdmisc_P
@@ -7467,8 +7486,8 @@ uaddlp_asimdmisc_p = UADDLP UADDLP_asimdmisc_P
 uaddlv_asimdall_only :: Insn
 uaddlv_asimdall_only = UADDLV UADDLV_asimdall_only
 
-uaddw_asimddiff_w :: Half -> Insn
-uaddw_asimddiff_w x1 = UADDW (UADDW_asimddiff_W x1)
+uaddw_asimddiff_w :: Insn
+uaddw_asimddiff_w = UADDW UADDW_asimddiff_W
 
 ubfm_32m_bitfield :: Insn
 ubfm_32m_bitfield = UBFM UBFM_32M_bitfield
@@ -7569,17 +7588,17 @@ uminp_asimdsame_only = UMINP UMINP_asimdsame_only
 uminv_asimdall_only :: Insn
 uminv_asimdall_only = UMINV UMINV_asimdall_only
 
-umlal_asimdelem_l :: Half -> Insn
-umlal_asimdelem_l x1 = UMLAL (UMLAL_asimdelem_L x1)
+umlal_asimdelem_l :: Insn
+umlal_asimdelem_l = UMLAL UMLAL_asimdelem_L
 
-umlal_asimddiff_l :: Half -> Insn
-umlal_asimddiff_l x1 = UMLAL (UMLAL_asimddiff_L x1)
+umlal_asimddiff_l :: Insn
+umlal_asimddiff_l = UMLAL UMLAL_asimddiff_L
 
-umlsl_asimdelem_l :: Half -> Insn
-umlsl_asimdelem_l x1 = UMLSL (UMLSL_asimdelem_L x1)
+umlsl_asimdelem_l :: Insn
+umlsl_asimdelem_l = UMLSL UMLSL_asimdelem_L
 
-umlsl_asimddiff_l :: Half -> Insn
-umlsl_asimddiff_l x1 = UMLSL (UMLSL_asimddiff_L x1)
+umlsl_asimddiff_l :: Insn
+umlsl_asimddiff_l = UMLSL UMLSL_asimddiff_L
 
 umov_asimdins_w_w :: Insn
 umov_asimdins_w_w = UMOV UMOV_asimdins_W_w
@@ -7593,11 +7612,11 @@ umsubl_64wa_dp_3src = UMSUBL UMSUBL_64WA_dp_3src
 umulh_64_dp_3src :: Insn
 umulh_64_dp_3src = UMULH UMULH_64_dp_3src
 
-umull_asimdelem_l :: Half -> Insn
-umull_asimdelem_l x1 = UMULL (UMULL_asimdelem_L x1)
+umull_asimdelem_l :: Insn
+umull_asimdelem_l = UMULL UMULL_asimdelem_L
 
-umull_asimddiff_l :: Half -> Insn
-umull_asimddiff_l x1 = UMULL (UMULL_asimddiff_L x1)
+umull_asimddiff_l :: Insn
+umull_asimddiff_l = UMULL UMULL_asimddiff_L
 
 uqadd_asisdsame_only :: Insn
 uqadd_asisdsame_only = UQADD UQADD_asisdsame_only
@@ -7614,8 +7633,8 @@ uqrshl_asimdsame_only = UQRSHL UQRSHL_asimdsame_only
 uqrshrn_asisdshf_n :: Insn
 uqrshrn_asisdshf_n = UQRSHRN UQRSHRN_asisdshf_N
 
-uqrshrn_asimdshf_n :: Half -> Insn
-uqrshrn_asimdshf_n x1 = UQRSHRN (UQRSHRN_asimdshf_N x1)
+uqrshrn_asimdshf_n :: Insn
+uqrshrn_asimdshf_n = UQRSHRN UQRSHRN_asimdshf_N
 
 uqshl_asisdshf_r :: Insn
 uqshl_asisdshf_r = UQSHL UQSHL_asisdshf_R
@@ -7632,8 +7651,8 @@ uqshl_asimdsame_only = UQSHL UQSHL_asimdsame_only
 uqshrn_asisdshf_n :: Insn
 uqshrn_asisdshf_n = UQSHRN UQSHRN_asisdshf_N
 
-uqshrn_asimdshf_n :: Half -> Insn
-uqshrn_asimdshf_n x1 = UQSHRN (UQSHRN_asimdshf_N x1)
+uqshrn_asimdshf_n :: Insn
+uqshrn_asimdshf_n = UQSHRN UQSHRN_asimdshf_N
 
 uqsub_asisdsame_only :: Insn
 uqsub_asisdsame_only = UQSUB UQSUB_asisdsame_only
@@ -7644,8 +7663,8 @@ uqsub_asimdsame_only = UQSUB UQSUB_asimdsame_only
 uqxtn_asisdmisc_n :: Insn
 uqxtn_asisdmisc_n = UQXTN UQXTN_asisdmisc_N
 
-uqxtn_asimdmisc_n :: Half -> Insn
-uqxtn_asimdmisc_n x1 = UQXTN (UQXTN_asimdmisc_N x1)
+uqxtn_asimdmisc_n :: Insn
+uqxtn_asimdmisc_n = UQXTN UQXTN_asimdmisc_N
 
 urecpe_asimdmisc_r :: Insn
 urecpe_asimdmisc_r = URECPE URECPE_asimdmisc_R
@@ -7680,8 +7699,8 @@ ushl_asisdsame_only = USHL USHL_asisdsame_only
 ushl_asimdsame_only :: Insn
 ushl_asimdsame_only = USHL USHL_asimdsame_only
 
-ushll_asimdshf_l :: Half -> Insn
-ushll_asimdshf_l x1 = USHLL (USHLL_asimdshf_L x1)
+ushll_asimdshf_l :: Insn
+ushll_asimdshf_l = USHLL USHLL_asimdshf_L
 
 ushr_asisdshf_r :: Insn
 ushr_asisdshf_r = USHR USHR_asisdshf_R
@@ -7701,11 +7720,11 @@ usra_asisdshf_r = USRA USRA_asisdshf_R
 usra_asimdshf_r :: Insn
 usra_asimdshf_r = USRA USRA_asimdshf_R
 
-usubl_asimddiff_l :: Half -> Insn
-usubl_asimddiff_l x1 = USUBL (USUBL_asimddiff_L x1)
+usubl_asimddiff_l :: Insn
+usubl_asimddiff_l = USUBL USUBL_asimddiff_L
 
-usubw_asimddiff_w :: Half -> Insn
-usubw_asimddiff_w x1 = USUBW (USUBW_asimddiff_W x1)
+usubw_asimddiff_w :: Insn
+usubw_asimddiff_w = USUBW USUBW_asimddiff_W
 
 uzp1_asimdperm_only :: Insn
 uzp1_asimdperm_only = UZP1 UZP1_asimdperm_only
@@ -7731,8 +7750,8 @@ xpaci_64z_dp_1src = XPACI XPACI_64Z_dp_1src
 xpaclri_hi_system :: Insn
 xpaclri_hi_system = XPACLRI XPACLRI_HI_system
 
-xtn_asimdmisc_n :: Half -> Insn
-xtn_asimdmisc_n x1 = XTN (XTN_asimdmisc_N x1)
+xtn_asimdmisc_n :: Insn
+xtn_asimdmisc_n = XTN XTN_asimdmisc_N
 
 yield_hi_system :: Insn
 yield_hi_system = YIELD YIELD_HI_system
@@ -7742,3 +7761,1506 @@ zip1_asimdperm_only = ZIP1 ZIP1_asimdperm_only
 
 zip2_asimdperm_only :: Insn
 zip2_asimdperm_only = ZIP2 ZIP2_asimdperm_only
+
+encodingId :: Insn -> String
+encodingId insn
+  = case insn of
+        ADC ADC_32_addsub_carry -> "ADC_32_addsub_carry"
+        ADC ADC_64_addsub_carry -> "ADC_64_addsub_carry"
+        ADCS ADCS_32_addsub_carry -> "ADCS_32_addsub_carry"
+        ADCS ADCS_64_addsub_carry -> "ADCS_64_addsub_carry"
+        ADD ADD_32_addsub_ext -> "ADD_32_addsub_ext"
+        ADD ADD_64_addsub_ext -> "ADD_64_addsub_ext"
+        ADD ADD_32_addsub_imm -> "ADD_32_addsub_imm"
+        ADD (ADD_64_addsub_imm _ _ _ _) -> "ADD_64_addsub_imm"
+        ADD (ADD_32_addsub_shift _ _ _ _) -> "ADD_32_addsub_shift"
+        ADD ADD_64_addsub_shift -> "ADD_64_addsub_shift"
+        ADDS ADDS_32S_addsub_ext -> "ADDS_32S_addsub_ext"
+        ADDS ADDS_64S_addsub_ext -> "ADDS_64S_addsub_ext"
+        ADDS (ADDS_32S_addsub_imm _ _ _ _) -> "ADDS_32S_addsub_imm"
+        ADDS (ADDS_64S_addsub_imm _ _ _ _) -> "ADDS_64S_addsub_imm"
+        ADDS (ADDS_32_addsub_shift _ _ _ _) -> "ADDS_32_addsub_shift"
+        ADDS ADDS_64_addsub_shift -> "ADDS_64_addsub_shift"
+        ADR (ADR_only_pcreladdr _ _) -> "ADR_only_pcreladdr"
+        ADRP (ADRP_only_pcreladdr _ _) -> "ADRP_only_pcreladdr"
+        AND AND_32_log_imm -> "AND_32_log_imm"
+        AND AND_64_log_imm -> "AND_64_log_imm"
+        AND (AND_32_log_shift _ _ _ _) -> "AND_32_log_shift"
+        AND AND_64_log_shift -> "AND_64_log_shift"
+        ANDS ANDS_32S_log_imm -> "ANDS_32S_log_imm"
+        ANDS ANDS_64S_log_imm -> "ANDS_64S_log_imm"
+        ANDS (ANDS_32_log_shift _ _ _ _) -> "ANDS_32_log_shift"
+        ANDS ANDS_64_log_shift -> "ANDS_64_log_shift"
+        ASRV ASRV_32_dp_2src -> "ASRV_32_dp_2src"
+        ASRV ASRV_64_dp_2src -> "ASRV_64_dp_2src"
+        AUTDA AUTDA_64P_dp_1src -> "AUTDA_64P_dp_1src"
+        AUTDZA AUTDZA_64Z_dp_1src -> "AUTDZA_64Z_dp_1src"
+        AUTDB AUTDB_64P_dp_1src -> "AUTDB_64P_dp_1src"
+        AUTDZB AUTDZB_64Z_dp_1src -> "AUTDZB_64Z_dp_1src"
+        AUTIA AUTIA_64P_dp_1src -> "AUTIA_64P_dp_1src"
+        AUTIZA AUTIZA_64Z_dp_1src -> "AUTIZA_64Z_dp_1src"
+        AUTIA1716 AUTIA1716_HI_system -> "AUTIA1716_HI_system"
+        AUTIASP AUTIASP_HI_system -> "AUTIASP_HI_system"
+        AUTIAZ AUTIAZ_HI_system -> "AUTIAZ_HI_system"
+        AUTIB AUTIB_64P_dp_1src -> "AUTIB_64P_dp_1src"
+        AUTIZB AUTIZB_64Z_dp_1src -> "AUTIZB_64Z_dp_1src"
+        AUTIB1716 AUTIB1716_HI_system -> "AUTIB1716_HI_system"
+        AUTIBSP AUTIBSP_HI_system -> "AUTIBSP_HI_system"
+        AUTIBZ AUTIBZ_HI_system -> "AUTIBZ_HI_system"
+        B B_only_branch_imm -> "B_only_branch_imm"
+        B B_only_condbranch -> "B_only_condbranch"
+        BFM BFM_32M_bitfield -> "BFM_32M_bitfield"
+        BFM BFM_64M_bitfield -> "BFM_64M_bitfield"
+        BIC (BIC_32_log_shift _ _ _ _) -> "BIC_32_log_shift"
+        BIC BIC_64_log_shift -> "BIC_64_log_shift"
+        BICS (BICS_32_log_shift _ _ _ _) -> "BICS_32_log_shift"
+        BICS BICS_64_log_shift -> "BICS_64_log_shift"
+        BL BL_only_branch_imm -> "BL_only_branch_imm"
+        BLR BLR_64_branch_reg -> "BLR_64_branch_reg"
+        BLRAAZ BLRAAZ_64_branch_reg -> "BLRAAZ_64_branch_reg"
+        BLRAA BLRAA_64P_branch_reg -> "BLRAA_64P_branch_reg"
+        BLRABZ BLRABZ_64_branch_reg -> "BLRABZ_64_branch_reg"
+        BLRAB BLRAB_64P_branch_reg -> "BLRAB_64P_branch_reg"
+        BR BR_64_branch_reg -> "BR_64_branch_reg"
+        BRAAZ BRAAZ_64_branch_reg -> "BRAAZ_64_branch_reg"
+        BRAA BRAA_64P_branch_reg -> "BRAA_64P_branch_reg"
+        BRABZ BRABZ_64_branch_reg -> "BRABZ_64_branch_reg"
+        BRAB BRAB_64P_branch_reg -> "BRAB_64P_branch_reg"
+        BRK BRK_EX_exception -> "BRK_EX_exception"
+        CAS CAS_C32_ldstexcl -> "CAS_C32_ldstexcl"
+        CASA CASA_C32_ldstexcl -> "CASA_C32_ldstexcl"
+        CASAL CASAL_C32_ldstexcl -> "CASAL_C32_ldstexcl"
+        CASL CASL_C32_ldstexcl -> "CASL_C32_ldstexcl"
+        CAS CAS_C64_ldstexcl -> "CAS_C64_ldstexcl"
+        CASA CASA_C64_ldstexcl -> "CASA_C64_ldstexcl"
+        CASAL CASAL_C64_ldstexcl -> "CASAL_C64_ldstexcl"
+        CASL CASL_C64_ldstexcl -> "CASL_C64_ldstexcl"
+        CASAB CASAB_C32_ldstexcl -> "CASAB_C32_ldstexcl"
+        CASALB CASALB_C32_ldstexcl -> "CASALB_C32_ldstexcl"
+        CASB CASB_C32_ldstexcl -> "CASB_C32_ldstexcl"
+        CASLB CASLB_C32_ldstexcl -> "CASLB_C32_ldstexcl"
+        CASAH CASAH_C32_ldstexcl -> "CASAH_C32_ldstexcl"
+        CASALH CASALH_C32_ldstexcl -> "CASALH_C32_ldstexcl"
+        CASH CASH_C32_ldstexcl -> "CASH_C32_ldstexcl"
+        CASLH CASLH_C32_ldstexcl -> "CASLH_C32_ldstexcl"
+        CASP CASP_CP32_ldstexcl -> "CASP_CP32_ldstexcl"
+        CASPA CASPA_CP32_ldstexcl -> "CASPA_CP32_ldstexcl"
+        CASPAL CASPAL_CP32_ldstexcl -> "CASPAL_CP32_ldstexcl"
+        CASPL CASPL_CP32_ldstexcl -> "CASPL_CP32_ldstexcl"
+        CASP CASP_CP64_ldstexcl -> "CASP_CP64_ldstexcl"
+        CASPA CASPA_CP64_ldstexcl -> "CASPA_CP64_ldstexcl"
+        CASPAL CASPAL_CP64_ldstexcl -> "CASPAL_CP64_ldstexcl"
+        CASPL CASPL_CP64_ldstexcl -> "CASPL_CP64_ldstexcl"
+        CBNZ CBNZ_32_compbranch -> "CBNZ_32_compbranch"
+        CBNZ CBNZ_64_compbranch -> "CBNZ_64_compbranch"
+        CBZ CBZ_32_compbranch -> "CBZ_32_compbranch"
+        CBZ CBZ_64_compbranch -> "CBZ_64_compbranch"
+        CCMN CCMN_32_condcmp_imm -> "CCMN_32_condcmp_imm"
+        CCMN CCMN_64_condcmp_imm -> "CCMN_64_condcmp_imm"
+        CCMN CCMN_32_condcmp_reg -> "CCMN_32_condcmp_reg"
+        CCMN CCMN_64_condcmp_reg -> "CCMN_64_condcmp_reg"
+        CCMP CCMP_32_condcmp_imm -> "CCMP_32_condcmp_imm"
+        CCMP CCMP_64_condcmp_imm -> "CCMP_64_condcmp_imm"
+        CCMP CCMP_32_condcmp_reg -> "CCMP_32_condcmp_reg"
+        CCMP CCMP_64_condcmp_reg -> "CCMP_64_condcmp_reg"
+        CLREX CLREX_BN_system -> "CLREX_BN_system"
+        CLS CLS_32_dp_1src -> "CLS_32_dp_1src"
+        CLS CLS_64_dp_1src -> "CLS_64_dp_1src"
+        CLZ CLZ_32_dp_1src -> "CLZ_32_dp_1src"
+        CLZ CLZ_64_dp_1src -> "CLZ_64_dp_1src"
+        CRC32B CRC32B_32C_dp_2src -> "CRC32B_32C_dp_2src"
+        CRC32H CRC32H_32C_dp_2src -> "CRC32H_32C_dp_2src"
+        CRC32W CRC32W_32C_dp_2src -> "CRC32W_32C_dp_2src"
+        CRC32X CRC32X_64C_dp_2src -> "CRC32X_64C_dp_2src"
+        CRC32CB CRC32CB_32C_dp_2src -> "CRC32CB_32C_dp_2src"
+        CRC32CH CRC32CH_32C_dp_2src -> "CRC32CH_32C_dp_2src"
+        CRC32CW CRC32CW_32C_dp_2src -> "CRC32CW_32C_dp_2src"
+        CRC32CX CRC32CX_64C_dp_2src -> "CRC32CX_64C_dp_2src"
+        CSEL (CSEL_32_condsel _ _ _ _) -> "CSEL_32_condsel"
+        CSEL CSEL_64_condsel -> "CSEL_64_condsel"
+        CSINC (CSINC_32_condsel _ _ _ _) -> "CSINC_32_condsel"
+        CSINC CSINC_64_condsel -> "CSINC_64_condsel"
+        CSINV (CSINV_32_condsel _ _ _ _) -> "CSINV_32_condsel"
+        CSINV CSINV_64_condsel -> "CSINV_64_condsel"
+        CSNEG (CSNEG_32_condsel _ _ _ _) -> "CSNEG_32_condsel"
+        CSNEG CSNEG_64_condsel -> "CSNEG_64_condsel"
+        DCPS1 DCPS1_DC_exception -> "DCPS1_DC_exception"
+        DCPS2 DCPS2_DC_exception -> "DCPS2_DC_exception"
+        DCPS3 DCPS3_DC_exception -> "DCPS3_DC_exception"
+        DMB DMB_BO_system -> "DMB_BO_system"
+        DRPS DRPS_64E_branch_reg -> "DRPS_64E_branch_reg"
+        DSB DSB_BO_system -> "DSB_BO_system"
+        EON (EON_32_log_shift _ _ _ _) -> "EON_32_log_shift"
+        EON EON_64_log_shift -> "EON_64_log_shift"
+        EOR EOR_32_log_imm -> "EOR_32_log_imm"
+        EOR EOR_64_log_imm -> "EOR_64_log_imm"
+        EOR (EOR_32_log_shift _ _ _ _) -> "EOR_32_log_shift"
+        EOR EOR_64_log_shift -> "EOR_64_log_shift"
+        ERET ERET_64E_branch_reg -> "ERET_64E_branch_reg"
+        ERETAA ERETAA_64E_branch_reg -> "ERETAA_64E_branch_reg"
+        ERETAB ERETAB_64E_branch_reg -> "ERETAB_64E_branch_reg"
+        ESB ESB_HI_system -> "ESB_HI_system"
+        EXTR EXTR_32_extract -> "EXTR_32_extract"
+        EXTR EXTR_64_extract -> "EXTR_64_extract"
+        HINT HINT_1 -> "HINT_1"
+        HINT HINT_2 -> "HINT_2"
+        HINT HINT_3 -> "HINT_3"
+        HLT HLT_EX_exception -> "HLT_EX_exception"
+        HVC HVC_EX_exception -> "HVC_EX_exception"
+        ISB ISB_BI_system -> "ISB_BI_system"
+        LDADD LDADD_32_memop -> "LDADD_32_memop"
+        LDADDA LDADDA_32_memop -> "LDADDA_32_memop"
+        LDADDAL LDADDAL_32_memop -> "LDADDAL_32_memop"
+        LDADDL LDADDL_32_memop -> "LDADDL_32_memop"
+        LDADD LDADD_64_memop -> "LDADD_64_memop"
+        LDADDA LDADDA_64_memop -> "LDADDA_64_memop"
+        LDADDAL LDADDAL_64_memop -> "LDADDAL_64_memop"
+        LDADDL LDADDL_64_memop -> "LDADDL_64_memop"
+        LDADDAB LDADDAB_32_memop -> "LDADDAB_32_memop"
+        LDADDALB LDADDALB_32_memop -> "LDADDALB_32_memop"
+        LDADDB LDADDB_32_memop -> "LDADDB_32_memop"
+        LDADDLB LDADDLB_32_memop -> "LDADDLB_32_memop"
+        LDADDAH LDADDAH_32_memop -> "LDADDAH_32_memop"
+        LDADDALH LDADDALH_32_memop -> "LDADDALH_32_memop"
+        LDADDH LDADDH_32_memop -> "LDADDH_32_memop"
+        LDADDLH LDADDLH_32_memop -> "LDADDLH_32_memop"
+        LDAPR LDAPR_32L_memop -> "LDAPR_32L_memop"
+        LDAPR LDAPR_64L_memop -> "LDAPR_64L_memop"
+        LDAPRB LDAPRB_32L_memop -> "LDAPRB_32L_memop"
+        LDAPRH LDAPRH_32L_memop -> "LDAPRH_32L_memop"
+        LDAR LDAR_LR32_ldstexcl -> "LDAR_LR32_ldstexcl"
+        LDAR LDAR_LR64_ldstexcl -> "LDAR_LR64_ldstexcl"
+        LDARB LDARB_LR32_ldstexcl -> "LDARB_LR32_ldstexcl"
+        LDARH LDARH_LR32_ldstexcl -> "LDARH_LR32_ldstexcl"
+        LDAXP LDAXP_LP32_ldstexcl -> "LDAXP_LP32_ldstexcl"
+        LDAXP LDAXP_LP64_ldstexcl -> "LDAXP_LP64_ldstexcl"
+        LDAXR LDAXR_LR32_ldstexcl -> "LDAXR_LR32_ldstexcl"
+        LDAXR LDAXR_LR64_ldstexcl -> "LDAXR_LR64_ldstexcl"
+        LDAXRB LDAXRB_LR32_ldstexcl -> "LDAXRB_LR32_ldstexcl"
+        LDAXRH LDAXRH_LR32_ldstexcl -> "LDAXRH_LR32_ldstexcl"
+        LDCLR LDCLR_32_memop -> "LDCLR_32_memop"
+        LDCLRA LDCLRA_32_memop -> "LDCLRA_32_memop"
+        LDCLRAL LDCLRAL_32_memop -> "LDCLRAL_32_memop"
+        LDCLRL LDCLRL_32_memop -> "LDCLRL_32_memop"
+        LDCLR LDCLR_64_memop -> "LDCLR_64_memop"
+        LDCLRA LDCLRA_64_memop -> "LDCLRA_64_memop"
+        LDCLRAL LDCLRAL_64_memop -> "LDCLRAL_64_memop"
+        LDCLRL LDCLRL_64_memop -> "LDCLRL_64_memop"
+        LDCLRAB LDCLRAB_32_memop -> "LDCLRAB_32_memop"
+        LDCLRALB LDCLRALB_32_memop -> "LDCLRALB_32_memop"
+        LDCLRB LDCLRB_32_memop -> "LDCLRB_32_memop"
+        LDCLRLB LDCLRLB_32_memop -> "LDCLRLB_32_memop"
+        LDCLRAH LDCLRAH_32_memop -> "LDCLRAH_32_memop"
+        LDCLRALH LDCLRALH_32_memop -> "LDCLRALH_32_memop"
+        LDCLRH LDCLRH_32_memop -> "LDCLRH_32_memop"
+        LDCLRLH LDCLRLH_32_memop -> "LDCLRLH_32_memop"
+        LDEOR LDEOR_32_memop -> "LDEOR_32_memop"
+        LDEORA LDEORA_32_memop -> "LDEORA_32_memop"
+        LDEORAL LDEORAL_32_memop -> "LDEORAL_32_memop"
+        LDEORL LDEORL_32_memop -> "LDEORL_32_memop"
+        LDEOR LDEOR_64_memop -> "LDEOR_64_memop"
+        LDEORA LDEORA_64_memop -> "LDEORA_64_memop"
+        LDEORAL LDEORAL_64_memop -> "LDEORAL_64_memop"
+        LDEORL LDEORL_64_memop -> "LDEORL_64_memop"
+        LDEORAB LDEORAB_32_memop -> "LDEORAB_32_memop"
+        LDEORALB LDEORALB_32_memop -> "LDEORALB_32_memop"
+        LDEORB LDEORB_32_memop -> "LDEORB_32_memop"
+        LDEORLB LDEORLB_32_memop -> "LDEORLB_32_memop"
+        LDEORAH LDEORAH_32_memop -> "LDEORAH_32_memop"
+        LDEORALH LDEORALH_32_memop -> "LDEORALH_32_memop"
+        LDEORH LDEORH_32_memop -> "LDEORH_32_memop"
+        LDEORLH LDEORLH_32_memop -> "LDEORLH_32_memop"
+        LDLAR LDLAR_LR32_ldstexcl -> "LDLAR_LR32_ldstexcl"
+        LDLAR LDLAR_LR64_ldstexcl -> "LDLAR_LR64_ldstexcl"
+        LDLARB LDLARB_LR32_ldstexcl -> "LDLARB_LR32_ldstexcl"
+        LDLARH LDLARH_LR32_ldstexcl -> "LDLARH_LR32_ldstexcl"
+        LDNP LDNP_32_ldstnapair_offs -> "LDNP_32_ldstnapair_offs"
+        LDNP (LDNP_64_ldstnapair_offs _ _ _ _) -> "LDNP_64_ldstnapair_offs"
+        LDP LDP_32_ldstpair_post -> "LDP_32_ldstpair_post"
+        LDP LDP_64_ldstpair_post -> "LDP_64_ldstpair_post"
+        LDP LDP_32_ldstpair_pre -> "LDP_32_ldstpair_pre"
+        LDP (LDP_64_ldstpair_pre _ _ _ _) -> "LDP_64_ldstpair_pre"
+        LDP LDP_32_ldstpair_off -> "LDP_32_ldstpair_off"
+        LDP (LDP_64_ldstpair_off _ _ _ _) -> "LDP_64_ldstpair_off"
+        LDPSW LDPSW_64_ldstpair_post -> "LDPSW_64_ldstpair_post"
+        LDPSW (LDPSW_64_ldstpair_pre _ _ _ _) -> "LDPSW_64_ldstpair_pre"
+        LDPSW (LDPSW_64_ldstpair_off _ _ _ _) -> "LDPSW_64_ldstpair_off"
+        LDR LDR_32_ldst_immpost -> "LDR_32_ldst_immpost"
+        LDR LDR_64_ldst_immpost -> "LDR_64_ldst_immpost"
+        LDR LDR_32_ldst_immpre -> "LDR_32_ldst_immpre"
+        LDR LDR_64_ldst_immpre -> "LDR_64_ldst_immpre"
+        LDR LDR_32_ldst_pos -> "LDR_32_ldst_pos"
+        LDR (LDR_64_ldst_pos _ _ _) -> "LDR_64_ldst_pos"
+        LDR LDR_32_loadlit -> "LDR_32_loadlit"
+        LDR LDR_64_loadlit -> "LDR_64_loadlit"
+        LDR LDR_32_ldst_regoff -> "LDR_32_ldst_regoff"
+        LDR LDR_64_ldst_regoff -> "LDR_64_ldst_regoff"
+        LDRAA LDRAA_64_ldst_pac -> "LDRAA_64_ldst_pac"
+        LDRAA LDRAA_64W_ldst_pac -> "LDRAA_64W_ldst_pac"
+        LDRAB LDRAB_64_ldst_pac -> "LDRAB_64_ldst_pac"
+        LDRAB LDRAB_64W_ldst_pac -> "LDRAB_64W_ldst_pac"
+        LDRB LDRB_32_ldst_immpost -> "LDRB_32_ldst_immpost"
+        LDRB LDRB_32_ldst_immpre -> "LDRB_32_ldst_immpre"
+        LDRB LDRB_32_ldst_pos -> "LDRB_32_ldst_pos"
+        LDRB LDRB_32B_ldst_regoff -> "LDRB_32B_ldst_regoff"
+        LDRB LDRB_32BL_ldst_regoff -> "LDRB_32BL_ldst_regoff"
+        LDRH LDRH_32_ldst_immpost -> "LDRH_32_ldst_immpost"
+        LDRH LDRH_32_ldst_immpre -> "LDRH_32_ldst_immpre"
+        LDRH LDRH_32_ldst_pos -> "LDRH_32_ldst_pos"
+        LDRH LDRH_32_ldst_regoff -> "LDRH_32_ldst_regoff"
+        LDRSB LDRSB_32_ldst_immpost -> "LDRSB_32_ldst_immpost"
+        LDRSB LDRSB_64_ldst_immpost -> "LDRSB_64_ldst_immpost"
+        LDRSB LDRSB_32_ldst_immpre -> "LDRSB_32_ldst_immpre"
+        LDRSB LDRSB_64_ldst_immpre -> "LDRSB_64_ldst_immpre"
+        LDRSB LDRSB_32_ldst_pos -> "LDRSB_32_ldst_pos"
+        LDRSB (LDRSB_64_ldst_pos _ _ _) -> "LDRSB_64_ldst_pos"
+        LDRSB LDRSB_32B_ldst_regoff -> "LDRSB_32B_ldst_regoff"
+        LDRSB LDRSB_32BL_ldst_regoff -> "LDRSB_32BL_ldst_regoff"
+        LDRSB LDRSB_64B_ldst_regoff -> "LDRSB_64B_ldst_regoff"
+        LDRSB LDRSB_64BL_ldst_regoff -> "LDRSB_64BL_ldst_regoff"
+        LDRSH LDRSH_32_ldst_immpost -> "LDRSH_32_ldst_immpost"
+        LDRSH LDRSH_64_ldst_immpost -> "LDRSH_64_ldst_immpost"
+        LDRSH LDRSH_32_ldst_immpre -> "LDRSH_32_ldst_immpre"
+        LDRSH LDRSH_64_ldst_immpre -> "LDRSH_64_ldst_immpre"
+        LDRSH LDRSH_32_ldst_pos -> "LDRSH_32_ldst_pos"
+        LDRSH (LDRSH_64_ldst_pos _ _ _) -> "LDRSH_64_ldst_pos"
+        LDRSH LDRSH_32_ldst_regoff -> "LDRSH_32_ldst_regoff"
+        LDRSH LDRSH_64_ldst_regoff -> "LDRSH_64_ldst_regoff"
+        LDRSW LDRSW_64_ldst_immpost -> "LDRSW_64_ldst_immpost"
+        LDRSW LDRSW_64_ldst_immpre -> "LDRSW_64_ldst_immpre"
+        LDRSW (LDRSW_64_ldst_pos _ _ _) -> "LDRSW_64_ldst_pos"
+        LDRSW LDRSW_64_loadlit -> "LDRSW_64_loadlit"
+        LDRSW LDRSW_64_ldst_regoff -> "LDRSW_64_ldst_regoff"
+        LDSET LDSET_32_memop -> "LDSET_32_memop"
+        LDSETA LDSETA_32_memop -> "LDSETA_32_memop"
+        LDSETAL LDSETAL_32_memop -> "LDSETAL_32_memop"
+        LDSETL LDSETL_32_memop -> "LDSETL_32_memop"
+        LDSET LDSET_64_memop -> "LDSET_64_memop"
+        LDSETA LDSETA_64_memop -> "LDSETA_64_memop"
+        LDSETAL LDSETAL_64_memop -> "LDSETAL_64_memop"
+        LDSETL LDSETL_64_memop -> "LDSETL_64_memop"
+        LDSETAB LDSETAB_32_memop -> "LDSETAB_32_memop"
+        LDSETALB LDSETALB_32_memop -> "LDSETALB_32_memop"
+        LDSETB LDSETB_32_memop -> "LDSETB_32_memop"
+        LDSETLB LDSETLB_32_memop -> "LDSETLB_32_memop"
+        LDSETAH LDSETAH_32_memop -> "LDSETAH_32_memop"
+        LDSETALH LDSETALH_32_memop -> "LDSETALH_32_memop"
+        LDSETH LDSETH_32_memop -> "LDSETH_32_memop"
+        LDSETLH LDSETLH_32_memop -> "LDSETLH_32_memop"
+        LDSMAX LDSMAX_32_memop -> "LDSMAX_32_memop"
+        LDSMAXA LDSMAXA_32_memop -> "LDSMAXA_32_memop"
+        LDSMAXAL LDSMAXAL_32_memop -> "LDSMAXAL_32_memop"
+        LDSMAXL LDSMAXL_32_memop -> "LDSMAXL_32_memop"
+        LDSMAX LDSMAX_64_memop -> "LDSMAX_64_memop"
+        LDSMAXA LDSMAXA_64_memop -> "LDSMAXA_64_memop"
+        LDSMAXAL LDSMAXAL_64_memop -> "LDSMAXAL_64_memop"
+        LDSMAXL LDSMAXL_64_memop -> "LDSMAXL_64_memop"
+        LDSMAXAB LDSMAXAB_32_memop -> "LDSMAXAB_32_memop"
+        LDSMAXALB LDSMAXALB_32_memop -> "LDSMAXALB_32_memop"
+        LDSMAXB LDSMAXB_32_memop -> "LDSMAXB_32_memop"
+        LDSMAXLB LDSMAXLB_32_memop -> "LDSMAXLB_32_memop"
+        LDSMAXAH LDSMAXAH_32_memop -> "LDSMAXAH_32_memop"
+        LDSMAXALH LDSMAXALH_32_memop -> "LDSMAXALH_32_memop"
+        LDSMAXH LDSMAXH_32_memop -> "LDSMAXH_32_memop"
+        LDSMAXLH LDSMAXLH_32_memop -> "LDSMAXLH_32_memop"
+        LDSMIN LDSMIN_32_memop -> "LDSMIN_32_memop"
+        LDSMINA LDSMINA_32_memop -> "LDSMINA_32_memop"
+        LDSMINAL LDSMINAL_32_memop -> "LDSMINAL_32_memop"
+        LDSMINL LDSMINL_32_memop -> "LDSMINL_32_memop"
+        LDSMIN LDSMIN_64_memop -> "LDSMIN_64_memop"
+        LDSMINA LDSMINA_64_memop -> "LDSMINA_64_memop"
+        LDSMINAL LDSMINAL_64_memop -> "LDSMINAL_64_memop"
+        LDSMINL LDSMINL_64_memop -> "LDSMINL_64_memop"
+        LDSMINAB LDSMINAB_32_memop -> "LDSMINAB_32_memop"
+        LDSMINALB LDSMINALB_32_memop -> "LDSMINALB_32_memop"
+        LDSMINB LDSMINB_32_memop -> "LDSMINB_32_memop"
+        LDSMINLB LDSMINLB_32_memop -> "LDSMINLB_32_memop"
+        LDSMINAH LDSMINAH_32_memop -> "LDSMINAH_32_memop"
+        LDSMINALH LDSMINALH_32_memop -> "LDSMINALH_32_memop"
+        LDSMINH LDSMINH_32_memop -> "LDSMINH_32_memop"
+        LDSMINLH LDSMINLH_32_memop -> "LDSMINLH_32_memop"
+        LDTR LDTR_32_ldst_unpriv -> "LDTR_32_ldst_unpriv"
+        LDTR LDTR_64_ldst_unpriv -> "LDTR_64_ldst_unpriv"
+        LDTRB LDTRB_32_ldst_unpriv -> "LDTRB_32_ldst_unpriv"
+        LDTRH LDTRH_32_ldst_unpriv -> "LDTRH_32_ldst_unpriv"
+        LDTRSB LDTRSB_32_ldst_unpriv -> "LDTRSB_32_ldst_unpriv"
+        LDTRSB LDTRSB_64_ldst_unpriv -> "LDTRSB_64_ldst_unpriv"
+        LDTRSH LDTRSH_32_ldst_unpriv -> "LDTRSH_32_ldst_unpriv"
+        LDTRSH LDTRSH_64_ldst_unpriv -> "LDTRSH_64_ldst_unpriv"
+        LDTRSW LDTRSW_64_ldst_unpriv -> "LDTRSW_64_ldst_unpriv"
+        LDUMAX LDUMAX_32_memop -> "LDUMAX_32_memop"
+        LDUMAXA LDUMAXA_32_memop -> "LDUMAXA_32_memop"
+        LDUMAXAL LDUMAXAL_32_memop -> "LDUMAXAL_32_memop"
+        LDUMAXL LDUMAXL_32_memop -> "LDUMAXL_32_memop"
+        LDUMAX LDUMAX_64_memop -> "LDUMAX_64_memop"
+        LDUMAXA LDUMAXA_64_memop -> "LDUMAXA_64_memop"
+        LDUMAXAL LDUMAXAL_64_memop -> "LDUMAXAL_64_memop"
+        LDUMAXL LDUMAXL_64_memop -> "LDUMAXL_64_memop"
+        LDUMAXAB LDUMAXAB_32_memop -> "LDUMAXAB_32_memop"
+        LDUMAXALB LDUMAXALB_32_memop -> "LDUMAXALB_32_memop"
+        LDUMAXB LDUMAXB_32_memop -> "LDUMAXB_32_memop"
+        LDUMAXLB LDUMAXLB_32_memop -> "LDUMAXLB_32_memop"
+        LDUMAXAH LDUMAXAH_32_memop -> "LDUMAXAH_32_memop"
+        LDUMAXALH LDUMAXALH_32_memop -> "LDUMAXALH_32_memop"
+        LDUMAXH LDUMAXH_32_memop -> "LDUMAXH_32_memop"
+        LDUMAXLH LDUMAXLH_32_memop -> "LDUMAXLH_32_memop"
+        LDUMIN LDUMIN_32_memop -> "LDUMIN_32_memop"
+        LDUMINA LDUMINA_32_memop -> "LDUMINA_32_memop"
+        LDUMINAL LDUMINAL_32_memop -> "LDUMINAL_32_memop"
+        LDUMINL LDUMINL_32_memop -> "LDUMINL_32_memop"
+        LDUMIN LDUMIN_64_memop -> "LDUMIN_64_memop"
+        LDUMINA LDUMINA_64_memop -> "LDUMINA_64_memop"
+        LDUMINAL LDUMINAL_64_memop -> "LDUMINAL_64_memop"
+        LDUMINL LDUMINL_64_memop -> "LDUMINL_64_memop"
+        LDUMINAB LDUMINAB_32_memop -> "LDUMINAB_32_memop"
+        LDUMINALB LDUMINALB_32_memop -> "LDUMINALB_32_memop"
+        LDUMINB LDUMINB_32_memop -> "LDUMINB_32_memop"
+        LDUMINLB LDUMINLB_32_memop -> "LDUMINLB_32_memop"
+        LDUMINAH LDUMINAH_32_memop -> "LDUMINAH_32_memop"
+        LDUMINALH LDUMINALH_32_memop -> "LDUMINALH_32_memop"
+        LDUMINH LDUMINH_32_memop -> "LDUMINH_32_memop"
+        LDUMINLH LDUMINLH_32_memop -> "LDUMINLH_32_memop"
+        LDUR LDUR_32_ldst_unscaled -> "LDUR_32_ldst_unscaled"
+        LDUR LDUR_64_ldst_unscaled -> "LDUR_64_ldst_unscaled"
+        LDURB LDURB_32_ldst_unscaled -> "LDURB_32_ldst_unscaled"
+        LDURH LDURH_32_ldst_unscaled -> "LDURH_32_ldst_unscaled"
+        LDURSB LDURSB_32_ldst_unscaled -> "LDURSB_32_ldst_unscaled"
+        LDURSB LDURSB_64_ldst_unscaled -> "LDURSB_64_ldst_unscaled"
+        LDURSH LDURSH_32_ldst_unscaled -> "LDURSH_32_ldst_unscaled"
+        LDURSH LDURSH_64_ldst_unscaled -> "LDURSH_64_ldst_unscaled"
+        LDURSW LDURSW_64_ldst_unscaled -> "LDURSW_64_ldst_unscaled"
+        LDXP LDXP_LP32_ldstexcl -> "LDXP_LP32_ldstexcl"
+        LDXP LDXP_LP64_ldstexcl -> "LDXP_LP64_ldstexcl"
+        LDXR LDXR_LR32_ldstexcl -> "LDXR_LR32_ldstexcl"
+        LDXR LDXR_LR64_ldstexcl -> "LDXR_LR64_ldstexcl"
+        LDXRB LDXRB_LR32_ldstexcl -> "LDXRB_LR32_ldstexcl"
+        LDXRH LDXRH_LR32_ldstexcl -> "LDXRH_LR32_ldstexcl"
+        LSLV LSLV_32_dp_2src -> "LSLV_32_dp_2src"
+        LSLV LSLV_64_dp_2src -> "LSLV_64_dp_2src"
+        LSRV LSRV_32_dp_2src -> "LSRV_32_dp_2src"
+        LSRV LSRV_64_dp_2src -> "LSRV_64_dp_2src"
+        MADD MADD_32A_dp_3src -> "MADD_32A_dp_3src"
+        MADD MADD_64A_dp_3src -> "MADD_64A_dp_3src"
+        MOVK MOVK_32_movewide -> "MOVK_32_movewide"
+        MOVK MOVK_64_movewide -> "MOVK_64_movewide"
+        MOVN MOVN_32_movewide -> "MOVN_32_movewide"
+        MOVN MOVN_64_movewide -> "MOVN_64_movewide"
+        MOVZ MOVZ_32_movewide -> "MOVZ_32_movewide"
+        MOVZ MOVZ_64_movewide -> "MOVZ_64_movewide"
+        MRS MRS_RS_system -> "MRS_RS_system"
+        MSR MSR_SI_system -> "MSR_SI_system"
+        MSR MSR_SR_system -> "MSR_SR_system"
+        MSUB MSUB_32A_dp_3src -> "MSUB_32A_dp_3src"
+        MSUB MSUB_64A_dp_3src -> "MSUB_64A_dp_3src"
+        NOP NOP_HI_system -> "NOP_HI_system"
+        ORN (ORN_32_log_shift _ _ _ _) -> "ORN_32_log_shift"
+        ORN ORN_64_log_shift -> "ORN_64_log_shift"
+        ORR ORR_32_log_imm -> "ORR_32_log_imm"
+        ORR ORR_64_log_imm -> "ORR_64_log_imm"
+        ORR (ORR_32_log_shift _ _ _ _) -> "ORR_32_log_shift"
+        ORR ORR_64_log_shift -> "ORR_64_log_shift"
+        PACDA PACDA_64P_dp_1src -> "PACDA_64P_dp_1src"
+        PACDZA PACDZA_64Z_dp_1src -> "PACDZA_64Z_dp_1src"
+        PACDB PACDB_64P_dp_1src -> "PACDB_64P_dp_1src"
+        PACDZB PACDZB_64Z_dp_1src -> "PACDZB_64Z_dp_1src"
+        PACGA PACGA_64P_dp_2src -> "PACGA_64P_dp_2src"
+        PACIA PACIA_64P_dp_1src -> "PACIA_64P_dp_1src"
+        PACIZA PACIZA_64Z_dp_1src -> "PACIZA_64Z_dp_1src"
+        PACIA1716 PACIA1716_HI_system -> "PACIA1716_HI_system"
+        PACIASP PACIASP_HI_system -> "PACIASP_HI_system"
+        PACIAZ PACIAZ_HI_system -> "PACIAZ_HI_system"
+        PACIB PACIB_64P_dp_1src -> "PACIB_64P_dp_1src"
+        PACIZB PACIZB_64Z_dp_1src -> "PACIZB_64Z_dp_1src"
+        PACIB1716 PACIB1716_HI_system -> "PACIB1716_HI_system"
+        PACIBSP PACIBSP_HI_system -> "PACIBSP_HI_system"
+        PACIBZ PACIBZ_HI_system -> "PACIBZ_HI_system"
+        PRFM PRFM_P_ldst_pos -> "PRFM_P_ldst_pos"
+        PRFM PRFM_P_loadlit -> "PRFM_P_loadlit"
+        PRFM PRFM_P_ldst_regoff -> "PRFM_P_ldst_regoff"
+        PRFUM PRFUM_P_ldst_unscaled -> "PRFUM_P_ldst_unscaled"
+        PSB PSB_HC_system -> "PSB_HC_system"
+        RBIT RBIT_32_dp_1src -> "RBIT_32_dp_1src"
+        RBIT RBIT_64_dp_1src -> "RBIT_64_dp_1src"
+        RET RET_64R_branch_reg -> "RET_64R_branch_reg"
+        RETAA RETAA_64E_branch_reg -> "RETAA_64E_branch_reg"
+        RETAB RETAB_64E_branch_reg -> "RETAB_64E_branch_reg"
+        REV REV_32_dp_1src -> "REV_32_dp_1src"
+        REV REV_64_dp_1src -> "REV_64_dp_1src"
+        REV16 REV16_32_dp_1src -> "REV16_32_dp_1src"
+        REV16 REV16_64_dp_1src -> "REV16_64_dp_1src"
+        REV32 REV32_64_dp_1src -> "REV32_64_dp_1src"
+        RORV RORV_32_dp_2src -> "RORV_32_dp_2src"
+        RORV RORV_64_dp_2src -> "RORV_64_dp_2src"
+        SBC SBC_32_addsub_carry -> "SBC_32_addsub_carry"
+        SBC SBC_64_addsub_carry -> "SBC_64_addsub_carry"
+        SBCS SBCS_32_addsub_carry -> "SBCS_32_addsub_carry"
+        SBCS SBCS_64_addsub_carry -> "SBCS_64_addsub_carry"
+        SBFM SBFM_32M_bitfield -> "SBFM_32M_bitfield"
+        SBFM SBFM_64M_bitfield -> "SBFM_64M_bitfield"
+        SDIV SDIV_32_dp_2src -> "SDIV_32_dp_2src"
+        SDIV SDIV_64_dp_2src -> "SDIV_64_dp_2src"
+        SEV SEV_HI_system -> "SEV_HI_system"
+        SEVL SEVL_HI_system -> "SEVL_HI_system"
+        SMADDL SMADDL_64WA_dp_3src -> "SMADDL_64WA_dp_3src"
+        SMC SMC_EX_exception -> "SMC_EX_exception"
+        SMSUBL SMSUBL_64WA_dp_3src -> "SMSUBL_64WA_dp_3src"
+        SMULH SMULH_64_dp_3src -> "SMULH_64_dp_3src"
+        STLLR STLLR_SL32_ldstexcl -> "STLLR_SL32_ldstexcl"
+        STLLR STLLR_SL64_ldstexcl -> "STLLR_SL64_ldstexcl"
+        STLLRB STLLRB_SL32_ldstexcl -> "STLLRB_SL32_ldstexcl"
+        STLLRH STLLRH_SL32_ldstexcl -> "STLLRH_SL32_ldstexcl"
+        STLR STLR_SL32_ldstexcl -> "STLR_SL32_ldstexcl"
+        STLR STLR_SL64_ldstexcl -> "STLR_SL64_ldstexcl"
+        STLRB STLRB_SL32_ldstexcl -> "STLRB_SL32_ldstexcl"
+        STLRH STLRH_SL32_ldstexcl -> "STLRH_SL32_ldstexcl"
+        STLXP STLXP_SP32_ldstexcl -> "STLXP_SP32_ldstexcl"
+        STLXP STLXP_SP64_ldstexcl -> "STLXP_SP64_ldstexcl"
+        STLXR STLXR_SR32_ldstexcl -> "STLXR_SR32_ldstexcl"
+        STLXR STLXR_SR64_ldstexcl -> "STLXR_SR64_ldstexcl"
+        STLXRB STLXRB_SR32_ldstexcl -> "STLXRB_SR32_ldstexcl"
+        STLXRH STLXRH_SR32_ldstexcl -> "STLXRH_SR32_ldstexcl"
+        STNP STNP_32_ldstnapair_offs -> "STNP_32_ldstnapair_offs"
+        STNP (STNP_64_ldstnapair_offs _ _ _ _) -> "STNP_64_ldstnapair_offs"
+        STP STP_32_ldstpair_post -> "STP_32_ldstpair_post"
+        STP STP_64_ldstpair_post -> "STP_64_ldstpair_post"
+        STP STP_32_ldstpair_pre -> "STP_32_ldstpair_pre"
+        STP (STP_64_ldstpair_pre _ _ _ _) -> "STP_64_ldstpair_pre"
+        STP STP_32_ldstpair_off -> "STP_32_ldstpair_off"
+        STP (STP_64_ldstpair_off _ _ _ _) -> "STP_64_ldstpair_off"
+        STR STR_32_ldst_immpost -> "STR_32_ldst_immpost"
+        STR STR_64_ldst_immpost -> "STR_64_ldst_immpost"
+        STR STR_32_ldst_immpre -> "STR_32_ldst_immpre"
+        STR STR_64_ldst_immpre -> "STR_64_ldst_immpre"
+        STR STR_32_ldst_pos -> "STR_32_ldst_pos"
+        STR (STR_64_ldst_pos _ _ _) -> "STR_64_ldst_pos"
+        STR STR_32_ldst_regoff -> "STR_32_ldst_regoff"
+        STR STR_64_ldst_regoff -> "STR_64_ldst_regoff"
+        STRB STRB_32_ldst_immpost -> "STRB_32_ldst_immpost"
+        STRB STRB_32_ldst_immpre -> "STRB_32_ldst_immpre"
+        STRB STRB_32_ldst_pos -> "STRB_32_ldst_pos"
+        STRB STRB_32B_ldst_regoff -> "STRB_32B_ldst_regoff"
+        STRB STRB_32BL_ldst_regoff -> "STRB_32BL_ldst_regoff"
+        STRH STRH_32_ldst_immpost -> "STRH_32_ldst_immpost"
+        STRH STRH_32_ldst_immpre -> "STRH_32_ldst_immpre"
+        STRH STRH_32_ldst_pos -> "STRH_32_ldst_pos"
+        STRH STRH_32_ldst_regoff -> "STRH_32_ldst_regoff"
+        STTR STTR_32_ldst_unpriv -> "STTR_32_ldst_unpriv"
+        STTR STTR_64_ldst_unpriv -> "STTR_64_ldst_unpriv"
+        STTRB STTRB_32_ldst_unpriv -> "STTRB_32_ldst_unpriv"
+        STTRH STTRH_32_ldst_unpriv -> "STTRH_32_ldst_unpriv"
+        STUR STUR_32_ldst_unscaled -> "STUR_32_ldst_unscaled"
+        STUR STUR_64_ldst_unscaled -> "STUR_64_ldst_unscaled"
+        STURB STURB_32_ldst_unscaled -> "STURB_32_ldst_unscaled"
+        STURH STURH_32_ldst_unscaled -> "STURH_32_ldst_unscaled"
+        STXP STXP_SP32_ldstexcl -> "STXP_SP32_ldstexcl"
+        STXP STXP_SP64_ldstexcl -> "STXP_SP64_ldstexcl"
+        STXR STXR_SR32_ldstexcl -> "STXR_SR32_ldstexcl"
+        STXR STXR_SR64_ldstexcl -> "STXR_SR64_ldstexcl"
+        STXRB STXRB_SR32_ldstexcl -> "STXRB_SR32_ldstexcl"
+        STXRH STXRH_SR32_ldstexcl -> "STXRH_SR32_ldstexcl"
+        SUB SUB_32_addsub_ext -> "SUB_32_addsub_ext"
+        SUB SUB_64_addsub_ext -> "SUB_64_addsub_ext"
+        SUB SUB_32_addsub_imm -> "SUB_32_addsub_imm"
+        SUB (SUB_64_addsub_imm _ _ _ _) -> "SUB_64_addsub_imm"
+        SUB (SUB_32_addsub_shift _ _ _ _) -> "SUB_32_addsub_shift"
+        SUB SUB_64_addsub_shift -> "SUB_64_addsub_shift"
+        SUBS SUBS_32S_addsub_ext -> "SUBS_32S_addsub_ext"
+        SUBS SUBS_64S_addsub_ext -> "SUBS_64S_addsub_ext"
+        SUBS (SUBS_32S_addsub_imm _ _ _ _) -> "SUBS_32S_addsub_imm"
+        SUBS (SUBS_64S_addsub_imm _ _ _ _) -> "SUBS_64S_addsub_imm"
+        SUBS (SUBS_32_addsub_shift _ _ _ _) -> "SUBS_32_addsub_shift"
+        SUBS SUBS_64_addsub_shift -> "SUBS_64_addsub_shift"
+        SVC SVC_EX_exception -> "SVC_EX_exception"
+        SWP SWP_32_memop -> "SWP_32_memop"
+        SWPA SWPA_32_memop -> "SWPA_32_memop"
+        SWPAL SWPAL_32_memop -> "SWPAL_32_memop"
+        SWPL SWPL_32_memop -> "SWPL_32_memop"
+        SWP SWP_64_memop -> "SWP_64_memop"
+        SWPA SWPA_64_memop -> "SWPA_64_memop"
+        SWPAL SWPAL_64_memop -> "SWPAL_64_memop"
+        SWPL SWPL_64_memop -> "SWPL_64_memop"
+        SWPAB SWPAB_32_memop -> "SWPAB_32_memop"
+        SWPALB SWPALB_32_memop -> "SWPALB_32_memop"
+        SWPB SWPB_32_memop -> "SWPB_32_memop"
+        SWPLB SWPLB_32_memop -> "SWPLB_32_memop"
+        SWPAH SWPAH_32_memop -> "SWPAH_32_memop"
+        SWPALH SWPALH_32_memop -> "SWPALH_32_memop"
+        SWPH SWPH_32_memop -> "SWPH_32_memop"
+        SWPLH SWPLH_32_memop -> "SWPLH_32_memop"
+        SYS SYS_CR_system -> "SYS_CR_system"
+        SYSL SYSL_RC_system -> "SYSL_RC_system"
+        TBNZ TBNZ_only_testbranch -> "TBNZ_only_testbranch"
+        TBZ TBZ_only_testbranch -> "TBZ_only_testbranch"
+        UBFM UBFM_32M_bitfield -> "UBFM_32M_bitfield"
+        UBFM UBFM_64M_bitfield -> "UBFM_64M_bitfield"
+        UDIV UDIV_32_dp_2src -> "UDIV_32_dp_2src"
+        UDIV UDIV_64_dp_2src -> "UDIV_64_dp_2src"
+        UMADDL UMADDL_64WA_dp_3src -> "UMADDL_64WA_dp_3src"
+        UMSUBL UMSUBL_64WA_dp_3src -> "UMSUBL_64WA_dp_3src"
+        UMULH UMULH_64_dp_3src -> "UMULH_64_dp_3src"
+        WFE WFE_HI_system -> "WFE_HI_system"
+        WFI WFI_HI_system -> "WFI_HI_system"
+        XPACD XPACD_64Z_dp_1src -> "XPACD_64Z_dp_1src"
+        XPACI XPACI_64Z_dp_1src -> "XPACI_64Z_dp_1src"
+        XPACLRI XPACLRI_HI_system -> "XPACLRI_HI_system"
+        YIELD YIELD_HI_system -> "YIELD_HI_system"
+        ABS ABS_asisdmisc_R -> "ABS_asisdmisc_R"
+        ABS ABS_asimdmisc_R -> "ABS_asimdmisc_R"
+        ADD ADD_asisdsame_only -> "ADD_asisdsame_only"
+        ADD ADD_asimdsame_only -> "ADD_asimdsame_only"
+        ADDHN ADDHN_asimddiff_N -> "ADDHN_asimddiff_N"
+        ADDP ADDP_asisdpair_only -> "ADDP_asisdpair_only"
+        ADDP ADDP_asimdsame_only -> "ADDP_asimdsame_only"
+        ADDV ADDV_asimdall_only -> "ADDV_asimdall_only"
+        AESD AESD_B_cryptoaes -> "AESD_B_cryptoaes"
+        AESE AESE_B_cryptoaes -> "AESE_B_cryptoaes"
+        AESIMC AESIMC_B_cryptoaes -> "AESIMC_B_cryptoaes"
+        AESMC AESMC_B_cryptoaes -> "AESMC_B_cryptoaes"
+        AND AND_asimdsame_only -> "AND_asimdsame_only"
+        BCAX BCAX_VVV16_crypto4 -> "BCAX_VVV16_crypto4"
+        BIC BIC_asimdimm_L_hl -> "BIC_asimdimm_L_hl"
+        BIC BIC_asimdimm_L_sl -> "BIC_asimdimm_L_sl"
+        BIC BIC_asimdsame_only -> "BIC_asimdsame_only"
+        BIF BIF_asimdsame_only -> "BIF_asimdsame_only"
+        BIT BIT_asimdsame_only -> "BIT_asimdsame_only"
+        BSL BSL_asimdsame_only -> "BSL_asimdsame_only"
+        CLS CLS_asimdmisc_R -> "CLS_asimdmisc_R"
+        CLZ CLZ_asimdmisc_R -> "CLZ_asimdmisc_R"
+        CMEQ CMEQ_asisdsame_only -> "CMEQ_asisdsame_only"
+        CMEQ CMEQ_asimdsame_only -> "CMEQ_asimdsame_only"
+        CMEQ CMEQ_asisdmisc_Z -> "CMEQ_asisdmisc_Z"
+        CMEQ CMEQ_asimdmisc_Z -> "CMEQ_asimdmisc_Z"
+        CMGE CMGE_asisdsame_only -> "CMGE_asisdsame_only"
+        CMGE CMGE_asimdsame_only -> "CMGE_asimdsame_only"
+        CMGE CMGE_asisdmisc_Z -> "CMGE_asisdmisc_Z"
+        CMGE CMGE_asimdmisc_Z -> "CMGE_asimdmisc_Z"
+        CMGT CMGT_asisdsame_only -> "CMGT_asisdsame_only"
+        CMGT CMGT_asimdsame_only -> "CMGT_asimdsame_only"
+        CMGT CMGT_asisdmisc_Z -> "CMGT_asisdmisc_Z"
+        CMGT CMGT_asimdmisc_Z -> "CMGT_asimdmisc_Z"
+        CMHI CMHI_asisdsame_only -> "CMHI_asisdsame_only"
+        CMHI CMHI_asimdsame_only -> "CMHI_asimdsame_only"
+        CMHS CMHS_asisdsame_only -> "CMHS_asisdsame_only"
+        CMHS CMHS_asimdsame_only -> "CMHS_asimdsame_only"
+        CMLE CMLE_asisdmisc_Z -> "CMLE_asisdmisc_Z"
+        CMLE CMLE_asimdmisc_Z -> "CMLE_asimdmisc_Z"
+        CMLT CMLT_asisdmisc_Z -> "CMLT_asisdmisc_Z"
+        CMLT CMLT_asimdmisc_Z -> "CMLT_asimdmisc_Z"
+        CMTST CMTST_asisdsame_only -> "CMTST_asisdsame_only"
+        CMTST CMTST_asimdsame_only -> "CMTST_asimdsame_only"
+        CNT CNT_asimdmisc_R -> "CNT_asimdmisc_R"
+        DUP DUP_asisdone_only -> "DUP_asisdone_only"
+        DUP DUP_asimdins_DV_v -> "DUP_asimdins_DV_v"
+        DUP DUP_asimdins_DR_r -> "DUP_asimdins_DR_r"
+        EOR EOR_asimdsame_only -> "EOR_asimdsame_only"
+        EOR3 EOR3_VVV16_crypto4 -> "EOR3_VVV16_crypto4"
+        EXT EXT_asimdext_only -> "EXT_asimdext_only"
+        FABD FABD_asisdsamefp16_only -> "FABD_asisdsamefp16_only"
+        FABD FABD_asisdsame_only -> "FABD_asisdsame_only"
+        FABD FABD_asimdsamefp16_only -> "FABD_asimdsamefp16_only"
+        FABD FABD_asimdsame_only -> "FABD_asimdsame_only"
+        FABS FABS_H_floatdp1 -> "FABS_H_floatdp1"
+        FABS FABS_S_floatdp1 -> "FABS_S_floatdp1"
+        FABS FABS_D_floatdp1 -> "FABS_D_floatdp1"
+        FABS FABS_asimdmiscfp16_R -> "FABS_asimdmiscfp16_R"
+        FABS FABS_asimdmisc_R -> "FABS_asimdmisc_R"
+        FACGE FACGE_asisdsamefp16_only -> "FACGE_asisdsamefp16_only"
+        FACGE FACGE_asisdsame_only -> "FACGE_asisdsame_only"
+        FACGE FACGE_asimdsamefp16_only -> "FACGE_asimdsamefp16_only"
+        FACGE FACGE_asimdsame_only -> "FACGE_asimdsame_only"
+        FACGT FACGT_asisdsamefp16_only -> "FACGT_asisdsamefp16_only"
+        FACGT FACGT_asisdsame_only -> "FACGT_asisdsame_only"
+        FACGT FACGT_asimdsamefp16_only -> "FACGT_asimdsamefp16_only"
+        FACGT FACGT_asimdsame_only -> "FACGT_asimdsame_only"
+        FADD FADD_H_floatdp2 -> "FADD_H_floatdp2"
+        FADD FADD_S_floatdp2 -> "FADD_S_floatdp2"
+        FADD FADD_D_floatdp2 -> "FADD_D_floatdp2"
+        FADD FADD_asimdsamefp16_only -> "FADD_asimdsamefp16_only"
+        FADD FADD_asimdsame_only -> "FADD_asimdsame_only"
+        FADDP FADDP_asisdpair_only_H -> "FADDP_asisdpair_only_H"
+        FADDP FADDP_asisdpair_only_SD -> "FADDP_asisdpair_only_SD"
+        FADDP FADDP_asimdsamefp16_only -> "FADDP_asimdsamefp16_only"
+        FADDP FADDP_asimdsame_only -> "FADDP_asimdsame_only"
+        FCADD FCADD_asimdsame2_C -> "FCADD_asimdsame2_C"
+        FCCMP FCCMP_H_floatccmp -> "FCCMP_H_floatccmp"
+        FCCMP FCCMP_S_floatccmp -> "FCCMP_S_floatccmp"
+        FCCMP FCCMP_D_floatccmp -> "FCCMP_D_floatccmp"
+        FCCMPE FCCMPE_H_floatccmp -> "FCCMPE_H_floatccmp"
+        FCCMPE FCCMPE_S_floatccmp -> "FCCMPE_S_floatccmp"
+        FCCMPE FCCMPE_D_floatccmp -> "FCCMPE_D_floatccmp"
+        FCMEQ FCMEQ_asisdsamefp16_only -> "FCMEQ_asisdsamefp16_only"
+        FCMEQ FCMEQ_asisdsame_only -> "FCMEQ_asisdsame_only"
+        FCMEQ FCMEQ_asimdsamefp16_only -> "FCMEQ_asimdsamefp16_only"
+        FCMEQ FCMEQ_asimdsame_only -> "FCMEQ_asimdsame_only"
+        FCMEQ FCMEQ_asisdmiscfp16_FZ -> "FCMEQ_asisdmiscfp16_FZ"
+        FCMEQ FCMEQ_asisdmisc_FZ -> "FCMEQ_asisdmisc_FZ"
+        FCMEQ FCMEQ_asimdmiscfp16_FZ -> "FCMEQ_asimdmiscfp16_FZ"
+        FCMEQ FCMEQ_asimdmisc_FZ -> "FCMEQ_asimdmisc_FZ"
+        FCMGE FCMGE_asisdsamefp16_only -> "FCMGE_asisdsamefp16_only"
+        FCMGE FCMGE_asisdsame_only -> "FCMGE_asisdsame_only"
+        FCMGE FCMGE_asimdsamefp16_only -> "FCMGE_asimdsamefp16_only"
+        FCMGE FCMGE_asimdsame_only -> "FCMGE_asimdsame_only"
+        FCMGE FCMGE_asisdmiscfp16_FZ -> "FCMGE_asisdmiscfp16_FZ"
+        FCMGE FCMGE_asisdmisc_FZ -> "FCMGE_asisdmisc_FZ"
+        FCMGE FCMGE_asimdmiscfp16_FZ -> "FCMGE_asimdmiscfp16_FZ"
+        FCMGE FCMGE_asimdmisc_FZ -> "FCMGE_asimdmisc_FZ"
+        FCMGT FCMGT_asisdsamefp16_only -> "FCMGT_asisdsamefp16_only"
+        FCMGT FCMGT_asisdsame_only -> "FCMGT_asisdsame_only"
+        FCMGT FCMGT_asimdsamefp16_only -> "FCMGT_asimdsamefp16_only"
+        FCMGT FCMGT_asimdsame_only -> "FCMGT_asimdsame_only"
+        FCMGT FCMGT_asisdmiscfp16_FZ -> "FCMGT_asisdmiscfp16_FZ"
+        FCMGT FCMGT_asisdmisc_FZ -> "FCMGT_asisdmisc_FZ"
+        FCMGT FCMGT_asimdmiscfp16_FZ -> "FCMGT_asimdmiscfp16_FZ"
+        FCMGT FCMGT_asimdmisc_FZ -> "FCMGT_asimdmisc_FZ"
+        FCMLA FCMLA_asimdsame2_C -> "FCMLA_asimdsame2_C"
+        FCMLA FCMLA_asimdelem_C_H -> "FCMLA_asimdelem_C_H"
+        FCMLA FCMLA_asimdelem_C_S -> "FCMLA_asimdelem_C_S"
+        FCMLE FCMLE_asisdmiscfp16_FZ -> "FCMLE_asisdmiscfp16_FZ"
+        FCMLE FCMLE_asisdmisc_FZ -> "FCMLE_asisdmisc_FZ"
+        FCMLE FCMLE_asimdmiscfp16_FZ -> "FCMLE_asimdmiscfp16_FZ"
+        FCMLE FCMLE_asimdmisc_FZ -> "FCMLE_asimdmisc_FZ"
+        FCMLT FCMLT_asisdmiscfp16_FZ -> "FCMLT_asisdmiscfp16_FZ"
+        FCMLT FCMLT_asisdmisc_FZ -> "FCMLT_asisdmisc_FZ"
+        FCMLT FCMLT_asimdmiscfp16_FZ -> "FCMLT_asimdmiscfp16_FZ"
+        FCMLT FCMLT_asimdmisc_FZ -> "FCMLT_asimdmisc_FZ"
+        FCMP FCMP_H_floatcmp -> "FCMP_H_floatcmp"
+        FCMP FCMP_HZ_floatcmp -> "FCMP_HZ_floatcmp"
+        FCMP FCMP_S_floatcmp -> "FCMP_S_floatcmp"
+        FCMP FCMP_SZ_floatcmp -> "FCMP_SZ_floatcmp"
+        FCMP FCMP_D_floatcmp -> "FCMP_D_floatcmp"
+        FCMP FCMP_DZ_floatcmp -> "FCMP_DZ_floatcmp"
+        FCMPE FCMPE_H_floatcmp -> "FCMPE_H_floatcmp"
+        FCMPE FCMPE_HZ_floatcmp -> "FCMPE_HZ_floatcmp"
+        FCMPE FCMPE_S_floatcmp -> "FCMPE_S_floatcmp"
+        FCMPE FCMPE_SZ_floatcmp -> "FCMPE_SZ_floatcmp"
+        FCMPE FCMPE_D_floatcmp -> "FCMPE_D_floatcmp"
+        FCMPE FCMPE_DZ_floatcmp -> "FCMPE_DZ_floatcmp"
+        FCSEL FCSEL_H_floatsel -> "FCSEL_H_floatsel"
+        FCSEL FCSEL_S_floatsel -> "FCSEL_S_floatsel"
+        FCSEL FCSEL_D_floatsel -> "FCSEL_D_floatsel"
+        FCVT FCVT_SH_floatdp1 -> "FCVT_SH_floatdp1"
+        FCVT FCVT_DH_floatdp1 -> "FCVT_DH_floatdp1"
+        FCVT FCVT_HS_floatdp1 -> "FCVT_HS_floatdp1"
+        FCVT FCVT_DS_floatdp1 -> "FCVT_DS_floatdp1"
+        FCVT FCVT_HD_floatdp1 -> "FCVT_HD_floatdp1"
+        FCVT FCVT_SD_floatdp1 -> "FCVT_SD_floatdp1"
+        FCVTAS FCVTAS_32H_float2int -> "FCVTAS_32H_float2int"
+        FCVTAS FCVTAS_64H_float2int -> "FCVTAS_64H_float2int"
+        FCVTAS FCVTAS_32S_float2int -> "FCVTAS_32S_float2int"
+        FCVTAS FCVTAS_64S_float2int -> "FCVTAS_64S_float2int"
+        FCVTAS FCVTAS_32D_float2int -> "FCVTAS_32D_float2int"
+        FCVTAS FCVTAS_64D_float2int -> "FCVTAS_64D_float2int"
+        FCVTAS FCVTAS_asisdmiscfp16_R -> "FCVTAS_asisdmiscfp16_R"
+        FCVTAS FCVTAS_asisdmisc_R -> "FCVTAS_asisdmisc_R"
+        FCVTAS FCVTAS_asimdmiscfp16_R -> "FCVTAS_asimdmiscfp16_R"
+        FCVTAS FCVTAS_asimdmisc_R -> "FCVTAS_asimdmisc_R"
+        FCVTAU FCVTAU_32H_float2int -> "FCVTAU_32H_float2int"
+        FCVTAU FCVTAU_64H_float2int -> "FCVTAU_64H_float2int"
+        FCVTAU FCVTAU_32S_float2int -> "FCVTAU_32S_float2int"
+        FCVTAU FCVTAU_64S_float2int -> "FCVTAU_64S_float2int"
+        FCVTAU FCVTAU_32D_float2int -> "FCVTAU_32D_float2int"
+        FCVTAU FCVTAU_64D_float2int -> "FCVTAU_64D_float2int"
+        FCVTAU FCVTAU_asisdmiscfp16_R -> "FCVTAU_asisdmiscfp16_R"
+        FCVTAU FCVTAU_asisdmisc_R -> "FCVTAU_asisdmisc_R"
+        FCVTAU FCVTAU_asimdmiscfp16_R -> "FCVTAU_asimdmiscfp16_R"
+        FCVTAU FCVTAU_asimdmisc_R -> "FCVTAU_asimdmisc_R"
+        FCVTL FCVTL_asimdmisc_L -> "FCVTL_asimdmisc_L"
+        FCVTMS FCVTMS_32H_float2int -> "FCVTMS_32H_float2int"
+        FCVTMS FCVTMS_64H_float2int -> "FCVTMS_64H_float2int"
+        FCVTMS FCVTMS_32S_float2int -> "FCVTMS_32S_float2int"
+        FCVTMS FCVTMS_64S_float2int -> "FCVTMS_64S_float2int"
+        FCVTMS FCVTMS_32D_float2int -> "FCVTMS_32D_float2int"
+        FCVTMS FCVTMS_64D_float2int -> "FCVTMS_64D_float2int"
+        FCVTMS FCVTMS_asisdmiscfp16_R -> "FCVTMS_asisdmiscfp16_R"
+        FCVTMS FCVTMS_asisdmisc_R -> "FCVTMS_asisdmisc_R"
+        FCVTMS FCVTMS_asimdmiscfp16_R -> "FCVTMS_asimdmiscfp16_R"
+        FCVTMS FCVTMS_asimdmisc_R -> "FCVTMS_asimdmisc_R"
+        FCVTMU FCVTMU_32H_float2int -> "FCVTMU_32H_float2int"
+        FCVTMU FCVTMU_64H_float2int -> "FCVTMU_64H_float2int"
+        FCVTMU FCVTMU_32S_float2int -> "FCVTMU_32S_float2int"
+        FCVTMU FCVTMU_64S_float2int -> "FCVTMU_64S_float2int"
+        FCVTMU FCVTMU_32D_float2int -> "FCVTMU_32D_float2int"
+        FCVTMU FCVTMU_64D_float2int -> "FCVTMU_64D_float2int"
+        FCVTMU FCVTMU_asisdmiscfp16_R -> "FCVTMU_asisdmiscfp16_R"
+        FCVTMU FCVTMU_asisdmisc_R -> "FCVTMU_asisdmisc_R"
+        FCVTMU FCVTMU_asimdmiscfp16_R -> "FCVTMU_asimdmiscfp16_R"
+        FCVTMU FCVTMU_asimdmisc_R -> "FCVTMU_asimdmisc_R"
+        FCVTN FCVTN_asimdmisc_N -> "FCVTN_asimdmisc_N"
+        FCVTNS FCVTNS_32H_float2int -> "FCVTNS_32H_float2int"
+        FCVTNS FCVTNS_64H_float2int -> "FCVTNS_64H_float2int"
+        FCVTNS FCVTNS_32S_float2int -> "FCVTNS_32S_float2int"
+        FCVTNS FCVTNS_64S_float2int -> "FCVTNS_64S_float2int"
+        FCVTNS FCVTNS_32D_float2int -> "FCVTNS_32D_float2int"
+        FCVTNS FCVTNS_64D_float2int -> "FCVTNS_64D_float2int"
+        FCVTNS FCVTNS_asisdmiscfp16_R -> "FCVTNS_asisdmiscfp16_R"
+        FCVTNS FCVTNS_asisdmisc_R -> "FCVTNS_asisdmisc_R"
+        FCVTNS FCVTNS_asimdmiscfp16_R -> "FCVTNS_asimdmiscfp16_R"
+        FCVTNS FCVTNS_asimdmisc_R -> "FCVTNS_asimdmisc_R"
+        FCVTNU FCVTNU_32H_float2int -> "FCVTNU_32H_float2int"
+        FCVTNU FCVTNU_64H_float2int -> "FCVTNU_64H_float2int"
+        FCVTNU FCVTNU_32S_float2int -> "FCVTNU_32S_float2int"
+        FCVTNU FCVTNU_64S_float2int -> "FCVTNU_64S_float2int"
+        FCVTNU FCVTNU_32D_float2int -> "FCVTNU_32D_float2int"
+        FCVTNU FCVTNU_64D_float2int -> "FCVTNU_64D_float2int"
+        FCVTNU FCVTNU_asisdmiscfp16_R -> "FCVTNU_asisdmiscfp16_R"
+        FCVTNU FCVTNU_asisdmisc_R -> "FCVTNU_asisdmisc_R"
+        FCVTNU FCVTNU_asimdmiscfp16_R -> "FCVTNU_asimdmiscfp16_R"
+        FCVTNU FCVTNU_asimdmisc_R -> "FCVTNU_asimdmisc_R"
+        FCVTPS FCVTPS_32H_float2int -> "FCVTPS_32H_float2int"
+        FCVTPS FCVTPS_64H_float2int -> "FCVTPS_64H_float2int"
+        FCVTPS FCVTPS_32S_float2int -> "FCVTPS_32S_float2int"
+        FCVTPS FCVTPS_64S_float2int -> "FCVTPS_64S_float2int"
+        FCVTPS FCVTPS_32D_float2int -> "FCVTPS_32D_float2int"
+        FCVTPS FCVTPS_64D_float2int -> "FCVTPS_64D_float2int"
+        FCVTPS FCVTPS_asisdmiscfp16_R -> "FCVTPS_asisdmiscfp16_R"
+        FCVTPS FCVTPS_asisdmisc_R -> "FCVTPS_asisdmisc_R"
+        FCVTPS FCVTPS_asimdmiscfp16_R -> "FCVTPS_asimdmiscfp16_R"
+        FCVTPS FCVTPS_asimdmisc_R -> "FCVTPS_asimdmisc_R"
+        FCVTPU FCVTPU_32H_float2int -> "FCVTPU_32H_float2int"
+        FCVTPU FCVTPU_64H_float2int -> "FCVTPU_64H_float2int"
+        FCVTPU FCVTPU_32S_float2int -> "FCVTPU_32S_float2int"
+        FCVTPU FCVTPU_64S_float2int -> "FCVTPU_64S_float2int"
+        FCVTPU FCVTPU_32D_float2int -> "FCVTPU_32D_float2int"
+        FCVTPU FCVTPU_64D_float2int -> "FCVTPU_64D_float2int"
+        FCVTPU FCVTPU_asisdmiscfp16_R -> "FCVTPU_asisdmiscfp16_R"
+        FCVTPU FCVTPU_asisdmisc_R -> "FCVTPU_asisdmisc_R"
+        FCVTPU FCVTPU_asimdmiscfp16_R -> "FCVTPU_asimdmiscfp16_R"
+        FCVTPU FCVTPU_asimdmisc_R -> "FCVTPU_asimdmisc_R"
+        FCVTXN FCVTXN_asisdmisc_N -> "FCVTXN_asisdmisc_N"
+        FCVTXN FCVTXN_asimdmisc_N -> "FCVTXN_asimdmisc_N"
+        FCVTZS FCVTZS_32H_float2fix -> "FCVTZS_32H_float2fix"
+        FCVTZS FCVTZS_64H_float2fix -> "FCVTZS_64H_float2fix"
+        FCVTZS FCVTZS_32S_float2fix -> "FCVTZS_32S_float2fix"
+        FCVTZS FCVTZS_64S_float2fix -> "FCVTZS_64S_float2fix"
+        FCVTZS FCVTZS_32D_float2fix -> "FCVTZS_32D_float2fix"
+        FCVTZS FCVTZS_64D_float2fix -> "FCVTZS_64D_float2fix"
+        FCVTZS FCVTZS_32H_float2int -> "FCVTZS_32H_float2int"
+        FCVTZS FCVTZS_64H_float2int -> "FCVTZS_64H_float2int"
+        FCVTZS FCVTZS_32S_float2int -> "FCVTZS_32S_float2int"
+        FCVTZS FCVTZS_64S_float2int -> "FCVTZS_64S_float2int"
+        FCVTZS FCVTZS_32D_float2int -> "FCVTZS_32D_float2int"
+        FCVTZS FCVTZS_64D_float2int -> "FCVTZS_64D_float2int"
+        FCVTZS FCVTZS_asisdshf_C -> "FCVTZS_asisdshf_C"
+        FCVTZS FCVTZS_asimdshf_C -> "FCVTZS_asimdshf_C"
+        FCVTZS FCVTZS_asisdmiscfp16_R -> "FCVTZS_asisdmiscfp16_R"
+        FCVTZS FCVTZS_asisdmisc_R -> "FCVTZS_asisdmisc_R"
+        FCVTZS FCVTZS_asimdmiscfp16_R -> "FCVTZS_asimdmiscfp16_R"
+        FCVTZS FCVTZS_asimdmisc_R -> "FCVTZS_asimdmisc_R"
+        FCVTZU FCVTZU_32H_float2fix -> "FCVTZU_32H_float2fix"
+        FCVTZU FCVTZU_64H_float2fix -> "FCVTZU_64H_float2fix"
+        FCVTZU FCVTZU_32S_float2fix -> "FCVTZU_32S_float2fix"
+        FCVTZU FCVTZU_64S_float2fix -> "FCVTZU_64S_float2fix"
+        FCVTZU FCVTZU_32D_float2fix -> "FCVTZU_32D_float2fix"
+        FCVTZU FCVTZU_64D_float2fix -> "FCVTZU_64D_float2fix"
+        FCVTZU FCVTZU_32H_float2int -> "FCVTZU_32H_float2int"
+        FCVTZU FCVTZU_64H_float2int -> "FCVTZU_64H_float2int"
+        FCVTZU FCVTZU_32S_float2int -> "FCVTZU_32S_float2int"
+        FCVTZU FCVTZU_64S_float2int -> "FCVTZU_64S_float2int"
+        FCVTZU FCVTZU_32D_float2int -> "FCVTZU_32D_float2int"
+        FCVTZU FCVTZU_64D_float2int -> "FCVTZU_64D_float2int"
+        FCVTZU FCVTZU_asisdshf_C -> "FCVTZU_asisdshf_C"
+        FCVTZU FCVTZU_asimdshf_C -> "FCVTZU_asimdshf_C"
+        FCVTZU FCVTZU_asisdmiscfp16_R -> "FCVTZU_asisdmiscfp16_R"
+        FCVTZU FCVTZU_asisdmisc_R -> "FCVTZU_asisdmisc_R"
+        FCVTZU FCVTZU_asimdmiscfp16_R -> "FCVTZU_asimdmiscfp16_R"
+        FCVTZU FCVTZU_asimdmisc_R -> "FCVTZU_asimdmisc_R"
+        FDIV FDIV_H_floatdp2 -> "FDIV_H_floatdp2"
+        FDIV FDIV_S_floatdp2 -> "FDIV_S_floatdp2"
+        FDIV FDIV_D_floatdp2 -> "FDIV_D_floatdp2"
+        FDIV FDIV_asimdsamefp16_only -> "FDIV_asimdsamefp16_only"
+        FDIV FDIV_asimdsame_only -> "FDIV_asimdsame_only"
+        FJCVTZS FJCVTZS_32D_float2int -> "FJCVTZS_32D_float2int"
+        FMADD FMADD_H_floatdp3 -> "FMADD_H_floatdp3"
+        FMADD FMADD_S_floatdp3 -> "FMADD_S_floatdp3"
+        FMADD FMADD_D_floatdp3 -> "FMADD_D_floatdp3"
+        FMAX FMAX_H_floatdp2 -> "FMAX_H_floatdp2"
+        FMAX FMAX_S_floatdp2 -> "FMAX_S_floatdp2"
+        FMAX FMAX_D_floatdp2 -> "FMAX_D_floatdp2"
+        FMAX FMAX_asimdsamefp16_only -> "FMAX_asimdsamefp16_only"
+        FMAX FMAX_asimdsame_only -> "FMAX_asimdsame_only"
+        FMAXNM FMAXNM_H_floatdp2 -> "FMAXNM_H_floatdp2"
+        FMAXNM FMAXNM_S_floatdp2 -> "FMAXNM_S_floatdp2"
+        FMAXNM FMAXNM_D_floatdp2 -> "FMAXNM_D_floatdp2"
+        FMAXNM FMAXNM_asimdsamefp16_only -> "FMAXNM_asimdsamefp16_only"
+        FMAXNM FMAXNM_asimdsame_only -> "FMAXNM_asimdsame_only"
+        FMAXNMP FMAXNMP_asisdpair_only_H -> "FMAXNMP_asisdpair_only_H"
+        FMAXNMP FMAXNMP_asisdpair_only_SD -> "FMAXNMP_asisdpair_only_SD"
+        FMAXNMP FMAXNMP_asimdsamefp16_only -> "FMAXNMP_asimdsamefp16_only"
+        FMAXNMP FMAXNMP_asimdsame_only -> "FMAXNMP_asimdsame_only"
+        FMAXNMV FMAXNMV_asimdall_only_H -> "FMAXNMV_asimdall_only_H"
+        FMAXNMV FMAXNMV_asimdall_only_SD -> "FMAXNMV_asimdall_only_SD"
+        FMAXP FMAXP_asisdpair_only_H -> "FMAXP_asisdpair_only_H"
+        FMAXP FMAXP_asisdpair_only_SD -> "FMAXP_asisdpair_only_SD"
+        FMAXP FMAXP_asimdsamefp16_only -> "FMAXP_asimdsamefp16_only"
+        FMAXP FMAXP_asimdsame_only -> "FMAXP_asimdsame_only"
+        FMAXV FMAXV_asimdall_only_H -> "FMAXV_asimdall_only_H"
+        FMAXV FMAXV_asimdall_only_SD -> "FMAXV_asimdall_only_SD"
+        FMIN FMIN_H_floatdp2 -> "FMIN_H_floatdp2"
+        FMIN FMIN_S_floatdp2 -> "FMIN_S_floatdp2"
+        FMIN FMIN_D_floatdp2 -> "FMIN_D_floatdp2"
+        FMIN FMIN_asimdsamefp16_only -> "FMIN_asimdsamefp16_only"
+        FMIN FMIN_asimdsame_only -> "FMIN_asimdsame_only"
+        FMINNM FMINNM_H_floatdp2 -> "FMINNM_H_floatdp2"
+        FMINNM FMINNM_S_floatdp2 -> "FMINNM_S_floatdp2"
+        FMINNM FMINNM_D_floatdp2 -> "FMINNM_D_floatdp2"
+        FMINNM FMINNM_asimdsamefp16_only -> "FMINNM_asimdsamefp16_only"
+        FMINNM FMINNM_asimdsame_only -> "FMINNM_asimdsame_only"
+        FMINNMP FMINNMP_asisdpair_only_H -> "FMINNMP_asisdpair_only_H"
+        FMINNMP FMINNMP_asisdpair_only_SD -> "FMINNMP_asisdpair_only_SD"
+        FMINNMP FMINNMP_asimdsamefp16_only -> "FMINNMP_asimdsamefp16_only"
+        FMINNMP FMINNMP_asimdsame_only -> "FMINNMP_asimdsame_only"
+        FMINNMV FMINNMV_asimdall_only_H -> "FMINNMV_asimdall_only_H"
+        FMINNMV FMINNMV_asimdall_only_SD -> "FMINNMV_asimdall_only_SD"
+        FMINP FMINP_asisdpair_only_H -> "FMINP_asisdpair_only_H"
+        FMINP FMINP_asisdpair_only_SD -> "FMINP_asisdpair_only_SD"
+        FMINP FMINP_asimdsamefp16_only -> "FMINP_asimdsamefp16_only"
+        FMINP FMINP_asimdsame_only -> "FMINP_asimdsame_only"
+        FMINV FMINV_asimdall_only_H -> "FMINV_asimdall_only_H"
+        FMINV FMINV_asimdall_only_SD -> "FMINV_asimdall_only_SD"
+        FMLA FMLA_asisdelem_RH_H -> "FMLA_asisdelem_RH_H"
+        FMLA FMLA_asisdelem_R_SD -> "FMLA_asisdelem_R_SD"
+        FMLA FMLA_asimdelem_RH_H -> "FMLA_asimdelem_RH_H"
+        FMLA FMLA_asimdelem_R_SD -> "FMLA_asimdelem_R_SD"
+        FMLA FMLA_asimdsamefp16_only -> "FMLA_asimdsamefp16_only"
+        FMLA FMLA_asimdsame_only -> "FMLA_asimdsame_only"
+        FMLS FMLS_asisdelem_RH_H -> "FMLS_asisdelem_RH_H"
+        FMLS FMLS_asisdelem_R_SD -> "FMLS_asisdelem_R_SD"
+        FMLS FMLS_asimdelem_RH_H -> "FMLS_asimdelem_RH_H"
+        FMLS FMLS_asimdelem_R_SD -> "FMLS_asimdelem_R_SD"
+        FMLS FMLS_asimdsamefp16_only -> "FMLS_asimdsamefp16_only"
+        FMLS FMLS_asimdsame_only -> "FMLS_asimdsame_only"
+        FMOV FMOV_32H_float2int -> "FMOV_32H_float2int"
+        FMOV FMOV_64H_float2int -> "FMOV_64H_float2int"
+        FMOV FMOV_H32_float2int -> "FMOV_H32_float2int"
+        FMOV FMOV_S32_float2int -> "FMOV_S32_float2int"
+        FMOV FMOV_32S_float2int -> "FMOV_32S_float2int"
+        FMOV FMOV_H64_float2int -> "FMOV_H64_float2int"
+        FMOV FMOV_D64_float2int -> "FMOV_D64_float2int"
+        FMOV FMOV_V64I_float2int -> "FMOV_V64I_float2int"
+        FMOV FMOV_64D_float2int -> "FMOV_64D_float2int"
+        FMOV FMOV_64VX_float2int -> "FMOV_64VX_float2int"
+        FMOV FMOV_H_floatdp1 -> "FMOV_H_floatdp1"
+        FMOV FMOV_S_floatdp1 -> "FMOV_S_floatdp1"
+        FMOV FMOV_D_floatdp1 -> "FMOV_D_floatdp1"
+        FMOV FMOV_H_floatimm -> "FMOV_H_floatimm"
+        FMOV FMOV_S_floatimm -> "FMOV_S_floatimm"
+        FMOV FMOV_D_floatimm -> "FMOV_D_floatimm"
+        FMOV FMOV_asimdimm_H_h -> "FMOV_asimdimm_H_h"
+        FMOV FMOV_asimdimm_S_s -> "FMOV_asimdimm_S_s"
+        FMOV FMOV_asimdimm_D2_d -> "FMOV_asimdimm_D2_d"
+        FMSUB FMSUB_H_floatdp3 -> "FMSUB_H_floatdp3"
+        FMSUB FMSUB_S_floatdp3 -> "FMSUB_S_floatdp3"
+        FMSUB FMSUB_D_floatdp3 -> "FMSUB_D_floatdp3"
+        FMUL FMUL_asisdelem_RH_H -> "FMUL_asisdelem_RH_H"
+        FMUL FMUL_asisdelem_R_SD -> "FMUL_asisdelem_R_SD"
+        FMUL FMUL_asimdelem_RH_H -> "FMUL_asimdelem_RH_H"
+        FMUL FMUL_asimdelem_R_SD -> "FMUL_asimdelem_R_SD"
+        FMUL FMUL_H_floatdp2 -> "FMUL_H_floatdp2"
+        FMUL FMUL_S_floatdp2 -> "FMUL_S_floatdp2"
+        FMUL FMUL_D_floatdp2 -> "FMUL_D_floatdp2"
+        FMUL FMUL_asimdsamefp16_only -> "FMUL_asimdsamefp16_only"
+        FMUL FMUL_asimdsame_only -> "FMUL_asimdsame_only"
+        FMULX FMULX_asisdsamefp16_only -> "FMULX_asisdsamefp16_only"
+        FMULX FMULX_asisdsame_only -> "FMULX_asisdsame_only"
+        FMULX FMULX_asimdsamefp16_only -> "FMULX_asimdsamefp16_only"
+        FMULX FMULX_asimdsame_only -> "FMULX_asimdsame_only"
+        FMULX FMULX_asisdelem_RH_H -> "FMULX_asisdelem_RH_H"
+        FMULX FMULX_asisdelem_R_SD -> "FMULX_asisdelem_R_SD"
+        FMULX FMULX_asimdelem_RH_H -> "FMULX_asimdelem_RH_H"
+        FMULX FMULX_asimdelem_R_SD -> "FMULX_asimdelem_R_SD"
+        FNEG FNEG_H_floatdp1 -> "FNEG_H_floatdp1"
+        FNEG FNEG_S_floatdp1 -> "FNEG_S_floatdp1"
+        FNEG FNEG_D_floatdp1 -> "FNEG_D_floatdp1"
+        FNEG FNEG_asimdmiscfp16_R -> "FNEG_asimdmiscfp16_R"
+        FNEG FNEG_asimdmisc_R -> "FNEG_asimdmisc_R"
+        FNMADD FNMADD_H_floatdp3 -> "FNMADD_H_floatdp3"
+        FNMADD FNMADD_S_floatdp3 -> "FNMADD_S_floatdp3"
+        FNMADD FNMADD_D_floatdp3 -> "FNMADD_D_floatdp3"
+        FNMSUB FNMSUB_H_floatdp3 -> "FNMSUB_H_floatdp3"
+        FNMSUB FNMSUB_S_floatdp3 -> "FNMSUB_S_floatdp3"
+        FNMSUB FNMSUB_D_floatdp3 -> "FNMSUB_D_floatdp3"
+        FNMUL FNMUL_H_floatdp2 -> "FNMUL_H_floatdp2"
+        FNMUL FNMUL_S_floatdp2 -> "FNMUL_S_floatdp2"
+        FNMUL FNMUL_D_floatdp2 -> "FNMUL_D_floatdp2"
+        FRECPE FRECPE_asisdmiscfp16_R -> "FRECPE_asisdmiscfp16_R"
+        FRECPE FRECPE_asisdmisc_R -> "FRECPE_asisdmisc_R"
+        FRECPE FRECPE_asimdmiscfp16_R -> "FRECPE_asimdmiscfp16_R"
+        FRECPE FRECPE_asimdmisc_R -> "FRECPE_asimdmisc_R"
+        FRECPS FRECPS_asisdsamefp16_only -> "FRECPS_asisdsamefp16_only"
+        FRECPS FRECPS_asisdsame_only -> "FRECPS_asisdsame_only"
+        FRECPS FRECPS_asimdsamefp16_only -> "FRECPS_asimdsamefp16_only"
+        FRECPS FRECPS_asimdsame_only -> "FRECPS_asimdsame_only"
+        FRECPX FRECPX_asisdmiscfp16_R -> "FRECPX_asisdmiscfp16_R"
+        FRECPX FRECPX_asisdmisc_R -> "FRECPX_asisdmisc_R"
+        FRINTA FRINTA_H_floatdp1 -> "FRINTA_H_floatdp1"
+        FRINTA FRINTA_S_floatdp1 -> "FRINTA_S_floatdp1"
+        FRINTA FRINTA_D_floatdp1 -> "FRINTA_D_floatdp1"
+        FRINTA FRINTA_asimdmiscfp16_R -> "FRINTA_asimdmiscfp16_R"
+        FRINTA FRINTA_asimdmisc_R -> "FRINTA_asimdmisc_R"
+        FRINTI FRINTI_H_floatdp1 -> "FRINTI_H_floatdp1"
+        FRINTI FRINTI_S_floatdp1 -> "FRINTI_S_floatdp1"
+        FRINTI FRINTI_D_floatdp1 -> "FRINTI_D_floatdp1"
+        FRINTI FRINTI_asimdmiscfp16_R -> "FRINTI_asimdmiscfp16_R"
+        FRINTI FRINTI_asimdmisc_R -> "FRINTI_asimdmisc_R"
+        FRINTM FRINTM_H_floatdp1 -> "FRINTM_H_floatdp1"
+        FRINTM FRINTM_S_floatdp1 -> "FRINTM_S_floatdp1"
+        FRINTM FRINTM_D_floatdp1 -> "FRINTM_D_floatdp1"
+        FRINTM FRINTM_asimdmiscfp16_R -> "FRINTM_asimdmiscfp16_R"
+        FRINTM FRINTM_asimdmisc_R -> "FRINTM_asimdmisc_R"
+        FRINTN FRINTN_H_floatdp1 -> "FRINTN_H_floatdp1"
+        FRINTN FRINTN_S_floatdp1 -> "FRINTN_S_floatdp1"
+        FRINTN FRINTN_D_floatdp1 -> "FRINTN_D_floatdp1"
+        FRINTN FRINTN_asimdmiscfp16_R -> "FRINTN_asimdmiscfp16_R"
+        FRINTN FRINTN_asimdmisc_R -> "FRINTN_asimdmisc_R"
+        FRINTP FRINTP_H_floatdp1 -> "FRINTP_H_floatdp1"
+        FRINTP FRINTP_S_floatdp1 -> "FRINTP_S_floatdp1"
+        FRINTP FRINTP_D_floatdp1 -> "FRINTP_D_floatdp1"
+        FRINTP FRINTP_asimdmiscfp16_R -> "FRINTP_asimdmiscfp16_R"
+        FRINTP FRINTP_asimdmisc_R -> "FRINTP_asimdmisc_R"
+        FRINTX FRINTX_H_floatdp1 -> "FRINTX_H_floatdp1"
+        FRINTX FRINTX_S_floatdp1 -> "FRINTX_S_floatdp1"
+        FRINTX FRINTX_D_floatdp1 -> "FRINTX_D_floatdp1"
+        FRINTX FRINTX_asimdmiscfp16_R -> "FRINTX_asimdmiscfp16_R"
+        FRINTX FRINTX_asimdmisc_R -> "FRINTX_asimdmisc_R"
+        FRINTZ FRINTZ_H_floatdp1 -> "FRINTZ_H_floatdp1"
+        FRINTZ FRINTZ_S_floatdp1 -> "FRINTZ_S_floatdp1"
+        FRINTZ FRINTZ_D_floatdp1 -> "FRINTZ_D_floatdp1"
+        FRINTZ FRINTZ_asimdmiscfp16_R -> "FRINTZ_asimdmiscfp16_R"
+        FRINTZ FRINTZ_asimdmisc_R -> "FRINTZ_asimdmisc_R"
+        FRSQRTE FRSQRTE_asisdmiscfp16_R -> "FRSQRTE_asisdmiscfp16_R"
+        FRSQRTE FRSQRTE_asisdmisc_R -> "FRSQRTE_asisdmisc_R"
+        FRSQRTE FRSQRTE_asimdmiscfp16_R -> "FRSQRTE_asimdmiscfp16_R"
+        FRSQRTE FRSQRTE_asimdmisc_R -> "FRSQRTE_asimdmisc_R"
+        FRSQRTS FRSQRTS_asisdsamefp16_only -> "FRSQRTS_asisdsamefp16_only"
+        FRSQRTS FRSQRTS_asisdsame_only -> "FRSQRTS_asisdsame_only"
+        FRSQRTS FRSQRTS_asimdsamefp16_only -> "FRSQRTS_asimdsamefp16_only"
+        FRSQRTS FRSQRTS_asimdsame_only -> "FRSQRTS_asimdsame_only"
+        FSQRT FSQRT_H_floatdp1 -> "FSQRT_H_floatdp1"
+        FSQRT FSQRT_S_floatdp1 -> "FSQRT_S_floatdp1"
+        FSQRT FSQRT_D_floatdp1 -> "FSQRT_D_floatdp1"
+        FSQRT FSQRT_asimdmiscfp16_R -> "FSQRT_asimdmiscfp16_R"
+        FSQRT FSQRT_asimdmisc_R -> "FSQRT_asimdmisc_R"
+        FSUB FSUB_H_floatdp2 -> "FSUB_H_floatdp2"
+        FSUB FSUB_S_floatdp2 -> "FSUB_S_floatdp2"
+        FSUB FSUB_D_floatdp2 -> "FSUB_D_floatdp2"
+        FSUB FSUB_asimdsamefp16_only -> "FSUB_asimdsamefp16_only"
+        FSUB FSUB_asimdsame_only -> "FSUB_asimdsame_only"
+        INS INS_asimdins_IV_v -> "INS_asimdins_IV_v"
+        INS INS_asimdins_IR_r -> "INS_asimdins_IR_r"
+        LD1 LD1_asisdlse_R1_1v -> "LD1_asisdlse_R1_1v"
+        LD1 LD1_asisdlse_R2_2v -> "LD1_asisdlse_R2_2v"
+        LD1 LD1_asisdlse_R3_3v -> "LD1_asisdlse_R3_3v"
+        LD1 LD1_asisdlse_R4_4v -> "LD1_asisdlse_R4_4v"
+        LD1 LD1_asisdlsep_I1_i1 -> "LD1_asisdlsep_I1_i1"
+        LD1 LD1_asisdlsep_R1_r1 -> "LD1_asisdlsep_R1_r1"
+        LD1 LD1_asisdlsep_I2_i2 -> "LD1_asisdlsep_I2_i2"
+        LD1 LD1_asisdlsep_R2_r2 -> "LD1_asisdlsep_R2_r2"
+        LD1 LD1_asisdlsep_I3_i3 -> "LD1_asisdlsep_I3_i3"
+        LD1 LD1_asisdlsep_R3_r3 -> "LD1_asisdlsep_R3_r3"
+        LD1 LD1_asisdlsep_I4_i4 -> "LD1_asisdlsep_I4_i4"
+        LD1 LD1_asisdlsep_R4_r4 -> "LD1_asisdlsep_R4_r4"
+        LD1 LD1_asisdlso_B1_1b -> "LD1_asisdlso_B1_1b"
+        LD1 LD1_asisdlso_H1_1h -> "LD1_asisdlso_H1_1h"
+        LD1 LD1_asisdlso_S1_1s -> "LD1_asisdlso_S1_1s"
+        LD1 LD1_asisdlso_D1_1d -> "LD1_asisdlso_D1_1d"
+        LD1 LD1_asisdlsop_B1_i1b -> "LD1_asisdlsop_B1_i1b"
+        LD1 LD1_asisdlsop_BX1_r1b -> "LD1_asisdlsop_BX1_r1b"
+        LD1 LD1_asisdlsop_H1_i1h -> "LD1_asisdlsop_H1_i1h"
+        LD1 LD1_asisdlsop_HX1_r1h -> "LD1_asisdlsop_HX1_r1h"
+        LD1 LD1_asisdlsop_S1_i1s -> "LD1_asisdlsop_S1_i1s"
+        LD1 LD1_asisdlsop_SX1_r1s -> "LD1_asisdlsop_SX1_r1s"
+        LD1 LD1_asisdlsop_D1_i1d -> "LD1_asisdlsop_D1_i1d"
+        LD1 LD1_asisdlsop_DX1_r1d -> "LD1_asisdlsop_DX1_r1d"
+        LD1R LD1R_asisdlso_R1 -> "LD1R_asisdlso_R1"
+        LD1R LD1R_asisdlsop_R1_i -> "LD1R_asisdlsop_R1_i"
+        LD1R LD1R_asisdlsop_RX1_r -> "LD1R_asisdlsop_RX1_r"
+        LD2 LD2_asisdlse_R2 -> "LD2_asisdlse_R2"
+        LD2 LD2_asisdlsep_I2_i -> "LD2_asisdlsep_I2_i"
+        LD2 LD2_asisdlsep_R2_r -> "LD2_asisdlsep_R2_r"
+        LD2 LD2_asisdlso_B2_2b -> "LD2_asisdlso_B2_2b"
+        LD2 LD2_asisdlso_H2_2h -> "LD2_asisdlso_H2_2h"
+        LD2 LD2_asisdlso_S2_2s -> "LD2_asisdlso_S2_2s"
+        LD2 LD2_asisdlso_D2_2d -> "LD2_asisdlso_D2_2d"
+        LD2 LD2_asisdlsop_B2_i2b -> "LD2_asisdlsop_B2_i2b"
+        LD2 LD2_asisdlsop_BX2_r2b -> "LD2_asisdlsop_BX2_r2b"
+        LD2 LD2_asisdlsop_H2_i2h -> "LD2_asisdlsop_H2_i2h"
+        LD2 LD2_asisdlsop_HX2_r2h -> "LD2_asisdlsop_HX2_r2h"
+        LD2 LD2_asisdlsop_S2_i2s -> "LD2_asisdlsop_S2_i2s"
+        LD2 LD2_asisdlsop_SX2_r2s -> "LD2_asisdlsop_SX2_r2s"
+        LD2 LD2_asisdlsop_D2_i2d -> "LD2_asisdlsop_D2_i2d"
+        LD2 LD2_asisdlsop_DX2_r2d -> "LD2_asisdlsop_DX2_r2d"
+        LD2R LD2R_asisdlso_R2 -> "LD2R_asisdlso_R2"
+        LD2R LD2R_asisdlsop_R2_i -> "LD2R_asisdlsop_R2_i"
+        LD2R LD2R_asisdlsop_RX2_r -> "LD2R_asisdlsop_RX2_r"
+        LD3 LD3_asisdlse_R3 -> "LD3_asisdlse_R3"
+        LD3 LD3_asisdlsep_I3_i -> "LD3_asisdlsep_I3_i"
+        LD3 LD3_asisdlsep_R3_r -> "LD3_asisdlsep_R3_r"
+        LD3 LD3_asisdlso_B3_3b -> "LD3_asisdlso_B3_3b"
+        LD3 LD3_asisdlso_H3_3h -> "LD3_asisdlso_H3_3h"
+        LD3 LD3_asisdlso_S3_3s -> "LD3_asisdlso_S3_3s"
+        LD3 LD3_asisdlso_D3_3d -> "LD3_asisdlso_D3_3d"
+        LD3 LD3_asisdlsop_B3_i3b -> "LD3_asisdlsop_B3_i3b"
+        LD3 LD3_asisdlsop_BX3_r3b -> "LD3_asisdlsop_BX3_r3b"
+        LD3 LD3_asisdlsop_H3_i3h -> "LD3_asisdlsop_H3_i3h"
+        LD3 LD3_asisdlsop_HX3_r3h -> "LD3_asisdlsop_HX3_r3h"
+        LD3 LD3_asisdlsop_S3_i3s -> "LD3_asisdlsop_S3_i3s"
+        LD3 LD3_asisdlsop_SX3_r3s -> "LD3_asisdlsop_SX3_r3s"
+        LD3 LD3_asisdlsop_D3_i3d -> "LD3_asisdlsop_D3_i3d"
+        LD3 LD3_asisdlsop_DX3_r3d -> "LD3_asisdlsop_DX3_r3d"
+        LD3R LD3R_asisdlso_R3 -> "LD3R_asisdlso_R3"
+        LD3R LD3R_asisdlsop_R3_i -> "LD3R_asisdlsop_R3_i"
+        LD3R LD3R_asisdlsop_RX3_r -> "LD3R_asisdlsop_RX3_r"
+        LD4 LD4_asisdlse_R4 -> "LD4_asisdlse_R4"
+        LD4 LD4_asisdlsep_I4_i -> "LD4_asisdlsep_I4_i"
+        LD4 LD4_asisdlsep_R4_r -> "LD4_asisdlsep_R4_r"
+        LD4 LD4_asisdlso_B4_4b -> "LD4_asisdlso_B4_4b"
+        LD4 LD4_asisdlso_H4_4h -> "LD4_asisdlso_H4_4h"
+        LD4 LD4_asisdlso_S4_4s -> "LD4_asisdlso_S4_4s"
+        LD4 LD4_asisdlso_D4_4d -> "LD4_asisdlso_D4_4d"
+        LD4 LD4_asisdlsop_B4_i4b -> "LD4_asisdlsop_B4_i4b"
+        LD4 LD4_asisdlsop_BX4_r4b -> "LD4_asisdlsop_BX4_r4b"
+        LD4 LD4_asisdlsop_H4_i4h -> "LD4_asisdlsop_H4_i4h"
+        LD4 LD4_asisdlsop_HX4_r4h -> "LD4_asisdlsop_HX4_r4h"
+        LD4 LD4_asisdlsop_S4_i4s -> "LD4_asisdlsop_S4_i4s"
+        LD4 LD4_asisdlsop_SX4_r4s -> "LD4_asisdlsop_SX4_r4s"
+        LD4 LD4_asisdlsop_D4_i4d -> "LD4_asisdlsop_D4_i4d"
+        LD4 LD4_asisdlsop_DX4_r4d -> "LD4_asisdlsop_DX4_r4d"
+        LD4R LD4R_asisdlso_R4 -> "LD4R_asisdlso_R4"
+        LD4R LD4R_asisdlsop_R4_i -> "LD4R_asisdlsop_R4_i"
+        LD4R LD4R_asisdlsop_RX4_r -> "LD4R_asisdlsop_RX4_r"
+        LDNP LDNP_S_ldstnapair_offs -> "LDNP_S_ldstnapair_offs"
+        LDNP LDNP_D_ldstnapair_offs -> "LDNP_D_ldstnapair_offs"
+        LDNP LDNP_Q_ldstnapair_offs -> "LDNP_Q_ldstnapair_offs"
+        LDP LDP_S_ldstpair_post -> "LDP_S_ldstpair_post"
+        LDP LDP_D_ldstpair_post -> "LDP_D_ldstpair_post"
+        LDP LDP_Q_ldstpair_post -> "LDP_Q_ldstpair_post"
+        LDP LDP_S_ldstpair_pre -> "LDP_S_ldstpair_pre"
+        LDP LDP_D_ldstpair_pre -> "LDP_D_ldstpair_pre"
+        LDP LDP_Q_ldstpair_pre -> "LDP_Q_ldstpair_pre"
+        LDP LDP_S_ldstpair_off -> "LDP_S_ldstpair_off"
+        LDP LDP_D_ldstpair_off -> "LDP_D_ldstpair_off"
+        LDP LDP_Q_ldstpair_off -> "LDP_Q_ldstpair_off"
+        LDR LDR_B_ldst_immpost -> "LDR_B_ldst_immpost"
+        LDR LDR_H_ldst_immpost -> "LDR_H_ldst_immpost"
+        LDR LDR_S_ldst_immpost -> "LDR_S_ldst_immpost"
+        LDR LDR_D_ldst_immpost -> "LDR_D_ldst_immpost"
+        LDR LDR_Q_ldst_immpost -> "LDR_Q_ldst_immpost"
+        LDR LDR_B_ldst_immpre -> "LDR_B_ldst_immpre"
+        LDR LDR_H_ldst_immpre -> "LDR_H_ldst_immpre"
+        LDR LDR_S_ldst_immpre -> "LDR_S_ldst_immpre"
+        LDR LDR_D_ldst_immpre -> "LDR_D_ldst_immpre"
+        LDR LDR_Q_ldst_immpre -> "LDR_Q_ldst_immpre"
+        LDR LDR_B_ldst_pos -> "LDR_B_ldst_pos"
+        LDR LDR_H_ldst_pos -> "LDR_H_ldst_pos"
+        LDR LDR_S_ldst_pos -> "LDR_S_ldst_pos"
+        LDR LDR_D_ldst_pos -> "LDR_D_ldst_pos"
+        LDR LDR_Q_ldst_pos -> "LDR_Q_ldst_pos"
+        LDR LDR_S_loadlit -> "LDR_S_loadlit"
+        LDR LDR_D_loadlit -> "LDR_D_loadlit"
+        LDR LDR_Q_loadlit -> "LDR_Q_loadlit"
+        LDR LDR_B_ldst_regoff -> "LDR_B_ldst_regoff"
+        LDR LDR_BL_ldst_regoff -> "LDR_BL_ldst_regoff"
+        LDR LDR_H_ldst_regoff -> "LDR_H_ldst_regoff"
+        LDR LDR_S_ldst_regoff -> "LDR_S_ldst_regoff"
+        LDR LDR_D_ldst_regoff -> "LDR_D_ldst_regoff"
+        LDR LDR_Q_ldst_regoff -> "LDR_Q_ldst_regoff"
+        LDUR LDUR_B_ldst_unscaled -> "LDUR_B_ldst_unscaled"
+        LDUR LDUR_H_ldst_unscaled -> "LDUR_H_ldst_unscaled"
+        LDUR LDUR_S_ldst_unscaled -> "LDUR_S_ldst_unscaled"
+        LDUR LDUR_D_ldst_unscaled -> "LDUR_D_ldst_unscaled"
+        LDUR LDUR_Q_ldst_unscaled -> "LDUR_Q_ldst_unscaled"
+        MLA MLA_asimdelem_R -> "MLA_asimdelem_R"
+        MLA MLA_asimdsame_only -> "MLA_asimdsame_only"
+        MLS MLS_asimdelem_R -> "MLS_asimdelem_R"
+        MLS MLS_asimdsame_only -> "MLS_asimdsame_only"
+        MOVI MOVI_asimdimm_N_b -> "MOVI_asimdimm_N_b"
+        MOVI MOVI_asimdimm_L_hl -> "MOVI_asimdimm_L_hl"
+        MOVI MOVI_asimdimm_L_sl -> "MOVI_asimdimm_L_sl"
+        MOVI MOVI_asimdimm_M_sm -> "MOVI_asimdimm_M_sm"
+        MOVI MOVI_asimdimm_D_ds -> "MOVI_asimdimm_D_ds"
+        MOVI MOVI_asimdimm_D2_d -> "MOVI_asimdimm_D2_d"
+        MUL MUL_asimdelem_R -> "MUL_asimdelem_R"
+        MUL MUL_asimdsame_only -> "MUL_asimdsame_only"
+        MVNI MVNI_asimdimm_L_hl -> "MVNI_asimdimm_L_hl"
+        MVNI MVNI_asimdimm_L_sl -> "MVNI_asimdimm_L_sl"
+        MVNI MVNI_asimdimm_M_sm -> "MVNI_asimdimm_M_sm"
+        NEG NEG_asisdmisc_R -> "NEG_asisdmisc_R"
+        NEG NEG_asimdmisc_R -> "NEG_asimdmisc_R"
+        NOT NOT_asimdmisc_R -> "NOT_asimdmisc_R"
+        ORN ORN_asimdsame_only -> "ORN_asimdsame_only"
+        ORR ORR_asimdimm_L_hl -> "ORR_asimdimm_L_hl"
+        ORR ORR_asimdimm_L_sl -> "ORR_asimdimm_L_sl"
+        ORR ORR_asimdsame_only -> "ORR_asimdsame_only"
+        PMUL PMUL_asimdsame_only -> "PMUL_asimdsame_only"
+        PMULL PMULL_asimddiff_L -> "PMULL_asimddiff_L"
+        RADDHN RADDHN_asimddiff_N -> "RADDHN_asimddiff_N"
+        RAX1 RAX1_VVV2_cryptosha512_3 -> "RAX1_VVV2_cryptosha512_3"
+        RBIT RBIT_asimdmisc_R -> "RBIT_asimdmisc_R"
+        REV16 REV16_asimdmisc_R -> "REV16_asimdmisc_R"
+        REV32 REV32_asimdmisc_R -> "REV32_asimdmisc_R"
+        REV64 REV64_asimdmisc_R -> "REV64_asimdmisc_R"
+        RSHRN RSHRN_asimdshf_N -> "RSHRN_asimdshf_N"
+        RSUBHN RSUBHN_asimddiff_N -> "RSUBHN_asimddiff_N"
+        SABA SABA_asimdsame_only -> "SABA_asimdsame_only"
+        SABAL SABAL_asimddiff_L -> "SABAL_asimddiff_L"
+        SABD SABD_asimdsame_only -> "SABD_asimdsame_only"
+        SABDL SABDL_asimddiff_L -> "SABDL_asimddiff_L"
+        SADALP SADALP_asimdmisc_P -> "SADALP_asimdmisc_P"
+        SADDL SADDL_asimddiff_L -> "SADDL_asimddiff_L"
+        SADDLP SADDLP_asimdmisc_P -> "SADDLP_asimdmisc_P"
+        SADDLV SADDLV_asimdall_only -> "SADDLV_asimdall_only"
+        SADDW SADDW_asimddiff_W -> "SADDW_asimddiff_W"
+        SCVTF SCVTF_H32_float2fix -> "SCVTF_H32_float2fix"
+        SCVTF SCVTF_S32_float2fix -> "SCVTF_S32_float2fix"
+        SCVTF SCVTF_D32_float2fix -> "SCVTF_D32_float2fix"
+        SCVTF SCVTF_H64_float2fix -> "SCVTF_H64_float2fix"
+        SCVTF SCVTF_S64_float2fix -> "SCVTF_S64_float2fix"
+        SCVTF SCVTF_D64_float2fix -> "SCVTF_D64_float2fix"
+        SCVTF SCVTF_H32_float2int -> "SCVTF_H32_float2int"
+        SCVTF SCVTF_S32_float2int -> "SCVTF_S32_float2int"
+        SCVTF SCVTF_D32_float2int -> "SCVTF_D32_float2int"
+        SCVTF SCVTF_H64_float2int -> "SCVTF_H64_float2int"
+        SCVTF SCVTF_S64_float2int -> "SCVTF_S64_float2int"
+        SCVTF SCVTF_D64_float2int -> "SCVTF_D64_float2int"
+        SCVTF SCVTF_asisdshf_C -> "SCVTF_asisdshf_C"
+        SCVTF SCVTF_asimdshf_C -> "SCVTF_asimdshf_C"
+        SCVTF SCVTF_asisdmiscfp16_R -> "SCVTF_asisdmiscfp16_R"
+        SCVTF SCVTF_asisdmisc_R -> "SCVTF_asisdmisc_R"
+        SCVTF SCVTF_asimdmiscfp16_R -> "SCVTF_asimdmiscfp16_R"
+        SCVTF SCVTF_asimdmisc_R -> "SCVTF_asimdmisc_R"
+        SDOT SDOT_asimdelem_D -> "SDOT_asimdelem_D"
+        SDOT SDOT_asimdsame2_D -> "SDOT_asimdsame2_D"
+        SHA1C SHA1C_QSV_cryptosha3 -> "SHA1C_QSV_cryptosha3"
+        SHA1H SHA1H_SS_cryptosha2 -> "SHA1H_SS_cryptosha2"
+        SHA1M SHA1M_QSV_cryptosha3 -> "SHA1M_QSV_cryptosha3"
+        SHA1P SHA1P_QSV_cryptosha3 -> "SHA1P_QSV_cryptosha3"
+        SHA1SU0 SHA1SU0_VVV_cryptosha3 -> "SHA1SU0_VVV_cryptosha3"
+        SHA1SU1 SHA1SU1_VV_cryptosha2 -> "SHA1SU1_VV_cryptosha2"
+        SHA256H SHA256H_QQV_cryptosha3 -> "SHA256H_QQV_cryptosha3"
+        SHA256H2 SHA256H2_QQV_cryptosha3 -> "SHA256H2_QQV_cryptosha3"
+        SHA256SU0 SHA256SU0_VV_cryptosha2 -> "SHA256SU0_VV_cryptosha2"
+        SHA256SU1 SHA256SU1_VVV_cryptosha3 -> "SHA256SU1_VVV_cryptosha3"
+        SHA512H SHA512H_QQV_cryptosha512_3 -> "SHA512H_QQV_cryptosha512_3"
+        SHA512H2
+          SHA512H2_QQV_cryptosha512_3 -> "SHA512H2_QQV_cryptosha512_3"
+        SHA512SU0
+          SHA512SU0_VV2_cryptosha512_2 -> "SHA512SU0_VV2_cryptosha512_2"
+        SHA512SU1
+          SHA512SU1_VVV2_cryptosha512_3 -> "SHA512SU1_VVV2_cryptosha512_3"
+        SHADD SHADD_asimdsame_only -> "SHADD_asimdsame_only"
+        SHL SHL_asisdshf_R -> "SHL_asisdshf_R"
+        SHL SHL_asimdshf_R -> "SHL_asimdshf_R"
+        SHLL SHLL_asimdmisc_S -> "SHLL_asimdmisc_S"
+        SHRN SHRN_asimdshf_N -> "SHRN_asimdshf_N"
+        SHSUB SHSUB_asimdsame_only -> "SHSUB_asimdsame_only"
+        SLI SLI_asisdshf_R -> "SLI_asisdshf_R"
+        SLI SLI_asimdshf_R -> "SLI_asimdshf_R"
+        SM3PARTW1
+          SM3PARTW1_VVV4_cryptosha512_3 -> "SM3PARTW1_VVV4_cryptosha512_3"
+        SM3PARTW2
+          SM3PARTW2_VVV4_cryptosha512_3 -> "SM3PARTW2_VVV4_cryptosha512_3"
+        SM3SS1 SM3SS1_VVV4_crypto4 -> "SM3SS1_VVV4_crypto4"
+        SM3TT1A SM3TT1A_VVV4_crypto3_imm2 -> "SM3TT1A_VVV4_crypto3_imm2"
+        SM3TT1B SM3TT1B_VVV4_crypto3_imm2 -> "SM3TT1B_VVV4_crypto3_imm2"
+        SM3TT2A SM3TT2A_VVV4_crypto3_imm2 -> "SM3TT2A_VVV4_crypto3_imm2"
+        SM3TT2B SM3TT2B_VVV_crypto3_imm2 -> "SM3TT2B_VVV_crypto3_imm2"
+        SM4E SM4E_VV4_cryptosha512_2 -> "SM4E_VV4_cryptosha512_2"
+        SM4EKEY
+          SM4EKEY_VVV4_cryptosha512_3 -> "SM4EKEY_VVV4_cryptosha512_3"
+        SMAX SMAX_asimdsame_only -> "SMAX_asimdsame_only"
+        SMAXP SMAXP_asimdsame_only -> "SMAXP_asimdsame_only"
+        SMAXV SMAXV_asimdall_only -> "SMAXV_asimdall_only"
+        SMIN SMIN_asimdsame_only -> "SMIN_asimdsame_only"
+        SMINP SMINP_asimdsame_only -> "SMINP_asimdsame_only"
+        SMINV SMINV_asimdall_only -> "SMINV_asimdall_only"
+        SMLAL SMLAL_asimdelem_L -> "SMLAL_asimdelem_L"
+        SMLAL SMLAL_asimddiff_L -> "SMLAL_asimddiff_L"
+        SMLSL SMLSL_asimdelem_L -> "SMLSL_asimdelem_L"
+        SMLSL SMLSL_asimddiff_L -> "SMLSL_asimddiff_L"
+        SMOV SMOV_asimdins_W_w -> "SMOV_asimdins_W_w"
+        SMOV SMOV_asimdins_X_x -> "SMOV_asimdins_X_x"
+        SMULL SMULL_asimdelem_L -> "SMULL_asimdelem_L"
+        SMULL SMULL_asimddiff_L -> "SMULL_asimddiff_L"
+        SQABS SQABS_asisdmisc_R -> "SQABS_asisdmisc_R"
+        SQABS SQABS_asimdmisc_R -> "SQABS_asimdmisc_R"
+        SQADD SQADD_asisdsame_only -> "SQADD_asisdsame_only"
+        SQADD SQADD_asimdsame_only -> "SQADD_asimdsame_only"
+        SQDMLAL SQDMLAL_asisdelem_L -> "SQDMLAL_asisdelem_L"
+        SQDMLAL SQDMLAL_asimdelem_L -> "SQDMLAL_asimdelem_L"
+        SQDMLAL SQDMLAL_asisddiff_only -> "SQDMLAL_asisddiff_only"
+        SQDMLAL SQDMLAL_asimddiff_L -> "SQDMLAL_asimddiff_L"
+        SQDMLSL SQDMLSL_asisdelem_L -> "SQDMLSL_asisdelem_L"
+        SQDMLSL SQDMLSL_asimdelem_L -> "SQDMLSL_asimdelem_L"
+        SQDMLSL SQDMLSL_asisddiff_only -> "SQDMLSL_asisddiff_only"
+        SQDMLSL SQDMLSL_asimddiff_L -> "SQDMLSL_asimddiff_L"
+        SQDMULH SQDMULH_asisdelem_R -> "SQDMULH_asisdelem_R"
+        SQDMULH SQDMULH_asimdelem_R -> "SQDMULH_asimdelem_R"
+        SQDMULH SQDMULH_asisdsame_only -> "SQDMULH_asisdsame_only"
+        SQDMULH SQDMULH_asimdsame_only -> "SQDMULH_asimdsame_only"
+        SQDMULL SQDMULL_asisdelem_L -> "SQDMULL_asisdelem_L"
+        SQDMULL SQDMULL_asimdelem_L -> "SQDMULL_asimdelem_L"
+        SQDMULL SQDMULL_asisddiff_only -> "SQDMULL_asisddiff_only"
+        SQDMULL SQDMULL_asimddiff_L -> "SQDMULL_asimddiff_L"
+        SQNEG SQNEG_asisdmisc_R -> "SQNEG_asisdmisc_R"
+        SQNEG SQNEG_asimdmisc_R -> "SQNEG_asimdmisc_R"
+        SQRDMLAH SQRDMLAH_asisdelem_R -> "SQRDMLAH_asisdelem_R"
+        SQRDMLAH SQRDMLAH_asimdelem_R -> "SQRDMLAH_asimdelem_R"
+        SQRDMLAH SQRDMLAH_asisdsame2_only -> "SQRDMLAH_asisdsame2_only"
+        SQRDMLAH SQRDMLAH_asimdsame2_only -> "SQRDMLAH_asimdsame2_only"
+        SQRDMLSH SQRDMLSH_asisdelem_R -> "SQRDMLSH_asisdelem_R"
+        SQRDMLSH SQRDMLSH_asimdelem_R -> "SQRDMLSH_asimdelem_R"
+        SQRDMLSH SQRDMLSH_asisdsame2_only -> "SQRDMLSH_asisdsame2_only"
+        SQRDMLSH SQRDMLSH_asimdsame2_only -> "SQRDMLSH_asimdsame2_only"
+        SQRDMULH SQRDMULH_asisdelem_R -> "SQRDMULH_asisdelem_R"
+        SQRDMULH SQRDMULH_asimdelem_R -> "SQRDMULH_asimdelem_R"
+        SQRDMULH SQRDMULH_asisdsame_only -> "SQRDMULH_asisdsame_only"
+        SQRDMULH SQRDMULH_asimdsame_only -> "SQRDMULH_asimdsame_only"
+        SQRSHL SQRSHL_asisdsame_only -> "SQRSHL_asisdsame_only"
+        SQRSHL SQRSHL_asimdsame_only -> "SQRSHL_asimdsame_only"
+        SQRSHRN SQRSHRN_asisdshf_N -> "SQRSHRN_asisdshf_N"
+        SQRSHRN SQRSHRN_asimdshf_N -> "SQRSHRN_asimdshf_N"
+        SQRSHRUN SQRSHRUN_asisdshf_N -> "SQRSHRUN_asisdshf_N"
+        SQRSHRUN SQRSHRUN_asimdshf_N -> "SQRSHRUN_asimdshf_N"
+        SQSHL SQSHL_asisdshf_R -> "SQSHL_asisdshf_R"
+        SQSHL SQSHL_asimdshf_R -> "SQSHL_asimdshf_R"
+        SQSHL SQSHL_asisdsame_only -> "SQSHL_asisdsame_only"
+        SQSHL SQSHL_asimdsame_only -> "SQSHL_asimdsame_only"
+        SQSHLU SQSHLU_asisdshf_R -> "SQSHLU_asisdshf_R"
+        SQSHLU SQSHLU_asimdshf_R -> "SQSHLU_asimdshf_R"
+        SQSHRN SQSHRN_asisdshf_N -> "SQSHRN_asisdshf_N"
+        SQSHRN SQSHRN_asimdshf_N -> "SQSHRN_asimdshf_N"
+        SQSHRUN SQSHRUN_asisdshf_N -> "SQSHRUN_asisdshf_N"
+        SQSHRUN SQSHRUN_asimdshf_N -> "SQSHRUN_asimdshf_N"
+        SQSUB SQSUB_asisdsame_only -> "SQSUB_asisdsame_only"
+        SQSUB SQSUB_asimdsame_only -> "SQSUB_asimdsame_only"
+        SQXTN SQXTN_asisdmisc_N -> "SQXTN_asisdmisc_N"
+        SQXTN SQXTN_asimdmisc_N -> "SQXTN_asimdmisc_N"
+        SQXTUN SQXTUN_asisdmisc_N -> "SQXTUN_asisdmisc_N"
+        SQXTUN SQXTUN_asimdmisc_N -> "SQXTUN_asimdmisc_N"
+        SRHADD SRHADD_asimdsame_only -> "SRHADD_asimdsame_only"
+        SRI SRI_asisdshf_R -> "SRI_asisdshf_R"
+        SRI SRI_asimdshf_R -> "SRI_asimdshf_R"
+        SRSHL SRSHL_asisdsame_only -> "SRSHL_asisdsame_only"
+        SRSHL SRSHL_asimdsame_only -> "SRSHL_asimdsame_only"
+        SRSHR SRSHR_asisdshf_R -> "SRSHR_asisdshf_R"
+        SRSHR SRSHR_asimdshf_R -> "SRSHR_asimdshf_R"
+        SRSRA SRSRA_asisdshf_R -> "SRSRA_asisdshf_R"
+        SRSRA SRSRA_asimdshf_R -> "SRSRA_asimdshf_R"
+        SSHL SSHL_asisdsame_only -> "SSHL_asisdsame_only"
+        SSHL SSHL_asimdsame_only -> "SSHL_asimdsame_only"
+        SSHLL SSHLL_asimdshf_L -> "SSHLL_asimdshf_L"
+        SSHR SSHR_asisdshf_R -> "SSHR_asisdshf_R"
+        SSHR SSHR_asimdshf_R -> "SSHR_asimdshf_R"
+        SSRA SSRA_asisdshf_R -> "SSRA_asisdshf_R"
+        SSRA SSRA_asimdshf_R -> "SSRA_asimdshf_R"
+        SSUBL SSUBL_asimddiff_L -> "SSUBL_asimddiff_L"
+        SSUBW SSUBW_asimddiff_W -> "SSUBW_asimddiff_W"
+        ST1 ST1_asisdlse_R1_1v -> "ST1_asisdlse_R1_1v"
+        ST1 ST1_asisdlse_R2_2v -> "ST1_asisdlse_R2_2v"
+        ST1 ST1_asisdlse_R3_3v -> "ST1_asisdlse_R3_3v"
+        ST1 ST1_asisdlse_R4_4v -> "ST1_asisdlse_R4_4v"
+        ST1 ST1_asisdlsep_I1_i1 -> "ST1_asisdlsep_I1_i1"
+        ST1 ST1_asisdlsep_R1_r1 -> "ST1_asisdlsep_R1_r1"
+        ST1 ST1_asisdlsep_I2_i2 -> "ST1_asisdlsep_I2_i2"
+        ST1 ST1_asisdlsep_R2_r2 -> "ST1_asisdlsep_R2_r2"
+        ST1 ST1_asisdlsep_I3_i3 -> "ST1_asisdlsep_I3_i3"
+        ST1 ST1_asisdlsep_R3_r3 -> "ST1_asisdlsep_R3_r3"
+        ST1 ST1_asisdlsep_I4_i4 -> "ST1_asisdlsep_I4_i4"
+        ST1 ST1_asisdlsep_R4_r4 -> "ST1_asisdlsep_R4_r4"
+        ST1 ST1_asisdlso_B1_1b -> "ST1_asisdlso_B1_1b"
+        ST1 ST1_asisdlso_H1_1h -> "ST1_asisdlso_H1_1h"
+        ST1 ST1_asisdlso_S1_1s -> "ST1_asisdlso_S1_1s"
+        ST1 ST1_asisdlso_D1_1d -> "ST1_asisdlso_D1_1d"
+        ST1 ST1_asisdlsop_B1_i1b -> "ST1_asisdlsop_B1_i1b"
+        ST1 ST1_asisdlsop_BX1_r1b -> "ST1_asisdlsop_BX1_r1b"
+        ST1 ST1_asisdlsop_H1_i1h -> "ST1_asisdlsop_H1_i1h"
+        ST1 ST1_asisdlsop_HX1_r1h -> "ST1_asisdlsop_HX1_r1h"
+        ST1 ST1_asisdlsop_S1_i1s -> "ST1_asisdlsop_S1_i1s"
+        ST1 ST1_asisdlsop_SX1_r1s -> "ST1_asisdlsop_SX1_r1s"
+        ST1 ST1_asisdlsop_D1_i1d -> "ST1_asisdlsop_D1_i1d"
+        ST1 ST1_asisdlsop_DX1_r1d -> "ST1_asisdlsop_DX1_r1d"
+        ST2 ST2_asisdlse_R2 -> "ST2_asisdlse_R2"
+        ST2 ST2_asisdlsep_I2_i -> "ST2_asisdlsep_I2_i"
+        ST2 ST2_asisdlsep_R2_r -> "ST2_asisdlsep_R2_r"
+        ST2 ST2_asisdlso_B2_2b -> "ST2_asisdlso_B2_2b"
+        ST2 ST2_asisdlso_H2_2h -> "ST2_asisdlso_H2_2h"
+        ST2 ST2_asisdlso_S2_2s -> "ST2_asisdlso_S2_2s"
+        ST2 ST2_asisdlso_D2_2d -> "ST2_asisdlso_D2_2d"
+        ST2 ST2_asisdlsop_B2_i2b -> "ST2_asisdlsop_B2_i2b"
+        ST2 ST2_asisdlsop_BX2_r2b -> "ST2_asisdlsop_BX2_r2b"
+        ST2 ST2_asisdlsop_H2_i2h -> "ST2_asisdlsop_H2_i2h"
+        ST2 ST2_asisdlsop_HX2_r2h -> "ST2_asisdlsop_HX2_r2h"
+        ST2 ST2_asisdlsop_S2_i2s -> "ST2_asisdlsop_S2_i2s"
+        ST2 ST2_asisdlsop_SX2_r2s -> "ST2_asisdlsop_SX2_r2s"
+        ST2 ST2_asisdlsop_D2_i2d -> "ST2_asisdlsop_D2_i2d"
+        ST2 ST2_asisdlsop_DX2_r2d -> "ST2_asisdlsop_DX2_r2d"
+        ST3 ST3_asisdlse_R3 -> "ST3_asisdlse_R3"
+        ST3 ST3_asisdlsep_I3_i -> "ST3_asisdlsep_I3_i"
+        ST3 ST3_asisdlsep_R3_r -> "ST3_asisdlsep_R3_r"
+        ST3 ST3_asisdlso_B3_3b -> "ST3_asisdlso_B3_3b"
+        ST3 ST3_asisdlso_H3_3h -> "ST3_asisdlso_H3_3h"
+        ST3 ST3_asisdlso_S3_3s -> "ST3_asisdlso_S3_3s"
+        ST3 ST3_asisdlso_D3_3d -> "ST3_asisdlso_D3_3d"
+        ST3 ST3_asisdlsop_B3_i3b -> "ST3_asisdlsop_B3_i3b"
+        ST3 ST3_asisdlsop_BX3_r3b -> "ST3_asisdlsop_BX3_r3b"
+        ST3 ST3_asisdlsop_H3_i3h -> "ST3_asisdlsop_H3_i3h"
+        ST3 ST3_asisdlsop_HX3_r3h -> "ST3_asisdlsop_HX3_r3h"
+        ST3 ST3_asisdlsop_S3_i3s -> "ST3_asisdlsop_S3_i3s"
+        ST3 ST3_asisdlsop_SX3_r3s -> "ST3_asisdlsop_SX3_r3s"
+        ST3 ST3_asisdlsop_D3_i3d -> "ST3_asisdlsop_D3_i3d"
+        ST3 ST3_asisdlsop_DX3_r3d -> "ST3_asisdlsop_DX3_r3d"
+        ST4 ST4_asisdlse_R4 -> "ST4_asisdlse_R4"
+        ST4 ST4_asisdlsep_I4_i -> "ST4_asisdlsep_I4_i"
+        ST4 ST4_asisdlsep_R4_r -> "ST4_asisdlsep_R4_r"
+        ST4 ST4_asisdlso_B4_4b -> "ST4_asisdlso_B4_4b"
+        ST4 ST4_asisdlso_H4_4h -> "ST4_asisdlso_H4_4h"
+        ST4 ST4_asisdlso_S4_4s -> "ST4_asisdlso_S4_4s"
+        ST4 ST4_asisdlso_D4_4d -> "ST4_asisdlso_D4_4d"
+        ST4 ST4_asisdlsop_B4_i4b -> "ST4_asisdlsop_B4_i4b"
+        ST4 ST4_asisdlsop_BX4_r4b -> "ST4_asisdlsop_BX4_r4b"
+        ST4 ST4_asisdlsop_H4_i4h -> "ST4_asisdlsop_H4_i4h"
+        ST4 ST4_asisdlsop_HX4_r4h -> "ST4_asisdlsop_HX4_r4h"
+        ST4 ST4_asisdlsop_S4_i4s -> "ST4_asisdlsop_S4_i4s"
+        ST4 ST4_asisdlsop_SX4_r4s -> "ST4_asisdlsop_SX4_r4s"
+        ST4 ST4_asisdlsop_D4_i4d -> "ST4_asisdlsop_D4_i4d"
+        ST4 ST4_asisdlsop_DX4_r4d -> "ST4_asisdlsop_DX4_r4d"
+        STNP STNP_S_ldstnapair_offs -> "STNP_S_ldstnapair_offs"
+        STNP STNP_D_ldstnapair_offs -> "STNP_D_ldstnapair_offs"
+        STNP STNP_Q_ldstnapair_offs -> "STNP_Q_ldstnapair_offs"
+        STP STP_S_ldstpair_post -> "STP_S_ldstpair_post"
+        STP STP_D_ldstpair_post -> "STP_D_ldstpair_post"
+        STP STP_Q_ldstpair_post -> "STP_Q_ldstpair_post"
+        STP STP_S_ldstpair_pre -> "STP_S_ldstpair_pre"
+        STP STP_D_ldstpair_pre -> "STP_D_ldstpair_pre"
+        STP STP_Q_ldstpair_pre -> "STP_Q_ldstpair_pre"
+        STP STP_S_ldstpair_off -> "STP_S_ldstpair_off"
+        STP STP_D_ldstpair_off -> "STP_D_ldstpair_off"
+        STP STP_Q_ldstpair_off -> "STP_Q_ldstpair_off"
+        STR STR_B_ldst_immpost -> "STR_B_ldst_immpost"
+        STR STR_H_ldst_immpost -> "STR_H_ldst_immpost"
+        STR STR_S_ldst_immpost -> "STR_S_ldst_immpost"
+        STR STR_D_ldst_immpost -> "STR_D_ldst_immpost"
+        STR STR_Q_ldst_immpost -> "STR_Q_ldst_immpost"
+        STR STR_B_ldst_immpre -> "STR_B_ldst_immpre"
+        STR STR_H_ldst_immpre -> "STR_H_ldst_immpre"
+        STR STR_S_ldst_immpre -> "STR_S_ldst_immpre"
+        STR STR_D_ldst_immpre -> "STR_D_ldst_immpre"
+        STR STR_Q_ldst_immpre -> "STR_Q_ldst_immpre"
+        STR STR_B_ldst_pos -> "STR_B_ldst_pos"
+        STR STR_H_ldst_pos -> "STR_H_ldst_pos"
+        STR STR_S_ldst_pos -> "STR_S_ldst_pos"
+        STR STR_D_ldst_pos -> "STR_D_ldst_pos"
+        STR STR_Q_ldst_pos -> "STR_Q_ldst_pos"
+        STR STR_B_ldst_regoff -> "STR_B_ldst_regoff"
+        STR STR_BL_ldst_regoff -> "STR_BL_ldst_regoff"
+        STR STR_H_ldst_regoff -> "STR_H_ldst_regoff"
+        STR STR_S_ldst_regoff -> "STR_S_ldst_regoff"
+        STR STR_D_ldst_regoff -> "STR_D_ldst_regoff"
+        STR STR_Q_ldst_regoff -> "STR_Q_ldst_regoff"
+        STUR STUR_B_ldst_unscaled -> "STUR_B_ldst_unscaled"
+        STUR STUR_H_ldst_unscaled -> "STUR_H_ldst_unscaled"
+        STUR STUR_S_ldst_unscaled -> "STUR_S_ldst_unscaled"
+        STUR STUR_D_ldst_unscaled -> "STUR_D_ldst_unscaled"
+        STUR STUR_Q_ldst_unscaled -> "STUR_Q_ldst_unscaled"
+        SUB SUB_asisdsame_only -> "SUB_asisdsame_only"
+        SUB SUB_asimdsame_only -> "SUB_asimdsame_only"
+        SUBHN SUBHN_asimddiff_N -> "SUBHN_asimddiff_N"
+        SUQADD SUQADD_asisdmisc_R -> "SUQADD_asisdmisc_R"
+        SUQADD SUQADD_asimdmisc_R -> "SUQADD_asimdmisc_R"
+        TBL TBL_asimdtbl_L2_2 -> "TBL_asimdtbl_L2_2"
+        TBL TBL_asimdtbl_L3_3 -> "TBL_asimdtbl_L3_3"
+        TBL TBL_asimdtbl_L4_4 -> "TBL_asimdtbl_L4_4"
+        TBL TBL_asimdtbl_L1_1 -> "TBL_asimdtbl_L1_1"
+        TBX TBX_asimdtbl_L2_2 -> "TBX_asimdtbl_L2_2"
+        TBX TBX_asimdtbl_L3_3 -> "TBX_asimdtbl_L3_3"
+        TBX TBX_asimdtbl_L4_4 -> "TBX_asimdtbl_L4_4"
+        TBX TBX_asimdtbl_L1_1 -> "TBX_asimdtbl_L1_1"
+        TRN1 TRN1_asimdperm_only -> "TRN1_asimdperm_only"
+        TRN2 TRN2_asimdperm_only -> "TRN2_asimdperm_only"
+        UABA UABA_asimdsame_only -> "UABA_asimdsame_only"
+        UABAL UABAL_asimddiff_L -> "UABAL_asimddiff_L"
+        UABD UABD_asimdsame_only -> "UABD_asimdsame_only"
+        UABDL UABDL_asimddiff_L -> "UABDL_asimddiff_L"
+        UADALP UADALP_asimdmisc_P -> "UADALP_asimdmisc_P"
+        UADDL UADDL_asimddiff_L -> "UADDL_asimddiff_L"
+        UADDLP UADDLP_asimdmisc_P -> "UADDLP_asimdmisc_P"
+        UADDLV UADDLV_asimdall_only -> "UADDLV_asimdall_only"
+        UADDW UADDW_asimddiff_W -> "UADDW_asimddiff_W"
+        UCVTF UCVTF_H32_float2fix -> "UCVTF_H32_float2fix"
+        UCVTF UCVTF_S32_float2fix -> "UCVTF_S32_float2fix"
+        UCVTF UCVTF_D32_float2fix -> "UCVTF_D32_float2fix"
+        UCVTF UCVTF_H64_float2fix -> "UCVTF_H64_float2fix"
+        UCVTF UCVTF_S64_float2fix -> "UCVTF_S64_float2fix"
+        UCVTF UCVTF_D64_float2fix -> "UCVTF_D64_float2fix"
+        UCVTF UCVTF_H32_float2int -> "UCVTF_H32_float2int"
+        UCVTF UCVTF_S32_float2int -> "UCVTF_S32_float2int"
+        UCVTF UCVTF_D32_float2int -> "UCVTF_D32_float2int"
+        UCVTF UCVTF_H64_float2int -> "UCVTF_H64_float2int"
+        UCVTF UCVTF_S64_float2int -> "UCVTF_S64_float2int"
+        UCVTF UCVTF_D64_float2int -> "UCVTF_D64_float2int"
+        UCVTF UCVTF_asisdshf_C -> "UCVTF_asisdshf_C"
+        UCVTF UCVTF_asimdshf_C -> "UCVTF_asimdshf_C"
+        UCVTF UCVTF_asisdmiscfp16_R -> "UCVTF_asisdmiscfp16_R"
+        UCVTF UCVTF_asisdmisc_R -> "UCVTF_asisdmisc_R"
+        UCVTF UCVTF_asimdmiscfp16_R -> "UCVTF_asimdmiscfp16_R"
+        UCVTF UCVTF_asimdmisc_R -> "UCVTF_asimdmisc_R"
+        UDOT UDOT_asimdelem_D -> "UDOT_asimdelem_D"
+        UDOT UDOT_asimdsame2_D -> "UDOT_asimdsame2_D"
+        UHADD UHADD_asimdsame_only -> "UHADD_asimdsame_only"
+        UHSUB UHSUB_asimdsame_only -> "UHSUB_asimdsame_only"
+        UMAX UMAX_asimdsame_only -> "UMAX_asimdsame_only"
+        UMAXP UMAXP_asimdsame_only -> "UMAXP_asimdsame_only"
+        UMAXV UMAXV_asimdall_only -> "UMAXV_asimdall_only"
+        UMIN UMIN_asimdsame_only -> "UMIN_asimdsame_only"
+        UMINP UMINP_asimdsame_only -> "UMINP_asimdsame_only"
+        UMINV UMINV_asimdall_only -> "UMINV_asimdall_only"
+        UMLAL UMLAL_asimdelem_L -> "UMLAL_asimdelem_L"
+        UMLAL UMLAL_asimddiff_L -> "UMLAL_asimddiff_L"
+        UMLSL UMLSL_asimdelem_L -> "UMLSL_asimdelem_L"
+        UMLSL UMLSL_asimddiff_L -> "UMLSL_asimddiff_L"
+        UMOV UMOV_asimdins_W_w -> "UMOV_asimdins_W_w"
+        UMOV UMOV_asimdins_X_x -> "UMOV_asimdins_X_x"
+        UMULL UMULL_asimdelem_L -> "UMULL_asimdelem_L"
+        UMULL UMULL_asimddiff_L -> "UMULL_asimddiff_L"
+        UQADD UQADD_asisdsame_only -> "UQADD_asisdsame_only"
+        UQADD UQADD_asimdsame_only -> "UQADD_asimdsame_only"
+        UQRSHL UQRSHL_asisdsame_only -> "UQRSHL_asisdsame_only"
+        UQRSHL UQRSHL_asimdsame_only -> "UQRSHL_asimdsame_only"
+        UQRSHRN UQRSHRN_asisdshf_N -> "UQRSHRN_asisdshf_N"
+        UQRSHRN UQRSHRN_asimdshf_N -> "UQRSHRN_asimdshf_N"
+        UQSHL UQSHL_asisdshf_R -> "UQSHL_asisdshf_R"
+        UQSHL UQSHL_asimdshf_R -> "UQSHL_asimdshf_R"
+        UQSHL UQSHL_asisdsame_only -> "UQSHL_asisdsame_only"
+        UQSHL UQSHL_asimdsame_only -> "UQSHL_asimdsame_only"
+        UQSHRN UQSHRN_asisdshf_N -> "UQSHRN_asisdshf_N"
+        UQSHRN UQSHRN_asimdshf_N -> "UQSHRN_asimdshf_N"
+        UQSUB UQSUB_asisdsame_only -> "UQSUB_asisdsame_only"
+        UQSUB UQSUB_asimdsame_only -> "UQSUB_asimdsame_only"
+        UQXTN UQXTN_asisdmisc_N -> "UQXTN_asisdmisc_N"
+        UQXTN UQXTN_asimdmisc_N -> "UQXTN_asimdmisc_N"
+        URECPE URECPE_asimdmisc_R -> "URECPE_asimdmisc_R"
+        URHADD URHADD_asimdsame_only -> "URHADD_asimdsame_only"
+        URSHL URSHL_asisdsame_only -> "URSHL_asisdsame_only"
+        URSHL URSHL_asimdsame_only -> "URSHL_asimdsame_only"
+        URSHR URSHR_asisdshf_R -> "URSHR_asisdshf_R"
+        URSHR URSHR_asimdshf_R -> "URSHR_asimdshf_R"
+        URSQRTE URSQRTE_asimdmisc_R -> "URSQRTE_asimdmisc_R"
+        URSRA URSRA_asisdshf_R -> "URSRA_asisdshf_R"
+        URSRA URSRA_asimdshf_R -> "URSRA_asimdshf_R"
+        USHL USHL_asisdsame_only -> "USHL_asisdsame_only"
+        USHL USHL_asimdsame_only -> "USHL_asimdsame_only"
+        USHLL USHLL_asimdshf_L -> "USHLL_asimdshf_L"
+        USHR USHR_asisdshf_R -> "USHR_asisdshf_R"
+        USHR USHR_asimdshf_R -> "USHR_asimdshf_R"
+        USQADD USQADD_asisdmisc_R -> "USQADD_asisdmisc_R"
+        USQADD USQADD_asimdmisc_R -> "USQADD_asimdmisc_R"
+        USRA USRA_asisdshf_R -> "USRA_asisdshf_R"
+        USRA USRA_asimdshf_R -> "USRA_asimdshf_R"
+        USUBL USUBL_asimddiff_L -> "USUBL_asimddiff_L"
+        USUBW USUBW_asimddiff_W -> "USUBW_asimddiff_W"
+        UZP1 UZP1_asimdperm_only -> "UZP1_asimdperm_only"
+        UZP2 UZP2_asimdperm_only -> "UZP2_asimdperm_only"
+        XAR XAR_VVV2_crypto3_imm6 -> "XAR_VVV2_crypto3_imm6"
+        XTN XTN_asimdmisc_N -> "XTN_asimdmisc_N"
+        ZIP1 ZIP1_asimdperm_only -> "ZIP1_asimdperm_only"
+        ZIP2 ZIP2_asimdperm_only -> "ZIP2_asimdperm_only"

@@ -9,10 +9,10 @@ This repository also contains an in-progress implementation of ARM ASL (architec
 
 This code generation process is complex, but [nix](https://nixos.org/nix/) makes it manageable. The entire process is described in `./default.nix`. `./nix-results` contains some up-to-date nix output for perusal.
 
-- **`asl`**: Library for parsing and interpreting ARM ASL (Architecture Specification Language).
+- **`asl`**: Library for parsing and (someday) interpreting ARM ASL (Architecture Specification Language).
 - **`harm`**:
-    - **`harm-types`**: Types describing ARM instructions and operands.
-    - **`harm-tables-gen`**: Program whose input is the MRAS and a Haskell file containing logic written in an EDSL describing the (dis)assembly and parsing of each instruction encoding, and whose output is the tables needed to (dis)assemble and parse ARM code and assembly.
+    - **`harm-types`**: Types describing ARM operands.
+    - **`harm-tables-gen`**: Program whose input is the MRAS and a Haskell file containing logic written in an EDSL describing the (dis)assembly and parsing of each instruction encoding, and whose output is a Haskell library containing types for representing instructions, along with the tables needed to (dis)assemble ARM code and parse and generate assembly.
     - **`harm-tables`**: The output of `harm-tables-gen`, and some manual decoding/encoding logic (in-progress).
     - **`harm`**: An interface to `harm-tables`, along with various other analysis utilities (in-progress).
 - **`arm-mras`**:
@@ -91,7 +91,7 @@ DefFn
 ...
 ```
 
-Print all instruction templates (including aliases) in lexicographical order:
+Print all instruction templates (including aliases) in alphabetical order:
 
 ```haskell
 import ARM.MRAS
