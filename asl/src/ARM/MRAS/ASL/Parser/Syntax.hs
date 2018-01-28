@@ -74,8 +74,7 @@ data LExpr =
     | LExprDot LExpr Ident
     | LExprDots LExpr (NonEmpty Ident)
     | LExprSlice LExpr [Slice]
-    | LExprConcat [Slice] -- there is only one instance of this in all of the public A64 ASL
-    | LExprBrack (NonEmpty LExpr)
+    | LExprConcat [Slice]
     | LExprParen (NonEmpty LExpr)
     deriving (Eq, Show, Generic, NFData)
 

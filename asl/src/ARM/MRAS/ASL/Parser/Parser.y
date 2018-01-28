@@ -270,12 +270,10 @@ lexpr ::                                { LExpr                   }
     : '-'                               { LExprEmpty              }
     | qualident                         { LExprId $1              }
     | lexpr '.' ident                   { LExprDot $1 $3          }
-    | lexpr '.' '[' ident cpl_ident ']' { LExprDots $1 ($4 :| $5) }
     | lexpr '.' '<' ident cpl_ident '>' { LExprDots $1 ($4 :| $5) }
     | lexpr '[' csl_slice ']'           { LExprSlice $1 $3        }
     | lexpr '<' csl_slice '>'           { LExprSlice $1 $3        }
     | '<' csl_slice '>'                 { LExprConcat $2          }
-    | '[' lexpr cpl_lexpr ']'           { LExprBrack ($2 :| $3)   }
     | '(' lexpr cpl_lexpr ')'           { LExprParen ($2 :| $3)   }
 
 indented_block ::                            { NonEmpty Statement }

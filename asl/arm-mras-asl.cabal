@@ -32,7 +32,8 @@ test-suite test
   main-is:            Test.hs
 
   -- for now
-  other-modules:      ARM.MRAS.ASL.Parser
+  other-modules:      Recon
+                    , ARM.MRAS.ASL.Parser
                     , ARM.MRAS.ASL.Parser.Lexer
                     , ARM.MRAS.ASL.Parser.Parser
                     , ARM.MRAS.ASL.Parser.ParserMonad
