@@ -1,7 +1,7 @@
 {-# LANGUAGE ParallelListComp #-}
 {-# LANGUAGE TupleSections #-}
 
-module Test where
+module Main where
 
 import ARM.MRAS
 import ARM.MRAS.ASL.Parser
@@ -56,7 +56,7 @@ parseStmtsM asl = StateT $ \s -> ExceptT (return (fmap (, s) (parseStmts s asl))
 main :: IO ()
 main = do
     r <- runExceptT . flip runStateT [] $ do
-        liftIO (readFile "test/prelude.asl") >>= parseDefsM
+        liftIO (readFile "tests/prelude.asl") >>= parseDefsM
         forM_ defChunks $ \asl -> do
             ast <- parseDefsM asl
             ast `deepseq` liftIO (putChar '.')
@@ -128,14 +128,14 @@ testParseStmts input = pushCtx "testParseStmts" $ do
         Left err -> throwError $ [input, show err]
 
 mkArch :: IO ()
-mkArch = withFile "test/arch.asl" WriteMode $ \h -> do
+mkArch = withFile "tests/arch.asl" WriteMode $ \h -> do
     mapM_ (hPutStrLn h . _shared_ps_code) $ topoSort sharedps
 
 root :: FilePath
-root = "../test/nix-results/test-asl"
+root = "../tests/nix-results/test-asl"
 
 files :: [FilePath]
-files = f a ++ ["test/arch.asl"] ++ f b
+files = f a ++ ["tests/arch.asl"] ++ f b
   where
     f = map ((</>) root)
     a = [ "foo.asl"

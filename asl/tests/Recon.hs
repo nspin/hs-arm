@@ -43,7 +43,7 @@ around :: Eq a => Int -> [a] -> [a] -> Maybe [a]
 around n needle haystack = flip fmap (infIx needle haystack) $ \i -> take n (drop i haystack)
 
 n = 60
-needle = "TyExprApp"
+needle = "DefGetter"
 
 recon :: IO ()
 recon = do
