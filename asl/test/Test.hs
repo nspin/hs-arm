@@ -1,4 +1,5 @@
 {-# LANGUAGE ParallelListComp #-}
+{-# LANGUAGE TupleSections #-}
 
 module Test where
 
@@ -41,17 +42,38 @@ checkIndents = go 0
     go _ [] = False
 
 defChunks :: [String]
-defChunks = map _shared_ps_code sharedps
+defChunks = map _shared_ps_code (topoSort sharedps)
 
 stmtChunks :: [String]
 stmtChunks = (base ++ fpsimd) ^.. traverse.(insn_classes.traverse._2 <> insn_ps).traverse.ps_code
 
+parseDefsM :: Monad m => String -> StateT [String] (ExceptT PError m) [Definition]
+parseDefsM asl = StateT $ ExceptT . return . parseDefs asl
+
+parseStmtsM :: Monad m => String -> StateT [String] (ExceptT PError m) [Statement]
+parseStmtsM asl = StateT $ \s -> ExceptT (return (fmap (, s) (parseStmts s asl)))
+
 main :: IO ()
 main = do
-    putStr "testing lexer"
-    testLexer
-    putStr "testing parser"
-    testParser
+    r <- runExceptT . flip runStateT [] $ do
+        liftIO (readFile "test/prelude.asl") >>= parseDefsM
+        forM_ defChunks $ \asl -> do
+            ast <- parseDefsM asl
+            ast `deepseq` liftIO (putChar '.')
+        forM_ stmtChunks $ \asl -> do
+            ast <- parseStmtsM asl
+            ast `deepseq` liftIO (putChar '.')
+    putChar '\n'
+    case r of
+        Left err -> die (show err)
+        Right _ -> return ()
+
+-- main :: IO ()
+-- main = do
+--     putStr "testing lexer"
+--     testLexer
+--     putStr "testing parser"
+--     testParser
 
 testLexer :: IO ()
 testLexer = do
@@ -148,52 +170,3 @@ testParser = do
         stmts <- return []
         return (defs, stmts)
     return ()
-
--- testParser :: IO ()
--- testParser = do
---     supp <- readSupport
---     merr <- runExceptT . flip runStateT [] $ do
---         liftIO $ putStr "\nDEFINITIONS"
---         leftover <- iterateChunks (putChar '.') (supp ++ defChunks)
---         case leftover of
---             [] -> return ()
---             ls -> do
---                 liftIO $ putStrLn "<START>"
---                 liftIO $ mapM_ putStrLn ls
---                 liftIO $ putStrLn "<END>"
---                 tys <- get
---                 liftIO $ mapM_ putStrLn tys
---                 throwError $ PError (Position 0 0 0) "leftover"
---         liftIO $ putStr "\nSTATEMENTS"
---         forM_ stmtChunks $ \chunk -> do
---             types <- get
---             case parseStmts types chunk of
---                 Left err -> do
---                     liftIO $ putStrLn chunk
---                     liftIO $ putStrLn ""
---                     liftIO $ mapM_ putStrLn types
---                     throwError err
---                 Right _ -> liftIO $ putChar '.'
---     case merr of
---         Left err -> print err
---         Right _ -> return ()
---     putChar '\n'
-
--- findOrder :: Monad m => m () -> [String] -> StateT [String] (ExceptT PError m) [String]
--- findOrder m = go 0 []
---   where
---     go 0 bad [] = return bad
---     go n bad [] = go 0 [] bad
---     go n bad (c:cs) = do
---         catchError
---             (parseDefs c >> lift (lift m) >> go (n + 1) bad cs)
---             (const (go n (c:bad) cs))
-
--- testLocal :: IO ()
--- testLocal = do
---     tys <- lines <$> readFile "test/types.txt"
---     chunk <- readFile "test/test.asl"
---     r <- runExceptT (runStateT (parseDefs chunk) tys)
---     case r of
---         Right _ -> return ()
---         Left err -> print err
