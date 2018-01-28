@@ -4,6 +4,7 @@
 mkDerivation {
   pname = "arm-mras-asl";
   version = "0.1";
+  doHaddock = false;
   src = ./.;
   libraryHaskellDepends = [
     arm-mras array base deepseq directory filepath lens mtl

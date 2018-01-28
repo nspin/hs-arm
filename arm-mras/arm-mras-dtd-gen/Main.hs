@@ -14,9 +14,9 @@ import Text.PrettyPrint.HughesPJ (vcat, render)
 
 import Distribution.License
 import Distribution.ModuleName (ModuleName, fromString, components)
-import Distribution.Package
+import Distribution.Package hiding (Module)
 import Distribution.PackageDescription
-import Distribution.PackageDescription.Parse (writePackageDescription)
+import Distribution.PackageDescription.PrettyPrint (writePackageDescription)
 import Distribution.Version
 
 import Text.XML.HaXml.DtdToHaskell.Convert (dtd2TypeDef)
@@ -75,18 +75,18 @@ generate specVersion specName inDir outDir = do
 
 buildCabal :: [Int] -> String -> [[String]] -> PackageDescription
 buildCabal specVersion pname mods = emptyPackageDescription
-    { package = PackageIdentifier (PackageName pname) (Version (baseVersion ++ specVersion) [])
+    { package = PackageIdentifier (mkPackageName pname) (mkVersion (baseVersion ++ specVersion))
     , license = MIT
     , author = "Nick Spinale"
     , maintainer = "spinalen@gmail.com"
     , buildType = Just Simple
-    , specVersionRaw = Left (Version [1, 10] [])
+    , specVersionRaw = Left (mkVersion [1, 10])
     , library = Just emptyLibrary
         { exposedModules = map (fromString . intercalate ".") mods
         , libBuildInfo = emptyBuildInfo
             { targetBuildDepends =
-                [ Dependency (PackageName "base") anyVersion
-                , Dependency (PackageName "HaXml") anyVersion
+                [ Dependency (mkPackageName "base") anyVersion
+                , Dependency (mkPackageName "HaXml") anyVersion
                 ]
             , hsSourceDirs = ["gen"]
             }

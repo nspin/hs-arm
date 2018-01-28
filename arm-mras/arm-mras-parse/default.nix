@@ -5,6 +5,7 @@
 mkDerivation {
   pname = "arm-mras-parse";
   version = "0.1";
+  doHaddock = false;
   src = ./.;
   libraryHaskellDepends = [
     arm-mras-dtd-aarch32 arm-mras-dtd-aarch64 arm-mras-dtd-sysreg

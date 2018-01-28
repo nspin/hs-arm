@@ -55,6 +55,7 @@ in rec {
   arm-mras-values = with haskellPackages; mkDerivation {
     pname = "arm-mras";
     version = "0.1";
+    doHaddock = false;
     src = arm-mras-values-src;
     executableHaskellDepends = [
       base directory filepath arm-mras-types
@@ -137,6 +138,7 @@ in rec {
       buildDtd = suffix: src: with haskellPackages; mkDerivation {
         pname = "arm-mras-dtd-${suffix}";
         version = "0.1";
+        doHaddock = false;
         inherit src;
         libraryHaskellDepends = [
           base HaXml
