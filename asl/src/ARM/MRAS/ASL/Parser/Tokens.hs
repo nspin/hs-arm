@@ -3,10 +3,14 @@
 
 module ARM.MRAS.ASL.Parser.Tokens
     ( Token(..)
+    , readBin
+    , readMask
+    , readReal
     ) where
 
 import Data.Bool
 import Data.Maybe
+import Data.Ratio
 import Control.DeepSeq
 import GHC.Generics (Generic)
 
@@ -17,11 +21,11 @@ data Token =
     | TokIndent
     | TokDedent
 
-    | TokInt       String
-    | TokHex       String
-    | TokReal      String
-    | TokBin       String
-    | TokMask      String
+    | TokInt       Integer
+    | TokHex       Integer
+    | TokReal      Rational
+    | TokBin       [Bool]
+    | TokMask      [Maybe Bool]
     | TokString    String
     | TokIdent     String
     | TokTident    String
@@ -122,3 +126,14 @@ readMaskBit :: Char -> Maybe Bool
 readMaskBit '1' = Just True
 readMaskBit '0' = Just False
 readMaskBit 'x' = Nothing
+
+readBin :: String -> [Bool]
+readBin = map readBit . filter (/= ' ') . init . tail
+
+readMask :: String -> [Maybe Bool]
+readMask = map readMaskBit . filter (/= ' ') . init . tail
+
+readReal :: String -> Rational
+readReal x = read before % 1 + read after % 10^(length after)
+  where
+    (before, '.':after) = span (/= '.') x

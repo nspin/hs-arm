@@ -125,12 +125,12 @@ asl :-
 "("   { tok TokLParen    }
 ")"   { tok TokRParen    }
 
-@bin    { str TokBin       }
-@mask   { str TokMask      }
-@int    { str TokInt       }
-@hex    { str TokHex       }
-@real   { str TokReal      }
-@string { str TokString    }
+@bin    { str (TokBin  . readBin)  }
+@mask   { str (TokMask . readMask) }
+@int    { str (TokInt  . read)     }
+@hex    { str (TokHex  . read)     }
+@real   { str (TokReal . readReal) }
+@string { str TokString            }
 
 @ident  { ident }
 
@@ -232,6 +232,6 @@ lexer :: (Token -> P a) -> P a
 lexer = (>>=) tokenP
 -- lexer f = do
 --    t <- tokenP
---    trace (show t) (f t)
+--    show t `trace` f t
 
 }

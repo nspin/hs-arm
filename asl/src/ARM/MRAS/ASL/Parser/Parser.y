@@ -250,10 +250,10 @@ alt ::                                                   { (Maybe ([Pattern], Ma
     | 'otherwise' possibly_empty_block                   { (Nothing, $2)                                }
 
 pattern ::                         { Pattern             }
-    : INT                          { PatInt 0            }
-    | HEX                          { PatHex 0            }
-    | BIN                          { PatBin []           }
-    | MASK                         { PatMask []          }
+    : INT                          { PatInt $1           }
+    | HEX                          { PatHex $1           }
+    | BIN                          { PatBin $1           }
+    | MASK                         { PatMask $1          }
     | IDENT                        { PatIdent (Ident $1) }
     | '(' pattern csl_pattern ')'  { PatTuple ($2 :| $3) }
     ;
@@ -296,11 +296,11 @@ nonempty_block ::              { NonEmpty Statement }
 -- Expressions
 
 aexpr ::                                                { Expr                 }
-    : INT                                               { ExprInt 0            }
-    | HEX                                               { ExprHex 0            }
-    | REAL                                              { ExprReal 0           }
-    | BIN                                               { ExprBin []           }
-    | MASK                                              { ExprMask []          }
+    : INT                                               { ExprInt $1           }
+    | HEX                                               { ExprHex $1           }
+    | REAL                                              { ExprReal $1          }
+    | BIN                                               { ExprBin $1           }
+    | MASK                                              { ExprMask $1          }
     | STRING                                            { ExprStr $1           }
     | qualident                                         { ExprId $1            }
     | qualident '(' csl_expr ')'                        { ExprApp $1 $3        }
